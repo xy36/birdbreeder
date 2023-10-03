@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "12776043662",
+    "project_id": "bird-breeder-c4b37",
+    "storage_bucket": "bird-breeder-c4b37.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12776043662:android:c112d3057e4bbc3183c5df",
+        "android_client_info": {
+          "package_name": "com.xy36.birdbreeder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCY2ILuRkevzjj0c5ZoReLDO6yXGXsy2zo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

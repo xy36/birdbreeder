@@ -1,0 +1,85 @@
+import '../../injection.dart';
+import '../i_repository.dart';
+import '../models/dtos/dtos.dart';
+import '../models/entities/entities.dart';
+
+extension BirdDtoMapperExtension on BirdDto {
+  Future<Bird> toBird() async => BirdMapper().mapFrom(this);
+}
+
+extension BirdMapperExtension on Bird {
+  BirdDto toDto() => BirdMapper().mapTo(this);
+}
+
+extension BirdDtoListMapperExtension on List<BirdDto> {
+  Future<List<Bird>> toBirdList() async => BirdMapper().mapFromList(this);
+}
+
+extension BirdListMapperExtension on List<Bird> {
+  List<BirdDto> toDtoList() => BirdMapper().mapToList(this);
+}
+
+class BirdMapper {
+  Future<Bird> mapFrom(BirdDto object) async {
+    final species = await object.speciesId != null
+        ? (await s1.get<IRepository>().getSpeciesById(object.speciesId!))
+            .asValue
+            ?.value
+        : null;
+
+    final color = await object.colorId != null
+        ? (await s1.get<IRepository>().getColorById(object.colorId!))
+            .asValue
+            ?.value
+        : null;
+
+    return Bird(
+      id: object.id,
+      ringnumber: object.ringnumber,
+      cageId: object.cageId,
+      color: color,
+      species: species,
+      sex: object.sex,
+      origin: object.origin,
+      bornDate: object.bornDate,
+      boughtDate: object.boughtDate,
+      boughtPrice: object.boughtPrice,
+      diedDate: object.diedDate,
+      fatherRingnumber: object.fatherRingnumber,
+      motherRingnumber: object.motherRingnumber,
+      partnerRingnumber: object.partnerRingnumber,
+      isForSale: object.isForSale,
+      sellDate: object.sellDate,
+      sellPriceOffer: object.sellPriceOffer,
+      sellPriceReal: object.sellPriceReal,
+    );
+  }
+
+  Future<List<Bird>> mapFromList(List<BirdDto> objects) async {
+    return Future.wait(objects.map((dto) async => await mapFrom(dto)).toList());
+  }
+
+  BirdDto mapTo(Bird object) => BirdDto(
+      id: object.id,
+      ringnumber: object.ringnumber,
+      cageId: object.cageId,
+      speciesId: object.species?.id,
+      colorId: object.color?.id,
+      bornDate: object.bornDate,
+      boughtDate: object.boughtDate,
+      boughtPrice: object.boughtPrice,
+      diedDate: object.diedDate,
+      fatherRingnumber: object.fatherRingnumber,
+      motherRingnumber: object.motherRingnumber,
+      partnerRingnumber: object.partnerRingnumber,
+      isForSale: object.isForSale,
+      sellDate: object.sellDate,
+      sellPriceOffer: object.sellPriceOffer,
+      sellPriceReal: object.sellPriceReal,
+      origin: object.origin,
+      sex: object.sex);
+
+  List<BirdDto> mapToList(List<Bird> objects) {
+    return objects.map(mapTo).toList();
+  }
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCN6eih7s_nCtKNSDpz_v4b_0cwTRtljJs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>12776043662</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.xy36.birdbreeder</string>
+	<key>PROJECT_ID</key>
+	<string>bird-breeder-c4b37</string>
+	<key>STORAGE_BUCKET</key>
+	<string>bird-breeder-c4b37.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:12776043662:ios:a8e1a4ebf811efe483c5df</string>
+</dict>
+</plist>
