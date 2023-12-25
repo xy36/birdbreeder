@@ -133,3 +133,7 @@ app.*.map.json
 !.idea/dictionaries/
 !.idea/runConfigurations/
 untranslated_messages.json
+firebase-tools-instant-win.exe
+firebase/emulator_data/firestore_export/firestore_export.overall_export_metadata
+firebase/emulator_data/firestore_export/all_namespaces/all_kinds/all_namespaces_all_kinds.export_metadata
+firebase/emulator_data/firestore_export/all_namespaces/all_kinds/output-0

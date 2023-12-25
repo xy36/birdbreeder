@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
 import 'injection.dart';
@@ -23,17 +24,31 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: _appRouter.config(
-        reevaluateListenable:
-            s1.get<IAuthenticationService>().authenticationStatus,
-      ),
-      builder: (context, child) {
-        return ResponsiveBreakpoints.builder(
-          child: child!,
-          breakpoints: ScreenSize.getBreakpoints(),
-        );
-      },
-      themeMode: ThemeMode.light,
-    );
+        routerConfig: _appRouter.config(
+          reevaluateListenable:
+              s1.get<IAuthenticationService>().authenticationStatus,
+        ),
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          inputDecorationTheme: InputDecorationTheme(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        ),
+        builder: (context, child) {
+          return ResponsiveBreakpoints.builder(
+            child: child!,
+            breakpoints: ScreenSize.getBreakpoints(),
+          );
+        },
+        themeMode: ThemeMode.light,
+        localizationsDelegates: [
+          ...AppLocalizations.localizationsDelegates,
+        ],
+        supportedLocales: [
+          Locale('en'),
+          Locale('de'),
+        ]);
   }
 }

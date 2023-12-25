@@ -28,4 +28,25 @@ class Bird with _$Bird {
     required String? partnerRingnumber,
     required bool? isForSale,
   }) = _Bird;
+
+  factory Bird.empty() => Bird(
+        bornDate: null,
+        boughtDate: null,
+        boughtPrice: null,
+        cageId: null,
+        color: null,
+        diedDate: null,
+        fatherRingnumber: null,
+        id: null,
+        isForSale: null,
+        motherRingnumber: null,
+        origin: null,
+        partnerRingnumber: null,
+        ringnumber: null,
+        sellDate: null,
+        sellPriceOffer: null,
+        species: null,
+        sex: null,
+        sellPriceReal: null,
+      );
 }

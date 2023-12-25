@@ -15,10 +15,14 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    AddBirdRoute.name: (routeData) {
+    BirdRoute.name: (routeData) {
+      final args = routeData.argsAs<BirdRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const AddBirdPage(),
+        child: BirdPage(
+          key: args.key,
+          bird: args.bird,
+        ),
       );
     },
     BirdsOverviewRoute.name: (routeData) {
@@ -65,17 +69,40 @@ abstract class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
-/// [AddBirdPage]
-class AddBirdRoute extends PageRouteInfo<void> {
-  const AddBirdRoute({List<PageRouteInfo>? children})
-      : super(
-          AddBirdRoute.name,
+/// [BirdPage]
+class BirdRoute extends PageRouteInfo<BirdRouteArgs> {
+  BirdRoute({
+    Key? key,
+    required Bird? bird,
+    List<PageRouteInfo>? children,
+  }) : super(
+          BirdRoute.name,
+          args: BirdRouteArgs(
+            key: key,
+            bird: bird,
+          ),
           initialChildren: children,
         );
 
-  static const String name = 'AddBirdRoute';
+  static const String name = 'BirdRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<BirdRouteArgs> page = PageInfo<BirdRouteArgs>(name);
+}
+
+class BirdRouteArgs {
+  const BirdRouteArgs({
+    this.key,
+    required this.bird,
+  });
+
+  final Key? key;
+
+  final Bird? bird;
+
+  @override
+  String toString() {
+    return 'BirdRouteArgs{key: $key, bird: $bird}';
+  }
 }
 
 /// generated route for
