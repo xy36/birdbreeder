@@ -29,9 +29,11 @@ class AppBlocObserver extends BlocObserver {
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  FirebaseApp app;
+
   if (kIsWeb) {
-    await Firebase.initializeApp(
-      name: 'Flutter Demo',
+    app = await Firebase.initializeApp(
+      name: 'Bird Breeder',
       options: const FirebaseOptions(
           apiKey: "AIzaSyBf9S3vIqEteLxZ2e93QaNCOoTmhIQy8GI",
           authDomain: "bird-breeder-c4b37.firebaseapp.com",
@@ -41,7 +43,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
           appId: "1:12776043662:web:08492619e8921ca783c5df"),
     );
   } else {
-    await Firebase.initializeApp();
+    app = await Firebase.initializeApp();
   }
 
   FlutterError.onError = (details) {
@@ -49,7 +51,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   };
 
   // Initialize the Dependency Injection
-  initializeDependencyInjection();
+  initializeDependencyInjection(app);
 
   // Initialize the application
   await InitializationService.initialize();
