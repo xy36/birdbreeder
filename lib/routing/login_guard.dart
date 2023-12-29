@@ -17,7 +17,7 @@ class LoginGuard extends AutoRouteGuard {
         break;
       case AuthenticationStatus.authenticated:
         resolver.next(false);
-        router.replaceAll([const HomeRoute()]);
+        router.replaceAll([const MenuRoute()]);
         break;
     }
   }

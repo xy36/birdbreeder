@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
+import 'bootstrap.dart';
 import 'injection.dart';
 import 'routing/app_router.dart';
 import 'screen_size.dart';
@@ -28,14 +29,16 @@ class App extends StatelessWidget {
           reevaluateListenable:
               s1.get<IAuthenticationService>().authenticationStatus,
         ),
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          inputDecorationTheme: InputDecorationTheme(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
+        theme: themeData ??
+            ThemeData(
+              //colorSchemeSeed: Colors.black,
+
+              inputDecorationTheme: InputDecorationTheme(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
             ),
-          ),
-        ),
         builder: (context, child) {
           return ResponsiveBreakpoints.builder(
             child: child!,
@@ -46,9 +49,6 @@ class App extends StatelessWidget {
         localizationsDelegates: [
           ...AppLocalizations.localizationsDelegates,
         ],
-        supportedLocales: [
-          Locale('en'),
-          Locale('de'),
-        ]);
+        supportedLocales: AppLocalizations.supportedLocales);
   }
 }

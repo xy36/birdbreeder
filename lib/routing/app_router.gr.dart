@@ -15,13 +15,27 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AccountRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AccountPage(),
+      );
+    },
+    AddBirdRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AddBirdPage(),
+      );
+    },
     BirdRoute.name: (routeData) {
-      final args = routeData.argsAs<BirdRouteArgs>();
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<BirdRouteArgs>(
+          orElse: () => BirdRouteArgs(id: pathParams.optString('id')));
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: BirdPage(
           key: args.key,
-          bird: args.bird,
+          id: args.id,
         ),
       );
     },
@@ -31,16 +45,34 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const BirdsOverviewPage(),
       );
     },
+    BreedingsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const BreedingsPage(),
+      );
+    },
+    EditBirdRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<EditBirdRouteArgs>(
+          orElse: () => EditBirdRouteArgs(id: pathParams.getString('id')));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: EditBirdPage(
+          key: args.key,
+          id: args.id,
+        ),
+      );
+    },
     EmptyRouterRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const EmptyRouterPage(),
       );
     },
-    HomeRoute.name: (routeData) {
+    FinancesRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const HomePage(),
+        child: const FinancesPage(),
       );
     },
     InitializationRoute.name: (routeData) {
@@ -57,6 +89,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: LoginPage(key: args.key),
       );
     },
+    MenuRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MenuPage(),
+      );
+    },
     SignUpRoute.name: (routeData) {
       final args = routeData.argsAs<SignUpRouteArgs>(
           orElse: () => const SignUpRouteArgs());
@@ -69,18 +107,47 @@ abstract class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
+/// [AccountPage]
+class AccountRoute extends PageRouteInfo<void> {
+  const AccountRoute({List<PageRouteInfo>? children})
+      : super(
+          AccountRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AccountRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [AddBirdPage]
+class AddBirdRoute extends PageRouteInfo<void> {
+  const AddBirdRoute({List<PageRouteInfo>? children})
+      : super(
+          AddBirdRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AddBirdRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [BirdPage]
 class BirdRoute extends PageRouteInfo<BirdRouteArgs> {
   BirdRoute({
     Key? key,
-    required Bird? bird,
+    String? id,
     List<PageRouteInfo>? children,
   }) : super(
           BirdRoute.name,
           args: BirdRouteArgs(
             key: key,
-            bird: bird,
+            id: id,
           ),
+          rawPathParams: {'id': id},
           initialChildren: children,
         );
 
@@ -92,16 +159,16 @@ class BirdRoute extends PageRouteInfo<BirdRouteArgs> {
 class BirdRouteArgs {
   const BirdRouteArgs({
     this.key,
-    required this.bird,
+    this.id,
   });
 
   final Key? key;
 
-  final Bird? bird;
+  final String? id;
 
   @override
   String toString() {
-    return 'BirdRouteArgs{key: $key, bird: $bird}';
+    return 'BirdRouteArgs{key: $key, id: $id}';
   }
 }
 
@@ -120,6 +187,59 @@ class BirdsOverviewRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [BreedingsPage]
+class BreedingsRoute extends PageRouteInfo<void> {
+  const BreedingsRoute({List<PageRouteInfo>? children})
+      : super(
+          BreedingsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'BreedingsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EditBirdPage]
+class EditBirdRoute extends PageRouteInfo<EditBirdRouteArgs> {
+  EditBirdRoute({
+    Key? key,
+    required String id,
+    List<PageRouteInfo>? children,
+  }) : super(
+          EditBirdRoute.name,
+          args: EditBirdRouteArgs(
+            key: key,
+            id: id,
+          ),
+          rawPathParams: {'id': id},
+          initialChildren: children,
+        );
+
+  static const String name = 'EditBirdRoute';
+
+  static const PageInfo<EditBirdRouteArgs> page =
+      PageInfo<EditBirdRouteArgs>(name);
+}
+
+class EditBirdRouteArgs {
+  const EditBirdRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final Key? key;
+
+  final String id;
+
+  @override
+  String toString() {
+    return 'EditBirdRouteArgs{key: $key, id: $id}';
+  }
+}
+
+/// generated route for
 /// [EmptyRouterPage]
 class EmptyRouterRoute extends PageRouteInfo<void> {
   const EmptyRouterRoute({List<PageRouteInfo>? children})
@@ -134,15 +254,15 @@ class EmptyRouterRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [HomePage]
-class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute({List<PageRouteInfo>? children})
+/// [FinancesPage]
+class FinancesRoute extends PageRouteInfo<void> {
+  const FinancesRoute({List<PageRouteInfo>? children})
       : super(
-          HomeRoute.name,
+          FinancesRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'HomeRoute';
+  static const String name = 'FinancesRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -187,6 +307,20 @@ class LoginRouteArgs {
   String toString() {
     return 'LoginRouteArgs{key: $key}';
   }
+}
+
+/// generated route for
+/// [MenuPage]
+class MenuRoute extends PageRouteInfo<void> {
+  const MenuRoute({List<PageRouteInfo>? children})
+      : super(
+          MenuRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MenuRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

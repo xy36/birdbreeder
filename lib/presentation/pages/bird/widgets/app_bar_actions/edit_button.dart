@@ -4,7 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/bird_bloc.dart';
 
 class EditButton extends StatelessWidget {
-  const EditButton({super.key});
+  const EditButton({super.key, this.onPressed});
+
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +16,7 @@ class EditButton extends StatelessWidget {
         builder: (context, state) {
           return IconButton(
             icon: Icon(Icons.edit),
-            onPressed: () {
-              context
-                  .read<BirdBloc>()
-                  .add(BirdEvent.setEditMode(isEditMode: true));
-            },
+            onPressed: onPressed,
           );
         },
       ),

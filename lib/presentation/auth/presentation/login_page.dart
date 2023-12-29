@@ -36,7 +36,7 @@ class LoginPage extends StatelessWidget {
           ElevatedButton(
             onPressed: () async {
               if (await login()) {
-                context.router.replace(const HomeRoute());
+                context.router.replace(const MenuRoute());
               }
             },
             child: const Text('Login'),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/bird_bloc.dart';
-import 'bird_text_box.dart';
+import '../../bloc/bird_bloc.dart';
+import '../../widgets/bird_text_box.dart';
 
 class BirdCard extends StatelessWidget {
   const BirdCard({Key? key}) : super(key: key);
@@ -18,11 +18,12 @@ class BirdCard extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                BirdTextBox(label: 'Ringnumber', value: state.bird?.ringnumber),
-                BirdTextBox(label: 'Cage', value: state.bird?.cageId),
-                BirdTextBox(label: 'Species', value: state.bird?.species?.name),
+                BirdTextBox(label: 'Ringnumber', value: state.bird.ringnumber),
+                BirdTextBox(label: 'Cage', value: state.bird.cageId),
+                BirdTextBox(label: 'Species', value: state.bird.species?.name),
                 BirdTextBox(
-                    label: 'Born', value: state.bird?.bornDate.toString()),
+                    label: 'Born', value: state.bird.bornDate.toString()),
+                BirdTextBox(label: 'color', value: state.bird.color?.name),
               ],
             ),
           ),

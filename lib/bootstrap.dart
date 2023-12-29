@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
@@ -7,10 +8,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:json_theme/json_theme.dart';
 
+import 'gen/assets.gen.dart';
 import 'hive.dart';
 import 'initialization_service.dart';
 import 'injection.dart';
+
+ThemeData? themeData;
 
 class AppBlocObserver extends BlocObserver {
   @override
@@ -28,6 +34,15 @@ class AppBlocObserver extends BlocObserver {
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  try {
+    final themeStr =
+        await rootBundle.loadString(Assets.themes.appainterThemeBlue);
+    final themeJson = jsonDecode(themeStr);
+    themeData = ThemeDecoder.decodeThemeData(themeJson);
+  } catch (e) {
+    print(e);
+  }
 
   FirebaseApp app;
 

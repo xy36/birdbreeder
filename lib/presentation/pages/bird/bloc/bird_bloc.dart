@@ -12,16 +12,18 @@ part 'bird_event.dart';
 part 'bird_state.dart';
 
 class BirdBloc extends Bloc<BirdEvent, BirdState> {
-  BirdBloc({required Bird? bird})
+  BirdBloc({required String this.id})
       : super(_BirdState(
-          bird: bird ?? Bird.empty(),
-          isEditMode: bird == null,
+          bird: Bird.empty(),
         )) {
     on<_Changed>(_onChanged);
     on<_Save>(_onSave);
     on<_Load>(_onLoad);
-    on<_SetEditMode>(_onSetEditMode);
+    on<_Delete>(_onDelete);
+    on<_Reload>(_onReload);
   }
+
+  final String id;
 
   FutureOr<void> _onChanged(_Changed event, Emitter<BirdState> emit) {
     emit(
@@ -32,7 +34,7 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
     );
   }
 
-  FutureOr<void> _onLoad(_Load event, Emitter<BirdState> emit) {
+  FutureOr<void> _onLoad(_Load event, Emitter<BirdState> emit) async {
     emit(
       state.copyWith(
         status: BirdStatus.loading,
@@ -40,10 +42,12 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
       ),
     );
 
+    final birdResult = await s1.get<IRepository>().getBirdById(id);
+
     emit(
       state.copyWith(
-        status: BirdStatus.success,
-        bird: state.bird,
+        status: birdResult.isError ? BirdStatus.failure : BirdStatus.success,
+        bird: birdResult.asValue?.value ?? state.bird,
       ),
     );
   }
@@ -56,26 +60,59 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
       ),
     );
 
-    if (state.bird.id == null)
-      await s1.get<IRepository>().createBird(state.bird);
-    else
+    if (state.bird.id == null) {
+      final result = await s1.get<IRepository>().createBird(state.bird);
+
+      emit(
+        state.copyWith(
+          status: result.isError ? BirdStatus.failure : BirdStatus.success,
+          bird: state.bird,
+        ),
+      );
+    } else {
       await s1.get<IRepository>().updateBird(state.bird);
+
+      emit(
+        state.copyWith(
+          status: BirdStatus.saved,
+          bird: state.bird,
+        ),
+      );
+    }
+  }
+
+  FutureOr<void> _onReload(_Reload event, Emitter<BirdState> emit) async {
+    emit(
+      state.copyWith(
+        status: BirdStatus.loading,
+        bird: state.bird,
+      ),
+    );
+
+    final birdResult = await s1.get<IRepository>().getBirdById(id);
 
     emit(
       state.copyWith(
-        status: BirdStatus.success,
-        bird: state.bird,
-        isEditMode: false,
+        status: birdResult.isError ? BirdStatus.failure : BirdStatus.success,
+        bird: birdResult.asValue?.value ?? state.bird,
       ),
     );
   }
 
-  FutureOr<void> _onSetEditMode(_SetEditMode event, Emitter<BirdState> emit) {
+  FutureOr<void> _onDelete(_Delete event, Emitter<BirdState> emit) async {
     emit(
       state.copyWith(
-        status: BirdStatus.success,
+        status: BirdStatus.loading,
         bird: state.bird,
-        isEditMode: event.isEditMode,
+      ),
+    );
+
+    final birdResult = await s1.get<IRepository>().deleteBird(id);
+
+    emit(
+      state.copyWith(
+        status: birdResult.isError ? BirdStatus.failure : BirdStatus.deleted,
+        bird: state.bird,
       ),
     );
   }

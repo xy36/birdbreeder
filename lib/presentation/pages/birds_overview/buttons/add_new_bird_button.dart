@@ -11,7 +11,7 @@ class AddNewBirdButton extends StatelessWidget {
     return FloatingActionButton(
       heroTag: 'addNewBirdButton',
       onPressed: () async {
-        context.router.push(BirdRoute(bird: null));
+        context.router.push(AddBirdRoute());
       },
       child: const Icon(Icons.add),
     );

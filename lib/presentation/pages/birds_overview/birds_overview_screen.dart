@@ -1,14 +1,15 @@
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/domain/i_repository.dart';
 import 'package:birdbreeder/domain/models/entities/bird.dart';
 import 'package:birdbreeder/domain/models/enums/origin.dart';
 import 'package:birdbreeder/domain/models/enums/sex.dart';
 import 'package:birdbreeder/injection.dart';
 import 'package:birdbreeder/routing/app_router.dart';
-import 'package:flutter/material.dart';
 
+import '../../shared/app_bar_with_drawer.dart';
 import 'buttons/add_new_bird_button.dart';
 
 class BirdsOverviewScreen extends StatelessWidget {
@@ -17,7 +18,7 @@ class BirdsOverviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Birds Overview')),
+        appBar: AppBarWithDrawer(title: context.l10n.birds__title),
         body: FutureBuilder(
           builder: (context, snapshot) {
             if (snapshot.hasData) {
@@ -27,8 +28,8 @@ class BirdsOverviewScreen extends StatelessWidget {
                               child: ListTile(
                                 title: Text(bird.ringnumber ?? ''),
                                 subtitle: Text(bird.species?.name ?? ''),
-                                onTap: () =>
-                                    context.router.push(BirdRoute(bird: bird)),
+                                onTap: () => context.router
+                                    .push(BirdRoute(id: bird.id!)),
                               ),
                             ))
                         .toList() ??

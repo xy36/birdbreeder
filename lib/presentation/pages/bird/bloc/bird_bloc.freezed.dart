@@ -21,7 +21,8 @@ mixin _$BirdEvent {
     required TResult Function(Bird bird) changed,
     required TResult Function() save,
     required TResult Function() load,
-    required TResult Function(bool isEditMode) setEditMode,
+    required TResult Function() delete,
+    required TResult Function() reload,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +30,8 @@ mixin _$BirdEvent {
     TResult? Function(Bird bird)? changed,
     TResult? Function()? save,
     TResult? Function()? load,
-    TResult? Function(bool isEditMode)? setEditMode,
+    TResult? Function()? delete,
+    TResult? Function()? reload,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +39,8 @@ mixin _$BirdEvent {
     TResult Function(Bird bird)? changed,
     TResult Function()? save,
     TResult Function()? load,
-    TResult Function(bool isEditMode)? setEditMode,
+    TResult Function()? delete,
+    TResult Function()? reload,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -46,7 +49,8 @@ mixin _$BirdEvent {
     required TResult Function(_Changed value) changed,
     required TResult Function(_Save value) save,
     required TResult Function(_Load value) load,
-    required TResult Function(_SetEditMode value) setEditMode,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Reload value) reload,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,7 +58,8 @@ mixin _$BirdEvent {
     TResult? Function(_Changed value)? changed,
     TResult? Function(_Save value)? save,
     TResult? Function(_Load value)? load,
-    TResult? Function(_SetEditMode value)? setEditMode,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Reload value)? reload,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,7 +67,8 @@ mixin _$BirdEvent {
     TResult Function(_Changed value)? changed,
     TResult Function(_Save value)? save,
     TResult Function(_Load value)? load,
-    TResult Function(_SetEditMode value)? setEditMode,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Reload value)? reload,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -161,7 +167,8 @@ class _$_Changed implements _Changed {
     required TResult Function(Bird bird) changed,
     required TResult Function() save,
     required TResult Function() load,
-    required TResult Function(bool isEditMode) setEditMode,
+    required TResult Function() delete,
+    required TResult Function() reload,
   }) {
     return changed(bird);
   }
@@ -172,7 +179,8 @@ class _$_Changed implements _Changed {
     TResult? Function(Bird bird)? changed,
     TResult? Function()? save,
     TResult? Function()? load,
-    TResult? Function(bool isEditMode)? setEditMode,
+    TResult? Function()? delete,
+    TResult? Function()? reload,
   }) {
     return changed?.call(bird);
   }
@@ -183,7 +191,8 @@ class _$_Changed implements _Changed {
     TResult Function(Bird bird)? changed,
     TResult Function()? save,
     TResult Function()? load,
-    TResult Function(bool isEditMode)? setEditMode,
+    TResult Function()? delete,
+    TResult Function()? reload,
     required TResult orElse(),
   }) {
     if (changed != null) {
@@ -198,7 +207,8 @@ class _$_Changed implements _Changed {
     required TResult Function(_Changed value) changed,
     required TResult Function(_Save value) save,
     required TResult Function(_Load value) load,
-    required TResult Function(_SetEditMode value) setEditMode,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Reload value) reload,
   }) {
     return changed(this);
   }
@@ -209,7 +219,8 @@ class _$_Changed implements _Changed {
     TResult? Function(_Changed value)? changed,
     TResult? Function(_Save value)? save,
     TResult? Function(_Load value)? load,
-    TResult? Function(_SetEditMode value)? setEditMode,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Reload value)? reload,
   }) {
     return changed?.call(this);
   }
@@ -220,7 +231,8 @@ class _$_Changed implements _Changed {
     TResult Function(_Changed value)? changed,
     TResult Function(_Save value)? save,
     TResult Function(_Load value)? load,
-    TResult Function(_SetEditMode value)? setEditMode,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Reload value)? reload,
     required TResult orElse(),
   }) {
     if (changed != null) {
@@ -277,7 +289,8 @@ class _$_Save implements _Save {
     required TResult Function(Bird bird) changed,
     required TResult Function() save,
     required TResult Function() load,
-    required TResult Function(bool isEditMode) setEditMode,
+    required TResult Function() delete,
+    required TResult Function() reload,
   }) {
     return save();
   }
@@ -288,7 +301,8 @@ class _$_Save implements _Save {
     TResult? Function(Bird bird)? changed,
     TResult? Function()? save,
     TResult? Function()? load,
-    TResult? Function(bool isEditMode)? setEditMode,
+    TResult? Function()? delete,
+    TResult? Function()? reload,
   }) {
     return save?.call();
   }
@@ -299,7 +313,8 @@ class _$_Save implements _Save {
     TResult Function(Bird bird)? changed,
     TResult Function()? save,
     TResult Function()? load,
-    TResult Function(bool isEditMode)? setEditMode,
+    TResult Function()? delete,
+    TResult Function()? reload,
     required TResult orElse(),
   }) {
     if (save != null) {
@@ -314,7 +329,8 @@ class _$_Save implements _Save {
     required TResult Function(_Changed value) changed,
     required TResult Function(_Save value) save,
     required TResult Function(_Load value) load,
-    required TResult Function(_SetEditMode value) setEditMode,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Reload value) reload,
   }) {
     return save(this);
   }
@@ -325,7 +341,8 @@ class _$_Save implements _Save {
     TResult? Function(_Changed value)? changed,
     TResult? Function(_Save value)? save,
     TResult? Function(_Load value)? load,
-    TResult? Function(_SetEditMode value)? setEditMode,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Reload value)? reload,
   }) {
     return save?.call(this);
   }
@@ -336,7 +353,8 @@ class _$_Save implements _Save {
     TResult Function(_Changed value)? changed,
     TResult Function(_Save value)? save,
     TResult Function(_Load value)? load,
-    TResult Function(_SetEditMode value)? setEditMode,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Reload value)? reload,
     required TResult orElse(),
   }) {
     if (save != null) {
@@ -388,7 +406,8 @@ class _$_Load implements _Load {
     required TResult Function(Bird bird) changed,
     required TResult Function() save,
     required TResult Function() load,
-    required TResult Function(bool isEditMode) setEditMode,
+    required TResult Function() delete,
+    required TResult Function() reload,
   }) {
     return load();
   }
@@ -399,7 +418,8 @@ class _$_Load implements _Load {
     TResult? Function(Bird bird)? changed,
     TResult? Function()? save,
     TResult? Function()? load,
-    TResult? Function(bool isEditMode)? setEditMode,
+    TResult? Function()? delete,
+    TResult? Function()? reload,
   }) {
     return load?.call();
   }
@@ -410,7 +430,8 @@ class _$_Load implements _Load {
     TResult Function(Bird bird)? changed,
     TResult Function()? save,
     TResult Function()? load,
-    TResult Function(bool isEditMode)? setEditMode,
+    TResult Function()? delete,
+    TResult Function()? reload,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -425,7 +446,8 @@ class _$_Load implements _Load {
     required TResult Function(_Changed value) changed,
     required TResult Function(_Save value) save,
     required TResult Function(_Load value) load,
-    required TResult Function(_SetEditMode value) setEditMode,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Reload value) reload,
   }) {
     return load(this);
   }
@@ -436,7 +458,8 @@ class _$_Load implements _Load {
     TResult? Function(_Changed value)? changed,
     TResult? Function(_Save value)? save,
     TResult? Function(_Load value)? load,
-    TResult? Function(_SetEditMode value)? setEditMode,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Reload value)? reload,
   }) {
     return load?.call(this);
   }
@@ -447,7 +470,8 @@ class _$_Load implements _Load {
     TResult Function(_Changed value)? changed,
     TResult Function(_Save value)? save,
     TResult Function(_Load value)? load,
-    TResult Function(_SetEditMode value)? setEditMode,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Reload value)? reload,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -462,66 +486,37 @@ abstract class _Load implements BirdEvent {
 }
 
 /// @nodoc
-abstract class _$$_SetEditModeCopyWith<$Res> {
-  factory _$$_SetEditModeCopyWith(
-          _$_SetEditMode value, $Res Function(_$_SetEditMode) then) =
-      __$$_SetEditModeCopyWithImpl<$Res>;
-  @useResult
-  $Res call({bool isEditMode});
+abstract class _$$_DeleteCopyWith<$Res> {
+  factory _$$_DeleteCopyWith(_$_Delete value, $Res Function(_$_Delete) then) =
+      __$$_DeleteCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SetEditModeCopyWithImpl<$Res>
-    extends _$BirdEventCopyWithImpl<$Res, _$_SetEditMode>
-    implements _$$_SetEditModeCopyWith<$Res> {
-  __$$_SetEditModeCopyWithImpl(
-      _$_SetEditMode _value, $Res Function(_$_SetEditMode) _then)
+class __$$_DeleteCopyWithImpl<$Res>
+    extends _$BirdEventCopyWithImpl<$Res, _$_Delete>
+    implements _$$_DeleteCopyWith<$Res> {
+  __$$_DeleteCopyWithImpl(_$_Delete _value, $Res Function(_$_Delete) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isEditMode = null,
-  }) {
-    return _then(_$_SetEditMode(
-      isEditMode: null == isEditMode
-          ? _value.isEditMode
-          : isEditMode // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$_SetEditMode implements _SetEditMode {
-  const _$_SetEditMode({required this.isEditMode});
-
-  @override
-  final bool isEditMode;
+class _$_Delete implements _Delete {
+  const _$_Delete();
 
   @override
   String toString() {
-    return 'BirdEvent.setEditMode(isEditMode: $isEditMode)';
+    return 'BirdEvent.delete()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SetEditMode &&
-            (identical(other.isEditMode, isEditMode) ||
-                other.isEditMode == isEditMode));
+        (other.runtimeType == runtimeType && other is _$_Delete);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isEditMode);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_SetEditModeCopyWith<_$_SetEditMode> get copyWith =>
-      __$$_SetEditModeCopyWithImpl<_$_SetEditMode>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -529,9 +524,10 @@ class _$_SetEditMode implements _SetEditMode {
     required TResult Function(Bird bird) changed,
     required TResult Function() save,
     required TResult Function() load,
-    required TResult Function(bool isEditMode) setEditMode,
+    required TResult Function() delete,
+    required TResult Function() reload,
   }) {
-    return setEditMode(isEditMode);
+    return delete();
   }
 
   @override
@@ -540,9 +536,10 @@ class _$_SetEditMode implements _SetEditMode {
     TResult? Function(Bird bird)? changed,
     TResult? Function()? save,
     TResult? Function()? load,
-    TResult? Function(bool isEditMode)? setEditMode,
+    TResult? Function()? delete,
+    TResult? Function()? reload,
   }) {
-    return setEditMode?.call(isEditMode);
+    return delete?.call();
   }
 
   @override
@@ -551,11 +548,12 @@ class _$_SetEditMode implements _SetEditMode {
     TResult Function(Bird bird)? changed,
     TResult Function()? save,
     TResult Function()? load,
-    TResult Function(bool isEditMode)? setEditMode,
+    TResult Function()? delete,
+    TResult Function()? reload,
     required TResult orElse(),
   }) {
-    if (setEditMode != null) {
-      return setEditMode(isEditMode);
+    if (delete != null) {
+      return delete();
     }
     return orElse();
   }
@@ -566,9 +564,10 @@ class _$_SetEditMode implements _SetEditMode {
     required TResult Function(_Changed value) changed,
     required TResult Function(_Save value) save,
     required TResult Function(_Load value) load,
-    required TResult Function(_SetEditMode value) setEditMode,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Reload value) reload,
   }) {
-    return setEditMode(this);
+    return delete(this);
   }
 
   @override
@@ -577,9 +576,10 @@ class _$_SetEditMode implements _SetEditMode {
     TResult? Function(_Changed value)? changed,
     TResult? Function(_Save value)? save,
     TResult? Function(_Load value)? load,
-    TResult? Function(_SetEditMode value)? setEditMode,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Reload value)? reload,
   }) {
-    return setEditMode?.call(this);
+    return delete?.call(this);
   }
 
   @override
@@ -588,30 +588,143 @@ class _$_SetEditMode implements _SetEditMode {
     TResult Function(_Changed value)? changed,
     TResult Function(_Save value)? save,
     TResult Function(_Load value)? load,
-    TResult Function(_SetEditMode value)? setEditMode,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Reload value)? reload,
     required TResult orElse(),
   }) {
-    if (setEditMode != null) {
-      return setEditMode(this);
+    if (delete != null) {
+      return delete(this);
     }
     return orElse();
   }
 }
 
-abstract class _SetEditMode implements BirdEvent {
-  const factory _SetEditMode({required final bool isEditMode}) = _$_SetEditMode;
+abstract class _Delete implements BirdEvent {
+  const factory _Delete() = _$_Delete;
+}
 
-  bool get isEditMode;
-  @JsonKey(ignore: true)
-  _$$_SetEditModeCopyWith<_$_SetEditMode> get copyWith =>
-      throw _privateConstructorUsedError;
+/// @nodoc
+abstract class _$$_ReloadCopyWith<$Res> {
+  factory _$$_ReloadCopyWith(_$_Reload value, $Res Function(_$_Reload) then) =
+      __$$_ReloadCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ReloadCopyWithImpl<$Res>
+    extends _$BirdEventCopyWithImpl<$Res, _$_Reload>
+    implements _$$_ReloadCopyWith<$Res> {
+  __$$_ReloadCopyWithImpl(_$_Reload _value, $Res Function(_$_Reload) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Reload implements _Reload {
+  const _$_Reload();
+
+  @override
+  String toString() {
+    return 'BirdEvent.reload()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Reload);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Bird bird) changed,
+    required TResult Function() save,
+    required TResult Function() load,
+    required TResult Function() delete,
+    required TResult Function() reload,
+  }) {
+    return reload();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Bird bird)? changed,
+    TResult? Function()? save,
+    TResult? Function()? load,
+    TResult? Function()? delete,
+    TResult? Function()? reload,
+  }) {
+    return reload?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Bird bird)? changed,
+    TResult Function()? save,
+    TResult Function()? load,
+    TResult Function()? delete,
+    TResult Function()? reload,
+    required TResult orElse(),
+  }) {
+    if (reload != null) {
+      return reload();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Changed value) changed,
+    required TResult Function(_Save value) save,
+    required TResult Function(_Load value) load,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Reload value) reload,
+  }) {
+    return reload(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Changed value)? changed,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_Load value)? load,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Reload value)? reload,
+  }) {
+    return reload?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Changed value)? changed,
+    TResult Function(_Save value)? save,
+    TResult Function(_Load value)? load,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Reload value)? reload,
+    required TResult orElse(),
+  }) {
+    if (reload != null) {
+      return reload(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Reload implements BirdEvent {
+  const factory _Reload() = _$_Reload;
 }
 
 /// @nodoc
 mixin _$BirdState {
   BirdStatus get status => throw _privateConstructorUsedError;
   Bird get bird => throw _privateConstructorUsedError;
-  bool get isEditMode => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BirdStateCopyWith<BirdState> get copyWith =>
@@ -623,7 +736,7 @@ abstract class $BirdStateCopyWith<$Res> {
   factory $BirdStateCopyWith(BirdState value, $Res Function(BirdState) then) =
       _$BirdStateCopyWithImpl<$Res, BirdState>;
   @useResult
-  $Res call({BirdStatus status, Bird bird, bool isEditMode});
+  $Res call({BirdStatus status, Bird bird});
 
   $BirdCopyWith<$Res> get bird;
 }
@@ -643,7 +756,6 @@ class _$BirdStateCopyWithImpl<$Res, $Val extends BirdState>
   $Res call({
     Object? status = null,
     Object? bird = null,
-    Object? isEditMode = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -654,10 +766,6 @@ class _$BirdStateCopyWithImpl<$Res, $Val extends BirdState>
           ? _value.bird
           : bird // ignore: cast_nullable_to_non_nullable
               as Bird,
-      isEditMode: null == isEditMode
-          ? _value.isEditMode
-          : isEditMode // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 
@@ -677,7 +785,7 @@ abstract class _$$_BirdStateCopyWith<$Res> implements $BirdStateCopyWith<$Res> {
       __$$_BirdStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BirdStatus status, Bird bird, bool isEditMode});
+  $Res call({BirdStatus status, Bird bird});
 
   @override
   $BirdCopyWith<$Res> get bird;
@@ -696,7 +804,6 @@ class __$$_BirdStateCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? bird = null,
-    Object? isEditMode = null,
   }) {
     return _then(_$_BirdState(
       status: null == status
@@ -707,10 +814,6 @@ class __$$_BirdStateCopyWithImpl<$Res>
           ? _value.bird
           : bird // ignore: cast_nullable_to_non_nullable
               as Bird,
-      isEditMode: null == isEditMode
-          ? _value.isEditMode
-          : isEditMode // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -718,23 +821,17 @@ class __$$_BirdStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_BirdState implements _BirdState {
-  const _$_BirdState(
-      {this.status = BirdStatus.initial,
-      required this.bird,
-      this.isEditMode = false});
+  const _$_BirdState({this.status = BirdStatus.initial, required this.bird});
 
   @override
   @JsonKey()
   final BirdStatus status;
   @override
   final Bird bird;
-  @override
-  @JsonKey()
-  final bool isEditMode;
 
   @override
   String toString() {
-    return 'BirdState(status: $status, bird: $bird, isEditMode: $isEditMode)';
+    return 'BirdState(status: $status, bird: $bird)';
   }
 
   @override
@@ -743,13 +840,11 @@ class _$_BirdState implements _BirdState {
         (other.runtimeType == runtimeType &&
             other is _$_BirdState &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.bird, bird) || other.bird == bird) &&
-            (identical(other.isEditMode, isEditMode) ||
-                other.isEditMode == isEditMode));
+            (identical(other.bird, bird) || other.bird == bird));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, bird, isEditMode);
+  int get hashCode => Object.hash(runtimeType, status, bird);
 
   @JsonKey(ignore: true)
   @override
@@ -760,16 +855,12 @@ class _$_BirdState implements _BirdState {
 
 abstract class _BirdState implements BirdState {
   const factory _BirdState(
-      {final BirdStatus status,
-      required final Bird bird,
-      final bool isEditMode}) = _$_BirdState;
+      {final BirdStatus status, required final Bird bird}) = _$_BirdState;
 
   @override
   BirdStatus get status;
   @override
   Bird get bird;
-  @override
-  bool get isEditMode;
   @override
   @JsonKey(ignore: true)
   _$$_BirdStateCopyWith<_$_BirdState> get copyWith =>
