@@ -5,7 +5,7 @@ import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'bootstrap.dart';
 import 'injection.dart';
 import 'routing/app_router.dart';
-import 'screen_size.dart';
+import 'services/screen_size.dart';
 import 'services/authentication/i_authentication_service.dart';
 
 class App extends StatelessWidget {

@@ -4,7 +4,14 @@
     "account__title": "Account",
     "breedings__title": "Breedings",
     "birds__title": "Birds",
+    "bird__title": "Bird",
+    "bird__edit": "Edit bird",
+    "bird__deleted": "Bird deleted",
+    "add_bird__title": "New Bird",
+    "add_bird__submit_button_text": "Submit",
+    "edit_bird__title": "Edit Bird",
     "menu__birds": "Birds",
+    "menu__add_bird": "Add Bird",
     "menu__breedings": "Breedings",
     "menu__finances": "Finances",
     "menu__account": "Account",
@@ -31,7 +38,7 @@
     "common__origin_bred": "Bred",
     "common__origin_stock": "Stock",
     "common__origin_bought": "Bought",
-    "common__race": "Species",
+    "common__species": "Species",
     "common__color": "Color",
     "common__cage": "Cage",
     "common__gender": "Gender",
@@ -48,5 +55,8 @@
     "common__partner_ringnumber": "Partner's Ring Number",
     "common__father": "Father",
     "common__mother": "Mother",
-    "common__partner": "Partner"
+    "common__partner": "Partner",
+    "common__is_for_sale": "For Sale",
+    "common__yes": "Yes",
+    "common__no": "No"
 }

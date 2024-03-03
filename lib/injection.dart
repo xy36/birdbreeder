@@ -4,8 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
-import 'data/firestore_repository.dart';
-import 'domain/i_repository.dart';
+import 'features/data/firestore_repository.dart';
+import 'features/domain/i_repository.dart';
 import 'logging_service.dart';
 import 'services/authentication/firebase/firebase_authentication_service.dart';
 import 'services/authentication/i_authentication_service.dart';

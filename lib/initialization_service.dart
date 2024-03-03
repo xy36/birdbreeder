@@ -2,7 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'runtime_app_config.dart';
-import 'shared_preferences_service.dart';
+import 'services/shared_preferences_service.dart';
 
 class InitializationService {
   static Future<void> initialize() async {

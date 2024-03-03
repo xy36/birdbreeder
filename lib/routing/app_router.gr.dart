@@ -21,21 +21,13 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const AccountPage(),
       );
     },
-    AddBirdRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const AddBirdPage(),
-      );
-    },
     BirdRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<BirdRouteArgs>(
-          orElse: () => BirdRouteArgs(id: pathParams.optString('id')));
+      final args = routeData.argsAs<BirdRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: BirdPage(
           key: args.key,
-          id: args.id,
+          bird: args.bird,
         ),
       );
     },
@@ -49,18 +41,6 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const BreedingsPage(),
-      );
-    },
-    EditBirdRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<EditBirdRouteArgs>(
-          orElse: () => EditBirdRouteArgs(id: pathParams.getString('id')));
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: EditBirdPage(
-          key: args.key,
-          id: args.id,
-        ),
       );
     },
     EmptyRouterRoute.name: (routeData) {
@@ -121,33 +101,18 @@ class AccountRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [AddBirdPage]
-class AddBirdRoute extends PageRouteInfo<void> {
-  const AddBirdRoute({List<PageRouteInfo>? children})
-      : super(
-          AddBirdRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'AddBirdRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
 /// [BirdPage]
 class BirdRoute extends PageRouteInfo<BirdRouteArgs> {
   BirdRoute({
     Key? key,
-    String? id,
+    required Bird? bird,
     List<PageRouteInfo>? children,
   }) : super(
           BirdRoute.name,
           args: BirdRouteArgs(
             key: key,
-            id: id,
+            bird: bird,
           ),
-          rawPathParams: {'id': id},
           initialChildren: children,
         );
 
@@ -159,16 +124,16 @@ class BirdRoute extends PageRouteInfo<BirdRouteArgs> {
 class BirdRouteArgs {
   const BirdRouteArgs({
     this.key,
-    this.id,
+    required this.bird,
   });
 
   final Key? key;
 
-  final String? id;
+  final Bird? bird;
 
   @override
   String toString() {
-    return 'BirdRouteArgs{key: $key, id: $id}';
+    return 'BirdRouteArgs{key: $key, bird: $bird}';
   }
 }
 
@@ -198,45 +163,6 @@ class BreedingsRoute extends PageRouteInfo<void> {
   static const String name = 'BreedingsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [EditBirdPage]
-class EditBirdRoute extends PageRouteInfo<EditBirdRouteArgs> {
-  EditBirdRoute({
-    Key? key,
-    required String id,
-    List<PageRouteInfo>? children,
-  }) : super(
-          EditBirdRoute.name,
-          args: EditBirdRouteArgs(
-            key: key,
-            id: id,
-          ),
-          rawPathParams: {'id': id},
-          initialChildren: children,
-        );
-
-  static const String name = 'EditBirdRoute';
-
-  static const PageInfo<EditBirdRouteArgs> page =
-      PageInfo<EditBirdRouteArgs>(name);
-}
-
-class EditBirdRouteArgs {
-  const EditBirdRouteArgs({
-    this.key,
-    required this.id,
-  });
-
-  final Key? key;
-
-  final String id;
-
-  @override
-  String toString() {
-    return 'EditBirdRouteArgs{key: $key, id: $id}';
-  }
 }
 
 /// generated route for

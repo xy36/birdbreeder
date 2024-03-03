@@ -4,6 +4,9 @@
     "account__title": "Konto",
     "breedings__title": "Zuchten",
     "birds__title": "Vögel",
+    "bird__title": "Vogel",
+    "bird__edit": "Vogel bearbeiten",
+    "bird__deleted": "Vogel gelöscht",
     "menu__birds": "Vögel",
     "menu__breedings": "Zuchten",
     "menu__finances": "Finanzen",
@@ -31,7 +34,7 @@
     "common__origin_bred": "Gezüchtet",
     "common__origin_stock": "Aus eigenem Bestand",
     "common__origin_bought": "Gekauft",
-    "common__race": "Art",
+    "common__species": "Art",
     "common__color": "Farbe",
     "common__cage": "Voliere",
     "common__gender": "Geschlecht",
@@ -48,5 +51,8 @@
     "common__partner_ringnumber": "Ringnummer des Partners",
     "common__father": "Vater",
     "common__mother": "Mutter",
-    "common__partner": "Partner"
+    "common__partner": "Partner",
+    "common__is_for_sale": "Ist zum Verkauf",
+    "common__yes": "Ja",
+    "common__no": "Nein"
 }

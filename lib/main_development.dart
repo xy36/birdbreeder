@@ -1,8 +1,8 @@
 //We do not need sentry DSN running on development;
-import 'app.dart';
-import 'app_config.dart';
-import 'bootstrap.dart';
-import 'injection.dart';
+import 'package:birdbreeder/app.dart';
+import 'package:birdbreeder/app_config.dart';
+import 'package:birdbreeder/bootstrap.dart';
+import 'package:birdbreeder/injection.dart';
 
 const blankSentryDSN = '';
 
@@ -16,6 +16,8 @@ Future<void> main() async {
   s1.registerSingleton<AppConfig>(
     appConfig,
   );
+
+  //
 
   await bootstrap(App.new);
 }
