@@ -8,6 +8,7 @@ import 'package:birdbreeder/features/presentation/pages/account/account_page.dar
 import 'package:birdbreeder/features/presentation/pages/bird/bird_page.dart';
 import 'package:birdbreeder/features/presentation/pages/birds_overview/birds_overview_page.dart';
 import 'package:birdbreeder/features/presentation/pages/breedings/breedings_page.dart';
+import 'package:birdbreeder/features/presentation/pages/colors/colors_page.dart';
 import 'package:birdbreeder/features/presentation/pages/finances/finances_page.dart';
 import 'package:birdbreeder/routing/auth_guard.dart';
 import 'package:birdbreeder/routing/empty_router_page.dart';
@@ -48,6 +49,12 @@ class AppRouter extends _$AppRouter {
             CustomRoute(
               page: BirdRoute.page,
               path: 'birds/bird',
+              guards: [AuthGuard()],
+              transitionsBuilder: TransitionsBuilders.fadeIn,
+            ),
+            CustomRoute(
+              page: ColorsRoute.page,
+              path: 'colors',
               guards: [AuthGuard()],
               transitionsBuilder: TransitionsBuilders.fadeIn,
             ),
