@@ -1,5 +1,4 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/extensions/build_context_extensions.dart';
 
 class BirdDateField extends StatelessWidget {
   const BirdDateField({
@@ -18,7 +17,7 @@ class BirdDateField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
       child: FormBuilderDateTimePicker(
         name: name,
         initialValue: initialValue,

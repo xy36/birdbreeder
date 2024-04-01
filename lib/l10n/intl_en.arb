@@ -12,11 +12,16 @@
     "colors__add_color": "Add Color",
     "colors__delete_color": "Delete Color",
     "species__title": "Species",
+    "species__add_species": "Add Species",
+    "species__delete_species": "Delete Species",
+    "species__name": "Name of Species",
+    "species__latin_name": "Latin Name",
     "add_bird__title": "New Bird",
     "add_bird__submit_button_text": "Submit",
     "edit_bird__title": "Edit Bird",
     "menu__birds": "Birds",
     "menu__colors": "Colors",
+    "menu__species": "Species",
     "menu__add_bird": "Add Bird",
     "menu__breedings": "Breedings",
     "menu__finances": "Finances",
@@ -64,5 +69,9 @@
     "common__partner": "Partner",
     "common__is_for_sale": "For Sale",
     "common__yes": "Yes",
-    "common__no": "No"
+    "common__no": "No",
+    "error__message": "Sorry an error occurred",
+    "snackbar__error_data_fetch": "Error fetching data",
+    "snackbar__error_data_save": "Error saving data",
+    "snackbar__error_data_delete": "Error deleting data"
 }

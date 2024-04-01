@@ -12,7 +12,7 @@ part of 'bird_color_dto.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 BirdColorDto _$BirdColorDtoFromJson(Map<String, dynamic> json) {
   return _BirdColorDto.fromJson(json);
@@ -68,22 +68,22 @@ class _$BirdColorDtoCopyWithImpl<$Res, $Val extends BirdColorDto>
 }
 
 /// @nodoc
-abstract class _$$_BirdColorDtoCopyWith<$Res>
+abstract class _$$BirdColorDtoImplCopyWith<$Res>
     implements $BirdColorDtoCopyWith<$Res> {
-  factory _$$_BirdColorDtoCopyWith(
-          _$_BirdColorDto value, $Res Function(_$_BirdColorDto) then) =
-      __$$_BirdColorDtoCopyWithImpl<$Res>;
+  factory _$$BirdColorDtoImplCopyWith(
+          _$BirdColorDtoImpl value, $Res Function(_$BirdColorDtoImpl) then) =
+      __$$BirdColorDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? id, String? name});
 }
 
 /// @nodoc
-class __$$_BirdColorDtoCopyWithImpl<$Res>
-    extends _$BirdColorDtoCopyWithImpl<$Res, _$_BirdColorDto>
-    implements _$$_BirdColorDtoCopyWith<$Res> {
-  __$$_BirdColorDtoCopyWithImpl(
-      _$_BirdColorDto _value, $Res Function(_$_BirdColorDto) _then)
+class __$$BirdColorDtoImplCopyWithImpl<$Res>
+    extends _$BirdColorDtoCopyWithImpl<$Res, _$BirdColorDtoImpl>
+    implements _$$BirdColorDtoImplCopyWith<$Res> {
+  __$$BirdColorDtoImplCopyWithImpl(
+      _$BirdColorDtoImpl _value, $Res Function(_$BirdColorDtoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$_BirdColorDtoCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
   }) {
-    return _then(_$_BirdColorDto(
+    return _then(_$BirdColorDtoImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -107,11 +107,11 @@ class __$$_BirdColorDtoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_BirdColorDto implements _BirdColorDto {
-  _$_BirdColorDto({this.id, this.name});
+class _$BirdColorDtoImpl implements _BirdColorDto {
+  _$BirdColorDtoImpl({this.id, this.name});
 
-  factory _$_BirdColorDto.fromJson(Map<String, dynamic> json) =>
-      _$$_BirdColorDtoFromJson(json);
+  factory _$BirdColorDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BirdColorDtoImplFromJson(json);
 
   @override
   final String? id;
@@ -124,10 +124,10 @@ class _$_BirdColorDto implements _BirdColorDto {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BirdColorDto &&
+            other is _$BirdColorDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -139,12 +139,12 @@ class _$_BirdColorDto implements _BirdColorDto {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BirdColorDtoCopyWith<_$_BirdColorDto> get copyWith =>
-      __$$_BirdColorDtoCopyWithImpl<_$_BirdColorDto>(this, _$identity);
+  _$$BirdColorDtoImplCopyWith<_$BirdColorDtoImpl> get copyWith =>
+      __$$BirdColorDtoImplCopyWithImpl<_$BirdColorDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BirdColorDtoToJson(
+    return _$$BirdColorDtoImplToJson(
       this,
     );
   }
@@ -152,10 +152,10 @@ class _$_BirdColorDto implements _BirdColorDto {
 
 abstract class _BirdColorDto implements BirdColorDto {
   factory _BirdColorDto({final String? id, final String? name}) =
-      _$_BirdColorDto;
+      _$BirdColorDtoImpl;
 
   factory _BirdColorDto.fromJson(Map<String, dynamic> json) =
-      _$_BirdColorDto.fromJson;
+      _$BirdColorDtoImpl.fromJson;
 
   @override
   String? get id;
@@ -163,6 +163,6 @@ abstract class _BirdColorDto implements BirdColorDto {
   String? get name;
   @override
   @JsonKey(ignore: true)
-  _$$_BirdColorDtoCopyWith<_$_BirdColorDto> get copyWith =>
+  _$$BirdColorDtoImplCopyWith<_$BirdColorDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

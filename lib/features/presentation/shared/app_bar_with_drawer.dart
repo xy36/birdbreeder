@@ -1,7 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/features/presentation/menu/menu_screen.dart';
 import 'package:flutter/foundation.dart';
-
-import '../menu/menu_screen.dart';
 
 class AppBarWithDrawer extends StatelessWidget implements PreferredSizeWidget {
   const AppBarWithDrawer({super.key, this.title, this.actions});
@@ -12,11 +11,11 @@ class AppBarWithDrawer extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (kIsWeb) return SizedBox.shrink();
+    if (kIsWeb) return const SizedBox.shrink();
     return AppBar(
       title: Text(title ?? ''),
       leading: IconButton(
-        icon: Icon(Icons.menu),
+        icon: const Icon(Icons.menu),
         onPressed: () async {
           Menu.toggleMenuDrawer();
         },
@@ -25,5 +24,5 @@ class AppBarWithDrawer extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

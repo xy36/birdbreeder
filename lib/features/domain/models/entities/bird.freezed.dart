@@ -12,7 +12,7 @@ part of 'bird.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$Bird {
@@ -202,9 +202,10 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
 }
 
 /// @nodoc
-abstract class _$$_BirdCopyWith<$Res> implements $BirdCopyWith<$Res> {
-  factory _$$_BirdCopyWith(_$_Bird value, $Res Function(_$_Bird) then) =
-      __$$_BirdCopyWithImpl<$Res>;
+abstract class _$$BirdImplCopyWith<$Res> implements $BirdCopyWith<$Res> {
+  factory _$$BirdImplCopyWith(
+          _$BirdImpl value, $Res Function(_$BirdImpl) then) =
+      __$$BirdImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -234,9 +235,10 @@ abstract class _$$_BirdCopyWith<$Res> implements $BirdCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_BirdCopyWithImpl<$Res> extends _$BirdCopyWithImpl<$Res, _$_Bird>
-    implements _$$_BirdCopyWith<$Res> {
-  __$$_BirdCopyWithImpl(_$_Bird _value, $Res Function(_$_Bird) _then)
+class __$$BirdImplCopyWithImpl<$Res>
+    extends _$BirdCopyWithImpl<$Res, _$BirdImpl>
+    implements _$$BirdImplCopyWith<$Res> {
+  __$$BirdImplCopyWithImpl(_$BirdImpl _value, $Res Function(_$BirdImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -261,7 +263,7 @@ class __$$_BirdCopyWithImpl<$Res> extends _$BirdCopyWithImpl<$Res, _$_Bird>
     Object? partnerRingnumber = freezed,
     Object? isForSale = freezed,
   }) {
-    return _then(_$_Bird(
+    return _then(_$BirdImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -340,8 +342,8 @@ class __$$_BirdCopyWithImpl<$Res> extends _$BirdCopyWithImpl<$Res, _$_Bird>
 
 /// @nodoc
 
-class _$_Bird implements _Bird {
-  _$_Bird(
+class _$BirdImpl implements _Bird {
+  _$BirdImpl(
       {required this.id,
       required this.ringnumber,
       required this.species,
@@ -404,10 +406,10 @@ class _$_Bird implements _Bird {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Bird &&
+            other is _$BirdImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.ringnumber, ringnumber) ||
                 other.ringnumber == ringnumber) &&
@@ -465,8 +467,8 @@ class _$_Bird implements _Bird {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BirdCopyWith<_$_Bird> get copyWith =>
-      __$$_BirdCopyWithImpl<_$_Bird>(this, _$identity);
+  _$$BirdImplCopyWith<_$BirdImpl> get copyWith =>
+      __$$BirdImplCopyWithImpl<_$BirdImpl>(this, _$identity);
 }
 
 abstract class _Bird implements Bird {
@@ -488,7 +490,7 @@ abstract class _Bird implements Bird {
       required final String? fatherRingnumber,
       required final String? motherRingnumber,
       required final String? partnerRingnumber,
-      required final bool? isForSale}) = _$_Bird;
+      required final bool? isForSale}) = _$BirdImpl;
 
   @override
   String? get id;
@@ -528,5 +530,6 @@ abstract class _Bird implements Bird {
   bool? get isForSale;
   @override
   @JsonKey(ignore: true)
-  _$$_BirdCopyWith<_$_Bird> get copyWith => throw _privateConstructorUsedError;
+  _$$BirdImplCopyWith<_$BirdImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

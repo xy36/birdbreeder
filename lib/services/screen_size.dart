@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_framework/breakpoint.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 enum ScreenSize {
   /// Extra small devices (smarterwatches, 600px and down)

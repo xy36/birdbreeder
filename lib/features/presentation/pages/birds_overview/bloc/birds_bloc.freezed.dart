@@ -12,7 +12,7 @@ part of 'birds_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$BirdsEvent {
@@ -81,23 +81,24 @@ class _$BirdsEventCopyWithImpl<$Res, $Val extends BirdsEvent>
 }
 
 /// @nodoc
-abstract class _$$_LoadCopyWith<$Res> {
-  factory _$$_LoadCopyWith(_$_Load value, $Res Function(_$_Load) then) =
-      __$$_LoadCopyWithImpl<$Res>;
+abstract class _$$LoadImplCopyWith<$Res> {
+  factory _$$LoadImplCopyWith(
+          _$LoadImpl value, $Res Function(_$LoadImpl) then) =
+      __$$LoadImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LoadCopyWithImpl<$Res>
-    extends _$BirdsEventCopyWithImpl<$Res, _$_Load>
-    implements _$$_LoadCopyWith<$Res> {
-  __$$_LoadCopyWithImpl(_$_Load _value, $Res Function(_$_Load) _then)
+class __$$LoadImplCopyWithImpl<$Res>
+    extends _$BirdsEventCopyWithImpl<$Res, _$LoadImpl>
+    implements _$$LoadImplCopyWith<$Res> {
+  __$$LoadImplCopyWithImpl(_$LoadImpl _value, $Res Function(_$LoadImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Load implements _Load {
-  const _$_Load();
+class _$LoadImpl implements _Load {
+  const _$LoadImpl();
 
   @override
   String toString() {
@@ -105,9 +106,9 @@ class _$_Load implements _Load {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Load);
+        (other.runtimeType == runtimeType && other is _$LoadImpl);
   }
 
   @override
@@ -183,27 +184,29 @@ class _$_Load implements _Load {
 }
 
 abstract class _Load implements BirdsEvent {
-  const factory _Load() = _$_Load;
+  const factory _Load() = _$LoadImpl;
 }
 
 /// @nodoc
-abstract class _$$_ReloadCopyWith<$Res> {
-  factory _$$_ReloadCopyWith(_$_Reload value, $Res Function(_$_Reload) then) =
-      __$$_ReloadCopyWithImpl<$Res>;
+abstract class _$$ReloadImplCopyWith<$Res> {
+  factory _$$ReloadImplCopyWith(
+          _$ReloadImpl value, $Res Function(_$ReloadImpl) then) =
+      __$$ReloadImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ReloadCopyWithImpl<$Res>
-    extends _$BirdsEventCopyWithImpl<$Res, _$_Reload>
-    implements _$$_ReloadCopyWith<$Res> {
-  __$$_ReloadCopyWithImpl(_$_Reload _value, $Res Function(_$_Reload) _then)
+class __$$ReloadImplCopyWithImpl<$Res>
+    extends _$BirdsEventCopyWithImpl<$Res, _$ReloadImpl>
+    implements _$$ReloadImplCopyWith<$Res> {
+  __$$ReloadImplCopyWithImpl(
+      _$ReloadImpl _value, $Res Function(_$ReloadImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Reload implements _Reload {
-  const _$_Reload();
+class _$ReloadImpl implements _Reload {
+  const _$ReloadImpl();
 
   @override
   String toString() {
@@ -211,9 +214,9 @@ class _$_Reload implements _Reload {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Reload);
+        (other.runtimeType == runtimeType && other is _$ReloadImpl);
   }
 
   @override
@@ -289,14 +292,14 @@ class _$_Reload implements _Reload {
 }
 
 abstract class _Reload implements BirdsEvent {
-  const factory _Reload() = _$_Reload;
+  const factory _Reload() = _$ReloadImpl;
 }
 
 /// @nodoc
-abstract class _$$_SelectBirdCopyWith<$Res> {
-  factory _$$_SelectBirdCopyWith(
-          _$_SelectBird value, $Res Function(_$_SelectBird) then) =
-      __$$_SelectBirdCopyWithImpl<$Res>;
+abstract class _$$SelectBirdImplCopyWith<$Res> {
+  factory _$$SelectBirdImplCopyWith(
+          _$SelectBirdImpl value, $Res Function(_$SelectBirdImpl) then) =
+      __$$SelectBirdImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Bird bird});
 
@@ -304,11 +307,11 @@ abstract class _$$_SelectBirdCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_SelectBirdCopyWithImpl<$Res>
-    extends _$BirdsEventCopyWithImpl<$Res, _$_SelectBird>
-    implements _$$_SelectBirdCopyWith<$Res> {
-  __$$_SelectBirdCopyWithImpl(
-      _$_SelectBird _value, $Res Function(_$_SelectBird) _then)
+class __$$SelectBirdImplCopyWithImpl<$Res>
+    extends _$BirdsEventCopyWithImpl<$Res, _$SelectBirdImpl>
+    implements _$$SelectBirdImplCopyWith<$Res> {
+  __$$SelectBirdImplCopyWithImpl(
+      _$SelectBirdImpl _value, $Res Function(_$SelectBirdImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -316,7 +319,7 @@ class __$$_SelectBirdCopyWithImpl<$Res>
   $Res call({
     Object? bird = null,
   }) {
-    return _then(_$_SelectBird(
+    return _then(_$SelectBirdImpl(
       bird: null == bird
           ? _value.bird
           : bird // ignore: cast_nullable_to_non_nullable
@@ -335,8 +338,8 @@ class __$$_SelectBirdCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SelectBird implements _SelectBird {
-  const _$_SelectBird({required this.bird});
+class _$SelectBirdImpl implements _SelectBird {
+  const _$SelectBirdImpl({required this.bird});
 
   @override
   final Bird bird;
@@ -347,10 +350,10 @@ class _$_SelectBird implements _SelectBird {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SelectBird &&
+            other is _$SelectBirdImpl &&
             (identical(other.bird, bird) || other.bird == bird));
   }
 
@@ -360,8 +363,8 @@ class _$_SelectBird implements _SelectBird {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SelectBirdCopyWith<_$_SelectBird> get copyWith =>
-      __$$_SelectBirdCopyWithImpl<_$_SelectBird>(this, _$identity);
+  _$$SelectBirdImplCopyWith<_$SelectBirdImpl> get copyWith =>
+      __$$SelectBirdImplCopyWithImpl<_$SelectBirdImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -433,11 +436,11 @@ class _$_SelectBird implements _SelectBird {
 }
 
 abstract class _SelectBird implements BirdsEvent {
-  const factory _SelectBird({required final Bird bird}) = _$_SelectBird;
+  const factory _SelectBird({required final Bird bird}) = _$SelectBirdImpl;
 
   Bird get bird;
   @JsonKey(ignore: true)
-  _$$_SelectBirdCopyWith<_$_SelectBird> get copyWith =>
+  _$$SelectBirdImplCopyWith<_$SelectBirdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -510,11 +513,11 @@ class _$BirdsStateCopyWithImpl<$Res, $Val extends BirdsState>
 }
 
 /// @nodoc
-abstract class _$$_BirdsStateCopyWith<$Res>
+abstract class _$$BirdsStateImplCopyWith<$Res>
     implements $BirdsStateCopyWith<$Res> {
-  factory _$$_BirdsStateCopyWith(
-          _$_BirdsState value, $Res Function(_$_BirdsState) then) =
-      __$$_BirdsStateCopyWithImpl<$Res>;
+  factory _$$BirdsStateImplCopyWith(
+          _$BirdsStateImpl value, $Res Function(_$BirdsStateImpl) then) =
+      __$$BirdsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({BirdsStatus status, List<Bird> birds, Bird? selectedBird});
@@ -524,11 +527,11 @@ abstract class _$$_BirdsStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_BirdsStateCopyWithImpl<$Res>
-    extends _$BirdsStateCopyWithImpl<$Res, _$_BirdsState>
-    implements _$$_BirdsStateCopyWith<$Res> {
-  __$$_BirdsStateCopyWithImpl(
-      _$_BirdsState _value, $Res Function(_$_BirdsState) _then)
+class __$$BirdsStateImplCopyWithImpl<$Res>
+    extends _$BirdsStateCopyWithImpl<$Res, _$BirdsStateImpl>
+    implements _$$BirdsStateImplCopyWith<$Res> {
+  __$$BirdsStateImplCopyWithImpl(
+      _$BirdsStateImpl _value, $Res Function(_$BirdsStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -538,7 +541,7 @@ class __$$_BirdsStateCopyWithImpl<$Res>
     Object? birds = null,
     Object? selectedBird = freezed,
   }) {
-    return _then(_$_BirdsState(
+    return _then(_$BirdsStateImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -557,8 +560,8 @@ class __$$_BirdsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_BirdsState implements _BirdsState {
-  const _$_BirdsState(
+class _$BirdsStateImpl implements _BirdsState {
+  const _$BirdsStateImpl(
       {this.status = BirdsStatus.initial,
       required final List<Bird> birds,
       this.selectedBird})
@@ -584,10 +587,10 @@ class _$_BirdsState implements _BirdsState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BirdsState &&
+            other is _$BirdsStateImpl &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._birds, _birds) &&
             (identical(other.selectedBird, selectedBird) ||
@@ -601,15 +604,15 @@ class _$_BirdsState implements _BirdsState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BirdsStateCopyWith<_$_BirdsState> get copyWith =>
-      __$$_BirdsStateCopyWithImpl<_$_BirdsState>(this, _$identity);
+  _$$BirdsStateImplCopyWith<_$BirdsStateImpl> get copyWith =>
+      __$$BirdsStateImplCopyWithImpl<_$BirdsStateImpl>(this, _$identity);
 }
 
 abstract class _BirdsState implements BirdsState {
   const factory _BirdsState(
       {final BirdsStatus status,
       required final List<Bird> birds,
-      final Bird? selectedBird}) = _$_BirdsState;
+      final Bird? selectedBird}) = _$BirdsStateImpl;
 
   @override
   BirdsStatus get status;
@@ -619,6 +622,6 @@ abstract class _BirdsState implements BirdsState {
   Bird? get selectedBird;
   @override
   @JsonKey(ignore: true)
-  _$$_BirdsStateCopyWith<_$_BirdsState> get copyWith =>
+  _$$BirdsStateImplCopyWith<_$BirdsStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

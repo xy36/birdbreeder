@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'colors_bloc.dart';
+part of 'species_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,70 +15,70 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$ColorsEvent {
+mixin _$SpeciesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(BirdColor color) addColor,
-    required TResult Function(BirdColor color) deleteColor,
-    required TResult Function(BirdColor color) editColor,
+    required TResult Function(Species species) addSpecies,
+    required TResult Function(Species species) deleteSpecies,
+    required TResult Function(Species species) editSpecies,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(BirdColor color)? addColor,
-    TResult? Function(BirdColor color)? deleteColor,
-    TResult? Function(BirdColor color)? editColor,
+    TResult? Function(Species species)? addSpecies,
+    TResult? Function(Species species)? deleteSpecies,
+    TResult? Function(Species species)? editSpecies,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(BirdColor color)? addColor,
-    TResult Function(BirdColor color)? deleteColor,
-    TResult Function(BirdColor color)? editColor,
+    TResult Function(Species species)? addSpecies,
+    TResult Function(Species species)? deleteSpecies,
+    TResult Function(Species species)? editSpecies,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Load value) load,
-    required TResult Function(AddColor value) addColor,
-    required TResult Function(DeleteColor value) deleteColor,
-    required TResult Function(EditColor value) editColor,
+    required TResult Function(AddSpecies value) addSpecies,
+    required TResult Function(DeleteSpecies value) deleteSpecies,
+    required TResult Function(EditSpecies value) editSpecies,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Load value)? load,
-    TResult? Function(AddColor value)? addColor,
-    TResult? Function(DeleteColor value)? deleteColor,
-    TResult? Function(EditColor value)? editColor,
+    TResult? Function(AddSpecies value)? addSpecies,
+    TResult? Function(DeleteSpecies value)? deleteSpecies,
+    TResult? Function(EditSpecies value)? editSpecies,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Load value)? load,
-    TResult Function(AddColor value)? addColor,
-    TResult Function(DeleteColor value)? deleteColor,
-    TResult Function(EditColor value)? editColor,
+    TResult Function(AddSpecies value)? addSpecies,
+    TResult Function(DeleteSpecies value)? deleteSpecies,
+    TResult Function(EditSpecies value)? editSpecies,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ColorsEventCopyWith<$Res> {
-  factory $ColorsEventCopyWith(
-          ColorsEvent value, $Res Function(ColorsEvent) then) =
-      _$ColorsEventCopyWithImpl<$Res, ColorsEvent>;
+abstract class $SpeciesEventCopyWith<$Res> {
+  factory $SpeciesEventCopyWith(
+          SpeciesEvent value, $Res Function(SpeciesEvent) then) =
+      _$SpeciesEventCopyWithImpl<$Res, SpeciesEvent>;
 }
 
 /// @nodoc
-class _$ColorsEventCopyWithImpl<$Res, $Val extends ColorsEvent>
-    implements $ColorsEventCopyWith<$Res> {
-  _$ColorsEventCopyWithImpl(this._value, this._then);
+class _$SpeciesEventCopyWithImpl<$Res, $Val extends SpeciesEvent>
+    implements $SpeciesEventCopyWith<$Res> {
+  _$SpeciesEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -95,7 +95,7 @@ abstract class _$$LoadImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadImplCopyWithImpl<$Res>
-    extends _$ColorsEventCopyWithImpl<$Res, _$LoadImpl>
+    extends _$SpeciesEventCopyWithImpl<$Res, _$LoadImpl>
     implements _$$LoadImplCopyWith<$Res> {
   __$$LoadImplCopyWithImpl(_$LoadImpl _value, $Res Function(_$LoadImpl) _then)
       : super(_value, _then);
@@ -108,7 +108,7 @@ class _$LoadImpl implements Load {
 
   @override
   String toString() {
-    return 'ColorsEvent.load()';
+    return 'SpeciesEvent.load()';
   }
 
   @override
@@ -124,9 +124,9 @@ class _$LoadImpl implements Load {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(BirdColor color) addColor,
-    required TResult Function(BirdColor color) deleteColor,
-    required TResult Function(BirdColor color) editColor,
+    required TResult Function(Species species) addSpecies,
+    required TResult Function(Species species) deleteSpecies,
+    required TResult Function(Species species) editSpecies,
   }) {
     return load();
   }
@@ -135,9 +135,9 @@ class _$LoadImpl implements Load {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(BirdColor color)? addColor,
-    TResult? Function(BirdColor color)? deleteColor,
-    TResult? Function(BirdColor color)? editColor,
+    TResult? Function(Species species)? addSpecies,
+    TResult? Function(Species species)? deleteSpecies,
+    TResult? Function(Species species)? editSpecies,
   }) {
     return load?.call();
   }
@@ -146,9 +146,9 @@ class _$LoadImpl implements Load {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(BirdColor color)? addColor,
-    TResult Function(BirdColor color)? deleteColor,
-    TResult Function(BirdColor color)? editColor,
+    TResult Function(Species species)? addSpecies,
+    TResult Function(Species species)? deleteSpecies,
+    TResult Function(Species species)? editSpecies,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -161,9 +161,9 @@ class _$LoadImpl implements Load {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Load value) load,
-    required TResult Function(AddColor value) addColor,
-    required TResult Function(DeleteColor value) deleteColor,
-    required TResult Function(EditColor value) editColor,
+    required TResult Function(AddSpecies value) addSpecies,
+    required TResult Function(DeleteSpecies value) deleteSpecies,
+    required TResult Function(EditSpecies value) editSpecies,
   }) {
     return load(this);
   }
@@ -172,9 +172,9 @@ class _$LoadImpl implements Load {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Load value)? load,
-    TResult? Function(AddColor value)? addColor,
-    TResult? Function(DeleteColor value)? deleteColor,
-    TResult? Function(EditColor value)? editColor,
+    TResult? Function(AddSpecies value)? addSpecies,
+    TResult? Function(DeleteSpecies value)? deleteSpecies,
+    TResult? Function(EditSpecies value)? editSpecies,
   }) {
     return load?.call(this);
   }
@@ -183,9 +183,9 @@ class _$LoadImpl implements Load {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Load value)? load,
-    TResult Function(AddColor value)? addColor,
-    TResult Function(DeleteColor value)? deleteColor,
-    TResult Function(EditColor value)? editColor,
+    TResult Function(AddSpecies value)? addSpecies,
+    TResult Function(DeleteSpecies value)? deleteSpecies,
+    TResult Function(EditSpecies value)? editSpecies,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -195,114 +195,114 @@ class _$LoadImpl implements Load {
   }
 }
 
-abstract class Load implements ColorsEvent {
+abstract class Load implements SpeciesEvent {
   const factory Load() = _$LoadImpl;
 }
 
 /// @nodoc
-abstract class _$$AddColorImplCopyWith<$Res> {
-  factory _$$AddColorImplCopyWith(
-          _$AddColorImpl value, $Res Function(_$AddColorImpl) then) =
-      __$$AddColorImplCopyWithImpl<$Res>;
+abstract class _$$AddSpeciesImplCopyWith<$Res> {
+  factory _$$AddSpeciesImplCopyWith(
+          _$AddSpeciesImpl value, $Res Function(_$AddSpeciesImpl) then) =
+      __$$AddSpeciesImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({BirdColor color});
+  $Res call({Species species});
 
-  $BirdColorCopyWith<$Res> get color;
+  $SpeciesCopyWith<$Res> get species;
 }
 
 /// @nodoc
-class __$$AddColorImplCopyWithImpl<$Res>
-    extends _$ColorsEventCopyWithImpl<$Res, _$AddColorImpl>
-    implements _$$AddColorImplCopyWith<$Res> {
-  __$$AddColorImplCopyWithImpl(
-      _$AddColorImpl _value, $Res Function(_$AddColorImpl) _then)
+class __$$AddSpeciesImplCopyWithImpl<$Res>
+    extends _$SpeciesEventCopyWithImpl<$Res, _$AddSpeciesImpl>
+    implements _$$AddSpeciesImplCopyWith<$Res> {
+  __$$AddSpeciesImplCopyWithImpl(
+      _$AddSpeciesImpl _value, $Res Function(_$AddSpeciesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color = null,
+    Object? species = null,
   }) {
-    return _then(_$AddColorImpl(
-      null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as BirdColor,
+    return _then(_$AddSpeciesImpl(
+      null == species
+          ? _value.species
+          : species // ignore: cast_nullable_to_non_nullable
+              as Species,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $BirdColorCopyWith<$Res> get color {
-    return $BirdColorCopyWith<$Res>(_value.color, (value) {
-      return _then(_value.copyWith(color: value));
+  $SpeciesCopyWith<$Res> get species {
+    return $SpeciesCopyWith<$Res>(_value.species, (value) {
+      return _then(_value.copyWith(species: value));
     });
   }
 }
 
 /// @nodoc
 
-class _$AddColorImpl implements AddColor {
-  const _$AddColorImpl(this.color);
+class _$AddSpeciesImpl implements AddSpecies {
+  const _$AddSpeciesImpl(this.species);
 
   @override
-  final BirdColor color;
+  final Species species;
 
   @override
   String toString() {
-    return 'ColorsEvent.addColor(color: $color)';
+    return 'SpeciesEvent.addSpecies(species: $species)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AddColorImpl &&
-            (identical(other.color, color) || other.color == color));
+            other is _$AddSpeciesImpl &&
+            (identical(other.species, species) || other.species == species));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, color);
+  int get hashCode => Object.hash(runtimeType, species);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AddColorImplCopyWith<_$AddColorImpl> get copyWith =>
-      __$$AddColorImplCopyWithImpl<_$AddColorImpl>(this, _$identity);
+  _$$AddSpeciesImplCopyWith<_$AddSpeciesImpl> get copyWith =>
+      __$$AddSpeciesImplCopyWithImpl<_$AddSpeciesImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(BirdColor color) addColor,
-    required TResult Function(BirdColor color) deleteColor,
-    required TResult Function(BirdColor color) editColor,
+    required TResult Function(Species species) addSpecies,
+    required TResult Function(Species species) deleteSpecies,
+    required TResult Function(Species species) editSpecies,
   }) {
-    return addColor(color);
+    return addSpecies(species);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(BirdColor color)? addColor,
-    TResult? Function(BirdColor color)? deleteColor,
-    TResult? Function(BirdColor color)? editColor,
+    TResult? Function(Species species)? addSpecies,
+    TResult? Function(Species species)? deleteSpecies,
+    TResult? Function(Species species)? editSpecies,
   }) {
-    return addColor?.call(color);
+    return addSpecies?.call(species);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(BirdColor color)? addColor,
-    TResult Function(BirdColor color)? deleteColor,
-    TResult Function(BirdColor color)? editColor,
+    TResult Function(Species species)? addSpecies,
+    TResult Function(Species species)? deleteSpecies,
+    TResult Function(Species species)? editSpecies,
     required TResult orElse(),
   }) {
-    if (addColor != null) {
-      return addColor(color);
+    if (addSpecies != null) {
+      return addSpecies(species);
     }
     return orElse();
   }
@@ -311,153 +311,153 @@ class _$AddColorImpl implements AddColor {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Load value) load,
-    required TResult Function(AddColor value) addColor,
-    required TResult Function(DeleteColor value) deleteColor,
-    required TResult Function(EditColor value) editColor,
+    required TResult Function(AddSpecies value) addSpecies,
+    required TResult Function(DeleteSpecies value) deleteSpecies,
+    required TResult Function(EditSpecies value) editSpecies,
   }) {
-    return addColor(this);
+    return addSpecies(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Load value)? load,
-    TResult? Function(AddColor value)? addColor,
-    TResult? Function(DeleteColor value)? deleteColor,
-    TResult? Function(EditColor value)? editColor,
+    TResult? Function(AddSpecies value)? addSpecies,
+    TResult? Function(DeleteSpecies value)? deleteSpecies,
+    TResult? Function(EditSpecies value)? editSpecies,
   }) {
-    return addColor?.call(this);
+    return addSpecies?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Load value)? load,
-    TResult Function(AddColor value)? addColor,
-    TResult Function(DeleteColor value)? deleteColor,
-    TResult Function(EditColor value)? editColor,
+    TResult Function(AddSpecies value)? addSpecies,
+    TResult Function(DeleteSpecies value)? deleteSpecies,
+    TResult Function(EditSpecies value)? editSpecies,
     required TResult orElse(),
   }) {
-    if (addColor != null) {
-      return addColor(this);
+    if (addSpecies != null) {
+      return addSpecies(this);
     }
     return orElse();
   }
 }
 
-abstract class AddColor implements ColorsEvent {
-  const factory AddColor(final BirdColor color) = _$AddColorImpl;
+abstract class AddSpecies implements SpeciesEvent {
+  const factory AddSpecies(final Species species) = _$AddSpeciesImpl;
 
-  BirdColor get color;
+  Species get species;
   @JsonKey(ignore: true)
-  _$$AddColorImplCopyWith<_$AddColorImpl> get copyWith =>
+  _$$AddSpeciesImplCopyWith<_$AddSpeciesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DeleteColorImplCopyWith<$Res> {
-  factory _$$DeleteColorImplCopyWith(
-          _$DeleteColorImpl value, $Res Function(_$DeleteColorImpl) then) =
-      __$$DeleteColorImplCopyWithImpl<$Res>;
+abstract class _$$DeleteSpeciesImplCopyWith<$Res> {
+  factory _$$DeleteSpeciesImplCopyWith(
+          _$DeleteSpeciesImpl value, $Res Function(_$DeleteSpeciesImpl) then) =
+      __$$DeleteSpeciesImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({BirdColor color});
+  $Res call({Species species});
 
-  $BirdColorCopyWith<$Res> get color;
+  $SpeciesCopyWith<$Res> get species;
 }
 
 /// @nodoc
-class __$$DeleteColorImplCopyWithImpl<$Res>
-    extends _$ColorsEventCopyWithImpl<$Res, _$DeleteColorImpl>
-    implements _$$DeleteColorImplCopyWith<$Res> {
-  __$$DeleteColorImplCopyWithImpl(
-      _$DeleteColorImpl _value, $Res Function(_$DeleteColorImpl) _then)
+class __$$DeleteSpeciesImplCopyWithImpl<$Res>
+    extends _$SpeciesEventCopyWithImpl<$Res, _$DeleteSpeciesImpl>
+    implements _$$DeleteSpeciesImplCopyWith<$Res> {
+  __$$DeleteSpeciesImplCopyWithImpl(
+      _$DeleteSpeciesImpl _value, $Res Function(_$DeleteSpeciesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color = null,
+    Object? species = null,
   }) {
-    return _then(_$DeleteColorImpl(
-      null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as BirdColor,
+    return _then(_$DeleteSpeciesImpl(
+      null == species
+          ? _value.species
+          : species // ignore: cast_nullable_to_non_nullable
+              as Species,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $BirdColorCopyWith<$Res> get color {
-    return $BirdColorCopyWith<$Res>(_value.color, (value) {
-      return _then(_value.copyWith(color: value));
+  $SpeciesCopyWith<$Res> get species {
+    return $SpeciesCopyWith<$Res>(_value.species, (value) {
+      return _then(_value.copyWith(species: value));
     });
   }
 }
 
 /// @nodoc
 
-class _$DeleteColorImpl implements DeleteColor {
-  const _$DeleteColorImpl(this.color);
+class _$DeleteSpeciesImpl implements DeleteSpecies {
+  const _$DeleteSpeciesImpl(this.species);
 
   @override
-  final BirdColor color;
+  final Species species;
 
   @override
   String toString() {
-    return 'ColorsEvent.deleteColor(color: $color)';
+    return 'SpeciesEvent.deleteSpecies(species: $species)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DeleteColorImpl &&
-            (identical(other.color, color) || other.color == color));
+            other is _$DeleteSpeciesImpl &&
+            (identical(other.species, species) || other.species == species));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, color);
+  int get hashCode => Object.hash(runtimeType, species);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DeleteColorImplCopyWith<_$DeleteColorImpl> get copyWith =>
-      __$$DeleteColorImplCopyWithImpl<_$DeleteColorImpl>(this, _$identity);
+  _$$DeleteSpeciesImplCopyWith<_$DeleteSpeciesImpl> get copyWith =>
+      __$$DeleteSpeciesImplCopyWithImpl<_$DeleteSpeciesImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(BirdColor color) addColor,
-    required TResult Function(BirdColor color) deleteColor,
-    required TResult Function(BirdColor color) editColor,
+    required TResult Function(Species species) addSpecies,
+    required TResult Function(Species species) deleteSpecies,
+    required TResult Function(Species species) editSpecies,
   }) {
-    return deleteColor(color);
+    return deleteSpecies(species);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(BirdColor color)? addColor,
-    TResult? Function(BirdColor color)? deleteColor,
-    TResult? Function(BirdColor color)? editColor,
+    TResult? Function(Species species)? addSpecies,
+    TResult? Function(Species species)? deleteSpecies,
+    TResult? Function(Species species)? editSpecies,
   }) {
-    return deleteColor?.call(color);
+    return deleteSpecies?.call(species);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(BirdColor color)? addColor,
-    TResult Function(BirdColor color)? deleteColor,
-    TResult Function(BirdColor color)? editColor,
+    TResult Function(Species species)? addSpecies,
+    TResult Function(Species species)? deleteSpecies,
+    TResult Function(Species species)? editSpecies,
     required TResult orElse(),
   }) {
-    if (deleteColor != null) {
-      return deleteColor(color);
+    if (deleteSpecies != null) {
+      return deleteSpecies(species);
     }
     return orElse();
   }
@@ -466,153 +466,153 @@ class _$DeleteColorImpl implements DeleteColor {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Load value) load,
-    required TResult Function(AddColor value) addColor,
-    required TResult Function(DeleteColor value) deleteColor,
-    required TResult Function(EditColor value) editColor,
+    required TResult Function(AddSpecies value) addSpecies,
+    required TResult Function(DeleteSpecies value) deleteSpecies,
+    required TResult Function(EditSpecies value) editSpecies,
   }) {
-    return deleteColor(this);
+    return deleteSpecies(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Load value)? load,
-    TResult? Function(AddColor value)? addColor,
-    TResult? Function(DeleteColor value)? deleteColor,
-    TResult? Function(EditColor value)? editColor,
+    TResult? Function(AddSpecies value)? addSpecies,
+    TResult? Function(DeleteSpecies value)? deleteSpecies,
+    TResult? Function(EditSpecies value)? editSpecies,
   }) {
-    return deleteColor?.call(this);
+    return deleteSpecies?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Load value)? load,
-    TResult Function(AddColor value)? addColor,
-    TResult Function(DeleteColor value)? deleteColor,
-    TResult Function(EditColor value)? editColor,
+    TResult Function(AddSpecies value)? addSpecies,
+    TResult Function(DeleteSpecies value)? deleteSpecies,
+    TResult Function(EditSpecies value)? editSpecies,
     required TResult orElse(),
   }) {
-    if (deleteColor != null) {
-      return deleteColor(this);
+    if (deleteSpecies != null) {
+      return deleteSpecies(this);
     }
     return orElse();
   }
 }
 
-abstract class DeleteColor implements ColorsEvent {
-  const factory DeleteColor(final BirdColor color) = _$DeleteColorImpl;
+abstract class DeleteSpecies implements SpeciesEvent {
+  const factory DeleteSpecies(final Species species) = _$DeleteSpeciesImpl;
 
-  BirdColor get color;
+  Species get species;
   @JsonKey(ignore: true)
-  _$$DeleteColorImplCopyWith<_$DeleteColorImpl> get copyWith =>
+  _$$DeleteSpeciesImplCopyWith<_$DeleteSpeciesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$EditColorImplCopyWith<$Res> {
-  factory _$$EditColorImplCopyWith(
-          _$EditColorImpl value, $Res Function(_$EditColorImpl) then) =
-      __$$EditColorImplCopyWithImpl<$Res>;
+abstract class _$$EditSpeciesImplCopyWith<$Res> {
+  factory _$$EditSpeciesImplCopyWith(
+          _$EditSpeciesImpl value, $Res Function(_$EditSpeciesImpl) then) =
+      __$$EditSpeciesImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({BirdColor color});
+  $Res call({Species species});
 
-  $BirdColorCopyWith<$Res> get color;
+  $SpeciesCopyWith<$Res> get species;
 }
 
 /// @nodoc
-class __$$EditColorImplCopyWithImpl<$Res>
-    extends _$ColorsEventCopyWithImpl<$Res, _$EditColorImpl>
-    implements _$$EditColorImplCopyWith<$Res> {
-  __$$EditColorImplCopyWithImpl(
-      _$EditColorImpl _value, $Res Function(_$EditColorImpl) _then)
+class __$$EditSpeciesImplCopyWithImpl<$Res>
+    extends _$SpeciesEventCopyWithImpl<$Res, _$EditSpeciesImpl>
+    implements _$$EditSpeciesImplCopyWith<$Res> {
+  __$$EditSpeciesImplCopyWithImpl(
+      _$EditSpeciesImpl _value, $Res Function(_$EditSpeciesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color = null,
+    Object? species = null,
   }) {
-    return _then(_$EditColorImpl(
-      null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as BirdColor,
+    return _then(_$EditSpeciesImpl(
+      null == species
+          ? _value.species
+          : species // ignore: cast_nullable_to_non_nullable
+              as Species,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $BirdColorCopyWith<$Res> get color {
-    return $BirdColorCopyWith<$Res>(_value.color, (value) {
-      return _then(_value.copyWith(color: value));
+  $SpeciesCopyWith<$Res> get species {
+    return $SpeciesCopyWith<$Res>(_value.species, (value) {
+      return _then(_value.copyWith(species: value));
     });
   }
 }
 
 /// @nodoc
 
-class _$EditColorImpl implements EditColor {
-  const _$EditColorImpl(this.color);
+class _$EditSpeciesImpl implements EditSpecies {
+  const _$EditSpeciesImpl(this.species);
 
   @override
-  final BirdColor color;
+  final Species species;
 
   @override
   String toString() {
-    return 'ColorsEvent.editColor(color: $color)';
+    return 'SpeciesEvent.editSpecies(species: $species)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$EditColorImpl &&
-            (identical(other.color, color) || other.color == color));
+            other is _$EditSpeciesImpl &&
+            (identical(other.species, species) || other.species == species));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, color);
+  int get hashCode => Object.hash(runtimeType, species);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$EditColorImplCopyWith<_$EditColorImpl> get copyWith =>
-      __$$EditColorImplCopyWithImpl<_$EditColorImpl>(this, _$identity);
+  _$$EditSpeciesImplCopyWith<_$EditSpeciesImpl> get copyWith =>
+      __$$EditSpeciesImplCopyWithImpl<_$EditSpeciesImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(BirdColor color) addColor,
-    required TResult Function(BirdColor color) deleteColor,
-    required TResult Function(BirdColor color) editColor,
+    required TResult Function(Species species) addSpecies,
+    required TResult Function(Species species) deleteSpecies,
+    required TResult Function(Species species) editSpecies,
   }) {
-    return editColor(color);
+    return editSpecies(species);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(BirdColor color)? addColor,
-    TResult? Function(BirdColor color)? deleteColor,
-    TResult? Function(BirdColor color)? editColor,
+    TResult? Function(Species species)? addSpecies,
+    TResult? Function(Species species)? deleteSpecies,
+    TResult? Function(Species species)? editSpecies,
   }) {
-    return editColor?.call(color);
+    return editSpecies?.call(species);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(BirdColor color)? addColor,
-    TResult Function(BirdColor color)? deleteColor,
-    TResult Function(BirdColor color)? editColor,
+    TResult Function(Species species)? addSpecies,
+    TResult Function(Species species)? deleteSpecies,
+    TResult Function(Species species)? editSpecies,
     required TResult orElse(),
   }) {
-    if (editColor != null) {
-      return editColor(color);
+    if (editSpecies != null) {
+      return editSpecies(species);
     }
     return orElse();
   }
@@ -621,56 +621,56 @@ class _$EditColorImpl implements EditColor {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Load value) load,
-    required TResult Function(AddColor value) addColor,
-    required TResult Function(DeleteColor value) deleteColor,
-    required TResult Function(EditColor value) editColor,
+    required TResult Function(AddSpecies value) addSpecies,
+    required TResult Function(DeleteSpecies value) deleteSpecies,
+    required TResult Function(EditSpecies value) editSpecies,
   }) {
-    return editColor(this);
+    return editSpecies(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Load value)? load,
-    TResult? Function(AddColor value)? addColor,
-    TResult? Function(DeleteColor value)? deleteColor,
-    TResult? Function(EditColor value)? editColor,
+    TResult? Function(AddSpecies value)? addSpecies,
+    TResult? Function(DeleteSpecies value)? deleteSpecies,
+    TResult? Function(EditSpecies value)? editSpecies,
   }) {
-    return editColor?.call(this);
+    return editSpecies?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Load value)? load,
-    TResult Function(AddColor value)? addColor,
-    TResult Function(DeleteColor value)? deleteColor,
-    TResult Function(EditColor value)? editColor,
+    TResult Function(AddSpecies value)? addSpecies,
+    TResult Function(DeleteSpecies value)? deleteSpecies,
+    TResult Function(EditSpecies value)? editSpecies,
     required TResult orElse(),
   }) {
-    if (editColor != null) {
-      return editColor(this);
+    if (editSpecies != null) {
+      return editSpecies(this);
     }
     return orElse();
   }
 }
 
-abstract class EditColor implements ColorsEvent {
-  const factory EditColor(final BirdColor color) = _$EditColorImpl;
+abstract class EditSpecies implements SpeciesEvent {
+  const factory EditSpecies(final Species species) = _$EditSpeciesImpl;
 
-  BirdColor get color;
+  Species get species;
   @JsonKey(ignore: true)
-  _$$EditColorImplCopyWith<_$EditColorImpl> get copyWith =>
+  _$$EditSpeciesImplCopyWith<_$EditSpeciesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$ColorsState {
+mixin _$SpeciesState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<BirdColor> colors) loaded,
+    required TResult Function(List<Species> species) loaded,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
@@ -678,7 +678,7 @@ mixin _$ColorsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<BirdColor> colors)? loaded,
+    TResult? Function(List<Species> species)? loaded,
     TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -686,7 +686,7 @@ mixin _$ColorsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<BirdColor> colors)? loaded,
+    TResult Function(List<Species> species)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -719,16 +719,16 @@ mixin _$ColorsState {
 }
 
 /// @nodoc
-abstract class $ColorsStateCopyWith<$Res> {
-  factory $ColorsStateCopyWith(
-          ColorsState value, $Res Function(ColorsState) then) =
-      _$ColorsStateCopyWithImpl<$Res, ColorsState>;
+abstract class $SpeciesStateCopyWith<$Res> {
+  factory $SpeciesStateCopyWith(
+          SpeciesState value, $Res Function(SpeciesState) then) =
+      _$SpeciesStateCopyWithImpl<$Res, SpeciesState>;
 }
 
 /// @nodoc
-class _$ColorsStateCopyWithImpl<$Res, $Val extends ColorsState>
-    implements $ColorsStateCopyWith<$Res> {
-  _$ColorsStateCopyWithImpl(this._value, this._then);
+class _$SpeciesStateCopyWithImpl<$Res, $Val extends SpeciesState>
+    implements $SpeciesStateCopyWith<$Res> {
+  _$SpeciesStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -745,7 +745,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$ColorsStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$SpeciesStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -759,7 +759,7 @@ class _$InitialImpl implements Initial {
 
   @override
   String toString() {
-    return 'ColorsState.initial()';
+    return 'SpeciesState.initial()';
   }
 
   @override
@@ -776,7 +776,7 @@ class _$InitialImpl implements Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<BirdColor> colors) loaded,
+    required TResult Function(List<Species> species) loaded,
     required TResult Function() error,
   }) {
     return initial();
@@ -787,7 +787,7 @@ class _$InitialImpl implements Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<BirdColor> colors)? loaded,
+    TResult? Function(List<Species> species)? loaded,
     TResult? Function()? error,
   }) {
     return initial?.call();
@@ -798,7 +798,7 @@ class _$InitialImpl implements Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<BirdColor> colors)? loaded,
+    TResult Function(List<Species> species)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -846,7 +846,7 @@ class _$InitialImpl implements Initial {
   }
 }
 
-abstract class Initial implements ColorsState {
+abstract class Initial implements SpeciesState {
   const factory Initial() = _$InitialImpl;
 }
 
@@ -859,7 +859,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$ColorsStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$SpeciesStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -873,7 +873,7 @@ class _$LoadingImpl implements Loading {
 
   @override
   String toString() {
-    return 'ColorsState.loading()';
+    return 'SpeciesState.loading()';
   }
 
   @override
@@ -890,7 +890,7 @@ class _$LoadingImpl implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<BirdColor> colors) loaded,
+    required TResult Function(List<Species> species) loaded,
     required TResult Function() error,
   }) {
     return loading();
@@ -901,7 +901,7 @@ class _$LoadingImpl implements Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<BirdColor> colors)? loaded,
+    TResult? Function(List<Species> species)? loaded,
     TResult? Function()? error,
   }) {
     return loading?.call();
@@ -912,7 +912,7 @@ class _$LoadingImpl implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<BirdColor> colors)? loaded,
+    TResult Function(List<Species> species)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -960,7 +960,7 @@ class _$LoadingImpl implements Loading {
   }
 }
 
-abstract class Loading implements ColorsState {
+abstract class Loading implements SpeciesState {
   const factory Loading() = _$LoadingImpl;
 }
 
@@ -970,12 +970,12 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<BirdColor> colors});
+  $Res call({List<Species> species});
 }
 
 /// @nodoc
 class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$ColorsStateCopyWithImpl<$Res, _$LoadedImpl>
+    extends _$SpeciesStateCopyWithImpl<$Res, _$LoadedImpl>
     implements _$$LoadedImplCopyWith<$Res> {
   __$$LoadedImplCopyWithImpl(
       _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
@@ -984,13 +984,13 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? colors = null,
+    Object? species = null,
   }) {
     return _then(_$LoadedImpl(
-      colors: null == colors
-          ? _value._colors
-          : colors // ignore: cast_nullable_to_non_nullable
-              as List<BirdColor>,
+      species: null == species
+          ? _value._species
+          : species // ignore: cast_nullable_to_non_nullable
+              as List<Species>,
     ));
   }
 }
@@ -998,20 +998,20 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements Loaded {
-  const _$LoadedImpl({required final List<BirdColor> colors})
-      : _colors = colors;
+  const _$LoadedImpl({required final List<Species> species})
+      : _species = species;
 
-  final List<BirdColor> _colors;
+  final List<Species> _species;
   @override
-  List<BirdColor> get colors {
-    if (_colors is EqualUnmodifiableListView) return _colors;
+  List<Species> get species {
+    if (_species is EqualUnmodifiableListView) return _species;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_colors);
+    return EqualUnmodifiableListView(_species);
   }
 
   @override
   String toString() {
-    return 'ColorsState.loaded(colors: $colors)';
+    return 'SpeciesState.loaded(species: $species)';
   }
 
   @override
@@ -1019,12 +1019,12 @@ class _$LoadedImpl implements Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            const DeepCollectionEquality().equals(other._colors, _colors));
+            const DeepCollectionEquality().equals(other._species, _species));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_colors));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_species));
 
   @JsonKey(ignore: true)
   @override
@@ -1037,10 +1037,10 @@ class _$LoadedImpl implements Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<BirdColor> colors) loaded,
+    required TResult Function(List<Species> species) loaded,
     required TResult Function() error,
   }) {
-    return loaded(colors);
+    return loaded(species);
   }
 
   @override
@@ -1048,10 +1048,10 @@ class _$LoadedImpl implements Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<BirdColor> colors)? loaded,
+    TResult? Function(List<Species> species)? loaded,
     TResult? Function()? error,
   }) {
-    return loaded?.call(colors);
+    return loaded?.call(species);
   }
 
   @override
@@ -1059,12 +1059,12 @@ class _$LoadedImpl implements Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<BirdColor> colors)? loaded,
+    TResult Function(List<Species> species)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(colors);
+      return loaded(species);
     }
     return orElse();
   }
@@ -1107,10 +1107,10 @@ class _$LoadedImpl implements Loaded {
   }
 }
 
-abstract class Loaded implements ColorsState {
-  const factory Loaded({required final List<BirdColor> colors}) = _$LoadedImpl;
+abstract class Loaded implements SpeciesState {
+  const factory Loaded({required final List<Species> species}) = _$LoadedImpl;
 
-  List<BirdColor> get colors;
+  List<Species> get species;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1125,7 +1125,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$ColorsStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$SpeciesStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
@@ -1139,7 +1139,7 @@ class _$ErrorImpl implements Error {
 
   @override
   String toString() {
-    return 'ColorsState.error()';
+    return 'SpeciesState.error()';
   }
 
   @override
@@ -1156,7 +1156,7 @@ class _$ErrorImpl implements Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<BirdColor> colors) loaded,
+    required TResult Function(List<Species> species) loaded,
     required TResult Function() error,
   }) {
     return error();
@@ -1167,7 +1167,7 @@ class _$ErrorImpl implements Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<BirdColor> colors)? loaded,
+    TResult? Function(List<Species> species)? loaded,
     TResult? Function()? error,
   }) {
     return error?.call();
@@ -1178,7 +1178,7 @@ class _$ErrorImpl implements Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<BirdColor> colors)? loaded,
+    TResult Function(List<Species> species)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -1226,6 +1226,6 @@ class _$ErrorImpl implements Error {
   }
 }
 
-abstract class Error implements ColorsState {
+abstract class Error implements SpeciesState {
   const factory Error() = _$ErrorImpl;
 }

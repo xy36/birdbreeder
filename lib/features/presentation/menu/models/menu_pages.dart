@@ -6,6 +6,7 @@ enum MenuPage {
   birds(),
   // addBird(),
   colors(),
+  species(),
   breedings(),
   finances(),
   account();
@@ -22,6 +23,8 @@ enum MenuPage {
         return Icons.check_circle_outline;
       case MenuPage.colors:
         return Icons.color_lens;
+      case MenuPage.species:
+        return Icons.pets;
       // case MenuPage.addBird:
       //   return Icons.add_circle_outline;
       case MenuPage.breedings:
@@ -38,6 +41,7 @@ enum MenuPage {
     return switch (this) {
       MenuPage.birds => context.l10n.menu__birds,
       MenuPage.colors => context.l10n.menu__colors,
+      MenuPage.species => context.l10n.menu__species,
       // MenuPage.addBird => context.l10n.menu__add_bird,
       MenuPage.breedings => context.l10n.menu__breedings,
       MenuPage.finances => context.l10n.menu__finances,
@@ -50,6 +54,7 @@ enum MenuPage {
     return switch (this) {
       MenuPage.birds => const BirdsOverviewRoute(),
       MenuPage.colors => const ColorsRoute(),
+      MenuPage.species => const SpeciesRoute(),
       // MenuPage.addBird => BirdRoute(bird: null),
       MenuPage.breedings => const BreedingsRoute(),
       MenuPage.finances => const FinancesRoute(),

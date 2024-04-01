@@ -12,7 +12,7 @@ part of 'bird_dto.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 BirdDto _$BirdDtoFromJson(Map<String, dynamic> json) {
   return _BirdDto.fromJson(json);
@@ -180,10 +180,10 @@ class _$BirdDtoCopyWithImpl<$Res, $Val extends BirdDto>
 }
 
 /// @nodoc
-abstract class _$$_BirdDtoCopyWith<$Res> implements $BirdDtoCopyWith<$Res> {
-  factory _$$_BirdDtoCopyWith(
-          _$_BirdDto value, $Res Function(_$_BirdDto) then) =
-      __$$_BirdDtoCopyWithImpl<$Res>;
+abstract class _$$BirdDtoImplCopyWith<$Res> implements $BirdDtoCopyWith<$Res> {
+  factory _$$BirdDtoImplCopyWith(
+          _$BirdDtoImpl value, $Res Function(_$BirdDtoImpl) then) =
+      __$$BirdDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -208,10 +208,11 @@ abstract class _$$_BirdDtoCopyWith<$Res> implements $BirdDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_BirdDtoCopyWithImpl<$Res>
-    extends _$BirdDtoCopyWithImpl<$Res, _$_BirdDto>
-    implements _$$_BirdDtoCopyWith<$Res> {
-  __$$_BirdDtoCopyWithImpl(_$_BirdDto _value, $Res Function(_$_BirdDto) _then)
+class __$$BirdDtoImplCopyWithImpl<$Res>
+    extends _$BirdDtoCopyWithImpl<$Res, _$BirdDtoImpl>
+    implements _$$BirdDtoImplCopyWith<$Res> {
+  __$$BirdDtoImplCopyWithImpl(
+      _$BirdDtoImpl _value, $Res Function(_$BirdDtoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -236,7 +237,7 @@ class __$$_BirdDtoCopyWithImpl<$Res>
     Object? partnerRingnumber = freezed,
     Object? isForSale = freezed,
   }) {
-    return _then(_$_BirdDto(
+    return _then(_$BirdDtoImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -315,8 +316,8 @@ class __$$_BirdDtoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_BirdDto implements _BirdDto {
-  _$_BirdDto(
+class _$BirdDtoImpl implements _BirdDto {
+  _$BirdDtoImpl(
       {required this.id,
       required this.ringnumber,
       required this.speciesId,
@@ -336,8 +337,8 @@ class _$_BirdDto implements _BirdDto {
       required this.partnerRingnumber,
       required this.isForSale});
 
-  factory _$_BirdDto.fromJson(Map<String, dynamic> json) =>
-      _$$_BirdDtoFromJson(json);
+  factory _$BirdDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BirdDtoImplFromJson(json);
 
   @override
   final String? id;
@@ -382,10 +383,10 @@ class _$_BirdDto implements _BirdDto {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BirdDto &&
+            other is _$BirdDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.ringnumber, ringnumber) ||
                 other.ringnumber == ringnumber) &&
@@ -445,12 +446,12 @@ class _$_BirdDto implements _BirdDto {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BirdDtoCopyWith<_$_BirdDto> get copyWith =>
-      __$$_BirdDtoCopyWithImpl<_$_BirdDto>(this, _$identity);
+  _$$BirdDtoImplCopyWith<_$BirdDtoImpl> get copyWith =>
+      __$$BirdDtoImplCopyWithImpl<_$BirdDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BirdDtoToJson(
+    return _$$BirdDtoImplToJson(
       this,
     );
   }
@@ -475,9 +476,9 @@ abstract class _BirdDto implements BirdDto {
       required final String? fatherRingnumber,
       required final String? motherRingnumber,
       required final String? partnerRingnumber,
-      required final bool? isForSale}) = _$_BirdDto;
+      required final bool? isForSale}) = _$BirdDtoImpl;
 
-  factory _BirdDto.fromJson(Map<String, dynamic> json) = _$_BirdDto.fromJson;
+  factory _BirdDto.fromJson(Map<String, dynamic> json) = _$BirdDtoImpl.fromJson;
 
   @override
   String? get id;
@@ -517,6 +518,6 @@ abstract class _BirdDto implements BirdDto {
   bool? get isForSale;
   @override
   @JsonKey(ignore: true)
-  _$$_BirdDtoCopyWith<_$_BirdDto> get copyWith =>
+  _$$BirdDtoImplCopyWith<_$BirdDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

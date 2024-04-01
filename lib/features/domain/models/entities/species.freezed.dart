@@ -12,12 +12,13 @@ part of 'species.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$Species {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  String? get latName => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SpeciesCopyWith<Species> get copyWith => throw _privateConstructorUsedError;
@@ -28,7 +29,7 @@ abstract class $SpeciesCopyWith<$Res> {
   factory $SpeciesCopyWith(Species value, $Res Function(Species) then) =
       _$SpeciesCopyWithImpl<$Res, Species>;
   @useResult
-  $Res call({String? id, String? name});
+  $Res call({String? id, String? name, String? latName});
 }
 
 /// @nodoc
@@ -46,6 +47,7 @@ class _$SpeciesCopyWithImpl<$Res, $Val extends Species>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? latName = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -56,25 +58,30 @@ class _$SpeciesCopyWithImpl<$Res, $Val extends Species>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      latName: freezed == latName
+          ? _value.latName
+          : latName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_SpeciesCopyWith<$Res> implements $SpeciesCopyWith<$Res> {
-  factory _$$_SpeciesCopyWith(
-          _$_Species value, $Res Function(_$_Species) then) =
-      __$$_SpeciesCopyWithImpl<$Res>;
+abstract class _$$SpeciesImplCopyWith<$Res> implements $SpeciesCopyWith<$Res> {
+  factory _$$SpeciesImplCopyWith(
+          _$SpeciesImpl value, $Res Function(_$SpeciesImpl) then) =
+      __$$SpeciesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? id, String? name});
+  $Res call({String? id, String? name, String? latName});
 }
 
 /// @nodoc
-class __$$_SpeciesCopyWithImpl<$Res>
-    extends _$SpeciesCopyWithImpl<$Res, _$_Species>
-    implements _$$_SpeciesCopyWith<$Res> {
-  __$$_SpeciesCopyWithImpl(_$_Species _value, $Res Function(_$_Species) _then)
+class __$$SpeciesImplCopyWithImpl<$Res>
+    extends _$SpeciesCopyWithImpl<$Res, _$SpeciesImpl>
+    implements _$$SpeciesImplCopyWith<$Res> {
+  __$$SpeciesImplCopyWithImpl(
+      _$SpeciesImpl _value, $Res Function(_$SpeciesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -82,8 +89,9 @@ class __$$_SpeciesCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? latName = freezed,
   }) {
-    return _then(_$_Species(
+    return _then(_$SpeciesImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -92,54 +100,65 @@ class __$$_SpeciesCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      latName: freezed == latName
+          ? _value.latName
+          : latName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Species implements _Species {
-  _$_Species({required this.id, required this.name});
+class _$SpeciesImpl implements _Species {
+  _$SpeciesImpl({this.id, this.name, this.latName});
 
   @override
   final String? id;
   @override
   final String? name;
+  @override
+  final String? latName;
 
   @override
   String toString() {
-    return 'Species(id: $id, name: $name)';
+    return 'Species(id: $id, name: $name, latName: $latName)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Species &&
+            other is _$SpeciesImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.latName, latName) || other.latName == latName));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name);
+  int get hashCode => Object.hash(runtimeType, id, name, latName);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SpeciesCopyWith<_$_Species> get copyWith =>
-      __$$_SpeciesCopyWithImpl<_$_Species>(this, _$identity);
+  _$$SpeciesImplCopyWith<_$SpeciesImpl> get copyWith =>
+      __$$SpeciesImplCopyWithImpl<_$SpeciesImpl>(this, _$identity);
 }
 
 abstract class _Species implements Species {
-  factory _Species({required final String? id, required final String? name}) =
-      _$_Species;
+  factory _Species(
+      {final String? id,
+      final String? name,
+      final String? latName}) = _$SpeciesImpl;
 
   @override
   String? get id;
   @override
   String? get name;
   @override
+  String? get latName;
+  @override
   @JsonKey(ignore: true)
-  _$$_SpeciesCopyWith<_$_Species> get copyWith =>
+  _$$SpeciesImplCopyWith<_$SpeciesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

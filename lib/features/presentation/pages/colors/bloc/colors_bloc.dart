@@ -1,9 +1,9 @@
 import 'dart:async';
 
+import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/domain/i_repository.dart';
 import 'package:birdbreeder/features/domain/models/entities/bird_color.dart';
 import 'package:birdbreeder/injection.dart';
-import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'colors_bloc.freezed.dart';
@@ -19,8 +19,6 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
   }
 
   FutureOr<void> _onAddColor(AddColor event, Emitter<ColorsState> emit) async {
-    emit(const Error());
-    return;
     emit(const Loading());
 
     final result = await s1.get<IRepository>().createColor(event.color);
@@ -43,7 +41,7 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
       return;
     }
 
-    emit(Loaded(result.asValue!.value));
+    emit(Loaded(colors: result.asValue!.value));
   }
 
   FutureOr<void> _onEditColor(

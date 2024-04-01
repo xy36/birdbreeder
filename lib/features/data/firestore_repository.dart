@@ -1,4 +1,4 @@
-import 'package:async/src/result/result.dart';
+import 'package:async/async.dart';
 import 'package:birdbreeder/features/domain/i_repository.dart';
 import 'package:birdbreeder/features/domain/mapper/mapper.dart';
 import 'package:birdbreeder/features/domain/models/dtos/bird_color_dto.dart';
@@ -196,13 +196,8 @@ class FiretoreRepository implements IRepository {
     return Result.value(
       cages.docs
           .map((doc) => CageDto.fromJson(doc.data()))
-          .map(
-            (dto) => Cage(
-              id: dto.id,
-              name: dto.name,
-            ),
-          )
-          .toList(),
+          .toList()
+          .toCageList(),
     );
   }
 
@@ -239,13 +234,8 @@ class FiretoreRepository implements IRepository {
     return Result.value(
       colors.docs
           .map((doc) => BirdColorDto.fromJson(doc.data()))
-          .map(
-            (dto) => BirdColor(
-              id: dto.id,
-              name: dto.name,
-            ),
-          )
-          .toList(),
+          .toList()
+          .toBirdColorList(),
     );
   }
 
@@ -262,6 +252,7 @@ class FiretoreRepository implements IRepository {
           SpeciesDto(
             id: const Uuid().v4(),
             name: species.name,
+            latName: species.latName,
           ).toJson(),
         );
 
@@ -282,13 +273,8 @@ class FiretoreRepository implements IRepository {
     return Result.value(
       species.docs
           .map((doc) => SpeciesDto.fromJson(doc.data()))
-          .map(
-            (dto) => Species(
-              id: dto.id,
-              name: dto.name,
-            ),
-          )
-          .toList(),
+          .toList()
+          .toSpeciesList(),
     );
   }
 

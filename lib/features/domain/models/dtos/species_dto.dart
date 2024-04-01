@@ -8,6 +8,7 @@ class SpeciesDto with _$SpeciesDto {
   factory SpeciesDto({
     required String? id,
     required String? name,
+    required String? latName,
   }) = _SpeciesDto;
 
   factory SpeciesDto.fromJson(Map<String, dynamic> json) =>
