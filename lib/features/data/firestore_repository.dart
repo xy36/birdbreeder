@@ -247,16 +247,22 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
+    if (species.name == null) {
+      return Future.value(Result.error('Species name is null'));
+    }
+
+    final speciesDto = SpeciesDto(
+      id: const Uuid().v4(),
+      name: species.name,
+      latName: species.latName,
+    );
+
     // add the species to the user's species collection
     await db.collection('users').doc(userId).collection('species').add(
-          SpeciesDto(
-            id: const Uuid().v4(),
-            name: species.name,
-            latName: species.latName,
-          ).toJson(),
+          speciesDto.toJson(),
         );
 
-    return Result.value(species);
+    return Result.value(speciesDto.toSpecies());
   }
 
   @override
@@ -285,16 +291,19 @@ class FiretoreRepository implements IRepository {
     }
 
     final userId = authUser!.uid;
+    try {
+      final species = await db
+          .collection('users')
+          .doc(userId)
+          .collection('species')
+          .where('id', isEqualTo: id)
+          .get()
+          .then((value) => value.docs.first.reference.get());
 
-    final species = await db
-        .collection('users')
-        .doc(userId)
-        .collection('species')
-        .where('id', isEqualTo: id)
-        .get()
-        .then((value) => value.docs.first.reference.get());
-
-    return Result.value(SpeciesDto.fromJson(species.data()!).toSpecies());
+      return Result.value(SpeciesDto.fromJson(species.data()!).toSpecies());
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override

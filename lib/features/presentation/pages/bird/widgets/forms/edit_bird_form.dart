@@ -11,10 +11,10 @@ class EditBirdForm extends StatelessWidget {
       child: BlocBuilder<BirdBloc, BirdState>(
         builder: (context, state) {
           return state.maybeWhen(
-            loaded: (bird, isEdit) {
+            loaded: (bird, isEdit, _) {
               return BirdFields(bird: bird);
             },
-            loading: (bird, isEdit) {
+            loading: (bird, isEdit, _) {
               return const Center(child: CircularProgressIndicator());
             },
             orElse: () {
