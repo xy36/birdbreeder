@@ -11,7 +11,7 @@ class ColorItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(color.name!),
+      title: Text(color.name ?? '-'),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

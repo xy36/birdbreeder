@@ -10,6 +10,7 @@ import 'package:birdbreeder/features/presentation/pages/birds_overview/birds_ove
 import 'package:birdbreeder/features/presentation/pages/breedings/breedings_page.dart';
 import 'package:birdbreeder/features/presentation/pages/colors/colors_page.dart';
 import 'package:birdbreeder/features/presentation/pages/finances/finances_page.dart';
+import 'package:birdbreeder/features/presentation/pages/species/species_page.dart';
 import 'package:birdbreeder/routing/auth_guard.dart';
 import 'package:birdbreeder/routing/empty_router_page.dart';
 import 'package:birdbreeder/routing/login_guard.dart';
@@ -55,6 +56,12 @@ class AppRouter extends _$AppRouter {
             CustomRoute(
               page: ColorsRoute.page,
               path: 'colors',
+              guards: [AuthGuard()],
+              transitionsBuilder: TransitionsBuilders.fadeIn,
+            ),
+            CustomRoute(
+              page: SpeciesRoute.page,
+              path: 'species',
               guards: [AuthGuard()],
               transitionsBuilder: TransitionsBuilders.fadeIn,
             ),

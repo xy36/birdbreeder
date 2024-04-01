@@ -12,7 +12,7 @@ part of 'bird_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$BirdEvent {
@@ -92,24 +92,25 @@ class _$BirdEventCopyWithImpl<$Res, $Val extends BirdEvent>
 }
 
 /// @nodoc
-abstract class _$$BirdLoadCopyWith<$Res> {
-  factory _$$BirdLoadCopyWith(
-          _$BirdLoad value, $Res Function(_$BirdLoad) then) =
-      __$$BirdLoadCopyWithImpl<$Res>;
+abstract class _$$BirdLoadImplCopyWith<$Res> {
+  factory _$$BirdLoadImplCopyWith(
+          _$BirdLoadImpl value, $Res Function(_$BirdLoadImpl) then) =
+      __$$BirdLoadImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$BirdLoadCopyWithImpl<$Res>
-    extends _$BirdEventCopyWithImpl<$Res, _$BirdLoad>
-    implements _$$BirdLoadCopyWith<$Res> {
-  __$$BirdLoadCopyWithImpl(_$BirdLoad _value, $Res Function(_$BirdLoad) _then)
+class __$$BirdLoadImplCopyWithImpl<$Res>
+    extends _$BirdEventCopyWithImpl<$Res, _$BirdLoadImpl>
+    implements _$$BirdLoadImplCopyWith<$Res> {
+  __$$BirdLoadImplCopyWithImpl(
+      _$BirdLoadImpl _value, $Res Function(_$BirdLoadImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$BirdLoad implements BirdLoad {
-  const _$BirdLoad();
+class _$BirdLoadImpl implements BirdLoad {
+  const _$BirdLoadImpl();
 
   @override
   String toString() {
@@ -117,9 +118,9 @@ class _$BirdLoad implements BirdLoad {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$BirdLoad);
+        (other.runtimeType == runtimeType && other is _$BirdLoadImpl);
   }
 
   @override
@@ -207,28 +208,29 @@ class _$BirdLoad implements BirdLoad {
 }
 
 abstract class BirdLoad implements BirdEvent {
-  const factory BirdLoad() = _$BirdLoad;
+  const factory BirdLoad() = _$BirdLoadImpl;
 }
 
 /// @nodoc
-abstract class _$$BirdSaveCopyWith<$Res> {
-  factory _$$BirdSaveCopyWith(
-          _$BirdSave value, $Res Function(_$BirdSave) then) =
-      __$$BirdSaveCopyWithImpl<$Res>;
+abstract class _$$BirdSaveImplCopyWith<$Res> {
+  factory _$$BirdSaveImplCopyWith(
+          _$BirdSaveImpl value, $Res Function(_$BirdSaveImpl) then) =
+      __$$BirdSaveImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$BirdSaveCopyWithImpl<$Res>
-    extends _$BirdEventCopyWithImpl<$Res, _$BirdSave>
-    implements _$$BirdSaveCopyWith<$Res> {
-  __$$BirdSaveCopyWithImpl(_$BirdSave _value, $Res Function(_$BirdSave) _then)
+class __$$BirdSaveImplCopyWithImpl<$Res>
+    extends _$BirdEventCopyWithImpl<$Res, _$BirdSaveImpl>
+    implements _$$BirdSaveImplCopyWith<$Res> {
+  __$$BirdSaveImplCopyWithImpl(
+      _$BirdSaveImpl _value, $Res Function(_$BirdSaveImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$BirdSave implements BirdSave {
-  const _$BirdSave();
+class _$BirdSaveImpl implements BirdSave {
+  const _$BirdSaveImpl();
 
   @override
   String toString() {
@@ -236,9 +238,9 @@ class _$BirdSave implements BirdSave {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$BirdSave);
+        (other.runtimeType == runtimeType && other is _$BirdSaveImpl);
   }
 
   @override
@@ -326,23 +328,24 @@ class _$BirdSave implements BirdSave {
 }
 
 abstract class BirdSave implements BirdEvent {
-  const factory BirdSave() = _$BirdSave;
+  const factory BirdSave() = _$BirdSaveImpl;
 }
 
 /// @nodoc
-abstract class _$$BirdEditCopyWith<$Res> {
-  factory _$$BirdEditCopyWith(
-          _$BirdEdit value, $Res Function(_$BirdEdit) then) =
-      __$$BirdEditCopyWithImpl<$Res>;
+abstract class _$$BirdEditImplCopyWith<$Res> {
+  factory _$$BirdEditImplCopyWith(
+          _$BirdEditImpl value, $Res Function(_$BirdEditImpl) then) =
+      __$$BirdEditImplCopyWithImpl<$Res>;
   @useResult
   $Res call({bool on});
 }
 
 /// @nodoc
-class __$$BirdEditCopyWithImpl<$Res>
-    extends _$BirdEventCopyWithImpl<$Res, _$BirdEdit>
-    implements _$$BirdEditCopyWith<$Res> {
-  __$$BirdEditCopyWithImpl(_$BirdEdit _value, $Res Function(_$BirdEdit) _then)
+class __$$BirdEditImplCopyWithImpl<$Res>
+    extends _$BirdEventCopyWithImpl<$Res, _$BirdEditImpl>
+    implements _$$BirdEditImplCopyWith<$Res> {
+  __$$BirdEditImplCopyWithImpl(
+      _$BirdEditImpl _value, $Res Function(_$BirdEditImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -350,7 +353,7 @@ class __$$BirdEditCopyWithImpl<$Res>
   $Res call({
     Object? on = null,
   }) {
-    return _then(_$BirdEdit(
+    return _then(_$BirdEditImpl(
       on: null == on
           ? _value.on
           : on // ignore: cast_nullable_to_non_nullable
@@ -361,8 +364,8 @@ class __$$BirdEditCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BirdEdit implements BirdEdit {
-  const _$BirdEdit({required this.on});
+class _$BirdEditImpl implements BirdEdit {
+  const _$BirdEditImpl({required this.on});
 
   @override
   final bool on;
@@ -373,10 +376,10 @@ class _$BirdEdit implements BirdEdit {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BirdEdit &&
+            other is _$BirdEditImpl &&
             (identical(other.on, on) || other.on == on));
   }
 
@@ -386,8 +389,8 @@ class _$BirdEdit implements BirdEdit {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BirdEditCopyWith<_$BirdEdit> get copyWith =>
-      __$$BirdEditCopyWithImpl<_$BirdEdit>(this, _$identity);
+  _$$BirdEditImplCopyWith<_$BirdEditImpl> get copyWith =>
+      __$$BirdEditImplCopyWithImpl<_$BirdEditImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -471,34 +474,34 @@ class _$BirdEdit implements BirdEdit {
 }
 
 abstract class BirdEdit implements BirdEvent {
-  const factory BirdEdit({required final bool on}) = _$BirdEdit;
+  const factory BirdEdit({required final bool on}) = _$BirdEditImpl;
 
   bool get on;
   @JsonKey(ignore: true)
-  _$$BirdEditCopyWith<_$BirdEdit> get copyWith =>
+  _$$BirdEditImplCopyWith<_$BirdEditImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$BirdDeleteCopyWith<$Res> {
-  factory _$$BirdDeleteCopyWith(
-          _$BirdDelete value, $Res Function(_$BirdDelete) then) =
-      __$$BirdDeleteCopyWithImpl<$Res>;
+abstract class _$$BirdDeleteImplCopyWith<$Res> {
+  factory _$$BirdDeleteImplCopyWith(
+          _$BirdDeleteImpl value, $Res Function(_$BirdDeleteImpl) then) =
+      __$$BirdDeleteImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$BirdDeleteCopyWithImpl<$Res>
-    extends _$BirdEventCopyWithImpl<$Res, _$BirdDelete>
-    implements _$$BirdDeleteCopyWith<$Res> {
-  __$$BirdDeleteCopyWithImpl(
-      _$BirdDelete _value, $Res Function(_$BirdDelete) _then)
+class __$$BirdDeleteImplCopyWithImpl<$Res>
+    extends _$BirdEventCopyWithImpl<$Res, _$BirdDeleteImpl>
+    implements _$$BirdDeleteImplCopyWith<$Res> {
+  __$$BirdDeleteImplCopyWithImpl(
+      _$BirdDeleteImpl _value, $Res Function(_$BirdDeleteImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$BirdDelete implements BirdDelete {
-  const _$BirdDelete();
+class _$BirdDeleteImpl implements BirdDelete {
+  const _$BirdDeleteImpl();
 
   @override
   String toString() {
@@ -506,9 +509,9 @@ class _$BirdDelete implements BirdDelete {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$BirdDelete);
+        (other.runtimeType == runtimeType && other is _$BirdDeleteImpl);
   }
 
   @override
@@ -596,14 +599,14 @@ class _$BirdDelete implements BirdDelete {
 }
 
 abstract class BirdDelete implements BirdEvent {
-  const factory BirdDelete() = _$BirdDelete;
+  const factory BirdDelete() = _$BirdDeleteImpl;
 }
 
 /// @nodoc
-abstract class _$$BirdChangeCopyWith<$Res> {
-  factory _$$BirdChangeCopyWith(
-          _$BirdChange value, $Res Function(_$BirdChange) then) =
-      __$$BirdChangeCopyWithImpl<$Res>;
+abstract class _$$BirdChangeImplCopyWith<$Res> {
+  factory _$$BirdChangeImplCopyWith(
+          _$BirdChangeImpl value, $Res Function(_$BirdChangeImpl) then) =
+      __$$BirdChangeImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Bird bird});
 
@@ -611,11 +614,11 @@ abstract class _$$BirdChangeCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$BirdChangeCopyWithImpl<$Res>
-    extends _$BirdEventCopyWithImpl<$Res, _$BirdChange>
-    implements _$$BirdChangeCopyWith<$Res> {
-  __$$BirdChangeCopyWithImpl(
-      _$BirdChange _value, $Res Function(_$BirdChange) _then)
+class __$$BirdChangeImplCopyWithImpl<$Res>
+    extends _$BirdEventCopyWithImpl<$Res, _$BirdChangeImpl>
+    implements _$$BirdChangeImplCopyWith<$Res> {
+  __$$BirdChangeImplCopyWithImpl(
+      _$BirdChangeImpl _value, $Res Function(_$BirdChangeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -623,7 +626,7 @@ class __$$BirdChangeCopyWithImpl<$Res>
   $Res call({
     Object? bird = null,
   }) {
-    return _then(_$BirdChange(
+    return _then(_$BirdChangeImpl(
       bird: null == bird
           ? _value.bird
           : bird // ignore: cast_nullable_to_non_nullable
@@ -642,8 +645,8 @@ class __$$BirdChangeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BirdChange implements BirdChange {
-  const _$BirdChange({required this.bird});
+class _$BirdChangeImpl implements BirdChange {
+  const _$BirdChangeImpl({required this.bird});
 
   @override
   final Bird bird;
@@ -654,10 +657,10 @@ class _$BirdChange implements BirdChange {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BirdChange &&
+            other is _$BirdChangeImpl &&
             (identical(other.bird, bird) || other.bird == bird));
   }
 
@@ -667,8 +670,8 @@ class _$BirdChange implements BirdChange {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BirdChangeCopyWith<_$BirdChange> get copyWith =>
-      __$$BirdChangeCopyWithImpl<_$BirdChange>(this, _$identity);
+  _$$BirdChangeImplCopyWith<_$BirdChangeImpl> get copyWith =>
+      __$$BirdChangeImplCopyWithImpl<_$BirdChangeImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -752,11 +755,11 @@ class _$BirdChange implements BirdChange {
 }
 
 abstract class BirdChange implements BirdEvent {
-  const factory BirdChange({required final Bird bird}) = _$BirdChange;
+  const factory BirdChange({required final Bird bird}) = _$BirdChangeImpl;
 
   Bird get bird;
   @JsonKey(ignore: true)
-  _$$BirdChangeCopyWith<_$BirdChange> get copyWith =>
+  _$$BirdChangeImplCopyWith<_$BirdChangeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -880,11 +883,11 @@ class _$BirdStateCopyWithImpl<$Res, $Val extends BirdState>
 }
 
 /// @nodoc
-abstract class _$$BirdInitialCopyWith<$Res>
+abstract class _$$BirdInitialImplCopyWith<$Res>
     implements $BirdStateCopyWith<$Res> {
-  factory _$$BirdInitialCopyWith(
-          _$BirdInitial value, $Res Function(_$BirdInitial) then) =
-      __$$BirdInitialCopyWithImpl<$Res>;
+  factory _$$BirdInitialImplCopyWith(
+          _$BirdInitialImpl value, $Res Function(_$BirdInitialImpl) then) =
+      __$$BirdInitialImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Bird bird, bool isEdit});
@@ -894,11 +897,11 @@ abstract class _$$BirdInitialCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$BirdInitialCopyWithImpl<$Res>
-    extends _$BirdStateCopyWithImpl<$Res, _$BirdInitial>
-    implements _$$BirdInitialCopyWith<$Res> {
-  __$$BirdInitialCopyWithImpl(
-      _$BirdInitial _value, $Res Function(_$BirdInitial) _then)
+class __$$BirdInitialImplCopyWithImpl<$Res>
+    extends _$BirdStateCopyWithImpl<$Res, _$BirdInitialImpl>
+    implements _$$BirdInitialImplCopyWith<$Res> {
+  __$$BirdInitialImplCopyWithImpl(
+      _$BirdInitialImpl _value, $Res Function(_$BirdInitialImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -907,7 +910,7 @@ class __$$BirdInitialCopyWithImpl<$Res>
     Object? bird = null,
     Object? isEdit = null,
   }) {
-    return _then(_$BirdInitial(
+    return _then(_$BirdInitialImpl(
       bird: null == bird
           ? _value.bird
           : bird // ignore: cast_nullable_to_non_nullable
@@ -922,8 +925,8 @@ class __$$BirdInitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BirdInitial implements BirdInitial {
-  const _$BirdInitial({required this.bird, required this.isEdit});
+class _$BirdInitialImpl implements BirdInitial {
+  const _$BirdInitialImpl({required this.bird, required this.isEdit});
 
   @override
   final Bird bird;
@@ -931,10 +934,10 @@ class _$BirdInitial implements BirdInitial {
   final bool isEdit;
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BirdInitial &&
+            other is _$BirdInitialImpl &&
             (identical(other.bird, bird) || other.bird == bird) &&
             (identical(other.isEdit, isEdit) || other.isEdit == isEdit));
   }
@@ -945,8 +948,8 @@ class _$BirdInitial implements BirdInitial {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BirdInitialCopyWith<_$BirdInitial> get copyWith =>
-      __$$BirdInitialCopyWithImpl<_$BirdInitial>(this, _$identity);
+  _$$BirdInitialImplCopyWith<_$BirdInitialImpl> get copyWith =>
+      __$$BirdInitialImplCopyWithImpl<_$BirdInitialImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1037,7 +1040,8 @@ class _$BirdInitial implements BirdInitial {
 
 abstract class BirdInitial implements BirdState {
   const factory BirdInitial(
-      {required final Bird bird, required final bool isEdit}) = _$BirdInitial;
+      {required final Bird bird,
+      required final bool isEdit}) = _$BirdInitialImpl;
 
   @override
   Bird get bird;
@@ -1045,16 +1049,16 @@ abstract class BirdInitial implements BirdState {
   bool get isEdit;
   @override
   @JsonKey(ignore: true)
-  _$$BirdInitialCopyWith<_$BirdInitial> get copyWith =>
+  _$$BirdInitialImplCopyWith<_$BirdInitialImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$BirdLoadingCopyWith<$Res>
+abstract class _$$BirdLoadingImplCopyWith<$Res>
     implements $BirdStateCopyWith<$Res> {
-  factory _$$BirdLoadingCopyWith(
-          _$BirdLoading value, $Res Function(_$BirdLoading) then) =
-      __$$BirdLoadingCopyWithImpl<$Res>;
+  factory _$$BirdLoadingImplCopyWith(
+          _$BirdLoadingImpl value, $Res Function(_$BirdLoadingImpl) then) =
+      __$$BirdLoadingImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Bird bird, bool isEdit});
@@ -1064,11 +1068,11 @@ abstract class _$$BirdLoadingCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$BirdLoadingCopyWithImpl<$Res>
-    extends _$BirdStateCopyWithImpl<$Res, _$BirdLoading>
-    implements _$$BirdLoadingCopyWith<$Res> {
-  __$$BirdLoadingCopyWithImpl(
-      _$BirdLoading _value, $Res Function(_$BirdLoading) _then)
+class __$$BirdLoadingImplCopyWithImpl<$Res>
+    extends _$BirdStateCopyWithImpl<$Res, _$BirdLoadingImpl>
+    implements _$$BirdLoadingImplCopyWith<$Res> {
+  __$$BirdLoadingImplCopyWithImpl(
+      _$BirdLoadingImpl _value, $Res Function(_$BirdLoadingImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1077,7 +1081,7 @@ class __$$BirdLoadingCopyWithImpl<$Res>
     Object? bird = null,
     Object? isEdit = null,
   }) {
-    return _then(_$BirdLoading(
+    return _then(_$BirdLoadingImpl(
       bird: null == bird
           ? _value.bird
           : bird // ignore: cast_nullable_to_non_nullable
@@ -1092,8 +1096,8 @@ class __$$BirdLoadingCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BirdLoading implements BirdLoading {
-  const _$BirdLoading({required this.bird, required this.isEdit});
+class _$BirdLoadingImpl implements BirdLoading {
+  const _$BirdLoadingImpl({required this.bird, required this.isEdit});
 
   @override
   final Bird bird;
@@ -1101,10 +1105,10 @@ class _$BirdLoading implements BirdLoading {
   final bool isEdit;
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BirdLoading &&
+            other is _$BirdLoadingImpl &&
             (identical(other.bird, bird) || other.bird == bird) &&
             (identical(other.isEdit, isEdit) || other.isEdit == isEdit));
   }
@@ -1115,8 +1119,8 @@ class _$BirdLoading implements BirdLoading {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BirdLoadingCopyWith<_$BirdLoading> get copyWith =>
-      __$$BirdLoadingCopyWithImpl<_$BirdLoading>(this, _$identity);
+  _$$BirdLoadingImplCopyWith<_$BirdLoadingImpl> get copyWith =>
+      __$$BirdLoadingImplCopyWithImpl<_$BirdLoadingImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1207,7 +1211,8 @@ class _$BirdLoading implements BirdLoading {
 
 abstract class BirdLoading implements BirdState {
   const factory BirdLoading(
-      {required final Bird bird, required final bool isEdit}) = _$BirdLoading;
+      {required final Bird bird,
+      required final bool isEdit}) = _$BirdLoadingImpl;
 
   @override
   Bird get bird;
@@ -1215,15 +1220,16 @@ abstract class BirdLoading implements BirdState {
   bool get isEdit;
   @override
   @JsonKey(ignore: true)
-  _$$BirdLoadingCopyWith<_$BirdLoading> get copyWith =>
+  _$$BirdLoadingImplCopyWith<_$BirdLoadingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$BirdLoadedCopyWith<$Res> implements $BirdStateCopyWith<$Res> {
-  factory _$$BirdLoadedCopyWith(
-          _$BirdLoaded value, $Res Function(_$BirdLoaded) then) =
-      __$$BirdLoadedCopyWithImpl<$Res>;
+abstract class _$$BirdLoadedImplCopyWith<$Res>
+    implements $BirdStateCopyWith<$Res> {
+  factory _$$BirdLoadedImplCopyWith(
+          _$BirdLoadedImpl value, $Res Function(_$BirdLoadedImpl) then) =
+      __$$BirdLoadedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Bird bird, bool isEdit});
@@ -1233,11 +1239,11 @@ abstract class _$$BirdLoadedCopyWith<$Res> implements $BirdStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$BirdLoadedCopyWithImpl<$Res>
-    extends _$BirdStateCopyWithImpl<$Res, _$BirdLoaded>
-    implements _$$BirdLoadedCopyWith<$Res> {
-  __$$BirdLoadedCopyWithImpl(
-      _$BirdLoaded _value, $Res Function(_$BirdLoaded) _then)
+class __$$BirdLoadedImplCopyWithImpl<$Res>
+    extends _$BirdStateCopyWithImpl<$Res, _$BirdLoadedImpl>
+    implements _$$BirdLoadedImplCopyWith<$Res> {
+  __$$BirdLoadedImplCopyWithImpl(
+      _$BirdLoadedImpl _value, $Res Function(_$BirdLoadedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1246,7 +1252,7 @@ class __$$BirdLoadedCopyWithImpl<$Res>
     Object? bird = null,
     Object? isEdit = null,
   }) {
-    return _then(_$BirdLoaded(
+    return _then(_$BirdLoadedImpl(
       bird: null == bird
           ? _value.bird
           : bird // ignore: cast_nullable_to_non_nullable
@@ -1261,8 +1267,8 @@ class __$$BirdLoadedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BirdLoaded implements BirdLoaded {
-  const _$BirdLoaded({required this.bird, required this.isEdit});
+class _$BirdLoadedImpl implements BirdLoaded {
+  const _$BirdLoadedImpl({required this.bird, required this.isEdit});
 
   @override
   final Bird bird;
@@ -1270,10 +1276,10 @@ class _$BirdLoaded implements BirdLoaded {
   final bool isEdit;
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BirdLoaded &&
+            other is _$BirdLoadedImpl &&
             (identical(other.bird, bird) || other.bird == bird) &&
             (identical(other.isEdit, isEdit) || other.isEdit == isEdit));
   }
@@ -1284,8 +1290,8 @@ class _$BirdLoaded implements BirdLoaded {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BirdLoadedCopyWith<_$BirdLoaded> get copyWith =>
-      __$$BirdLoadedCopyWithImpl<_$BirdLoaded>(this, _$identity);
+  _$$BirdLoadedImplCopyWith<_$BirdLoadedImpl> get copyWith =>
+      __$$BirdLoadedImplCopyWithImpl<_$BirdLoadedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1376,7 +1382,8 @@ class _$BirdLoaded implements BirdLoaded {
 
 abstract class BirdLoaded implements BirdState {
   const factory BirdLoaded(
-      {required final Bird bird, required final bool isEdit}) = _$BirdLoaded;
+      {required final Bird bird,
+      required final bool isEdit}) = _$BirdLoadedImpl;
 
   @override
   Bird get bird;
@@ -1384,15 +1391,16 @@ abstract class BirdLoaded implements BirdState {
   bool get isEdit;
   @override
   @JsonKey(ignore: true)
-  _$$BirdLoadedCopyWith<_$BirdLoaded> get copyWith =>
+  _$$BirdLoadedImplCopyWith<_$BirdLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$BirdErrorCopyWith<$Res> implements $BirdStateCopyWith<$Res> {
-  factory _$$BirdErrorCopyWith(
-          _$BirdError value, $Res Function(_$BirdError) then) =
-      __$$BirdErrorCopyWithImpl<$Res>;
+abstract class _$$BirdErrorImplCopyWith<$Res>
+    implements $BirdStateCopyWith<$Res> {
+  factory _$$BirdErrorImplCopyWith(
+          _$BirdErrorImpl value, $Res Function(_$BirdErrorImpl) then) =
+      __$$BirdErrorImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Bird bird, bool isEdit});
@@ -1402,11 +1410,11 @@ abstract class _$$BirdErrorCopyWith<$Res> implements $BirdStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$BirdErrorCopyWithImpl<$Res>
-    extends _$BirdStateCopyWithImpl<$Res, _$BirdError>
-    implements _$$BirdErrorCopyWith<$Res> {
-  __$$BirdErrorCopyWithImpl(
-      _$BirdError _value, $Res Function(_$BirdError) _then)
+class __$$BirdErrorImplCopyWithImpl<$Res>
+    extends _$BirdStateCopyWithImpl<$Res, _$BirdErrorImpl>
+    implements _$$BirdErrorImplCopyWith<$Res> {
+  __$$BirdErrorImplCopyWithImpl(
+      _$BirdErrorImpl _value, $Res Function(_$BirdErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1415,7 +1423,7 @@ class __$$BirdErrorCopyWithImpl<$Res>
     Object? bird = null,
     Object? isEdit = null,
   }) {
-    return _then(_$BirdError(
+    return _then(_$BirdErrorImpl(
       bird: null == bird
           ? _value.bird
           : bird // ignore: cast_nullable_to_non_nullable
@@ -1430,8 +1438,8 @@ class __$$BirdErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BirdError implements BirdError {
-  const _$BirdError({required this.bird, required this.isEdit});
+class _$BirdErrorImpl implements BirdError {
+  const _$BirdErrorImpl({required this.bird, required this.isEdit});
 
   @override
   final Bird bird;
@@ -1439,10 +1447,10 @@ class _$BirdError implements BirdError {
   final bool isEdit;
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BirdError &&
+            other is _$BirdErrorImpl &&
             (identical(other.bird, bird) || other.bird == bird) &&
             (identical(other.isEdit, isEdit) || other.isEdit == isEdit));
   }
@@ -1453,8 +1461,8 @@ class _$BirdError implements BirdError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BirdErrorCopyWith<_$BirdError> get copyWith =>
-      __$$BirdErrorCopyWithImpl<_$BirdError>(this, _$identity);
+  _$$BirdErrorImplCopyWith<_$BirdErrorImpl> get copyWith =>
+      __$$BirdErrorImplCopyWithImpl<_$BirdErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1545,7 +1553,7 @@ class _$BirdError implements BirdError {
 
 abstract class BirdError implements BirdState {
   const factory BirdError(
-      {required final Bird bird, required final bool isEdit}) = _$BirdError;
+      {required final Bird bird, required final bool isEdit}) = _$BirdErrorImpl;
 
   @override
   Bird get bird;
@@ -1553,15 +1561,16 @@ abstract class BirdError implements BirdState {
   bool get isEdit;
   @override
   @JsonKey(ignore: true)
-  _$$BirdErrorCopyWith<_$BirdError> get copyWith =>
+  _$$BirdErrorImplCopyWith<_$BirdErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$BirdSavedCopyWith<$Res> implements $BirdStateCopyWith<$Res> {
-  factory _$$BirdSavedCopyWith(
-          _$BirdSaved value, $Res Function(_$BirdSaved) then) =
-      __$$BirdSavedCopyWithImpl<$Res>;
+abstract class _$$BirdSavedImplCopyWith<$Res>
+    implements $BirdStateCopyWith<$Res> {
+  factory _$$BirdSavedImplCopyWith(
+          _$BirdSavedImpl value, $Res Function(_$BirdSavedImpl) then) =
+      __$$BirdSavedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Bird bird, bool isEdit});
@@ -1571,11 +1580,11 @@ abstract class _$$BirdSavedCopyWith<$Res> implements $BirdStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$BirdSavedCopyWithImpl<$Res>
-    extends _$BirdStateCopyWithImpl<$Res, _$BirdSaved>
-    implements _$$BirdSavedCopyWith<$Res> {
-  __$$BirdSavedCopyWithImpl(
-      _$BirdSaved _value, $Res Function(_$BirdSaved) _then)
+class __$$BirdSavedImplCopyWithImpl<$Res>
+    extends _$BirdStateCopyWithImpl<$Res, _$BirdSavedImpl>
+    implements _$$BirdSavedImplCopyWith<$Res> {
+  __$$BirdSavedImplCopyWithImpl(
+      _$BirdSavedImpl _value, $Res Function(_$BirdSavedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1584,7 +1593,7 @@ class __$$BirdSavedCopyWithImpl<$Res>
     Object? bird = null,
     Object? isEdit = null,
   }) {
-    return _then(_$BirdSaved(
+    return _then(_$BirdSavedImpl(
       bird: null == bird
           ? _value.bird
           : bird // ignore: cast_nullable_to_non_nullable
@@ -1599,8 +1608,8 @@ class __$$BirdSavedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BirdSaved implements BirdSaved {
-  const _$BirdSaved({required this.bird, required this.isEdit});
+class _$BirdSavedImpl implements BirdSaved {
+  const _$BirdSavedImpl({required this.bird, required this.isEdit});
 
   @override
   final Bird bird;
@@ -1608,10 +1617,10 @@ class _$BirdSaved implements BirdSaved {
   final bool isEdit;
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BirdSaved &&
+            other is _$BirdSavedImpl &&
             (identical(other.bird, bird) || other.bird == bird) &&
             (identical(other.isEdit, isEdit) || other.isEdit == isEdit));
   }
@@ -1622,8 +1631,8 @@ class _$BirdSaved implements BirdSaved {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BirdSavedCopyWith<_$BirdSaved> get copyWith =>
-      __$$BirdSavedCopyWithImpl<_$BirdSaved>(this, _$identity);
+  _$$BirdSavedImplCopyWith<_$BirdSavedImpl> get copyWith =>
+      __$$BirdSavedImplCopyWithImpl<_$BirdSavedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1714,7 +1723,7 @@ class _$BirdSaved implements BirdSaved {
 
 abstract class BirdSaved implements BirdState {
   const factory BirdSaved(
-      {required final Bird bird, required final bool isEdit}) = _$BirdSaved;
+      {required final Bird bird, required final bool isEdit}) = _$BirdSavedImpl;
 
   @override
   Bird get bird;
@@ -1722,16 +1731,16 @@ abstract class BirdSaved implements BirdState {
   bool get isEdit;
   @override
   @JsonKey(ignore: true)
-  _$$BirdSavedCopyWith<_$BirdSaved> get copyWith =>
+  _$$BirdSavedImplCopyWith<_$BirdSavedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$BirdDeletedCopyWith<$Res>
+abstract class _$$BirdDeletedImplCopyWith<$Res>
     implements $BirdStateCopyWith<$Res> {
-  factory _$$BirdDeletedCopyWith(
-          _$BirdDeleted value, $Res Function(_$BirdDeleted) then) =
-      __$$BirdDeletedCopyWithImpl<$Res>;
+  factory _$$BirdDeletedImplCopyWith(
+          _$BirdDeletedImpl value, $Res Function(_$BirdDeletedImpl) then) =
+      __$$BirdDeletedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Bird bird, bool isEdit});
@@ -1741,11 +1750,11 @@ abstract class _$$BirdDeletedCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$BirdDeletedCopyWithImpl<$Res>
-    extends _$BirdStateCopyWithImpl<$Res, _$BirdDeleted>
-    implements _$$BirdDeletedCopyWith<$Res> {
-  __$$BirdDeletedCopyWithImpl(
-      _$BirdDeleted _value, $Res Function(_$BirdDeleted) _then)
+class __$$BirdDeletedImplCopyWithImpl<$Res>
+    extends _$BirdStateCopyWithImpl<$Res, _$BirdDeletedImpl>
+    implements _$$BirdDeletedImplCopyWith<$Res> {
+  __$$BirdDeletedImplCopyWithImpl(
+      _$BirdDeletedImpl _value, $Res Function(_$BirdDeletedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1754,7 +1763,7 @@ class __$$BirdDeletedCopyWithImpl<$Res>
     Object? bird = null,
     Object? isEdit = null,
   }) {
-    return _then(_$BirdDeleted(
+    return _then(_$BirdDeletedImpl(
       bird: null == bird
           ? _value.bird
           : bird // ignore: cast_nullable_to_non_nullable
@@ -1769,8 +1778,8 @@ class __$$BirdDeletedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BirdDeleted implements BirdDeleted {
-  const _$BirdDeleted({required this.bird, required this.isEdit});
+class _$BirdDeletedImpl implements BirdDeleted {
+  const _$BirdDeletedImpl({required this.bird, required this.isEdit});
 
   @override
   final Bird bird;
@@ -1778,10 +1787,10 @@ class _$BirdDeleted implements BirdDeleted {
   final bool isEdit;
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BirdDeleted &&
+            other is _$BirdDeletedImpl &&
             (identical(other.bird, bird) || other.bird == bird) &&
             (identical(other.isEdit, isEdit) || other.isEdit == isEdit));
   }
@@ -1792,8 +1801,8 @@ class _$BirdDeleted implements BirdDeleted {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BirdDeletedCopyWith<_$BirdDeleted> get copyWith =>
-      __$$BirdDeletedCopyWithImpl<_$BirdDeleted>(this, _$identity);
+  _$$BirdDeletedImplCopyWith<_$BirdDeletedImpl> get copyWith =>
+      __$$BirdDeletedImplCopyWithImpl<_$BirdDeletedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1884,7 +1893,8 @@ class _$BirdDeleted implements BirdDeleted {
 
 abstract class BirdDeleted implements BirdState {
   const factory BirdDeleted(
-      {required final Bird bird, required final bool isEdit}) = _$BirdDeleted;
+      {required final Bird bird,
+      required final bool isEdit}) = _$BirdDeletedImpl;
 
   @override
   Bird get bird;
@@ -1892,6 +1902,6 @@ abstract class BirdDeleted implements BirdState {
   bool get isEdit;
   @override
   @JsonKey(ignore: true)
-  _$$BirdDeletedCopyWith<_$BirdDeleted> get copyWith =>
+  _$$BirdDeletedImplCopyWith<_$BirdDeletedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

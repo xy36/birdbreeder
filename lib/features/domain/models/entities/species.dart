@@ -5,7 +5,8 @@ part 'species.freezed.dart';
 @freezed
 class Species with _$Species {
   factory Species({
-    required String? id,
-    required String? name,
+    String? id,
+    String? name,
+    String? latName,
   }) = _Species;
 }

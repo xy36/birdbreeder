@@ -6,7 +6,8 @@ part of 'bird_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_BirdDto _$$_BirdDtoFromJson(Map<String, dynamic> json) => _$_BirdDto(
+_$BirdDtoImpl _$$BirdDtoImplFromJson(Map<String, dynamic> json) =>
+    _$BirdDtoImpl(
       id: json['id'] as String?,
       ringnumber: json['ringnumber'] as String?,
       speciesId: json['speciesId'] as String?,
@@ -35,7 +36,7 @@ _$_BirdDto _$$_BirdDtoFromJson(Map<String, dynamic> json) => _$_BirdDto(
       isForSale: json['isForSale'] as bool?,
     );
 
-Map<String, dynamic> _$$_BirdDtoToJson(_$_BirdDto instance) =>
+Map<String, dynamic> _$$BirdDtoImplToJson(_$BirdDtoImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'ringnumber': instance.ringnumber,

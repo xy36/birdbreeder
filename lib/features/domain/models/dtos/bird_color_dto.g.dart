@@ -6,13 +6,13 @@ part of 'bird_color_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_BirdColorDto _$$_BirdColorDtoFromJson(Map<String, dynamic> json) =>
-    _$_BirdColorDto(
+_$BirdColorDtoImpl _$$BirdColorDtoImplFromJson(Map<String, dynamic> json) =>
+    _$BirdColorDtoImpl(
       id: json['id'] as String?,
       name: json['name'] as String?,
     );
 
-Map<String, dynamic> _$$_BirdColorDtoToJson(_$_BirdColorDto instance) =>
+Map<String, dynamic> _$$BirdColorDtoImplToJson(_$BirdColorDtoImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

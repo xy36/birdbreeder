@@ -12,7 +12,7 @@ part of 'cage_dto.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 CageDto _$CageDtoFromJson(Map<String, dynamic> json) {
   return _CageDto.fromJson(json);
@@ -66,20 +66,21 @@ class _$CageDtoCopyWithImpl<$Res, $Val extends CageDto>
 }
 
 /// @nodoc
-abstract class _$$_CageDtoCopyWith<$Res> implements $CageDtoCopyWith<$Res> {
-  factory _$$_CageDtoCopyWith(
-          _$_CageDto value, $Res Function(_$_CageDto) then) =
-      __$$_CageDtoCopyWithImpl<$Res>;
+abstract class _$$CageDtoImplCopyWith<$Res> implements $CageDtoCopyWith<$Res> {
+  factory _$$CageDtoImplCopyWith(
+          _$CageDtoImpl value, $Res Function(_$CageDtoImpl) then) =
+      __$$CageDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? id, String? name});
 }
 
 /// @nodoc
-class __$$_CageDtoCopyWithImpl<$Res>
-    extends _$CageDtoCopyWithImpl<$Res, _$_CageDto>
-    implements _$$_CageDtoCopyWith<$Res> {
-  __$$_CageDtoCopyWithImpl(_$_CageDto _value, $Res Function(_$_CageDto) _then)
+class __$$CageDtoImplCopyWithImpl<$Res>
+    extends _$CageDtoCopyWithImpl<$Res, _$CageDtoImpl>
+    implements _$$CageDtoImplCopyWith<$Res> {
+  __$$CageDtoImplCopyWithImpl(
+      _$CageDtoImpl _value, $Res Function(_$CageDtoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -88,7 +89,7 @@ class __$$_CageDtoCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
   }) {
-    return _then(_$_CageDto(
+    return _then(_$CageDtoImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -103,11 +104,11 @@ class __$$_CageDtoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CageDto implements _CageDto {
-  _$_CageDto({required this.id, required this.name});
+class _$CageDtoImpl implements _CageDto {
+  _$CageDtoImpl({required this.id, required this.name});
 
-  factory _$_CageDto.fromJson(Map<String, dynamic> json) =>
-      _$$_CageDtoFromJson(json);
+  factory _$CageDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CageDtoImplFromJson(json);
 
   @override
   final String? id;
@@ -120,10 +121,10 @@ class _$_CageDto implements _CageDto {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CageDto &&
+            other is _$CageDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -135,12 +136,12 @@ class _$_CageDto implements _CageDto {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CageDtoCopyWith<_$_CageDto> get copyWith =>
-      __$$_CageDtoCopyWithImpl<_$_CageDto>(this, _$identity);
+  _$$CageDtoImplCopyWith<_$CageDtoImpl> get copyWith =>
+      __$$CageDtoImplCopyWithImpl<_$CageDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CageDtoToJson(
+    return _$$CageDtoImplToJson(
       this,
     );
   }
@@ -148,9 +149,9 @@ class _$_CageDto implements _CageDto {
 
 abstract class _CageDto implements CageDto {
   factory _CageDto({required final String? id, required final String? name}) =
-      _$_CageDto;
+      _$CageDtoImpl;
 
-  factory _CageDto.fromJson(Map<String, dynamic> json) = _$_CageDto.fromJson;
+  factory _CageDto.fromJson(Map<String, dynamic> json) = _$CageDtoImpl.fromJson;
 
   @override
   String? get id;
@@ -158,6 +159,6 @@ abstract class _CageDto implements CageDto {
   String? get name;
   @override
   @JsonKey(ignore: true)
-  _$$_CageDtoCopyWith<_$_CageDto> get copyWith =>
+  _$$CageDtoImplCopyWith<_$CageDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

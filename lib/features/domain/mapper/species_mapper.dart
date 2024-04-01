@@ -1,6 +1,6 @@
-import '../models/dtos/dtos.dart';
-import '../models/entities/entities.dart';
-import 'i_mapper.dart';
+import 'package:birdbreeder/features/domain/mapper/i_mapper.dart';
+import 'package:birdbreeder/features/domain/models/dtos/dtos.dart';
+import 'package:birdbreeder/features/domain/models/entities/entities.dart';
 
 extension SpeciesDtoMapperExtension on SpeciesDto {
   Species toSpecies() => SpeciesMapper().mapFrom(this);
@@ -23,6 +23,7 @@ class SpeciesMapper implements IMapper<SpeciesDto, Species> {
   Species mapFrom(SpeciesDto object) => Species(
         id: object.id,
         name: object.name,
+        latName: object.latName,
       );
 
   @override
@@ -34,6 +35,7 @@ class SpeciesMapper implements IMapper<SpeciesDto, Species> {
   SpeciesDto mapTo(Species object) => SpeciesDto(
         id: object.id,
         name: object.name,
+        latName: object.latName,
       );
 
   @override

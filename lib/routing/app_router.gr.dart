@@ -89,6 +89,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: SignUpPage(key: args.key),
       );
     },
+    SpeciesRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SpeciesPage(),
+      );
+    },
   };
 }
 
@@ -295,4 +301,18 @@ class SignUpRouteArgs {
   String toString() {
     return 'SignUpRouteArgs{key: $key}';
   }
+}
+
+/// generated route for
+/// [SpeciesPage]
+class SpeciesRoute extends PageRouteInfo<void> {
+  const SpeciesRoute({List<PageRouteInfo>? children})
+      : super(
+          SpeciesRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SpeciesRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }

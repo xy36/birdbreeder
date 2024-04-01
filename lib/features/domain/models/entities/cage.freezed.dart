@@ -12,7 +12,7 @@ part of 'cage.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$Cage {
@@ -61,18 +61,20 @@ class _$CageCopyWithImpl<$Res, $Val extends Cage>
 }
 
 /// @nodoc
-abstract class _$$_CageCopyWith<$Res> implements $CageCopyWith<$Res> {
-  factory _$$_CageCopyWith(_$_Cage value, $Res Function(_$_Cage) then) =
-      __$$_CageCopyWithImpl<$Res>;
+abstract class _$$CageImplCopyWith<$Res> implements $CageCopyWith<$Res> {
+  factory _$$CageImplCopyWith(
+          _$CageImpl value, $Res Function(_$CageImpl) then) =
+      __$$CageImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? id, String? name});
 }
 
 /// @nodoc
-class __$$_CageCopyWithImpl<$Res> extends _$CageCopyWithImpl<$Res, _$_Cage>
-    implements _$$_CageCopyWith<$Res> {
-  __$$_CageCopyWithImpl(_$_Cage _value, $Res Function(_$_Cage) _then)
+class __$$CageImplCopyWithImpl<$Res>
+    extends _$CageCopyWithImpl<$Res, _$CageImpl>
+    implements _$$CageImplCopyWith<$Res> {
+  __$$CageImplCopyWithImpl(_$CageImpl _value, $Res Function(_$CageImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -81,7 +83,7 @@ class __$$_CageCopyWithImpl<$Res> extends _$CageCopyWithImpl<$Res, _$_Cage>
     Object? id = freezed,
     Object? name = freezed,
   }) {
-    return _then(_$_Cage(
+    return _then(_$CageImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -96,8 +98,8 @@ class __$$_CageCopyWithImpl<$Res> extends _$CageCopyWithImpl<$Res, _$_Cage>
 
 /// @nodoc
 
-class _$_Cage implements _Cage {
-  _$_Cage({required this.id, required this.name});
+class _$CageImpl implements _Cage {
+  _$CageImpl({required this.id, required this.name});
 
   @override
   final String? id;
@@ -110,10 +112,10 @@ class _$_Cage implements _Cage {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Cage &&
+            other is _$CageImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -124,13 +126,13 @@ class _$_Cage implements _Cage {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CageCopyWith<_$_Cage> get copyWith =>
-      __$$_CageCopyWithImpl<_$_Cage>(this, _$identity);
+  _$$CageImplCopyWith<_$CageImpl> get copyWith =>
+      __$$CageImplCopyWithImpl<_$CageImpl>(this, _$identity);
 }
 
 abstract class _Cage implements Cage {
   factory _Cage({required final String? id, required final String? name}) =
-      _$_Cage;
+      _$CageImpl;
 
   @override
   String? get id;
@@ -138,5 +140,6 @@ abstract class _Cage implements Cage {
   String? get name;
   @override
   @JsonKey(ignore: true)
-  _$$_CageCopyWith<_$_Cage> get copyWith => throw _privateConstructorUsedError;
+  _$$CageImplCopyWith<_$CageImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

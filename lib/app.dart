@@ -1,12 +1,11 @@
+import 'package:birdbreeder/bootstrap.dart';
+import 'package:birdbreeder/injection.dart';
+import 'package:birdbreeder/routing/app_router.dart';
+import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
+import 'package:birdbreeder/services/screen_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
-
-import 'bootstrap.dart';
-import 'injection.dart';
-import 'routing/app_router.dart';
-import 'services/screen_size.dart';
-import 'services/authentication/i_authentication_service.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class App extends StatelessWidget {
   App({
@@ -25,30 +24,31 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-        routerConfig: _appRouter.config(
-          reevaluateListenable:
-              s1.get<IAuthenticationService>().authenticationStatus,
-        ),
-        theme: themeData ??
-            ThemeData(
-              //colorSchemeSeed: Colors.black,
+      routerConfig: _appRouter.config(
+        reevaluateListenable:
+            s1.get<IAuthenticationService>().authenticationStatus,
+      ),
+      theme: themeData ??
+          ThemeData(
+            //colorSchemeSeed: Colors.black,
 
-              inputDecorationTheme: InputDecorationTheme(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
+            inputDecorationTheme: InputDecorationTheme(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
               ),
             ),
-        builder: (context, child) {
-          return ResponsiveBreakpoints.builder(
-            child: child!,
-            breakpoints: ScreenSize.getBreakpoints(),
-          );
-        },
-        themeMode: ThemeMode.light,
-        localizationsDelegates: [
-          ...AppLocalizations.localizationsDelegates,
-        ],
-        supportedLocales: AppLocalizations.supportedLocales);
+          ),
+      builder: (context, child) {
+        return ResponsiveBreakpoints.builder(
+          child: child!,
+          breakpoints: ScreenSize.getBreakpoints(),
+        );
+      },
+      themeMode: ThemeMode.light,
+      localizationsDelegates: const [
+        ...AppLocalizations.localizationsDelegates,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
+    );
   }
 }
