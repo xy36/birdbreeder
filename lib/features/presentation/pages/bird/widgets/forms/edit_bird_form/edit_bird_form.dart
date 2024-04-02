@@ -1,6 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/presentation/pages/bird/bloc/bird_bloc.dart';
-import 'package:birdbreeder/features/presentation/pages/bird/widgets/forms/bird_fields.dart';
+import 'package:birdbreeder/features/presentation/pages/bird/widgets/forms/edit_bird_form/bird_fields.dart';
 
 class EditBirdForm extends StatelessWidget {
   const EditBirdForm({super.key});

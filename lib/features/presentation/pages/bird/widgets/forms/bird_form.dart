@@ -16,6 +16,18 @@ class BirdForm extends StatelessWidget {
             value: state.bird.ringnumber,
           ),
           DataRow(
+            label: context.l10n.common__species,
+            value: state.bird.species?.name,
+          ),
+          DataRow(
+            label: context.l10n.common__color,
+            value: state.bird.color?.name,
+          ),
+          DataRow(
+            label: context.l10n.common__cage,
+            value: state.bird.cageId,
+          ),
+          DataRow(
             label: context.l10n.common__father_ringnumber,
             value: state.bird.motherRingnumber,
           ),
@@ -56,18 +68,6 @@ class BirdForm extends StatelessWidget {
             value: state.bird.isForSale ?? false
                 ? context.l10n.common__yes
                 : context.l10n.common__no,
-          ),
-          DataRow(
-            label: context.l10n.common__species,
-            value: state.bird.species?.name,
-          ),
-          DataRow(
-            label: context.l10n.common__color,
-            value: state.bird.color?.name,
-          ),
-          DataRow(
-            label: context.l10n.common__cage,
-            value: state.bird.cageId,
           ),
         ];
 

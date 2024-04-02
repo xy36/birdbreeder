@@ -32,9 +32,4 @@ class BirdState with _$BirdState {
     required bool isEdit,
     required BirdResources birdResources,
   }) = BirdDeleted;
-
-  @override
-  String toString() {
-    return bird.ringnumber.toString();
-  }
 }

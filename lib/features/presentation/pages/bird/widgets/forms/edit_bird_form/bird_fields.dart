@@ -1,15 +1,13 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/domain/models/entities/bird.dart';
-import 'package:birdbreeder/features/domain/models/entities/bird_color.dart';
-import 'package:birdbreeder/features/domain/models/entities/species.dart';
 import 'package:birdbreeder/features/domain/models/enums/origin.dart';
 import 'package:birdbreeder/features/domain/models/enums/sex.dart';
 import 'package:birdbreeder/features/presentation/pages/bird/bloc/bird_bloc.dart';
 import 'package:birdbreeder/features/presentation/pages/bird/widgets/field_templates/bird_date_field.dart';
 import 'package:birdbreeder/features/presentation/pages/bird/widgets/field_templates/bird_dropdown_field.dart';
 import 'package:birdbreeder/features/presentation/pages/bird/widgets/field_templates/bird_text_field.dart';
-import 'package:collection/collection.dart';
-import 'package:easy_autocomplete/easy_autocomplete.dart';
+import 'package:birdbreeder/features/presentation/pages/bird/widgets/forms/edit_bird_form/color_field.dart';
+import 'package:birdbreeder/features/presentation/pages/bird/widgets/forms/edit_bird_form/species_field.dart';
 
 class BirdFields extends StatelessWidget {
   const BirdFields({super.key, required this.bird});
@@ -36,67 +34,8 @@ class BirdFields extends StatelessWidget {
                       );
                 },
               ),
-              EasyAutocomplete(
-                initialValue: bird.species?.name,
-                suggestions: state.birdResources.speciesList
-                    .map(
-                      (e) => e.name ?? '-',
-                    )
-                    .toList(),
-                onSubmitted: (p0) {
-                  final species =
-                      state.birdResources.speciesList.firstWhereOrNull(
-                    (element) => element.name == p0,
-                  );
-
-                  context.read<BirdBloc>().add(
-                        BirdEvent.change(bird: bird.copyWith(species: species)),
-                      );
-                },
-                onChanged: (value) {
-                  context.read<BirdBloc>().add(
-                        BirdEvent.change(
-                          bird: bird.copyWith(species: Species(name: value)),
-                        ),
-                      );
-                },
-              ),
-              // BirdDropdownField<Species>(
-              //   name: 'species_field',
-              //   label: context.l10n.common__species,
-              //   initialValue: bird.species,
-              //   onChanged: (species) {
-              //     context.read<BirdBloc>().add(
-              //           BirdEvent.change(bird: bird.copyWith(species: species)),
-              //         );
-              //   },
-              //   items: state.birdResources.speciesList
-              //       .map(
-              //         (e) => DropdownMenuItem(
-              //           value: e,
-              //           child: Text(e.name ?? '-'),
-              //         ),
-              //       )
-              //       .toList(),
-              // ),
-              BirdDropdownField<BirdColor>(
-                name: 'color_field',
-                label: context.l10n.common__color,
-                initialValue: bird.color,
-                onChanged: (color) {
-                  context
-                      .read<BirdBloc>()
-                      .add(BirdEvent.change(bird: bird.copyWith(color: color)));
-                },
-                items: state.birdResources.colorsList
-                    .map(
-                      (e) => DropdownMenuItem(
-                        value: e,
-                        child: Text(e.name ?? '-'),
-                      ),
-                    )
-                    .toList(),
-              ),
+              SpeciesField(bird: bird, birdResources: state.birdResources),
+              ColorField(bird: bird, birdResources: state.birdResources),
               BirdTextField(
                 name: 'father_field',
                 label: context.l10n.common__father_ringnumber,

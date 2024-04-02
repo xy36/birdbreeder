@@ -30,6 +30,12 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
     on<BirdDelete>(_onDelete);
   }
 
+  Future<BirdResources> _loadResources() async {
+    final colors = (await s1.get<IRepository>().getColors()).asValue?.value;
+    final species = (await s1.get<IRepository>().getSpecies()).asValue?.value;
+    return BirdResources(colorsList: colors ?? [], speciesList: species ?? []);
+  }
+
   FutureOr<void> _onLoad(BirdLoad event, Emitter<BirdState> emit) async {
     emit(
       BirdLoading(
@@ -39,17 +45,12 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
       ),
     );
 
-    final colors = (await s1.get<IRepository>().getColors()).asValue?.value;
-    final species = (await s1.get<IRepository>().getSpecies()).asValue?.value;
-    final resources =
-        BirdResources(colorsList: colors ?? [], speciesList: species ?? []);
-
     // load data if needed
     emit(
       BirdLoaded(
         bird: state.bird,
         isEdit: state.isEdit,
-        birdResources: resources,
+        birdResources: await _loadResources(),
       ),
     );
   }
@@ -75,55 +76,58 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
   }
 
   Future<Bird?> _createNewSpeciesIfNotExists(Bird bird) async {
-    if (bird.species?.id == null) {
-      if (bird.species?.name == null) {
-        return Future.value();
-      }
-
-      final species = await s1
-          .get<IRepository>()
-          .createSpecies(Species(name: bird.species!.name));
-      return bird.copyWith(species: species.asValue?.value);
+    if (bird.species?.id != null) {
+      return null;
     }
-    return null;
+
+    if (bird.species?.name == null) {
+      return null;
+    }
+
+    final newSpecies = await s1
+        .get<IRepository>()
+        .createSpecies(Species(name: bird.species!.name));
+
+    return bird.copyWith(species: newSpecies.asValue?.value);
   }
 
   Future<Bird?> _createNewColorIfNotExists(Bird bird) async {
     if (bird.color?.id == null) {
-      if (bird.color?.name == null) {
-        return Future.value();
-      }
-
-      final color = await s1
-          .get<IRepository>()
-          .createColor(BirdColor(name: bird.color!.name));
-      return bird.copyWith(color: color.asValue?.value);
+      return null;
     }
-    return null;
+
+    if (bird.color?.name == null) {
+      return null;
+    }
+
+    final newColor = await s1
+        .get<IRepository>()
+        .createColor(BirdColor(name: bird.color!.name));
+
+    return bird.copyWith(color: newColor.asValue?.value);
   }
 
   FutureOr<void> _onSave(BirdSave event, Emitter<BirdState> emit) async {
-    if (state is! BirdLoaded) {
-      return;
-    }
-
+    Result<Bird> result;
     var bird = state.bird;
+
+    emit(
+      BirdLoading(
+        bird: state.bird,
+        isEdit: state.isEdit,
+        birdResources: state.birdResources,
+      ),
+    );
 
     bird = await _createNewSpeciesIfNotExists(bird) ?? bird;
     bird = await _createNewColorIfNotExists(bird) ?? bird;
 
-    print('DEBUG: $bird');
-
     if (bird.id == null) {
-      final result = await s1.get<IRepository>().createBird(bird);
-      _handleSaveResult(result, emit);
+      result = await s1.get<IRepository>().createBird(bird);
     } else {
-      final result = await s1.get<IRepository>().updateBird(bird);
-      _handleSaveResult(result, emit);
+      result = await s1.get<IRepository>().updateBird(bird);
     }
-  }
 
-  void _handleSaveResult(Result<Bird> result, Emitter<BirdState> emit) {
     if (result.isError) {
       emit(
         BirdError(
@@ -141,34 +145,51 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
         ),
       );
     }
+
+    emit(
+      BirdLoaded(
+        bird: state.bird,
+        isEdit: state.isEdit,
+        birdResources: state.birdResources,
+      ),
+    );
   }
 
   FutureOr<void> _onDelete(BirdDelete event, Emitter<BirdState> emit) async {
-    if (state is BirdInitial) {
-      return Future.value();
-    }
+    emit(
+      BirdLoading(
+        bird: state.bird,
+        isEdit: state.isEdit,
+        birdResources: state.birdResources,
+      ),
+    );
 
-    if (state is BirdLoaded) {
-      final result = await s1.get<IRepository>().deleteBird(state.bird.id!);
+    final result = await s1.get<IRepository>().deleteBird(state.bird.id!);
 
-      if (result.isError) {
-        emit(
-          BirdError(
-            bird: state.bird,
-            isEdit: state.isEdit,
-            birdResources: state.birdResources,
-          ),
-        );
-        return;
-      }
+    if (result.isError) {
+      emit(
+        BirdError(
+          bird: state.bird,
+          isEdit: state.isEdit,
+          birdResources: state.birdResources,
+        ),
+      );
 
       emit(
-        BirdDeleted(
+        BirdLoaded(
           bird: state.bird,
-          isEdit: false,
+          isEdit: state.isEdit,
           birdResources: state.birdResources,
         ),
       );
     }
+
+    emit(
+      BirdDeleted(
+        bird: state.bird,
+        isEdit: false,
+        birdResources: state.birdResources,
+      ),
+    );
   }
 }

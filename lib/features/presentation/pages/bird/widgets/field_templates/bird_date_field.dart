@@ -16,18 +16,15 @@ class BirdDateField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-      child: FormBuilderDateTimePicker(
-        name: name,
-        initialValue: initialValue,
-        currentDate: DateTime.now(),
-        inputType: InputType.date,
-        format: context.getDateFormat(),
-        onChanged: (date) => date != null ? onChanged(date) : null,
-        decoration: InputDecoration(
-          labelText: label,
-        ),
+    return FormBuilderDateTimePicker(
+      name: name,
+      initialValue: initialValue,
+      currentDate: DateTime.now(),
+      inputType: InputType.date,
+      format: context.getDateFormat(),
+      onChanged: (date) => date != null ? onChanged(date) : null,
+      decoration: InputDecoration(
+        labelText: label,
       ),
     );
   }
