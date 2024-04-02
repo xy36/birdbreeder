@@ -3,6 +3,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/domain/models/entities/bird.dart';
 import 'package:birdbreeder/features/presentation/pages/bird/bloc/bird_bloc.dart';
 import 'package:birdbreeder/features/presentation/shared/utils/flash_helper.dart';
+import 'package:birdbreeder/routing/app_router.dart';
 
 class BirdDeletedListener extends BlocListener<BirdBloc, BirdState> {
   BirdDeletedListener({
@@ -16,7 +17,8 @@ class BirdDeletedListener extends BlocListener<BirdBloc, BirdState> {
               content: Text(context.l10n.bird__deleted),
             );
 
-            context.router.pop();
+            context.router
+                .removeUntil((route) => route.name == BirdsOverviewRoute.name);
           },
         );
 }

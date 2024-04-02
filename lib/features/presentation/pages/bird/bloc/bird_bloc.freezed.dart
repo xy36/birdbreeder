@@ -767,34 +767,59 @@ abstract class BirdChange implements BirdEvent {
 mixin _$BirdState {
   Bird get bird => throw _privateConstructorUsedError;
   bool get isEdit => throw _privateConstructorUsedError;
+  BirdResources get birdResources => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Bird bird, bool isEdit) initial,
-    required TResult Function(Bird bird, bool isEdit) loading,
-    required TResult Function(Bird bird, bool isEdit) loaded,
-    required TResult Function(Bird bird, bool isEdit) error,
-    required TResult Function(Bird bird, bool isEdit) saved,
-    required TResult Function(Bird bird, bool isEdit) deleted,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        initial,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        loading,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        loaded,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        error,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        saved,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Bird bird, bool isEdit)? initial,
-    TResult? Function(Bird bird, bool isEdit)? loading,
-    TResult? Function(Bird bird, bool isEdit)? loaded,
-    TResult? Function(Bird bird, bool isEdit)? error,
-    TResult? Function(Bird bird, bool isEdit)? saved,
-    TResult? Function(Bird bird, bool isEdit)? deleted,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        initial,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loading,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loaded,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        error,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        saved,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Bird bird, bool isEdit)? initial,
-    TResult Function(Bird bird, bool isEdit)? loading,
-    TResult Function(Bird bird, bool isEdit)? loaded,
-    TResult Function(Bird bird, bool isEdit)? error,
-    TResult Function(Bird bird, bool isEdit)? saved,
-    TResult Function(Bird bird, bool isEdit)? deleted,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        initial,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loading,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loaded,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        error,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        saved,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        deleted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -840,9 +865,10 @@ abstract class $BirdStateCopyWith<$Res> {
   factory $BirdStateCopyWith(BirdState value, $Res Function(BirdState) then) =
       _$BirdStateCopyWithImpl<$Res, BirdState>;
   @useResult
-  $Res call({Bird bird, bool isEdit});
+  $Res call({Bird bird, bool isEdit, BirdResources birdResources});
 
   $BirdCopyWith<$Res> get bird;
+  $BirdResourcesCopyWith<$Res> get birdResources;
 }
 
 /// @nodoc
@@ -860,6 +886,7 @@ class _$BirdStateCopyWithImpl<$Res, $Val extends BirdState>
   $Res call({
     Object? bird = null,
     Object? isEdit = null,
+    Object? birdResources = null,
   }) {
     return _then(_value.copyWith(
       bird: null == bird
@@ -870,6 +897,10 @@ class _$BirdStateCopyWithImpl<$Res, $Val extends BirdState>
           ? _value.isEdit
           : isEdit // ignore: cast_nullable_to_non_nullable
               as bool,
+      birdResources: null == birdResources
+          ? _value.birdResources
+          : birdResources // ignore: cast_nullable_to_non_nullable
+              as BirdResources,
     ) as $Val);
   }
 
@@ -878,6 +909,14 @@ class _$BirdStateCopyWithImpl<$Res, $Val extends BirdState>
   $BirdCopyWith<$Res> get bird {
     return $BirdCopyWith<$Res>(_value.bird, (value) {
       return _then(_value.copyWith(bird: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BirdResourcesCopyWith<$Res> get birdResources {
+    return $BirdResourcesCopyWith<$Res>(_value.birdResources, (value) {
+      return _then(_value.copyWith(birdResources: value) as $Val);
     });
   }
 }
@@ -890,10 +929,12 @@ abstract class _$$BirdInitialImplCopyWith<$Res>
       __$$BirdInitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Bird bird, bool isEdit});
+  $Res call({Bird bird, bool isEdit, BirdResources birdResources});
 
   @override
   $BirdCopyWith<$Res> get bird;
+  @override
+  $BirdResourcesCopyWith<$Res> get birdResources;
 }
 
 /// @nodoc
@@ -909,6 +950,7 @@ class __$$BirdInitialImplCopyWithImpl<$Res>
   $Res call({
     Object? bird = null,
     Object? isEdit = null,
+    Object? birdResources = null,
   }) {
     return _then(_$BirdInitialImpl(
       bird: null == bird
@@ -919,6 +961,10 @@ class __$$BirdInitialImplCopyWithImpl<$Res>
           ? _value.isEdit
           : isEdit // ignore: cast_nullable_to_non_nullable
               as bool,
+      birdResources: null == birdResources
+          ? _value.birdResources
+          : birdResources // ignore: cast_nullable_to_non_nullable
+              as BirdResources,
     ));
   }
 }
@@ -926,12 +972,15 @@ class __$$BirdInitialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BirdInitialImpl implements BirdInitial {
-  const _$BirdInitialImpl({required this.bird, required this.isEdit});
+  const _$BirdInitialImpl(
+      {required this.bird, required this.isEdit, required this.birdResources});
 
   @override
   final Bird bird;
   @override
   final bool isEdit;
+  @override
+  final BirdResources birdResources;
 
   @override
   bool operator ==(Object other) {
@@ -939,11 +988,13 @@ class _$BirdInitialImpl implements BirdInitial {
         (other.runtimeType == runtimeType &&
             other is _$BirdInitialImpl &&
             (identical(other.bird, bird) || other.bird == bird) &&
-            (identical(other.isEdit, isEdit) || other.isEdit == isEdit));
+            (identical(other.isEdit, isEdit) || other.isEdit == isEdit) &&
+            (identical(other.birdResources, birdResources) ||
+                other.birdResources == birdResources));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, bird, isEdit);
+  int get hashCode => Object.hash(runtimeType, bird, isEdit, birdResources);
 
   @JsonKey(ignore: true)
   @override
@@ -954,42 +1005,66 @@ class _$BirdInitialImpl implements BirdInitial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Bird bird, bool isEdit) initial,
-    required TResult Function(Bird bird, bool isEdit) loading,
-    required TResult Function(Bird bird, bool isEdit) loaded,
-    required TResult Function(Bird bird, bool isEdit) error,
-    required TResult Function(Bird bird, bool isEdit) saved,
-    required TResult Function(Bird bird, bool isEdit) deleted,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        initial,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        loading,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        loaded,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        error,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        saved,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        deleted,
   }) {
-    return initial(bird, isEdit);
+    return initial(bird, isEdit, birdResources);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Bird bird, bool isEdit)? initial,
-    TResult? Function(Bird bird, bool isEdit)? loading,
-    TResult? Function(Bird bird, bool isEdit)? loaded,
-    TResult? Function(Bird bird, bool isEdit)? error,
-    TResult? Function(Bird bird, bool isEdit)? saved,
-    TResult? Function(Bird bird, bool isEdit)? deleted,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        initial,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loading,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loaded,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        error,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        saved,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        deleted,
   }) {
-    return initial?.call(bird, isEdit);
+    return initial?.call(bird, isEdit, birdResources);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Bird bird, bool isEdit)? initial,
-    TResult Function(Bird bird, bool isEdit)? loading,
-    TResult Function(Bird bird, bool isEdit)? loaded,
-    TResult Function(Bird bird, bool isEdit)? error,
-    TResult Function(Bird bird, bool isEdit)? saved,
-    TResult Function(Bird bird, bool isEdit)? deleted,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        initial,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loading,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loaded,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        error,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        saved,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        deleted,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(bird, isEdit);
+      return initial(bird, isEdit, birdResources);
     }
     return orElse();
   }
@@ -1041,12 +1116,15 @@ class _$BirdInitialImpl implements BirdInitial {
 abstract class BirdInitial implements BirdState {
   const factory BirdInitial(
       {required final Bird bird,
-      required final bool isEdit}) = _$BirdInitialImpl;
+      required final bool isEdit,
+      required final BirdResources birdResources}) = _$BirdInitialImpl;
 
   @override
   Bird get bird;
   @override
   bool get isEdit;
+  @override
+  BirdResources get birdResources;
   @override
   @JsonKey(ignore: true)
   _$$BirdInitialImplCopyWith<_$BirdInitialImpl> get copyWith =>
@@ -1061,10 +1139,12 @@ abstract class _$$BirdLoadingImplCopyWith<$Res>
       __$$BirdLoadingImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Bird bird, bool isEdit});
+  $Res call({Bird bird, bool isEdit, BirdResources birdResources});
 
   @override
   $BirdCopyWith<$Res> get bird;
+  @override
+  $BirdResourcesCopyWith<$Res> get birdResources;
 }
 
 /// @nodoc
@@ -1080,6 +1160,7 @@ class __$$BirdLoadingImplCopyWithImpl<$Res>
   $Res call({
     Object? bird = null,
     Object? isEdit = null,
+    Object? birdResources = null,
   }) {
     return _then(_$BirdLoadingImpl(
       bird: null == bird
@@ -1090,6 +1171,10 @@ class __$$BirdLoadingImplCopyWithImpl<$Res>
           ? _value.isEdit
           : isEdit // ignore: cast_nullable_to_non_nullable
               as bool,
+      birdResources: null == birdResources
+          ? _value.birdResources
+          : birdResources // ignore: cast_nullable_to_non_nullable
+              as BirdResources,
     ));
   }
 }
@@ -1097,12 +1182,15 @@ class __$$BirdLoadingImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BirdLoadingImpl implements BirdLoading {
-  const _$BirdLoadingImpl({required this.bird, required this.isEdit});
+  const _$BirdLoadingImpl(
+      {required this.bird, required this.isEdit, required this.birdResources});
 
   @override
   final Bird bird;
   @override
   final bool isEdit;
+  @override
+  final BirdResources birdResources;
 
   @override
   bool operator ==(Object other) {
@@ -1110,11 +1198,13 @@ class _$BirdLoadingImpl implements BirdLoading {
         (other.runtimeType == runtimeType &&
             other is _$BirdLoadingImpl &&
             (identical(other.bird, bird) || other.bird == bird) &&
-            (identical(other.isEdit, isEdit) || other.isEdit == isEdit));
+            (identical(other.isEdit, isEdit) || other.isEdit == isEdit) &&
+            (identical(other.birdResources, birdResources) ||
+                other.birdResources == birdResources));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, bird, isEdit);
+  int get hashCode => Object.hash(runtimeType, bird, isEdit, birdResources);
 
   @JsonKey(ignore: true)
   @override
@@ -1125,42 +1215,66 @@ class _$BirdLoadingImpl implements BirdLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Bird bird, bool isEdit) initial,
-    required TResult Function(Bird bird, bool isEdit) loading,
-    required TResult Function(Bird bird, bool isEdit) loaded,
-    required TResult Function(Bird bird, bool isEdit) error,
-    required TResult Function(Bird bird, bool isEdit) saved,
-    required TResult Function(Bird bird, bool isEdit) deleted,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        initial,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        loading,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        loaded,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        error,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        saved,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        deleted,
   }) {
-    return loading(bird, isEdit);
+    return loading(bird, isEdit, birdResources);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Bird bird, bool isEdit)? initial,
-    TResult? Function(Bird bird, bool isEdit)? loading,
-    TResult? Function(Bird bird, bool isEdit)? loaded,
-    TResult? Function(Bird bird, bool isEdit)? error,
-    TResult? Function(Bird bird, bool isEdit)? saved,
-    TResult? Function(Bird bird, bool isEdit)? deleted,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        initial,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loading,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loaded,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        error,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        saved,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        deleted,
   }) {
-    return loading?.call(bird, isEdit);
+    return loading?.call(bird, isEdit, birdResources);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Bird bird, bool isEdit)? initial,
-    TResult Function(Bird bird, bool isEdit)? loading,
-    TResult Function(Bird bird, bool isEdit)? loaded,
-    TResult Function(Bird bird, bool isEdit)? error,
-    TResult Function(Bird bird, bool isEdit)? saved,
-    TResult Function(Bird bird, bool isEdit)? deleted,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        initial,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loading,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loaded,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        error,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        saved,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        deleted,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading(bird, isEdit);
+      return loading(bird, isEdit, birdResources);
     }
     return orElse();
   }
@@ -1212,12 +1326,15 @@ class _$BirdLoadingImpl implements BirdLoading {
 abstract class BirdLoading implements BirdState {
   const factory BirdLoading(
       {required final Bird bird,
-      required final bool isEdit}) = _$BirdLoadingImpl;
+      required final bool isEdit,
+      required final BirdResources birdResources}) = _$BirdLoadingImpl;
 
   @override
   Bird get bird;
   @override
   bool get isEdit;
+  @override
+  BirdResources get birdResources;
   @override
   @JsonKey(ignore: true)
   _$$BirdLoadingImplCopyWith<_$BirdLoadingImpl> get copyWith =>
@@ -1232,10 +1349,12 @@ abstract class _$$BirdLoadedImplCopyWith<$Res>
       __$$BirdLoadedImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Bird bird, bool isEdit});
+  $Res call({Bird bird, bool isEdit, BirdResources birdResources});
 
   @override
   $BirdCopyWith<$Res> get bird;
+  @override
+  $BirdResourcesCopyWith<$Res> get birdResources;
 }
 
 /// @nodoc
@@ -1251,6 +1370,7 @@ class __$$BirdLoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? bird = null,
     Object? isEdit = null,
+    Object? birdResources = null,
   }) {
     return _then(_$BirdLoadedImpl(
       bird: null == bird
@@ -1261,6 +1381,10 @@ class __$$BirdLoadedImplCopyWithImpl<$Res>
           ? _value.isEdit
           : isEdit // ignore: cast_nullable_to_non_nullable
               as bool,
+      birdResources: null == birdResources
+          ? _value.birdResources
+          : birdResources // ignore: cast_nullable_to_non_nullable
+              as BirdResources,
     ));
   }
 }
@@ -1268,12 +1392,15 @@ class __$$BirdLoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BirdLoadedImpl implements BirdLoaded {
-  const _$BirdLoadedImpl({required this.bird, required this.isEdit});
+  const _$BirdLoadedImpl(
+      {required this.bird, required this.isEdit, required this.birdResources});
 
   @override
   final Bird bird;
   @override
   final bool isEdit;
+  @override
+  final BirdResources birdResources;
 
   @override
   bool operator ==(Object other) {
@@ -1281,11 +1408,13 @@ class _$BirdLoadedImpl implements BirdLoaded {
         (other.runtimeType == runtimeType &&
             other is _$BirdLoadedImpl &&
             (identical(other.bird, bird) || other.bird == bird) &&
-            (identical(other.isEdit, isEdit) || other.isEdit == isEdit));
+            (identical(other.isEdit, isEdit) || other.isEdit == isEdit) &&
+            (identical(other.birdResources, birdResources) ||
+                other.birdResources == birdResources));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, bird, isEdit);
+  int get hashCode => Object.hash(runtimeType, bird, isEdit, birdResources);
 
   @JsonKey(ignore: true)
   @override
@@ -1296,42 +1425,66 @@ class _$BirdLoadedImpl implements BirdLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Bird bird, bool isEdit) initial,
-    required TResult Function(Bird bird, bool isEdit) loading,
-    required TResult Function(Bird bird, bool isEdit) loaded,
-    required TResult Function(Bird bird, bool isEdit) error,
-    required TResult Function(Bird bird, bool isEdit) saved,
-    required TResult Function(Bird bird, bool isEdit) deleted,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        initial,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        loading,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        loaded,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        error,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        saved,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        deleted,
   }) {
-    return loaded(bird, isEdit);
+    return loaded(bird, isEdit, birdResources);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Bird bird, bool isEdit)? initial,
-    TResult? Function(Bird bird, bool isEdit)? loading,
-    TResult? Function(Bird bird, bool isEdit)? loaded,
-    TResult? Function(Bird bird, bool isEdit)? error,
-    TResult? Function(Bird bird, bool isEdit)? saved,
-    TResult? Function(Bird bird, bool isEdit)? deleted,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        initial,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loading,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loaded,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        error,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        saved,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        deleted,
   }) {
-    return loaded?.call(bird, isEdit);
+    return loaded?.call(bird, isEdit, birdResources);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Bird bird, bool isEdit)? initial,
-    TResult Function(Bird bird, bool isEdit)? loading,
-    TResult Function(Bird bird, bool isEdit)? loaded,
-    TResult Function(Bird bird, bool isEdit)? error,
-    TResult Function(Bird bird, bool isEdit)? saved,
-    TResult Function(Bird bird, bool isEdit)? deleted,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        initial,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loading,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loaded,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        error,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        saved,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        deleted,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(bird, isEdit);
+      return loaded(bird, isEdit, birdResources);
     }
     return orElse();
   }
@@ -1383,12 +1536,15 @@ class _$BirdLoadedImpl implements BirdLoaded {
 abstract class BirdLoaded implements BirdState {
   const factory BirdLoaded(
       {required final Bird bird,
-      required final bool isEdit}) = _$BirdLoadedImpl;
+      required final bool isEdit,
+      required final BirdResources birdResources}) = _$BirdLoadedImpl;
 
   @override
   Bird get bird;
   @override
   bool get isEdit;
+  @override
+  BirdResources get birdResources;
   @override
   @JsonKey(ignore: true)
   _$$BirdLoadedImplCopyWith<_$BirdLoadedImpl> get copyWith =>
@@ -1403,10 +1559,12 @@ abstract class _$$BirdErrorImplCopyWith<$Res>
       __$$BirdErrorImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Bird bird, bool isEdit});
+  $Res call({Bird bird, bool isEdit, BirdResources birdResources});
 
   @override
   $BirdCopyWith<$Res> get bird;
+  @override
+  $BirdResourcesCopyWith<$Res> get birdResources;
 }
 
 /// @nodoc
@@ -1422,6 +1580,7 @@ class __$$BirdErrorImplCopyWithImpl<$Res>
   $Res call({
     Object? bird = null,
     Object? isEdit = null,
+    Object? birdResources = null,
   }) {
     return _then(_$BirdErrorImpl(
       bird: null == bird
@@ -1432,6 +1591,10 @@ class __$$BirdErrorImplCopyWithImpl<$Res>
           ? _value.isEdit
           : isEdit // ignore: cast_nullable_to_non_nullable
               as bool,
+      birdResources: null == birdResources
+          ? _value.birdResources
+          : birdResources // ignore: cast_nullable_to_non_nullable
+              as BirdResources,
     ));
   }
 }
@@ -1439,12 +1602,15 @@ class __$$BirdErrorImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BirdErrorImpl implements BirdError {
-  const _$BirdErrorImpl({required this.bird, required this.isEdit});
+  const _$BirdErrorImpl(
+      {required this.bird, required this.isEdit, required this.birdResources});
 
   @override
   final Bird bird;
   @override
   final bool isEdit;
+  @override
+  final BirdResources birdResources;
 
   @override
   bool operator ==(Object other) {
@@ -1452,11 +1618,13 @@ class _$BirdErrorImpl implements BirdError {
         (other.runtimeType == runtimeType &&
             other is _$BirdErrorImpl &&
             (identical(other.bird, bird) || other.bird == bird) &&
-            (identical(other.isEdit, isEdit) || other.isEdit == isEdit));
+            (identical(other.isEdit, isEdit) || other.isEdit == isEdit) &&
+            (identical(other.birdResources, birdResources) ||
+                other.birdResources == birdResources));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, bird, isEdit);
+  int get hashCode => Object.hash(runtimeType, bird, isEdit, birdResources);
 
   @JsonKey(ignore: true)
   @override
@@ -1467,42 +1635,66 @@ class _$BirdErrorImpl implements BirdError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Bird bird, bool isEdit) initial,
-    required TResult Function(Bird bird, bool isEdit) loading,
-    required TResult Function(Bird bird, bool isEdit) loaded,
-    required TResult Function(Bird bird, bool isEdit) error,
-    required TResult Function(Bird bird, bool isEdit) saved,
-    required TResult Function(Bird bird, bool isEdit) deleted,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        initial,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        loading,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        loaded,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        error,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        saved,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        deleted,
   }) {
-    return error(bird, isEdit);
+    return error(bird, isEdit, birdResources);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Bird bird, bool isEdit)? initial,
-    TResult? Function(Bird bird, bool isEdit)? loading,
-    TResult? Function(Bird bird, bool isEdit)? loaded,
-    TResult? Function(Bird bird, bool isEdit)? error,
-    TResult? Function(Bird bird, bool isEdit)? saved,
-    TResult? Function(Bird bird, bool isEdit)? deleted,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        initial,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loading,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loaded,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        error,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        saved,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        deleted,
   }) {
-    return error?.call(bird, isEdit);
+    return error?.call(bird, isEdit, birdResources);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Bird bird, bool isEdit)? initial,
-    TResult Function(Bird bird, bool isEdit)? loading,
-    TResult Function(Bird bird, bool isEdit)? loaded,
-    TResult Function(Bird bird, bool isEdit)? error,
-    TResult Function(Bird bird, bool isEdit)? saved,
-    TResult Function(Bird bird, bool isEdit)? deleted,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        initial,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loading,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loaded,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        error,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        saved,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        deleted,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(bird, isEdit);
+      return error(bird, isEdit, birdResources);
     }
     return orElse();
   }
@@ -1553,12 +1745,16 @@ class _$BirdErrorImpl implements BirdError {
 
 abstract class BirdError implements BirdState {
   const factory BirdError(
-      {required final Bird bird, required final bool isEdit}) = _$BirdErrorImpl;
+      {required final Bird bird,
+      required final bool isEdit,
+      required final BirdResources birdResources}) = _$BirdErrorImpl;
 
   @override
   Bird get bird;
   @override
   bool get isEdit;
+  @override
+  BirdResources get birdResources;
   @override
   @JsonKey(ignore: true)
   _$$BirdErrorImplCopyWith<_$BirdErrorImpl> get copyWith =>
@@ -1573,10 +1769,12 @@ abstract class _$$BirdSavedImplCopyWith<$Res>
       __$$BirdSavedImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Bird bird, bool isEdit});
+  $Res call({Bird bird, bool isEdit, BirdResources birdResources});
 
   @override
   $BirdCopyWith<$Res> get bird;
+  @override
+  $BirdResourcesCopyWith<$Res> get birdResources;
 }
 
 /// @nodoc
@@ -1592,6 +1790,7 @@ class __$$BirdSavedImplCopyWithImpl<$Res>
   $Res call({
     Object? bird = null,
     Object? isEdit = null,
+    Object? birdResources = null,
   }) {
     return _then(_$BirdSavedImpl(
       bird: null == bird
@@ -1602,6 +1801,10 @@ class __$$BirdSavedImplCopyWithImpl<$Res>
           ? _value.isEdit
           : isEdit // ignore: cast_nullable_to_non_nullable
               as bool,
+      birdResources: null == birdResources
+          ? _value.birdResources
+          : birdResources // ignore: cast_nullable_to_non_nullable
+              as BirdResources,
     ));
   }
 }
@@ -1609,12 +1812,15 @@ class __$$BirdSavedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BirdSavedImpl implements BirdSaved {
-  const _$BirdSavedImpl({required this.bird, required this.isEdit});
+  const _$BirdSavedImpl(
+      {required this.bird, required this.isEdit, required this.birdResources});
 
   @override
   final Bird bird;
   @override
   final bool isEdit;
+  @override
+  final BirdResources birdResources;
 
   @override
   bool operator ==(Object other) {
@@ -1622,11 +1828,13 @@ class _$BirdSavedImpl implements BirdSaved {
         (other.runtimeType == runtimeType &&
             other is _$BirdSavedImpl &&
             (identical(other.bird, bird) || other.bird == bird) &&
-            (identical(other.isEdit, isEdit) || other.isEdit == isEdit));
+            (identical(other.isEdit, isEdit) || other.isEdit == isEdit) &&
+            (identical(other.birdResources, birdResources) ||
+                other.birdResources == birdResources));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, bird, isEdit);
+  int get hashCode => Object.hash(runtimeType, bird, isEdit, birdResources);
 
   @JsonKey(ignore: true)
   @override
@@ -1637,42 +1845,66 @@ class _$BirdSavedImpl implements BirdSaved {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Bird bird, bool isEdit) initial,
-    required TResult Function(Bird bird, bool isEdit) loading,
-    required TResult Function(Bird bird, bool isEdit) loaded,
-    required TResult Function(Bird bird, bool isEdit) error,
-    required TResult Function(Bird bird, bool isEdit) saved,
-    required TResult Function(Bird bird, bool isEdit) deleted,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        initial,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        loading,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        loaded,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        error,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        saved,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        deleted,
   }) {
-    return saved(bird, isEdit);
+    return saved(bird, isEdit, birdResources);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Bird bird, bool isEdit)? initial,
-    TResult? Function(Bird bird, bool isEdit)? loading,
-    TResult? Function(Bird bird, bool isEdit)? loaded,
-    TResult? Function(Bird bird, bool isEdit)? error,
-    TResult? Function(Bird bird, bool isEdit)? saved,
-    TResult? Function(Bird bird, bool isEdit)? deleted,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        initial,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loading,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loaded,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        error,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        saved,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        deleted,
   }) {
-    return saved?.call(bird, isEdit);
+    return saved?.call(bird, isEdit, birdResources);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Bird bird, bool isEdit)? initial,
-    TResult Function(Bird bird, bool isEdit)? loading,
-    TResult Function(Bird bird, bool isEdit)? loaded,
-    TResult Function(Bird bird, bool isEdit)? error,
-    TResult Function(Bird bird, bool isEdit)? saved,
-    TResult Function(Bird bird, bool isEdit)? deleted,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        initial,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loading,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loaded,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        error,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        saved,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        deleted,
     required TResult orElse(),
   }) {
     if (saved != null) {
-      return saved(bird, isEdit);
+      return saved(bird, isEdit, birdResources);
     }
     return orElse();
   }
@@ -1723,12 +1955,16 @@ class _$BirdSavedImpl implements BirdSaved {
 
 abstract class BirdSaved implements BirdState {
   const factory BirdSaved(
-      {required final Bird bird, required final bool isEdit}) = _$BirdSavedImpl;
+      {required final Bird bird,
+      required final bool isEdit,
+      required final BirdResources birdResources}) = _$BirdSavedImpl;
 
   @override
   Bird get bird;
   @override
   bool get isEdit;
+  @override
+  BirdResources get birdResources;
   @override
   @JsonKey(ignore: true)
   _$$BirdSavedImplCopyWith<_$BirdSavedImpl> get copyWith =>
@@ -1743,10 +1979,12 @@ abstract class _$$BirdDeletedImplCopyWith<$Res>
       __$$BirdDeletedImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Bird bird, bool isEdit});
+  $Res call({Bird bird, bool isEdit, BirdResources birdResources});
 
   @override
   $BirdCopyWith<$Res> get bird;
+  @override
+  $BirdResourcesCopyWith<$Res> get birdResources;
 }
 
 /// @nodoc
@@ -1762,6 +2000,7 @@ class __$$BirdDeletedImplCopyWithImpl<$Res>
   $Res call({
     Object? bird = null,
     Object? isEdit = null,
+    Object? birdResources = null,
   }) {
     return _then(_$BirdDeletedImpl(
       bird: null == bird
@@ -1772,6 +2011,10 @@ class __$$BirdDeletedImplCopyWithImpl<$Res>
           ? _value.isEdit
           : isEdit // ignore: cast_nullable_to_non_nullable
               as bool,
+      birdResources: null == birdResources
+          ? _value.birdResources
+          : birdResources // ignore: cast_nullable_to_non_nullable
+              as BirdResources,
     ));
   }
 }
@@ -1779,12 +2022,15 @@ class __$$BirdDeletedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BirdDeletedImpl implements BirdDeleted {
-  const _$BirdDeletedImpl({required this.bird, required this.isEdit});
+  const _$BirdDeletedImpl(
+      {required this.bird, required this.isEdit, required this.birdResources});
 
   @override
   final Bird bird;
   @override
   final bool isEdit;
+  @override
+  final BirdResources birdResources;
 
   @override
   bool operator ==(Object other) {
@@ -1792,11 +2038,13 @@ class _$BirdDeletedImpl implements BirdDeleted {
         (other.runtimeType == runtimeType &&
             other is _$BirdDeletedImpl &&
             (identical(other.bird, bird) || other.bird == bird) &&
-            (identical(other.isEdit, isEdit) || other.isEdit == isEdit));
+            (identical(other.isEdit, isEdit) || other.isEdit == isEdit) &&
+            (identical(other.birdResources, birdResources) ||
+                other.birdResources == birdResources));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, bird, isEdit);
+  int get hashCode => Object.hash(runtimeType, bird, isEdit, birdResources);
 
   @JsonKey(ignore: true)
   @override
@@ -1807,42 +2055,66 @@ class _$BirdDeletedImpl implements BirdDeleted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Bird bird, bool isEdit) initial,
-    required TResult Function(Bird bird, bool isEdit) loading,
-    required TResult Function(Bird bird, bool isEdit) loaded,
-    required TResult Function(Bird bird, bool isEdit) error,
-    required TResult Function(Bird bird, bool isEdit) saved,
-    required TResult Function(Bird bird, bool isEdit) deleted,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        initial,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        loading,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        loaded,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        error,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        saved,
+    required TResult Function(
+            Bird bird, bool isEdit, BirdResources birdResources)
+        deleted,
   }) {
-    return deleted(bird, isEdit);
+    return deleted(bird, isEdit, birdResources);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Bird bird, bool isEdit)? initial,
-    TResult? Function(Bird bird, bool isEdit)? loading,
-    TResult? Function(Bird bird, bool isEdit)? loaded,
-    TResult? Function(Bird bird, bool isEdit)? error,
-    TResult? Function(Bird bird, bool isEdit)? saved,
-    TResult? Function(Bird bird, bool isEdit)? deleted,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        initial,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loading,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loaded,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        error,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        saved,
+    TResult? Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        deleted,
   }) {
-    return deleted?.call(bird, isEdit);
+    return deleted?.call(bird, isEdit, birdResources);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Bird bird, bool isEdit)? initial,
-    TResult Function(Bird bird, bool isEdit)? loading,
-    TResult Function(Bird bird, bool isEdit)? loaded,
-    TResult Function(Bird bird, bool isEdit)? error,
-    TResult Function(Bird bird, bool isEdit)? saved,
-    TResult Function(Bird bird, bool isEdit)? deleted,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        initial,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loading,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        loaded,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        error,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        saved,
+    TResult Function(Bird bird, bool isEdit, BirdResources birdResources)?
+        deleted,
     required TResult orElse(),
   }) {
     if (deleted != null) {
-      return deleted(bird, isEdit);
+      return deleted(bird, isEdit, birdResources);
     }
     return orElse();
   }
@@ -1894,12 +2166,15 @@ class _$BirdDeletedImpl implements BirdDeleted {
 abstract class BirdDeleted implements BirdState {
   const factory BirdDeleted(
       {required final Bird bird,
-      required final bool isEdit}) = _$BirdDeletedImpl;
+      required final bool isEdit,
+      required final BirdResources birdResources}) = _$BirdDeletedImpl;
 
   @override
   Bird get bird;
   @override
   bool get isEdit;
+  @override
+  BirdResources get birdResources;
   @override
   @JsonKey(ignore: true)
   _$$BirdDeletedImplCopyWith<_$BirdDeletedImpl> get copyWith =>

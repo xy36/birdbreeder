@@ -16,15 +16,12 @@ class BirdTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
-      child: FormBuilderTextField(
-        name: name,
-        onChanged: onChanged,
-        initialValue: initialValue,
-        decoration: InputDecoration(
-          labelText: label,
-        ),
+    return FormBuilderTextField(
+      name: name,
+      onChanged: onChanged,
+      initialValue: initialValue,
+      decoration: InputDecoration(
+        labelText: label,
       ),
     );
   }

@@ -27,14 +27,20 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    // add the bird to the user birds collection and insert uuid as id
-    await db
-        .collection('users')
-        .doc(userId)
-        .collection('birds')
-        .add(bird.copyWith(id: const Uuid().v4()).toDto().toJson());
+    final newBird = bird.copyWith(id: const Uuid().v4());
 
-    return Result.value(bird);
+    try {
+      // add the bird to the user birds collection and insert uuid as id
+      await db
+          .collection('users')
+          .doc(userId)
+          .collection('birds')
+          .add(newBird.toDto().toJson());
+
+      return Result.value(newBird);
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -45,16 +51,20 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    // add the bird to the user birds collection and insert uuid as id
-    await db
-        .collection('users')
-        .doc(userId)
-        .collection('birds')
-        .where('id', isEqualTo: id)
-        .get()
-        .then((value) => value.docs.first.reference.delete());
+    try {
+      // add the bird to the user birds collection and insert uuid as id
+      await db
+          .collection('users')
+          .doc(userId)
+          .collection('birds')
+          .where('id', isEqualTo: id)
+          .get()
+          .then((value) => value.docs.first.reference.delete());
 
-    return Result.value(null);
+      return Result.value(null);
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -84,17 +94,21 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    final birdsDtos = await db
-        .collection('users')
-        .doc(userId)
-        .collection('birds')
-        .get()
-        .then(
-          (value) =>
-              value.docs.map((doc) => BirdDto.fromJson(doc.data())).toList(),
-        );
+    try {
+      final birdsDtos = await db
+          .collection('users')
+          .doc(userId)
+          .collection('birds')
+          .get()
+          .then(
+            (value) =>
+                value.docs.map((doc) => BirdDto.fromJson(doc.data())).toList(),
+          );
 
-    return Result.value(await birdsDtos.toBirdList());
+      return Result.value(await birdsDtos.toBirdList());
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -105,18 +119,22 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    final birdsDtos = await db
-        .collection('users')
-        .doc(userId)
-        .collection('birds')
-        .where('cageId', isEqualTo: cageId)
-        .get()
-        .then(
-          (value) =>
-              value.docs.map((doc) => BirdDto.fromJson(doc.data())).toList(),
-        );
+    try {
+      final birdsDtos = await db
+          .collection('users')
+          .doc(userId)
+          .collection('birds')
+          .where('cageId', isEqualTo: cageId)
+          .get()
+          .then(
+            (value) =>
+                value.docs.map((doc) => BirdDto.fromJson(doc.data())).toList(),
+          );
 
-    return Result.value(await birdsDtos.toBirdList());
+      return Result.value(await birdsDtos.toBirdList());
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -127,18 +145,22 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    final birdsDtos = await db
-        .collection('users')
-        .doc(userId)
-        .collection('birds')
-        .where('colorId', isEqualTo: colorId)
-        .get()
-        .then(
-          (value) =>
-              value.docs.map((doc) => BirdDto.fromJson(doc.data())).toList(),
-        );
+    try {
+      final birdsDtos = await db
+          .collection('users')
+          .doc(userId)
+          .collection('birds')
+          .where('colorId', isEqualTo: colorId)
+          .get()
+          .then(
+            (value) =>
+                value.docs.map((doc) => BirdDto.fromJson(doc.data())).toList(),
+          );
 
-    return Result.value(await birdsDtos.toBirdList());
+      return Result.value(await birdsDtos.toBirdList());
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -149,18 +171,22 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    final birdsDtos = await db
-        .collection('users')
-        .doc(userId)
-        .collection('birds')
-        .where('speciesId', isEqualTo: speciesId)
-        .get()
-        .then(
-          (value) =>
-              value.docs.map((doc) => BirdDto.fromJson(doc.data())).toList(),
-        );
+    try {
+      final birdsDtos = await db
+          .collection('users')
+          .doc(userId)
+          .collection('birds')
+          .where('speciesId', isEqualTo: speciesId)
+          .get()
+          .then(
+            (value) =>
+                value.docs.map((doc) => BirdDto.fromJson(doc.data())).toList(),
+          );
 
-    return Result.value(await birdsDtos.toBirdList());
+      return Result.value(await birdsDtos.toBirdList());
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -171,15 +197,19 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    final cage = await db
-        .collection('users')
-        .doc(userId)
-        .collection('cages')
-        .where('id', isEqualTo: id)
-        .get()
-        .then((value) => value.docs.first.reference.get());
+    try {
+      final cage = await db
+          .collection('users')
+          .doc(userId)
+          .collection('cages')
+          .where('id', isEqualTo: id)
+          .get()
+          .then((value) => value.docs.first.reference.get());
 
-    return Result.value(CageDto.fromJson(cage.data()!).toCage());
+      return Result.value(CageDto.fromJson(cage.data()!).toCage());
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -190,15 +220,19 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    final cages =
-        await db.collection('users').doc(userId).collection('cages').get();
+    try {
+      final cages =
+          await db.collection('users').doc(userId).collection('cages').get();
 
-    return Result.value(
-      cages.docs
-          .map((doc) => CageDto.fromJson(doc.data()))
-          .toList()
-          .toCageList(),
-    );
+      return Result.value(
+        cages.docs
+            .map((doc) => CageDto.fromJson(doc.data()))
+            .toList()
+            .toCageList(),
+      );
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -209,15 +243,19 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    final color = await db
-        .collection('users')
-        .doc(userId)
-        .collection('colors')
-        .where('id', isEqualTo: id)
-        .get()
-        .then((value) => value.docs.first.reference.get());
+    try {
+      final color = await db
+          .collection('users')
+          .doc(userId)
+          .collection('colors')
+          .where('id', isEqualTo: id)
+          .get()
+          .then((value) => value.docs.first.reference.get());
 
-    return Result.value(BirdColorDto.fromJson(color.data()!).toBirdColor());
+      return Result.value(BirdColorDto.fromJson(color.data()!).toBirdColor());
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -228,15 +266,19 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    final colors =
-        await db.collection('users').doc(userId).collection('colors').get();
+    try {
+      final colors =
+          await db.collection('users').doc(userId).collection('colors').get();
 
-    return Result.value(
-      colors.docs
-          .map((doc) => BirdColorDto.fromJson(doc.data()))
-          .toList()
-          .toBirdColorList(),
-    );
+      return Result.value(
+        colors.docs
+            .map((doc) => BirdColorDto.fromJson(doc.data()))
+            .toList()
+            .toBirdColorList(),
+      );
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -247,16 +289,22 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    // add the species to the user's species collection
-    await db.collection('users').doc(userId).collection('species').add(
-          SpeciesDto(
-            id: const Uuid().v4(),
-            name: species.name,
-            latName: species.latName,
-          ).toJson(),
-        );
+    if (species.name == null) {
+      return Future.value(Result.error('Species name is null'));
+    }
 
-    return Result.value(species);
+    try {
+      final newSpecies = species.copyWith(id: const Uuid().v4());
+
+      // add the species to the user's species collection
+      await db.collection('users').doc(userId).collection('species').add(
+            newSpecies.toDto().toJson(),
+          );
+
+      return Result.value(newSpecies);
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -267,15 +315,19 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    final species =
-        await db.collection('users').doc(userId).collection('species').get();
+    try {
+      final species =
+          await db.collection('users').doc(userId).collection('species').get();
 
-    return Result.value(
-      species.docs
-          .map((doc) => SpeciesDto.fromJson(doc.data()))
-          .toList()
-          .toSpeciesList(),
-    );
+      return Result.value(
+        species.docs
+            .map((doc) => SpeciesDto.fromJson(doc.data()))
+            .toList()
+            .toSpeciesList(),
+      );
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -286,15 +338,19 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    final species = await db
-        .collection('users')
-        .doc(userId)
-        .collection('species')
-        .where('id', isEqualTo: id)
-        .get()
-        .then((value) => value.docs.first.reference.get());
+    try {
+      final species = await db
+          .collection('users')
+          .doc(userId)
+          .collection('species')
+          .where('id', isEqualTo: id)
+          .get()
+          .then((value) => value.docs.first.reference.get());
 
-    return Result.value(SpeciesDto.fromJson(species.data()!).toSpecies());
+      return Result.value(SpeciesDto.fromJson(species.data()!).toSpecies());
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -307,18 +363,22 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    await db
-        .collection('users')
-        .doc(userId)
-        .collection('birds')
-        .where('id', isEqualTo: bird.id)
-        .get()
-        .then(
-          (value) => value.docs.first.reference
-              .update(bird.copyWith(id: bird.id).toDto().toJson()),
-        );
+    try {
+      await db
+          .collection('users')
+          .doc(userId)
+          .collection('birds')
+          .where('id', isEqualTo: bird.id)
+          .get()
+          .then(
+            (value) => value.docs.first.reference
+                .update(bird.copyWith(id: bird.id).toDto().toJson()),
+          );
 
-    return Result.value(bird);
+      return Result.value(bird);
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -329,15 +389,18 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    // add the cage to the user's cages collection
-    await db.collection('users').doc(userId).collection('cages').add(
-          CageDto(
-            id: const Uuid().v4(),
-            name: cage.name,
-          ).toJson(),
-        );
+    final newCage = cage.copyWith(id: const Uuid().v4());
 
-    return Result.value(cage);
+    try {
+      // add the cage to the user's cages collection
+      await db.collection('users').doc(userId).collection('cages').add(
+            newCage.toDto().toJson(),
+          );
+
+      return Result.value(newCage);
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -348,15 +411,18 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    // add the color to the user's colors collection
-    await db.collection('users').doc(userId).collection('colors').add(
-          BirdColorDto(
-            id: const Uuid().v4(),
-            name: color.name,
-          ).toJson(),
-        );
+    final newColor = color.copyWith(id: const Uuid().v4());
 
-    return Result.value(color);
+    try {
+      // add the color to the user's colors collection
+      await db.collection('users').doc(userId).collection('colors').add(
+            newColor.toDto().toJson(),
+          );
+
+      return Result.value(newColor);
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -367,16 +433,20 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    // remove the cage from the user's cages collection
-    await db
-        .collection('users')
-        .doc(userId)
-        .collection('cages')
-        .where('id', isEqualTo: id)
-        .get()
-        .then((value) => value.docs.first.reference.delete());
+    try {
+      // remove the cage from the user's cages collection
+      await db
+          .collection('users')
+          .doc(userId)
+          .collection('cages')
+          .where('id', isEqualTo: id)
+          .get()
+          .then((value) => value.docs.first.reference.delete());
 
-    return Result.value(null);
+      return Result.value(null);
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -387,16 +457,20 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    // remove the color from the user's colors collection
-    await db
-        .collection('users')
-        .doc(userId)
-        .collection('colors')
-        .where('id', isEqualTo: id)
-        .get()
-        .then((value) => value.docs.first.reference.delete());
+    try {
+      // remove the color from the user's colors collection
+      await db
+          .collection('users')
+          .doc(userId)
+          .collection('colors')
+          .where('id', isEqualTo: id)
+          .get()
+          .then((value) => value.docs.first.reference.delete());
 
-    return Result.value(null);
+      return Result.value(null);
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -407,16 +481,20 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    // remove the species from the user's species collection
-    await db
-        .collection('users')
-        .doc(userId)
-        .collection('species')
-        .where('id', isEqualTo: id)
-        .get()
-        .then((value) => value.docs.first.reference.delete());
+    try {
+      // remove the species from the user's species collection
+      await db
+          .collection('users')
+          .doc(userId)
+          .collection('species')
+          .where('id', isEqualTo: id)
+          .get()
+          .then((value) => value.docs.first.reference.delete());
 
-    return Result.value(null);
+      return Result.value(null);
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -429,18 +507,22 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    await db
-        .collection('users')
-        .doc(userId)
-        .collection('cages')
-        .where('id', isEqualTo: cage.id)
-        .get()
-        .then(
-          (value) => value.docs.first.reference
-              .update(cage.copyWith(id: cage.id).toDto().toJson()),
-        );
+    try {
+      await db
+          .collection('users')
+          .doc(userId)
+          .collection('cages')
+          .where('id', isEqualTo: cage.id)
+          .get()
+          .then(
+            (value) => value.docs.first.reference
+                .update(cage.copyWith(id: cage.id).toDto().toJson()),
+          );
 
-    return Result.value(cage);
+      return Result.value(cage);
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -453,18 +535,22 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    await db
-        .collection('users')
-        .doc(userId)
-        .collection('colors')
-        .where('id', isEqualTo: color.id)
-        .get()
-        .then(
-          (value) => value.docs.first.reference
-              .update(color.copyWith(id: color.id).toDto().toJson()),
-        );
+    try {
+      await db
+          .collection('users')
+          .doc(userId)
+          .collection('colors')
+          .where('id', isEqualTo: color.id)
+          .get()
+          .then(
+            (value) => value.docs.first.reference
+                .update(color.copyWith(id: color.id).toDto().toJson()),
+          );
 
-    return Result.value(color);
+      return Result.value(color);
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 
   @override
@@ -479,17 +565,21 @@ class FiretoreRepository implements IRepository {
 
     final userId = authUser!.uid;
 
-    await db
-        .collection('users')
-        .doc(userId)
-        .collection('species')
-        .where('id', isEqualTo: species.id)
-        .get()
-        .then(
-          (value) => value.docs.first.reference
-              .update(species.copyWith(id: species.id).toDto().toJson()),
-        );
+    try {
+      await db
+          .collection('users')
+          .doc(userId)
+          .collection('species')
+          .where('id', isEqualTo: species.id)
+          .get()
+          .then(
+            (value) => value.docs.first.reference
+                .update(species.copyWith(id: species.id).toDto().toJson()),
+          );
 
-    return Result.value(species);
+      return Result.value(species);
+    } catch (e) {
+      return Result.error(e.toString());
+    }
   }
 }
