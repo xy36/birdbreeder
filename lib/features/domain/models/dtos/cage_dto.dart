@@ -8,6 +8,10 @@ class CageDto with _$CageDto {
   factory CageDto({
     required String? id,
     required String? name,
+    required String? description,
+    required int? width,
+    required int? height,
+    required int? depth,
   }) = _CageDto;
 
   factory CageDto.fromJson(Map<String, dynamic> json) =>

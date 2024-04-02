@@ -18,6 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Cage {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  int? get width => throw _privateConstructorUsedError;
+  int? get height => throw _privateConstructorUsedError;
+  int? get depth => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CageCopyWith<Cage> get copyWith => throw _privateConstructorUsedError;
@@ -28,7 +32,13 @@ abstract class $CageCopyWith<$Res> {
   factory $CageCopyWith(Cage value, $Res Function(Cage) then) =
       _$CageCopyWithImpl<$Res, Cage>;
   @useResult
-  $Res call({String? id, String? name});
+  $Res call(
+      {String? id,
+      String? name,
+      String? description,
+      int? width,
+      int? height,
+      int? depth});
 }
 
 /// @nodoc
@@ -46,6 +56,10 @@ class _$CageCopyWithImpl<$Res, $Val extends Cage>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? description = freezed,
+    Object? width = freezed,
+    Object? height = freezed,
+    Object? depth = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -56,6 +70,22 @@ class _$CageCopyWithImpl<$Res, $Val extends Cage>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      width: freezed == width
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as int?,
+      height: freezed == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int?,
+      depth: freezed == depth
+          ? _value.depth
+          : depth // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -67,7 +97,13 @@ abstract class _$$CageImplCopyWith<$Res> implements $CageCopyWith<$Res> {
       __$$CageImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? id, String? name});
+  $Res call(
+      {String? id,
+      String? name,
+      String? description,
+      int? width,
+      int? height,
+      int? depth});
 }
 
 /// @nodoc
@@ -82,6 +118,10 @@ class __$$CageImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? description = freezed,
+    Object? width = freezed,
+    Object? height = freezed,
+    Object? depth = freezed,
   }) {
     return _then(_$CageImpl(
       id: freezed == id
@@ -92,6 +132,22 @@ class __$$CageImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      width: freezed == width
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as int?,
+      height: freezed == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int?,
+      depth: freezed == depth
+          ? _value.depth
+          : depth // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -99,16 +155,30 @@ class __$$CageImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CageImpl implements _Cage {
-  _$CageImpl({required this.id, required this.name});
+  _$CageImpl(
+      {this.id,
+      this.name,
+      this.description,
+      this.width,
+      this.height,
+      this.depth});
 
   @override
   final String? id;
   @override
   final String? name;
+  @override
+  final String? description;
+  @override
+  final int? width;
+  @override
+  final int? height;
+  @override
+  final int? depth;
 
   @override
   String toString() {
-    return 'Cage(id: $id, name: $name)';
+    return 'Cage(id: $id, name: $name, description: $description, width: $width, height: $height, depth: $depth)';
   }
 
   @override
@@ -117,11 +187,17 @@ class _$CageImpl implements _Cage {
         (other.runtimeType == runtimeType &&
             other is _$CageImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.width, width) || other.width == width) &&
+            (identical(other.height, height) || other.height == height) &&
+            (identical(other.depth, depth) || other.depth == depth));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, description, width, height, depth);
 
   @JsonKey(ignore: true)
   @override
@@ -131,13 +207,26 @@ class _$CageImpl implements _Cage {
 }
 
 abstract class _Cage implements Cage {
-  factory _Cage({required final String? id, required final String? name}) =
-      _$CageImpl;
+  factory _Cage(
+      {final String? id,
+      final String? name,
+      final String? description,
+      final int? width,
+      final int? height,
+      final int? depth}) = _$CageImpl;
 
   @override
   String? get id;
   @override
   String? get name;
+  @override
+  String? get description;
+  @override
+  int? get width;
+  @override
+  int? get height;
+  @override
+  int? get depth;
   @override
   @JsonKey(ignore: true)
   _$$CageImplCopyWith<_$CageImpl> get copyWith =>

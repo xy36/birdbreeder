@@ -12,7 +12,7 @@ part of 'bird_color.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$BirdColor {
@@ -62,21 +62,22 @@ class _$BirdColorCopyWithImpl<$Res, $Val extends BirdColor>
 }
 
 /// @nodoc
-abstract class _$$_BirdColorCopyWith<$Res> implements $BirdColorCopyWith<$Res> {
-  factory _$$_BirdColorCopyWith(
-          _$_BirdColor value, $Res Function(_$_BirdColor) then) =
-      __$$_BirdColorCopyWithImpl<$Res>;
+abstract class _$$BirdColorImplCopyWith<$Res>
+    implements $BirdColorCopyWith<$Res> {
+  factory _$$BirdColorImplCopyWith(
+          _$BirdColorImpl value, $Res Function(_$BirdColorImpl) then) =
+      __$$BirdColorImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? id, String? name});
 }
 
 /// @nodoc
-class __$$_BirdColorCopyWithImpl<$Res>
-    extends _$BirdColorCopyWithImpl<$Res, _$_BirdColor>
-    implements _$$_BirdColorCopyWith<$Res> {
-  __$$_BirdColorCopyWithImpl(
-      _$_BirdColor _value, $Res Function(_$_BirdColor) _then)
+class __$$BirdColorImplCopyWithImpl<$Res>
+    extends _$BirdColorCopyWithImpl<$Res, _$BirdColorImpl>
+    implements _$$BirdColorImplCopyWith<$Res> {
+  __$$BirdColorImplCopyWithImpl(
+      _$BirdColorImpl _value, $Res Function(_$BirdColorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -85,7 +86,7 @@ class __$$_BirdColorCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
   }) {
-    return _then(_$_BirdColor(
+    return _then(_$BirdColorImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -100,8 +101,8 @@ class __$$_BirdColorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_BirdColor implements _BirdColor {
-  _$_BirdColor({this.id, this.name});
+class _$BirdColorImpl implements _BirdColor {
+  _$BirdColorImpl({this.id, this.name});
 
   @override
   final String? id;
@@ -114,10 +115,10 @@ class _$_BirdColor implements _BirdColor {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BirdColor &&
+            other is _$BirdColorImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -128,12 +129,12 @@ class _$_BirdColor implements _BirdColor {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BirdColorCopyWith<_$_BirdColor> get copyWith =>
-      __$$_BirdColorCopyWithImpl<_$_BirdColor>(this, _$identity);
+  _$$BirdColorImplCopyWith<_$BirdColorImpl> get copyWith =>
+      __$$BirdColorImplCopyWithImpl<_$BirdColorImpl>(this, _$identity);
 }
 
 abstract class _BirdColor implements BirdColor {
-  factory _BirdColor({final String? id, final String? name}) = _$_BirdColor;
+  factory _BirdColor({final String? id, final String? name}) = _$BirdColorImpl;
 
   @override
   String? get id;
@@ -141,6 +142,6 @@ abstract class _BirdColor implements BirdColor {
   String? get name;
   @override
   @JsonKey(ignore: true)
-  _$$_BirdColorCopyWith<_$_BirdColor> get copyWith =>
+  _$$BirdColorImplCopyWith<_$BirdColorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
