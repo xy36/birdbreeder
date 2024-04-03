@@ -1,19 +1,12 @@
-import 'package:logger/logger.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 class LoggingService {
   LoggingService() {
-    _logger = Logger(
-      printer: PrettyPrinter(
-        methodCount: 0,
-        excludeBox: {Level.debug: true, Level.info: true},
-        printEmojis: false,
-      ),
-    );
-
-    _logger.d('Logging Service Initialized');
+    _logger = TalkerFlutter.init();
+    _logger.info('Logging Service Initialized');
   }
 
-  late Logger _logger;
+  late Talker _logger;
 
-  Logger get logger => _logger;
+  Talker get logger => _logger;
 }
