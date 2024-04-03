@@ -20,7 +20,7 @@ mixin _$Bird {
   String? get ringnumber => throw _privateConstructorUsedError;
   Species? get species => throw _privateConstructorUsedError;
   BirdColor? get color => throw _privateConstructorUsedError;
-  String? get cageId => throw _privateConstructorUsedError;
+  Cage? get cage => throw _privateConstructorUsedError;
   Sex? get sex => throw _privateConstructorUsedError;
   Origin? get origin => throw _privateConstructorUsedError;
   DateTime? get bornDate => throw _privateConstructorUsedError;
@@ -49,7 +49,7 @@ abstract class $BirdCopyWith<$Res> {
       String? ringnumber,
       Species? species,
       BirdColor? color,
-      String? cageId,
+      Cage? cage,
       Sex? sex,
       Origin? origin,
       DateTime? bornDate,
@@ -66,6 +66,7 @@ abstract class $BirdCopyWith<$Res> {
 
   $SpeciesCopyWith<$Res>? get species;
   $BirdColorCopyWith<$Res>? get color;
+  $CageCopyWith<$Res>? get cage;
 }
 
 /// @nodoc
@@ -85,7 +86,7 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
     Object? ringnumber = freezed,
     Object? species = freezed,
     Object? color = freezed,
-    Object? cageId = freezed,
+    Object? cage = freezed,
     Object? sex = freezed,
     Object? origin = freezed,
     Object? bornDate = freezed,
@@ -117,10 +118,10 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as BirdColor?,
-      cageId: freezed == cageId
-          ? _value.cageId
-          : cageId // ignore: cast_nullable_to_non_nullable
-              as String?,
+      cage: freezed == cage
+          ? _value.cage
+          : cage // ignore: cast_nullable_to_non_nullable
+              as Cage?,
       sex: freezed == sex
           ? _value.sex
           : sex // ignore: cast_nullable_to_non_nullable
@@ -199,6 +200,18 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
       return _then(_value.copyWith(color: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CageCopyWith<$Res>? get cage {
+    if (_value.cage == null) {
+      return null;
+    }
+
+    return $CageCopyWith<$Res>(_value.cage!, (value) {
+      return _then(_value.copyWith(cage: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -213,7 +226,7 @@ abstract class _$$BirdImplCopyWith<$Res> implements $BirdCopyWith<$Res> {
       String? ringnumber,
       Species? species,
       BirdColor? color,
-      String? cageId,
+      Cage? cage,
       Sex? sex,
       Origin? origin,
       DateTime? bornDate,
@@ -232,6 +245,8 @@ abstract class _$$BirdImplCopyWith<$Res> implements $BirdCopyWith<$Res> {
   $SpeciesCopyWith<$Res>? get species;
   @override
   $BirdColorCopyWith<$Res>? get color;
+  @override
+  $CageCopyWith<$Res>? get cage;
 }
 
 /// @nodoc
@@ -248,7 +263,7 @@ class __$$BirdImplCopyWithImpl<$Res>
     Object? ringnumber = freezed,
     Object? species = freezed,
     Object? color = freezed,
-    Object? cageId = freezed,
+    Object? cage = freezed,
     Object? sex = freezed,
     Object? origin = freezed,
     Object? bornDate = freezed,
@@ -280,10 +295,10 @@ class __$$BirdImplCopyWithImpl<$Res>
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as BirdColor?,
-      cageId: freezed == cageId
-          ? _value.cageId
-          : cageId // ignore: cast_nullable_to_non_nullable
-              as String?,
+      cage: freezed == cage
+          ? _value.cage
+          : cage // ignore: cast_nullable_to_non_nullable
+              as Cage?,
       sex: freezed == sex
           ? _value.sex
           : sex // ignore: cast_nullable_to_non_nullable
@@ -348,7 +363,7 @@ class _$BirdImpl implements _Bird {
       required this.ringnumber,
       required this.species,
       required this.color,
-      required this.cageId,
+      required this.cage,
       required this.sex,
       required this.origin,
       required this.bornDate,
@@ -372,7 +387,7 @@ class _$BirdImpl implements _Bird {
   @override
   final BirdColor? color;
   @override
-  final String? cageId;
+  final Cage? cage;
   @override
   final Sex? sex;
   @override
@@ -402,7 +417,7 @@ class _$BirdImpl implements _Bird {
 
   @override
   String toString() {
-    return 'Bird(id: $id, ringnumber: $ringnumber, species: $species, color: $color, cageId: $cageId, sex: $sex, origin: $origin, bornDate: $bornDate, diedDate: $diedDate, boughtDate: $boughtDate, sellDate: $sellDate, boughtPrice: $boughtPrice, sellPriceOffer: $sellPriceOffer, sellPriceReal: $sellPriceReal, fatherRingnumber: $fatherRingnumber, motherRingnumber: $motherRingnumber, partnerRingnumber: $partnerRingnumber, isForSale: $isForSale)';
+    return 'Bird(id: $id, ringnumber: $ringnumber, species: $species, color: $color, cage: $cage, sex: $sex, origin: $origin, bornDate: $bornDate, diedDate: $diedDate, boughtDate: $boughtDate, sellDate: $sellDate, boughtPrice: $boughtPrice, sellPriceOffer: $sellPriceOffer, sellPriceReal: $sellPriceReal, fatherRingnumber: $fatherRingnumber, motherRingnumber: $motherRingnumber, partnerRingnumber: $partnerRingnumber, isForSale: $isForSale)';
   }
 
   @override
@@ -415,7 +430,7 @@ class _$BirdImpl implements _Bird {
                 other.ringnumber == ringnumber) &&
             (identical(other.species, species) || other.species == species) &&
             (identical(other.color, color) || other.color == color) &&
-            (identical(other.cageId, cageId) || other.cageId == cageId) &&
+            (identical(other.cage, cage) || other.cage == cage) &&
             (identical(other.sex, sex) || other.sex == sex) &&
             (identical(other.origin, origin) || other.origin == origin) &&
             (identical(other.bornDate, bornDate) ||
@@ -449,7 +464,7 @@ class _$BirdImpl implements _Bird {
       ringnumber,
       species,
       color,
-      cageId,
+      cage,
       sex,
       origin,
       bornDate,
@@ -477,7 +492,7 @@ abstract class _Bird implements Bird {
       required final String? ringnumber,
       required final Species? species,
       required final BirdColor? color,
-      required final String? cageId,
+      required final Cage? cage,
       required final Sex? sex,
       required final Origin? origin,
       required final DateTime? bornDate,
@@ -501,7 +516,7 @@ abstract class _Bird implements Bird {
   @override
   BirdColor? get color;
   @override
-  String? get cageId;
+  Cage? get cage;
   @override
   Sex? get sex;
   @override

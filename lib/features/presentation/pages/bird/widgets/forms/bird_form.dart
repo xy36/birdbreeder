@@ -1,4 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/features/domain/models/enums/sex.dart';
 import 'package:birdbreeder/features/presentation/pages/bird/bloc/bird_bloc.dart';
 
 class BirdForm extends StatelessWidget {
@@ -25,7 +26,7 @@ class BirdForm extends StatelessWidget {
           ),
           DataRow(
             label: context.l10n.common__cage,
-            value: state.bird.cageId,
+            value: state.bird.cage?.name,
           ),
           DataRow(
             label: context.l10n.common__father_ringnumber,
@@ -34,6 +35,13 @@ class BirdForm extends StatelessWidget {
           DataRow(
             label: context.l10n.common__mother_ringnumber,
             value: state.bird.fatherRingnumber,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(context.l10n.common__sex),
+              state.bird.sex?.icon(context) ?? Sex.unknown.icon(context),
+            ],
           ),
           DataRow(
             label: context.l10n.common__origin,

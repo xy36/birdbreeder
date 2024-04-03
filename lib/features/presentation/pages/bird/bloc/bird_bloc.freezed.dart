@@ -983,6 +983,11 @@ class _$BirdInitialImpl implements BirdInitial {
   final BirdResources birdResources;
 
   @override
+  String toString() {
+    return 'BirdState.initial(bird: $bird, isEdit: $isEdit, birdResources: $birdResources)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1191,6 +1196,11 @@ class _$BirdLoadingImpl implements BirdLoading {
   final bool isEdit;
   @override
   final BirdResources birdResources;
+
+  @override
+  String toString() {
+    return 'BirdState.loading(bird: $bird, isEdit: $isEdit, birdResources: $birdResources)';
+  }
 
   @override
   bool operator ==(Object other) {
@@ -1403,6 +1413,11 @@ class _$BirdLoadedImpl implements BirdLoaded {
   final BirdResources birdResources;
 
   @override
+  String toString() {
+    return 'BirdState.loaded(bird: $bird, isEdit: $isEdit, birdResources: $birdResources)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1611,6 +1626,11 @@ class _$BirdErrorImpl implements BirdError {
   final bool isEdit;
   @override
   final BirdResources birdResources;
+
+  @override
+  String toString() {
+    return 'BirdState.error(bird: $bird, isEdit: $isEdit, birdResources: $birdResources)';
+  }
 
   @override
   bool operator ==(Object other) {
@@ -1823,6 +1843,11 @@ class _$BirdSavedImpl implements BirdSaved {
   final BirdResources birdResources;
 
   @override
+  String toString() {
+    return 'BirdState.saved(bird: $bird, isEdit: $isEdit, birdResources: $birdResources)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2031,6 +2056,11 @@ class _$BirdDeletedImpl implements BirdDeleted {
   final bool isEdit;
   @override
   final BirdResources birdResources;
+
+  @override
+  String toString() {
+    return 'BirdState.deleted(bird: $bird, isEdit: $isEdit, birdResources: $birdResources)';
+  }
 
   @override
   bool operator ==(Object other) {

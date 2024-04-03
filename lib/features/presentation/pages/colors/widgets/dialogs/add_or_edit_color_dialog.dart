@@ -12,22 +12,37 @@ class AddOrEditColorDialog extends StatefulWidget {
 }
 
 class _AddOrEditColorDialogState extends State<AddOrEditColorDialog> {
-  final TextEditingController controller = TextEditingController();
-
   @override
   void initState() {
-    if (widget.color != null) {
-      controller.text = widget.color!.name!;
-    }
+    _colors = widget.color ?? BirdColor();
     super.initState();
   }
+
+  late BirdColor _colors;
+
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(context.l10n.colors__add_color),
-      content: TextField(
-        controller: controller,
+      content: Form(
+        key: formKey,
+        child: TextFormField(
+          initialValue: _colors.name,
+          decoration: InputDecoration(
+            hintText: context.l10n.colors__color,
+          ),
+          onChanged: (value) {
+            _colors = _colors.copyWith(name: value);
+          },
+          validator: (value) {
+            if (value.isNullOrEmpty) {
+              return context.l10n.colors__name_is_required;
+            }
+            return null;
+          },
+        ),
       ),
       actions: [
         TextButton(
@@ -38,17 +53,11 @@ class _AddOrEditColorDialogState extends State<AddOrEditColorDialog> {
         ),
         ElevatedButton(
           onPressed: () {
-            if (controller.text.isEmpty) return;
+            if (formKey.currentState?.validate() == true) {
+              widget.onAdd(_colors);
 
-            if (widget.color != null) {
-              widget.onAdd(widget.color!.copyWith(name: controller.text));
               Navigator.of(context).pop();
-              return;
             }
-
-            // create new color if color is null
-            widget.onAdd(BirdColor(name: controller.text));
-            Navigator.of(context).pop();
           },
           child: Text(context.l10n.common__ok),
         ),

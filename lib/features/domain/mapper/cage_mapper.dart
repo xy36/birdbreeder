@@ -1,6 +1,6 @@
-import '../models/dtos/dtos.dart';
-import '../models/entities/entities.dart';
-import 'i_mapper.dart';
+import 'package:birdbreeder/features/domain/mapper/i_mapper.dart';
+import 'package:birdbreeder/features/domain/models/dtos/dtos.dart';
+import 'package:birdbreeder/features/domain/models/entities/entities.dart';
 
 extension CageDtoMapperExtension on CageDto {
   Cage toCage() => CageMapper().mapFrom(this);
@@ -23,6 +23,10 @@ class CageMapper implements IMapper<CageDto, Cage> {
   Cage mapFrom(CageDto object) => Cage(
         id: object.id,
         name: object.name,
+        description: object.description,
+        width: object.width,
+        height: object.height,
+        depth: object.depth,
       );
 
   @override
@@ -34,6 +38,10 @@ class CageMapper implements IMapper<CageDto, Cage> {
   CageDto mapTo(Cage object) => CageDto(
         id: object.id,
         name: object.name,
+        description: object.description,
+        width: object.width,
+        height: object.height,
+        depth: object.depth,
       );
 
   @override

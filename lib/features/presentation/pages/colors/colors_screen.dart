@@ -3,7 +3,6 @@ import 'package:birdbreeder/features/presentation/pages/colors/bloc/colors_bloc.
 import 'package:birdbreeder/features/presentation/pages/colors/widgets/buttons/add_new_color_button.dart';
 import 'package:birdbreeder/features/presentation/pages/colors/widgets/color_item.dart';
 import 'package:birdbreeder/features/presentation/shared/app_bar_with_drawer.dart';
-import 'package:birdbreeder/features/presentation/shared/widgets/screens/error_screen.dart';
 
 class ColorsScreen extends StatelessWidget {
   const ColorsScreen({super.key});
@@ -38,8 +37,8 @@ class ColorsScreen extends StatelessWidget {
               },
             ),
             error: () {
-              return ErrorScreen(
-                title: context.l10n.colors__title,
+              return Center(
+                child: Text(context.l10n.common__something_went_wrong),
               );
             },
           ),

@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BirdResources {
   List<BirdColor> get colorsList => throw _privateConstructorUsedError;
   List<Species> get speciesList => throw _privateConstructorUsedError;
+  List<Cage> get cagesList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BirdResourcesCopyWith<BirdResources> get copyWith =>
@@ -30,7 +31,10 @@ abstract class $BirdResourcesCopyWith<$Res> {
           BirdResources value, $Res Function(BirdResources) then) =
       _$BirdResourcesCopyWithImpl<$Res, BirdResources>;
   @useResult
-  $Res call({List<BirdColor> colorsList, List<Species> speciesList});
+  $Res call(
+      {List<BirdColor> colorsList,
+      List<Species> speciesList,
+      List<Cage> cagesList});
 }
 
 /// @nodoc
@@ -48,6 +52,7 @@ class _$BirdResourcesCopyWithImpl<$Res, $Val extends BirdResources>
   $Res call({
     Object? colorsList = null,
     Object? speciesList = null,
+    Object? cagesList = null,
   }) {
     return _then(_value.copyWith(
       colorsList: null == colorsList
@@ -58,6 +63,10 @@ class _$BirdResourcesCopyWithImpl<$Res, $Val extends BirdResources>
           ? _value.speciesList
           : speciesList // ignore: cast_nullable_to_non_nullable
               as List<Species>,
+      cagesList: null == cagesList
+          ? _value.cagesList
+          : cagesList // ignore: cast_nullable_to_non_nullable
+              as List<Cage>,
     ) as $Val);
   }
 }
@@ -70,7 +79,10 @@ abstract class _$$BirdResourcesImplCopyWith<$Res>
       __$$BirdResourcesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<BirdColor> colorsList, List<Species> speciesList});
+  $Res call(
+      {List<BirdColor> colorsList,
+      List<Species> speciesList,
+      List<Cage> cagesList});
 }
 
 /// @nodoc
@@ -86,6 +98,7 @@ class __$$BirdResourcesImplCopyWithImpl<$Res>
   $Res call({
     Object? colorsList = null,
     Object? speciesList = null,
+    Object? cagesList = null,
   }) {
     return _then(_$BirdResourcesImpl(
       colorsList: null == colorsList
@@ -96,6 +109,10 @@ class __$$BirdResourcesImplCopyWithImpl<$Res>
           ? _value._speciesList
           : speciesList // ignore: cast_nullable_to_non_nullable
               as List<Species>,
+      cagesList: null == cagesList
+          ? _value._cagesList
+          : cagesList // ignore: cast_nullable_to_non_nullable
+              as List<Cage>,
     ));
   }
 }
@@ -104,14 +121,15 @@ class __$$BirdResourcesImplCopyWithImpl<$Res>
 
 class _$BirdResourcesImpl implements _BirdResources {
   _$BirdResourcesImpl(
-      {final List<BirdColor> colorsList = const [],
-      final List<Species> speciesList = const []})
+      {required final List<BirdColor> colorsList,
+      required final List<Species> speciesList,
+      required final List<Cage> cagesList})
       : _colorsList = colorsList,
-        _speciesList = speciesList;
+        _speciesList = speciesList,
+        _cagesList = cagesList;
 
   final List<BirdColor> _colorsList;
   @override
-  @JsonKey()
   List<BirdColor> get colorsList {
     if (_colorsList is EqualUnmodifiableListView) return _colorsList;
     // ignore: implicit_dynamic_type
@@ -120,16 +138,23 @@ class _$BirdResourcesImpl implements _BirdResources {
 
   final List<Species> _speciesList;
   @override
-  @JsonKey()
   List<Species> get speciesList {
     if (_speciesList is EqualUnmodifiableListView) return _speciesList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_speciesList);
   }
 
+  final List<Cage> _cagesList;
+  @override
+  List<Cage> get cagesList {
+    if (_cagesList is EqualUnmodifiableListView) return _cagesList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_cagesList);
+  }
+
   @override
   String toString() {
-    return 'BirdResources(colorsList: $colorsList, speciesList: $speciesList)';
+    return 'BirdResources(colorsList: $colorsList, speciesList: $speciesList, cagesList: $cagesList)';
   }
 
   @override
@@ -140,14 +165,17 @@ class _$BirdResourcesImpl implements _BirdResources {
             const DeepCollectionEquality()
                 .equals(other._colorsList, _colorsList) &&
             const DeepCollectionEquality()
-                .equals(other._speciesList, _speciesList));
+                .equals(other._speciesList, _speciesList) &&
+            const DeepCollectionEquality()
+                .equals(other._cagesList, _cagesList));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_colorsList),
-      const DeepCollectionEquality().hash(_speciesList));
+      const DeepCollectionEquality().hash(_speciesList),
+      const DeepCollectionEquality().hash(_cagesList));
 
   @JsonKey(ignore: true)
   @override
@@ -158,13 +186,16 @@ class _$BirdResourcesImpl implements _BirdResources {
 
 abstract class _BirdResources implements BirdResources {
   factory _BirdResources(
-      {final List<BirdColor> colorsList,
-      final List<Species> speciesList}) = _$BirdResourcesImpl;
+      {required final List<BirdColor> colorsList,
+      required final List<Species> speciesList,
+      required final List<Cage> cagesList}) = _$BirdResourcesImpl;
 
   @override
   List<BirdColor> get colorsList;
   @override
   List<Species> get speciesList;
+  @override
+  List<Cage> get cagesList;
   @override
   @JsonKey(ignore: true)
   _$$BirdResourcesImplCopyWith<_$BirdResourcesImpl> get copyWith =>

@@ -12,38 +12,51 @@ class AddOrEditSpeciesDialog extends StatefulWidget {
 }
 
 class _AddOrEditSpeciesDialogState extends State<AddOrEditSpeciesDialog> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController latNameController = TextEditingController();
-
   @override
   void initState() {
-    if (widget.species != null) {
-      nameController.text = widget.species?.name ?? '';
-      latNameController.text = widget.species?.latName ?? '';
-    }
+    _species = widget.species ?? Species();
     super.initState();
   }
+
+  late Species _species;
+
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(context.l10n.species__add_species),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          TextField(
-            decoration: InputDecoration(
-              hintText: context.l10n.species__name,
+      content: Form(
+        key: formKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextFormField(
+              initialValue: _species.name,
+              decoration: InputDecoration(
+                hintText: context.l10n.species__name,
+              ),
+              onChanged: (value) {
+                _species = _species.copyWith(name: value);
+              },
+              validator: (value) {
+                if (value.isNullOrEmpty) {
+                  return context.l10n.species__name_is_required;
+                }
+                return null;
+              },
             ),
-            controller: nameController,
-          ),
-          TextField(
-            decoration: InputDecoration(
-              hintText: context.l10n.species__latin_name,
+            TextFormField(
+              initialValue: _species.latName,
+              decoration: InputDecoration(
+                hintText: context.l10n.species__latin_name,
+              ),
+              onChanged: (value) {
+                _species = _species.copyWith(latName: value);
+              },
             ),
-            controller: latNameController,
-          ),
-        ],
+          ],
+        ),
       ),
       actions: [
         TextButton(
@@ -54,27 +67,11 @@ class _AddOrEditSpeciesDialogState extends State<AddOrEditSpeciesDialog> {
         ),
         ElevatedButton(
           onPressed: () {
-            if (nameController.text.isEmpty) return;
+            if (formKey.currentState?.validate() == true) {
+              widget.onAdd(_species);
 
-            if (widget.species != null) {
-              widget.onAdd(
-                widget.species!.copyWith(
-                  name: nameController.text,
-                  latName: latNameController.text,
-                ),
-              );
               Navigator.of(context).pop();
-              return;
             }
-
-            // create new species if species is null
-            widget.onAdd(
-              Species(
-                name: nameController.text,
-                latName: latNameController.text,
-              ),
-            );
-            Navigator.of(context).pop();
           },
           child: Text(context.l10n.common__ok),
         ),

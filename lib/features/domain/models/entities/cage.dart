@@ -5,7 +5,11 @@ part 'cage.freezed.dart';
 @freezed
 class Cage with _$Cage {
   factory Cage({
-    required String? id,
-    required String? name,
+    String? id,
+    String? name,
+    String? description,
+    int? width,
+    int? height,
+    int? depth,
   }) = _Cage;
 }
