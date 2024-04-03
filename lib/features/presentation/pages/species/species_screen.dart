@@ -3,7 +3,6 @@ import 'package:birdbreeder/features/presentation/pages/species/bloc/species_blo
 import 'package:birdbreeder/features/presentation/pages/species/widgets/buttons/add_new_species_button.dart';
 import 'package:birdbreeder/features/presentation/pages/species/widgets/species_item.dart';
 import 'package:birdbreeder/features/presentation/shared/app_bar_with_drawer.dart';
-import 'package:birdbreeder/features/presentation/shared/widgets/screens/error_screen.dart';
 
 class SpeciesScreen extends StatelessWidget {
   const SpeciesScreen({super.key});
@@ -38,8 +37,8 @@ class SpeciesScreen extends StatelessWidget {
               },
             ),
             error: () {
-              return ErrorScreen(
-                title: context.l10n.species__title,
+              return Center(
+                child: Text(context.l10n.common__something_went_wrong),
               );
             },
           ),

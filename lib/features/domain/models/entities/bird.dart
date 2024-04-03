@@ -1,8 +1,7 @@
+import 'package:birdbreeder/features/domain/models/entities/entities.dart';
+import 'package:birdbreeder/features/domain/models/enums/origin.dart';
+import 'package:birdbreeder/features/domain/models/enums/sex.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../enums/origin.dart';
-import '../enums/sex.dart';
-import 'entities.dart';
 
 part 'bird.freezed.dart';
 
@@ -13,7 +12,7 @@ class Bird with _$Bird {
     required String? ringnumber,
     required Species? species,
     required BirdColor? color,
-    required String? cageId,
+    required Cage? cage,
     required Sex? sex,
     required Origin? origin,
     required DateTime? bornDate,
@@ -33,7 +32,7 @@ class Bird with _$Bird {
         bornDate: null,
         boughtDate: null,
         boughtPrice: null,
-        cageId: null,
+        cage: null,
         color: null,
         diedDate: null,
         fatherRingnumber: null,

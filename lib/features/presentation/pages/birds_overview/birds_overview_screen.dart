@@ -35,15 +35,64 @@ class _BirdsOverviewScreenState extends State<BirdsOverviewScreen> {
                   itemBuilder: (context, index) {
                     final bird = birds[index];
                     return Card(
-                      surfaceTintColor: state.selectedBird?.id == bird.id
-                          ? Theme.of(context).focusColor
-                          : Theme.of(context).primaryColorLight,
+                      color: Colors.white,
                       child: ListTile(
                         title: Text(
-                          '${context.l10n.common__ringnumber}: ${bird.ringnumber ?? ''}',
+                          bird.ringnumber ?? '-',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                        subtitle: Text(
-                          bird.sex?.name(context) ?? Sex.unknown.name(context),
+                        trailing: bird.sex?.icon(context) ??
+                            Sex.unknown.icon(context),
+                        subtitle: Wrap(
+                          runSpacing: 10,
+                          spacing: 10,
+                          children: [
+                            if (bird.origin != null)
+                              Chip(
+                                label: Text(
+                                  bird.origin?.name(context) ??
+                                      Origin.unknown.name(context),
+                                ),
+                              ),
+                            if (bird.cage?.name != null)
+                              Chip(
+                                backgroundColor: Colors.amber[100],
+                                side: const BorderSide(
+                                  color: Colors.transparent,
+                                ),
+                                label: Text(
+                                  bird.cage?.name ?? '',
+                                ),
+                              ),
+                            if (bird.bornDate != null)
+                              Chip(
+                                label: Text(
+                                  bird.bornDate!.toIso8601String(),
+                                ),
+                              ),
+                            if (bird.species?.name != null)
+                              Chip(
+                                backgroundColor: Colors.blueAccent[100],
+                                side: const BorderSide(
+                                  color: Colors.transparent,
+                                ),
+                                label: Text(
+                                  bird.species!.name!,
+                                ),
+                              ),
+                            if (bird.color?.name != null)
+                              Chip(
+                                backgroundColor: Colors.greenAccent[100],
+                                side: const BorderSide(
+                                  color: Colors.transparent,
+                                ),
+                                label: Text(
+                                  bird.color!.name!,
+                                ),
+                              ),
+                          ],
                         ),
                         onLongPress: () {
                           // open menu to select birds
@@ -109,7 +158,7 @@ class _BirdsOverviewScreenState extends State<BirdsOverviewScreen> {
       sellDate: randomDiedDate,
       boughtPrice: Random().nextInt(1000).toDouble(),
       sellPriceOffer: Random().nextInt(1000).toDouble(),
-      cageId: 'cage${Random().nextInt(1000)}',
+      cage: null,
       color: null,
       fatherRingnumber: Random().nextInt(10000000).toString(),
       motherRingnumber: Random().nextInt(10000000).toString(),

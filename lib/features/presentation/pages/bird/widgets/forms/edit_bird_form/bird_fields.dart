@@ -1,4 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/extensions/generic_join.dart';
 import 'package:birdbreeder/features/domain/models/entities/bird.dart';
 import 'package:birdbreeder/features/domain/models/enums/origin.dart';
 import 'package:birdbreeder/features/domain/models/enums/sex.dart';
@@ -6,6 +7,7 @@ import 'package:birdbreeder/features/presentation/pages/bird/bloc/bird_bloc.dart
 import 'package:birdbreeder/features/presentation/pages/bird/widgets/field_templates/bird_date_field.dart';
 import 'package:birdbreeder/features/presentation/pages/bird/widgets/field_templates/bird_dropdown_field.dart';
 import 'package:birdbreeder/features/presentation/pages/bird/widgets/field_templates/bird_text_field.dart';
+import 'package:birdbreeder/features/presentation/pages/bird/widgets/forms/edit_bird_form/cage_field.dart';
 import 'package:birdbreeder/features/presentation/pages/bird/widgets/forms/edit_bird_form/color_field.dart';
 import 'package:birdbreeder/features/presentation/pages/bird/widgets/forms/edit_bird_form/species_field.dart';
 
@@ -21,7 +23,7 @@ class BirdFields extends StatelessWidget {
       child: BlocBuilder<BirdBloc, BirdState>(
         builder: (context, state) {
           return Column(
-            children: [
+            children: <Widget>[
               BirdTextField(
                 name: 'ringnumber_field',
                 label: context.l10n.common__ringnumber,
@@ -34,6 +36,7 @@ class BirdFields extends StatelessWidget {
                       );
                 },
               ),
+              CageField(bird: bird, birdResources: state.birdResources),
               SpeciesField(bird: bird, birdResources: state.birdResources),
               ColorField(bird: bird, birdResources: state.birdResources),
               BirdTextField(
@@ -192,16 +195,6 @@ class BirdFields extends StatelessWidget {
                 },
               ),
               BirdTextField(
-                name: 'cage_id_field',
-                label: context.l10n.common__cage,
-                initialValue: bird.cageId,
-                onChanged: (cageId) {
-                  context.read<BirdBloc>().add(
-                        BirdEvent.change(bird: bird.copyWith(cageId: cageId)),
-                      );
-                },
-              ),
-              BirdTextField(
                 name: 'partner_field',
                 label: context.l10n.common__partner_ringnumber,
                 initialValue: bird.partnerRingnumber,
@@ -228,7 +221,7 @@ class BirdFields extends StatelessWidget {
                 },
                 items: const [],
               ),
-            ],
+            ].genericJoin(const SizedBox(height: 16)),
           );
         },
       ),

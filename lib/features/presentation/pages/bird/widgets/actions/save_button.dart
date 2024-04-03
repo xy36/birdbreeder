@@ -9,6 +9,7 @@ class SaveButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {
+        FocusScope.of(context).unfocus();
         context.read<BirdBloc>().add(const BirdEvent.save());
       },
       icon: const Icon(Icons.save),

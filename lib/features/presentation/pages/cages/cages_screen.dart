@@ -3,7 +3,6 @@ import 'package:birdbreeder/features/presentation/pages/cages/bloc/cages_bloc.da
 import 'package:birdbreeder/features/presentation/pages/cages/widgets/buttons/add_new_age_button.dart';
 import 'package:birdbreeder/features/presentation/pages/cages/widgets/cage_item.dart';
 import 'package:birdbreeder/features/presentation/shared/app_bar_with_drawer.dart';
-import 'package:birdbreeder/features/presentation/shared/widgets/screens/error_screen.dart';
 
 class CagesScreen extends StatelessWidget {
   const CagesScreen({super.key});
@@ -38,8 +37,8 @@ class CagesScreen extends StatelessWidget {
               },
             ),
             error: () {
-              return ErrorScreen(
-                title: context.l10n.cages__title,
+              return Center(
+                child: Text(context.l10n.common__something_went_wrong),
               );
             },
           ),
