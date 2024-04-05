@@ -1,3 +1,4 @@
+import 'package:birdbreeder/features/domain/i_cages_repository.dart';
 import 'package:birdbreeder/features/domain/i_repository.dart';
 import 'package:birdbreeder/features/domain/models/dtos/dtos.dart';
 import 'package:birdbreeder/features/domain/models/entities/entities.dart';
@@ -34,7 +35,7 @@ class BirdMapper {
         : null;
 
     final cage = object.cageId != null
-        ? (await s1.get<IRepository>().getCageById(object.cageId!))
+        ? (await s1.get<ICagesRepository>().getById(object.cageId!))
             .asValue
             ?.value
         : null;

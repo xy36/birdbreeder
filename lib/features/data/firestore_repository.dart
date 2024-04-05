@@ -3,7 +3,6 @@ import 'package:birdbreeder/features/domain/i_repository.dart';
 import 'package:birdbreeder/features/domain/mapper/mapper.dart';
 import 'package:birdbreeder/features/domain/models/dtos/bird_color_dto.dart';
 import 'package:birdbreeder/features/domain/models/dtos/bird_dto.dart';
-import 'package:birdbreeder/features/domain/models/dtos/cage_dto.dart';
 import 'package:birdbreeder/features/domain/models/dtos/species_dto.dart';
 import 'package:birdbreeder/features/domain/models/entities/bird.dart';
 import 'package:birdbreeder/features/domain/models/entities/bird_color.dart';
@@ -131,45 +130,10 @@ class FiretoreRepository implements IRepository {
                 value.docs.map((doc) => BirdDto.fromJson(doc.data())).toList(),
           );
 
-      logger.verbose('[$prefix] Got all birds');
+      logger.verbose('[$prefix] Got all birds (${birdsDtos.length})');
       return Result.value(await birdsDtos.toBirdList());
     } catch (e, st) {
       logger.handle(e, st, '[$prefix] Error getting all birds');
-      return Result.error(e.toString());
-    }
-  }
-
-  @override
-  Future<Result<List<Bird>>> getBirdsOfCage(String cageId) async {
-    logger.verbose('[$prefix] Getting all birds of cage with id: $cageId');
-
-    if (authUser == null) {
-      logger.error('[$prefix] User is not authenticated');
-      return Future.value(Result.error('User is not authenticated'));
-    }
-
-    final userId = authUser!.uid;
-
-    try {
-      final birdsDtos = await db
-          .collection('users')
-          .doc(userId)
-          .collection('birds')
-          .where('cageId', isEqualTo: cageId)
-          .get()
-          .then(
-            (value) =>
-                value.docs.map((doc) => BirdDto.fromJson(doc.data())).toList(),
-          );
-
-      logger.verbose('[$prefix] Got all birds of cage with id: $cageId');
-      return Result.value(await birdsDtos.toBirdList());
-    } catch (e, st) {
-      logger.handle(
-        e,
-        st,
-        '[$prefix] Error getting all birds of cage with id: $cageId',
-      );
       return Result.error(e.toString());
     }
   }
@@ -246,63 +210,6 @@ class FiretoreRepository implements IRepository {
   }
 
   @override
-  Future<Result<Cage>> getCageById(String id) async {
-    logger.verbose('[$prefix] Getting cage with id: $id');
-
-    if (authUser == null) {
-      logger.error('[$prefix] User is not authenticated');
-      return Future.value(Result.error('User is not authenticated'));
-    }
-
-    final userId = authUser!.uid;
-
-    try {
-      final cage = await db
-          .collection('users')
-          .doc(userId)
-          .collection('cages')
-          .where('id', isEqualTo: id)
-          .get()
-          .then((value) => value.docs.first.reference.get());
-
-      logger.verbose('[$prefix] Got cage with id: $id');
-
-      return Result.value(CageDto.fromJson(cage.data()!).toCage());
-    } catch (e, st) {
-      logger.handle(e, st, '[$prefix] Error getting cage with id: $id');
-      return Result.error(e.toString());
-    }
-  }
-
-  @override
-  Future<Result<List<Cage>>> getCages() async {
-    logger.verbose('[$prefix] Getting all cages');
-
-    if (authUser == null) {
-      logger.error('[$prefix] User is not authenticated');
-      return Future.value(Result.error('User is not authenticated'));
-    }
-
-    final userId = authUser!.uid;
-
-    try {
-      final cages =
-          await db.collection('users').doc(userId).collection('cages').get();
-
-      logger.verbose('[$prefix] Got all cages');
-      return Result.value(
-        cages.docs
-            .map((doc) => CageDto.fromJson(doc.data()))
-            .toList()
-            .toCageList(),
-      );
-    } catch (e, st) {
-      logger.handle(e, st, '[$prefix] Error getting all cages');
-      return Result.error(e.toString());
-    }
-  }
-
-  @override
   Future<Result<BirdColor>> getColorById(String id) async {
     logger.verbose('[$prefix] Getting color with id: $id');
 
@@ -343,15 +250,20 @@ class FiretoreRepository implements IRepository {
     final userId = authUser!.uid;
 
     try {
-      final colors =
-          await db.collection('users').doc(userId).collection('colors').get();
+      final colorsDtos = await db
+          .collection('users')
+          .doc(userId)
+          .collection('colors')
+          .get()
+          .then(
+            (value) => value.docs
+                .map((doc) => BirdColorDto.fromJson(doc.data()))
+                .toList(),
+          );
 
-      logger.verbose('[$prefix] Got all colors');
+      logger.verbose('[$prefix] Got all colors (${colorsDtos.length})');
       return Result.value(
-        colors.docs
-            .map((doc) => BirdColorDto.fromJson(doc.data()))
-            .toList()
-            .toBirdColorList(),
+        colorsDtos.toBirdColorList(),
       );
     } catch (e, st) {
       logger.handle(e, st, '[$prefix] Error getting all colors');
@@ -404,15 +316,20 @@ class FiretoreRepository implements IRepository {
     final userId = authUser!.uid;
 
     try {
-      final species =
-          await db.collection('users').doc(userId).collection('species').get();
+      final speciesDtos = await db
+          .collection('users')
+          .doc(userId)
+          .collection('species')
+          .get()
+          .then(
+            (value) => value.docs
+                .map((doc) => SpeciesDto.fromJson(doc.data()))
+                .toList(),
+          );
 
-      logger.verbose('[$prefix] Got all species');
+      logger.verbose('[$prefix] Got all species (${speciesDtos.length})');
       return Result.value(
-        species.docs
-            .map((doc) => SpeciesDto.fromJson(doc.data()))
-            .toList()
-            .toSpeciesList(),
+        speciesDtos.toSpeciesList(),
       );
     } catch (e, st) {
       logger.handle(e, st, '[$prefix] Error getting all species');
@@ -545,35 +462,6 @@ class FiretoreRepository implements IRepository {
   }
 
   @override
-  Future<Result<void>> deleteCage(String id) async {
-    logger.verbose('[$prefix] Deleting cage with id: $id');
-
-    if (authUser == null) {
-      logger.error('[$prefix] User is not authenticated');
-      return Future.value(Result.error('User is not authenticated'));
-    }
-
-    final userId = authUser!.uid;
-
-    try {
-      // remove the cage from the user's cages collection
-      await db
-          .collection('users')
-          .doc(userId)
-          .collection('cages')
-          .where('id', isEqualTo: id)
-          .get()
-          .then((value) => value.docs.first.reference.delete());
-
-      logger.verbose('[$prefix] Cage deleted with id: $id');
-      return Result.value(null);
-    } catch (e, st) {
-      logger.handle(e, st, '[$prefix] Error deleting cage with id: $id');
-      return Result.error(e.toString());
-    }
-  }
-
-  @override
   Future<Result<void>> deleteColor(String id) async {
     logger.verbose('[$prefix] Deleting color with id: $id');
 
@@ -628,41 +516,6 @@ class FiretoreRepository implements IRepository {
       return Result.value(null);
     } catch (e, st) {
       logger.handle(e, st, '[$prefix] Error deleting species with id: $id');
-      return Result.error(e.toString());
-    }
-  }
-
-  @override
-  Future<Result<Cage>> updateCage(Cage cage) async {
-    logger.verbose('[$prefix] Updating cage: $cage');
-
-    if (authUser == null) {
-      logger.error('[$prefix] User is not authenticated');
-      return Future.value(Result.error('User is not authenticated'));
-    }
-
-    if (cage.id == null) {
-      logger.error('[$prefix] Cage id is null');
-      return Future.value(Result.error('Cage id is null'));
-    }
-
-    final userId = authUser!.uid;
-
-    try {
-      await db
-          .collection('users')
-          .doc(userId)
-          .collection('cages')
-          .where('id', isEqualTo: cage.id)
-          .get()
-          .then(
-            (value) => value.docs.first.reference
-                .update(cage.copyWith(id: cage.id).toDto().toJson()),
-          );
-
-      return Result.value(cage);
-    } catch (e, st) {
-      logger.handle(e, st, '[$prefix] Error updating cage: $cage');
       return Result.error(e.toString());
     }
   }

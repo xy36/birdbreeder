@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/domain/i_repository.dart';
+import 'package:birdbreeder/features/domain/i_cages_repository.dart';
 import 'package:birdbreeder/features/domain/models/entities/cage.dart';
 import 'package:birdbreeder/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -21,7 +21,7 @@ class CagesBloc extends Bloc<CagesEvent, CagesState> {
   FutureOr<void> _onAddCage(AddCage event, Emitter<CagesState> emit) async {
     emit(const Loading());
 
-    final result = await s1.get<IRepository>().createCage(event.cage);
+    final result = await s1.get<ICagesRepository>().create(event.cage);
 
     if (result.isError) {
       emit(const Error());
@@ -34,7 +34,7 @@ class CagesBloc extends Bloc<CagesEvent, CagesState> {
   FutureOr<void> _onLoad(Load event, Emitter<CagesState> emit) async {
     emit(const Loading());
 
-    final result = await s1.get<IRepository>().getCages();
+    final result = await s1.get<ICagesRepository>().getAll();
 
     if (result.isError) {
       emit(const Error());
@@ -50,7 +50,7 @@ class CagesBloc extends Bloc<CagesEvent, CagesState> {
   ) async {
     emit(const Loading());
 
-    final result = await s1.get<IRepository>().updateCage(event.cage);
+    final result = await s1.get<ICagesRepository>().update(event.cage);
 
     if (result.isError) {
       emit(const Error());
@@ -68,7 +68,7 @@ class CagesBloc extends Bloc<CagesEvent, CagesState> {
 
     emit(const Loading());
 
-    final result = await s1.get<IRepository>().deleteCage(event.cage.id!);
+    final result = await s1.get<ICagesRepository>().delete(event.cage);
 
     if (result.isError) {
       emit(const Error());

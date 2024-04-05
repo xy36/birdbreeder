@@ -39,26 +39,6 @@ abstract class IRepository {
   /// Returns a list of all birds of the given species.
   Future<Result<List<Bird>>> getBirdsOfSpecies(String speciesId);
 
-  /// Cage
-
-  /// Create a new cage.
-  Future<Result<Cage>> createCage(Cage cage);
-
-  /// Returns a cage with the given id.
-  Future<Result<Cage>> getCageById(String id);
-
-  /// Returns a list of all cages.
-  Future<Result<List<Cage>>> getCages();
-
-  /// Returns a list of all birds of the given cage.
-  Future<Result<List<Bird>>> getBirdsOfCage(String cageId);
-
-  /// Updates the cage.
-  Future<Result<Cage>> updateCage(Cage cage);
-
-  /// Delete the cage with the given id.
-  Future<Result<void>> deleteCage(String id);
-
   /// Color
 
   /// Create a new color.

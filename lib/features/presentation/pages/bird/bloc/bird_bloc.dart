@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:async/async.dart';
+import 'package:birdbreeder/features/domain/i_cages_repository.dart';
 import 'package:birdbreeder/features/domain/i_repository.dart';
 import 'package:birdbreeder/features/domain/models/entities/bird.dart';
 import 'package:birdbreeder/features/domain/models/entities/bird_color.dart';
@@ -39,7 +40,7 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
   Future<BirdResources> _loadResources() async {
     final colors = (await s1.get<IRepository>().getColors()).asValue?.value;
     final species = (await s1.get<IRepository>().getSpecies()).asValue?.value;
-    final cages = (await s1.get<IRepository>().getCages()).asValue?.value;
+    final cages = (await s1.get<ICagesRepository>().getAll()).asValue?.value;
 
     return BirdResources(
       colorsList: colors ?? [],
@@ -131,7 +132,7 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
     }
 
     final newCage =
-        await s1.get<IRepository>().createCage(Cage(name: bird.cage!.name));
+        await s1.get<ICagesRepository>().create(Cage(name: bird.cage!.name));
 
     return bird.copyWith(cage: newCage.asValue?.value);
   }

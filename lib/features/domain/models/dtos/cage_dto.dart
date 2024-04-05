@@ -1,10 +1,12 @@
+import 'package:birdbreeder/features/domain/models/dtos/timestamp.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'cage_dto.freezed.dart';
 part 'cage_dto.g.dart';
 
 @freezed
-class CageDto with _$CageDto {
+class CageDto with _$CageDto, Timestamp {
+  @With<Timestamp>()
   factory CageDto({
     required String? id,
     required String? name,

@@ -160,7 +160,7 @@ class __$$CageDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CageDtoImpl implements _CageDto {
+class _$CageDtoImpl with Timestamp implements _CageDto {
   _$CageDtoImpl(
       {required this.id,
       required this.name,
@@ -223,7 +223,7 @@ class _$CageDtoImpl implements _CageDto {
   }
 }
 
-abstract class _CageDto implements CageDto {
+abstract class _CageDto implements CageDto, Timestamp {
   factory _CageDto(
       {required final String? id,
       required final String? name,
