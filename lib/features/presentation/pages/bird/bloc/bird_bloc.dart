@@ -6,6 +6,7 @@ import 'package:birdbreeder/features/domain/models/entities/bird.dart';
 import 'package:birdbreeder/features/domain/models/entities/bird_color.dart';
 import 'package:birdbreeder/features/domain/models/entities/cage.dart';
 import 'package:birdbreeder/features/domain/models/entities/species.dart';
+import 'package:birdbreeder/features/presentation/pages/bird/models/bird_mode.dart';
 import 'package:birdbreeder/features/presentation/pages/bird/models/bird_resources.dart';
 import 'package:birdbreeder/injection.dart';
 import 'package:bloc/bloc.dart';
@@ -20,7 +21,7 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
       : super(
           BirdInitial(
             bird: bird ?? Bird.empty(),
-            isEdit: bird == null || false,
+            mode: bird == null ? BirdMode.create : BirdMode.show,
             birdResources: BirdResources(
               cagesList: [],
               colorsList: [],
@@ -51,7 +52,7 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
     emit(
       BirdLoading(
         bird: state.bird,
-        isEdit: state.isEdit,
+        mode: state.mode,
         birdResources: state.birdResources,
       ),
     );
@@ -60,7 +61,7 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
     emit(
       BirdLoaded(
         bird: state.bird,
-        isEdit: state.isEdit,
+        mode: state.mode,
         birdResources: await _loadResources(),
       ),
     );
@@ -70,17 +71,19 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
     emit(
       BirdLoaded(
         bird: event.bird,
-        isEdit: state.isEdit,
+        mode: state.mode,
         birdResources: state.birdResources,
       ),
     );
   }
 
   FutureOr<void> _onEdit(BirdEdit event, Emitter<BirdState> emit) {
+    if (state.mode == BirdMode.create) return null;
+
     emit(
       BirdLoaded(
         bird: state.bird,
-        isEdit: event.on,
+        mode: state.mode == BirdMode.show ? BirdMode.edit : BirdMode.show,
         birdResources: state.birdResources,
       ),
     );
@@ -140,7 +143,7 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
     emit(
       BirdLoading(
         bird: state.bird,
-        isEdit: state.isEdit,
+        mode: state.mode,
         birdResources: state.birdResources,
       ),
     );
@@ -159,7 +162,7 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
       emit(
         BirdError(
           bird: state.bird,
-          isEdit: state.isEdit,
+          mode: state.mode,
           birdResources: state.birdResources,
         ),
       );
@@ -167,7 +170,7 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
       emit(
         BirdSaved(
           bird: result.asValue!.value,
-          isEdit: false,
+          mode: BirdMode.show,
           birdResources: state.birdResources,
         ),
       );
@@ -176,7 +179,7 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
     emit(
       BirdLoaded(
         bird: state.bird,
-        isEdit: state.isEdit,
+        mode: state.mode,
         birdResources: state.birdResources,
       ),
     );
@@ -186,7 +189,7 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
     emit(
       BirdLoading(
         bird: state.bird,
-        isEdit: state.isEdit,
+        mode: state.mode,
         birdResources: state.birdResources,
       ),
     );
@@ -197,7 +200,7 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
       emit(
         BirdError(
           bird: state.bird,
-          isEdit: state.isEdit,
+          mode: state.mode,
           birdResources: state.birdResources,
         ),
       );
@@ -205,7 +208,7 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
       emit(
         BirdLoaded(
           bird: state.bird,
-          isEdit: state.isEdit,
+          mode: state.mode,
           birdResources: state.birdResources,
         ),
       );
@@ -214,7 +217,7 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
     emit(
       BirdDeleted(
         bird: state.bird,
-        isEdit: false,
+        mode: state.mode,
         birdResources: state.birdResources,
       ),
     );
