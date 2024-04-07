@@ -14,10 +14,13 @@ _$CageDtoImpl _$$CageDtoImplFromJson(Map<String, dynamic> json) =>
       width: json['width'] as int?,
       height: json['height'] as int?,
       depth: json['depth'] as int?,
-    );
+    )..lastUpdated = json['lastUpdated'] == null
+        ? null
+        : DateTime.parse(json['lastUpdated'] as String);
 
 Map<String, dynamic> _$$CageDtoImplToJson(_$CageDtoImpl instance) =>
     <String, dynamic>{
+      'lastUpdated': instance.lastUpdated?.toIso8601String(),
       'id': instance.id,
       'name': instance.name,
       'description': instance.description,

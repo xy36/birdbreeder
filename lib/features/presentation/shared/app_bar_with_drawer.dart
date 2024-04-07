@@ -14,6 +14,7 @@ class AppBarWithDrawer extends StatelessWidget implements PreferredSizeWidget {
     if (kIsWeb) return const SizedBox.shrink();
     return AppBar(
       title: Text(title ?? ''),
+      actions: actions,
       leading: IconButton(
         icon: const Icon(Icons.menu),
         onPressed: () async {

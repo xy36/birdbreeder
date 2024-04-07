@@ -1,5 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/presentation/pages/bird/bloc/bird_bloc.dart';
+import 'package:birdbreeder/features/presentation/pages/bird/models/bird_mode.dart';
 
 class EditButton extends StatelessWidget {
   const EditButton({
@@ -10,11 +11,12 @@ class EditButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BirdBloc, BirdState>(
       builder: (context, state) {
+        final icon = state.mode == BirdMode.edit ? Icons.edit_off : Icons.edit;
         return IconButton(
           onPressed: () {
-            context.read<BirdBloc>().add(BirdEvent.edit(on: !state.isEdit));
+            context.read<BirdBloc>().add(const BirdEvent.toggleEditAndShow());
           },
-          icon: Icon(state.isEdit ? Icons.edit_off : Icons.edit),
+          icon: Icon(icon),
         );
       },
     );

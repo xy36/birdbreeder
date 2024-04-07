@@ -1,4 +1,6 @@
+import 'package:birdbreeder/features/data/firestore_cages_repository.dart';
 import 'package:birdbreeder/features/data/firestore_repository.dart';
+import 'package:birdbreeder/features/domain/i_cages_repository.dart';
 import 'package:birdbreeder/features/domain/i_repository.dart';
 import 'package:birdbreeder/logging_service.dart';
 import 'package:birdbreeder/services/authentication/firebase/firebase_authentication_service.dart';
@@ -15,7 +17,6 @@ void initializeDependencyInjection(FirebaseApp app) {
   s1
     // Misc
     ..registerSingleton<LoggingService>(LoggingService())
-    ..registerLazySingleton<IRepository>(FiretoreRepository.new)
     ..registerLazySingleton<FirebaseFirestore>(
       () => FirebaseFirestore.instanceFor(app: app),
     )
@@ -25,6 +26,8 @@ void initializeDependencyInjection(FirebaseApp app) {
     ..registerLazySingleton<IAuthenticationService>(
       FirebaseAuthenticationService.new,
     )
+    ..registerLazySingleton<IRepository>(FiretoreRepository.new)
+    ..registerLazySingleton<ICagesRepository>(FirestoreCagesRepository.new)
 
     // External
     ..registerLazySingleton<RouteObserver<ModalRoute<void>>>(

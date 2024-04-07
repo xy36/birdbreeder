@@ -1,5 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/presentation/pages/bird/bloc/bird_bloc.dart';
+import 'package:birdbreeder/features/presentation/pages/bird/models/bird_mode.dart';
 import 'package:birdbreeder/features/presentation/pages/bird/widgets/actions/delete_button.dart';
 import 'package:birdbreeder/features/presentation/pages/bird/widgets/actions/edit_button.dart';
 import 'package:birdbreeder/features/presentation/pages/bird/widgets/actions/save_button.dart';
@@ -16,17 +17,32 @@ class BirdScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: Text(
-              state.isEdit ? context.l10n.bird__edit : context.l10n.bird__title,
+              switch (state.mode) {
+                BirdMode.edit => context.l10n.bird__edit,
+                BirdMode.create => context.l10n.add_bird__title,
+                BirdMode.show => context.l10n.bird__title,
+              },
             ),
             actions: [
-              if (state.isEdit) ...[
-                const SaveButton(),
-                const DeleteButton(),
-              ],
-              const EditButton(),
+              ...switch (state.mode) {
+                BirdMode.edit => [
+                    const SaveButton(),
+                    const DeleteButton(),
+                    const EditButton(),
+                  ],
+                BirdMode.create => [
+                    const SaveButton(),
+                  ],
+                BirdMode.show => [
+                    const EditButton(),
+                  ],
+              },
             ],
           ),
-          body: state.isEdit ? const EditBirdForm() : const BirdForm(),
+          body: switch (state.mode) {
+            BirdMode.edit || BirdMode.create => const EditBirdForm(),
+            BirdMode.show => const BirdForm(),
+          },
         );
       },
     );
