@@ -34,10 +34,13 @@ _$BirdDtoImpl _$$BirdDtoImplFromJson(Map<String, dynamic> json) =>
       motherRingnumber: json['motherRingnumber'] as String?,
       partnerRingnumber: json['partnerRingnumber'] as String?,
       isForSale: json['isForSale'] as bool?,
-    );
+    )..lastUpdated = json['lastUpdated'] == null
+        ? null
+        : DateTime.parse(json['lastUpdated'] as String);
 
 Map<String, dynamic> _$$BirdDtoImplToJson(_$BirdDtoImpl instance) =>
     <String, dynamic>{
+      'lastUpdated': instance.lastUpdated?.toIso8601String(),
       'id': instance.id,
       'ringnumber': instance.ringnumber,
       'speciesId': instance.speciesId,

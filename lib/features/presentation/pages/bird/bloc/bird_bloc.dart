@@ -1,15 +1,16 @@
 import 'dart:async';
 
 import 'package:async/async.dart';
+import 'package:birdbreeder/features/domain/i_birds_repository.dart';
 import 'package:birdbreeder/features/domain/i_cages_repository.dart';
-import 'package:birdbreeder/features/domain/i_repository.dart';
+import 'package:birdbreeder/features/domain/i_color_repository.dart';
+import 'package:birdbreeder/features/domain/i_species_repository.dart';
 import 'package:birdbreeder/features/domain/models/entities/bird.dart';
 import 'package:birdbreeder/features/domain/models/entities/bird_color.dart';
 import 'package:birdbreeder/features/domain/models/entities/cage.dart';
 import 'package:birdbreeder/features/domain/models/entities/species.dart';
 import 'package:birdbreeder/features/presentation/pages/bird/models/bird_mode.dart';
 import 'package:birdbreeder/features/presentation/pages/bird/models/bird_resources.dart';
-import 'package:birdbreeder/injection.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -18,8 +19,13 @@ part 'bird_event.dart';
 part 'bird_state.dart';
 
 class BirdBloc extends Bloc<BirdEvent, BirdState> {
-  BirdBloc({required Bird? bird})
-      : super(
+  BirdBloc(
+    this.speciesRepo,
+    this.birdColorsRepo,
+    this.cagesRepo,
+    this.birdsRepo, {
+    required Bird? bird,
+  }) : super(
           BirdInitial(
             bird: bird ?? Bird.empty(),
             mode: bird == null ? BirdMode.create : BirdMode.show,
@@ -37,10 +43,15 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
     on<BirdDelete>(_onDelete);
   }
 
+  final ISpeciesRepository speciesRepo;
+  final IBirdColorsRepository birdColorsRepo;
+  final ICagesRepository cagesRepo;
+  final IBirdsRepository birdsRepo;
+
   Future<BirdResources> _loadResources() async {
-    final colors = (await s1.get<IRepository>().getColors()).asValue?.value;
-    final species = (await s1.get<IRepository>().getSpecies()).asValue?.value;
-    final cages = (await s1.get<ICagesRepository>().getAll()).asValue?.value;
+    final colors = (await birdColorsRepo.getAll()).asValue?.value;
+    final species = (await speciesRepo.getAll()).asValue?.value;
+    final cages = (await cagesRepo.getAll()).asValue?.value;
 
     return BirdResources(
       colorsList: colors ?? [],
@@ -99,9 +110,8 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
       return null;
     }
 
-    final newSpecies = await s1
-        .get<IRepository>()
-        .createSpecies(Species(name: bird.species!.name));
+    final newSpecies =
+        await speciesRepo.create(Species(name: bird.species!.name));
 
     return bird.copyWith(species: newSpecies.asValue?.value);
   }
@@ -115,9 +125,8 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
       return null;
     }
 
-    final newColor = await s1
-        .get<IRepository>()
-        .createColor(BirdColor(name: bird.color!.name));
+    final newColor =
+        await birdColorsRepo.create(BirdColor(name: bird.color!.name));
 
     return bird.copyWith(color: newColor.asValue?.value);
   }
@@ -131,8 +140,7 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
       return null;
     }
 
-    final newCage =
-        await s1.get<ICagesRepository>().create(Cage(name: bird.cage!.name));
+    final newCage = await cagesRepo.create(Cage(name: bird.cage!.name));
 
     return bird.copyWith(cage: newCage.asValue?.value);
   }
@@ -154,9 +162,9 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
     bird = await _createNewCageIfNotExists(bird) ?? bird;
 
     if (bird.id == null) {
-      result = await s1.get<IRepository>().createBird(bird);
+      result = await birdsRepo.create(bird);
     } else {
-      result = await s1.get<IRepository>().updateBird(bird);
+      result = await birdsRepo.update(bird);
     }
 
     if (result.isError) {
@@ -195,7 +203,7 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
       ),
     );
 
-    final result = await s1.get<IRepository>().deleteBird(state.bird.id!);
+    final result = await birdsRepo.delete(state.bird);
 
     if (result.isError) {
       emit(

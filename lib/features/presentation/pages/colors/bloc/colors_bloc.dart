@@ -1,9 +1,8 @@
 import 'dart:async';
 
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/domain/i_repository.dart';
+import 'package:birdbreeder/features/domain/i_color_repository.dart';
 import 'package:birdbreeder/features/domain/models/entities/bird_color.dart';
-import 'package:birdbreeder/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'colors_bloc.freezed.dart';
@@ -11,17 +10,19 @@ part 'colors_event.dart';
 part 'colors_state.dart';
 
 class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
-  ColorsBloc() : super(const Initial()) {
+  ColorsBloc(this.birdColorsRepo) : super(const Initial()) {
     on<Load>(_onLoad);
     on<AddColor>(_onAddColor);
     on<EditColor>(_onEditColor);
     on<DeleteColor>(_onDeleteColor);
   }
 
+  final IBirdColorsRepository birdColorsRepo;
+
   FutureOr<void> _onAddColor(AddColor event, Emitter<ColorsState> emit) async {
     emit(const Loading());
 
-    final result = await s1.get<IRepository>().createColor(event.color);
+    final result = await birdColorsRepo.create(event.color);
 
     if (result.isError) {
       emit(const Error());
@@ -34,7 +35,7 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
   FutureOr<void> _onLoad(Load event, Emitter<ColorsState> emit) async {
     emit(const Loading());
 
-    final result = await s1.get<IRepository>().getColors();
+    final result = await birdColorsRepo.getAll();
 
     if (result.isError) {
       emit(const Error());
@@ -50,7 +51,7 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
   ) async {
     emit(const Loading());
 
-    final result = await s1.get<IRepository>().updateColor(event.color);
+    final result = await birdColorsRepo.update(event.color);
 
     if (result.isError) {
       emit(const Error());
@@ -68,7 +69,7 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
 
     emit(const Loading());
 
-    final result = await s1.get<IRepository>().deleteColor(event.color.id!);
+    final result = await birdColorsRepo.delete(event.color);
 
     if (result.isError) {
       emit(const Error());

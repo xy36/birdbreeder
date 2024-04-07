@@ -107,7 +107,7 @@ class __$$BirdColorDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$BirdColorDtoImpl implements _BirdColorDto {
+class _$BirdColorDtoImpl with Timestamp implements _BirdColorDto {
   _$BirdColorDtoImpl({this.id, this.name});
 
   factory _$BirdColorDtoImpl.fromJson(Map<String, dynamic> json) =>
@@ -150,7 +150,7 @@ class _$BirdColorDtoImpl implements _BirdColorDto {
   }
 }
 
-abstract class _BirdColorDto implements BirdColorDto {
+abstract class _BirdColorDto implements BirdColorDto, Timestamp {
   factory _BirdColorDto({final String? id, final String? name}) =
       _$BirdColorDtoImpl;
 

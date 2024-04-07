@@ -1,13 +1,14 @@
+import 'package:birdbreeder/features/domain/models/dtos/timestamp.dart';
+import 'package:birdbreeder/features/domain/models/enums/origin.dart';
+import 'package:birdbreeder/features/domain/models/enums/sex.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../enums/origin.dart';
-import '../enums/sex.dart';
 
 part 'bird_dto.freezed.dart';
 part 'bird_dto.g.dart';
 
 @freezed
-class BirdDto with _$BirdDto {
+class BirdDto with _$BirdDto, Timestamp {
+  @With<Timestamp>()
   factory BirdDto({
     required String? id,
     required String? ringnumber,

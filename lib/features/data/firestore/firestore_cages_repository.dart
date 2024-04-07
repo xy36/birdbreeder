@@ -1,5 +1,5 @@
 import 'package:async/async.dart';
-import 'package:birdbreeder/features/data/firestore_cache.dart';
+import 'package:birdbreeder/features/data/firestore/firestore_cache.dart';
 import 'package:birdbreeder/features/domain/i_cages_repository.dart';
 import 'package:birdbreeder/features/domain/mapper/mapper.dart';
 import 'package:birdbreeder/features/domain/models/dtos/cage_dto.dart';
@@ -11,7 +11,7 @@ import 'package:birdbreeder/services/authentication/i_authentication_service.dar
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uuid/uuid.dart';
 
-const String prefix = 'FirestoreRepository';
+const String prefix = 'FirestoreCagesRepository';
 
 class FirestoreCagesRepository extends FirestoreCache<Cage>
     implements ICagesRepository {
@@ -25,6 +25,9 @@ class FirestoreCagesRepository extends FirestoreCache<Cage>
       s1.get<IAuthenticationService>().currentUser().asValue?.value;
   final logger = s1.get<LoggingService>().logger;
 
+  CollectionReference<Map<String, dynamic>> get cagesCollection =>
+      db.collection('users').doc(authUser!.uid).collection('cages');
+
   @override
   Future<Result<Cage>> create(Cage cage) async {
     logger.verbose('[$prefix] Creating cage: $cage');
@@ -34,16 +37,16 @@ class FirestoreCagesRepository extends FirestoreCache<Cage>
       return Future.value(Result.error('User is not authenticated'));
     }
 
-    final userId = authUser!.uid;
-
     final newCage = cage.copyWith(id: const Uuid().v4()).toDto()
       ..setLastUpdated();
 
     try {
       // add the cage to the user's cages collection
-      await db.collection('users').doc(userId).collection('cages').add(
-            newCage.toJson(),
-          );
+      await cagesCollection.add(
+        newCage.toJson(),
+      );
+
+      addOrUpdateCache([newCage.toCage()]);
 
       logger.verbose('[$prefix] Cage created: $newCage');
       return Result.value(newCage.toCage());
@@ -62,14 +65,9 @@ class FirestoreCagesRepository extends FirestoreCache<Cage>
       return Future.value(Result.error('User is not authenticated'));
     }
 
-    final userId = authUser!.uid;
-
     try {
       // remove the cage from the user's cages collection
-      await db
-          .collection('users')
-          .doc(userId)
-          .collection('cages')
+      await cagesCollection
           .where('id', isEqualTo: cage.id)
           .get()
           .then((value) => value.docs.first.reference.delete());
@@ -94,13 +92,8 @@ class FirestoreCagesRepository extends FirestoreCache<Cage>
       return Future.value(Result.error('User is not authenticated'));
     }
 
-    final userId = authUser!.uid;
-
     try {
-      final cagesDtos = await db
-          .collection('users')
-          .doc(userId)
-          .collection('cages')
+      final cagesDtos = await cagesCollection
           .where(
             'lastUpdated',
             isGreaterThan: lastUpdated.toIso8601String(),
@@ -111,12 +104,14 @@ class FirestoreCagesRepository extends FirestoreCache<Cage>
                 value.docs.map((doc) => CageDto.fromJson(doc.data())).toList(),
           );
 
-      logger.verbose('[$prefix] Got all cages (${cagesDtos.length})');
-
       final cages = cagesDtos.toCageList();
 
       // after successfully getting all cages, add them to the cache
       addOrUpdateCache(cages);
+
+      logger.verbose(
+        '[$prefix] Got all cages (all:${cache.length} | readFromFirestore:${cagesDtos.length})',
+      );
 
       return Result.value(
         cache,
@@ -172,20 +167,23 @@ class FirestoreCagesRepository extends FirestoreCache<Cage>
       return Future.value(Result.error('User is not authenticated'));
     }
 
-    final userId = authUser!.uid;
-
     try {
-      final cage = await db
-          .collection('users')
-          .doc(userId)
-          .collection('cages')
+      try {
+        final cageFromCache = cache.firstWhere((element) => element.id == id);
+        logger.verbose('[$prefix] Cache hit for cage with id: $id');
+        return Result.value(cageFromCache);
+      } catch (e) {
+        logger.verbose('[$prefix] Cache miss for cage with id: $id');
+      }
+
+      final cageFromFirestore = await cagesCollection
           .where('id', isEqualTo: id)
           .get()
           .then((value) => value.docs.first.reference.get());
 
-      logger.verbose('[$prefix] Got cage with id: $id');
+      logger.verbose('[$prefix] Got cage with id: $id from Firestore');
 
-      return Result.value(CageDto.fromJson(cage.data()!).toCage());
+      return Result.value(CageDto.fromJson(cageFromFirestore.data()!).toCage());
     } catch (e, st) {
       logger.handle(e, st, '[$prefix] Error getting cage with id: $id');
       return Result.error(e.toString());
@@ -206,20 +204,14 @@ class FirestoreCagesRepository extends FirestoreCache<Cage>
       return Future.value(Result.error('Cage id is null'));
     }
 
-    final userId = authUser!.uid;
-
     final updatedCage = cage.toDto()..setLastUpdated();
 
     try {
-      await db
-          .collection('users')
-          .doc(userId)
-          .collection('cages')
-          .where('id', isEqualTo: updatedCage.id)
-          .get()
-          .then(
+      await cagesCollection.where('id', isEqualTo: updatedCage.id).get().then(
             (value) => value.docs.first.reference.update(updatedCage.toJson()),
           );
+
+      addOrUpdateCache([updatedCage.toCage()]);
 
       return Result.value(cage);
     } catch (e, st) {

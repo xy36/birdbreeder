@@ -118,7 +118,7 @@ class __$$SpeciesDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SpeciesDtoImpl implements _SpeciesDto {
+class _$SpeciesDtoImpl with Timestamp implements _SpeciesDto {
   _$SpeciesDtoImpl(
       {required this.id, required this.name, required this.latName});
 
@@ -165,7 +165,7 @@ class _$SpeciesDtoImpl implements _SpeciesDto {
   }
 }
 
-abstract class _SpeciesDto implements SpeciesDto {
+abstract class _SpeciesDto implements SpeciesDto, Timestamp {
   factory _SpeciesDto(
       {required final String? id,
       required final String? name,

@@ -1,7 +1,11 @@
-import 'package:birdbreeder/features/data/firestore_cages_repository.dart';
-import 'package:birdbreeder/features/data/firestore_repository.dart';
+import 'package:birdbreeder/features/data/firestore/firestore_bird_colors_repository.dart';
+import 'package:birdbreeder/features/data/firestore/firestore_birds_repository.dart';
+import 'package:birdbreeder/features/data/firestore/firestore_cages_repository.dart';
+import 'package:birdbreeder/features/data/firestore/firestore_species_repository.dart';
+import 'package:birdbreeder/features/domain/i_birds_repository.dart';
 import 'package:birdbreeder/features/domain/i_cages_repository.dart';
-import 'package:birdbreeder/features/domain/i_repository.dart';
+import 'package:birdbreeder/features/domain/i_color_repository.dart';
+import 'package:birdbreeder/features/domain/i_species_repository.dart';
 import 'package:birdbreeder/logging_service.dart';
 import 'package:birdbreeder/services/authentication/firebase/firebase_authentication_service.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
@@ -26,8 +30,12 @@ void initializeDependencyInjection(FirebaseApp app) {
     ..registerLazySingleton<IAuthenticationService>(
       FirebaseAuthenticationService.new,
     )
-    ..registerLazySingleton<IRepository>(FiretoreRepository.new)
+    ..registerLazySingleton<IBirdsRepository>(FirestoreBirdsRepository.new)
     ..registerLazySingleton<ICagesRepository>(FirestoreCagesRepository.new)
+    ..registerLazySingleton<ISpeciesRepository>(FirestoreSpeciesRepository.new)
+    ..registerLazySingleton<IBirdColorsRepository>(
+      FirestoreBirdColorsRepository.new,
+    )
 
     // External
     ..registerLazySingleton<RouteObserver<ModalRoute<void>>>(
