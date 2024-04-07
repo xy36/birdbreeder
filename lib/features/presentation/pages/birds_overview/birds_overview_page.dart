@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/features/domain/i_birds_repository.dart';
 import 'package:birdbreeder/features/presentation/pages/birds_overview/birds_overview_screen.dart';
 import 'package:birdbreeder/features/presentation/pages/birds_overview/bloc/birds_bloc.dart';
+import 'package:birdbreeder/injection.dart';
 
 @RoutePage()
 class BirdsOverviewPage extends StatelessWidget {
@@ -10,7 +12,8 @@ class BirdsOverviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => BirdsBloc()..add(const BirdsEvent.load()),
+      create: (context) =>
+          BirdsBloc(s1.get<IBirdsRepository>())..add(const BirdsEvent.load()),
       child: const BirdsOverviewScreen(),
     );
   }

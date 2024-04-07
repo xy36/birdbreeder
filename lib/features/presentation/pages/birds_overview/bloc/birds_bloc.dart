@@ -1,18 +1,16 @@
 import 'dart:async';
 
-import 'package:birdbreeder/features/domain/i_repository.dart';
-import 'package:birdbreeder/injection.dart';
+import 'package:birdbreeder/features/domain/i_birds_repository.dart';
+import 'package:birdbreeder/features/domain/models/entities/bird.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../../domain/models/entities/bird.dart';
 
 part 'birds_bloc.freezed.dart';
 part 'birds_event.dart';
 part 'birds_state.dart';
 
 class BirdsBloc extends Bloc<BirdsEvent, BirdsState> {
-  BirdsBloc()
+  BirdsBloc(this.birdsRepo)
       : super(
           const _BirdsState(
             birds: [],
@@ -22,6 +20,8 @@ class BirdsBloc extends Bloc<BirdsEvent, BirdsState> {
     on<_SelectBird>(_onSelectBird);
   }
 
+  final IBirdsRepository birdsRepo;
+
   FutureOr<void> _onLoad(_Load event, Emitter<BirdsState> emit) async {
     emit(
       state.copyWith(
@@ -30,7 +30,7 @@ class BirdsBloc extends Bloc<BirdsEvent, BirdsState> {
       ),
     );
 
-    final birdsResult = await s1.get<IRepository>().getBirds();
+    final birdsResult = await birdsRepo.getAll();
 
     emit(
       state.copyWith(

@@ -316,7 +316,7 @@ class __$$BirdDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$BirdDtoImpl implements _BirdDto {
+class _$BirdDtoImpl with Timestamp implements _BirdDto {
   _$BirdDtoImpl(
       {required this.id,
       required this.ringnumber,
@@ -457,7 +457,7 @@ class _$BirdDtoImpl implements _BirdDto {
   }
 }
 
-abstract class _BirdDto implements BirdDto {
+abstract class _BirdDto implements BirdDto, Timestamp {
   factory _BirdDto(
       {required final String? id,
       required final String? ringnumber,

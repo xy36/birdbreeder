@@ -1,6 +1,6 @@
 import 'package:async/async.dart';
 
-abstract class IResourceRepository<T> {
+abstract class ICrudRepository<T> {
   /// Create new
   Future<Result<T>> create(T obj);
 

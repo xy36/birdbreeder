@@ -1,5 +1,6 @@
 import 'package:birdbreeder/features/domain/i_cages_repository.dart';
-import 'package:birdbreeder/features/domain/i_repository.dart';
+import 'package:birdbreeder/features/domain/i_color_repository.dart';
+import 'package:birdbreeder/features/domain/i_species_repository.dart';
 import 'package:birdbreeder/features/domain/models/dtos/dtos.dart';
 import 'package:birdbreeder/features/domain/models/entities/entities.dart';
 import 'package:birdbreeder/injection.dart';
@@ -23,13 +24,13 @@ extension BirdListMapperExtension on List<Bird> {
 class BirdMapper {
   Future<Bird> mapFrom(BirdDto object) async {
     final species = object.speciesId != null
-        ? (await s1.get<IRepository>().getSpeciesById(object.speciesId!))
+        ? (await s1.get<ISpeciesRepository>().getById(object.speciesId!))
             .asValue
             ?.value
         : null;
 
     final color = object.colorId != null
-        ? (await s1.get<IRepository>().getColorById(object.colorId!))
+        ? (await s1.get<IBirdColorsRepository>().getById(object.colorId!))
             .asValue
             ?.value
         : null;
