@@ -12,7 +12,7 @@ import 'package:uuid/uuid.dart';
 
 const String prefix = 'FirestoreBirdsRepository';
 
-class FirestoreBirdsRepository extends FirestoreCache<Bird>
+class FirestoreBirdsRepository extends FirestoreCache<BirdDto>
     implements IBirdsRepository {
   FirestoreBirdsRepository()
       : super(
@@ -71,7 +71,7 @@ class FirestoreBirdsRepository extends FirestoreCache<Bird>
 
       logger.verbose('[$prefix] Bird deleted with id: ${bird.id}');
 
-      removeFromCache([bird]);
+      removeFromCache([bird.toDto()]);
 
       return Result.value(null);
     } catch (e, st) {
@@ -103,13 +103,11 @@ class FirestoreBirdsRepository extends FirestoreCache<Bird>
 
       logger.verbose('[$prefix] Got all birds (${birdsDtos.length})');
 
-      final birds = await birdsDtos.toBirdList();
-
       // after successfully getting all birds, add them to the cache
-      addOrUpdateCache(birds);
+      addOrUpdateCache(birdsDtos);
 
       return Result.value(
-        cache,
+        await cache.toBirdList(),
       );
     } catch (e, st) {
       logger.handle(e, st, '[$prefix] Error getting all birds');

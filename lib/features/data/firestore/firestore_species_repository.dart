@@ -12,7 +12,7 @@ import 'package:uuid/uuid.dart';
 
 const String prefix = 'FirestoreSpeciesRepository';
 
-class FirestoreSpeciesRepository extends FirestoreCache<Species>
+class FirestoreSpeciesRepository extends FirestoreCache<SpeciesDto>
     implements ISpeciesRepository {
   FirestoreSpeciesRepository()
       : super(
@@ -45,7 +45,7 @@ class FirestoreSpeciesRepository extends FirestoreCache<Species>
         newSpecies.toJson(),
       );
 
-      addOrUpdateCache([newSpecies.toSpecies()]);
+      addOrUpdateCache([newSpecies]);
 
       logger.verbose('[$prefix] Species created: $newSpecies');
       return Result.value(newSpecies.toSpecies());
@@ -73,7 +73,7 @@ class FirestoreSpeciesRepository extends FirestoreCache<Species>
 
       logger.verbose('[$prefix] Species deleted with id: ${species.id}');
 
-      removeFromCache([species]);
+      removeFromCache([species.toDto()]);
 
       return Result.value(null);
     } catch (e, st) {
@@ -96,7 +96,7 @@ class FirestoreSpeciesRepository extends FirestoreCache<Species>
     }
 
     try {
-      final speciessDtos = await speciessCollection
+      final speciesDtos = await speciessCollection
           .where(
             'lastUpdated',
             isGreaterThan: lastUpdated.toIso8601String(),
@@ -109,16 +109,14 @@ class FirestoreSpeciesRepository extends FirestoreCache<Species>
           );
 
       logger.verbose(
-        '[$prefix] Got all species (all:${cache.length} | readFromFirestore:${speciessDtos.length})',
+        '[$prefix] Got all species (all:${cache.length} | readFromFirestore:${speciesDtos.length})',
       );
 
-      final speciess = speciessDtos.toSpeciesList();
-
       // after successfully getting all speciess, add them to the cache
-      addOrUpdateCache(speciess);
+      addOrUpdateCache(speciesDtos);
 
       return Result.value(
-        cache,
+        cache.toSpeciesList(),
       );
     } catch (e, st) {
       logger.handle(e, st, '[$prefix] Error getting all speciess');
@@ -142,7 +140,7 @@ class FirestoreSpeciesRepository extends FirestoreCache<Species>
 
         logger.verbose('[$prefix] Cache hit for species with id: $id');
 
-        return Result.value(speciesFromCache);
+        return Result.value(speciesFromCache.toSpecies());
       } catch (e) {
         logger.verbose('[$prefix] Cache miss for species with id: $id');
       }
@@ -187,7 +185,7 @@ class FirestoreSpeciesRepository extends FirestoreCache<Species>
                 value.docs.first.reference.update(updatedSpecies.toJson()),
           );
 
-      addOrUpdateCache([updatedSpecies.toSpecies()]);
+      addOrUpdateCache([updatedSpecies]);
 
       return Result.value(species);
     } catch (e, st) {

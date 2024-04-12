@@ -75,6 +75,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   if (kDebugMode) {
     try {
+      s1.get<FirebaseFirestore>().settings = const Settings(
+        persistenceEnabled: false,
+      );
       s1.get<FirebaseFirestore>().useFirestoreEmulator(
             'localhost',
             8081,

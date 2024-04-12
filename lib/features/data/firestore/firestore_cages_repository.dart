@@ -13,7 +13,7 @@ import 'package:uuid/uuid.dart';
 
 const String prefix = 'FirestoreCagesRepository';
 
-class FirestoreCagesRepository extends FirestoreCache<Cage>
+class FirestoreCagesRepository extends FirestoreCache<CageDto>
     implements ICagesRepository {
   FirestoreCagesRepository()
       : super(
@@ -46,7 +46,7 @@ class FirestoreCagesRepository extends FirestoreCache<Cage>
         newCage.toJson(),
       );
 
-      addOrUpdateCache([newCage.toCage()]);
+      addOrUpdateCache([newCage]);
 
       logger.verbose('[$prefix] Cage created: $newCage');
       return Result.value(newCage.toCage());
@@ -74,7 +74,7 @@ class FirestoreCagesRepository extends FirestoreCache<Cage>
 
       logger.verbose('[$prefix] Cage deleted with id: ${cage.id}');
 
-      removeFromCache([cage]);
+      removeFromCache([cage.toDto()]);
 
       return Result.value(null);
     } catch (e, st) {
@@ -104,17 +104,15 @@ class FirestoreCagesRepository extends FirestoreCache<Cage>
                 value.docs.map((doc) => CageDto.fromJson(doc.data())).toList(),
           );
 
-      final cages = cagesDtos.toCageList();
-
       // after successfully getting all cages, add them to the cache
-      addOrUpdateCache(cages);
+      addOrUpdateCache(cagesDtos);
 
       logger.verbose(
         '[$prefix] Got all cages (all:${cache.length} | readFromFirestore:${cagesDtos.length})',
       );
 
       return Result.value(
-        cache,
+        cache.toCageList(),
       );
     } catch (e, st) {
       logger.handle(e, st, '[$prefix] Error getting all cages');
@@ -171,7 +169,7 @@ class FirestoreCagesRepository extends FirestoreCache<Cage>
       try {
         final cageFromCache = cache.firstWhere((element) => element.id == id);
         logger.verbose('[$prefix] Cache hit for cage with id: $id');
-        return Result.value(cageFromCache);
+        return Result.value(cageFromCache.toCage());
       } catch (e) {
         logger.verbose('[$prefix] Cache miss for cage with id: $id');
       }
@@ -211,7 +209,7 @@ class FirestoreCagesRepository extends FirestoreCache<Cage>
             (value) => value.docs.first.reference.update(updatedCage.toJson()),
           );
 
-      addOrUpdateCache([updatedCage.toCage()]);
+      addOrUpdateCache([updatedCage]);
 
       return Result.value(cage);
     } catch (e, st) {
