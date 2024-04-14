@@ -2,7 +2,7 @@
 import 'package:birdbreeder/app.dart';
 import 'package:birdbreeder/app_config.dart';
 import 'package:birdbreeder/bootstrap.dart';
-import 'package:birdbreeder/injection.dart';
+import 'package:birdbreeder/services/injection.dart';
 
 const blankSentryDSN = '';
 

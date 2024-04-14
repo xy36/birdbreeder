@@ -1,5 +1,5 @@
-export 'package:birdbreeder/extensions/extensions.dart';
-export 'package:birdbreeder/features/presentation/shared/utils/bloc_helper.dart';
+export 'package:birdbreeder/core/extensions/extensions.dart';
+export 'package:birdbreeder/core/utils/bloc_helper.dart';
 export 'package:birdbreeder/l10n/l10n.dart';
 export 'package:dartx/dartx.dart';
 export 'package:flutter/material.dart';
