@@ -12,7 +12,7 @@ import 'package:uuid/uuid.dart';
 
 const String prefix = 'FirestoreBirdColorsRepository';
 
-class FirestoreBirdColorsRepository extends FirestoreCache<BirdColor>
+class FirestoreBirdColorsRepository extends FirestoreCache<BirdColorDto>
     implements IBirdColorsRepository {
   FirestoreBirdColorsRepository()
       : super(
@@ -45,7 +45,7 @@ class FirestoreBirdColorsRepository extends FirestoreCache<BirdColor>
         newBirdColor.toJson(),
       );
 
-      addOrUpdateCache([newBirdColor.toBirdColor()]);
+      addOrUpdateCache([newBirdColor]);
 
       logger.verbose('[$prefix] BirdColor created: $newBirdColor');
       return Result.value(newBirdColor.toBirdColor());
@@ -73,7 +73,7 @@ class FirestoreBirdColorsRepository extends FirestoreCache<BirdColor>
 
       logger.verbose('[$prefix] BirdColor deleted with id: ${birdColor.id}');
 
-      removeFromCache([birdColor]);
+      removeFromCache([birdColor.toDto()]);
 
       return Result.value(null);
     } catch (e, st) {
@@ -112,13 +112,11 @@ class FirestoreBirdColorsRepository extends FirestoreCache<BirdColor>
         '[$prefix] Got all bird colors (all:${cache.length} | readFromFirestore:${birdColorsDtos.length})',
       );
 
-      final birdColors = birdColorsDtos.toBirdColorList();
-
       // after successfully getting all birdColors, add them to the cache
-      addOrUpdateCache(birdColors);
+      addOrUpdateCache(birdColorsDtos);
 
       return Result.value(
-        cache,
+        cache.toBirdColorList(),
       );
     } catch (e, st) {
       logger.handle(e, st, '[$prefix] Error getting all birdColors');
@@ -140,7 +138,7 @@ class FirestoreBirdColorsRepository extends FirestoreCache<BirdColor>
         final birdColorFromCache =
             cache.firstWhere((element) => element.id == id);
         logger.verbose('[$prefix] Cache hit for birdColor with id: $id');
-        return Result.value(birdColorFromCache);
+        return Result.value(birdColorFromCache.toBirdColor());
       } catch (e) {
         logger.verbose('[$prefix] Cache miss for birdColor with id: $id');
       }
@@ -186,7 +184,7 @@ class FirestoreBirdColorsRepository extends FirestoreCache<BirdColor>
                 value.docs.first.reference.update(updatedBirdColor.toJson()),
           );
 
-      addOrUpdateCache([updatedBirdColor.toBirdColor()]);
+      addOrUpdateCache([updatedBirdColor]);
 
       return Result.value(birdColor);
     } catch (e, st) {
