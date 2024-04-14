@@ -4,9 +4,9 @@ import 'dart:developer';
 
 import 'package:birdbreeder/gen/assets.gen.dart';
 import 'package:birdbreeder/hive.dart';
-import 'package:birdbreeder/initialization_service.dart';
-import 'package:birdbreeder/injection.dart';
-import 'package:birdbreeder/logging_service.dart';
+import 'package:birdbreeder/services/initialization_service.dart';
+import 'package:birdbreeder/services/injection.dart';
+import 'package:birdbreeder/services/logging_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

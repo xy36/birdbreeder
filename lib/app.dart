@@ -1,6 +1,6 @@
 import 'package:birdbreeder/bootstrap.dart';
-import 'package:birdbreeder/injection.dart';
-import 'package:birdbreeder/routing/app_router.dart';
+import 'package:birdbreeder/services/injection.dart';
+import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/screen_size.dart';
 import 'package:flutter/material.dart';

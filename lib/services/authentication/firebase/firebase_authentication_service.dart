@@ -1,10 +1,9 @@
 import 'package:async/src/result/result.dart';
 import 'package:birdbreeder/services/authentication/authentication_status.dart';
+import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
+import 'package:birdbreeder/services/injection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/src/foundation/change_notifier.dart';
-
-import '../../../injection.dart';
-import '../i_authentication_service.dart';
 
 class FirebaseAuthenticationService implements IAuthenticationService {
   FirebaseAuthenticationService() {
@@ -29,9 +28,11 @@ class FirebaseAuthenticationService implements IAuthenticationService {
 
   @override
   Future<Result<User>> signUpWithEmailAndPassword(
-      String email, String password) async {
+    String email,
+    String password,
+  ) async {
     try {
-      UserCredential userCredential = await s1
+      final userCredential = await s1
           .get<FirebaseAuth>()
           .createUserWithEmailAndPassword(email: email, password: password);
 
@@ -46,9 +47,11 @@ class FirebaseAuthenticationService implements IAuthenticationService {
 
   @override
   Future<Result<User>> signInWithEmailAndPassword(
-      String email, String password) async {
+    String email,
+    String password,
+  ) async {
     try {
-      UserCredential userCredential =
+      final userCredential =
           await s1.get<FirebaseAuth>().signInWithEmailAndPassword(
                 email: email,
                 password: password,
