@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:birdbreeder/services/authentication/firebase/firebase_authentication_service.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
@@ -8,8 +7,6 @@ class SignUpPage extends StatelessWidget {
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final FirebaseAuthenticationService firebaseAuthService =
-      FirebaseAuthenticationService();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +30,7 @@ class SignUpPage extends StatelessWidget {
           ),
           const Text('Sign Up Page'),
           ElevatedButton(
-            onPressed: () => signUp(),
+            onPressed: signUp,
             child: const Text('Sign Up'),
           ),
 
@@ -50,17 +47,17 @@ class SignUpPage extends StatelessWidget {
     );
   }
 
-  void signUp() async {
-    final email = emailController.text;
-    final password = passwordController.text;
+  Future<void> signUp() async {
+    // final email = emailController.text;
+    // final password = passwordController.text;
 
-    final user =
-        await firebaseAuthService.signUpWithEmailAndPassword(email, password);
+    // final user =
+    //     await firebaseAuthService.signUpWithEmailAndPassword(email, password);
 
-    if (user != null) {
-      print('user is signed up');
-    } else {
-      print('user is not signed up');
-    }
+    // if (user != null) {
+    //   print('user is signed up');
+    // } else {
+    //   print('user is not signed up');
+    // }
   }
 }

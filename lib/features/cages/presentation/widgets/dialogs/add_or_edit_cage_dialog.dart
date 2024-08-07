@@ -1,5 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/cages/domain/entities/cage.dart';
+import 'package:birdbreeder/features/cages/domain/models/cage.dart';
 import 'package:flutter/services.dart';
 
 class AddOrEditCageDialog extends StatefulWidget {
@@ -15,7 +15,7 @@ class AddOrEditCageDialog extends StatefulWidget {
 class _AddOrEditCageDialogState extends State<AddOrEditCageDialog> {
   @override
   void initState() {
-    _cage = widget.cage ?? Cage();
+    _cage = widget.cage ?? Cage.create();
     super.initState();
   }
 

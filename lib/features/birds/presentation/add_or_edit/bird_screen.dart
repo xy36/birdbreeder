@@ -26,7 +26,7 @@ class BirdScreen extends StatelessWidget {
             actions: [
               ...switch (state.mode) {
                 BirdMode.edit => [
-                    const SaveButton(),
+                    if (context.read<BirdBloc>().isDirty) const SaveButton(),
                     const DeleteButton(),
                     const EditButton(),
                   ],

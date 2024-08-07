@@ -1,5 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/species/domain/entities/species.dart';
+import 'package:birdbreeder/features/species/domain/models/species.dart';
 
 class DeleteSpeciesDialog extends StatelessWidget {
   const DeleteSpeciesDialog({

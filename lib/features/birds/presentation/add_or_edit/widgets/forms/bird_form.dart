@@ -1,5 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/birds/domain/entities/sex.dart';
+import 'package:birdbreeder/features/birds/domain/models/sex_enum.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/bloc/bird_bloc.dart';
 
 class BirdForm extends StatelessWidget {
@@ -28,55 +28,55 @@ class BirdForm extends StatelessWidget {
             label: context.l10n.common__cage,
             value: state.bird.cage?.name,
           ),
-          DataRow(
-            label: context.l10n.common__father_ringnumber,
-            value: state.bird.motherRingnumber,
-          ),
-          DataRow(
-            label: context.l10n.common__mother_ringnumber,
-            value: state.bird.fatherRingnumber,
-          ),
+          // DataRow(
+          //   label: context.l10n.common__father_ringnumber,
+          //   value: state.bird.motherRingnumber,
+          // ),
+          // DataRow(
+          //   label: context.l10n.common__mother_ringnumber,
+          //   value: state.bird.fatherRingnumber,
+          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(context.l10n.common__sex),
-              state.bird.sex?.icon(context) ?? Sex.unknown.icon(context),
+              state.bird.sex.getIcon(context),
             ],
           ),
           DataRow(
             label: context.l10n.common__origin,
-            value: state.bird.bornDate?.toDateFormat(context),
+            value: state.bird.born?.toDateFormat(context),
           ),
-          DataRow(
-            label: context.l10n.common__born_date,
-            value: state.bird.boughtDate?.toDateFormat(context),
-          ),
-          DataRow(
-            label: context.l10n.common__bought_date,
-            value: state.bird.boughtDate?.toDateFormat(context),
-          ),
-          DataRow(
-            label: context.l10n.common__died_date,
-            value: state.bird.diedDate?.toDateFormat(context),
-          ),
-          DataRow(
-            label: context.l10n.common__bought_price,
-            value: state.bird.boughtPrice?.toString(),
-          ),
-          DataRow(
-            label: context.l10n.common__sell_price_offer,
-            value: state.bird.sellPriceOffer?.toString(),
-          ),
-          DataRow(
-            label: context.l10n.common__sell_price_real,
-            value: state.bird.sellPriceReal?.toString(),
-          ),
-          DataRow(
-            label: context.l10n.common__is_for_sale,
-            value: state.bird.isForSale ?? false
-                ? context.l10n.common__yes
-                : context.l10n.common__no,
-          ),
+          // DataRow(
+          //   label: context.l10n.common__born_date,
+          //   value: state.bird.bought?.toDateFormat(context),
+          // ),
+          // DataRow(
+          //   label: context.l10n.common__bought_date,
+          //   value: state.bird.bought?.toDateFormat(context),
+          // ),
+          // DataRow(
+          //   label: context.l10n.common__died_date,
+          //   value: state.bird.died?.toDateFormat(context),
+          // ),
+          // DataRow(
+          //   label: context.l10n.common__bought_price,
+          //   value: state.bird. boughtPrice?.toString(),
+          // ),
+          // DataRow(
+          //   label: context.l10n.common__sell_price_offer,
+          //   value: state.bird.sellPriceOffer?.toString(),
+          // ),
+          // DataRow(
+          //   label: context.l10n.common__sell_price_real,
+          //   value: state.bird.sellPriceReal?.toString(),
+          // ),
+          // DataRow(
+          //   label: context.l10n.common__is_for_sale,
+          //   value: state.bird.isForSale ?? false
+          //       ? context.l10n.common__yes
+          //       : context.l10n.common__no,
+          // ),
         ];
 
         return SingleChildScrollView(

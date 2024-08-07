@@ -1,5 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/species/domain/entities/species.dart';
+import 'package:birdbreeder/features/species/domain/models/species.dart';
 import 'package:birdbreeder/features/species/presentation/widgets/buttons/delete_species_button.dart';
 import 'package:birdbreeder/features/species/presentation/widgets/buttons/edit_species_button.dart';
 

@@ -1,7 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
-import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
@@ -46,23 +44,22 @@ class LoginPage extends StatelessWidget {
   }
 
   Future<bool> login() async {
-    final email = emailController.text;
-    final password = passwordController.text;
+    return true;
+    // final email = emailController.text;
+    // final password = passwordController.text;
 
-    final userResult = await s1
-        .get<IAuthenticationService>()
-        .signInWithEmailAndPassword(email, password);
+    // final userResult = await s1
+    //     .get<IAuthenticationService>()
+    //     .signInWithEmailAndPassword(email, password);
 
-    if (userResult.isValue) {
-      print('user is logged in');
-      return true;
-    } else {
-      print('user is not logged in');
-      return false;
-    }
+    // if (userResult.isValue) {
+    //   print('user is logged in');
+    //   return true;
+    // } else {
+    //   print('user is not logged in');
+    //   return false;
+    // }
   }
 
-  Future<void> logout() async {
-    await s1.get<IAuthenticationService>().signOut();
-  }
+  Future<void> logout() async {}
 }

@@ -1,5 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/colors/domain/entities/bird_color.dart';
+import 'package:birdbreeder/features/colors/domain/models/bird_color.dart';
 
 class AddOrEditColorDialog extends StatefulWidget {
   const AddOrEditColorDialog({super.key, required this.onAdd, this.color});
@@ -14,7 +14,7 @@ class AddOrEditColorDialog extends StatefulWidget {
 class _AddOrEditColorDialogState extends State<AddOrEditColorDialog> {
   @override
   void initState() {
-    _colors = widget.color ?? BirdColor();
+    _colors = widget.color ?? BirdColor.create();
     super.initState();
   }
 

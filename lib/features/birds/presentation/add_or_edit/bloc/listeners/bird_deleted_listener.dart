@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/utils/flash_helper.dart';
-import 'package:birdbreeder/features/birds/domain/entities/bird.dart';
+import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/bloc/bird_bloc.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
 

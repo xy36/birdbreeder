@@ -1,5 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/cages/domain/entities/cage.dart';
+import 'package:birdbreeder/features/cages/domain/models/cage.dart';
 import 'package:birdbreeder/features/cages/presentation/widgets/buttons/delete_cage_button.dart';
 import 'package:birdbreeder/features/cages/presentation/widgets/buttons/edit_cage_button.dart';
 

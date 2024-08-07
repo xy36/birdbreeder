@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:birdbreeder/features/birds/domain/entities/bird.dart';
+import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/domain/repositories/i_birds_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

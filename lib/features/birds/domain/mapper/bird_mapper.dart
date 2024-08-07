@@ -1,94 +1,47 @@
-import 'package:birdbreeder/features/birds/data/models/bird_dto.dart';
-import 'package:birdbreeder/features/birds/domain/entities/bird.dart';
-import 'package:birdbreeder/features/cages/domain/i_cages_repository.dart';
-import 'package:birdbreeder/features/colors/domain/repositories/i_color_repository.dart';
-import 'package:birdbreeder/features/species/domain/repositories/i_species_repository.dart';
-import 'package:birdbreeder/services/injection.dart';
+import 'package:auto_mappr_annotation/auto_mappr_annotation.dart';
+import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
+import 'package:birdbreeder/features/birds/domain/mapper/bird_mapper.auto_mappr.dart';
+import 'package:birdbreeder/features/birds/domain/models/bird.dart';
+import 'package:birdbreeder/features/cages/domain/mapper/cage_mapper.dart';
+import 'package:birdbreeder/features/cages/domain/models/cage.dart';
+import 'package:birdbreeder/features/colors/domain/mapper/bird_color_mapper.dart';
+import 'package:birdbreeder/features/colors/domain/models/bird_color.dart';
+import 'package:birdbreeder/features/species/domain/mapper/species_mapper.dart';
+import 'package:birdbreeder/features/species/domain/models/species.dart';
 
-extension BirdDtoMapperExtension on BirdDto {
-  Future<Bird> toBird() async => BirdMapper().mapFrom(this);
-}
+@AutoMappr([
+  MapType<BirdDto, Bird>(
+    fields: [
+      Field('species', custom: BirdMapper.convertSpeciesFromDto),
+      Field('color', custom: BirdMapper.convertColorFromDto),
+      Field('cage', custom: BirdMapper.convertCageFromDto),
+    ],
+  ),
+  MapType<Bird, BirdDto>(
+    fields: [
+      Field('species', custom: BirdMapper.convertSpeciesFromModel),
+      Field('color', custom: BirdMapper.convertColorFromModel),
+      Field('cage', custom: BirdMapper.convertCageFromModel),
+    ],
+  ),
+])
+class BirdMapper extends $BirdMapper {
+  static Species? convertSpeciesFromDto(BirdDto dto) =>
+      dto.expand?.species != null
+          ? SpeciesMapper().convert(dto.expand!.species)
+          : null;
 
-extension BirdMapperExtension on Bird {
-  BirdDto toDto() => BirdMapper().mapTo(this);
-}
+  static String? convertSpeciesFromModel(Bird model) => model.species?.id;
 
-extension BirdDtoListMapperExtension on List<BirdDto> {
-  Future<List<Bird>> toBirdList() async => BirdMapper().mapFromList(this);
-}
+  static BirdColor? convertColorFromDto(BirdDto dto) =>
+      dto.expand?.color != null
+          ? BirdColorMapper().convert(dto.expand!.color)
+          : null;
 
-extension BirdListMapperExtension on List<Bird> {
-  List<BirdDto> toDtoList() => BirdMapper().mapToList(this);
-}
+  static String? convertColorFromModel(Bird model) => model.color?.id;
 
-class BirdMapper {
-  Future<Bird> mapFrom(BirdDto object) async {
-    final species = object.speciesId != null
-        ? (await s1.get<ISpeciesRepository>().getById(object.speciesId!))
-            .asValue
-            ?.value
-        : null;
+  static Cage? convertCageFromDto(BirdDto dto) =>
+      dto.expand?.cage != null ? CageMapper().convert(dto.expand!.cage) : null;
 
-    final color = object.colorId != null
-        ? (await s1.get<IBirdColorsRepository>().getById(object.colorId!))
-            .asValue
-            ?.value
-        : null;
-
-    final cage = object.cageId != null
-        ? (await s1.get<ICagesRepository>().getById(object.cageId!))
-            .asValue
-            ?.value
-        : null;
-
-    return Bird(
-      id: object.id,
-      ringnumber: object.ringnumber,
-      cage: cage,
-      color: color,
-      species: species,
-      sex: object.sex,
-      origin: object.origin,
-      bornDate: object.bornDate,
-      boughtDate: object.boughtDate,
-      boughtPrice: object.boughtPrice,
-      diedDate: object.diedDate,
-      fatherRingnumber: object.fatherRingnumber,
-      motherRingnumber: object.motherRingnumber,
-      partnerRingnumber: object.partnerRingnumber,
-      isForSale: object.isForSale,
-      sellDate: object.sellDate,
-      sellPriceOffer: object.sellPriceOffer,
-      sellPriceReal: object.sellPriceReal,
-    );
-  }
-
-  Future<List<Bird>> mapFromList(List<BirdDto> objects) async {
-    return Future.wait(objects.map((dto) async => await mapFrom(dto)).toList());
-  }
-
-  BirdDto mapTo(Bird object) => BirdDto(
-        id: object.id,
-        ringnumber: object.ringnumber,
-        cageId: object.cage?.id,
-        speciesId: object.species?.id,
-        colorId: object.color?.id,
-        bornDate: object.bornDate,
-        boughtDate: object.boughtDate,
-        boughtPrice: object.boughtPrice,
-        diedDate: object.diedDate,
-        fatherRingnumber: object.fatherRingnumber,
-        motherRingnumber: object.motherRingnumber,
-        partnerRingnumber: object.partnerRingnumber,
-        isForSale: object.isForSale,
-        sellDate: object.sellDate,
-        sellPriceOffer: object.sellPriceOffer,
-        sellPriceReal: object.sellPriceReal,
-        origin: object.origin,
-        sex: object.sex,
-      );
-
-  List<BirdDto> mapToList(List<Bird> objects) {
-    return objects.map(mapTo).toList();
-  }
+  static String? convertCageFromModel(Bird model) => model.cage?.id;
 }

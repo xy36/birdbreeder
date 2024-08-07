@@ -1,5 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/colors/domain/entities/bird_color.dart';
+import 'package:birdbreeder/features/colors/domain/models/bird_color.dart';
 
 class DeleteColorDialog extends StatelessWidget {
   const DeleteColorDialog({

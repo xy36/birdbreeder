@@ -1,6 +1,6 @@
-import 'package:birdbreeder/features/cages/domain/entities/cage.dart';
-import 'package:birdbreeder/features/colors/domain/entities/bird_color.dart';
-import 'package:birdbreeder/features/species/domain/entities/species.dart';
+import 'package:birdbreeder/features/cages/domain/models/cage.dart';
+import 'package:birdbreeder/features/colors/domain/models/bird_color.dart';
+import 'package:birdbreeder/features/species/domain/models/species.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'bird_resources.freezed.dart';

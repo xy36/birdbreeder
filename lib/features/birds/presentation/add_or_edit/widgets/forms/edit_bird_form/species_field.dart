@@ -1,10 +1,8 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/birds/domain/entities/bird.dart';
+import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/bloc/bird_bloc.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/models/bird_resources.dart';
-import 'package:birdbreeder/features/species/domain/entities/species.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_autocomplete/easy_autocomplete.dart';
 
 class SpeciesField extends StatelessWidget {
   const SpeciesField({
@@ -19,17 +17,17 @@ class SpeciesField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return EasyAutocomplete(
-      initialValue: bird.species?.name,
-      decoration: InputDecoration(
-        labelText: context.l10n.common__species,
-      ),
-      suggestions: birdResources.speciesList
+    return DropdownButtonFormField(
+      items: birdResources.speciesList
           .map(
-            (e) => e.name ?? '-',
+            (e) => DropdownMenuItem(
+              value: e.name,
+              child: Text(e.name ?? '-'),
+            ),
           )
           .toList(),
-      onSubmitted: (value) {
+      value: bird.species?.name,
+      onChanged: (value) {
         final species = birdResources.speciesList.firstWhereOrNull(
           (s) => s.name == value,
         );
@@ -38,13 +36,40 @@ class SpeciesField extends StatelessWidget {
               BirdEvent.change(bird: bird.copyWith(species: species)),
             );
       },
-      onChanged: (value) {
-        context.read<BirdBloc>().add(
-              BirdEvent.change(
-                bird: bird.copyWith(species: Species(name: value)),
-              ),
-            );
-      },
+      decoration: InputDecoration(
+        labelText: context.l10n.common__species,
+      ),
     );
+
+    // return EasyAutocomplete(
+    //   initialValue: bird.species?.name,
+    //   decoration: InputDecoration(
+    //     labelText: context.l10n.common__species,
+    //   ),
+    //   suggestions: birdResources.speciesList
+    //       .map(
+    //         (e) => e.name ?? '-',
+    //       )
+    //       .toList(),
+    //   onSubmitted: (value) {
+    //     final species = birdResources.speciesList.firstWhereOrNull(
+    //       (s) => s.name == value,
+    //     );
+
+    //     context.read<BirdBloc>().add(
+    //           BirdEvent.change(bird: bird.copyWith(species: species)),
+    //         );
+    //   },
+    //   onChanged: (value) {
+    //     // context.read<BirdBloc>().add(
+    //     //       BirdEvent.change(
+    //     //         bird: bird.copyWith(
+    //     //           species:
+    //     //               (bird.species ?? Species.create()).copyWith(name: value),
+    //     //         ),
+    //     //       ),
+    //     //     );
+    //   },
+    // );
   }
 }

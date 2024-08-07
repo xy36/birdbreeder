@@ -1,5 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/species/domain/entities/species.dart';
+import 'package:birdbreeder/features/species/domain/models/species.dart';
 
 class AddOrEditSpeciesDialog extends StatefulWidget {
   const AddOrEditSpeciesDialog({super.key, required this.onAdd, this.species});
@@ -14,7 +14,7 @@ class AddOrEditSpeciesDialog extends StatefulWidget {
 class _AddOrEditSpeciesDialogState extends State<AddOrEditSpeciesDialog> {
   @override
   void initState() {
-    _species = widget.species ?? Species();
+    _species = widget.species ?? Species.create();
     super.initState();
   }
 
