@@ -9,6 +9,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_mappr_annotation/auto_mappr_annotation.dart' as _i1;
 
+import '../../../../core/utils/user_helper.dart' as _i5;
 import '../../data/dtos/bird_dto.dart' as _i2;
 import '../models/bird.dart' as _i3;
 import 'bird_mapper.dart' as _i4;
@@ -328,6 +329,7 @@ class $BirdMapper implements _i1.AutoMapprInterface {
       mother: model.mother,
       sex: model.sex,
       sold: model.sold,
+      user: _i5.UserHelper.insertUser(),
       children: model.children,
     );
   }

@@ -1,28 +1,76 @@
 import 'package:async/async.dart';
+import 'package:birdbreeder/core/extensions/mapper_extensions.dart';
 import 'package:birdbreeder/services/authentication/authentication_status.dart';
+import 'package:birdbreeder/services/authentication/dtos/user_dto.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
-import 'package:birdbreeder/services/authentication/user.dart';
+import 'package:birdbreeder/services/authentication/models/user.dart';
+import 'package:birdbreeder/services/logging_service.dart';
+import 'package:birdbreeder/services/pocketbase_service.dart';
 import 'package:flutter/material.dart';
+import 'package:pocketbase/pocketbase.dart';
 
 class AuthenticationService implements IAuthenticationService {
-  @override
-  // TODO: implement authenticationStatus
-  ValueNotifier<AuthenticationStatus> get authenticationStatus =>
-      ValueNotifier<AuthenticationStatus>(AuthenticationStatus.authenticated);
+  AuthenticationService(this._pocketBaseService, this._loggingService) {
+    _pocketBaseService.authStore.onChange.listen((event) {
+      print('authStore.onChange event: $event');
+      if (_pocketBaseService.authStore.isValid) {
+        authenticationStatus.value = AuthenticationStatus.authenticated;
+      } else {
+        authenticationStatus.value = AuthenticationStatus.unauthenticated;
+      }
+    });
+
+    if (_pocketBaseService.authStore.isValid) {
+      authenticationStatus.value = AuthenticationStatus.authenticated;
+    } else {
+      authenticationStatus.value = AuthenticationStatus.unauthenticated;
+    }
+  }
+
+  final PocketBaseService _pocketBaseService;
+  final LoggingService _loggingService;
 
   @override
-  Result<User> currentUser() {
-    // TODO: implement currentUser
-    throw UnimplementedError();
+  final authenticationStatus =
+      ValueNotifier<AuthenticationStatus>(AuthenticationStatus.unknown);
+
+  @override
+  Result<User?> currentUser() {
+    final model = _pocketBaseService.authStore.model as RecordModel?;
+
+    if (model == null) {
+      return Result.value(null);
+    }
+
+    final user = UserDto.fromJson(
+      model.toJson(),
+    ).toModel();
+
+    return Result.value(
+      user,
+    );
   }
 
   @override
   Future<Result<User>> signInWithEmailAndPassword(
     String email,
     String password,
-  ) {
-    // TODO: implement signInWithEmailAndPassword
-    throw UnimplementedError();
+  ) async {
+    final authData = await _pocketBaseService.usersCollection
+        .authWithPassword(email, password);
+
+    if (_pocketBaseService.authStore.isValid) {
+      authenticationStatus.value = AuthenticationStatus.authenticated;
+      _loggingService.logger.info('User is authenticated');
+    } else {
+      _loggingService.logger.info('User is not authenticated');
+    }
+
+    final user = UserDto.fromJson(authData.record!.toJson()).toModel();
+
+    return Result.value(
+      user,
+    );
   }
 
   @override
@@ -38,9 +86,9 @@ class AuthenticationService implements IAuthenticationService {
   }
 
   @override
-  Future<Result<void>> signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
+  Future<Result<void>> signOut() async {
+    _pocketBaseService.authStore.clear();
+    return Result.value(null);
   }
 
   @override

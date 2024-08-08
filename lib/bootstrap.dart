@@ -6,6 +6,7 @@ import 'package:birdbreeder/gen/assets.gen.dart';
 import 'package:birdbreeder/services/initialization_service.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/services/logging_service.dart';
+import 'package:birdbreeder/services/pocketbase_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -45,10 +46,12 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   };
 
   // Initialize the Dependency Injection
-  initializeDependencyInjection();
+  await initializeDependencyInjection();
 
   // Initialize the application
   await InitializationService.initialize();
+
+  await s1.get<PocketBaseService>().init();
 
   Bloc.observer = TalkerBlocObserver(
     talker: s1.get<LoggingService>().logger,

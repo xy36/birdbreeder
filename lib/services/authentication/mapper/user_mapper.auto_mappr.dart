@@ -9,38 +9,30 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_mappr_annotation/auto_mappr_annotation.dart' as _i1;
 
-import '../../../../core/utils/user_helper.dart' as _i4;
-import '../../data/dtos/species_dto.dart' as _i2;
-import '../models/species.dart' as _i3;
+import '../dtos/user_dto.dart' as _i2;
+import '../models/user.dart' as _i3;
 
-/// {@template package:birdbreeder/features/species/domain/mapper/species_mapper.dart}
+/// {@template package:birdbreeder/services/authentication/mapper/user_mapper.dart}
 /// Available mappings:
-/// - `SpeciesDto` → `Species`.
-/// - `Species` → `SpeciesDto`.
+/// - `UserDto` → `User`.
 /// {@endtemplate}
-class $SpeciesMapper implements _i1.AutoMapprInterface {
-  const $SpeciesMapper();
+class $UserMapper implements _i1.AutoMapprInterface {
+  const $UserMapper();
 
   Type _typeOf<T>() => T;
 
   List<_i1.AutoMapprInterface> get _delegates => const [];
 
   /// {@macro AutoMapprInterface:canConvert}
-  /// {@macro package:birdbreeder/features/species/domain/mapper/species_mapper.dart}
+  /// {@macro package:birdbreeder/services/authentication/mapper/user_mapper.dart}
   @override
   bool canConvert<SOURCE, TARGET>({bool recursive = true}) {
     final sourceTypeOf = _typeOf<SOURCE>();
     final targetTypeOf = _typeOf<TARGET>();
-    if ((sourceTypeOf == _typeOf<_i2.SpeciesDto>() ||
-            sourceTypeOf == _typeOf<_i2.SpeciesDto?>()) &&
-        (targetTypeOf == _typeOf<_i3.Species>() ||
-            targetTypeOf == _typeOf<_i3.Species?>())) {
-      return true;
-    }
-    if ((sourceTypeOf == _typeOf<_i3.Species>() ||
-            sourceTypeOf == _typeOf<_i3.Species?>()) &&
-        (targetTypeOf == _typeOf<_i2.SpeciesDto>() ||
-            targetTypeOf == _typeOf<_i2.SpeciesDto?>())) {
+    if ((sourceTypeOf == _typeOf<_i2.UserDto>() ||
+            sourceTypeOf == _typeOf<_i2.UserDto?>()) &&
+        (targetTypeOf == _typeOf<_i3.User>() ||
+            targetTypeOf == _typeOf<_i3.User?>())) {
       return true;
     }
     if (recursive) {
@@ -54,7 +46,7 @@ class $SpeciesMapper implements _i1.AutoMapprInterface {
   }
 
   /// {@macro AutoMapprInterface:convert}
-  /// {@macro package:birdbreeder/features/species/domain/mapper/species_mapper.dart}
+  /// {@macro package:birdbreeder/services/authentication/mapper/user_mapper.dart}
   @override
   TARGET convert<SOURCE, TARGET>(SOURCE? model) {
     if (canConvert<SOURCE, TARGET>(recursive: false)) {
@@ -70,7 +62,7 @@ class $SpeciesMapper implements _i1.AutoMapprInterface {
   }
 
   /// {@macro AutoMapprInterface:tryConvert}
-  /// {@macro package:birdbreeder/features/species/domain/mapper/species_mapper.dart}
+  /// {@macro package:birdbreeder/services/authentication/mapper/user_mapper.dart}
   @override
   TARGET? tryConvert<SOURCE, TARGET>(
     SOURCE? model, {
@@ -96,7 +88,7 @@ class $SpeciesMapper implements _i1.AutoMapprInterface {
   }
 
   /// {@macro AutoMapprInterface:convertIterable}
-  /// {@macro package:birdbreeder/features/species/domain/mapper/species_mapper.dart}
+  /// {@macro package:birdbreeder/services/authentication/mapper/user_mapper.dart}
   @override
   Iterable<TARGET> convertIterable<SOURCE, TARGET>(Iterable<SOURCE?> model) {
     if (canConvert<SOURCE, TARGET>(recursive: false)) {
@@ -115,7 +107,7 @@ class $SpeciesMapper implements _i1.AutoMapprInterface {
   ///
   /// When an item in the source iterable is null, uses `whenSourceIsNull` if defined or null
   ///
-  /// {@macro package:birdbreeder/features/species/domain/mapper/species_mapper.dart}
+  /// {@macro package:birdbreeder/services/authentication/mapper/user_mapper.dart}
   @override
   Iterable<TARGET?> tryConvertIterable<SOURCE, TARGET>(
     Iterable<SOURCE?> model, {
@@ -139,7 +131,7 @@ class $SpeciesMapper implements _i1.AutoMapprInterface {
   }
 
   /// {@macro AutoMapprInterface:convertList}
-  /// {@macro package:birdbreeder/features/species/domain/mapper/species_mapper.dart}
+  /// {@macro package:birdbreeder/services/authentication/mapper/user_mapper.dart}
   @override
   List<TARGET> convertList<SOURCE, TARGET>(Iterable<SOURCE?> model) {
     if (canConvert<SOURCE, TARGET>(recursive: false)) {
@@ -158,7 +150,7 @@ class $SpeciesMapper implements _i1.AutoMapprInterface {
   ///
   /// When an item in the source iterable is null, uses `whenSourceIsNull` if defined or null
   ///
-  /// {@macro package:birdbreeder/features/species/domain/mapper/species_mapper.dart}
+  /// {@macro package:birdbreeder/services/authentication/mapper/user_mapper.dart}
   @override
   List<TARGET?> tryConvertList<SOURCE, TARGET>(
     Iterable<SOURCE?> model, {
@@ -184,7 +176,7 @@ class $SpeciesMapper implements _i1.AutoMapprInterface {
   }
 
   /// {@macro AutoMapprInterface:convertSet}
-  /// {@macro package:birdbreeder/features/species/domain/mapper/species_mapper.dart}
+  /// {@macro package:birdbreeder/services/authentication/mapper/user_mapper.dart}
   @override
   Set<TARGET> convertSet<SOURCE, TARGET>(Iterable<SOURCE?> model) {
     if (canConvert<SOURCE, TARGET>(recursive: false)) {
@@ -203,7 +195,7 @@ class $SpeciesMapper implements _i1.AutoMapprInterface {
   ///
   /// When an item in the source iterable is null, uses `whenSourceIsNull` if defined or null
   ///
-  /// {@macro package:birdbreeder/features/species/domain/mapper/species_mapper.dart}
+  /// {@macro package:birdbreeder/services/authentication/mapper/user_mapper.dart}
   @override
   Set<TARGET?> tryConvertSet<SOURCE, TARGET>(
     Iterable<SOURCE?> model, {
@@ -234,25 +226,14 @@ class $SpeciesMapper implements _i1.AutoMapprInterface {
   }) {
     final sourceTypeOf = _typeOf<SOURCE>();
     final targetTypeOf = _typeOf<TARGET>();
-    if ((sourceTypeOf == _typeOf<_i2.SpeciesDto>() ||
-            sourceTypeOf == _typeOf<_i2.SpeciesDto?>()) &&
-        (targetTypeOf == _typeOf<_i3.Species>() ||
-            targetTypeOf == _typeOf<_i3.Species?>())) {
+    if ((sourceTypeOf == _typeOf<_i2.UserDto>() ||
+            sourceTypeOf == _typeOf<_i2.UserDto?>()) &&
+        (targetTypeOf == _typeOf<_i3.User>() ||
+            targetTypeOf == _typeOf<_i3.User?>())) {
       if (canReturnNull && model == null) {
         return null;
       }
-      return (_map__i2$SpeciesDto_To__i3$Species((model as _i2.SpeciesDto?))
-          as TARGET);
-    }
-    if ((sourceTypeOf == _typeOf<_i3.Species>() ||
-            sourceTypeOf == _typeOf<_i3.Species?>()) &&
-        (targetTypeOf == _typeOf<_i2.SpeciesDto>() ||
-            targetTypeOf == _typeOf<_i2.SpeciesDto?>())) {
-      if (canReturnNull && model == null) {
-        return null;
-      }
-      return (_map__i3$Species_To__i2$SpeciesDto((model as _i3.Species?))
-          as TARGET);
+      return (_map__i2$UserDto_To__i3$User((model as _i2.UserDto?)) as TARGET);
     }
     throw Exception('No ${model.runtimeType} -> $targetTypeOf mapping.');
   }
@@ -280,38 +261,27 @@ class $SpeciesMapper implements _i1.AutoMapprInterface {
   }
 
   /// {@macro AutoMapprInterface:useSafeMapping}
-  /// {@macro package:birdbreeder/features/species/domain/mapper/species_mapper.dart}
+  /// {@macro package:birdbreeder/services/authentication/mapper/user_mapper.dart}
   @override
   bool useSafeMapping<SOURCE, TARGET>() {
     return false;
   }
 
-  _i3.Species _map__i2$SpeciesDto_To__i3$Species(_i2.SpeciesDto? input) {
+  _i3.User _map__i2$UserDto_To__i3$User(_i2.UserDto? input) {
     final model = input;
     if (model == null) {
       throw Exception(
-          r'Mapping SpeciesDto → Species failed because SpeciesDto was null, and no default value was provided. '
-          r'Consider setting the whenSourceIsNull parameter on the MapType<SpeciesDto, Species> to handle null values during mapping.');
+          r'Mapping UserDto → User failed because UserDto was null, and no default value was provided. '
+          r'Consider setting the whenSourceIsNull parameter on the MapType<UserDto, User> to handle null values during mapping.');
     }
-    return _i3.Species(
+    return _i3.User(
       id: model.id,
+      username: model.username,
+      verified: model.verified,
+      emailVisibility: model.emailVisibility,
+      email: model.email,
       name: model.name,
-      latName: model.latName,
-    );
-  }
-
-  _i2.SpeciesDto _map__i3$Species_To__i2$SpeciesDto(_i3.Species? input) {
-    final model = input;
-    if (model == null) {
-      throw Exception(
-          r'Mapping Species → SpeciesDto failed because Species was null, and no default value was provided. '
-          r'Consider setting the whenSourceIsNull parameter on the MapType<Species, SpeciesDto> to handle null values during mapping.');
-    }
-    return _i2.SpeciesDto(
-      id: model.id,
-      name: model.name,
-      latName: model.latName,
-      user: _i4.UserHelper.insertUser(),
+      avatar: model.avatar,
     );
   }
 }

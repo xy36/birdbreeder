@@ -1,4 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:birdbreeder/core/routing/auth_guard.dart';
+import 'package:birdbreeder/core/routing/empty_router_page.dart';
+import 'package:birdbreeder/core/routing/login_guard.dart';
 import 'package:birdbreeder/features/account/account_page.dart';
 import 'package:birdbreeder/features/authentication/presentation/initialization_page.dart';
 import 'package:birdbreeder/features/authentication/presentation/login_page.dart';
@@ -12,9 +15,6 @@ import 'package:birdbreeder/features/colors/presentation/colors_page.dart';
 import 'package:birdbreeder/features/finances/finances_page.dart';
 import 'package:birdbreeder/features/menu/presentation/menu_page.dart';
 import 'package:birdbreeder/features/species/presentation/species_page.dart';
-import 'package:birdbreeder/core/routing/auth_guard.dart';
-import 'package:birdbreeder/core/routing/empty_router_page.dart';
-import 'package:birdbreeder/core/routing/login_guard.dart';
 import 'package:flutter/material.dart';
 
 part 'app_router.gr.dart';

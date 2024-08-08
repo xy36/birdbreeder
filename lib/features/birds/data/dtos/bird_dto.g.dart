@@ -35,6 +35,7 @@ _$BirdDtoImpl _$$BirdDtoImplFromJson(Map<String, dynamic> json) =>
           ? null
           : ExpandDto.fromJson(json['expand'] as Map<String, dynamic>),
       sold: json['sold'] as bool?,
+      user: json['user'] as String?,
       children: (json['children'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -59,6 +60,7 @@ Map<String, dynamic> _$$BirdDtoImplToJson(_$BirdDtoImpl instance) =>
       'sex': _$SexEnumMap[instance.sex]!,
       'expand': instance.expand,
       'sold': instance.sold,
+      'user': instance.user,
       'children': instance.children,
     };
 

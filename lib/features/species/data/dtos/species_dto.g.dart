@@ -11,6 +11,7 @@ _$SpeciesDtoImpl _$$SpeciesDtoImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       name: json['name'] as String?,
       latName: json['latName'] as String?,
+      user: json['user'] as String?,
     );
 
 Map<String, dynamic> _$$SpeciesDtoImplToJson(_$SpeciesDtoImpl instance) =>
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$SpeciesDtoImplToJson(_$SpeciesDtoImpl instance) =>
       'id': instance.id,
       'name': instance.name,
       'latName': instance.latName,
+      'user': instance.user,
     };

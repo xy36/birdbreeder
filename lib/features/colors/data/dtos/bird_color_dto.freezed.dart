@@ -22,6 +22,7 @@ BirdColorDto _$BirdColorDtoFromJson(Map<String, dynamic> json) {
 mixin _$BirdColorDto {
   String get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  String? get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $BirdColorDtoCopyWith<$Res> {
           BirdColorDto value, $Res Function(BirdColorDto) then) =
       _$BirdColorDtoCopyWithImpl<$Res, BirdColorDto>;
   @useResult
-  $Res call({String id, String? name});
+  $Res call({String id, String? name, String? user});
 }
 
 /// @nodoc
@@ -53,6 +54,7 @@ class _$BirdColorDtoCopyWithImpl<$Res, $Val extends BirdColorDto>
   $Res call({
     Object? id = null,
     Object? name = freezed,
+    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -62,6 +64,10 @@ class _$BirdColorDtoCopyWithImpl<$Res, $Val extends BirdColorDto>
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -75,7 +81,7 @@ abstract class _$$BirdColorDtoImplCopyWith<$Res>
       __$$BirdColorDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String? name});
+  $Res call({String id, String? name, String? user});
 }
 
 /// @nodoc
@@ -91,6 +97,7 @@ class __$$BirdColorDtoImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = freezed,
+    Object? user = freezed,
   }) {
     return _then(_$BirdColorDtoImpl(
       id: null == id
@@ -101,6 +108,10 @@ class __$$BirdColorDtoImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -108,7 +119,7 @@ class __$$BirdColorDtoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BirdColorDtoImpl implements _BirdColorDto {
-  _$BirdColorDtoImpl({required this.id, this.name});
+  _$BirdColorDtoImpl({required this.id, this.name, this.user});
 
   factory _$BirdColorDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$BirdColorDtoImplFromJson(json);
@@ -117,10 +128,12 @@ class _$BirdColorDtoImpl implements _BirdColorDto {
   final String id;
   @override
   final String? name;
+  @override
+  final String? user;
 
   @override
   String toString() {
-    return 'BirdColorDto(id: $id, name: $name)';
+    return 'BirdColorDto(id: $id, name: $name, user: $user)';
   }
 
   @override
@@ -129,12 +142,13 @@ class _$BirdColorDtoImpl implements _BirdColorDto {
         (other.runtimeType == runtimeType &&
             other is _$BirdColorDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name);
+  int get hashCode => Object.hash(runtimeType, id, name, user);
 
   @JsonKey(ignore: true)
   @override
@@ -151,8 +165,10 @@ class _$BirdColorDtoImpl implements _BirdColorDto {
 }
 
 abstract class _BirdColorDto implements BirdColorDto {
-  factory _BirdColorDto({required final String id, final String? name}) =
-      _$BirdColorDtoImpl;
+  factory _BirdColorDto(
+      {required final String id,
+      final String? name,
+      final String? user}) = _$BirdColorDtoImpl;
 
   factory _BirdColorDto.fromJson(Map<String, dynamic> json) =
       _$BirdColorDtoImpl.fromJson;
@@ -161,6 +177,8 @@ abstract class _BirdColorDto implements BirdColorDto {
   String get id;
   @override
   String? get name;
+  @override
+  String? get user;
   @override
   @JsonKey(ignore: true)
   _$$BirdColorDtoImplCopyWith<_$BirdColorDtoImpl> get copyWith =>

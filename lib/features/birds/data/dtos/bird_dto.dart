@@ -25,6 +25,7 @@ class BirdDto with _$BirdDto {
     @Default(Sex.unknown) Sex sex,
     ExpandDto? expand,
     bool? sold,
+    String? user,
     @Default([]) List<String> children,
   }) = _BirdDto;
 

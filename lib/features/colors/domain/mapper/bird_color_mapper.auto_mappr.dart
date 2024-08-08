@@ -9,6 +9,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_mappr_annotation/auto_mappr_annotation.dart' as _i1;
 
+import '../../../../core/utils/user_helper.dart' as _i4;
 import '../../data/dtos/bird_color_dto.dart' as _i2;
 import '../models/bird_color.dart' as _i3;
 
@@ -310,6 +311,7 @@ class $BirdColorMapper implements _i1.AutoMapprInterface {
     return _i2.BirdColorDto(
       id: model.id,
       name: model.name,
+      user: _i4.UserHelper.insertUser(),
     );
   }
 }

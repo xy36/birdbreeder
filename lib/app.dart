@@ -1,5 +1,7 @@
 import 'package:birdbreeder/bootstrap.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
+import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
+import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/services/screen_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -23,9 +25,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: _appRouter.config(
-          //reevaluateListenable:
-          //    s1.get<IAuthenticationService>().authenticationStatus,
-          ),
+        reevaluateListenable:
+            s1.get<IAuthenticationService>().authenticationStatus,
+      ),
       theme: themeData ??
           ThemeData(
             //colorSchemeSeed: Colors.black,

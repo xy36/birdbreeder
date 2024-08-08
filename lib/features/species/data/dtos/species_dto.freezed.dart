@@ -23,6 +23,7 @@ mixin _$SpeciesDto {
   String get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get latName => throw _privateConstructorUsedError;
+  String? get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +37,7 @@ abstract class $SpeciesDtoCopyWith<$Res> {
           SpeciesDto value, $Res Function(SpeciesDto) then) =
       _$SpeciesDtoCopyWithImpl<$Res, SpeciesDto>;
   @useResult
-  $Res call({String id, String? name, String? latName});
+  $Res call({String id, String? name, String? latName, String? user});
 }
 
 /// @nodoc
@@ -55,6 +56,7 @@ class _$SpeciesDtoCopyWithImpl<$Res, $Val extends SpeciesDto>
     Object? id = null,
     Object? name = freezed,
     Object? latName = freezed,
+    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -69,6 +71,10 @@ class _$SpeciesDtoCopyWithImpl<$Res, $Val extends SpeciesDto>
           ? _value.latName
           : latName // ignore: cast_nullable_to_non_nullable
               as String?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -81,7 +87,7 @@ abstract class _$$SpeciesDtoImplCopyWith<$Res>
       __$$SpeciesDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String? name, String? latName});
+  $Res call({String id, String? name, String? latName, String? user});
 }
 
 /// @nodoc
@@ -98,6 +104,7 @@ class __$$SpeciesDtoImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = freezed,
     Object? latName = freezed,
+    Object? user = freezed,
   }) {
     return _then(_$SpeciesDtoImpl(
       id: null == id
@@ -112,6 +119,10 @@ class __$$SpeciesDtoImplCopyWithImpl<$Res>
           ? _value.latName
           : latName // ignore: cast_nullable_to_non_nullable
               as String?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -119,7 +130,7 @@ class __$$SpeciesDtoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SpeciesDtoImpl implements _SpeciesDto {
-  _$SpeciesDtoImpl({required this.id, this.name, this.latName});
+  _$SpeciesDtoImpl({required this.id, this.name, this.latName, this.user});
 
   factory _$SpeciesDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$SpeciesDtoImplFromJson(json);
@@ -130,10 +141,12 @@ class _$SpeciesDtoImpl implements _SpeciesDto {
   final String? name;
   @override
   final String? latName;
+  @override
+  final String? user;
 
   @override
   String toString() {
-    return 'SpeciesDto(id: $id, name: $name, latName: $latName)';
+    return 'SpeciesDto(id: $id, name: $name, latName: $latName, user: $user)';
   }
 
   @override
@@ -143,12 +156,13 @@ class _$SpeciesDtoImpl implements _SpeciesDto {
             other is _$SpeciesDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.latName, latName) || other.latName == latName));
+            (identical(other.latName, latName) || other.latName == latName) &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, latName);
+  int get hashCode => Object.hash(runtimeType, id, name, latName, user);
 
   @JsonKey(ignore: true)
   @override
@@ -168,7 +182,8 @@ abstract class _SpeciesDto implements SpeciesDto {
   factory _SpeciesDto(
       {required final String id,
       final String? name,
-      final String? latName}) = _$SpeciesDtoImpl;
+      final String? latName,
+      final String? user}) = _$SpeciesDtoImpl;
 
   factory _SpeciesDto.fromJson(Map<String, dynamic> json) =
       _$SpeciesDtoImpl.fromJson;
@@ -179,6 +194,8 @@ abstract class _SpeciesDto implements SpeciesDto {
   String? get name;
   @override
   String? get latName;
+  @override
+  String? get user;
   @override
   @JsonKey(ignore: true)
   _$$SpeciesDtoImplCopyWith<_$SpeciesDtoImpl> get copyWith =>

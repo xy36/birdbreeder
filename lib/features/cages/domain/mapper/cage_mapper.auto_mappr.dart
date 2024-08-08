@@ -9,6 +9,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_mappr_annotation/auto_mappr_annotation.dart' as _i1;
 
+import '../../../../core/utils/user_helper.dart' as _i4;
 import '../../data/dtos/cage_dto.dart' as _i2;
 import '../models/cage.dart' as _i3;
 
@@ -314,6 +315,7 @@ class $CageMapper implements _i1.AutoMapprInterface {
       width: model.width,
       height: model.height,
       depth: model.depth,
+      user: _i4.UserHelper.insertUser(),
     );
   }
 }

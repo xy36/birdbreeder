@@ -10,6 +10,9 @@ import 'package:birdbreeder/features/colors/domain/models/bird_color.dart';
 import 'package:birdbreeder/features/species/data/dtos/species_dto.dart';
 import 'package:birdbreeder/features/species/domain/mapper/species_mapper.dart';
 import 'package:birdbreeder/features/species/domain/models/species.dart';
+import 'package:birdbreeder/services/authentication/dtos/user_dto.dart';
+import 'package:birdbreeder/services/authentication/mapper/user_mapper.dart';
+import 'package:birdbreeder/services/authentication/models/user.dart';
 
 extension BirdMapperExtension on Bird {
   BirdDto toDto() {
@@ -56,5 +59,11 @@ extension CageMapperExtension on Cage {
 extension CageDtoMapperExtension on CageDto {
   Cage toModel() {
     return CageMapper().convert<CageDto, Cage>(this);
+  }
+}
+
+extension UserMapperExtension on UserDto {
+  User toModel() {
+    return UserMapper().convert<UserDto, User>(this);
   }
 }

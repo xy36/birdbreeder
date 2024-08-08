@@ -12,9 +12,11 @@ class LoginGuard extends AutoRouteGuard {
     switch (_authenticationService.authenticationStatus.value) {
       case AuthenticationStatus.unauthenticated:
       case AuthenticationStatus.unknown:
+        print('LoginGuard onNavigation unauthenticated');
         resolver.next();
         break;
       case AuthenticationStatus.authenticated:
+        print('LoginGuard onNavigation authenticated');
         resolver.next(false);
         router.replaceAll([const MenuRoute()]);
         break;

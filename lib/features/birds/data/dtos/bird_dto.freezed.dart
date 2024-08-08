@@ -42,6 +42,7 @@ mixin _$BirdDto {
   Sex get sex => throw _privateConstructorUsedError;
   ExpandDto? get expand => throw _privateConstructorUsedError;
   bool? get sold => throw _privateConstructorUsedError;
+  String? get user => throw _privateConstructorUsedError;
   List<String> get children => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -70,6 +71,7 @@ abstract class $BirdDtoCopyWith<$Res> {
       Sex sex,
       ExpandDto? expand,
       bool? sold,
+      String? user,
       List<String> children});
 
   $ExpandDtoCopyWith<$Res>? get expand;
@@ -103,6 +105,7 @@ class _$BirdDtoCopyWithImpl<$Res, $Val extends BirdDto>
     Object? sex = null,
     Object? expand = freezed,
     Object? sold = freezed,
+    Object? user = freezed,
     Object? children = null,
   }) {
     return _then(_value.copyWith(
@@ -166,6 +169,10 @@ class _$BirdDtoCopyWithImpl<$Res, $Val extends BirdDto>
           ? _value.sold
           : sold // ignore: cast_nullable_to_non_nullable
               as bool?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as String?,
       children: null == children
           ? _value.children
           : children // ignore: cast_nullable_to_non_nullable
@@ -209,6 +216,7 @@ abstract class _$$BirdDtoImplCopyWith<$Res> implements $BirdDtoCopyWith<$Res> {
       Sex sex,
       ExpandDto? expand,
       bool? sold,
+      String? user,
       List<String> children});
 
   @override
@@ -241,6 +249,7 @@ class __$$BirdDtoImplCopyWithImpl<$Res>
     Object? sex = null,
     Object? expand = freezed,
     Object? sold = freezed,
+    Object? user = freezed,
     Object? children = null,
   }) {
     return _then(_$BirdDtoImpl(
@@ -304,6 +313,10 @@ class __$$BirdDtoImplCopyWithImpl<$Res>
           ? _value.sold
           : sold // ignore: cast_nullable_to_non_nullable
               as bool?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as String?,
       children: null == children
           ? _value._children
           : children // ignore: cast_nullable_to_non_nullable
@@ -331,6 +344,7 @@ class _$BirdDtoImpl implements _BirdDto {
       this.sex = Sex.unknown,
       this.expand,
       this.sold,
+      this.user,
       final List<String> children = const []})
       : _children = children;
 
@@ -375,6 +389,8 @@ class _$BirdDtoImpl implements _BirdDto {
   final ExpandDto? expand;
   @override
   final bool? sold;
+  @override
+  final String? user;
   final List<String> _children;
   @override
   @JsonKey()
@@ -386,7 +402,7 @@ class _$BirdDtoImpl implements _BirdDto {
 
   @override
   String toString() {
-    return 'BirdDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, ringnumber: $ringnumber, born: $born, species: $species, color: $color, cage: $cage, father: $father, mother: $mother, sex: $sex, expand: $expand, sold: $sold, children: $children)';
+    return 'BirdDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, ringnumber: $ringnumber, born: $born, species: $species, color: $color, cage: $cage, father: $father, mother: $mother, sex: $sex, expand: $expand, sold: $sold, user: $user, children: $children)';
   }
 
   @override
@@ -412,6 +428,7 @@ class _$BirdDtoImpl implements _BirdDto {
             (identical(other.sex, sex) || other.sex == sex) &&
             (identical(other.expand, expand) || other.expand == expand) &&
             (identical(other.sold, sold) || other.sold == sold) &&
+            (identical(other.user, user) || other.user == user) &&
             const DeepCollectionEquality().equals(other._children, _children));
   }
 
@@ -434,6 +451,7 @@ class _$BirdDtoImpl implements _BirdDto {
       sex,
       expand,
       sold,
+      user,
       const DeepCollectionEquality().hash(_children));
 
   @JsonKey(ignore: true)
@@ -467,6 +485,7 @@ abstract class _BirdDto implements BirdDto {
       final Sex sex,
       final ExpandDto? expand,
       final bool? sold,
+      final String? user,
       final List<String> children}) = _$BirdDtoImpl;
 
   factory _BirdDto.fromJson(Map<String, dynamic> json) = _$BirdDtoImpl.fromJson;
@@ -508,6 +527,8 @@ abstract class _BirdDto implements BirdDto {
   ExpandDto? get expand;
   @override
   bool? get sold;
+  @override
+  String? get user;
   @override
   List<String> get children;
   @override

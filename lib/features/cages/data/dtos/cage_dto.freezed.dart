@@ -26,6 +26,7 @@ mixin _$CageDto {
   int? get width => throw _privateConstructorUsedError;
   int? get height => throw _privateConstructorUsedError;
   int? get depth => throw _privateConstructorUsedError;
+  String? get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +44,8 @@ abstract class $CageDtoCopyWith<$Res> {
       String? description,
       int? width,
       int? height,
-      int? depth});
+      int? depth,
+      String? user});
 }
 
 /// @nodoc
@@ -65,6 +67,7 @@ class _$CageDtoCopyWithImpl<$Res, $Val extends CageDto>
     Object? width = freezed,
     Object? height = freezed,
     Object? depth = freezed,
+    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -91,6 +94,10 @@ class _$CageDtoCopyWithImpl<$Res, $Val extends CageDto>
           ? _value.depth
           : depth // ignore: cast_nullable_to_non_nullable
               as int?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -108,7 +115,8 @@ abstract class _$$CageDtoImplCopyWith<$Res> implements $CageDtoCopyWith<$Res> {
       String? description,
       int? width,
       int? height,
-      int? depth});
+      int? depth,
+      String? user});
 }
 
 /// @nodoc
@@ -128,6 +136,7 @@ class __$$CageDtoImplCopyWithImpl<$Res>
     Object? width = freezed,
     Object? height = freezed,
     Object? depth = freezed,
+    Object? user = freezed,
   }) {
     return _then(_$CageDtoImpl(
       id: null == id
@@ -154,6 +163,10 @@ class __$$CageDtoImplCopyWithImpl<$Res>
           ? _value.depth
           : depth // ignore: cast_nullable_to_non_nullable
               as int?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -167,7 +180,8 @@ class _$CageDtoImpl implements _CageDto {
       this.description,
       this.width,
       this.height,
-      this.depth});
+      this.depth,
+      this.user});
 
   factory _$CageDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$CageDtoImplFromJson(json);
@@ -184,10 +198,12 @@ class _$CageDtoImpl implements _CageDto {
   final int? height;
   @override
   final int? depth;
+  @override
+  final String? user;
 
   @override
   String toString() {
-    return 'CageDto(id: $id, name: $name, description: $description, width: $width, height: $height, depth: $depth)';
+    return 'CageDto(id: $id, name: $name, description: $description, width: $width, height: $height, depth: $depth, user: $user)';
   }
 
   @override
@@ -201,13 +217,14 @@ class _$CageDtoImpl implements _CageDto {
                 other.description == description) &&
             (identical(other.width, width) || other.width == width) &&
             (identical(other.height, height) || other.height == height) &&
-            (identical(other.depth, depth) || other.depth == depth));
+            (identical(other.depth, depth) || other.depth == depth) &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, description, width, height, depth);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, description, width, height, depth, user);
 
   @JsonKey(ignore: true)
   @override
@@ -230,7 +247,8 @@ abstract class _CageDto implements CageDto {
       final String? description,
       final int? width,
       final int? height,
-      final int? depth}) = _$CageDtoImpl;
+      final int? depth,
+      final String? user}) = _$CageDtoImpl;
 
   factory _CageDto.fromJson(Map<String, dynamic> json) = _$CageDtoImpl.fromJson;
 
@@ -246,6 +264,8 @@ abstract class _CageDto implements CageDto {
   int? get height;
   @override
   int? get depth;
+  @override
+  String? get user;
   @override
   @JsonKey(ignore: true)
   _$$CageDtoImplCopyWith<_$CageDtoImpl> get copyWith =>

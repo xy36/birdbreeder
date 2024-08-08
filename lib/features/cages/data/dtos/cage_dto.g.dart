@@ -14,6 +14,7 @@ _$CageDtoImpl _$$CageDtoImplFromJson(Map<String, dynamic> json) =>
       width: json['width'] as int?,
       height: json['height'] as int?,
       depth: json['depth'] as int?,
+      user: json['user'] as String?,
     );
 
 Map<String, dynamic> _$$CageDtoImplToJson(_$CageDtoImpl instance) =>
@@ -24,4 +25,5 @@ Map<String, dynamic> _$$CageDtoImplToJson(_$CageDtoImpl instance) =>
       'width': instance.width,
       'height': instance.height,
       'depth': instance.depth,
+      'user': instance.user,
     };

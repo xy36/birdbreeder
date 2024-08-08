@@ -12,6 +12,7 @@ class CageDto with _$CageDto {
     int? width,
     int? height,
     int? depth,
+    String? user,
   }) = _CageDto;
 
   factory CageDto.fromJson(Map<String, dynamic> json) =>

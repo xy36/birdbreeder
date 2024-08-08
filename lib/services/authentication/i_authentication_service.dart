@@ -1,6 +1,6 @@
 import 'package:async/async.dart';
 import 'package:birdbreeder/services/authentication/authentication_status.dart';
-import 'package:birdbreeder/services/authentication/user.dart';
+import 'package:birdbreeder/services/authentication/models/user.dart';
 import 'package:flutter/material.dart';
 
 abstract class IAuthenticationService {
@@ -19,5 +19,5 @@ abstract class IAuthenticationService {
   Future<Result<User>> signInWithGoogle();
   Future<Result<User>> signInWithFacebook();
   Future<Result<void>> signOut();
-  Result<User> currentUser();
+  Result<User?> currentUser();
 }

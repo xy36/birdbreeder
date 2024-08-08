@@ -8,6 +8,7 @@ class BirdColorDto with _$BirdColorDto {
   factory BirdColorDto({
     required String id,
     String? name,
+    String? user,
   }) = _BirdColorDto;
 
   factory BirdColorDto.fromJson(Map<String, dynamic> json) =>
