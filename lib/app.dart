@@ -30,8 +30,7 @@ class App extends StatelessWidget {
       ),
       theme: themeData ??
           ThemeData(
-            //colorSchemeSeed: Colors.black,
-
+            colorSchemeSeed: Colors.amber,
             inputDecorationTheme: InputDecorationTheme(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),

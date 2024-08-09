@@ -34,7 +34,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   try {
     final themeStr =
-        await rootBundle.loadString(Assets.themes.appainterThemeBlue);
+        await rootBundle.loadString(Assets.themes.appainterThemeRed);
     final themeJson = jsonDecode(themeStr);
     themeData = ThemeDecoder.decodeThemeData(themeJson);
   } catch (e) {

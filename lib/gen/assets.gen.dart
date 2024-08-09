@@ -16,8 +16,12 @@ class $AssetsThemesGen {
   /// File path: assets/themes/appainter_theme_green.json
   String get appainterThemeGreen => 'assets/themes/appainter_theme_green.json';
 
+  /// File path: assets/themes/appainter_theme_red.json
+  String get appainterThemeRed => 'assets/themes/appainter_theme_red.json';
+
   /// List of all assets
-  List<String> get values => [appainterThemeBlue, appainterThemeGreen];
+  List<String> get values =>
+      [appainterThemeBlue, appainterThemeGreen, appainterThemeRed];
 }
 
 class Assets {
