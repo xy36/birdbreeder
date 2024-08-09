@@ -2,7 +2,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/colors/presentation/bloc/colors_bloc.dart';
 import 'package:birdbreeder/features/colors/presentation/widgets/buttons/add_new_color_button.dart';
 import 'package:birdbreeder/features/colors/presentation/widgets/color_item.dart';
-import 'package:birdbreeder/shared/widgets/app_bar_with_drawer.dart';
+import 'package:birdbreeder/shared/widgets/shared_app_bar_with_drawer.dart';
 
 class ColorsScreen extends StatelessWidget {
   const ColorsScreen({super.key});
@@ -14,7 +14,7 @@ class ColorsScreen extends StatelessWidget {
       buildWhen: (previous, current) => current.isNotListerner,
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBarWithDrawer(
+          appBar: SharedAppBarWithDrawer(
             title: context.l10n.colors__title,
           ),
           floatingActionButton: const AddNewColorButton(),

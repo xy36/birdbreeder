@@ -2,7 +2,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/cages/presentation/bloc/cages_bloc.dart';
 import 'package:birdbreeder/features/cages/presentation/widgets/buttons/add_new_age_button.dart';
 import 'package:birdbreeder/features/cages/presentation/widgets/cage_item.dart';
-import 'package:birdbreeder/shared/widgets/app_bar_with_drawer.dart';
+import 'package:birdbreeder/shared/widgets/shared_app_bar_with_drawer.dart';
 
 class CagesScreen extends StatelessWidget {
   const CagesScreen({super.key});
@@ -14,7 +14,7 @@ class CagesScreen extends StatelessWidget {
       buildWhen: (previous, current) => current.isNotListerner,
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBarWithDrawer(
+          appBar: SharedAppBarWithDrawer(
             title: context.l10n.cages__title,
           ),
           floatingActionButton: const AddNewCageButton(),

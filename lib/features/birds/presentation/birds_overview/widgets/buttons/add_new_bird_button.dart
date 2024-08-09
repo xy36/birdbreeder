@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/birds/presentation/birds_overview/bloc/birds_bloc.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
+import 'package:birdbreeder/features/birds/presentation/cubit/birds_cubit.dart';
 
 class AddNewBirdButton extends StatefulWidget {
   const AddNewBirdButton({super.key});
@@ -20,7 +20,7 @@ class _AddNewBirdButtonState extends State<AddNewBirdButton> {
 
         if (!mounted) return;
 
-        context.read<BirdsBloc>().add(const BirdsEvent.load());
+        await context.read<BirdsCubit>().load();
       },
       child: const Icon(Icons.add),
     );

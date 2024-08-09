@@ -2,8 +2,9 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/menu/presentation/menu_screen.dart';
 import 'package:flutter/foundation.dart';
 
-class AppBarWithDrawer extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarWithDrawer({super.key, this.title, this.actions});
+class SharedAppBarWithDrawer extends StatelessWidget
+    implements PreferredSizeWidget {
+  const SharedAppBarWithDrawer({super.key, this.title, this.actions});
 
   final String? title;
 

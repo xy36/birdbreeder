@@ -35,44 +35,44 @@ class SideBar extends StatelessWidget {
     );
 
     final baseTheme = SidebarXTheme(
-      decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Theme.of(context).primaryColor,
-            Theme.of(context).primaryColorDark,
-          ],
-        ),
-      ),
+      decoration: const BoxDecoration(
+          //color: Theme.of(context).primaryColor,
+          // gradient: LinearGradient(
+          //   begin: Alignment.topLeft,
+          //   end: Alignment.bottomRight,
+          //   colors: [
+          //     Theme.of(context).primaryColor,
+          //     Theme.of(context).primaryColorDark,
+          //   ],
+          // ),
+          ),
       iconTheme: const IconThemeData(
-        color: Colors.white,
+        //   color: Colors.white,
         size: 20,
       ),
       textStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            color: Colors.white,
+            // color: Colors.white,
             fontSize: 14,
           ),
       selectedTextStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            color: Colors.white,
+            // color: Colors.white,
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
       hoverTextStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            color: Colors.white,
+            //  color: Colors.white,
             fontSize: 14,
           ),
-      hoverColor: Colors.white.withAlpha(20),
+      // hoverColor: Colors.white.withAlpha(20),
       itemMargin: itemMargin,
       selectedItemMargin: itemMargin,
       selectedIconTheme: const IconThemeData(
-        color: Colors.white,
+        //color: Colors.white,
         size: 20,
       ),
       selectedItemDecoration: itemDecoration.copyWith(
-        color: Colors.white.withAlpha(20),
-      ),
+          // color: Colors.white.withAlpha(20),
+          ),
       itemDecoration: itemDecoration,
       itemPadding: const EdgeInsets.all(14),
       itemTextPadding: const EdgeInsets.only(
@@ -151,7 +151,7 @@ class _Header extends StatelessWidget {
           child: Text(
             extended ? context.l10n.app_title.toUpperCase() : 'B',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Colors.white,
+                  //  color: Colors.white,
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                 ),

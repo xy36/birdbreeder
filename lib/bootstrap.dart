@@ -1,16 +1,12 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:developer';
 
-import 'package:birdbreeder/gen/assets.gen.dart';
 import 'package:birdbreeder/services/initialization_service.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/services/logging_service.dart';
 import 'package:birdbreeder/services/pocketbase_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:json_theme/json_theme.dart';
 import 'package:talker_bloc_logger/talker_bloc_logger.dart';
 
 ThemeData? themeData;
@@ -32,14 +28,14 @@ class AppBlocObserver extends BlocObserver {
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  try {
-    final themeStr =
-        await rootBundle.loadString(Assets.themes.appainterThemeRed);
-    final themeJson = jsonDecode(themeStr);
-    themeData = ThemeDecoder.decodeThemeData(themeJson);
-  } catch (e) {
-    print(e);
-  }
+  // try {
+  //   final themeStr =
+  //       await rootBundle.loadString(Assets.themes.appainterThemeRed);
+  //   final themeJson = jsonDecode(themeStr);
+  //   themeData = ThemeDecoder.decodeThemeData(themeJson);
+  // } catch (e) {
+  //   print(e);
+  // }
 
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);

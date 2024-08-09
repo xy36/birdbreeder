@@ -1,7 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/shared/widgets/app_bar_with_drawer.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/services/logging_service.dart';
+import 'package:birdbreeder/shared/widgets/shared_app_bar_with_drawer.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
 class FinancesScreen extends StatelessWidget {
@@ -10,7 +10,7 @@ class FinancesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWithDrawer(title: context.l10n.finances__title),
+      appBar: SharedAppBarWithDrawer(title: context.l10n.finances__title),
       body: TalkerScreen(
         talker: s1.get<LoggingService>().logger,
         theme: const TalkerScreenTheme(

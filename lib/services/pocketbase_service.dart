@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/services/token_storage_service.dart';
+import 'package:flutter/foundation.dart';
 import 'package:pocketbase/pocketbase.dart';
 
 late final PocketBase pb;
@@ -26,10 +27,11 @@ class PocketBaseService {
       clear: storage.deleteToken,
     );
     pb = PocketBase(
-      'http://$_host:8090/',
+      'https://pocketbase.birdbreeder.de/',
+      // 'http://$_host:8090/',
       authStore: customAuthStore,
     );
   }
 }
 
-String get _host => (Platform.isAndroid) ? '10.0.2.2' : '127.0.0.1';
+String get _host => (!kIsWeb && Platform.isAndroid) ? '10.0.2.2' : '127.0.0.1';

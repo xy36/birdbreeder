@@ -1,6 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
-
-import 'package:birdbreeder/shared/widgets/app_bar_with_drawer.dart';
+import 'package:birdbreeder/shared/widgets/shared_app_bar_with_drawer.dart';
 
 class BreedingsScreen extends StatelessWidget {
   const BreedingsScreen({super.key});
@@ -8,7 +7,7 @@ class BreedingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWithDrawer(title: context.l10n.breedings__title),
+      appBar: SharedAppBarWithDrawer(title: context.l10n.breedings__title),
     );
   }
 }
