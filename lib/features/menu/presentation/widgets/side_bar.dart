@@ -1,10 +1,10 @@
 import 'package:birdbreeder/features/menu/domain/entities/menu_pages.dart';
-import 'package:birdbreeder/l10n/l10n.dart';
+import 'package:birdbreeder/shared/widgets/birdbreeder_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
 
 const defaultMenuClosedWidth = 56.0;
-const defaultMenuOpenedWidth = 200.0;
+const defaultMenuOpenedWidth = 350.0;
 
 class SideBar extends StatelessWidget {
   const SideBar({
@@ -36,16 +36,23 @@ class SideBar extends StatelessWidget {
 
     final baseTheme = SidebarXTheme(
       decoration: const BoxDecoration(
-          //color: Theme.of(context).primaryColor,
-          // gradient: LinearGradient(
-          //   begin: Alignment.topLeft,
-          //   end: Alignment.bottomRight,
-          //   colors: [
-          //     Theme.of(context).primaryColor,
-          //     Theme.of(context).primaryColorDark,
-          //   ],
-          // ),
+        border: Border(
+          right: BorderSide(
+            color: Colors.black12,
           ),
+        ),
+
+        //color: Theme.of(context).primaryColor,
+        // gradient: LinearGradient(
+        //   begin: Alignment.topLeft,
+        //   end: Alignment.bottomRight,
+        //   colors: [
+        //     Theme.of(context).primaryColor,
+        //     Theme.of(context).primaryColorDark,
+        //   ],
+        // ),
+      ),
+
       iconTheme: const IconThemeData(
         //   color: Colors.white,
         size: 20,
@@ -71,8 +78,8 @@ class SideBar extends StatelessWidget {
         size: 20,
       ),
       selectedItemDecoration: itemDecoration.copyWith(
-          // color: Colors.white.withAlpha(20),
-          ),
+        color: Colors.black12.withAlpha(20),
+      ),
       itemDecoration: itemDecoration,
       itemPadding: const EdgeInsets.all(14),
       itemTextPadding: const EdgeInsets.only(
@@ -112,8 +119,13 @@ class SideBar extends StatelessWidget {
       ),
       separatorBuilder: (context, index) {
         final separatorBeforeAccount = (MenuPage.account.index - 1) == index;
-        return SizedBox(
-          height: separatorBeforeAccount ? 60 : 0,
+        return Column(
+          children: [
+            const Divider(),
+            SizedBox(
+              height: separatorBeforeAccount ? 60 : 0,
+            ),
+          ],
         );
       },
       showToggleButton: showToggleButton,
@@ -148,14 +160,7 @@ class _Header extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(16, 16, 8, 8),
         child: Align(
           alignment: extended ? Alignment.centerLeft : Alignment.center,
-          child: Text(
-            extended ? context.l10n.app_title.toUpperCase() : 'B',
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  //  color: Colors.white,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                ),
-          ),
+          child: extended ? const BirdbreederWidget() : const Icon(Icons.menu),
         ),
       ),
     );

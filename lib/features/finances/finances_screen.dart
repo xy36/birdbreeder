@@ -1,7 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/services/logging_service.dart';
-import 'package:birdbreeder/shared/widgets/shared_app_bar_with_drawer.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
 class FinancesScreen extends StatelessWidget {

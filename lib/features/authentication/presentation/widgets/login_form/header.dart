@@ -1,4 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/shared/widgets/birdbreeder_widget.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key});
@@ -14,13 +15,7 @@ class Header extends StatelessWidget {
               context.l10n.login__welcome_text,
               style: Theme.of(context).textTheme.displayLarge,
             ),
-            Text(
-              context.l10n.app_title,
-              style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
+            const BirdbreederWidget(),
           ],
         ),
         const SizedBox(height: 8),
