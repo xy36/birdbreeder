@@ -50,13 +50,52 @@ enum ScreenSize {
         ScreenSize.lg;
   }
 
-  /// Returns the content padding for the current breakpoint
-  double get contentPadding => switch (this) {
+  double get hPaddingSmall => switch (this) {
+        ScreenSize.xs => 8.0,
+        ScreenSize.sm => 16.0,
+        ScreenSize.md => 24.0,
+        ScreenSize.lg => 32.0,
+        ScreenSize.xl => 48.0,
+      };
+
+  double get vPaddingSmall => switch (this) {
+        ScreenSize.xs => 8.0,
+        ScreenSize.sm => 16.0,
+        ScreenSize.md => 24.0,
+        ScreenSize.lg => 32.0,
+        ScreenSize.xl => 48.0,
+      };
+
+  double get hPaddingMedium => switch (this) {
         ScreenSize.xs => 16.0,
         ScreenSize.sm => 24.0,
         ScreenSize.md => 32.0,
         ScreenSize.lg => 40.0,
-        ScreenSize.xl => 40.0,
+        ScreenSize.xl => 48.0,
+      };
+
+  double get vPaddingMedium => switch (this) {
+        ScreenSize.xs => 16.0,
+        ScreenSize.sm => 24.0,
+        ScreenSize.md => 32.0,
+        ScreenSize.lg => 40.0,
+        ScreenSize.xl => 48.0,
+      };
+
+  double get hPaddingLarge => switch (this) {
+        ScreenSize.xs => 24.0,
+        ScreenSize.sm => 32.0,
+        ScreenSize.md => 48.0,
+        ScreenSize.lg => 64.0,
+        ScreenSize.xl => 82.0,
+      };
+
+  double get vPaddingLarge => switch (this) {
+        ScreenSize.xs => 24.0,
+        ScreenSize.sm => 32.0,
+        ScreenSize.md => 48.0,
+        ScreenSize.lg => 64.0,
+        ScreenSize.xl => 82.0,
       };
 
   /// Returns true if the current ScreenSize is [ScreenSize.xs] or [ScreenSize.sm]

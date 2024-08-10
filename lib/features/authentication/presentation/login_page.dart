@@ -1,61 +1,63 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
+import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/features/authentication/presentation/cubit/listeners/bird_error_listener.dart';
+import 'package:birdbreeder/features/authentication/presentation/cubit/login_cubit.dart';
+import 'package:birdbreeder/features/authentication/presentation/widgets/image_form.dart';
+import 'package:birdbreeder/features/authentication/presentation/widgets/login_form/login_form.dart';
 import 'package:birdbreeder/services/injection.dart';
-import 'package:flutter/material.dart';
+import 'package:birdbreeder/services/screen_size.dart';
 
 @RoutePage()
+// ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  String? email;
+  String? password;
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login Page'),
-      ),
-      body: Column(
-        children: [
-          TextFormField(
-            controller: emailController,
-            decoration: const InputDecoration(
-              hintText: 'Enter your email',
-            ),
+    final size = ScreenSize.getScreenSize(context);
+
+    return BlocProvider(
+      create: (context) => LoginCubit(s1()),
+      child: MultiBlocListener(
+        listeners: [LoginErrorListener()],
+        child: Scaffold(
+          appBar: AppBar(
+            toolbarHeight: 0,
           ),
-          TextFormField(
-            controller: passwordController,
-            decoration: const InputDecoration(
-              hintText: 'Enter your password',
-            ),
+          body: LayoutBuilder(
+            builder: (context, constraints) {
+              return switch (size) {
+                ScreenSize.xs || ScreenSize.sm => SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        LoginForm(),
+                        //const ImageForm(),
+                      ],
+                    ),
+                  ),
+                ScreenSize.md || ScreenSize.lg || ScreenSize.xl => Row(
+                    children: [
+                      const Expanded(
+                        child: ImageForm(),
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: SizedBox(
+                          width: constraints.maxWidth * 0.4,
+                          child: LoginForm(),
+                        ),
+                      ),
+                    ],
+                  ),
+              };
+            },
           ),
-          const Text('Login Page'),
-          ElevatedButton(
-            onPressed: login,
-            child: const Text('Login'),
-          ),
-        ],
+        ),
       ),
     );
   }
-
-  Future<bool> login() async {
-    final email = emailController.text;
-    final password = passwordController.text;
-
-    final userResult = await s1
-        .get<IAuthenticationService>()
-        .signInWithEmailAndPassword(email, password);
-
-    if (userResult.isValue) {
-      print('user is logged in');
-      return true;
-    } else {
-      print('user is not logged in');
-      return false;
-    }
-  }
-
-  Future<void> logout() async {}
 }

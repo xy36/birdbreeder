@@ -75,4 +75,5 @@ flutter:
   generate: true
   assets:
     - assets/themes/
+    - assets/images/
 

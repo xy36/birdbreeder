@@ -1,6 +1,6 @@
 {
     "@@locale": "en",
-    "app_title": "Bird Breeder",
+    "app_title": "birdbreeder",
     "finances__title": "Finances",
     "account__title": "Account",
     "breedings__title": "Breedings",
@@ -31,6 +31,13 @@
     "add_bird__title": "New Bird",
     "add_bird__submit_button_text": "Submit",
     "edit_bird__title": "Edit Bird",
+    "login__sign_in": "Sign in",
+    "login__welcome_text": "Welcome to ",
+    "login__welcome_sub_text": "Enter your email and password to access your account",
+    "login__email_hint": "Enter your email",
+    "login__email_validation_error": "Please enter your email",
+    "login__password_hint": "Enter your password",
+    "login__password_validation_error": "Please enter your password",
     "menu__birds": "Birds",
     "menu__cages": "Cages",
     "menu__colors": "Colors",
@@ -85,8 +92,11 @@
     "common__no": "No",
     "common__unit_m": "m",
     "common__unit_cm": "cm",
+    "common__email": "Email",
+    "common__password": "Password",
     "error__message": "Sorry an error occurred",
     "snackbar__error_data_fetch": "Error fetching data",
     "snackbar__error_data_save": "Error saving data",
-    "snackbar__error_data_delete": "Error deleting data"
+    "snackbar__error_data_delete": "Error deleting data",
+    "snackbar__error_login": "Email or password is incorrect!"
 }

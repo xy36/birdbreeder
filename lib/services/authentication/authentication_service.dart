@@ -56,21 +56,25 @@ class AuthenticationService implements IAuthenticationService {
     String email,
     String password,
   ) async {
-    final authData = await _pocketBaseService.usersCollection
-        .authWithPassword(email, password);
+    try {
+      final authData = await _pocketBaseService.usersCollection
+          .authWithPassword(email, password);
 
-    if (_pocketBaseService.authStore.isValid) {
-      authenticationStatus.value = AuthenticationStatus.authenticated;
-      _loggingService.logger.info('User is authenticated');
-    } else {
-      _loggingService.logger.info('User is not authenticated');
+      if (_pocketBaseService.authStore.isValid) {
+        authenticationStatus.value = AuthenticationStatus.authenticated;
+        _loggingService.logger.info('User is authenticated');
+      } else {
+        _loggingService.logger.info('User is not authenticated');
+      }
+
+      final user = UserDto.fromJson(authData.record!.toJson()).toModel();
+
+      return Result.value(
+        user,
+      );
+    } catch (e) {
+      return Result.error(e);
     }
-
-    final user = UserDto.fromJson(authData.record!.toJson()).toModel();
-
-    return Result.value(
-      user,
-    );
   }
 
   @override

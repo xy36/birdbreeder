@@ -32,7 +32,7 @@ class App extends StatelessWidget {
         ),
         theme: themeData ??
             ThemeData(
-              colorSchemeSeed: Colors.amber,
+              colorSchemeSeed: Colors.green,
               inputDecorationTheme: InputDecorationTheme(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
