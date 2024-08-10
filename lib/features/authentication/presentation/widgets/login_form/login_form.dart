@@ -8,49 +8,46 @@ import 'package:birdbreeder/features/authentication/presentation/widgets/login_f
 import 'package:birdbreeder/services/screen_size.dart';
 
 // ignore: must_be_immutable
-class LoginForm extends StatelessWidget {
-  LoginForm({super.key});
+class LoginForm extends StatefulWidget {
+  const LoginForm({super.key});
 
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
   String? email;
+
   String? password;
+
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     final size = ScreenSize.getScreenSize(context);
+
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: size.hPaddingMedium,
         vertical: size.vPaddingMedium,
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Form(
-            key: formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Header(),
-                EmailForm(
-                  onChanged: (value) => email = value,
-                ),
-                PasswordForm(
-                  onChanged: (value) => password = value,
-                ),
-                SignInButton(
-                  onPressed: () => onSignInPressed(context),
-                ),
-              ].genericJoin(const SizedBox(height: 32)),
+      child: Form(
+        key: formKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Header(),
+            EmailForm(
+              onChanged: (value) => email = value,
             ),
-          ),
-          //TODO: implement this
-
-          // Text(
-          //   'Dont have an account? Sign up',
-          //   style: Theme.of(context).textTheme.titleSmall,
-          // ),
-        ],
+            PasswordForm(
+              onChanged: (value) => password = value,
+            ),
+            SignInButton(
+              onPressed: () => onSignInPressed(context),
+            ),
+          ].genericJoin(const SizedBox(height: 32)),
+        ),
       ),
     );
   }

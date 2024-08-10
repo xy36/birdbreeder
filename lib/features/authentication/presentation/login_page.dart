@@ -31,13 +31,8 @@ class LoginPage extends StatelessWidget {
           body: LayoutBuilder(
             builder: (context, constraints) {
               return switch (size) {
-                ScreenSize.xs || ScreenSize.sm => SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        LoginForm(),
-                        //const ImageForm(),
-                      ],
-                    ),
+                ScreenSize.xs || ScreenSize.sm => const SingleChildScrollView(
+                    child: LoginForm(),
                   ),
                 ScreenSize.md || ScreenSize.lg || ScreenSize.xl => Row(
                     children: [
@@ -46,9 +41,11 @@ class LoginPage extends StatelessWidget {
                       ),
                       Align(
                         alignment: Alignment.centerRight,
-                        child: SizedBox(
-                          width: constraints.maxWidth * 0.4,
-                          child: LoginForm(),
+                        child: SingleChildScrollView(
+                          child: SizedBox(
+                            width: constraints.maxWidth * 0.4,
+                            child: const LoginForm(),
+                          ),
                         ),
                       ),
                     ],
