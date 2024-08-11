@@ -7,7 +7,9 @@ part 'birds_cubit.freezed.dart';
 part 'birds_state.dart';
 
 class BirdsCubit extends Cubit<BirdsState> {
-  BirdsCubit(this._birdsRepository) : super(const BirdsState.initial());
+  BirdsCubit(this._birdsRepository) : super(const BirdsState.initial()) {
+    _birdsRepository.addListener(load);
+  }
 
   final IBirdsRepository _birdsRepository;
 

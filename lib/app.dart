@@ -37,6 +37,11 @@ class App extends StatelessWidget {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                filled: true,
+                floatingLabelStyle: const TextStyle(
+                  color: Colors.black,
+                ),
               ),
             ),
         builder: (context, child) {

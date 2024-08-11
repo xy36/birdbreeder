@@ -1,6 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/cages/presentation/bloc/cages_bloc.dart';
 import 'package:birdbreeder/features/cages/presentation/widgets/dialogs/add_or_edit_cage_dialog.dart';
+import 'package:birdbreeder/shared/widgets/utils.dart';
 
 class AddNewCageButton extends StatefulWidget {
   const AddNewCageButton({super.key});
@@ -15,9 +16,9 @@ class _AddNewCageButtonState extends State<AddNewCageButton> {
     return FloatingActionButton(
       onPressed: () async {
         final bloc = context.read<CagesBloc>();
-        await showDialog<String>(
-          context: context,
-          builder: (context) => AddOrEditCageDialog(
+        await showChildAsDrawerDialog(
+          context,
+          AddOrEditCageDialog(
             onAdd: (cage) {
               bloc.add(AddCage(cage));
             },

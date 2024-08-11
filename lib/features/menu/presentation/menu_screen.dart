@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/features/menu/domain/entities/menu_pages.dart';
 import 'package:birdbreeder/features/menu/presentation/cubit/menu_cubit.dart';
+import 'package:birdbreeder/features/menu/presentation/utils/utils.dart';
 import 'package:birdbreeder/features/menu/presentation/widgets/side_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -59,6 +60,7 @@ class _MenuScreenState extends State<MenuScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final hasDrawer = showMenuAsDrawer(context);
     return SafeArea(
       child: BlocListener<MenuCubit, MenuState>(
         listener: (context, state) {
@@ -84,12 +86,12 @@ class _MenuScreenState extends State<MenuScreen> {
             return Scaffold(
               key: Menu._menuScaffoldKey,
               drawerEdgeDragWidth: 500,
-              drawer: kIsWeb ? null : drawer,
-              drawerEnableOpenDragGesture: kIsWeb ? false : true,
+              drawer: hasDrawer ? drawer : null,
+              drawerEnableOpenDragGesture: hasDrawer,
               body: Row(
                 children: [
                   // if not web, show the sidebar in a drawer
-                  if (kIsWeb) sideBar,
+                  if (!hasDrawer) sideBar,
                   Expanded(
                     child: widget.child,
                   ),

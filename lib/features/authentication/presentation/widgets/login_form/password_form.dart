@@ -32,7 +32,6 @@ class _PasswordFormState extends State<PasswordForm> {
           obscureText: _obscurePassword,
           onChanged: widget.onChanged,
           decoration: InputDecoration(
-            filled: true,
             suffixIcon: IconButton(
               icon: _obscurePassword ? visibilityIcon : visibilityOffIcon,
               onPressed: () {

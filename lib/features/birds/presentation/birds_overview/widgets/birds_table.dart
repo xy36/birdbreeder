@@ -1,8 +1,9 @@
-import 'package:auto_route/auto_route.dart';
+import 'dart:async';
+
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/domain/models/sex_enum.dart';
+import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/buttons/add_new_bird_button.dart';
 
 class BirdsTable extends StatelessWidget {
   const BirdsTable({
@@ -81,7 +82,10 @@ class BirdsTable extends StatelessWidget {
               // open menu to select birds
             },
             onTap: () async {
-              await context.router.push(BirdRoute(bird: bird));
+              unawaited(
+                openBird(context, bird: bird),
+              );
+              //await context.router.push(BirdRoute(bird: bird));
 
               // if (!mounted) return;
 

@@ -6,7 +6,7 @@ import 'package:birdbreeder/features/birds/domain/repositories/i_birds_repositor
 import 'package:birdbreeder/services/logging_service.dart';
 import 'package:birdbreeder/services/pocketbase_service.dart';
 
-class BirdsRepositoryImpl implements IBirdsRepository {
+class BirdsRepositoryImpl extends IBirdsRepository {
   BirdsRepositoryImpl(this.pocketBaseService, this.loggingService);
   final PocketBaseService pocketBaseService;
   final LoggingService loggingService;
@@ -16,6 +16,8 @@ class BirdsRepositoryImpl implements IBirdsRepository {
     try {
       final result = await pocketBaseService.birdsCollection
           .create(body: bird.toDto().toJson(), expand: 'species,color,cage');
+
+      notifyListeners();
 
       return Result.value(BirdDto.fromJson(result.toJson()).toModel());
     } catch (e) {
@@ -28,6 +30,8 @@ class BirdsRepositoryImpl implements IBirdsRepository {
   Future<Result<void>> delete(Bird bird) async {
     try {
       await pocketBaseService.birdsCollection.delete(bird.id);
+
+      notifyListeners();
 
       return Result.value(null);
     } catch (e) {
@@ -73,6 +77,8 @@ class BirdsRepositoryImpl implements IBirdsRepository {
         body: birdDto.toJson(),
         expand: 'species,color,cage',
       );
+
+      notifyListeners();
 
       return Result.value(BirdDto.fromJson(result.toJson()).toModel());
     } catch (e) {

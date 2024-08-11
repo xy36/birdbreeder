@@ -2,7 +2,6 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/species/presentation/bloc/species_bloc.dart';
 import 'package:birdbreeder/features/species/presentation/widgets/buttons/add_new_species_button.dart';
 import 'package:birdbreeder/features/species/presentation/widgets/species_item.dart';
-import 'package:birdbreeder/shared/widgets/shared_app_bar_with_drawer.dart';
 
 class SpeciesScreen extends StatelessWidget {
   const SpeciesScreen({super.key});
@@ -17,7 +16,6 @@ class SpeciesScreen extends StatelessWidget {
           appBar: SharedAppBarWithDrawer(
             title: context.l10n.species__title,
           ),
-          floatingActionButton: const AddNewSpeciesButton(),
           body: state.when(
             initial: () => const Center(
               child: CircularProgressIndicator(),
@@ -42,6 +40,7 @@ class SpeciesScreen extends StatelessWidget {
               );
             },
           ),
+          floatingActionButton: const AddNewSpeciesButton(),
         );
       },
     );
