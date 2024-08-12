@@ -6,7 +6,6 @@ import 'package:birdbreeder/features/birds/domain/repositories/i_birds_repositor
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/models/bird_mode.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/models/bird_resources.dart';
 import 'package:birdbreeder/features/cages/domain/repositories/i_cages_repository.dart';
-import 'package:birdbreeder/features/colors/domain/models/bird_color.dart';
 import 'package:birdbreeder/features/colors/domain/repositories/i_color_repository.dart';
 import 'package:birdbreeder/features/species/domain/repositories/i_species_repository.dart';
 import 'package:bloc/bloc.dart';
@@ -105,52 +104,65 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
   }
 
   Future<Bird?> _createNewSpeciesIfNotExists(Bird bird) async {
-    if (bird.species?.id != null && bird.species!.id.isNotEmpty) {
+    if (bird.species == null) {
       return null;
     }
 
-    if (bird.species?.name == null) {
+    if (bird.species?.id != null && bird.species!.id.isNotEmpty) {
       return null;
     }
 
     final newSpecies = await speciesRepo.create(bird.species!);
 
+    if (newSpecies.isError) {
+      //TODO: add notification that species was not created
+      return null;
+    }
+
     return bird.copyWith(species: newSpecies.asValue?.value);
   }
 
   Future<Bird?> _createNewColorIfNotExists(Bird bird) async {
-    if (bird.color?.id != null) {
+    if (bird.color == null) {
       return null;
     }
 
-    if (bird.color?.name == null) {
+    if (bird.color?.id != null && bird.color!.id.isNotEmpty) {
       return null;
     }
 
-    final newColor = await birdColorsRepo
-        .create(BirdColor.create().copyWith(name: bird.color!.name));
+    final newColor = await birdColorsRepo.create(bird.color!);
+
+    if (newColor.isError) {
+      //TODO: add notification that color was not created
+      return null;
+    }
 
     return bird.copyWith(color: newColor.asValue?.value);
   }
 
   Future<Bird?> _createNewCageIfNotExists(Bird bird) async {
-    return bird;
-    // if (bird.cage?.id != null) {
-    //   return null;
-    // }
+    if (bird.cage == null) {
+      return null;
+    }
 
-    // if (bird.cage?.name == null) {
-    //   return null;
-    // }
+    if (bird.cage?.id != null && bird.cage!.id.isNotEmpty) {
+      return null;
+    }
 
-    // final newCage = await cagesRepo.create(Cage(name: bird.cage!.name));
+    final newCage = await cagesRepo.create(bird.cage!);
 
-    // return bird.copyWith(cage: newCage.asValue?.value);
+    if (newCage.isError) {
+      //TODO: add notification that cage was not created
+      return null;
+    }
+
+    return bird.copyWith(cage: newCage.asValue?.value);
   }
 
   FutureOr<void> _onSave(BirdSave event, Emitter<BirdState> emit) async {
     Result<Bird> result;
-    final bird = state.bird;
+    var bird = state.bird;
 
     emit(
       BirdLoading(
@@ -160,9 +172,9 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
       ),
     );
 
-    // bird = await _createNewSpeciesIfNotExists(bird) ?? bird;
-    // bird = await _createNewColorIfNotExists(bird) ?? bird;
-    // bird = await _createNewCageIfNotExists(bird) ?? bird;
+    bird = await _createNewSpeciesIfNotExists(bird) ?? bird;
+    bird = await _createNewColorIfNotExists(bird) ?? bird;
+    bird = await _createNewCageIfNotExists(bird) ?? bird;
 
     if (state.mode == BirdMode.create) {
       result = await birdsRepo.create(bird);

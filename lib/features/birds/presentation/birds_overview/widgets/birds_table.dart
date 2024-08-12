@@ -20,15 +20,23 @@ class BirdsTable extends StatelessWidget {
       itemBuilder: (context, index) {
         final bird = birds[index];
         return Card(
-          color: Colors.white,
           child: ListTile(
-            title: Text(
-              bird.ringnumber ?? '-',
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  bird.ringnumber ?? '-',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                if (bird.born != null)
+                  Text(
+                    bird.born!.toDateFormat(context),
+                  ),
+              ],
             ),
-            trailing: bird.sex.getIcon(context),
+            leading: bird.sex.getIcon(context),
             subtitle: Wrap(
               runSpacing: 10,
               spacing: 10,
@@ -40,25 +48,22 @@ class BirdsTable extends StatelessWidget {
                 //           Origin.unknown.name(context),
                 //     ),
                 //   ),
-                // if (bird.cage?.name != null)
-                //   Chip(
-                //     backgroundColor: Colors.amber[100],
-                //     side: const BorderSide(
-                //       color: Colors.transparent,
-                //     ),
-                //     label: Text(
-                //       bird.cage?.name ?? '',
-                //     ),
-                //   ),
-                if (bird.born != null)
+                if (bird.cage?.name != null)
                   Chip(
+                    backgroundColor:
+                        Theme.of(context).primaryColor.withAlpha(80),
+                    side: const BorderSide(
+                      color: Colors.transparent,
+                    ),
                     label: Text(
-                      bird.born!.toIso8601String(),
+                      bird.cage?.name ?? '',
                     ),
                   ),
+
                 if (bird.species?.name != null)
                   Chip(
-                    backgroundColor: Colors.blueAccent[100],
+                    backgroundColor:
+                        Theme.of(context).primaryColor.withAlpha(60),
                     side: const BorderSide(
                       color: Colors.transparent,
                     ),
@@ -68,7 +73,8 @@ class BirdsTable extends StatelessWidget {
                   ),
                 if (bird.color?.name != null)
                   Chip(
-                    backgroundColor: Colors.greenAccent[100],
+                    backgroundColor:
+                        Theme.of(context).primaryColor.withAlpha(100),
                     side: const BorderSide(
                       color: Colors.transparent,
                     ),

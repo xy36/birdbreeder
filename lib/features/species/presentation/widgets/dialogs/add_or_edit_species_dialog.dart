@@ -2,8 +2,8 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/generic_join.dart';
 import 'package:birdbreeder/features/species/domain/models/species.dart';
 import 'package:birdbreeder/services/screen_size.dart';
+import 'package:birdbreeder/shared/widgets/field_with_label.dart';
 import 'package:birdbreeder/shared/widgets/icons.dart';
-import 'package:birdbreeder/shared/widgets/text_form_field_with_label.dart';
 
 class AddOrEditSpeciesDialog extends StatefulWidget {
   const AddOrEditSpeciesDialog({super.key, required this.onAdd, this.species});
@@ -57,7 +57,7 @@ class _AddOrEditSpeciesDialogState extends State<AddOrEditSpeciesDialog> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              TextFormFieldWithLabel(
+              FieldWithLabel(
                 label: context.l10n.species__name,
                 child: TextFormField(
                   initialValue: _species.name,
@@ -75,7 +75,7 @@ class _AddOrEditSpeciesDialogState extends State<AddOrEditSpeciesDialog> {
                   },
                 ),
               ),
-              TextFormFieldWithLabel(
+              FieldWithLabel(
                 label: context.l10n.species__latin_name,
                 child: TextFormField(
                   initialValue: _species.latName,

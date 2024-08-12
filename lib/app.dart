@@ -32,16 +32,13 @@ class App extends StatelessWidget {
         ),
         theme: themeData ??
             ThemeData(
-              colorSchemeSeed: Colors.green,
+              colorSchemeSeed: Colors.cyan,
               inputDecorationTheme: InputDecorationTheme(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 filled: true,
-                floatingLabelStyle: const TextStyle(
-                  color: Colors.black,
-                ),
               ),
             ),
         builder: (context, child) {

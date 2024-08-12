@@ -3,14 +3,14 @@ import 'package:birdbreeder/common_imports.dart';
 class BirdDateField extends StatelessWidget {
   const BirdDateField({
     super.key,
-    this.label,
+    this.hint,
     required this.onChanged,
     required this.name,
     this.initialValue,
   });
 
   final String name;
-  final String? label;
+  final String? hint;
   final void Function(DateTime) onChanged;
   final DateTime? initialValue;
 
@@ -24,7 +24,7 @@ class BirdDateField extends StatelessWidget {
       format: context.getDateFormat(),
       onChanged: (date) => date != null ? onChanged(date) : null,
       decoration: InputDecoration(
-        labelText: label,
+        hintText: hint,
       ),
     );
   }

@@ -50,6 +50,11 @@ enum ScreenSize {
         ScreenSize.lg;
   }
 
+  double get drawerDialogInsetPadding => switch (this) {
+        ScreenSize.xs => 8.0,
+        _ => 16.0,
+      };
+
   double get hPaddingSmall => switch (this) {
         ScreenSize.xs => 8.0,
         ScreenSize.sm => 16.0,

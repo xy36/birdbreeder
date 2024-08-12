@@ -1,8 +1,8 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/colors/domain/models/bird_color.dart';
 import 'package:birdbreeder/services/screen_size.dart';
+import 'package:birdbreeder/shared/widgets/field_with_label.dart';
 import 'package:birdbreeder/shared/widgets/icons.dart';
-import 'package:birdbreeder/shared/widgets/text_form_field_with_label.dart';
 
 class AddOrEditColorDialog extends StatefulWidget {
   const AddOrEditColorDialog({super.key, required this.onAdd, this.color});
@@ -55,7 +55,7 @@ class _AddOrEditColorDialogState extends State<AddOrEditColorDialog> {
           ),
           child: Column(
             children: [
-              TextFormFieldWithLabel(
+              FieldWithLabel(
                 label: context.l10n.colors__color,
                 child: TextFormField(
                   initialValue: _color.name,

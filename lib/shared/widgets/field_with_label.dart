@@ -1,13 +1,13 @@
 import 'package:birdbreeder/common_imports.dart';
 
-class TextFormFieldWithLabel extends StatelessWidget {
-  const TextFormFieldWithLabel({
+class FieldWithLabel extends StatelessWidget {
+  const FieldWithLabel({
     super.key,
     required this.child,
     required this.label,
   });
 
-  final TextFormField child;
+  final Widget child;
   final String label;
 
   @override

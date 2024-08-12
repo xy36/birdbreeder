@@ -2,8 +2,8 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/generic_join.dart';
 import 'package:birdbreeder/features/cages/domain/models/cage.dart';
 import 'package:birdbreeder/services/screen_size.dart';
+import 'package:birdbreeder/shared/widgets/field_with_label.dart';
 import 'package:birdbreeder/shared/widgets/icons.dart';
-import 'package:birdbreeder/shared/widgets/text_form_field_with_label.dart';
 import 'package:flutter/services.dart';
 
 class AddOrEditCageDialog extends StatefulWidget {
@@ -58,7 +58,7 @@ class _AddOrEditCageDialogState extends State<AddOrEditCageDialog> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              TextFormFieldWithLabel(
+              FieldWithLabel(
                 label: context.l10n.cages__name,
                 child: TextFormField(
                   initialValue: _cage.name,
@@ -78,7 +78,7 @@ class _AddOrEditCageDialogState extends State<AddOrEditCageDialog> {
                   },
                 ),
               ),
-              TextFormFieldWithLabel(
+              FieldWithLabel(
                 label: context.l10n.cages__description,
                 child: TextFormField(
                   initialValue: _cage.description,
@@ -94,7 +94,7 @@ class _AddOrEditCageDialogState extends State<AddOrEditCageDialog> {
                   },
                 ),
               ),
-              TextFormFieldWithLabel(
+              FieldWithLabel(
                 label: context.l10n.cages__height,
                 child: TextFormField(
                   initialValue: _cage.height?.toString(),
@@ -112,7 +112,7 @@ class _AddOrEditCageDialogState extends State<AddOrEditCageDialog> {
                   },
                 ),
               ),
-              TextFormFieldWithLabel(
+              FieldWithLabel(
                 label: context.l10n.cages__width,
                 child: TextFormField(
                   initialValue: _cage.width?.toString(),
@@ -130,7 +130,7 @@ class _AddOrEditCageDialogState extends State<AddOrEditCageDialog> {
                   },
                 ),
               ),
-              TextFormFieldWithLabel(
+              FieldWithLabel(
                 label: context.l10n.cages__depth,
                 child: TextFormField(
                   initialValue: _cage.depth?.toString(),

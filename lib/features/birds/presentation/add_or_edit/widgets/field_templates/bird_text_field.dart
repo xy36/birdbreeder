@@ -3,14 +3,14 @@ import 'package:birdbreeder/common_imports.dart';
 class BirdTextField extends StatelessWidget {
   const BirdTextField({
     super.key,
-    this.label,
+    this.hint,
     this.onChanged,
     required this.name,
     this.initialValue,
   });
 
   final String name;
-  final String? label;
+  final String? hint;
   final void Function(String?)? onChanged;
   final String? initialValue;
 
@@ -21,7 +21,7 @@ class BirdTextField extends StatelessWidget {
       onChanged: onChanged,
       initialValue: initialValue,
       decoration: InputDecoration(
-        labelText: label,
+        hintText: hint,
       ),
     );
   }

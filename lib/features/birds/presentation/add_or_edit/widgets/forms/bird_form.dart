@@ -1,6 +1,8 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/core/extensions/generic_join.dart';
 import 'package:birdbreeder/features/birds/domain/models/sex_enum.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/bloc/bird_bloc.dart';
+import 'package:birdbreeder/services/screen_size.dart';
 
 class BirdForm extends StatelessWidget {
   const BirdForm({
@@ -79,30 +81,22 @@ class BirdForm extends StatelessWidget {
           // ),
         ];
 
+        final size = ScreenSize.getScreenSize(context);
+
         return SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                child: Text(
-                  'Bird Information',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+            children: <Widget>[
               ...fields.map(
-                (field) => Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 8,
-                    horizontal: 20,
+                (e) => Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: size.drawerDialogInsetPadding,
                   ),
-                  child: field,
+                  child: e,
                 ),
               ),
-            ],
+              //
+            ].genericJoin(const SizedBox(height: 8)),
           ),
         );
       },
