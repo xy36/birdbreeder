@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 extension NullableDateFormatExtension on DateTime? {
-  String toDateFormat(BuildContext context, [String replacement = '-']) {
+  String toDateFormat(BuildContext context, [String replacement = '']) {
     if (this != null) {
       return this!.toDateFormat(context);
     }

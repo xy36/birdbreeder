@@ -1,3 +1,4 @@
+import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
 import 'package:birdbreeder/features/cages/data/dtos/cage_dto.dart';
 import 'package:birdbreeder/features/colors/data/dtos/bird_color_dto.dart';
 import 'package:birdbreeder/features/species/data/dtos/species_dto.dart';
@@ -12,6 +13,8 @@ class ExpandDto with _$ExpandDto {
     required BirdColorDto? color,
     required SpeciesDto? species,
     required CageDto? cage,
+    required BirdDto? father,
+    required BirdDto? mother,
   }) = _ExpandDto;
 
   factory ExpandDto.fromJson(Map<String, dynamic> json) =>

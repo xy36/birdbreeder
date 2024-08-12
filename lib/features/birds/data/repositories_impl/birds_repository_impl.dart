@@ -11,11 +11,15 @@ class BirdsRepositoryImpl extends IBirdsRepository {
   final PocketBaseService pocketBaseService;
   final LoggingService loggingService;
 
+  final String expand = 'species,color,cage,father,mother';
+
   @override
   Future<Result<Bird>> create(Bird bird) async {
     try {
-      final result = await pocketBaseService.birdsCollection
-          .create(body: bird.toDto().toJson(), expand: 'species,color,cage');
+      final result = await pocketBaseService.birdsCollection.create(
+        body: bird.toDto().toJson(),
+        expand: expand,
+      );
 
       notifyListeners();
 
@@ -44,7 +48,7 @@ class BirdsRepositoryImpl extends IBirdsRepository {
   Future<Result<List<Bird>>> getAll() async {
     try {
       final result = await pocketBaseService.birdsCollection
-          .getFullList(sort: '-created', expand: 'species,color,cage');
+          .getFullList(sort: '-created', expand: expand);
 
       return Result.value(
         result.map((e) => BirdDto.fromJson(e.toJson()).toModel()).toList(),
@@ -58,8 +62,8 @@ class BirdsRepositoryImpl extends IBirdsRepository {
   @override
   Future<Result<Bird>> getById(String id) async {
     try {
-      final birdResult = await pocketBaseService.birdsCollection
-          .getOne(id, expand: 'species,color,cage');
+      final birdResult =
+          await pocketBaseService.birdsCollection.getOne(id, expand: expand);
 
       return Result.value(BirdDto.fromJson(birdResult.toJson()).toModel());
     } catch (e) {
@@ -75,7 +79,7 @@ class BirdsRepositoryImpl extends IBirdsRepository {
       final result = await pocketBaseService.birdsCollection.update(
         bird.id,
         body: birdDto.toJson(),
-        expand: 'species,color,cage',
+        expand: expand,
       );
 
       notifyListeners();

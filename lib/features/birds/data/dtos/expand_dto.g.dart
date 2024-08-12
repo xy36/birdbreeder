@@ -17,6 +17,12 @@ _$ExpandDtoImpl _$$ExpandDtoImplFromJson(Map<String, dynamic> json) =>
       cage: json['cage'] == null
           ? null
           : CageDto.fromJson(json['cage'] as Map<String, dynamic>),
+      father: json['father'] == null
+          ? null
+          : BirdDto.fromJson(json['father'] as Map<String, dynamic>),
+      mother: json['mother'] == null
+          ? null
+          : BirdDto.fromJson(json['mother'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ExpandDtoImplToJson(_$ExpandDtoImpl instance) =>
@@ -24,4 +30,6 @@ Map<String, dynamic> _$$ExpandDtoImplToJson(_$ExpandDtoImpl instance) =>
       'color': instance.color,
       'species': instance.species,
       'cage': instance.cage,
+      'father': instance.father,
+      'mother': instance.mother,
     };

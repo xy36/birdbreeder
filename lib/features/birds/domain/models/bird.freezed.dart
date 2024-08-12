@@ -24,8 +24,8 @@ mixin _$Bird {
   Species? get species => throw _privateConstructorUsedError;
   BirdColor? get color => throw _privateConstructorUsedError;
   Cage? get cage => throw _privateConstructorUsedError;
-  String? get father => throw _privateConstructorUsedError;
-  String? get mother => throw _privateConstructorUsedError;
+  Bird? get father => throw _privateConstructorUsedError;
+  Bird? get mother => throw _privateConstructorUsedError;
   Sex get sex => throw _privateConstructorUsedError;
   bool? get sold => throw _privateConstructorUsedError;
   List<String> get children => throw _privateConstructorUsedError;
@@ -48,8 +48,8 @@ abstract class $BirdCopyWith<$Res> {
       Species? species,
       BirdColor? color,
       Cage? cage,
-      String? father,
-      String? mother,
+      Bird? father,
+      Bird? mother,
       Sex sex,
       bool? sold,
       List<String> children});
@@ -57,6 +57,8 @@ abstract class $BirdCopyWith<$Res> {
   $SpeciesCopyWith<$Res>? get species;
   $BirdColorCopyWith<$Res>? get color;
   $CageCopyWith<$Res>? get cage;
+  $BirdCopyWith<$Res>? get father;
+  $BirdCopyWith<$Res>? get mother;
 }
 
 /// @nodoc
@@ -122,11 +124,11 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
       father: freezed == father
           ? _value.father
           : father // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Bird?,
       mother: freezed == mother
           ? _value.mother
           : mother // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Bird?,
       sex: null == sex
           ? _value.sex
           : sex // ignore: cast_nullable_to_non_nullable
@@ -177,6 +179,30 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
       return _then(_value.copyWith(cage: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BirdCopyWith<$Res>? get father {
+    if (_value.father == null) {
+      return null;
+    }
+
+    return $BirdCopyWith<$Res>(_value.father!, (value) {
+      return _then(_value.copyWith(father: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BirdCopyWith<$Res>? get mother {
+    if (_value.mother == null) {
+      return null;
+    }
+
+    return $BirdCopyWith<$Res>(_value.mother!, (value) {
+      return _then(_value.copyWith(mother: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -195,8 +221,8 @@ abstract class _$$BirdImplCopyWith<$Res> implements $BirdCopyWith<$Res> {
       Species? species,
       BirdColor? color,
       Cage? cage,
-      String? father,
-      String? mother,
+      Bird? father,
+      Bird? mother,
       Sex sex,
       bool? sold,
       List<String> children});
@@ -207,6 +233,10 @@ abstract class _$$BirdImplCopyWith<$Res> implements $BirdCopyWith<$Res> {
   $BirdColorCopyWith<$Res>? get color;
   @override
   $CageCopyWith<$Res>? get cage;
+  @override
+  $BirdCopyWith<$Res>? get father;
+  @override
+  $BirdCopyWith<$Res>? get mother;
 }
 
 /// @nodoc
@@ -269,11 +299,11 @@ class __$$BirdImplCopyWithImpl<$Res>
       father: freezed == father
           ? _value.father
           : father // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Bird?,
       mother: freezed == mother
           ? _value.mother
           : mother // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Bird?,
       sex: null == sex
           ? _value.sex
           : sex // ignore: cast_nullable_to_non_nullable
@@ -326,9 +356,9 @@ class _$BirdImpl implements _Bird {
   @override
   final Cage? cage;
   @override
-  final String? father;
+  final Bird? father;
   @override
-  final String? mother;
+  final Bird? mother;
   @override
   @JsonKey()
   final Sex sex;
@@ -403,8 +433,8 @@ abstract class _Bird implements Bird {
       final Species? species,
       final BirdColor? color,
       final Cage? cage,
-      final String? father,
-      final String? mother,
+      final Bird? father,
+      final Bird? mother,
       final Sex sex,
       final bool? sold,
       final List<String> children}) = _$BirdImpl;
@@ -426,9 +456,9 @@ abstract class _Bird implements Bird {
   @override
   Cage? get cage;
   @override
-  String? get father;
+  Bird? get father;
   @override
-  String? get mother;
+  Bird? get mother;
   @override
   Sex get sex;
   @override

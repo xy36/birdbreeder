@@ -22,7 +22,7 @@ class CageField extends StatelessWidget {
     return EasyAutocomplete(
       initialValue: bird.cage?.name,
       decoration: InputDecoration(
-        hintText: context.l10n.common__cage,
+        hintText: context.l10n.common__select,
       ),
       suggestions: birdResources.cagesList
           .map(

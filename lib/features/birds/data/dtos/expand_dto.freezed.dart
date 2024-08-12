@@ -23,6 +23,8 @@ mixin _$ExpandDto {
   BirdColorDto? get color => throw _privateConstructorUsedError;
   SpeciesDto? get species => throw _privateConstructorUsedError;
   CageDto? get cage => throw _privateConstructorUsedError;
+  BirdDto? get father => throw _privateConstructorUsedError;
+  BirdDto? get mother => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,11 +37,18 @@ abstract class $ExpandDtoCopyWith<$Res> {
   factory $ExpandDtoCopyWith(ExpandDto value, $Res Function(ExpandDto) then) =
       _$ExpandDtoCopyWithImpl<$Res, ExpandDto>;
   @useResult
-  $Res call({BirdColorDto? color, SpeciesDto? species, CageDto? cage});
+  $Res call(
+      {BirdColorDto? color,
+      SpeciesDto? species,
+      CageDto? cage,
+      BirdDto? father,
+      BirdDto? mother});
 
   $BirdColorDtoCopyWith<$Res>? get color;
   $SpeciesDtoCopyWith<$Res>? get species;
   $CageDtoCopyWith<$Res>? get cage;
+  $BirdDtoCopyWith<$Res>? get father;
+  $BirdDtoCopyWith<$Res>? get mother;
 }
 
 /// @nodoc
@@ -58,6 +67,8 @@ class _$ExpandDtoCopyWithImpl<$Res, $Val extends ExpandDto>
     Object? color = freezed,
     Object? species = freezed,
     Object? cage = freezed,
+    Object? father = freezed,
+    Object? mother = freezed,
   }) {
     return _then(_value.copyWith(
       color: freezed == color
@@ -72,6 +83,14 @@ class _$ExpandDtoCopyWithImpl<$Res, $Val extends ExpandDto>
           ? _value.cage
           : cage // ignore: cast_nullable_to_non_nullable
               as CageDto?,
+      father: freezed == father
+          ? _value.father
+          : father // ignore: cast_nullable_to_non_nullable
+              as BirdDto?,
+      mother: freezed == mother
+          ? _value.mother
+          : mother // ignore: cast_nullable_to_non_nullable
+              as BirdDto?,
     ) as $Val);
   }
 
@@ -110,6 +129,30 @@ class _$ExpandDtoCopyWithImpl<$Res, $Val extends ExpandDto>
       return _then(_value.copyWith(cage: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BirdDtoCopyWith<$Res>? get father {
+    if (_value.father == null) {
+      return null;
+    }
+
+    return $BirdDtoCopyWith<$Res>(_value.father!, (value) {
+      return _then(_value.copyWith(father: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BirdDtoCopyWith<$Res>? get mother {
+    if (_value.mother == null) {
+      return null;
+    }
+
+    return $BirdDtoCopyWith<$Res>(_value.mother!, (value) {
+      return _then(_value.copyWith(mother: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -120,7 +163,12 @@ abstract class _$$ExpandDtoImplCopyWith<$Res>
       __$$ExpandDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BirdColorDto? color, SpeciesDto? species, CageDto? cage});
+  $Res call(
+      {BirdColorDto? color,
+      SpeciesDto? species,
+      CageDto? cage,
+      BirdDto? father,
+      BirdDto? mother});
 
   @override
   $BirdColorDtoCopyWith<$Res>? get color;
@@ -128,6 +176,10 @@ abstract class _$$ExpandDtoImplCopyWith<$Res>
   $SpeciesDtoCopyWith<$Res>? get species;
   @override
   $CageDtoCopyWith<$Res>? get cage;
+  @override
+  $BirdDtoCopyWith<$Res>? get father;
+  @override
+  $BirdDtoCopyWith<$Res>? get mother;
 }
 
 /// @nodoc
@@ -144,6 +196,8 @@ class __$$ExpandDtoImplCopyWithImpl<$Res>
     Object? color = freezed,
     Object? species = freezed,
     Object? cage = freezed,
+    Object? father = freezed,
+    Object? mother = freezed,
   }) {
     return _then(_$ExpandDtoImpl(
       color: freezed == color
@@ -158,6 +212,14 @@ class __$$ExpandDtoImplCopyWithImpl<$Res>
           ? _value.cage
           : cage // ignore: cast_nullable_to_non_nullable
               as CageDto?,
+      father: freezed == father
+          ? _value.father
+          : father // ignore: cast_nullable_to_non_nullable
+              as BirdDto?,
+      mother: freezed == mother
+          ? _value.mother
+          : mother // ignore: cast_nullable_to_non_nullable
+              as BirdDto?,
     ));
   }
 }
@@ -166,7 +228,11 @@ class __$$ExpandDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ExpandDtoImpl implements _ExpandDto {
   _$ExpandDtoImpl(
-      {required this.color, required this.species, required this.cage});
+      {required this.color,
+      required this.species,
+      required this.cage,
+      required this.father,
+      required this.mother});
 
   factory _$ExpandDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ExpandDtoImplFromJson(json);
@@ -177,10 +243,14 @@ class _$ExpandDtoImpl implements _ExpandDto {
   final SpeciesDto? species;
   @override
   final CageDto? cage;
+  @override
+  final BirdDto? father;
+  @override
+  final BirdDto? mother;
 
   @override
   String toString() {
-    return 'ExpandDto(color: $color, species: $species, cage: $cage)';
+    return 'ExpandDto(color: $color, species: $species, cage: $cage, father: $father, mother: $mother)';
   }
 
   @override
@@ -190,12 +260,15 @@ class _$ExpandDtoImpl implements _ExpandDto {
             other is _$ExpandDtoImpl &&
             (identical(other.color, color) || other.color == color) &&
             (identical(other.species, species) || other.species == species) &&
-            (identical(other.cage, cage) || other.cage == cage));
+            (identical(other.cage, cage) || other.cage == cage) &&
+            (identical(other.father, father) || other.father == father) &&
+            (identical(other.mother, mother) || other.mother == mother));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, color, species, cage);
+  int get hashCode =>
+      Object.hash(runtimeType, color, species, cage, father, mother);
 
   @JsonKey(ignore: true)
   @override
@@ -215,7 +288,9 @@ abstract class _ExpandDto implements ExpandDto {
   factory _ExpandDto(
       {required final BirdColorDto? color,
       required final SpeciesDto? species,
-      required final CageDto? cage}) = _$ExpandDtoImpl;
+      required final CageDto? cage,
+      required final BirdDto? father,
+      required final BirdDto? mother}) = _$ExpandDtoImpl;
 
   factory _ExpandDto.fromJson(Map<String, dynamic> json) =
       _$ExpandDtoImpl.fromJson;
@@ -226,6 +301,10 @@ abstract class _ExpandDto implements ExpandDto {
   SpeciesDto? get species;
   @override
   CageDto? get cage;
+  @override
+  BirdDto? get father;
+  @override
+  BirdDto? get mother;
   @override
   @JsonKey(ignore: true)
   _$$ExpandDtoImplCopyWith<_$ExpandDtoImpl> get copyWith =>

@@ -8,6 +8,7 @@ import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/fiel
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/field_templates/bird_text_field.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/forms/edit_bird_form/cage_field.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/forms/edit_bird_form/color_field.dart';
+import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/forms/edit_bird_form/parent_field.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/forms/edit_bird_form/species_field.dart';
 import 'package:birdbreeder/services/screen_size.dart';
 import 'package:birdbreeder/shared/widgets/field_with_label.dart';
@@ -88,36 +89,105 @@ class BirdFields extends StatelessWidget {
               ),
             ],
           ),
-          FieldWithLabel(
-            label: context.l10n.common__father_ringnumber,
-            child: BirdTextField(
-              name: 'father_field',
-              hint: context.l10n.common__father_ringnumber,
-              initialValue: bird.father,
-              onChanged: (fatherRingnumber) {
-                context.read<BirdBloc>().add(
-                      BirdEvent.change(
-                        bird: bird.copyWith(father: fatherRingnumber),
-                      ),
-                    );
-              },
-            ),
-          ),
-          FieldWithLabel(
-            label: context.l10n.common__mother_ringnumber,
-            child: BirdTextField(
-              name: 'mother_field',
-              hint: context.l10n.common__mother_ringnumber,
-              initialValue: bird.mother,
-              onChanged: (motherRingnumber) {
-                context.read<BirdBloc>().add(
-                      BirdEvent.change(
-                        bird: bird.copyWith(mother: motherRingnumber),
-                      ),
-                    );
-              },
-            ),
-          ),
+          ParentField(initialBird: bird, parentType: ParentType.father),
+          ParentField(initialBird: bird, parentType: ParentType.mother),
+
+          // BlocBuilder<BirdsCubit, BirdsState>(
+          //   builder: (context, state) {
+          //     final possibleFathers = (state is BirdsLoaded)
+          //         ? (state)
+          //             .birds
+          //             // filter own the bird itself
+          //             .where((b) => b.id != bird.id)
+          //             // filter out female birds
+          //             .where((b) => b.sex != Sex.female)
+          //             .toList()
+          //         : <Bird>[];
+
+          //     return FieldWithLabel(
+          //       label: context.l10n.common__father_ringnumber,
+          //       child: BirdDropdownField<Bird>(
+          //         name: 'father_field',
+          //         initialValue: (state is BirdsLoaded)
+          //             ? (state).birds.firstWhereOrNull(
+          //                   (element) => element.id == bird.father?.id,
+          //                 )
+          //             : null,
+          //         onChanged: (father) {
+          //           context.read<BirdBloc>().add(
+          //                 BirdEvent.change(
+          //                   bird: bird.copyWith(father: father),
+          //                 ),
+          //               );
+          //         },
+          //         selectedItemBuilder: (context) => possibleFathers
+          //             .map(
+          //               (e) => DropdownMenuItem(
+          //                 value: e,
+          //                 child: Text(e.ringnumber ?? '-'),
+          //               ),
+          //             )
+          //             .toList(),
+          //         items: possibleFathers
+          //             .map(
+          //               (e) => DropdownMenuItem(
+          //                 value: e,
+          //                 child: ListTile(
+          //                   selected: e.id == bird.father?.id,
+          //                   title: Row(
+          //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //                     children: [
+          //                       Text(e.ringnumber ?? '-'),
+          //                       Text(e.cage?.name ?? ''),
+          //                     ],
+          //                   ),
+          //                   subtitle: Row(
+          //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //                     children: [
+          //                       Text(e.species?.name ?? ''),
+          //                       Text(e.born.toDateFormat(context)),
+          //                     ],
+          //                   ),
+          //                   leading: e.sex.getIcon(context),
+          //                 ),
+          //               ),
+          //             )
+          //             .toList(),
+          //       ),
+          //     );
+          //   },
+          // ),
+
+          // FieldWithLabel(
+          //   label: context.l10n.common__father_ringnumber,
+          //   child: BirdTextField(
+          //     name: 'father_field',
+          //     hint: context.l10n.common__father_ringnumber,
+          //     initialValue: bird.father,
+          //     onChanged: (fatherRingnumber) {
+          //       context.read<BirdBloc>().add(
+          //             BirdEvent.change(
+          //               bird: bird.copyWith(father: fatherRingnumber),
+          //             ),
+          //           );
+          //     },
+          //   ),
+          // ),
+          // FieldWithLabel(
+          //   label: context.l10n.common__mother_ringnumber,
+          //   child: BirdTextField(
+          //     name: 'mother_field',
+          //     hint: context.l10n.common__mother_ringnumber,
+          //     initialValue: bird.mother,
+          //     onChanged: (motherRingnumber) {
+          //       context.read<BirdBloc>().add(
+          //             BirdEvent.change(
+          //               bird: bird.copyWith(mother: motherRingnumber),
+          //             ),
+          //           );
+          //     },
+          //   ),
+          // ),
           // BirdDropdownField<Origin>(
           //   name: 'origin_field',
           //   label: context.l10n.common__origin,
@@ -141,7 +211,6 @@ class BirdFields extends StatelessWidget {
             label: context.l10n.common__born_date,
             child: BirdDateField(
               name: 'born_date_field',
-              hint: context.l10n.common__born_date,
               initialValue: bird.born,
               onChanged: (bornDate) {
                 context.read<BirdBloc>().add(
