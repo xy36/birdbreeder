@@ -10,14 +10,23 @@ class CageItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(cage.name ?? '-'),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          EditCageButton(cage: cage),
-          DeleteCageButton(cage: cage),
-        ],
+    return Card(
+      child: ListTile(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(cage.name ?? '-'),
+            Text('${cage.height}m x ${cage.width}m x ${cage.depth}m'),
+          ],
+        ),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            EditCageButton(cage: cage),
+            DeleteCageButton(cage: cage),
+          ],
+        ),
+        subtitle: Text(cage.description ?? ''),
       ),
     );
   }

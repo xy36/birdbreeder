@@ -10,14 +10,16 @@ class ColorItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(color.name ?? '-'),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          EditColorButton(color: color),
-          DeleteColorButton(color: color),
-        ],
+    return Card(
+      child: ListTile(
+        title: Text(color.name ?? '-'),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            EditColorButton(color: color),
+            DeleteColorButton(color: color),
+          ],
+        ),
       ),
     );
   }

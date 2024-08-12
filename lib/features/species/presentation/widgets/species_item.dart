@@ -10,15 +10,17 @@ class SpeciesItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(species.name ?? '-'),
-      subtitle: Text(species.latName ?? ''),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          EditSpeciesButton(species: species),
-          DeleteSpeciesButton(species: species),
-        ],
+    return Card(
+      child: ListTile(
+        title: Text(species.name ?? '-'),
+        subtitle: Text(species.latName ?? ''),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            EditSpeciesButton(species: species),
+            DeleteSpeciesButton(species: species),
+          ],
+        ),
       ),
     );
   }
