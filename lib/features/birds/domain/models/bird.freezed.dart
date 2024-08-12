@@ -21,6 +21,12 @@ mixin _$Bird {
   DateTime? get updated => throw _privateConstructorUsedError;
   String? get ringnumber => throw _privateConstructorUsedError;
   DateTime? get born => throw _privateConstructorUsedError;
+  DateTime? get died => throw _privateConstructorUsedError;
+  DateTime? get bought => throw _privateConstructorUsedError;
+  DateTime? get sell => throw _privateConstructorUsedError;
+  double? get boughtPrice => throw _privateConstructorUsedError;
+  double? get sellPriceOffer => throw _privateConstructorUsedError;
+  double? get sellPriceReal => throw _privateConstructorUsedError;
   Species? get species => throw _privateConstructorUsedError;
   BirdColor? get color => throw _privateConstructorUsedError;
   Cage? get cage => throw _privateConstructorUsedError;
@@ -45,6 +51,12 @@ abstract class $BirdCopyWith<$Res> {
       DateTime? updated,
       String? ringnumber,
       DateTime? born,
+      DateTime? died,
+      DateTime? bought,
+      DateTime? sell,
+      double? boughtPrice,
+      double? sellPriceOffer,
+      double? sellPriceReal,
       Species? species,
       BirdColor? color,
       Cage? cage,
@@ -79,6 +91,12 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
     Object? updated = freezed,
     Object? ringnumber = freezed,
     Object? born = freezed,
+    Object? died = freezed,
+    Object? bought = freezed,
+    Object? sell = freezed,
+    Object? boughtPrice = freezed,
+    Object? sellPriceOffer = freezed,
+    Object? sellPriceReal = freezed,
     Object? species = freezed,
     Object? color = freezed,
     Object? cage = freezed,
@@ -109,6 +127,30 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
           ? _value.born
           : born // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      died: freezed == died
+          ? _value.died
+          : died // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      bought: freezed == bought
+          ? _value.bought
+          : bought // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      sell: freezed == sell
+          ? _value.sell
+          : sell // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      boughtPrice: freezed == boughtPrice
+          ? _value.boughtPrice
+          : boughtPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      sellPriceOffer: freezed == sellPriceOffer
+          ? _value.sellPriceOffer
+          : sellPriceOffer // ignore: cast_nullable_to_non_nullable
+              as double?,
+      sellPriceReal: freezed == sellPriceReal
+          ? _value.sellPriceReal
+          : sellPriceReal // ignore: cast_nullable_to_non_nullable
+              as double?,
       species: freezed == species
           ? _value.species
           : species // ignore: cast_nullable_to_non_nullable
@@ -218,6 +260,12 @@ abstract class _$$BirdImplCopyWith<$Res> implements $BirdCopyWith<$Res> {
       DateTime? updated,
       String? ringnumber,
       DateTime? born,
+      DateTime? died,
+      DateTime? bought,
+      DateTime? sell,
+      double? boughtPrice,
+      double? sellPriceOffer,
+      double? sellPriceReal,
       Species? species,
       BirdColor? color,
       Cage? cage,
@@ -254,6 +302,12 @@ class __$$BirdImplCopyWithImpl<$Res>
     Object? updated = freezed,
     Object? ringnumber = freezed,
     Object? born = freezed,
+    Object? died = freezed,
+    Object? bought = freezed,
+    Object? sell = freezed,
+    Object? boughtPrice = freezed,
+    Object? sellPriceOffer = freezed,
+    Object? sellPriceReal = freezed,
     Object? species = freezed,
     Object? color = freezed,
     Object? cage = freezed,
@@ -284,6 +338,30 @@ class __$$BirdImplCopyWithImpl<$Res>
           ? _value.born
           : born // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      died: freezed == died
+          ? _value.died
+          : died // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      bought: freezed == bought
+          ? _value.bought
+          : bought // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      sell: freezed == sell
+          ? _value.sell
+          : sell // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      boughtPrice: freezed == boughtPrice
+          ? _value.boughtPrice
+          : boughtPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      sellPriceOffer: freezed == sellPriceOffer
+          ? _value.sellPriceOffer
+          : sellPriceOffer // ignore: cast_nullable_to_non_nullable
+              as double?,
+      sellPriceReal: freezed == sellPriceReal
+          ? _value.sellPriceReal
+          : sellPriceReal // ignore: cast_nullable_to_non_nullable
+              as double?,
       species: freezed == species
           ? _value.species
           : species // ignore: cast_nullable_to_non_nullable
@@ -329,6 +407,12 @@ class _$BirdImpl implements _Bird {
       this.updated,
       this.ringnumber,
       this.born,
+      this.died,
+      this.bought,
+      this.sell,
+      this.boughtPrice,
+      this.sellPriceOffer,
+      this.sellPriceReal,
       this.species,
       this.color,
       this.cage,
@@ -349,6 +433,18 @@ class _$BirdImpl implements _Bird {
   final String? ringnumber;
   @override
   final DateTime? born;
+  @override
+  final DateTime? died;
+  @override
+  final DateTime? bought;
+  @override
+  final DateTime? sell;
+  @override
+  final double? boughtPrice;
+  @override
+  final double? sellPriceOffer;
+  @override
+  final double? sellPriceReal;
   @override
   final Species? species;
   @override
@@ -375,7 +471,7 @@ class _$BirdImpl implements _Bird {
 
   @override
   String toString() {
-    return 'Bird(id: $id, created: $created, updated: $updated, ringnumber: $ringnumber, born: $born, species: $species, color: $color, cage: $cage, father: $father, mother: $mother, sex: $sex, sold: $sold, children: $children)';
+    return 'Bird(id: $id, created: $created, updated: $updated, ringnumber: $ringnumber, born: $born, died: $died, bought: $bought, sell: $sell, boughtPrice: $boughtPrice, sellPriceOffer: $sellPriceOffer, sellPriceReal: $sellPriceReal, species: $species, color: $color, cage: $cage, father: $father, mother: $mother, sex: $sex, sold: $sold, children: $children)';
   }
 
   @override
@@ -389,6 +485,15 @@ class _$BirdImpl implements _Bird {
             (identical(other.ringnumber, ringnumber) ||
                 other.ringnumber == ringnumber) &&
             (identical(other.born, born) || other.born == born) &&
+            (identical(other.died, died) || other.died == died) &&
+            (identical(other.bought, bought) || other.bought == bought) &&
+            (identical(other.sell, sell) || other.sell == sell) &&
+            (identical(other.boughtPrice, boughtPrice) ||
+                other.boughtPrice == boughtPrice) &&
+            (identical(other.sellPriceOffer, sellPriceOffer) ||
+                other.sellPriceOffer == sellPriceOffer) &&
+            (identical(other.sellPriceReal, sellPriceReal) ||
+                other.sellPriceReal == sellPriceReal) &&
             (identical(other.species, species) || other.species == species) &&
             (identical(other.color, color) || other.color == color) &&
             (identical(other.cage, cage) || other.cage == cage) &&
@@ -400,21 +505,28 @@ class _$BirdImpl implements _Bird {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      created,
-      updated,
-      ringnumber,
-      born,
-      species,
-      color,
-      cage,
-      father,
-      mother,
-      sex,
-      sold,
-      const DeepCollectionEquality().hash(_children));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        created,
+        updated,
+        ringnumber,
+        born,
+        died,
+        bought,
+        sell,
+        boughtPrice,
+        sellPriceOffer,
+        sellPriceReal,
+        species,
+        color,
+        cage,
+        father,
+        mother,
+        sex,
+        sold,
+        const DeepCollectionEquality().hash(_children)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -430,6 +542,12 @@ abstract class _Bird implements Bird {
       final DateTime? updated,
       final String? ringnumber,
       final DateTime? born,
+      final DateTime? died,
+      final DateTime? bought,
+      final DateTime? sell,
+      final double? boughtPrice,
+      final double? sellPriceOffer,
+      final double? sellPriceReal,
       final Species? species,
       final BirdColor? color,
       final Cage? cage,
@@ -449,6 +567,18 @@ abstract class _Bird implements Bird {
   String? get ringnumber;
   @override
   DateTime? get born;
+  @override
+  DateTime? get died;
+  @override
+  DateTime? get bought;
+  @override
+  DateTime? get sell;
+  @override
+  double? get boughtPrice;
+  @override
+  double? get sellPriceOffer;
+  @override
+  double? get sellPriceReal;
   @override
   Species? get species;
   @override

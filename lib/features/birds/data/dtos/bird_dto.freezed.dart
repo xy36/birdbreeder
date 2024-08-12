@@ -29,6 +29,12 @@ mixin _$BirdDto {
   String? get ringnumber => throw _privateConstructorUsedError;
   @DateTimeNullEmptyConverter()
   DateTime? get born => throw _privateConstructorUsedError;
+  @DateTimeNullEmptyConverter()
+  DateTime? get died => throw _privateConstructorUsedError;
+  @DateTimeNullEmptyConverter()
+  DateTime? get sell => throw _privateConstructorUsedError;
+  @DateTimeNullEmptyConverter()
+  DateTime? get bought => throw _privateConstructorUsedError;
   @StringNullEmptyConverter()
   String? get species => throw _privateConstructorUsedError;
   @StringNullEmptyConverter()
@@ -39,6 +45,12 @@ mixin _$BirdDto {
   String? get father => throw _privateConstructorUsedError;
   @StringNullEmptyConverter()
   String? get mother => throw _privateConstructorUsedError;
+  @JsonKey(name: 'bought_price')
+  double? get boughtPrice => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sell_price_offer')
+  double? get sellPriceOffer => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sell_price_real')
+  double? get sellPriceReal => throw _privateConstructorUsedError;
   Sex get sex => throw _privateConstructorUsedError;
   ExpandDto? get expand => throw _privateConstructorUsedError;
   bool? get sold => throw _privateConstructorUsedError;
@@ -63,11 +75,17 @@ abstract class $BirdDtoCopyWith<$Res> {
       DateTime? updated,
       @StringNullEmptyConverter() String? ringnumber,
       @DateTimeNullEmptyConverter() DateTime? born,
+      @DateTimeNullEmptyConverter() DateTime? died,
+      @DateTimeNullEmptyConverter() DateTime? sell,
+      @DateTimeNullEmptyConverter() DateTime? bought,
       @StringNullEmptyConverter() String? species,
       @StringNullEmptyConverter() String? color,
       @StringNullEmptyConverter() String? cage,
       @StringNullEmptyConverter() String? father,
       @StringNullEmptyConverter() String? mother,
+      @JsonKey(name: 'bought_price') double? boughtPrice,
+      @JsonKey(name: 'sell_price_offer') double? sellPriceOffer,
+      @JsonKey(name: 'sell_price_real') double? sellPriceReal,
       Sex sex,
       ExpandDto? expand,
       bool? sold,
@@ -97,11 +115,17 @@ class _$BirdDtoCopyWithImpl<$Res, $Val extends BirdDto>
     Object? updated = freezed,
     Object? ringnumber = freezed,
     Object? born = freezed,
+    Object? died = freezed,
+    Object? sell = freezed,
+    Object? bought = freezed,
     Object? species = freezed,
     Object? color = freezed,
     Object? cage = freezed,
     Object? father = freezed,
     Object? mother = freezed,
+    Object? boughtPrice = freezed,
+    Object? sellPriceOffer = freezed,
+    Object? sellPriceReal = freezed,
     Object? sex = null,
     Object? expand = freezed,
     Object? sold = freezed,
@@ -137,6 +161,18 @@ class _$BirdDtoCopyWithImpl<$Res, $Val extends BirdDto>
           ? _value.born
           : born // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      died: freezed == died
+          ? _value.died
+          : died // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      sell: freezed == sell
+          ? _value.sell
+          : sell // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      bought: freezed == bought
+          ? _value.bought
+          : bought // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       species: freezed == species
           ? _value.species
           : species // ignore: cast_nullable_to_non_nullable
@@ -157,6 +193,18 @@ class _$BirdDtoCopyWithImpl<$Res, $Val extends BirdDto>
           ? _value.mother
           : mother // ignore: cast_nullable_to_non_nullable
               as String?,
+      boughtPrice: freezed == boughtPrice
+          ? _value.boughtPrice
+          : boughtPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      sellPriceOffer: freezed == sellPriceOffer
+          ? _value.sellPriceOffer
+          : sellPriceOffer // ignore: cast_nullable_to_non_nullable
+              as double?,
+      sellPriceReal: freezed == sellPriceReal
+          ? _value.sellPriceReal
+          : sellPriceReal // ignore: cast_nullable_to_non_nullable
+              as double?,
       sex: null == sex
           ? _value.sex
           : sex // ignore: cast_nullable_to_non_nullable
@@ -208,11 +256,17 @@ abstract class _$$BirdDtoImplCopyWith<$Res> implements $BirdDtoCopyWith<$Res> {
       DateTime? updated,
       @StringNullEmptyConverter() String? ringnumber,
       @DateTimeNullEmptyConverter() DateTime? born,
+      @DateTimeNullEmptyConverter() DateTime? died,
+      @DateTimeNullEmptyConverter() DateTime? sell,
+      @DateTimeNullEmptyConverter() DateTime? bought,
       @StringNullEmptyConverter() String? species,
       @StringNullEmptyConverter() String? color,
       @StringNullEmptyConverter() String? cage,
       @StringNullEmptyConverter() String? father,
       @StringNullEmptyConverter() String? mother,
+      @JsonKey(name: 'bought_price') double? boughtPrice,
+      @JsonKey(name: 'sell_price_offer') double? sellPriceOffer,
+      @JsonKey(name: 'sell_price_real') double? sellPriceReal,
       Sex sex,
       ExpandDto? expand,
       bool? sold,
@@ -241,11 +295,17 @@ class __$$BirdDtoImplCopyWithImpl<$Res>
     Object? updated = freezed,
     Object? ringnumber = freezed,
     Object? born = freezed,
+    Object? died = freezed,
+    Object? sell = freezed,
+    Object? bought = freezed,
     Object? species = freezed,
     Object? color = freezed,
     Object? cage = freezed,
     Object? father = freezed,
     Object? mother = freezed,
+    Object? boughtPrice = freezed,
+    Object? sellPriceOffer = freezed,
+    Object? sellPriceReal = freezed,
     Object? sex = null,
     Object? expand = freezed,
     Object? sold = freezed,
@@ -281,6 +341,18 @@ class __$$BirdDtoImplCopyWithImpl<$Res>
           ? _value.born
           : born // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      died: freezed == died
+          ? _value.died
+          : died // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      sell: freezed == sell
+          ? _value.sell
+          : sell // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      bought: freezed == bought
+          ? _value.bought
+          : bought // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       species: freezed == species
           ? _value.species
           : species // ignore: cast_nullable_to_non_nullable
@@ -301,6 +373,18 @@ class __$$BirdDtoImplCopyWithImpl<$Res>
           ? _value.mother
           : mother // ignore: cast_nullable_to_non_nullable
               as String?,
+      boughtPrice: freezed == boughtPrice
+          ? _value.boughtPrice
+          : boughtPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      sellPriceOffer: freezed == sellPriceOffer
+          ? _value.sellPriceOffer
+          : sellPriceOffer // ignore: cast_nullable_to_non_nullable
+              as double?,
+      sellPriceReal: freezed == sellPriceReal
+          ? _value.sellPriceReal
+          : sellPriceReal // ignore: cast_nullable_to_non_nullable
+              as double?,
       sex: null == sex
           ? _value.sex
           : sex // ignore: cast_nullable_to_non_nullable
@@ -336,11 +420,17 @@ class _$BirdDtoImpl implements _BirdDto {
       this.updated,
       @StringNullEmptyConverter() this.ringnumber,
       @DateTimeNullEmptyConverter() this.born,
+      @DateTimeNullEmptyConverter() this.died,
+      @DateTimeNullEmptyConverter() this.sell,
+      @DateTimeNullEmptyConverter() this.bought,
       @StringNullEmptyConverter() this.species,
       @StringNullEmptyConverter() this.color,
       @StringNullEmptyConverter() this.cage,
       @StringNullEmptyConverter() this.father,
       @StringNullEmptyConverter() this.mother,
+      @JsonKey(name: 'bought_price') this.boughtPrice,
+      @JsonKey(name: 'sell_price_offer') this.sellPriceOffer,
+      @JsonKey(name: 'sell_price_real') this.sellPriceReal,
       this.sex = Sex.unknown,
       this.expand,
       this.sold,
@@ -368,6 +458,15 @@ class _$BirdDtoImpl implements _BirdDto {
   @DateTimeNullEmptyConverter()
   final DateTime? born;
   @override
+  @DateTimeNullEmptyConverter()
+  final DateTime? died;
+  @override
+  @DateTimeNullEmptyConverter()
+  final DateTime? sell;
+  @override
+  @DateTimeNullEmptyConverter()
+  final DateTime? bought;
+  @override
   @StringNullEmptyConverter()
   final String? species;
   @override
@@ -382,6 +481,15 @@ class _$BirdDtoImpl implements _BirdDto {
   @override
   @StringNullEmptyConverter()
   final String? mother;
+  @override
+  @JsonKey(name: 'bought_price')
+  final double? boughtPrice;
+  @override
+  @JsonKey(name: 'sell_price_offer')
+  final double? sellPriceOffer;
+  @override
+  @JsonKey(name: 'sell_price_real')
+  final double? sellPriceReal;
   @override
   @JsonKey()
   final Sex sex;
@@ -402,7 +510,7 @@ class _$BirdDtoImpl implements _BirdDto {
 
   @override
   String toString() {
-    return 'BirdDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, ringnumber: $ringnumber, born: $born, species: $species, color: $color, cage: $cage, father: $father, mother: $mother, sex: $sex, expand: $expand, sold: $sold, user: $user, children: $children)';
+    return 'BirdDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, ringnumber: $ringnumber, born: $born, died: $died, sell: $sell, bought: $bought, species: $species, color: $color, cage: $cage, father: $father, mother: $mother, boughtPrice: $boughtPrice, sellPriceOffer: $sellPriceOffer, sellPriceReal: $sellPriceReal, sex: $sex, expand: $expand, sold: $sold, user: $user, children: $children)';
   }
 
   @override
@@ -420,11 +528,20 @@ class _$BirdDtoImpl implements _BirdDto {
             (identical(other.ringnumber, ringnumber) ||
                 other.ringnumber == ringnumber) &&
             (identical(other.born, born) || other.born == born) &&
+            (identical(other.died, died) || other.died == died) &&
+            (identical(other.sell, sell) || other.sell == sell) &&
+            (identical(other.bought, bought) || other.bought == bought) &&
             (identical(other.species, species) || other.species == species) &&
             (identical(other.color, color) || other.color == color) &&
             (identical(other.cage, cage) || other.cage == cage) &&
             (identical(other.father, father) || other.father == father) &&
             (identical(other.mother, mother) || other.mother == mother) &&
+            (identical(other.boughtPrice, boughtPrice) ||
+                other.boughtPrice == boughtPrice) &&
+            (identical(other.sellPriceOffer, sellPriceOffer) ||
+                other.sellPriceOffer == sellPriceOffer) &&
+            (identical(other.sellPriceReal, sellPriceReal) ||
+                other.sellPriceReal == sellPriceReal) &&
             (identical(other.sex, sex) || other.sex == sex) &&
             (identical(other.expand, expand) || other.expand == expand) &&
             (identical(other.sold, sold) || other.sold == sold) &&
@@ -434,25 +551,32 @@ class _$BirdDtoImpl implements _BirdDto {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      collectionId,
-      collectionName,
-      created,
-      updated,
-      ringnumber,
-      born,
-      species,
-      color,
-      cage,
-      father,
-      mother,
-      sex,
-      expand,
-      sold,
-      user,
-      const DeepCollectionEquality().hash(_children));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        collectionId,
+        collectionName,
+        created,
+        updated,
+        ringnumber,
+        born,
+        died,
+        sell,
+        bought,
+        species,
+        color,
+        cage,
+        father,
+        mother,
+        boughtPrice,
+        sellPriceOffer,
+        sellPriceReal,
+        sex,
+        expand,
+        sold,
+        user,
+        const DeepCollectionEquality().hash(_children)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -477,11 +601,17 @@ abstract class _BirdDto implements BirdDto {
       final DateTime? updated,
       @StringNullEmptyConverter() final String? ringnumber,
       @DateTimeNullEmptyConverter() final DateTime? born,
+      @DateTimeNullEmptyConverter() final DateTime? died,
+      @DateTimeNullEmptyConverter() final DateTime? sell,
+      @DateTimeNullEmptyConverter() final DateTime? bought,
       @StringNullEmptyConverter() final String? species,
       @StringNullEmptyConverter() final String? color,
       @StringNullEmptyConverter() final String? cage,
       @StringNullEmptyConverter() final String? father,
       @StringNullEmptyConverter() final String? mother,
+      @JsonKey(name: 'bought_price') final double? boughtPrice,
+      @JsonKey(name: 'sell_price_offer') final double? sellPriceOffer,
+      @JsonKey(name: 'sell_price_real') final double? sellPriceReal,
       final Sex sex,
       final ExpandDto? expand,
       final bool? sold,
@@ -507,6 +637,15 @@ abstract class _BirdDto implements BirdDto {
   @DateTimeNullEmptyConverter()
   DateTime? get born;
   @override
+  @DateTimeNullEmptyConverter()
+  DateTime? get died;
+  @override
+  @DateTimeNullEmptyConverter()
+  DateTime? get sell;
+  @override
+  @DateTimeNullEmptyConverter()
+  DateTime? get bought;
+  @override
   @StringNullEmptyConverter()
   String? get species;
   @override
@@ -521,6 +660,15 @@ abstract class _BirdDto implements BirdDto {
   @override
   @StringNullEmptyConverter()
   String? get mother;
+  @override
+  @JsonKey(name: 'bought_price')
+  double? get boughtPrice;
+  @override
+  @JsonKey(name: 'sell_price_offer')
+  double? get sellPriceOffer;
+  @override
+  @JsonKey(name: 'sell_price_real')
+  double? get sellPriceReal;
   @override
   Sex get sex;
   @override

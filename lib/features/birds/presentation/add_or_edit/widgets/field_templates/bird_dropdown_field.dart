@@ -23,7 +23,7 @@ class BirdDropdownField<T> extends StatelessWidget {
     return FormBuilderDropdown<T>(
       name: name,
       decoration: InputDecoration(
-        hintText: hint ?? context.l10n.common__select,
+        hintText: hint ?? context.l10n.common__hint_select,
       ),
       initialValue: initialValue,
       onChanged: onChanged,

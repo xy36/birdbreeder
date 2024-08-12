@@ -22,7 +22,7 @@ class ColorField extends StatelessWidget {
     return EasyAutocomplete(
       initialValue: bird.color?.name,
       decoration: InputDecoration(
-        hintText: context.l10n.common__select,
+        hintText: context.l10n.common__hint_select,
       ),
       suggestions: birdResources.colorsList
           .map(

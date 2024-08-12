@@ -21,7 +21,7 @@ class BirdTextField extends StatelessWidget {
       onChanged: onChanged,
       initialValue: initialValue,
       decoration: InputDecoration(
-        hintText: hint,
+        hintText: hint ?? context.l10n.common__hint_text,
       ),
     );
   }

@@ -22,7 +22,7 @@ class SpeciesField extends StatelessWidget {
     return EasyAutocomplete(
       initialValue: bird.species?.name,
       decoration: InputDecoration(
-        hintText: context.l10n.common__select,
+        hintText: context.l10n.common__hint_select,
       ),
       suggestions: birdResources.speciesList
           .map(

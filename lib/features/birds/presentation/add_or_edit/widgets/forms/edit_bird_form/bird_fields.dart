@@ -221,87 +221,96 @@ class BirdFields extends StatelessWidget {
               },
             ),
           ),
-          // BirdDateField(
-          //   name: 'bought_date_field',
-          //   label: context.l10n.common__bought_date,
-          //   initialValue: bird.bought,
-          //   onChanged: (boughtDate) {
-          //     context.read<BirdBloc>().add(
-          //           BirdEvent.change(
-          //             bird: bird.copyWith(bought: boughtDate),
-          //           ),
-          //         );
-          //   },
-          // ),
-          // BirdDateField(
-          //   name: 'sell_date_field',
-          //   label: context.l10n.common__sell_date,
-          //   initialValue: bird.sellDate,
-          //   onChanged: (sellDate) {
-          //     context.read<BirdBloc>().add(
-          //           BirdEvent.change(
-          //             bird: bird.copyWith(sellDate: sellDate),
-          //           ),
-          //         );
-          //   },
-          // ),
-          // BirdDateField(
-          //   name: 'died_date_field',
-          //   label: context.l10n.common__died_date,
-          //   initialValue: bird.diedDate,
-          //   onChanged: (diedDate) {
-          //     context.read<BirdBloc>().add(
-          //           BirdEvent.change(
-          //             bird: bird.copyWith(diedDate: diedDate),
-          //           ),
-          //         );
-          //   },
-          // ),
-          // BirdTextField(
-          //   name: 'bought_price_field',
-          //   label: context.l10n.common__bought_price,
-          //   initialValue: bird.boughtPrice?.toString(),
-          //   onChanged: (boughtPrice) {
-          //     if (boughtPrice != null) return;
-          //     context.read<BirdBloc>().add(
-          //           BirdEvent.change(
-          //             bird: bird.copyWith(
-          //               boughtPrice: double.tryParse(boughtPrice!),
-          //             ),
-          //           ),
-          //         );
-          //   },
-          // ),
-          // BirdTextField(
-          //   name: 'sell_price_offer_field',
-          //   label: context.l10n.common__sell_price_offer,
-          //   initialValue: bird.sellPriceOffer?.toString(),
-          //   onChanged: (sellPriceOffer) {
-          //     if (sellPriceOffer != null) return;
-          //     context.read<BirdBloc>().add(
-          //           BirdEvent.change(
-          //             bird: bird.copyWith(
-          //               sellPriceOffer: double.tryParse(sellPriceOffer!),
-          //             ),
-          //           ),
-          //         );
-          //   },
-          // ),
-          // BirdTextField(
-          //   name: 'sell_price_real_field',
-          //   label: context.l10n.common__sell_price_real,
-          //   initialValue: bird.sellPriceReal?.toString(),
-          //   onChanged: (sellPriceReal) {
-          //     if (sellPriceReal != null) return;
-          //     context.read<BirdBloc>().add(
-          //           BirdEvent.change(
-          //             bird: bird.copyWith(
-          //               sellPriceReal: double.tryParse(sellPriceReal!),
-          //             ),
-          //           ),
-          //         );
-          //   },
-          // ),
+          FieldWithLabel(
+            label: context.l10n.common__bought_date,
+            child: BirdDateField(
+              name: 'bought_date_field',
+              initialValue: bird.bought,
+              onChanged: (boughtDate) {
+                context.read<BirdBloc>().add(
+                      BirdEvent.change(
+                        bird: bird.copyWith(bought: boughtDate),
+                      ),
+                    );
+              },
+            ),
+          ),
+          FieldWithLabel(
+            label: context.l10n.common__sell_date,
+            child: BirdDateField(
+              name: 'sell_date_field',
+              initialValue: bird.sell,
+              onChanged: (sellDate) {
+                context.read<BirdBloc>().add(
+                      BirdEvent.change(
+                        bird: bird.copyWith(sell: sellDate),
+                      ),
+                    );
+              },
+            ),
+          ),
+          FieldWithLabel(
+            label: context.l10n.common__died_date,
+            child: BirdDateField(
+              name: 'died_date_field',
+              initialValue: bird.died,
+              onChanged: (diedDate) {
+                context.read<BirdBloc>().add(
+                      BirdEvent.change(
+                        bird: bird.copyWith(died: diedDate),
+                      ),
+                    );
+              },
+            ),
+          ),
+          FieldWithLabel(
+            label: context.l10n.common__bought_price,
+            child: BirdTextField(
+              name: 'bought_price_field',
+              initialValue: bird.boughtPrice?.toString(),
+              onChanged: (boughtPrice) {
+                context.read<BirdBloc>().add(
+                      BirdEvent.change(
+                        bird: bird.copyWith(
+                          boughtPrice: double.tryParse(boughtPrice!),
+                        ),
+                      ),
+                    );
+              },
+            ),
+          ),
+          FieldWithLabel(
+            label: context.l10n.common__sell_price_offer,
+            child: BirdTextField(
+              name: 'sell_price_offer_field',
+              initialValue: bird.sellPriceOffer?.toString(),
+              onChanged: (sellPriceOffer) {
+                context.read<BirdBloc>().add(
+                      BirdEvent.change(
+                        bird: bird.copyWith(
+                          sellPriceOffer: double.tryParse(sellPriceOffer!),
+                        ),
+                      ),
+                    );
+              },
+            ),
+          ),
+          FieldWithLabel(
+            label: context.l10n.common__sell_price_real,
+            child: BirdTextField(
+              name: 'sell_price_real_field',
+              initialValue: bird.sellPriceReal?.toString(),
+              onChanged: (sellPriceReal) {
+                context.read<BirdBloc>().add(
+                      BirdEvent.change(
+                        bird: bird.copyWith(
+                          sellPriceReal: double.tryParse(sellPriceReal!),
+                        ),
+                      ),
+                    );
+              },
+            ),
+          ),
           // BirdTextField(
           //   name: 'partner_field',
           //   label: context.l10n.common__partner_ringnumber,

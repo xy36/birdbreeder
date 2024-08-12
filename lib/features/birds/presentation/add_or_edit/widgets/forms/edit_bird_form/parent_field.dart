@@ -54,7 +54,7 @@ class ParentField extends StatelessWidget {
           label: label,
           child: BirdDropdownField<Bird>(
             name: parentType.toString(),
-            hint: context.l10n.common__select,
+            hint: context.l10n.common__hint_select,
             initialValue: (state is BirdsLoaded)
                 ? (state).birds.firstWhereOrNull(
                       (element) => element.id == parentBird?.id,

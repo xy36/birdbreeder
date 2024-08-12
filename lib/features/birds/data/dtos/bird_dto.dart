@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:birdbreeder/features/birds/data/converter/date_time_null_empty_converter.dart';
 import 'package:birdbreeder/features/birds/data/converter/string_null_empty_converter.dart';
 import 'package:birdbreeder/features/birds/data/dtos/expand_dto.dart';
@@ -17,11 +19,17 @@ class BirdDto with _$BirdDto {
     DateTime? updated,
     @StringNullEmptyConverter() String? ringnumber,
     @DateTimeNullEmptyConverter() DateTime? born,
+    @DateTimeNullEmptyConverter() DateTime? died,
+    @DateTimeNullEmptyConverter() DateTime? sell,
+    @DateTimeNullEmptyConverter() DateTime? bought,
     @StringNullEmptyConverter() String? species,
     @StringNullEmptyConverter() String? color,
     @StringNullEmptyConverter() String? cage,
     @StringNullEmptyConverter() String? father,
     @StringNullEmptyConverter() String? mother,
+    @JsonKey(name: 'bought_price') double? boughtPrice,
+    @JsonKey(name: 'sell_price_offer') double? sellPriceOffer,
+    @JsonKey(name: 'sell_price_real') double? sellPriceReal,
     @Default(Sex.unknown) Sex sex,
     ExpandDto? expand,
     bool? sold,
