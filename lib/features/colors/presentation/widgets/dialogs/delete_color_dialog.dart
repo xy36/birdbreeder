@@ -23,7 +23,7 @@ class DeleteColorDialog extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text(context.l10n.common_cancel),
+          child: Text(context.l10n.common__cancel),
         ),
         ElevatedButton(
           onPressed: () {

@@ -1,34 +1,27 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/cages/domain/models/cage.dart';
 
-class DeleteCageDialog extends StatelessWidget {
-  const DeleteCageDialog({
+class DiscardChangesDialog extends StatelessWidget {
+  const DiscardChangesDialog({
     super.key,
-    required this.cage,
-    required this.onDelete,
   });
-
-  final void Function(Cage) onDelete;
-  final Cage cage;
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(context.l10n.cages__delete_cage),
+      title: Text(context.l10n.dialog__discard_changes_title),
       content: Text(
-        cage.name ?? '-',
+        context.l10n.dialog__discard_changes_message,
       ),
       actions: [
         TextButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.of(context).pop(false);
           },
           child: Text(context.l10n.common__cancel),
         ),
         ElevatedButton(
           onPressed: () {
-            onDelete(cage);
-            Navigator.of(context).pop();
+            Navigator.of(context).pop(true);
           },
           child: Text(context.l10n.common__ok),
         ),

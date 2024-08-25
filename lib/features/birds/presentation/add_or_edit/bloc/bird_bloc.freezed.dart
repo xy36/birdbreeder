@@ -22,6 +22,7 @@ mixin _$BirdEvent {
     required TResult Function() save,
     required TResult Function() toggleEditAndShow,
     required TResult Function() delete,
+    required TResult Function() duplicate,
     required TResult Function(Bird bird) change,
   }) =>
       throw _privateConstructorUsedError;
@@ -31,6 +32,7 @@ mixin _$BirdEvent {
     TResult? Function()? save,
     TResult? Function()? toggleEditAndShow,
     TResult? Function()? delete,
+    TResult? Function()? duplicate,
     TResult? Function(Bird bird)? change,
   }) =>
       throw _privateConstructorUsedError;
@@ -40,6 +42,7 @@ mixin _$BirdEvent {
     TResult Function()? save,
     TResult Function()? toggleEditAndShow,
     TResult Function()? delete,
+    TResult Function()? duplicate,
     TResult Function(Bird bird)? change,
     required TResult orElse(),
   }) =>
@@ -50,6 +53,7 @@ mixin _$BirdEvent {
     required TResult Function(BirdSave value) save,
     required TResult Function(BirdEdit value) toggleEditAndShow,
     required TResult Function(BirdDelete value) delete,
+    required TResult Function(BirdDuplicate value) duplicate,
     required TResult Function(BirdChange value) change,
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +63,7 @@ mixin _$BirdEvent {
     TResult? Function(BirdSave value)? save,
     TResult? Function(BirdEdit value)? toggleEditAndShow,
     TResult? Function(BirdDelete value)? delete,
+    TResult? Function(BirdDuplicate value)? duplicate,
     TResult? Function(BirdChange value)? change,
   }) =>
       throw _privateConstructorUsedError;
@@ -68,6 +73,7 @@ mixin _$BirdEvent {
     TResult Function(BirdSave value)? save,
     TResult Function(BirdEdit value)? toggleEditAndShow,
     TResult Function(BirdDelete value)? delete,
+    TResult Function(BirdDuplicate value)? duplicate,
     TResult Function(BirdChange value)? change,
     required TResult orElse(),
   }) =>
@@ -133,6 +139,7 @@ class _$BirdLoadImpl implements BirdLoad {
     required TResult Function() save,
     required TResult Function() toggleEditAndShow,
     required TResult Function() delete,
+    required TResult Function() duplicate,
     required TResult Function(Bird bird) change,
   }) {
     return load();
@@ -145,6 +152,7 @@ class _$BirdLoadImpl implements BirdLoad {
     TResult? Function()? save,
     TResult? Function()? toggleEditAndShow,
     TResult? Function()? delete,
+    TResult? Function()? duplicate,
     TResult? Function(Bird bird)? change,
   }) {
     return load?.call();
@@ -157,6 +165,7 @@ class _$BirdLoadImpl implements BirdLoad {
     TResult Function()? save,
     TResult Function()? toggleEditAndShow,
     TResult Function()? delete,
+    TResult Function()? duplicate,
     TResult Function(Bird bird)? change,
     required TResult orElse(),
   }) {
@@ -173,6 +182,7 @@ class _$BirdLoadImpl implements BirdLoad {
     required TResult Function(BirdSave value) save,
     required TResult Function(BirdEdit value) toggleEditAndShow,
     required TResult Function(BirdDelete value) delete,
+    required TResult Function(BirdDuplicate value) duplicate,
     required TResult Function(BirdChange value) change,
   }) {
     return load(this);
@@ -185,6 +195,7 @@ class _$BirdLoadImpl implements BirdLoad {
     TResult? Function(BirdSave value)? save,
     TResult? Function(BirdEdit value)? toggleEditAndShow,
     TResult? Function(BirdDelete value)? delete,
+    TResult? Function(BirdDuplicate value)? duplicate,
     TResult? Function(BirdChange value)? change,
   }) {
     return load?.call(this);
@@ -197,6 +208,7 @@ class _$BirdLoadImpl implements BirdLoad {
     TResult Function(BirdSave value)? save,
     TResult Function(BirdEdit value)? toggleEditAndShow,
     TResult Function(BirdDelete value)? delete,
+    TResult Function(BirdDuplicate value)? duplicate,
     TResult Function(BirdChange value)? change,
     required TResult orElse(),
   }) {
@@ -253,6 +265,7 @@ class _$BirdSaveImpl implements BirdSave {
     required TResult Function() save,
     required TResult Function() toggleEditAndShow,
     required TResult Function() delete,
+    required TResult Function() duplicate,
     required TResult Function(Bird bird) change,
   }) {
     return save();
@@ -265,6 +278,7 @@ class _$BirdSaveImpl implements BirdSave {
     TResult? Function()? save,
     TResult? Function()? toggleEditAndShow,
     TResult? Function()? delete,
+    TResult? Function()? duplicate,
     TResult? Function(Bird bird)? change,
   }) {
     return save?.call();
@@ -277,6 +291,7 @@ class _$BirdSaveImpl implements BirdSave {
     TResult Function()? save,
     TResult Function()? toggleEditAndShow,
     TResult Function()? delete,
+    TResult Function()? duplicate,
     TResult Function(Bird bird)? change,
     required TResult orElse(),
   }) {
@@ -293,6 +308,7 @@ class _$BirdSaveImpl implements BirdSave {
     required TResult Function(BirdSave value) save,
     required TResult Function(BirdEdit value) toggleEditAndShow,
     required TResult Function(BirdDelete value) delete,
+    required TResult Function(BirdDuplicate value) duplicate,
     required TResult Function(BirdChange value) change,
   }) {
     return save(this);
@@ -305,6 +321,7 @@ class _$BirdSaveImpl implements BirdSave {
     TResult? Function(BirdSave value)? save,
     TResult? Function(BirdEdit value)? toggleEditAndShow,
     TResult? Function(BirdDelete value)? delete,
+    TResult? Function(BirdDuplicate value)? duplicate,
     TResult? Function(BirdChange value)? change,
   }) {
     return save?.call(this);
@@ -317,6 +334,7 @@ class _$BirdSaveImpl implements BirdSave {
     TResult Function(BirdSave value)? save,
     TResult Function(BirdEdit value)? toggleEditAndShow,
     TResult Function(BirdDelete value)? delete,
+    TResult Function(BirdDuplicate value)? duplicate,
     TResult Function(BirdChange value)? change,
     required TResult orElse(),
   }) {
@@ -373,6 +391,7 @@ class _$BirdEditImpl implements BirdEdit {
     required TResult Function() save,
     required TResult Function() toggleEditAndShow,
     required TResult Function() delete,
+    required TResult Function() duplicate,
     required TResult Function(Bird bird) change,
   }) {
     return toggleEditAndShow();
@@ -385,6 +404,7 @@ class _$BirdEditImpl implements BirdEdit {
     TResult? Function()? save,
     TResult? Function()? toggleEditAndShow,
     TResult? Function()? delete,
+    TResult? Function()? duplicate,
     TResult? Function(Bird bird)? change,
   }) {
     return toggleEditAndShow?.call();
@@ -397,6 +417,7 @@ class _$BirdEditImpl implements BirdEdit {
     TResult Function()? save,
     TResult Function()? toggleEditAndShow,
     TResult Function()? delete,
+    TResult Function()? duplicate,
     TResult Function(Bird bird)? change,
     required TResult orElse(),
   }) {
@@ -413,6 +434,7 @@ class _$BirdEditImpl implements BirdEdit {
     required TResult Function(BirdSave value) save,
     required TResult Function(BirdEdit value) toggleEditAndShow,
     required TResult Function(BirdDelete value) delete,
+    required TResult Function(BirdDuplicate value) duplicate,
     required TResult Function(BirdChange value) change,
   }) {
     return toggleEditAndShow(this);
@@ -425,6 +447,7 @@ class _$BirdEditImpl implements BirdEdit {
     TResult? Function(BirdSave value)? save,
     TResult? Function(BirdEdit value)? toggleEditAndShow,
     TResult? Function(BirdDelete value)? delete,
+    TResult? Function(BirdDuplicate value)? duplicate,
     TResult? Function(BirdChange value)? change,
   }) {
     return toggleEditAndShow?.call(this);
@@ -437,6 +460,7 @@ class _$BirdEditImpl implements BirdEdit {
     TResult Function(BirdSave value)? save,
     TResult Function(BirdEdit value)? toggleEditAndShow,
     TResult Function(BirdDelete value)? delete,
+    TResult Function(BirdDuplicate value)? duplicate,
     TResult Function(BirdChange value)? change,
     required TResult orElse(),
   }) {
@@ -493,6 +517,7 @@ class _$BirdDeleteImpl implements BirdDelete {
     required TResult Function() save,
     required TResult Function() toggleEditAndShow,
     required TResult Function() delete,
+    required TResult Function() duplicate,
     required TResult Function(Bird bird) change,
   }) {
     return delete();
@@ -505,6 +530,7 @@ class _$BirdDeleteImpl implements BirdDelete {
     TResult? Function()? save,
     TResult? Function()? toggleEditAndShow,
     TResult? Function()? delete,
+    TResult? Function()? duplicate,
     TResult? Function(Bird bird)? change,
   }) {
     return delete?.call();
@@ -517,6 +543,7 @@ class _$BirdDeleteImpl implements BirdDelete {
     TResult Function()? save,
     TResult Function()? toggleEditAndShow,
     TResult Function()? delete,
+    TResult Function()? duplicate,
     TResult Function(Bird bird)? change,
     required TResult orElse(),
   }) {
@@ -533,6 +560,7 @@ class _$BirdDeleteImpl implements BirdDelete {
     required TResult Function(BirdSave value) save,
     required TResult Function(BirdEdit value) toggleEditAndShow,
     required TResult Function(BirdDelete value) delete,
+    required TResult Function(BirdDuplicate value) duplicate,
     required TResult Function(BirdChange value) change,
   }) {
     return delete(this);
@@ -545,6 +573,7 @@ class _$BirdDeleteImpl implements BirdDelete {
     TResult? Function(BirdSave value)? save,
     TResult? Function(BirdEdit value)? toggleEditAndShow,
     TResult? Function(BirdDelete value)? delete,
+    TResult? Function(BirdDuplicate value)? duplicate,
     TResult? Function(BirdChange value)? change,
   }) {
     return delete?.call(this);
@@ -557,6 +586,7 @@ class _$BirdDeleteImpl implements BirdDelete {
     TResult Function(BirdSave value)? save,
     TResult Function(BirdEdit value)? toggleEditAndShow,
     TResult Function(BirdDelete value)? delete,
+    TResult Function(BirdDuplicate value)? duplicate,
     TResult Function(BirdChange value)? change,
     required TResult orElse(),
   }) {
@@ -569,6 +599,132 @@ class _$BirdDeleteImpl implements BirdDelete {
 
 abstract class BirdDelete implements BirdEvent {
   const factory BirdDelete() = _$BirdDeleteImpl;
+}
+
+/// @nodoc
+abstract class _$$BirdDuplicateImplCopyWith<$Res> {
+  factory _$$BirdDuplicateImplCopyWith(
+          _$BirdDuplicateImpl value, $Res Function(_$BirdDuplicateImpl) then) =
+      __$$BirdDuplicateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$BirdDuplicateImplCopyWithImpl<$Res>
+    extends _$BirdEventCopyWithImpl<$Res, _$BirdDuplicateImpl>
+    implements _$$BirdDuplicateImplCopyWith<$Res> {
+  __$$BirdDuplicateImplCopyWithImpl(
+      _$BirdDuplicateImpl _value, $Res Function(_$BirdDuplicateImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$BirdDuplicateImpl implements BirdDuplicate {
+  const _$BirdDuplicateImpl();
+
+  @override
+  String toString() {
+    return 'BirdEvent.duplicate()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$BirdDuplicateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function() save,
+    required TResult Function() toggleEditAndShow,
+    required TResult Function() delete,
+    required TResult Function() duplicate,
+    required TResult Function(Bird bird) change,
+  }) {
+    return duplicate();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function()? save,
+    TResult? Function()? toggleEditAndShow,
+    TResult? Function()? delete,
+    TResult? Function()? duplicate,
+    TResult? Function(Bird bird)? change,
+  }) {
+    return duplicate?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function()? save,
+    TResult Function()? toggleEditAndShow,
+    TResult Function()? delete,
+    TResult Function()? duplicate,
+    TResult Function(Bird bird)? change,
+    required TResult orElse(),
+  }) {
+    if (duplicate != null) {
+      return duplicate();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BirdLoad value) load,
+    required TResult Function(BirdSave value) save,
+    required TResult Function(BirdEdit value) toggleEditAndShow,
+    required TResult Function(BirdDelete value) delete,
+    required TResult Function(BirdDuplicate value) duplicate,
+    required TResult Function(BirdChange value) change,
+  }) {
+    return duplicate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(BirdLoad value)? load,
+    TResult? Function(BirdSave value)? save,
+    TResult? Function(BirdEdit value)? toggleEditAndShow,
+    TResult? Function(BirdDelete value)? delete,
+    TResult? Function(BirdDuplicate value)? duplicate,
+    TResult? Function(BirdChange value)? change,
+  }) {
+    return duplicate?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BirdLoad value)? load,
+    TResult Function(BirdSave value)? save,
+    TResult Function(BirdEdit value)? toggleEditAndShow,
+    TResult Function(BirdDelete value)? delete,
+    TResult Function(BirdDuplicate value)? duplicate,
+    TResult Function(BirdChange value)? change,
+    required TResult orElse(),
+  }) {
+    if (duplicate != null) {
+      return duplicate(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class BirdDuplicate implements BirdEvent {
+  const factory BirdDuplicate() = _$BirdDuplicateImpl;
 }
 
 /// @nodoc
@@ -649,6 +805,7 @@ class _$BirdChangeImpl implements BirdChange {
     required TResult Function() save,
     required TResult Function() toggleEditAndShow,
     required TResult Function() delete,
+    required TResult Function() duplicate,
     required TResult Function(Bird bird) change,
   }) {
     return change(bird);
@@ -661,6 +818,7 @@ class _$BirdChangeImpl implements BirdChange {
     TResult? Function()? save,
     TResult? Function()? toggleEditAndShow,
     TResult? Function()? delete,
+    TResult? Function()? duplicate,
     TResult? Function(Bird bird)? change,
   }) {
     return change?.call(bird);
@@ -673,6 +831,7 @@ class _$BirdChangeImpl implements BirdChange {
     TResult Function()? save,
     TResult Function()? toggleEditAndShow,
     TResult Function()? delete,
+    TResult Function()? duplicate,
     TResult Function(Bird bird)? change,
     required TResult orElse(),
   }) {
@@ -689,6 +848,7 @@ class _$BirdChangeImpl implements BirdChange {
     required TResult Function(BirdSave value) save,
     required TResult Function(BirdEdit value) toggleEditAndShow,
     required TResult Function(BirdDelete value) delete,
+    required TResult Function(BirdDuplicate value) duplicate,
     required TResult Function(BirdChange value) change,
   }) {
     return change(this);
@@ -701,6 +861,7 @@ class _$BirdChangeImpl implements BirdChange {
     TResult? Function(BirdSave value)? save,
     TResult? Function(BirdEdit value)? toggleEditAndShow,
     TResult? Function(BirdDelete value)? delete,
+    TResult? Function(BirdDuplicate value)? duplicate,
     TResult? Function(BirdChange value)? change,
   }) {
     return change?.call(this);
@@ -713,6 +874,7 @@ class _$BirdChangeImpl implements BirdChange {
     TResult Function(BirdSave value)? save,
     TResult Function(BirdEdit value)? toggleEditAndShow,
     TResult Function(BirdDelete value)? delete,
+    TResult Function(BirdDuplicate value)? duplicate,
     TResult Function(BirdChange value)? change,
     required TResult orElse(),
   }) {

@@ -4,6 +4,7 @@ import 'package:birdbreeder/features/species/domain/models/species.dart';
 import 'package:birdbreeder/services/screen_size.dart';
 import 'package:birdbreeder/shared/widgets/field_with_label.dart';
 import 'package:birdbreeder/shared/widgets/icons.dart';
+import 'package:birdbreeder/shared/widgets/navigate_back_button.dart';
 
 class AddOrEditSpeciesDialog extends StatefulWidget {
   const AddOrEditSpeciesDialog({super.key, required this.onAdd, this.species});
@@ -18,15 +19,15 @@ class AddOrEditSpeciesDialog extends StatefulWidget {
 class _AddOrEditSpeciesDialogState extends State<AddOrEditSpeciesDialog> {
   @override
   void initState() {
-    _species = widget.species ?? Species.create();
+    _species = widget.species;
     super.initState();
   }
 
-  late Species _species;
+  Species? _species;
 
   final formKey = GlobalKey<FormState>();
 
-  bool get isEdit => widget.species != _species;
+  bool get isDirty => widget.species != _species;
 
   @override
   Widget build(BuildContext context) {
@@ -34,16 +35,18 @@ class _AddOrEditSpeciesDialogState extends State<AddOrEditSpeciesDialog> {
     return Scaffold(
       appBar: AppBar(
         title: Text(context.l10n.species__add_species),
+        leading: NavigateBackButton(discardDialogEnabled: isDirty),
         actions: [
           IconButton(
             onPressed: () {
-              if (formKey.currentState?.validate() == true) {
-                widget.onAdd(_species);
+              if (formKey.currentState?.validate() == true &&
+                  _species != null) {
+                widget.onAdd(_species!);
 
                 Navigator.of(context).pop();
               }
             },
-            icon: isEdit ? saveIcon : const SizedBox(),
+            icon: isDirty ? saveIcon : const SizedBox(),
           ),
         ],
       ),
@@ -60,12 +63,13 @@ class _AddOrEditSpeciesDialogState extends State<AddOrEditSpeciesDialog> {
               FieldWithLabel(
                 label: context.l10n.species__name,
                 child: TextFormField(
-                  initialValue: _species.name,
+                  initialValue: _species?.name,
                   decoration: InputDecoration(
                     hintText: context.l10n.species__name,
                   ),
                   onChanged: (value) {
-                    _species = _species.copyWith(name: value);
+                    _species =
+                        (_species ?? Species.create()).copyWith(name: value);
                   },
                   validator: (value) {
                     if (value.isNullOrEmpty) {
@@ -78,13 +82,14 @@ class _AddOrEditSpeciesDialogState extends State<AddOrEditSpeciesDialog> {
               FieldWithLabel(
                 label: context.l10n.species__latin_name,
                 child: TextFormField(
-                  initialValue: _species.latName,
+                  initialValue: _species?.latName,
                   decoration: InputDecoration(
                     hintText: context.l10n.species__latin_name,
                   ),
                   onChanged: (value) {
                     setState(() {
-                      _species = _species.copyWith(latName: value);
+                      _species = (_species ?? Species.create())
+                          .copyWith(latName: value);
                     });
                   },
                 ),

@@ -46,7 +46,7 @@
     "menu__breedings": "Breedings",
     "menu__finances": "Finances",
     "menu__account": "Account",
-    "common_cancel": "Cancel",
+    "common__cancel": "Cancel",
     "common__ok": "Ok",
     "common__sex": "Sex",
     "common__born_year": "Year of Birth",
@@ -100,5 +100,13 @@
     "snackbar__error_data_fetch": "Error fetching data",
     "snackbar__error_data_save": "Error saving data",
     "snackbar__error_data_delete": "Error deleting data",
-    "snackbar__error_login": "Email or password is incorrect!"
+    "snackbar__error_login": "Email or password is incorrect!",
+    "dialog__discard_changes_title": "Discard changes?",
+    "dialog__discard_changes_message": "Are you sure you want to discard the changes?",
+    "dialog__delete_bird_title": "Delete bird?",
+    "dialog__delete_bird_message": "Are you sure you want to delete this bird?",
+    "pop_up_menu__bird_edit": "Edit",
+    "pop_up_menu__bird_show": "Show",
+    "pop_up_menu__bird_duplicate": "Duplicate",
+    "pop_up_menu__bird_delete": "Delete"
 }

@@ -6,5 +6,6 @@ class BirdEvent with _$BirdEvent {
   const factory BirdEvent.save() = BirdSave;
   const factory BirdEvent.toggleEditAndShow() = BirdEdit;
   const factory BirdEvent.delete() = BirdDelete;
+  const factory BirdEvent.duplicate() = BirdDuplicate;
   const factory BirdEvent.change({required Bird bird}) = BirdChange;
 }

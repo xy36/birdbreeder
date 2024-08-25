@@ -21,7 +21,7 @@ class EditCageButton extends StatelessWidget {
         await showChildAsDrawerDialog(
           context,
           AddOrEditCageDialog(
-            cage: cage,
+            initialCage: cage,
             onAdd: (cage) {
               bloc.add(EditCage(cage));
             },

@@ -21,3 +21,30 @@ Future<void> showChildAsDrawerDialog(
     barrierDismissible: false,
   );
 }
+
+Future<void> onDelete(BuildContext context, void Function() onDelete) async {
+  await showDialog<bool>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(context.l10n.dialog__delete_bird_title),
+        content: Text(context.l10n.dialog__delete_bird_message),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text(context.l10n.common__cancel),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              onDelete();
+              Navigator.of(context).pop();
+            },
+            child: Text(context.l10n.common__ok),
+          ),
+        ],
+      );
+    },
+  );
+}

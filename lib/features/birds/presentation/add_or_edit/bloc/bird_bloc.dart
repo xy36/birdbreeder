@@ -38,6 +38,7 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
     on<BirdEdit>(_onEdit);
     on<BirdSave>(_onSave);
     on<BirdDelete>(_onDelete);
+    on<BirdDuplicate>(_onDuplicate);
 
     initialBird = bird ?? Bird.create();
   }
@@ -200,6 +201,8 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
       );
     }
 
+    initialBird = result.asValue!.value;
+
     emit(
       BirdLoaded(
         bird: state.bird,
@@ -242,6 +245,16 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
       BirdDeleted(
         bird: state.bird,
         mode: state.mode,
+        birdResources: state.birdResources,
+      ),
+    );
+  }
+
+  FutureOr<void> _onDuplicate(BirdDuplicate event, Emitter<BirdState> emit) {
+    emit(
+      BirdLoaded(
+        bird: state.bird.copyWith(id: ''),
+        mode: BirdMode.create,
         birdResources: state.birdResources,
       ),
     );

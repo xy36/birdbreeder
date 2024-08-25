@@ -4,13 +4,14 @@ import 'package:birdbreeder/features/cages/domain/models/cage.dart';
 import 'package:birdbreeder/services/screen_size.dart';
 import 'package:birdbreeder/shared/widgets/field_with_label.dart';
 import 'package:birdbreeder/shared/widgets/icons.dart';
+import 'package:birdbreeder/shared/widgets/navigate_back_button.dart';
 import 'package:flutter/services.dart';
 
 class AddOrEditCageDialog extends StatefulWidget {
-  const AddOrEditCageDialog({super.key, required this.onAdd, this.cage});
+  const AddOrEditCageDialog({super.key, required this.onAdd, this.initialCage});
 
   final void Function(Cage) onAdd;
-  final Cage? cage;
+  final Cage? initialCage;
 
   @override
   State<AddOrEditCageDialog> createState() => _AddOrEditCageDialogState();
@@ -19,15 +20,15 @@ class AddOrEditCageDialog extends StatefulWidget {
 class _AddOrEditCageDialogState extends State<AddOrEditCageDialog> {
   @override
   void initState() {
-    _cage = widget.cage ?? Cage.create();
+    _cage = widget.initialCage;
     super.initState();
   }
 
-  late Cage _cage;
+  Cage? _cage;
 
   final formKey = GlobalKey<FormState>();
 
-  bool get isEdit => widget.cage != _cage;
+  bool get isDirty => widget.initialCage != _cage;
 
   @override
   Widget build(BuildContext context) {
@@ -35,17 +36,19 @@ class _AddOrEditCageDialogState extends State<AddOrEditCageDialog> {
     return Scaffold(
       appBar: AppBar(
         title: Text(context.l10n.cages__add_cage),
+        leading: NavigateBackButton(discardDialogEnabled: isDirty),
         actions: [
-          IconButton(
-            onPressed: () {
-              if (formKey.currentState?.validate() == true) {
-                widget.onAdd(_cage);
+          if (isDirty)
+            IconButton(
+              onPressed: () {
+                if (formKey.currentState?.validate() == true && _cage != null) {
+                  widget.onAdd(_cage!);
 
-                Navigator.of(context).pop();
-              }
-            },
-            icon: isEdit ? saveIcon : const SizedBox(),
-          ),
+                  Navigator.of(context).pop();
+                }
+              },
+              icon: isDirty ? saveIcon : const SizedBox(),
+            ),
         ],
       ),
       body: Form(
@@ -61,13 +64,13 @@ class _AddOrEditCageDialogState extends State<AddOrEditCageDialog> {
               FieldWithLabel(
                 label: context.l10n.cages__name,
                 child: TextFormField(
-                  initialValue: _cage.name,
+                  initialValue: _cage?.name,
                   decoration: InputDecoration(
                     hintText: context.l10n.cages__name,
                   ),
                   onChanged: (value) {
                     setState(() {
-                      _cage = _cage.copyWith(name: value);
+                      _cage = (_cage ?? Cage.create()).copyWith(name: value);
                     });
                   },
                   validator: (value) {
@@ -81,7 +84,7 @@ class _AddOrEditCageDialogState extends State<AddOrEditCageDialog> {
               FieldWithLabel(
                 label: context.l10n.cages__description,
                 child: TextFormField(
-                  initialValue: _cage.description,
+                  initialValue: _cage?.description,
                   minLines: 3,
                   maxLines: 10,
                   decoration: InputDecoration(
@@ -89,7 +92,8 @@ class _AddOrEditCageDialogState extends State<AddOrEditCageDialog> {
                   ),
                   onChanged: (value) {
                     setState(() {
-                      _cage = _cage.copyWith(description: value);
+                      _cage =
+                          (_cage ?? Cage.create()).copyWith(description: value);
                     });
                   },
                 ),
@@ -97,7 +101,7 @@ class _AddOrEditCageDialogState extends State<AddOrEditCageDialog> {
               FieldWithLabel(
                 label: context.l10n.cages__height,
                 child: TextFormField(
-                  initialValue: _cage.height?.toString(),
+                  initialValue: _cage?.height?.toString(),
                   decoration: InputDecoration(
                     hintText: context.l10n.cages__height,
                     suffix: Text(context.l10n.common__unit_m),
@@ -107,7 +111,8 @@ class _AddOrEditCageDialogState extends State<AddOrEditCageDialog> {
                   ],
                   onChanged: (value) {
                     setState(() {
-                      _cage = _cage.copyWith(height: int.tryParse(value));
+                      _cage = (_cage ?? Cage.create())
+                          .copyWith(height: int.tryParse(value));
                     });
                   },
                 ),
@@ -115,7 +120,7 @@ class _AddOrEditCageDialogState extends State<AddOrEditCageDialog> {
               FieldWithLabel(
                 label: context.l10n.cages__width,
                 child: TextFormField(
-                  initialValue: _cage.width?.toString(),
+                  initialValue: _cage?.width?.toString(),
                   decoration: InputDecoration(
                     hintText: context.l10n.cages__width,
                     suffix: Text(context.l10n.common__unit_m),
@@ -125,7 +130,8 @@ class _AddOrEditCageDialogState extends State<AddOrEditCageDialog> {
                   ],
                   onChanged: (value) {
                     setState(() {
-                      _cage = _cage.copyWith(width: int.tryParse(value));
+                      _cage = (_cage ?? Cage.create())
+                          .copyWith(width: int.tryParse(value));
                     });
                   },
                 ),
@@ -133,7 +139,7 @@ class _AddOrEditCageDialogState extends State<AddOrEditCageDialog> {
               FieldWithLabel(
                 label: context.l10n.cages__depth,
                 child: TextFormField(
-                  initialValue: _cage.depth?.toString(),
+                  initialValue: _cage?.depth?.toString(),
                   decoration: InputDecoration(
                     hintText: context.l10n.cages__depth,
                     suffix: Text(context.l10n.common__unit_m),
@@ -143,7 +149,8 @@ class _AddOrEditCageDialogState extends State<AddOrEditCageDialog> {
                   ],
                   onChanged: (value) {
                     setState(() {
-                      _cage = _cage.copyWith(depth: int.tryParse(value));
+                      _cage = (_cage ?? Cage.create())
+                          .copyWith(depth: int.tryParse(value));
                     });
                   },
                 ),
