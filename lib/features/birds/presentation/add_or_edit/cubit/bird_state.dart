@@ -1,4 +1,4 @@
-part of 'bird_bloc.dart';
+part of 'bird_cubit.dart';
 
 @freezed
 class BirdState with _$BirdState {
@@ -17,19 +17,4 @@ class BirdState with _$BirdState {
     required BirdMode mode,
     required BirdResources birdResources,
   }) = BirdLoaded;
-  const factory BirdState.error({
-    required Bird bird,
-    required BirdMode mode,
-    required BirdResources birdResources,
-  }) = BirdError;
-  const factory BirdState.saved({
-    required Bird bird,
-    required BirdMode mode,
-    required BirdResources birdResources,
-  }) = BirdSaved;
-  const factory BirdState.deleted({
-    required Bird bird,
-    required BirdMode mode,
-    required BirdResources birdResources,
-  }) = BirdDeleted;
 }

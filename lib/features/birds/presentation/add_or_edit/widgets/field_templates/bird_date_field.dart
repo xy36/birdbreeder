@@ -25,6 +25,7 @@ class BirdDateField extends StatelessWidget {
       onChanged: (date) => date != null ? onChanged(date) : null,
       decoration: InputDecoration(
         hintText: hint ?? context.l10n.common__hint_select,
+        contentPadding: const EdgeInsets.all(8),
       ),
     );
   }

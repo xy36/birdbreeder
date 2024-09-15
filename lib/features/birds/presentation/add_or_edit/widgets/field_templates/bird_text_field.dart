@@ -22,6 +22,7 @@ class BirdTextField extends StatelessWidget {
       initialValue: initialValue,
       decoration: InputDecoration(
         hintText: hint ?? context.l10n.common__hint_text,
+        contentPadding: const EdgeInsets.all(8),
       ),
     );
   }
