@@ -5,6 +5,8 @@ import 'package:birdbreeder/features/cages/data/repositories_impl/cages_reposito
 import 'package:birdbreeder/features/cages/domain/repositories/i_cages_repository.dart';
 import 'package:birdbreeder/features/colors/data/repositories_impl/bird_colors_repository_impl.dart';
 import 'package:birdbreeder/features/colors/domain/repositories/i_color_repository.dart';
+import 'package:birdbreeder/features/contacts/data/repositories_impl/contact_repository_impl.dart';
+import 'package:birdbreeder/features/contacts/domain/repositories/i_contacts_repository.dart';
 import 'package:birdbreeder/features/species/data/repositories_impl/species_repository_impl.dart';
 import 'package:birdbreeder/features/species/domain/repositories/i_species_repository.dart';
 import 'package:birdbreeder/services/authentication/authentication_service.dart';
@@ -38,6 +40,9 @@ Future<void> initializeDependencyInjection() async {
     )
     ..registerLazySingleton<IBirdColorsRepository>(
       () => BirdColorsRepositoryImpl(s1(), s1()),
+    )
+    ..registerLazySingleton<IContactsRepository>(
+      () => ContactsRepositoryImpl(s1(), s1()),
     )
     ..registerLazySingleton<IBirdsRepository>(
       () => BirdsRepositoryImpl(s1(), s1()),

@@ -19,9 +19,7 @@ class _AddNewCageButtonState extends State<AddNewCageButton> {
         await showChildAsDrawerDialog(
           context,
           AddOrEditCageDialog(
-            onAdd: (cage) {
-              bloc.add(AddCage(cage));
-            },
+            cagesBloc: bloc,
           ),
         );
       },

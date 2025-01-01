@@ -14,6 +14,7 @@ class PocketBaseService {
   RecordService get cagesCollection => pb.collection('cages');
   RecordService get speciesCollection => pb.collection('species');
   RecordService get colorsCollection => pb.collection('colors');
+  RecordService get contactsCollection => pb.collection('contacts');
   RecordService get usersCollection => pb.collection('users');
 
   AuthStore get authStore => pb.authStore;

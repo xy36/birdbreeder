@@ -4,7 +4,7 @@ import 'package:birdbreeder/core/routing/app_router.dart';
 
 enum MenuPage {
   birds(),
-  // addBird(),
+  contacts(),
   cages(),
   colors(),
   species(),
@@ -24,12 +24,12 @@ enum MenuPage {
         return Icons.home;
       case MenuPage.birds:
         return Icons.check_circle_outline;
+      case MenuPage.contacts:
+        return Icons.contacts;
       case MenuPage.colors:
         return Icons.color_lens;
       case MenuPage.species:
         return Icons.pets;
-      // case MenuPage.addBird:
-      //   return Icons.add_circle_outline;
       case MenuPage.breedings:
         return Icons.baby_changing_station;
       case MenuPage.finances:
@@ -43,6 +43,7 @@ enum MenuPage {
   String getLabel(BuildContext context) {
     return switch (this) {
       MenuPage.birds => context.l10n.menu__birds,
+      MenuPage.contacts => context.l10n.menu__contacts,
       MenuPage.cages => context.l10n.menu__cages,
       MenuPage.colors => context.l10n.menu__colors,
       MenuPage.species => context.l10n.menu__species,
@@ -57,6 +58,7 @@ enum MenuPage {
   PageRouteInfo get routeName {
     return switch (this) {
       MenuPage.birds => const BirdsOverviewRoute(),
+      MenuPage.contacts => const ContactsRoute(),
       MenuPage.cages => const CagesRoute(),
       MenuPage.colors => const ColorsRoute(),
       MenuPage.species => const SpeciesRoute(),

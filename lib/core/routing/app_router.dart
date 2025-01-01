@@ -12,6 +12,7 @@ import 'package:birdbreeder/features/birds/presentation/birds_overview/birds_ove
 import 'package:birdbreeder/features/breedings/breedings_page.dart';
 import 'package:birdbreeder/features/cages/presentation/cages_page.dart';
 import 'package:birdbreeder/features/colors/presentation/colors_page.dart';
+import 'package:birdbreeder/features/contacts/presentation/contacts_page.dart';
 import 'package:birdbreeder/features/finances/finances_page.dart';
 import 'package:birdbreeder/features/menu/presentation/menu_page.dart';
 import 'package:birdbreeder/features/species/presentation/species_page.dart';
@@ -45,50 +46,56 @@ class AppRouter extends _$AppRouter {
               guards: [AuthGuard()],
               page: BirdsOverviewRoute.page,
               path: 'birds',
-              transitionsBuilder: TransitionsBuilders.fadeIn,
+              transitionsBuilder: TransitionsBuilders.slideLeft,
               initial: true,
             ),
             CustomRoute(
               page: BirdRoute.page,
               path: 'birds/bird',
               guards: [AuthGuard()],
-              transitionsBuilder: TransitionsBuilders.fadeIn,
+              transitionsBuilder: TransitionsBuilders.slideLeft,
+            ),
+            CustomRoute(
+              page: ContactsRoute.page,
+              path: 'contacts',
+              guards: [AuthGuard()],
+              transitionsBuilder: TransitionsBuilders.slideLeft,
             ),
             CustomRoute(
               page: CagesRoute.page,
               path: 'cages',
               guards: [AuthGuard()],
-              transitionsBuilder: TransitionsBuilders.fadeIn,
+              transitionsBuilder: TransitionsBuilders.slideLeft,
             ),
             CustomRoute(
               page: ColorsRoute.page,
               path: 'colors',
               guards: [AuthGuard()],
-              transitionsBuilder: TransitionsBuilders.fadeIn,
+              transitionsBuilder: TransitionsBuilders.slideLeft,
             ),
             CustomRoute(
               page: SpeciesRoute.page,
               path: 'species',
               guards: [AuthGuard()],
-              transitionsBuilder: TransitionsBuilders.fadeIn,
+              transitionsBuilder: TransitionsBuilders.slideLeft,
             ),
             CustomRoute(
               page: BreedingsRoute.page,
               path: 'breedings',
               guards: [AuthGuard()],
-              transitionsBuilder: TransitionsBuilders.fadeIn,
+              transitionsBuilder: TransitionsBuilders.slideLeft,
             ),
             CustomRoute(
               page: FinancesRoute.page,
               path: 'finances',
               guards: [AuthGuard()],
-              transitionsBuilder: TransitionsBuilders.fadeIn,
+              transitionsBuilder: TransitionsBuilders.slideLeft,
             ),
             CustomRoute(
               page: AccountRoute.page,
               path: 'account',
               guards: [AuthGuard()],
-              transitionsBuilder: TransitionsBuilders.fadeIn,
+              transitionsBuilder: TransitionsBuilders.slideLeft,
             ),
           ],
         ),

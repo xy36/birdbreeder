@@ -19,9 +19,7 @@ class _AddNewColorButtonState extends State<AddNewColorButton> {
         await showChildAsDrawerDialog(
           context,
           AddOrEditColorDialog(
-            onAdd: (color) {
-              bloc.add(AddColor(color));
-            },
+            colorsBloc: bloc,
           ),
         );
       },

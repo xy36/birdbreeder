@@ -7,6 +7,9 @@ import 'package:birdbreeder/features/cages/domain/models/cage.dart';
 import 'package:birdbreeder/features/colors/data/dtos/bird_color_dto.dart';
 import 'package:birdbreeder/features/colors/domain/mapper/bird_color_mapper.dart';
 import 'package:birdbreeder/features/colors/domain/models/bird_color.dart';
+import 'package:birdbreeder/features/contacts/data/dtos/contact_dto.dart';
+import 'package:birdbreeder/features/contacts/domain/mapper/contact_mapper.dart';
+import 'package:birdbreeder/features/contacts/domain/models/contact.dart';
 import 'package:birdbreeder/features/species/data/dtos/species_dto.dart';
 import 'package:birdbreeder/features/species/domain/mapper/species_mapper.dart';
 import 'package:birdbreeder/features/species/domain/models/species.dart';
@@ -35,6 +38,18 @@ extension BirdColorMapperExtension on BirdColor {
 extension BirdColorDtoMapperExtension on BirdColorDto {
   BirdColor toModel() {
     return BirdColorMapper().convert<BirdColorDto, BirdColor>(this);
+  }
+}
+
+extension ContactMapperExtension on Contact {
+  ContactDto toDto() {
+    return ContactMapper().convert<Contact, ContactDto>(this);
+  }
+}
+
+extension ContactDtoMapperExtension on ContactDto {
+  Contact toModel() {
+    return ContactMapper().convert<ContactDto, Contact>(this);
   }
 }
 

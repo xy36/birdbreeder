@@ -1,7 +1,8 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/cages/domain/models/cage.dart';
-import 'package:birdbreeder/features/cages/presentation/widgets/buttons/delete_cage_button.dart';
-import 'package:birdbreeder/features/cages/presentation/widgets/buttons/edit_cage_button.dart';
+import 'package:birdbreeder/features/cages/presentation/bloc/cages_bloc.dart';
+import 'package:birdbreeder/features/cages/presentation/widgets/dialogs/add_or_edit_cage_dialog.dart';
+import 'package:birdbreeder/shared/widgets/utils.dart';
 
 class CageItem extends StatelessWidget {
   const CageItem({super.key, required this.cage});
@@ -19,13 +20,16 @@ class CageItem extends StatelessWidget {
             Text('${cage.height}m x ${cage.width}m x ${cage.depth}m'),
           ],
         ),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            EditCageButton(cage: cage),
-            DeleteCageButton(cage: cage),
-          ],
-        ),
+        onTap: () async {
+          final bloc = context.read<CagesBloc>();
+          await showChildAsDrawerDialog(
+            context,
+            AddOrEditCageDialog(
+              initialCage: cage,
+              cagesBloc: bloc,
+            ),
+          );
+        },
         subtitle: Text(cage.description ?? ''),
       ),
     );

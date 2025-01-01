@@ -19,9 +19,7 @@ class _AddNewSpeciesButtonState extends State<AddNewSpeciesButton> {
         await showChildAsDrawerDialog(
           context,
           AddOrEditSpeciesDialog(
-            onAdd: (species) {
-              bloc.add(AddSpecies(species));
-            },
+            speciesBloc: bloc,
           ),
         );
       },
