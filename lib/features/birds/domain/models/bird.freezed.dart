@@ -36,7 +36,9 @@ mixin _$Bird {
   bool? get sold => throw _privateConstructorUsedError;
   List<String> get children => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Bird
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BirdCopyWith<Bird> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -83,6 +85,8 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Bird
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -186,6 +190,8 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
     ) as $Val);
   }
 
+  /// Create a copy of Bird
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SpeciesCopyWith<$Res>? get species {
@@ -198,6 +204,8 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
     });
   }
 
+  /// Create a copy of Bird
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BirdColorCopyWith<$Res>? get color {
@@ -210,6 +218,8 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
     });
   }
 
+  /// Create a copy of Bird
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CageCopyWith<$Res>? get cage {
@@ -222,6 +232,8 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
     });
   }
 
+  /// Create a copy of Bird
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BirdCopyWith<$Res>? get father {
@@ -234,6 +246,8 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
     });
   }
 
+  /// Create a copy of Bird
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BirdCopyWith<$Res>? get mother {
@@ -294,6 +308,8 @@ class __$$BirdImplCopyWithImpl<$Res>
   __$$BirdImplCopyWithImpl(_$BirdImpl _value, $Res Function(_$BirdImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Bird
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -528,7 +544,9 @@ class _$BirdImpl implements _Bird {
         const DeepCollectionEquality().hash(_children)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Bird
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BirdImplCopyWith<_$BirdImpl> get copyWith =>
@@ -595,8 +613,11 @@ abstract class _Bird implements Bird {
   bool? get sold;
   @override
   List<String> get children;
+
+  /// Create a copy of Bird
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BirdImplCopyWith<_$BirdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

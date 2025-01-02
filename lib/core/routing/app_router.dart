@@ -21,77 +21,77 @@ import 'package:flutter/material.dart';
 part 'app_router.gr.dart';
 
 @AutoRouterConfig()
-class AppRouter extends _$AppRouter {
+class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-        CustomRoute(
+        CustomRoute<void>(
           page: InitializationRoute.page,
           path: '/initialization',
           transitionsBuilder: TransitionsBuilders.fadeIn,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: LoginRoute.page,
           guards: [LoginGuard()],
           path: '/login',
           transitionsBuilder: TransitionsBuilders.fadeIn,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: MenuRoute.page,
           path: '/',
           guards: [AuthGuard()],
           initial: true,
           transitionsBuilder: TransitionsBuilders.fadeIn,
           children: [
-            CustomRoute(
+            CustomRoute<void>(
               guards: [AuthGuard()],
               page: BirdsOverviewRoute.page,
               path: 'birds',
               transitionsBuilder: TransitionsBuilders.slideLeft,
               initial: true,
             ),
-            CustomRoute(
+            CustomRoute<void>(
               page: BirdRoute.page,
               path: 'birds/bird',
               guards: [AuthGuard()],
               transitionsBuilder: TransitionsBuilders.slideLeft,
             ),
-            CustomRoute(
+            CustomRoute<void>(
               page: ContactsRoute.page,
               path: 'contacts',
               guards: [AuthGuard()],
               transitionsBuilder: TransitionsBuilders.slideLeft,
             ),
-            CustomRoute(
+            CustomRoute<void>(
               page: CagesRoute.page,
               path: 'cages',
               guards: [AuthGuard()],
               transitionsBuilder: TransitionsBuilders.slideLeft,
             ),
-            CustomRoute(
+            CustomRoute<void>(
               page: ColorsRoute.page,
               path: 'colors',
               guards: [AuthGuard()],
               transitionsBuilder: TransitionsBuilders.slideLeft,
             ),
-            CustomRoute(
+            CustomRoute<void>(
               page: SpeciesRoute.page,
               path: 'species',
               guards: [AuthGuard()],
               transitionsBuilder: TransitionsBuilders.slideLeft,
             ),
-            CustomRoute(
+            CustomRoute<void>(
               page: BreedingsRoute.page,
               path: 'breedings',
               guards: [AuthGuard()],
               transitionsBuilder: TransitionsBuilders.slideLeft,
             ),
-            CustomRoute(
+            CustomRoute<void>(
               page: FinancesRoute.page,
               path: 'finances',
               guards: [AuthGuard()],
               transitionsBuilder: TransitionsBuilders.slideLeft,
             ),
-            CustomRoute(
+            CustomRoute<void>(
               page: AccountRoute.page,
               path: 'account',
               guards: [AuthGuard()],

@@ -76,7 +76,9 @@ mixin _$BirdState {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BirdState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BirdStateCopyWith<BirdState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -102,6 +104,8 @@ class _$BirdStateCopyWithImpl<$Res, $Val extends BirdState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BirdState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -125,6 +129,8 @@ class _$BirdStateCopyWithImpl<$Res, $Val extends BirdState>
     ) as $Val);
   }
 
+  /// Create a copy of BirdState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BirdCopyWith<$Res> get bird {
@@ -133,6 +139,8 @@ class _$BirdStateCopyWithImpl<$Res, $Val extends BirdState>
     });
   }
 
+  /// Create a copy of BirdState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BirdResourcesCopyWith<$Res> get birdResources {
@@ -166,6 +174,8 @@ class __$$BirdInitialImplCopyWithImpl<$Res>
       _$BirdInitialImpl _value, $Res Function(_$BirdInitialImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BirdState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -222,7 +232,9 @@ class _$BirdInitialImpl implements BirdInitial {
   @override
   int get hashCode => Object.hash(runtimeType, bird, mode, birdResources);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BirdState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BirdInitialImplCopyWith<_$BirdInitialImpl> get copyWith =>
@@ -321,8 +333,11 @@ abstract class BirdInitial implements BirdState {
   BirdMode get mode;
   @override
   BirdResources get birdResources;
+
+  /// Create a copy of BirdState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BirdInitialImplCopyWith<_$BirdInitialImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -351,6 +366,8 @@ class __$$BirdLoadingImplCopyWithImpl<$Res>
       _$BirdLoadingImpl _value, $Res Function(_$BirdLoadingImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BirdState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -407,7 +424,9 @@ class _$BirdLoadingImpl implements BirdLoading {
   @override
   int get hashCode => Object.hash(runtimeType, bird, mode, birdResources);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BirdState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BirdLoadingImplCopyWith<_$BirdLoadingImpl> get copyWith =>
@@ -506,8 +525,11 @@ abstract class BirdLoading implements BirdState {
   BirdMode get mode;
   @override
   BirdResources get birdResources;
+
+  /// Create a copy of BirdState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BirdLoadingImplCopyWith<_$BirdLoadingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -536,6 +558,8 @@ class __$$BirdLoadedImplCopyWithImpl<$Res>
       _$BirdLoadedImpl _value, $Res Function(_$BirdLoadedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BirdState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -592,7 +616,9 @@ class _$BirdLoadedImpl implements BirdLoaded {
   @override
   int get hashCode => Object.hash(runtimeType, bird, mode, birdResources);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BirdState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BirdLoadedImplCopyWith<_$BirdLoadedImpl> get copyWith =>
@@ -691,8 +717,11 @@ abstract class BirdLoaded implements BirdState {
   BirdMode get mode;
   @override
   BirdResources get birdResources;
+
+  /// Create a copy of BirdState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BirdLoadedImplCopyWith<_$BirdLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -9,107 +9,6 @@
 
 part of 'app_router.dart';
 
-abstract class _$AppRouter extends RootStackRouter {
-  // ignore: unused_element
-  _$AppRouter({super.navigatorKey});
-
-  @override
-  final Map<String, PageFactory> pagesMap = {
-    AccountRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const AccountPage(),
-      );
-    },
-    BirdRoute.name: (routeData) {
-      final args = routeData.argsAs<BirdRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: BirdPage(
-          key: args.key,
-          bird: args.bird,
-        ),
-      );
-    },
-    BirdsOverviewRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const BirdsOverviewPage(),
-      );
-    },
-    BreedingsRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const BreedingsPage(),
-      );
-    },
-    CagesRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const CagesPage(),
-      );
-    },
-    ColorsRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const ColorsPage(),
-      );
-    },
-    ContactsRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const ContactsPage(),
-      );
-    },
-    EmptyRouterRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const EmptyRouterPage(),
-      );
-    },
-    FinancesRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const FinancesPage(),
-      );
-    },
-    InitializationRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const InitializationPage(),
-      );
-    },
-    LoginRoute.name: (routeData) {
-      final args = routeData.argsAs<LoginRouteArgs>(
-          orElse: () => const LoginRouteArgs());
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: LoginPage(key: args.key),
-      );
-    },
-    MenuRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const MenuPage(),
-      );
-    },
-    SignUpRoute.name: (routeData) {
-      final args = routeData.argsAs<SignUpRouteArgs>(
-          orElse: () => const SignUpRouteArgs());
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: SignUpPage(key: args.key),
-      );
-    },
-    SpeciesRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const SpeciesPage(),
-      );
-    },
-  };
-}
-
 /// generated route for
 /// [AccountPage]
 class AccountRoute extends PageRouteInfo<void> {
@@ -121,7 +20,12 @@ class AccountRoute extends PageRouteInfo<void> {
 
   static const String name = 'AccountRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AccountPage();
+    },
+  );
 }
 
 /// generated route for
@@ -142,7 +46,16 @@ class BirdRoute extends PageRouteInfo<BirdRouteArgs> {
 
   static const String name = 'BirdRoute';
 
-  static const PageInfo<BirdRouteArgs> page = PageInfo<BirdRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<BirdRouteArgs>();
+      return BirdPage(
+        key: args.key,
+        bird: args.bird,
+      );
+    },
+  );
 }
 
 class BirdRouteArgs {
@@ -172,7 +85,12 @@ class BirdsOverviewRoute extends PageRouteInfo<void> {
 
   static const String name = 'BirdsOverviewRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const BirdsOverviewPage();
+    },
+  );
 }
 
 /// generated route for
@@ -186,7 +104,12 @@ class BreedingsRoute extends PageRouteInfo<void> {
 
   static const String name = 'BreedingsRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const BreedingsPage();
+    },
+  );
 }
 
 /// generated route for
@@ -200,7 +123,12 @@ class CagesRoute extends PageRouteInfo<void> {
 
   static const String name = 'CagesRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CagesPage();
+    },
+  );
 }
 
 /// generated route for
@@ -214,7 +142,12 @@ class ColorsRoute extends PageRouteInfo<void> {
 
   static const String name = 'ColorsRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ColorsPage();
+    },
+  );
 }
 
 /// generated route for
@@ -228,7 +161,12 @@ class ContactsRoute extends PageRouteInfo<void> {
 
   static const String name = 'ContactsRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ContactsPage();
+    },
+  );
 }
 
 /// generated route for
@@ -242,7 +180,12 @@ class EmptyRouterRoute extends PageRouteInfo<void> {
 
   static const String name = 'EmptyRouterRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const EmptyRouterPage();
+    },
+  );
 }
 
 /// generated route for
@@ -256,7 +199,12 @@ class FinancesRoute extends PageRouteInfo<void> {
 
   static const String name = 'FinancesRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const FinancesPage();
+    },
+  );
 }
 
 /// generated route for
@@ -270,7 +218,12 @@ class InitializationRoute extends PageRouteInfo<void> {
 
   static const String name = 'InitializationRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const InitializationPage();
+    },
+  );
 }
 
 /// generated route for
@@ -287,7 +240,14 @@ class LoginRoute extends PageRouteInfo<LoginRouteArgs> {
 
   static const String name = 'LoginRoute';
 
-  static const PageInfo<LoginRouteArgs> page = PageInfo<LoginRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args =
+          data.argsAs<LoginRouteArgs>(orElse: () => const LoginRouteArgs());
+      return LoginPage(key: args.key);
+    },
+  );
 }
 
 class LoginRouteArgs {
@@ -312,7 +272,12 @@ class MenuRoute extends PageRouteInfo<void> {
 
   static const String name = 'MenuRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MenuPage();
+    },
+  );
 }
 
 /// generated route for
@@ -329,7 +294,14 @@ class SignUpRoute extends PageRouteInfo<SignUpRouteArgs> {
 
   static const String name = 'SignUpRoute';
 
-  static const PageInfo<SignUpRouteArgs> page = PageInfo<SignUpRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args =
+          data.argsAs<SignUpRouteArgs>(orElse: () => const SignUpRouteArgs());
+      return SignUpPage(key: args.key);
+    },
+  );
 }
 
 class SignUpRouteArgs {
@@ -354,5 +326,10 @@ class SpeciesRoute extends PageRouteInfo<void> {
 
   static const String name = 'SpeciesRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SpeciesPage();
+    },
+  );
 }

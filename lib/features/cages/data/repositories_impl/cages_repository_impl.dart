@@ -19,7 +19,7 @@ class CagesRepositoryImpl implements ICagesRepository {
 
       return Result.value(CageDto.fromJson(result.toJson()).toModel());
     } catch (e) {
-      loggingService.logger.error(e.toString());
+      loggingService.logger.e(e.toString());
       return Result.error(e.toString());
     }
   }
@@ -31,7 +31,7 @@ class CagesRepositoryImpl implements ICagesRepository {
 
       return Result.value(null);
     } catch (e) {
-      loggingService.logger.error(e.toString());
+      loggingService.logger.e(e.toString());
       return Result.error(e.toString());
     }
   }
@@ -46,7 +46,7 @@ class CagesRepositoryImpl implements ICagesRepository {
         result.map((e) => CageDto.fromJson(e.toJson()).toModel()).toList(),
       );
     } catch (e) {
-      loggingService.logger.error(e.toString());
+      loggingService.logger.e(e.toString());
       return Result.error(e.toString());
     }
   }
@@ -58,7 +58,7 @@ class CagesRepositoryImpl implements ICagesRepository {
 
       return Result.value(CageDto.fromJson(birdResult.toJson()).toModel());
     } catch (e) {
-      loggingService.logger.error(e.toString());
+      loggingService.logger.e(e.toString());
       return Result.error(e.toString());
     }
   }
@@ -71,7 +71,7 @@ class CagesRepositoryImpl implements ICagesRepository {
 
       return Result.value(CageDto.fromJson(result.toJson()).toModel());
     } catch (e) {
-      loggingService.logger.error(e.toString());
+      loggingService.logger.e(e.toString());
       return Result.error(e.toString());
     }
   }

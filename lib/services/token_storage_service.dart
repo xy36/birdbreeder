@@ -10,7 +10,7 @@ class TokenStorageService {
   final LoggingService _loggingService;
 
   Future<void> setToken(String token) async {
-    _loggingService.logger.info('TokenStorageService.setToken: $token');
+    _loggingService.logger.i('TokenStorageService.setToken: $token');
 
     await _sharedPreferences.setString(
       key,
@@ -19,14 +19,14 @@ class TokenStorageService {
   }
 
   Future<void> deleteToken() async {
-    _loggingService.logger.info('TokenStorageService.deleteToken');
+    _loggingService.logger.i('TokenStorageService.deleteToken');
     await _sharedPreferences.remove(key);
   }
 
   Future<String?> getToken() async {
     final token = _sharedPreferences.getString(key);
 
-    _loggingService.logger.info('TokenStorageService.getToken: $token');
+    _loggingService.logger.i('TokenStorageService.getToken: $token');
 
     return token;
   }

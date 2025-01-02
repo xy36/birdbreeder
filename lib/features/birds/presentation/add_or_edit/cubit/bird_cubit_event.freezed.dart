@@ -78,6 +78,9 @@ class _$BirdCubitEventCopyWithImpl<$Res, $Val extends BirdCubitEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of BirdCubitEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -95,6 +98,9 @@ class __$$BirdCubitEventDeletedImplCopyWithImpl<$Res>
   __$$BirdCubitEventDeletedImplCopyWithImpl(_$BirdCubitEventDeletedImpl _value,
       $Res Function(_$BirdCubitEventDeletedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BirdCubitEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -206,6 +212,9 @@ class __$$BirdCubitEventDuplicatedImplCopyWithImpl<$Res>
       _$BirdCubitEventDuplicatedImpl _value,
       $Res Function(_$BirdCubitEventDuplicatedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BirdCubitEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -315,6 +324,9 @@ class __$$BirdCubitEventErrorImplCopyWithImpl<$Res>
   __$$BirdCubitEventErrorImplCopyWithImpl(_$BirdCubitEventErrorImpl _value,
       $Res Function(_$BirdCubitEventErrorImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BirdCubitEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

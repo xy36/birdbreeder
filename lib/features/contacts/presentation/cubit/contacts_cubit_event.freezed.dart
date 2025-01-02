@@ -78,6 +78,9 @@ class _$ContactsCubitEventCopyWithImpl<$Res, $Val extends ContactsCubitEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ContactsCubitEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -97,6 +100,9 @@ class __$$ContactsEventUpdateFailedImplCopyWithImpl<$Res>
       _$ContactsEventUpdateFailedImpl _value,
       $Res Function(_$ContactsEventUpdateFailedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ContactsCubitEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -209,6 +215,9 @@ class __$$ContactsEventCreateFailedImplCopyWithImpl<$Res>
       _$ContactsEventCreateFailedImpl _value,
       $Res Function(_$ContactsEventCreateFailedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ContactsCubitEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -321,6 +330,9 @@ class __$$ContactsEventDeleteFailedImplCopyWithImpl<$Res>
       _$ContactsEventDeleteFailedImpl _value,
       $Res Function(_$ContactsEventDeleteFailedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ContactsCubitEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

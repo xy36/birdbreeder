@@ -34,7 +34,7 @@ class BirdPage extends StatelessWidget {
               context.showInfoBar<Bird>(
                 content: Text(context.l10n.bird__deleted),
               );
-              context.router.pop();
+              context.router.maybePop();
               break;
             case BirdCubitEventDuplicated():
               context.showInfoBar<Bird>(

@@ -11,9 +11,9 @@ _$CageDtoImpl _$$CageDtoImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       name: json['name'] as String?,
       description: json['description'] as String?,
-      width: json['width'] as int?,
-      height: json['height'] as int?,
-      depth: json['depth'] as int?,
+      width: (json['width'] as num?)?.toInt(),
+      height: (json['height'] as num?)?.toInt(),
+      depth: (json['depth'] as num?)?.toInt(),
       user: json['user'] as String?,
     );
 

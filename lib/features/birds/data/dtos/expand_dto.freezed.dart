@@ -26,8 +26,12 @@ mixin _$ExpandDto {
   BirdDto? get father => throw _privateConstructorUsedError;
   BirdDto? get mother => throw _privateConstructorUsedError;
 
+  /// Serializes this ExpandDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ExpandDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ExpandDtoCopyWith<ExpandDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -61,6 +65,8 @@ class _$ExpandDtoCopyWithImpl<$Res, $Val extends ExpandDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ExpandDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -94,6 +100,8 @@ class _$ExpandDtoCopyWithImpl<$Res, $Val extends ExpandDto>
     ) as $Val);
   }
 
+  /// Create a copy of ExpandDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BirdColorDtoCopyWith<$Res>? get color {
@@ -106,6 +114,8 @@ class _$ExpandDtoCopyWithImpl<$Res, $Val extends ExpandDto>
     });
   }
 
+  /// Create a copy of ExpandDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SpeciesDtoCopyWith<$Res>? get species {
@@ -118,6 +128,8 @@ class _$ExpandDtoCopyWithImpl<$Res, $Val extends ExpandDto>
     });
   }
 
+  /// Create a copy of ExpandDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CageDtoCopyWith<$Res>? get cage {
@@ -130,6 +142,8 @@ class _$ExpandDtoCopyWithImpl<$Res, $Val extends ExpandDto>
     });
   }
 
+  /// Create a copy of ExpandDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BirdDtoCopyWith<$Res>? get father {
@@ -142,6 +156,8 @@ class _$ExpandDtoCopyWithImpl<$Res, $Val extends ExpandDto>
     });
   }
 
+  /// Create a copy of ExpandDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BirdDtoCopyWith<$Res>? get mother {
@@ -190,6 +206,8 @@ class __$$ExpandDtoImplCopyWithImpl<$Res>
       _$ExpandDtoImpl _value, $Res Function(_$ExpandDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ExpandDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -265,12 +283,14 @@ class _$ExpandDtoImpl implements _ExpandDto {
             (identical(other.mother, mother) || other.mother == mother));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, color, species, cage, father, mother);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ExpandDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ExpandDtoImplCopyWith<_$ExpandDtoImpl> get copyWith =>
@@ -305,8 +325,11 @@ abstract class _ExpandDto implements ExpandDto {
   BirdDto? get father;
   @override
   BirdDto? get mother;
+
+  /// Create a copy of ExpandDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ExpandDtoImplCopyWith<_$ExpandDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

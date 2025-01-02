@@ -24,8 +24,12 @@ mixin _$BirdColorDto {
   String? get name => throw _privateConstructorUsedError;
   String? get user => throw _privateConstructorUsedError;
 
+  /// Serializes this BirdColorDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BirdColorDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BirdColorDtoCopyWith<BirdColorDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$BirdColorDtoCopyWithImpl<$Res, $Val extends BirdColorDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BirdColorDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$BirdColorDtoImplCopyWithImpl<$Res>
       _$BirdColorDtoImpl _value, $Res Function(_$BirdColorDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BirdColorDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -146,11 +154,13 @@ class _$BirdColorDtoImpl implements _BirdColorDto {
             (identical(other.user, user) || other.user == user));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, user);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BirdColorDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BirdColorDtoImplCopyWith<_$BirdColorDtoImpl> get copyWith =>
@@ -179,8 +189,11 @@ abstract class _BirdColorDto implements BirdColorDto {
   String? get name;
   @override
   String? get user;
+
+  /// Create a copy of BirdColorDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BirdColorDtoImplCopyWith<_$BirdColorDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

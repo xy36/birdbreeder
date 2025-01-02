@@ -20,7 +20,9 @@ mixin _$Species {
   String? get name => throw _privateConstructorUsedError;
   String? get latName => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Species
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SpeciesCopyWith<Species> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -42,6 +44,8 @@ class _$SpeciesCopyWithImpl<$Res, $Val extends Species>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Species
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -84,6 +88,8 @@ class __$$SpeciesImplCopyWithImpl<$Res>
       _$SpeciesImpl _value, $Res Function(_$SpeciesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Species
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -138,7 +144,9 @@ class _$SpeciesImpl implements _Species {
   @override
   int get hashCode => Object.hash(runtimeType, id, name, latName);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Species
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SpeciesImplCopyWith<_$SpeciesImpl> get copyWith =>
@@ -157,8 +165,11 @@ abstract class _Species implements Species {
   String? get name;
   @override
   String? get latName;
+
+  /// Create a copy of Species
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SpeciesImplCopyWith<_$SpeciesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

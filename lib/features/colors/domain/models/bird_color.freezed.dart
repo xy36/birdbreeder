@@ -19,7 +19,9 @@ mixin _$BirdColor {
   String get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BirdColor
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BirdColorCopyWith<BirdColor> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -42,6 +44,8 @@ class _$BirdColorCopyWithImpl<$Res, $Val extends BirdColor>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BirdColor
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +84,8 @@ class __$$BirdColorImplCopyWithImpl<$Res>
       _$BirdColorImpl _value, $Res Function(_$BirdColorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BirdColor
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -126,7 +132,9 @@ class _$BirdColorImpl implements _BirdColor {
   @override
   int get hashCode => Object.hash(runtimeType, id, name);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BirdColor
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BirdColorImplCopyWith<_$BirdColorImpl> get copyWith =>
@@ -141,8 +149,11 @@ abstract class _BirdColor implements BirdColor {
   String get id;
   @override
   String? get name;
+
+  /// Create a copy of BirdColor
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BirdColorImplCopyWith<_$BirdColorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -3,11 +3,9 @@ import 'dart:developer';
 
 import 'package:birdbreeder/services/initialization_service.dart';
 import 'package:birdbreeder/services/injection.dart';
-import 'package:birdbreeder/services/logging_service.dart';
 import 'package:birdbreeder/services/pocketbase_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:talker_bloc_logger/talker_bloc_logger.dart';
 
 ThemeData? themeData;
 
@@ -49,9 +47,12 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   await s1.get<PocketBaseService>().init();
 
-  Bloc.observer = TalkerBlocObserver(
-    talker: s1.get<LoggingService>().logger,
-  );
+  // Bloc.observer = TalkerBlocObserver(
+  //     //talker: s1.get<LoggingService>().logger,
+  //     //settings: TalkerBlocLoggerSettings(printStateFullData: true),
+  //     );
+
+  Bloc.observer = AppBlocObserver();
 
   runApp(await builder());
 }

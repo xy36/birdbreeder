@@ -84,6 +84,9 @@ class _$ColorsEventCopyWithImpl<$Res, $Val extends ColorsEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ColorsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -99,6 +102,9 @@ class __$$LoadImplCopyWithImpl<$Res>
     implements _$$LoadImplCopyWith<$Res> {
   __$$LoadImplCopyWithImpl(_$LoadImpl _value, $Res Function(_$LoadImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ColorsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -218,6 +224,8 @@ class __$$AddColorImplCopyWithImpl<$Res>
       _$AddColorImpl _value, $Res Function(_$AddColorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ColorsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -231,6 +239,8 @@ class __$$AddColorImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of ColorsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BirdColorCopyWith<$Res> get color {
@@ -264,7 +274,9 @@ class _$AddColorImpl implements AddColor {
   @override
   int get hashCode => Object.hash(runtimeType, color);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ColorsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AddColorImplCopyWith<_$AddColorImpl> get copyWith =>
@@ -349,7 +361,10 @@ abstract class AddColor implements ColorsEvent {
   const factory AddColor(final BirdColor color) = _$AddColorImpl;
 
   BirdColor get color;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ColorsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddColorImplCopyWith<_$AddColorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -373,6 +388,8 @@ class __$$DeleteColorImplCopyWithImpl<$Res>
       _$DeleteColorImpl _value, $Res Function(_$DeleteColorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ColorsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -386,6 +403,8 @@ class __$$DeleteColorImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of ColorsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BirdColorCopyWith<$Res> get color {
@@ -419,7 +438,9 @@ class _$DeleteColorImpl implements DeleteColor {
   @override
   int get hashCode => Object.hash(runtimeType, color);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ColorsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeleteColorImplCopyWith<_$DeleteColorImpl> get copyWith =>
@@ -504,7 +525,10 @@ abstract class DeleteColor implements ColorsEvent {
   const factory DeleteColor(final BirdColor color) = _$DeleteColorImpl;
 
   BirdColor get color;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ColorsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeleteColorImplCopyWith<_$DeleteColorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -528,6 +552,8 @@ class __$$EditColorImplCopyWithImpl<$Res>
       _$EditColorImpl _value, $Res Function(_$EditColorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ColorsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -541,6 +567,8 @@ class __$$EditColorImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of ColorsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BirdColorCopyWith<$Res> get color {
@@ -574,7 +602,9 @@ class _$EditColorImpl implements EditColor {
   @override
   int get hashCode => Object.hash(runtimeType, color);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ColorsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EditColorImplCopyWith<_$EditColorImpl> get copyWith =>
@@ -659,7 +689,10 @@ abstract class EditColor implements ColorsEvent {
   const factory EditColor(final BirdColor color) = _$EditColorImpl;
 
   BirdColor get color;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ColorsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EditColorImplCopyWith<_$EditColorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -734,6 +767,9 @@ class _$ColorsStateCopyWithImpl<$Res, $Val extends ColorsState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ColorsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -750,6 +786,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ColorsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -864,6 +903,9 @@ class __$$LoadingImplCopyWithImpl<$Res>
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ColorsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -981,6 +1023,8 @@ class __$$LoadedImplCopyWithImpl<$Res>
       _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ColorsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1026,7 +1070,9 @@ class _$LoadedImpl implements Loaded {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_colors));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ColorsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
@@ -1111,7 +1157,10 @@ abstract class Loaded implements ColorsState {
   const factory Loaded({required final List<BirdColor> colors}) = _$LoadedImpl;
 
   List<BirdColor> get colors;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ColorsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1130,6 +1179,9 @@ class __$$ErrorImplCopyWithImpl<$Res>
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ColorsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

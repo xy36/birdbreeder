@@ -28,8 +28,12 @@ mixin _$CageDto {
   int? get depth => throw _privateConstructorUsedError;
   String? get user => throw _privateConstructorUsedError;
 
+  /// Serializes this CageDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CageDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CageDtoCopyWith<CageDto> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -58,6 +62,8 @@ class _$CageDtoCopyWithImpl<$Res, $Val extends CageDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CageDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -127,6 +133,8 @@ class __$$CageDtoImplCopyWithImpl<$Res>
       _$CageDtoImpl _value, $Res Function(_$CageDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CageDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -221,12 +229,14 @@ class _$CageDtoImpl implements _CageDto {
             (identical(other.user, user) || other.user == user));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, name, description, width, height, depth, user);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CageDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CageDtoImplCopyWith<_$CageDtoImpl> get copyWith =>
@@ -266,8 +276,11 @@ abstract class _CageDto implements CageDto {
   int? get depth;
   @override
   String? get user;
+
+  /// Create a copy of CageDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CageDtoImplCopyWith<_$CageDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

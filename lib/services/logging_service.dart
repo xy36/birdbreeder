@@ -1,12 +1,12 @@
-import 'package:talker_flutter/talker_flutter.dart';
+import 'package:logger/logger.dart';
 
 class LoggingService {
   LoggingService() {
-    _logger = TalkerFlutter.init();
-    _logger.info('Logging Service Initialized');
+    _logger = Logger();
+    _logger.i('Logging Service Initialized');
   }
 
-  late Talker _logger;
+  late Logger _logger;
 
-  Talker get logger => _logger;
+  Logger get logger => _logger;
 }

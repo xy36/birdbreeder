@@ -20,7 +20,9 @@ mixin _$BirdResources {
   List<Species> get speciesList => throw _privateConstructorUsedError;
   List<Cage> get cagesList => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BirdResources
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BirdResourcesCopyWith<BirdResources> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +49,8 @@ class _$BirdResourcesCopyWithImpl<$Res, $Val extends BirdResources>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BirdResources
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +97,8 @@ class __$$BirdResourcesImplCopyWithImpl<$Res>
       _$BirdResourcesImpl _value, $Res Function(_$BirdResourcesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BirdResources
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -177,7 +183,9 @@ class _$BirdResourcesImpl implements _BirdResources {
       const DeepCollectionEquality().hash(_speciesList),
       const DeepCollectionEquality().hash(_cagesList));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BirdResources
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BirdResourcesImplCopyWith<_$BirdResourcesImpl> get copyWith =>
@@ -196,8 +204,11 @@ abstract class _BirdResources implements BirdResources {
   List<Species> get speciesList;
   @override
   List<Cage> get cagesList;
+
+  /// Create a copy of BirdResources
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BirdResourcesImplCopyWith<_$BirdResourcesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -84,6 +84,9 @@ class _$CagesEventCopyWithImpl<$Res, $Val extends CagesEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of CagesEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -99,6 +102,9 @@ class __$$LoadImplCopyWithImpl<$Res>
     implements _$$LoadImplCopyWith<$Res> {
   __$$LoadImplCopyWithImpl(_$LoadImpl _value, $Res Function(_$LoadImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CagesEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -218,6 +224,8 @@ class __$$AddCageImplCopyWithImpl<$Res>
       _$AddCageImpl _value, $Res Function(_$AddCageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CagesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -231,6 +239,8 @@ class __$$AddCageImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of CagesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CageCopyWith<$Res> get cage {
@@ -264,7 +274,9 @@ class _$AddCageImpl implements AddCage {
   @override
   int get hashCode => Object.hash(runtimeType, cage);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CagesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AddCageImplCopyWith<_$AddCageImpl> get copyWith =>
@@ -349,7 +361,10 @@ abstract class AddCage implements CagesEvent {
   const factory AddCage(final Cage cage) = _$AddCageImpl;
 
   Cage get cage;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CagesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddCageImplCopyWith<_$AddCageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -373,6 +388,8 @@ class __$$DeleteCageImplCopyWithImpl<$Res>
       _$DeleteCageImpl _value, $Res Function(_$DeleteCageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CagesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -386,6 +403,8 @@ class __$$DeleteCageImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of CagesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CageCopyWith<$Res> get cage {
@@ -419,7 +438,9 @@ class _$DeleteCageImpl implements DeleteCage {
   @override
   int get hashCode => Object.hash(runtimeType, cage);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CagesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeleteCageImplCopyWith<_$DeleteCageImpl> get copyWith =>
@@ -504,7 +525,10 @@ abstract class DeleteCage implements CagesEvent {
   const factory DeleteCage(final Cage cage) = _$DeleteCageImpl;
 
   Cage get cage;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CagesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeleteCageImplCopyWith<_$DeleteCageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -528,6 +552,8 @@ class __$$EditCageImplCopyWithImpl<$Res>
       _$EditCageImpl _value, $Res Function(_$EditCageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CagesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -541,6 +567,8 @@ class __$$EditCageImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of CagesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CageCopyWith<$Res> get cage {
@@ -574,7 +602,9 @@ class _$EditCageImpl implements EditCage {
   @override
   int get hashCode => Object.hash(runtimeType, cage);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CagesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EditCageImplCopyWith<_$EditCageImpl> get copyWith =>
@@ -659,7 +689,10 @@ abstract class EditCage implements CagesEvent {
   const factory EditCage(final Cage cage) = _$EditCageImpl;
 
   Cage get cage;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CagesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EditCageImplCopyWith<_$EditCageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -734,6 +767,9 @@ class _$CagesStateCopyWithImpl<$Res, $Val extends CagesState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of CagesState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -750,6 +786,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CagesState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -864,6 +903,9 @@ class __$$LoadingImplCopyWithImpl<$Res>
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CagesState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -981,6 +1023,8 @@ class __$$LoadedImplCopyWithImpl<$Res>
       _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CagesState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1025,7 +1069,9 @@ class _$LoadedImpl implements Loaded {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_cages));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CagesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
@@ -1110,7 +1156,10 @@ abstract class Loaded implements CagesState {
   const factory Loaded({required final List<Cage> cages}) = _$LoadedImpl;
 
   List<Cage> get cages;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CagesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1129,6 +1178,9 @@ class __$$ErrorImplCopyWithImpl<$Res>
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CagesState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

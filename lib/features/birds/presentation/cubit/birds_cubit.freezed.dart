@@ -84,6 +84,9 @@ class _$BirdsStateCopyWithImpl<$Res, $Val extends BirdsState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of BirdsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -100,17 +103,15 @@ class __$$BirdsInitialImplCopyWithImpl<$Res>
   __$$BirdsInitialImplCopyWithImpl(
       _$BirdsInitialImpl _value, $Res Function(_$BirdsInitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BirdsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$BirdsInitialImpl implements BirdsInitial {
-  const _$BirdsInitialImpl();
-
-  @override
-  String toString() {
-    return 'BirdsState.initial()';
-  }
+class _$BirdsInitialImpl extends BirdsInitial {
+  const _$BirdsInitialImpl() : super._();
 
   @override
   bool operator ==(Object other) {
@@ -196,8 +197,9 @@ class _$BirdsInitialImpl implements BirdsInitial {
   }
 }
 
-abstract class BirdsInitial implements BirdsState {
+abstract class BirdsInitial extends BirdsState {
   const factory BirdsInitial() = _$BirdsInitialImpl;
+  const BirdsInitial._() : super._();
 }
 
 /// @nodoc
@@ -214,17 +216,15 @@ class __$$BirdsLoadingImplCopyWithImpl<$Res>
   __$$BirdsLoadingImplCopyWithImpl(
       _$BirdsLoadingImpl _value, $Res Function(_$BirdsLoadingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BirdsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$BirdsLoadingImpl implements BirdsLoading {
-  const _$BirdsLoadingImpl();
-
-  @override
-  String toString() {
-    return 'BirdsState.loading()';
-  }
+class _$BirdsLoadingImpl extends BirdsLoading {
+  const _$BirdsLoadingImpl() : super._();
 
   @override
   bool operator ==(Object other) {
@@ -310,8 +310,9 @@ class _$BirdsLoadingImpl implements BirdsLoading {
   }
 }
 
-abstract class BirdsLoading implements BirdsState {
+abstract class BirdsLoading extends BirdsState {
   const factory BirdsLoading() = _$BirdsLoadingImpl;
+  const BirdsLoading._() : super._();
 }
 
 /// @nodoc
@@ -331,6 +332,8 @@ class __$$BirdsLoadedImplCopyWithImpl<$Res>
       _$BirdsLoadedImpl _value, $Res Function(_$BirdsLoadedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BirdsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -347,8 +350,10 @@ class __$$BirdsLoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BirdsLoadedImpl implements BirdsLoaded {
-  const _$BirdsLoadedImpl({required final List<Bird> birds}) : _birds = birds;
+class _$BirdsLoadedImpl extends BirdsLoaded {
+  const _$BirdsLoadedImpl({required final List<Bird> birds})
+      : _birds = birds,
+        super._();
 
   final List<Bird> _birds;
   @override
@@ -356,11 +361,6 @@ class _$BirdsLoadedImpl implements BirdsLoaded {
     if (_birds is EqualUnmodifiableListView) return _birds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_birds);
-  }
-
-  @override
-  String toString() {
-    return 'BirdsState.loaded(birds: $birds)';
   }
 
   @override
@@ -375,7 +375,9 @@ class _$BirdsLoadedImpl implements BirdsLoaded {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_birds));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BirdsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BirdsLoadedImplCopyWith<_$BirdsLoadedImpl> get copyWith =>
@@ -456,12 +458,16 @@ class _$BirdsLoadedImpl implements BirdsLoaded {
   }
 }
 
-abstract class BirdsLoaded implements BirdsState {
+abstract class BirdsLoaded extends BirdsState {
   const factory BirdsLoaded({required final List<Bird> birds}) =
       _$BirdsLoadedImpl;
+  const BirdsLoaded._() : super._();
 
   List<Bird> get birds;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BirdsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BirdsLoadedImplCopyWith<_$BirdsLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -480,17 +486,15 @@ class __$$BirdsErrorImplCopyWithImpl<$Res>
   __$$BirdsErrorImplCopyWithImpl(
       _$BirdsErrorImpl _value, $Res Function(_$BirdsErrorImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BirdsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$BirdsErrorImpl implements BirdsError {
-  const _$BirdsErrorImpl();
-
-  @override
-  String toString() {
-    return 'BirdsState.error()';
-  }
+class _$BirdsErrorImpl extends BirdsError {
+  const _$BirdsErrorImpl() : super._();
 
   @override
   bool operator ==(Object other) {
@@ -576,6 +580,7 @@ class _$BirdsErrorImpl implements BirdsError {
   }
 }
 
-abstract class BirdsError implements BirdsState {
+abstract class BirdsError extends BirdsState {
   const factory BirdsError() = _$BirdsErrorImpl;
+  const BirdsError._() : super._();
 }

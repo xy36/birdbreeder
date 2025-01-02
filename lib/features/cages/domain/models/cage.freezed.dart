@@ -23,7 +23,9 @@ mixin _$Cage {
   int? get height => throw _privateConstructorUsedError;
   int? get depth => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Cage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CageCopyWith<Cage> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -51,6 +53,8 @@ class _$CageCopyWithImpl<$Res, $Val extends Cage>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Cage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -113,6 +117,8 @@ class __$$CageImplCopyWithImpl<$Res>
   __$$CageImplCopyWithImpl(_$CageImpl _value, $Res Function(_$CageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Cage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -199,7 +205,9 @@ class _$CageImpl implements _Cage {
   int get hashCode =>
       Object.hash(runtimeType, id, name, description, width, height, depth);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Cage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CageImplCopyWith<_$CageImpl> get copyWith =>
@@ -227,8 +235,11 @@ abstract class _Cage implements Cage {
   int? get height;
   @override
   int? get depth;
+
+  /// Create a copy of Cage
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CageImplCopyWith<_$CageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

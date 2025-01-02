@@ -32,8 +32,12 @@ mixin _$ContactDto {
   String? get website => throw _privateConstructorUsedError;
   String? get user => throw _privateConstructorUsedError;
 
+  /// Serializes this ContactDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ContactDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContactDtoCopyWith<ContactDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -68,6 +72,8 @@ class _$ContactDtoCopyWithImpl<$Res, $Val extends ContactDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContactDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -162,6 +168,8 @@ class __$$ContactDtoImplCopyWithImpl<$Res>
       _$ContactDtoImpl _value, $Res Function(_$ContactDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContactDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -293,12 +301,14 @@ class _$ContactDtoImpl implements _ContactDto {
             (identical(other.user, user) || other.user == user));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, number, firstName, name,
       email, address, city, country, postalCode, website, user);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContactDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContactDtoImplCopyWith<_$ContactDtoImpl> get copyWith =>
@@ -351,8 +361,11 @@ abstract class _ContactDto implements ContactDto {
   String? get website;
   @override
   String? get user;
+
+  /// Create a copy of ContactDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContactDtoImplCopyWith<_$ContactDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

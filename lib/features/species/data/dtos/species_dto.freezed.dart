@@ -25,8 +25,12 @@ mixin _$SpeciesDto {
   String? get latName => throw _privateConstructorUsedError;
   String? get user => throw _privateConstructorUsedError;
 
+  /// Serializes this SpeciesDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SpeciesDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SpeciesDtoCopyWith<SpeciesDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$SpeciesDtoCopyWithImpl<$Res, $Val extends SpeciesDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SpeciesDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -98,6 +104,8 @@ class __$$SpeciesDtoImplCopyWithImpl<$Res>
       _$SpeciesDtoImpl _value, $Res Function(_$SpeciesDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SpeciesDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -160,11 +168,13 @@ class _$SpeciesDtoImpl implements _SpeciesDto {
             (identical(other.user, user) || other.user == user));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, latName, user);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SpeciesDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SpeciesDtoImplCopyWith<_$SpeciesDtoImpl> get copyWith =>
@@ -196,8 +206,11 @@ abstract class _SpeciesDto implements SpeciesDto {
   String? get latName;
   @override
   String? get user;
+
+  /// Create a copy of SpeciesDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SpeciesDtoImplCopyWith<_$SpeciesDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -78,7 +78,7 @@ class MyDropdownSearch<T> extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      context.router.pop();
+                      context.router.maybePop();
                     },
                     icon: Icon(
                       Icons.close,

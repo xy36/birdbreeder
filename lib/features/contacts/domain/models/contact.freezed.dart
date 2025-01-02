@@ -27,7 +27,9 @@ mixin _$Contact {
   String? get country => throw _privateConstructorUsedError;
   String? get website => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Contact
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContactCopyWith<Contact> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -59,6 +61,8 @@ class _$ContactCopyWithImpl<$Res, $Val extends Contact>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Contact
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -146,6 +150,8 @@ class __$$ContactImplCopyWithImpl<$Res>
       _$ContactImpl _value, $Res Function(_$ContactImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Contact
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -269,7 +275,9 @@ class _$ContactImpl implements _Contact {
   int get hashCode => Object.hash(runtimeType, id, number, firstName, name,
       email, address, city, postalCode, country, website);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Contact
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContactImplCopyWith<_$ContactImpl> get copyWith =>
@@ -309,8 +317,11 @@ abstract class _Contact implements Contact {
   String? get country;
   @override
   String? get website;
+
+  /// Create a copy of Contact
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContactImplCopyWith<_$ContactImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

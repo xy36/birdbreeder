@@ -57,8 +57,12 @@ mixin _$BirdDto {
   String? get user => throw _privateConstructorUsedError;
   List<String> get children => throw _privateConstructorUsedError;
 
+  /// Serializes this BirdDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BirdDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BirdDtoCopyWith<BirdDto> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -105,6 +109,8 @@ class _$BirdDtoCopyWithImpl<$Res, $Val extends BirdDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BirdDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -228,6 +234,8 @@ class _$BirdDtoCopyWithImpl<$Res, $Val extends BirdDto>
     ) as $Val);
   }
 
+  /// Create a copy of BirdDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ExpandDtoCopyWith<$Res>? get expand {
@@ -285,6 +293,8 @@ class __$$BirdDtoImplCopyWithImpl<$Res>
       _$BirdDtoImpl _value, $Res Function(_$BirdDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BirdDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -549,7 +559,7 @@ class _$BirdDtoImpl implements _BirdDto {
             const DeepCollectionEquality().equals(other._children, _children));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -578,7 +588,9 @@ class _$BirdDtoImpl implements _BirdDto {
         const DeepCollectionEquality().hash(_children)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BirdDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BirdDtoImplCopyWith<_$BirdDtoImpl> get copyWith =>
@@ -679,8 +691,11 @@ abstract class _BirdDto implements BirdDto {
   String? get user;
   @override
   List<String> get children;
+
+  /// Create a copy of BirdDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BirdDtoImplCopyWith<_$BirdDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

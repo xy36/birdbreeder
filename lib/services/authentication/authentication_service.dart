@@ -12,7 +12,7 @@ import 'package:pocketbase/pocketbase.dart';
 class AuthenticationService implements IAuthenticationService {
   AuthenticationService(this._pocketBaseService, this._loggingService) {
     _pocketBaseService.authStore.onChange.listen((event) {
-      print('authStore.onChange event: $event');
+      _loggingService.logger.i('authStore.onChange event: $event');
       if (_pocketBaseService.authStore.isValid) {
         authenticationStatus.value = AuthenticationStatus.authenticated;
       } else {
@@ -62,9 +62,9 @@ class AuthenticationService implements IAuthenticationService {
 
       if (_pocketBaseService.authStore.isValid) {
         authenticationStatus.value = AuthenticationStatus.authenticated;
-        _loggingService.logger.info('User is authenticated');
+        _loggingService.logger.i('User is authenticated');
       } else {
-        _loggingService.logger.info('User is not authenticated');
+        _loggingService.logger.i('User is not authenticated');
       }
 
       final user = UserDto.fromJson(authData.record!.toJson()).toModel();
