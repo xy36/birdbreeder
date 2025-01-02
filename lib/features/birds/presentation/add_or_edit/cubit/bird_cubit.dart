@@ -1,4 +1,3 @@
-import 'package:async/async.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/domain/repositories/i_birds_repository.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/cubit/bird_cubit_event.dart';
@@ -20,21 +19,23 @@ class BirdCubit extends Cubit<BirdState>
     this.speciesRepo,
     this.birdColorsRepo,
     this.cagesRepo,
-    this.birdsRepo, {
-    required Bird? bird,
-  }) : super(
+    this.birdsRepo,
+    this.initialBird,
+  ) : super(
           BirdInitial(
-            bird: bird ?? Bird.create(),
-            mode: bird == null ? BirdMode.create : BirdMode.edit,
+            bird: initialBird ?? Bird.create(),
+            mode: initialBird == null ? BirdMode.create : BirdMode.edit,
             birdResources: BirdResources(
               cagesList: [],
               colorsList: [],
               speciesList: [],
             ),
           ),
-        );
+        ) {
+    initialBird = state.bird;
+  }
 
-  late Bird initialBird;
+  Bird? initialBird;
   final ISpeciesRepository speciesRepo;
   final IBirdColorsRepository birdColorsRepo;
   final ICagesRepository cagesRepo;
@@ -72,37 +73,53 @@ class BirdCubit extends Cubit<BirdState>
   }
 
   Future<void> changeBird(Bird bird) async {
-    Result<Bird> result;
-    if (state.mode == BirdMode.create) {
-      result = await birdsRepo.create(bird);
-    } else {
-      result = await birdsRepo.update(bird);
-    }
-
-    if (result.isError) {
-      emitPresentation(
-        const BirdCubitEvent.error(),
-      );
-      return emit(
-        BirdLoaded(
-          bird: result.asValue!.value,
-          mode: state.mode,
-          birdResources: state.birdResources,
-        ),
-      );
-    }
-
-    emit(
+    return emit(
       BirdLoaded(
-        bird: result.asValue!.value,
+        bird: bird,
         mode: state.mode,
         birdResources: state.birdResources,
       ),
     );
   }
 
+  Future<void> save() async {
+    final result = switch (state.mode) {
+      BirdMode.create => await birdsRepo.create(state.bird),
+      BirdMode.edit => await birdsRepo.update(state.bird),
+    };
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdCubitEvent.error(),
+      );
+
+      return emit(
+        BirdLoaded(
+          bird: state.bird,
+          mode: state.mode,
+          birdResources: state.birdResources,
+        ),
+      );
+    }
+
+    initialBird = result.asValue!.value;
+
+    emit(
+      BirdLoaded(
+        bird: result.asValue!.value,
+        mode: BirdMode.edit,
+        birdResources: state.birdResources,
+      ),
+    );
+  }
+
   Future<void> duplicate() async {
-    final result = await birdsRepo.create(state.bird.copyWith(id: ''));
+    final result = await birdsRepo.create(
+      state.bird.copyWith(
+        id: '',
+        ringnumber: 'Duplicate of ${state.bird.ringnumber ?? ''}',
+      ),
+    );
 
     if (result.isError) {
       emitPresentation(

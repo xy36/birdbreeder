@@ -25,7 +25,7 @@ class BirdPage extends StatelessWidget {
         s1(),
         s1(),
         s1(),
-        bird: bird,
+        bird,
       )..load(),
       child: BlocPresentationListener<BirdCubit, BirdCubitEvent>(
         listener: (context, event) {

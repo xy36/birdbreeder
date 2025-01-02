@@ -10,6 +10,14 @@ extension NullableDateFormatExtension on DateTime? {
 
     return replacement;
   }
+
+  String toTimeFormat(BuildContext context, [String replacement = '']) {
+    if (this != null) {
+      return this!.toTimeFormat(context);
+    }
+
+    return replacement;
+  }
 }
 
 extension DateFormatExtension on DateTime {

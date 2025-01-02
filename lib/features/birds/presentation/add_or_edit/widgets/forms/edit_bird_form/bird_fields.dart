@@ -330,6 +330,12 @@ class BirdFields extends StatelessWidget {
             //   },
             //   items: const [],
             // ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                'Erstellt am ${bird.created.toDateFormat(context)} um ${bird.created.toTimeFormat(context)}',
+              ),
+            ),
           ];
           return Column(
             children: <Widget>[

@@ -2,6 +2,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/cubit/bird_cubit.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/models/bird_mode.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/forms/edit_bird_form/edit_bird_form.dart';
+import 'package:birdbreeder/shared/widgets/navigate_back_button.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 
 enum BirdActions {
@@ -46,6 +47,7 @@ class BirdScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BirdCubit, BirdState>(
       builder: (context, state) {
+        final isDirty = context.read<BirdCubit>().initialBird != state.bird;
         return Scaffold(
           appBar: AppBar(
             title: Text(
@@ -54,7 +56,21 @@ class BirdScreen extends StatelessWidget {
                 BirdMode.create => context.l10n.bird__add_bird,
               },
             ),
+            centerTitle: false,
+            leading: NavigateBackButton(discardDialogEnabled: isDirty),
             actions: <Widget>[
+              if (isDirty)
+                IconButton(
+                  icon: Icon(
+                    switch (state.mode) {
+                      BirdMode.edit => Icons.save,
+                      BirdMode.create => Icons.check,
+                    },
+                  ),
+                  onPressed: () async {
+                    await context.read<BirdCubit>().save();
+                  },
+                ),
               if (state.mode == BirdMode.edit)
                 PopupMenuButton<BirdActions>(
                   icon: const Icon(Icons.more_vert),
