@@ -1,6 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/colors/domain/models/bird_color.dart';
-import 'package:birdbreeder/features/colors/presentation/bloc/colors_bloc.dart';
+import 'package:birdbreeder/features/colors/presentation/cubit/colors_cubit.dart';
 import 'package:birdbreeder/features/colors/presentation/widgets/buttons/delete_color_button.dart';
 import 'package:birdbreeder/services/screen_size.dart';
 import 'package:birdbreeder/shared/widgets/field_with_label.dart';
@@ -14,7 +14,7 @@ class AddOrEditColorDialog extends StatefulWidget {
     required this.colorsBloc,
   });
 
-  final ColorsBloc colorsBloc;
+  final ColorsCubit colorsBloc;
   final BirdColor? initialColor;
 
   @override
@@ -57,8 +57,8 @@ class _AddOrEditColorDialogState extends State<AddOrEditColorDialog> {
                   onPressed: () {
                     if (isValid) {
                       isEdit
-                          ? widget.colorsBloc.add(EditColor(_color!))
-                          : widget.colorsBloc.add(AddColor(_color!));
+                          ? widget.colorsBloc.edit(_color!)
+                          : widget.colorsBloc.add(_color!);
 
                       Navigator.of(context).pop();
                     }

@@ -1,6 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/cages/domain/models/cage.dart';
-import 'package:birdbreeder/features/cages/presentation/bloc/cages_bloc.dart';
+import 'package:birdbreeder/features/cages/presentation/cubit/cages_cubit.dart';
 import 'package:birdbreeder/features/cages/presentation/widgets/dialogs/delete_cage_dialog.dart';
 
 class DeleteCageButton extends StatelessWidget {
@@ -16,14 +16,12 @@ class DeleteCageButton extends StatelessWidget {
     return IconButton(
       icon: const Icon(Icons.delete),
       onPressed: () async {
-        final bloc = context.read<CagesBloc>();
+        final bloc = context.read<CagesCubit>();
         await showDialog<String>(
           context: context,
           builder: (context) => DeleteCageDialog(
             cage: cage,
-            onDelete: (cage) {
-              bloc.add(DeleteCage(cage));
-            },
+            onDelete: bloc.delete,
           ),
         );
         // ignore: use_build_context_synchronously

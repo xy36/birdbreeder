@@ -1,7 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/generic_join.dart';
 import 'package:birdbreeder/features/species/domain/models/species.dart';
-import 'package:birdbreeder/features/species/presentation/bloc/species_bloc.dart';
+import 'package:birdbreeder/features/species/presentation/cubit/species_cubit.dart';
 import 'package:birdbreeder/features/species/presentation/widgets/buttons/delete_species_button.dart';
 import 'package:birdbreeder/services/screen_size.dart';
 import 'package:birdbreeder/shared/widgets/field_with_label.dart';
@@ -15,7 +15,7 @@ class AddOrEditSpeciesDialog extends StatefulWidget {
     required this.speciesBloc,
   });
 
-  final SpeciesBloc speciesBloc;
+  final SpeciesCubit speciesBloc;
   final Species? initialSpecies;
 
   @override
@@ -56,8 +56,8 @@ class _AddOrEditSpeciesDialogState extends State<AddOrEditSpeciesDialog> {
               onPressed: () {
                 if (isValid) {
                   isEdit
-                      ? widget.speciesBloc.add(EditSpecies(_species!))
-                      : widget.speciesBloc.add(AddSpecies(_species!));
+                      ? widget.speciesBloc.edit(_species!)
+                      : widget.speciesBloc.add(_species!);
 
                   Navigator.of(context).pop();
                 }

@@ -1,6 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/colors/domain/models/bird_color.dart';
-import 'package:birdbreeder/features/colors/presentation/bloc/colors_bloc.dart';
+import 'package:birdbreeder/features/colors/presentation/cubit/colors_cubit.dart';
 import 'package:birdbreeder/features/colors/presentation/widgets/dialogs/delete_color_dialog.dart';
 
 class DeleteColorButton extends StatelessWidget {
@@ -16,14 +16,12 @@ class DeleteColorButton extends StatelessWidget {
     return IconButton(
       icon: const Icon(Icons.delete),
       onPressed: () async {
-        final bloc = context.read<ColorsBloc>();
+        final bloc = context.read<ColorsCubit>();
         await showDialog<String>(
           context: context,
           builder: (context) => DeleteColorDialog(
             color: color,
-            onDelete: (color) {
-              bloc.add(DeleteColor(color));
-            },
+            onDelete: bloc.delete,
           ),
         );
         // ignore: use_build_context_synchronously

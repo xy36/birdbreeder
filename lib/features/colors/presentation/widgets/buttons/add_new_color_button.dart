@@ -1,5 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/colors/presentation/bloc/colors_bloc.dart';
+import 'package:birdbreeder/features/colors/presentation/cubit/colors_cubit.dart';
 import 'package:birdbreeder/features/colors/presentation/widgets/dialogs/add_or_edit_color_dialog.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 
@@ -15,7 +15,7 @@ class _AddNewColorButtonState extends State<AddNewColorButton> {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () async {
-        final bloc = context.read<ColorsBloc>();
+        final bloc = context.read<ColorsCubit>();
         await showChildAsDrawerDialog(
           context,
           AddOrEditColorDialog(

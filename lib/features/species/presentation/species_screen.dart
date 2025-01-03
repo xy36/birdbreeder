@@ -1,5 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/species/presentation/bloc/species_bloc.dart';
+import 'package:birdbreeder/features/species/presentation/cubit/species_cubit.dart';
 import 'package:birdbreeder/features/species/presentation/widgets/buttons/add_new_species_button.dart';
 import 'package:birdbreeder/features/species/presentation/widgets/species_item.dart';
 
@@ -9,7 +9,7 @@ class SpeciesScreen extends StatelessWidget {
   //TODO: fix error handling
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SpeciesBloc, SpeciesState>(
+    return BlocBuilder<SpeciesCubit, SpeciesState>(
       buildWhen: (previous, current) => current.isNotListerner,
       builder: (context, state) {
         return Scaffold(
@@ -34,7 +34,7 @@ class SpeciesScreen extends StatelessWidget {
                 );
               },
             ),
-            error: () {
+            errorScreen: () {
               return Center(
                 child: Text(context.l10n.common__something_went_wrong),
               );

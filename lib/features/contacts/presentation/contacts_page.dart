@@ -23,17 +23,17 @@ class ContactsPage extends StatelessWidget {
           switch (event) {
             case ContactsEventCreateFailed():
               context.showErrorBar<bool>(
-                content: Text(context.l10n.contacts__snackbar_create_failed),
+                content: Text(context.l10n.snackbar__create_failed),
               );
               break;
             case ContactsEventUpdateFailed():
               context.showErrorBar<bool>(
-                content: Text(context.l10n.contacts__snackbar_update_failed),
+                content: Text(context.l10n.snackbar__update_failed),
               );
               break;
             case ContactsEventDeleteFailed():
               context.showErrorBar<bool>(
-                content: Text(context.l10n.contacts__snackbar_delete_failed),
+                content: Text(context.l10n.snackbar__delete_failed),
               );
               break;
           }

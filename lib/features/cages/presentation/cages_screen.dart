@@ -1,16 +1,14 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/cages/presentation/bloc/cages_bloc.dart';
+import 'package:birdbreeder/features/cages/presentation/cubit/cages_cubit.dart';
 import 'package:birdbreeder/features/cages/presentation/widgets/buttons/add_new_age_button.dart';
 import 'package:birdbreeder/features/cages/presentation/widgets/cage_item.dart';
-import 'package:birdbreeder/shared/widgets/shared_app_bar_with_drawer.dart';
 
 class CagesScreen extends StatelessWidget {
   const CagesScreen({super.key});
 
-  //TODO: fix error handling
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CagesBloc, CagesState>(
+    return BlocBuilder<CagesCubit, CagesState>(
       buildWhen: (previous, current) => current.isNotListerner,
       builder: (context, state) {
         return Scaffold(
@@ -36,7 +34,7 @@ class CagesScreen extends StatelessWidget {
                 );
               },
             ),
-            error: () {
+            errorScreen: () {
               return Center(
                 child: Text(context.l10n.common__something_went_wrong),
               );

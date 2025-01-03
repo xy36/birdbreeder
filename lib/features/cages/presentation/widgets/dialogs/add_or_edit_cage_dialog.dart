@@ -1,7 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/generic_join.dart';
 import 'package:birdbreeder/features/cages/domain/models/cage.dart';
-import 'package:birdbreeder/features/cages/presentation/bloc/cages_bloc.dart';
+import 'package:birdbreeder/features/cages/presentation/cubit/cages_cubit.dart';
 import 'package:birdbreeder/features/cages/presentation/widgets/buttons/delete_cage_button.dart';
 import 'package:birdbreeder/services/screen_size.dart';
 import 'package:birdbreeder/shared/widgets/field_with_label.dart';
@@ -16,7 +16,7 @@ class AddOrEditCageDialog extends StatefulWidget {
     required this.cagesBloc,
   });
 
-  final CagesBloc cagesBloc;
+  final CagesCubit cagesBloc;
   final Cage? initialCage;
 
   @override
@@ -58,8 +58,8 @@ class _AddOrEditCageDialogState extends State<AddOrEditCageDialog> {
                   onPressed: () {
                     if (isValid) {
                       isEdit
-                          ? widget.cagesBloc.add(EditCage(_cage!))
-                          : widget.cagesBloc.add(AddCage(_cage!));
+                          ? widget.cagesBloc.edit(_cage!)
+                          : widget.cagesBloc.add(_cage!);
 
                       Navigator.of(context).pop();
                     }
