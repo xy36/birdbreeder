@@ -3,8 +3,8 @@ import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/domain/models/sex_enum.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/cubit/bird_cubit.dart';
 import 'package:birdbreeder/features/birds/presentation/cubit/birds_cubit.dart';
+import 'package:birdbreeder/shared/widgets/bottom_dropdown_search.dart';
 import 'package:birdbreeder/shared/widgets/field_with_label.dart';
-import 'package:birdbreeder/shared/widgets/my_dropdown_search.dart';
 import 'package:collection/collection.dart';
 
 enum ParentType { father, mother }
@@ -78,7 +78,7 @@ class ParentField extends StatelessWidget {
 
         return FieldWithLabel(
           label: label,
-          child: MyDropdownSearch<Bird>(
+          child: BottomDropdownSearch<Bird>(
             title: label,
             searchHintText: 'Search',
             filterFn: _filterFn,

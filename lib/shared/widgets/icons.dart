@@ -7,6 +7,5 @@ const Icon acceptIcon = Icon(Icons.check);
 const Icon visibilityIcon = Icon(Icons.visibility);
 const Icon visibilityOffIcon = Icon(Icons.visibility_off);
 
-// class Icons{
-
-// }
+const Icon ringnumberIcon = Icon(Icons.circle_outlined);
+const Icon dateIcon = Icon(Icons.calendar_month);

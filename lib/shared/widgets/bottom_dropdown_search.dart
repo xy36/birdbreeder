@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 
-class MyDropdownSearch<T> extends StatelessWidget {
-  const MyDropdownSearch({
+class BottomDropdownSearch<T> extends StatelessWidget {
+  const BottomDropdownSearch({
     super.key,
     required this.items,
     required this.selectedItem,
@@ -69,13 +69,17 @@ class MyDropdownSearch<T> extends StatelessWidget {
               ),
               Row(
                 children: [
-                  IconButton(
-                    onPressed: onClear,
-                    icon: Icon(
-                      Icons.delete,
-                      color: Theme.of(context).secondaryHeaderColor,
+                  if (onClear != null)
+                    IconButton(
+                      onPressed: () {
+                        onClear?.call();
+                        context.router.maybePop();
+                      },
+                      icon: Icon(
+                        Icons.delete,
+                        color: Theme.of(context).secondaryHeaderColor,
+                      ),
                     ),
-                  ),
                   IconButton(
                     onPressed: () {
                       context.router.maybePop();

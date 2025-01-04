@@ -1,4 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/shared/widgets/icons.dart';
 
 class BirdDateField extends StatelessWidget {
   const BirdDateField({
@@ -26,6 +27,7 @@ class BirdDateField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hint ?? context.l10n.common__hint_select,
         contentPadding: const EdgeInsets.all(8),
+        suffix: dateIcon,
       ),
     );
   }
