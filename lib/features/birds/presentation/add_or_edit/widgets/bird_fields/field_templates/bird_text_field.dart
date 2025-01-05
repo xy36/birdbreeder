@@ -1,5 +1,4 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/constants.dart';
 
 class BirdTextField extends StatelessWidget {
   const BirdTextField({
@@ -29,7 +28,7 @@ class BirdTextField extends StatelessWidget {
         hintText: hint ?? context.l10n.common__hint_text,
         contentPadding: const EdgeInsets.all(8),
         suffixIcon: suffixIcon,
-        suffixText: currencySymbol,
+        suffixText: suffixText,
       ),
     );
   }
