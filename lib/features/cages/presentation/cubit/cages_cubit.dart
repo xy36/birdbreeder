@@ -4,6 +4,8 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/cages/domain/models/cage.dart';
 import 'package:birdbreeder/features/cages/domain/repositories/i_cages_repository.dart';
 import 'package:birdbreeder/features/cages/presentation/cubit/cages_cubit_event.dart';
+import 'package:birdbreeder/services/injection.dart';
+import 'package:birdbreeder/services/pocketbase_service.dart';
 import 'package:bloc_presentation/bloc_presentation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -12,7 +14,14 @@ part 'cages_state.dart';
 
 class CagesCubit extends Cubit<CagesState>
     with BlocPresentationMixin<CagesState, CagesCubitEvent> {
-  CagesCubit(this._birdColorsRepository) : super(const CagesState.initial());
+  CagesCubit(this._birdColorsRepository) : super(const CagesState.initial()) {
+    s1.get<PocketBaseService>().cagesCollection.subscribe(
+      '*',
+      (e) {
+        load();
+      },
+    );
+  }
 
   final ICagesRepository _birdColorsRepository;
 
@@ -25,12 +34,9 @@ class CagesCubit extends Cubit<CagesState>
       emitPresentation(const CagesCubitEvent.createFailed());
       return;
     }
-
-    await load();
   }
 
   Future<void> load() async {
-    print('DEBUG: CagesCubit.load()');
     emit(const CagesLoading());
 
     final result = await _birdColorsRepository.getAll();
@@ -54,8 +60,6 @@ class CagesCubit extends Cubit<CagesState>
       emitPresentation(const CagesCubitEvent.updateFailed());
       return;
     }
-
-    await load();
   }
 
   Future<void> delete(
@@ -69,7 +73,5 @@ class CagesCubit extends Cubit<CagesState>
       emitPresentation(const CagesCubitEvent.deleteFailed());
       return;
     }
-
-    await load();
   }
 }

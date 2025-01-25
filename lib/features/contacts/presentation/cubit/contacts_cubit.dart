@@ -1,6 +1,8 @@
 import 'package:birdbreeder/features/contacts/domain/models/contact.dart';
 import 'package:birdbreeder/features/contacts/domain/repositories/i_contacts_repository.dart';
 import 'package:birdbreeder/features/contacts/presentation/cubit/contacts_cubit_event.dart';
+import 'package:birdbreeder/services/injection.dart';
+import 'package:birdbreeder/services/pocketbase_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_presentation/bloc_presentation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -11,7 +13,14 @@ part 'contacts_state.dart';
 class ContactsCubit extends Cubit<ContactsState>
     with BlocPresentationMixin<ContactsState, ContactsCubitEvent> {
   ContactsCubit(this._contactsRepository)
-      : super(const ContactsState.initial());
+      : super(const ContactsState.initial()) {
+    s1.get<PocketBaseService>().contactsCollection.subscribe(
+      '*',
+      (e) {
+        load();
+      },
+    );
+  }
 
   final IContactsRepository _contactsRepository;
 
@@ -23,8 +32,6 @@ class ContactsCubit extends Cubit<ContactsState>
     if (result.isError) {
       emitPresentation(const ContactsEventCreateFailed());
     }
-
-    await load();
   }
 
   Future<void> load() async {
@@ -51,8 +58,6 @@ class ContactsCubit extends Cubit<ContactsState>
     if (result.isError) {
       emitPresentation(const ContactsEventUpdateFailed());
     }
-
-    await load();
   }
 
   Future<void> delete(
@@ -65,7 +70,5 @@ class ContactsCubit extends Cubit<ContactsState>
     if (result.isError) {
       emitPresentation(const ContactsEventDeleteFailed());
     }
-
-    await load();
   }
 }

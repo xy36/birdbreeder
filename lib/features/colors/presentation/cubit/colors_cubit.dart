@@ -4,6 +4,8 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/colors/domain/models/bird_color.dart';
 import 'package:birdbreeder/features/colors/domain/repositories/i_color_repository.dart';
 import 'package:birdbreeder/features/colors/presentation/cubit/colors_cubit_event.dart';
+import 'package:birdbreeder/services/injection.dart';
+import 'package:birdbreeder/services/pocketbase_service.dart';
 import 'package:bloc_presentation/bloc_presentation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -12,7 +14,14 @@ part 'colors_state.dart';
 
 class ColorsCubit extends Cubit<ColorsState>
     with BlocPresentationMixin<ColorsState, ColorsCubitEvent> {
-  ColorsCubit(this._birdColorsRepository) : super(const ColorsInitial());
+  ColorsCubit(this._birdColorsRepository) : super(const ColorsInitial()) {
+    s1.get<PocketBaseService>().colorsCollection.subscribe(
+      '*',
+      (e) {
+        load();
+      },
+    );
+  }
 
   final IBirdColorsRepository _birdColorsRepository;
 
@@ -25,8 +34,6 @@ class ColorsCubit extends Cubit<ColorsState>
       emitPresentation(const ColorsEventCreateFailed());
       return;
     }
-
-    await load();
   }
 
   Future<void> load() async {
@@ -53,8 +60,6 @@ class ColorsCubit extends Cubit<ColorsState>
       emitPresentation(const ColorsEventUpdateFailed());
       return;
     }
-
-    await load();
   }
 
   FutureOr<void> delete(
@@ -68,7 +73,5 @@ class ColorsCubit extends Cubit<ColorsState>
       emitPresentation(const ColorsEventDeleteFailed());
       return;
     }
-
-    await load();
   }
 }
