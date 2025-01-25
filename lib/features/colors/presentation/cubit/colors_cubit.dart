@@ -12,12 +12,12 @@ part 'colors_state.dart';
 
 class ColorsCubit extends Cubit<ColorsState>
     with BlocPresentationMixin<ColorsState, ColorsCubitEvent> {
-  ColorsCubit(this._birdColorsRepository) : super(const Initial());
+  ColorsCubit(this._birdColorsRepository) : super(const ColorsInitial());
 
   final IBirdColorsRepository _birdColorsRepository;
 
   Future<void> add(BirdColor color) async {
-    emit(const Loading());
+    emit(const ColorsLoading());
 
     final result = await _birdColorsRepository.create(color);
 
@@ -30,22 +30,22 @@ class ColorsCubit extends Cubit<ColorsState>
   }
 
   Future<void> load() async {
-    emit(const Loading());
+    emit(const ColorsLoading());
 
     final result = await _birdColorsRepository.getAll();
 
     if (result.isError) {
-      emit(const ErrorScreen());
+      emit(const ColorsErrorScreen());
       return;
     }
 
-    emit(Loaded(colors: result.asValue!.value));
+    emit(ColorsLoaded(colors: result.asValue!.value));
   }
 
   FutureOr<void> edit(
     BirdColor color,
   ) async {
-    emit(const Loading());
+    emit(const ColorsLoading());
 
     final result = await _birdColorsRepository.update(color);
 
@@ -60,7 +60,7 @@ class ColorsCubit extends Cubit<ColorsState>
   FutureOr<void> delete(
     BirdColor color,
   ) async {
-    emit(const Loading());
+    emit(const ColorsLoading());
 
     final result = await _birdColorsRepository.delete(color);
 

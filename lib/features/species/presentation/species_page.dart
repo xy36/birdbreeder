@@ -1,11 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/utils/flash_helper.dart';
-import 'package:birdbreeder/features/species/domain/repositories/i_species_repository.dart';
 import 'package:birdbreeder/features/species/presentation/cubit/species_cubit.dart';
 import 'package:birdbreeder/features/species/presentation/cubit/species_cubit_event.dart';
 import 'package:birdbreeder/features/species/presentation/species_screen.dart';
-import 'package:birdbreeder/services/injection.dart';
 import 'package:bloc_presentation/bloc_presentation.dart';
 
 @RoutePage()
@@ -16,8 +14,8 @@ class SpeciesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SpeciesCubit(s1.get<ISpeciesRepository>())..load(),
+    return BlocProvider.value(
+      value: context.read<SpeciesCubit>(),
       child: BlocPresentationListener<SpeciesCubit, SpeciesCubitEvent>(
         listener: (context, event) {
           switch (event) {

@@ -8,9 +8,20 @@ class InitializationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Initiliaize Page')),
+      appBar: AppBar(title: const Text('Initiliaize Page')),
       body: Center(
-        child: CircularProgressIndicator(),
+        child: FutureBuilder(
+          future: Future.delayed(
+            const Duration(seconds: 5),
+          ), // s1.get<SpeciesCubit>().load(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return const Text('Initialization Done');
+            } else {
+              return const CircularProgressIndicator();
+            }
+          },
+        ),
       ),
     );
   }

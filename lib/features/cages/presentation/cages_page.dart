@@ -4,7 +4,6 @@ import 'package:birdbreeder/core/utils/flash_helper.dart';
 import 'package:birdbreeder/features/cages/presentation/cages_screen.dart';
 import 'package:birdbreeder/features/cages/presentation/cubit/cages_cubit.dart';
 import 'package:birdbreeder/features/cages/presentation/cubit/cages_cubit_event.dart';
-import 'package:birdbreeder/services/injection.dart';
 import 'package:bloc_presentation/bloc_presentation.dart';
 
 @RoutePage()
@@ -15,8 +14,8 @@ class CagesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CagesCubit(s1())..load(),
+    return BlocProvider.value(
+      value: context.read<CagesCubit>(),
       child: BlocPresentationListener<CagesCubit, CagesCubitEvent>(
         listener: (context, event) {
           switch (event) {

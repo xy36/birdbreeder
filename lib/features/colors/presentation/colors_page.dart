@@ -1,11 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/utils/flash_helper.dart';
-import 'package:birdbreeder/features/colors/domain/repositories/i_color_repository.dart';
 import 'package:birdbreeder/features/colors/presentation/colors_screen.dart';
 import 'package:birdbreeder/features/colors/presentation/cubit/colors_cubit.dart';
 import 'package:birdbreeder/features/colors/presentation/cubit/colors_cubit_event.dart';
-import 'package:birdbreeder/services/injection.dart';
 import 'package:bloc_presentation/bloc_presentation.dart';
 
 @RoutePage()
@@ -16,8 +14,8 @@ class ColorsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ColorsCubit(s1.get<IBirdColorsRepository>())..load(),
+    return BlocProvider.value(
+      value: context.read<ColorsCubit>(),
       child: BlocPresentationListener<ColorsCubit, ColorsCubitEvent>(
         listener: (context, event) {
           switch (event) {

@@ -1,11 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/utils/flash_helper.dart';
-import 'package:birdbreeder/features/contacts/domain/repositories/i_contacts_repository.dart';
 import 'package:birdbreeder/features/contacts/presentation/contacts_screen.dart';
 import 'package:birdbreeder/features/contacts/presentation/cubit/contacts_cubit.dart';
 import 'package:birdbreeder/features/contacts/presentation/cubit/contacts_cubit_event.dart';
-import 'package:birdbreeder/services/injection.dart';
 import 'package:bloc_presentation/bloc_presentation.dart';
 
 @RoutePage()
@@ -16,8 +14,8 @@ class ContactsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ContactsCubit(s1.get<IContactsRepository>())..load(),
+    return BlocProvider.value(
+      value: context.read<ContactsCubit>(),
       child: BlocPresentationListener<ContactsCubit, ContactsCubitEvent>(
         listener: (context, event) {
           switch (event) {

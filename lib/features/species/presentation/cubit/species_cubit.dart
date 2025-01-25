@@ -12,14 +12,14 @@ part 'species_state.dart';
 
 class SpeciesCubit extends Cubit<SpeciesState>
     with BlocPresentationMixin<SpeciesState, SpeciesCubitEvent> {
-  SpeciesCubit(this._speciesRepository) : super(const Initial());
+  SpeciesCubit(this._speciesRepository) : super(const SpeciesInitial());
 
   final ISpeciesRepository _speciesRepository;
 
   Future<void> add(
     Species species,
   ) async {
-    emit(const Loading());
+    emit(const SpeciesLoading());
 
     final result = await _speciesRepository.create(species);
 
@@ -32,22 +32,22 @@ class SpeciesCubit extends Cubit<SpeciesState>
   }
 
   Future<void> load() async {
-    emit(const Loading());
+    emit(const SpeciesLoading());
 
     final result = await _speciesRepository.getAll();
 
     if (result.isError) {
-      emit(const ErrorScreen());
+      emit(const SpeciesErrorScreen());
       return;
     }
 
-    emit(Loaded(species: result.asValue!.value));
+    emit(SpeciesLoaded(species: result.asValue!.value));
   }
 
   Future<void> edit(
     Species species,
   ) async {
-    emit(const Loading());
+    emit(const SpeciesLoading());
 
     final result = await _speciesRepository.update(species);
 
@@ -62,7 +62,7 @@ class SpeciesCubit extends Cubit<SpeciesState>
   Future<void> delete(
     Species species,
   ) async {
-    emit(const Loading());
+    emit(const SpeciesLoading());
 
     final result = await _speciesRepository.delete(species);
 

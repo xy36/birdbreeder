@@ -43,26 +43,26 @@ mixin _$SpeciesState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Loaded value) loaded,
-    required TResult Function(ErrorScreen value) errorScreen,
+    required TResult Function(SpeciesInitial value) initial,
+    required TResult Function(SpeciesLoading value) loading,
+    required TResult Function(SpeciesLoaded value) loaded,
+    required TResult Function(SpeciesErrorScreen value) errorScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(Loaded value)? loaded,
-    TResult? Function(ErrorScreen value)? errorScreen,
+    TResult? Function(SpeciesInitial value)? initial,
+    TResult? Function(SpeciesLoading value)? loading,
+    TResult? Function(SpeciesLoaded value)? loaded,
+    TResult? Function(SpeciesErrorScreen value)? errorScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(ErrorScreen value)? errorScreen,
+    TResult Function(SpeciesInitial value)? initial,
+    TResult Function(SpeciesLoading value)? loading,
+    TResult Function(SpeciesLoaded value)? loaded,
+    TResult Function(SpeciesErrorScreen value)? errorScreen,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -90,18 +90,18 @@ class _$SpeciesStateCopyWithImpl<$Res, $Val extends SpeciesState>
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$SpeciesInitialImplCopyWith<$Res> {
+  factory _$$SpeciesInitialImplCopyWith(_$SpeciesInitialImpl value,
+          $Res Function(_$SpeciesInitialImpl) then) =
+      __$$SpeciesInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$SpeciesStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$SpeciesInitialImplCopyWithImpl<$Res>
+    extends _$SpeciesStateCopyWithImpl<$Res, _$SpeciesInitialImpl>
+    implements _$$SpeciesInitialImplCopyWith<$Res> {
+  __$$SpeciesInitialImplCopyWithImpl(
+      _$SpeciesInitialImpl _value, $Res Function(_$SpeciesInitialImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of SpeciesState
@@ -110,8 +110,8 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements Initial {
-  const _$InitialImpl();
+class _$SpeciesInitialImpl implements SpeciesInitial {
+  const _$SpeciesInitialImpl();
 
   @override
   String toString() {
@@ -121,7 +121,7 @@ class _$InitialImpl implements Initial {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType && other is _$SpeciesInitialImpl);
   }
 
   @override
@@ -167,10 +167,10 @@ class _$InitialImpl implements Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Loaded value) loaded,
-    required TResult Function(ErrorScreen value) errorScreen,
+    required TResult Function(SpeciesInitial value) initial,
+    required TResult Function(SpeciesLoading value) loading,
+    required TResult Function(SpeciesLoaded value) loaded,
+    required TResult Function(SpeciesErrorScreen value) errorScreen,
   }) {
     return initial(this);
   }
@@ -178,10 +178,10 @@ class _$InitialImpl implements Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(Loaded value)? loaded,
-    TResult? Function(ErrorScreen value)? errorScreen,
+    TResult? Function(SpeciesInitial value)? initial,
+    TResult? Function(SpeciesLoading value)? loading,
+    TResult? Function(SpeciesLoaded value)? loaded,
+    TResult? Function(SpeciesErrorScreen value)? errorScreen,
   }) {
     return initial?.call(this);
   }
@@ -189,10 +189,10 @@ class _$InitialImpl implements Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(ErrorScreen value)? errorScreen,
+    TResult Function(SpeciesInitial value)? initial,
+    TResult Function(SpeciesLoading value)? loading,
+    TResult Function(SpeciesLoaded value)? loaded,
+    TResult Function(SpeciesErrorScreen value)? errorScreen,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -202,23 +202,23 @@ class _$InitialImpl implements Initial {
   }
 }
 
-abstract class Initial implements SpeciesState {
-  const factory Initial() = _$InitialImpl;
+abstract class SpeciesInitial implements SpeciesState {
+  const factory SpeciesInitial() = _$SpeciesInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
+abstract class _$$SpeciesLoadingImplCopyWith<$Res> {
+  factory _$$SpeciesLoadingImplCopyWith(_$SpeciesLoadingImpl value,
+          $Res Function(_$SpeciesLoadingImpl) then) =
+      __$$SpeciesLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$SpeciesStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+class __$$SpeciesLoadingImplCopyWithImpl<$Res>
+    extends _$SpeciesStateCopyWithImpl<$Res, _$SpeciesLoadingImpl>
+    implements _$$SpeciesLoadingImplCopyWith<$Res> {
+  __$$SpeciesLoadingImplCopyWithImpl(
+      _$SpeciesLoadingImpl _value, $Res Function(_$SpeciesLoadingImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of SpeciesState
@@ -227,8 +227,8 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl implements Loading {
-  const _$LoadingImpl();
+class _$SpeciesLoadingImpl implements SpeciesLoading {
+  const _$SpeciesLoadingImpl();
 
   @override
   String toString() {
@@ -238,7 +238,7 @@ class _$LoadingImpl implements Loading {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType && other is _$SpeciesLoadingImpl);
   }
 
   @override
@@ -284,10 +284,10 @@ class _$LoadingImpl implements Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Loaded value) loaded,
-    required TResult Function(ErrorScreen value) errorScreen,
+    required TResult Function(SpeciesInitial value) initial,
+    required TResult Function(SpeciesLoading value) loading,
+    required TResult Function(SpeciesLoaded value) loaded,
+    required TResult Function(SpeciesErrorScreen value) errorScreen,
   }) {
     return loading(this);
   }
@@ -295,10 +295,10 @@ class _$LoadingImpl implements Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(Loaded value)? loaded,
-    TResult? Function(ErrorScreen value)? errorScreen,
+    TResult? Function(SpeciesInitial value)? initial,
+    TResult? Function(SpeciesLoading value)? loading,
+    TResult? Function(SpeciesLoaded value)? loaded,
+    TResult? Function(SpeciesErrorScreen value)? errorScreen,
   }) {
     return loading?.call(this);
   }
@@ -306,10 +306,10 @@ class _$LoadingImpl implements Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(ErrorScreen value)? errorScreen,
+    TResult Function(SpeciesInitial value)? initial,
+    TResult Function(SpeciesLoading value)? loading,
+    TResult Function(SpeciesLoaded value)? loaded,
+    TResult Function(SpeciesErrorScreen value)? errorScreen,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -319,25 +319,25 @@ class _$LoadingImpl implements Loading {
   }
 }
 
-abstract class Loading implements SpeciesState {
-  const factory Loading() = _$LoadingImpl;
+abstract class SpeciesLoading implements SpeciesState {
+  const factory SpeciesLoading() = _$SpeciesLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
+abstract class _$$SpeciesLoadedImplCopyWith<$Res> {
+  factory _$$SpeciesLoadedImplCopyWith(
+          _$SpeciesLoadedImpl value, $Res Function(_$SpeciesLoadedImpl) then) =
+      __$$SpeciesLoadedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<Species> species});
 }
 
 /// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$SpeciesStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
+class __$$SpeciesLoadedImplCopyWithImpl<$Res>
+    extends _$SpeciesStateCopyWithImpl<$Res, _$SpeciesLoadedImpl>
+    implements _$$SpeciesLoadedImplCopyWith<$Res> {
+  __$$SpeciesLoadedImplCopyWithImpl(
+      _$SpeciesLoadedImpl _value, $Res Function(_$SpeciesLoadedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of SpeciesState
@@ -347,7 +347,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? species = null,
   }) {
-    return _then(_$LoadedImpl(
+    return _then(_$SpeciesLoadedImpl(
       species: null == species
           ? _value._species
           : species // ignore: cast_nullable_to_non_nullable
@@ -358,8 +358,8 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedImpl implements Loaded {
-  const _$LoadedImpl({required final List<Species> species})
+class _$SpeciesLoadedImpl implements SpeciesLoaded {
+  const _$SpeciesLoadedImpl({required final List<Species> species})
       : _species = species;
 
   final List<Species> _species;
@@ -379,7 +379,7 @@ class _$LoadedImpl implements Loaded {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
+            other is _$SpeciesLoadedImpl &&
             const DeepCollectionEquality().equals(other._species, _species));
   }
 
@@ -392,8 +392,8 @@ class _$LoadedImpl implements Loaded {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
+  _$$SpeciesLoadedImplCopyWith<_$SpeciesLoadedImpl> get copyWith =>
+      __$$SpeciesLoadedImplCopyWithImpl<_$SpeciesLoadedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -435,10 +435,10 @@ class _$LoadedImpl implements Loaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Loaded value) loaded,
-    required TResult Function(ErrorScreen value) errorScreen,
+    required TResult Function(SpeciesInitial value) initial,
+    required TResult Function(SpeciesLoading value) loading,
+    required TResult Function(SpeciesLoaded value) loaded,
+    required TResult Function(SpeciesErrorScreen value) errorScreen,
   }) {
     return loaded(this);
   }
@@ -446,10 +446,10 @@ class _$LoadedImpl implements Loaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(Loaded value)? loaded,
-    TResult? Function(ErrorScreen value)? errorScreen,
+    TResult? Function(SpeciesInitial value)? initial,
+    TResult? Function(SpeciesLoading value)? loading,
+    TResult? Function(SpeciesLoaded value)? loaded,
+    TResult? Function(SpeciesErrorScreen value)? errorScreen,
   }) {
     return loaded?.call(this);
   }
@@ -457,10 +457,10 @@ class _$LoadedImpl implements Loaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(ErrorScreen value)? errorScreen,
+    TResult Function(SpeciesInitial value)? initial,
+    TResult Function(SpeciesLoading value)? loading,
+    TResult Function(SpeciesLoaded value)? loaded,
+    TResult Function(SpeciesErrorScreen value)? errorScreen,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -470,31 +470,32 @@ class _$LoadedImpl implements Loaded {
   }
 }
 
-abstract class Loaded implements SpeciesState {
-  const factory Loaded({required final List<Species> species}) = _$LoadedImpl;
+abstract class SpeciesLoaded implements SpeciesState {
+  const factory SpeciesLoaded({required final List<Species> species}) =
+      _$SpeciesLoadedImpl;
 
   List<Species> get species;
 
   /// Create a copy of SpeciesState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
+  _$$SpeciesLoadedImplCopyWith<_$SpeciesLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ErrorScreenImplCopyWith<$Res> {
-  factory _$$ErrorScreenImplCopyWith(
-          _$ErrorScreenImpl value, $Res Function(_$ErrorScreenImpl) then) =
-      __$$ErrorScreenImplCopyWithImpl<$Res>;
+abstract class _$$SpeciesErrorScreenImplCopyWith<$Res> {
+  factory _$$SpeciesErrorScreenImplCopyWith(_$SpeciesErrorScreenImpl value,
+          $Res Function(_$SpeciesErrorScreenImpl) then) =
+      __$$SpeciesErrorScreenImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ErrorScreenImplCopyWithImpl<$Res>
-    extends _$SpeciesStateCopyWithImpl<$Res, _$ErrorScreenImpl>
-    implements _$$ErrorScreenImplCopyWith<$Res> {
-  __$$ErrorScreenImplCopyWithImpl(
-      _$ErrorScreenImpl _value, $Res Function(_$ErrorScreenImpl) _then)
+class __$$SpeciesErrorScreenImplCopyWithImpl<$Res>
+    extends _$SpeciesStateCopyWithImpl<$Res, _$SpeciesErrorScreenImpl>
+    implements _$$SpeciesErrorScreenImplCopyWith<$Res> {
+  __$$SpeciesErrorScreenImplCopyWithImpl(_$SpeciesErrorScreenImpl _value,
+      $Res Function(_$SpeciesErrorScreenImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of SpeciesState
@@ -503,8 +504,8 @@ class __$$ErrorScreenImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorScreenImpl implements ErrorScreen {
-  const _$ErrorScreenImpl();
+class _$SpeciesErrorScreenImpl implements SpeciesErrorScreen {
+  const _$SpeciesErrorScreenImpl();
 
   @override
   String toString() {
@@ -514,7 +515,7 @@ class _$ErrorScreenImpl implements ErrorScreen {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ErrorScreenImpl);
+        (other.runtimeType == runtimeType && other is _$SpeciesErrorScreenImpl);
   }
 
   @override
@@ -560,10 +561,10 @@ class _$ErrorScreenImpl implements ErrorScreen {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Loaded value) loaded,
-    required TResult Function(ErrorScreen value) errorScreen,
+    required TResult Function(SpeciesInitial value) initial,
+    required TResult Function(SpeciesLoading value) loading,
+    required TResult Function(SpeciesLoaded value) loaded,
+    required TResult Function(SpeciesErrorScreen value) errorScreen,
   }) {
     return errorScreen(this);
   }
@@ -571,10 +572,10 @@ class _$ErrorScreenImpl implements ErrorScreen {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(Loaded value)? loaded,
-    TResult? Function(ErrorScreen value)? errorScreen,
+    TResult? Function(SpeciesInitial value)? initial,
+    TResult? Function(SpeciesLoading value)? loading,
+    TResult? Function(SpeciesLoaded value)? loaded,
+    TResult? Function(SpeciesErrorScreen value)? errorScreen,
   }) {
     return errorScreen?.call(this);
   }
@@ -582,10 +583,10 @@ class _$ErrorScreenImpl implements ErrorScreen {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(ErrorScreen value)? errorScreen,
+    TResult Function(SpeciesInitial value)? initial,
+    TResult Function(SpeciesLoading value)? loading,
+    TResult Function(SpeciesLoaded value)? loaded,
+    TResult Function(SpeciesErrorScreen value)? errorScreen,
     required TResult orElse(),
   }) {
     if (errorScreen != null) {
@@ -595,6 +596,6 @@ class _$ErrorScreenImpl implements ErrorScreen {
   }
 }
 
-abstract class ErrorScreen implements SpeciesState {
-  const factory ErrorScreen() = _$ErrorScreenImpl;
+abstract class SpeciesErrorScreen implements SpeciesState {
+  const factory SpeciesErrorScreen() = _$SpeciesErrorScreenImpl;
 }

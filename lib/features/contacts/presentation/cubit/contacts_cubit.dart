@@ -16,7 +16,7 @@ class ContactsCubit extends Cubit<ContactsState>
   final IContactsRepository _contactsRepository;
 
   Future<void> add(Contact contact) async {
-    emit(const Loading());
+    emit(const ContactsLoading());
 
     final result = await _contactsRepository.create(contact);
 
@@ -28,21 +28,21 @@ class ContactsCubit extends Cubit<ContactsState>
   }
 
   Future<void> load() async {
-    emit(const Loading());
+    emit(const ContactsLoading());
 
     final result = await _contactsRepository.getAll();
 
     if (result.isError) {
-      return emit(const ErrorScreen());
+      return emit(const ContactsErrorScreen());
     }
 
-    emit(Loaded(contacts: result.asValue!.value));
+    emit(ContactsLoaded(contacts: result.asValue!.value));
   }
 
   Future<void> edit(
     Contact contact,
   ) async {
-    emit(const Loading());
+    emit(const ContactsLoading());
 
     final result = await _contactsRepository.update(
       contact,
@@ -58,7 +58,7 @@ class ContactsCubit extends Cubit<ContactsState>
   Future<void> delete(
     Contact contact,
   ) async {
-    emit(const Loading());
+    emit(const ContactsLoading());
 
     final result = await _contactsRepository.delete(contact);
 

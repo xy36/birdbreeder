@@ -20,49 +20,49 @@ mixin _$ContactsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() errorScreen,
     required TResult Function(List<Contact> contacts) loaded,
+    required TResult Function() errorScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? errorScreen,
     TResult? Function(List<Contact> contacts)? loaded,
+    TResult? Function()? errorScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? errorScreen,
     TResult Function(List<Contact> contacts)? loaded,
+    TResult Function()? errorScreen,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(ErrorScreen value) errorScreen,
-    required TResult Function(Loaded value) loaded,
+    required TResult Function(ContactsInitial value) initial,
+    required TResult Function(ContactsLoading value) loading,
+    required TResult Function(ContactsLoaded value) loaded,
+    required TResult Function(ContactsErrorScreen value) errorScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(ErrorScreen value)? errorScreen,
-    TResult? Function(Loaded value)? loaded,
+    TResult? Function(ContactsInitial value)? initial,
+    TResult? Function(ContactsLoading value)? loading,
+    TResult? Function(ContactsLoaded value)? loaded,
+    TResult? Function(ContactsErrorScreen value)? errorScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(ErrorScreen value)? errorScreen,
-    TResult Function(Loaded value)? loaded,
+    TResult Function(ContactsInitial value)? initial,
+    TResult Function(ContactsLoading value)? loading,
+    TResult Function(ContactsLoaded value)? loaded,
+    TResult Function(ContactsErrorScreen value)? errorScreen,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -90,18 +90,18 @@ class _$ContactsStateCopyWithImpl<$Res, $Val extends ContactsState>
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$ContactsInitialImplCopyWith<$Res> {
+  factory _$$ContactsInitialImplCopyWith(_$ContactsInitialImpl value,
+          $Res Function(_$ContactsInitialImpl) then) =
+      __$$ContactsInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$ContactsStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$ContactsInitialImplCopyWithImpl<$Res>
+    extends _$ContactsStateCopyWithImpl<$Res, _$ContactsInitialImpl>
+    implements _$$ContactsInitialImplCopyWith<$Res> {
+  __$$ContactsInitialImplCopyWithImpl(
+      _$ContactsInitialImpl _value, $Res Function(_$ContactsInitialImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ContactsState
@@ -110,8 +110,8 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements Initial {
-  const _$InitialImpl();
+class _$ContactsInitialImpl implements ContactsInitial {
+  const _$ContactsInitialImpl();
 
   @override
   String toString() {
@@ -121,7 +121,7 @@ class _$InitialImpl implements Initial {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType && other is _$ContactsInitialImpl);
   }
 
   @override
@@ -132,8 +132,8 @@ class _$InitialImpl implements Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() errorScreen,
     required TResult Function(List<Contact> contacts) loaded,
+    required TResult Function() errorScreen,
   }) {
     return initial();
   }
@@ -143,8 +143,8 @@ class _$InitialImpl implements Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? errorScreen,
     TResult? Function(List<Contact> contacts)? loaded,
+    TResult? Function()? errorScreen,
   }) {
     return initial?.call();
   }
@@ -154,8 +154,8 @@ class _$InitialImpl implements Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? errorScreen,
     TResult Function(List<Contact> contacts)? loaded,
+    TResult Function()? errorScreen,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -167,10 +167,10 @@ class _$InitialImpl implements Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(ErrorScreen value) errorScreen,
-    required TResult Function(Loaded value) loaded,
+    required TResult Function(ContactsInitial value) initial,
+    required TResult Function(ContactsLoading value) loading,
+    required TResult Function(ContactsLoaded value) loaded,
+    required TResult Function(ContactsErrorScreen value) errorScreen,
   }) {
     return initial(this);
   }
@@ -178,10 +178,10 @@ class _$InitialImpl implements Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(ErrorScreen value)? errorScreen,
-    TResult? Function(Loaded value)? loaded,
+    TResult? Function(ContactsInitial value)? initial,
+    TResult? Function(ContactsLoading value)? loading,
+    TResult? Function(ContactsLoaded value)? loaded,
+    TResult? Function(ContactsErrorScreen value)? errorScreen,
   }) {
     return initial?.call(this);
   }
@@ -189,10 +189,10 @@ class _$InitialImpl implements Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(ErrorScreen value)? errorScreen,
-    TResult Function(Loaded value)? loaded,
+    TResult Function(ContactsInitial value)? initial,
+    TResult Function(ContactsLoading value)? loading,
+    TResult Function(ContactsLoaded value)? loaded,
+    TResult Function(ContactsErrorScreen value)? errorScreen,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -202,23 +202,23 @@ class _$InitialImpl implements Initial {
   }
 }
 
-abstract class Initial implements ContactsState {
-  const factory Initial() = _$InitialImpl;
+abstract class ContactsInitial implements ContactsState {
+  const factory ContactsInitial() = _$ContactsInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
+abstract class _$$ContactsLoadingImplCopyWith<$Res> {
+  factory _$$ContactsLoadingImplCopyWith(_$ContactsLoadingImpl value,
+          $Res Function(_$ContactsLoadingImpl) then) =
+      __$$ContactsLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$ContactsStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+class __$$ContactsLoadingImplCopyWithImpl<$Res>
+    extends _$ContactsStateCopyWithImpl<$Res, _$ContactsLoadingImpl>
+    implements _$$ContactsLoadingImplCopyWith<$Res> {
+  __$$ContactsLoadingImplCopyWithImpl(
+      _$ContactsLoadingImpl _value, $Res Function(_$ContactsLoadingImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ContactsState
@@ -227,8 +227,8 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl implements Loading {
-  const _$LoadingImpl();
+class _$ContactsLoadingImpl implements ContactsLoading {
+  const _$ContactsLoadingImpl();
 
   @override
   String toString() {
@@ -238,7 +238,7 @@ class _$LoadingImpl implements Loading {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType && other is _$ContactsLoadingImpl);
   }
 
   @override
@@ -249,8 +249,8 @@ class _$LoadingImpl implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() errorScreen,
     required TResult Function(List<Contact> contacts) loaded,
+    required TResult Function() errorScreen,
   }) {
     return loading();
   }
@@ -260,8 +260,8 @@ class _$LoadingImpl implements Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? errorScreen,
     TResult? Function(List<Contact> contacts)? loaded,
+    TResult? Function()? errorScreen,
   }) {
     return loading?.call();
   }
@@ -271,8 +271,8 @@ class _$LoadingImpl implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? errorScreen,
     TResult Function(List<Contact> contacts)? loaded,
+    TResult Function()? errorScreen,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -284,10 +284,10 @@ class _$LoadingImpl implements Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(ErrorScreen value) errorScreen,
-    required TResult Function(Loaded value) loaded,
+    required TResult Function(ContactsInitial value) initial,
+    required TResult Function(ContactsLoading value) loading,
+    required TResult Function(ContactsLoaded value) loaded,
+    required TResult Function(ContactsErrorScreen value) errorScreen,
   }) {
     return loading(this);
   }
@@ -295,10 +295,10 @@ class _$LoadingImpl implements Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(ErrorScreen value)? errorScreen,
-    TResult? Function(Loaded value)? loaded,
+    TResult? Function(ContactsInitial value)? initial,
+    TResult? Function(ContactsLoading value)? loading,
+    TResult? Function(ContactsLoaded value)? loaded,
+    TResult? Function(ContactsErrorScreen value)? errorScreen,
   }) {
     return loading?.call(this);
   }
@@ -306,10 +306,10 @@ class _$LoadingImpl implements Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(ErrorScreen value)? errorScreen,
-    TResult Function(Loaded value)? loaded,
+    TResult Function(ContactsInitial value)? initial,
+    TResult Function(ContactsLoading value)? loading,
+    TResult Function(ContactsLoaded value)? loaded,
+    TResult Function(ContactsErrorScreen value)? errorScreen,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -319,142 +319,25 @@ class _$LoadingImpl implements Loading {
   }
 }
 
-abstract class Loading implements ContactsState {
-  const factory Loading() = _$LoadingImpl;
+abstract class ContactsLoading implements ContactsState {
+  const factory ContactsLoading() = _$ContactsLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$ErrorScreenImplCopyWith<$Res> {
-  factory _$$ErrorScreenImplCopyWith(
-          _$ErrorScreenImpl value, $Res Function(_$ErrorScreenImpl) then) =
-      __$$ErrorScreenImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ErrorScreenImplCopyWithImpl<$Res>
-    extends _$ContactsStateCopyWithImpl<$Res, _$ErrorScreenImpl>
-    implements _$$ErrorScreenImplCopyWith<$Res> {
-  __$$ErrorScreenImplCopyWithImpl(
-      _$ErrorScreenImpl _value, $Res Function(_$ErrorScreenImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ContactsState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ErrorScreenImpl implements ErrorScreen {
-  const _$ErrorScreenImpl();
-
-  @override
-  String toString() {
-    return 'ContactsState.errorScreen()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ErrorScreenImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() errorScreen,
-    required TResult Function(List<Contact> contacts) loaded,
-  }) {
-    return errorScreen();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? errorScreen,
-    TResult? Function(List<Contact> contacts)? loaded,
-  }) {
-    return errorScreen?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? errorScreen,
-    TResult Function(List<Contact> contacts)? loaded,
-    required TResult orElse(),
-  }) {
-    if (errorScreen != null) {
-      return errorScreen();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(ErrorScreen value) errorScreen,
-    required TResult Function(Loaded value) loaded,
-  }) {
-    return errorScreen(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(ErrorScreen value)? errorScreen,
-    TResult? Function(Loaded value)? loaded,
-  }) {
-    return errorScreen?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(ErrorScreen value)? errorScreen,
-    TResult Function(Loaded value)? loaded,
-    required TResult orElse(),
-  }) {
-    if (errorScreen != null) {
-      return errorScreen(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ErrorScreen implements ContactsState {
-  const factory ErrorScreen() = _$ErrorScreenImpl;
-}
-
-/// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
+abstract class _$$ContactsLoadedImplCopyWith<$Res> {
+  factory _$$ContactsLoadedImplCopyWith(_$ContactsLoadedImpl value,
+          $Res Function(_$ContactsLoadedImpl) then) =
+      __$$ContactsLoadedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<Contact> contacts});
 }
 
 /// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$ContactsStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
+class __$$ContactsLoadedImplCopyWithImpl<$Res>
+    extends _$ContactsStateCopyWithImpl<$Res, _$ContactsLoadedImpl>
+    implements _$$ContactsLoadedImplCopyWith<$Res> {
+  __$$ContactsLoadedImplCopyWithImpl(
+      _$ContactsLoadedImpl _value, $Res Function(_$ContactsLoadedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ContactsState
@@ -464,7 +347,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? contacts = null,
   }) {
-    return _then(_$LoadedImpl(
+    return _then(_$ContactsLoadedImpl(
       contacts: null == contacts
           ? _value._contacts
           : contacts // ignore: cast_nullable_to_non_nullable
@@ -475,8 +358,8 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedImpl implements Loaded {
-  const _$LoadedImpl({required final List<Contact> contacts})
+class _$ContactsLoadedImpl implements ContactsLoaded {
+  const _$ContactsLoadedImpl({required final List<Contact> contacts})
       : _contacts = contacts;
 
   final List<Contact> _contacts;
@@ -496,7 +379,7 @@ class _$LoadedImpl implements Loaded {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
+            other is _$ContactsLoadedImpl &&
             const DeepCollectionEquality().equals(other._contacts, _contacts));
   }
 
@@ -509,16 +392,17 @@ class _$LoadedImpl implements Loaded {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
+  _$$ContactsLoadedImplCopyWith<_$ContactsLoadedImpl> get copyWith =>
+      __$$ContactsLoadedImplCopyWithImpl<_$ContactsLoadedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() errorScreen,
     required TResult Function(List<Contact> contacts) loaded,
+    required TResult Function() errorScreen,
   }) {
     return loaded(contacts);
   }
@@ -528,8 +412,8 @@ class _$LoadedImpl implements Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? errorScreen,
     TResult? Function(List<Contact> contacts)? loaded,
+    TResult? Function()? errorScreen,
   }) {
     return loaded?.call(contacts);
   }
@@ -539,8 +423,8 @@ class _$LoadedImpl implements Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? errorScreen,
     TResult Function(List<Contact> contacts)? loaded,
+    TResult Function()? errorScreen,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -552,10 +436,10 @@ class _$LoadedImpl implements Loaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(ErrorScreen value) errorScreen,
-    required TResult Function(Loaded value) loaded,
+    required TResult Function(ContactsInitial value) initial,
+    required TResult Function(ContactsLoading value) loading,
+    required TResult Function(ContactsLoaded value) loaded,
+    required TResult Function(ContactsErrorScreen value) errorScreen,
   }) {
     return loaded(this);
   }
@@ -563,10 +447,10 @@ class _$LoadedImpl implements Loaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(ErrorScreen value)? errorScreen,
-    TResult? Function(Loaded value)? loaded,
+    TResult? Function(ContactsInitial value)? initial,
+    TResult? Function(ContactsLoading value)? loading,
+    TResult? Function(ContactsLoaded value)? loaded,
+    TResult? Function(ContactsErrorScreen value)? errorScreen,
   }) {
     return loaded?.call(this);
   }
@@ -574,10 +458,10 @@ class _$LoadedImpl implements Loaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(ErrorScreen value)? errorScreen,
-    TResult Function(Loaded value)? loaded,
+    TResult Function(ContactsInitial value)? initial,
+    TResult Function(ContactsLoading value)? loading,
+    TResult Function(ContactsLoaded value)? loaded,
+    TResult Function(ContactsErrorScreen value)? errorScreen,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -587,14 +471,133 @@ class _$LoadedImpl implements Loaded {
   }
 }
 
-abstract class Loaded implements ContactsState {
-  const factory Loaded({required final List<Contact> contacts}) = _$LoadedImpl;
+abstract class ContactsLoaded implements ContactsState {
+  const factory ContactsLoaded({required final List<Contact> contacts}) =
+      _$ContactsLoadedImpl;
 
   List<Contact> get contacts;
 
   /// Create a copy of ContactsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
+  _$$ContactsLoadedImplCopyWith<_$ContactsLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ContactsErrorScreenImplCopyWith<$Res> {
+  factory _$$ContactsErrorScreenImplCopyWith(_$ContactsErrorScreenImpl value,
+          $Res Function(_$ContactsErrorScreenImpl) then) =
+      __$$ContactsErrorScreenImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ContactsErrorScreenImplCopyWithImpl<$Res>
+    extends _$ContactsStateCopyWithImpl<$Res, _$ContactsErrorScreenImpl>
+    implements _$$ContactsErrorScreenImplCopyWith<$Res> {
+  __$$ContactsErrorScreenImplCopyWithImpl(_$ContactsErrorScreenImpl _value,
+      $Res Function(_$ContactsErrorScreenImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ContactsState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ContactsErrorScreenImpl implements ContactsErrorScreen {
+  const _$ContactsErrorScreenImpl();
+
+  @override
+  String toString() {
+    return 'ContactsState.errorScreen()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ContactsErrorScreenImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<Contact> contacts) loaded,
+    required TResult Function() errorScreen,
+  }) {
+    return errorScreen();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<Contact> contacts)? loaded,
+    TResult? Function()? errorScreen,
+  }) {
+    return errorScreen?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<Contact> contacts)? loaded,
+    TResult Function()? errorScreen,
+    required TResult orElse(),
+  }) {
+    if (errorScreen != null) {
+      return errorScreen();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ContactsInitial value) initial,
+    required TResult Function(ContactsLoading value) loading,
+    required TResult Function(ContactsLoaded value) loaded,
+    required TResult Function(ContactsErrorScreen value) errorScreen,
+  }) {
+    return errorScreen(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ContactsInitial value)? initial,
+    TResult? Function(ContactsLoading value)? loading,
+    TResult? Function(ContactsLoaded value)? loaded,
+    TResult? Function(ContactsErrorScreen value)? errorScreen,
+  }) {
+    return errorScreen?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ContactsInitial value)? initial,
+    TResult Function(ContactsLoading value)? loading,
+    TResult Function(ContactsLoaded value)? loaded,
+    TResult Function(ContactsErrorScreen value)? errorScreen,
+    required TResult orElse(),
+  }) {
+    if (errorScreen != null) {
+      return errorScreen(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ContactsErrorScreen implements ContactsState {
+  const factory ContactsErrorScreen() = _$ContactsErrorScreenImpl;
 }

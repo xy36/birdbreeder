@@ -17,7 +17,7 @@ class CagesCubit extends Cubit<CagesState>
   final ICagesRepository _birdColorsRepository;
 
   Future<void> add(Cage cage) async {
-    emit(const Loading());
+    emit(const CagesLoading());
 
     final result = await _birdColorsRepository.create(cage);
 
@@ -30,22 +30,23 @@ class CagesCubit extends Cubit<CagesState>
   }
 
   Future<void> load() async {
-    emit(const Loading());
+    print('DEBUG: CagesCubit.load()');
+    emit(const CagesLoading());
 
     final result = await _birdColorsRepository.getAll();
 
     if (result.isError) {
-      emit(const ErrorScreen());
+      emit(const CagesErrorScreen());
       return;
     }
 
-    emit(Loaded(cages: result.asValue!.value));
+    emit(CagesLoaded(cages: result.asValue!.value));
   }
 
   Future<void> edit(
     Cage cage,
   ) async {
-    emit(const Loading());
+    emit(const CagesLoading());
 
     final result = await _birdColorsRepository.update(cage);
 
@@ -60,7 +61,7 @@ class CagesCubit extends Cubit<CagesState>
   Future<void> delete(
     Cage cage,
   ) async {
-    emit(const Loading());
+    emit(const CagesLoading());
 
     final result = await _birdColorsRepository.delete(cage);
 

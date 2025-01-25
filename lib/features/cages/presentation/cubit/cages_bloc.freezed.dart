@@ -43,26 +43,26 @@ mixin _$CagesState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(ErrorScreen value) errorScreen,
-    required TResult Function(Loaded value) loaded,
+    required TResult Function(CagesInitial value) initial,
+    required TResult Function(CagesLoading value) loading,
+    required TResult Function(CagesErrorScreen value) errorScreen,
+    required TResult Function(CagesLoaded value) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(ErrorScreen value)? errorScreen,
-    TResult? Function(Loaded value)? loaded,
+    TResult? Function(CagesInitial value)? initial,
+    TResult? Function(CagesLoading value)? loading,
+    TResult? Function(CagesErrorScreen value)? errorScreen,
+    TResult? Function(CagesLoaded value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(ErrorScreen value)? errorScreen,
-    TResult Function(Loaded value)? loaded,
+    TResult Function(CagesInitial value)? initial,
+    TResult Function(CagesLoading value)? loading,
+    TResult Function(CagesErrorScreen value)? errorScreen,
+    TResult Function(CagesLoaded value)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -110,7 +110,7 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements Initial {
+class _$InitialImpl implements CagesInitial {
   const _$InitialImpl();
 
   @override
@@ -167,10 +167,10 @@ class _$InitialImpl implements Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(ErrorScreen value) errorScreen,
-    required TResult Function(Loaded value) loaded,
+    required TResult Function(CagesInitial value) initial,
+    required TResult Function(CagesLoading value) loading,
+    required TResult Function(CagesErrorScreen value) errorScreen,
+    required TResult Function(CagesLoaded value) loaded,
   }) {
     return initial(this);
   }
@@ -178,10 +178,10 @@ class _$InitialImpl implements Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(ErrorScreen value)? errorScreen,
-    TResult? Function(Loaded value)? loaded,
+    TResult? Function(CagesInitial value)? initial,
+    TResult? Function(CagesLoading value)? loading,
+    TResult? Function(CagesErrorScreen value)? errorScreen,
+    TResult? Function(CagesLoaded value)? loaded,
   }) {
     return initial?.call(this);
   }
@@ -189,10 +189,10 @@ class _$InitialImpl implements Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(ErrorScreen value)? errorScreen,
-    TResult Function(Loaded value)? loaded,
+    TResult Function(CagesInitial value)? initial,
+    TResult Function(CagesLoading value)? loading,
+    TResult Function(CagesErrorScreen value)? errorScreen,
+    TResult Function(CagesLoaded value)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -202,8 +202,8 @@ class _$InitialImpl implements Initial {
   }
 }
 
-abstract class Initial implements CagesState {
-  const factory Initial() = _$InitialImpl;
+abstract class CagesInitial implements CagesState {
+  const factory CagesInitial() = _$InitialImpl;
 }
 
 /// @nodoc
@@ -227,7 +227,7 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl implements Loading {
+class _$LoadingImpl implements CagesLoading {
   const _$LoadingImpl();
 
   @override
@@ -284,10 +284,10 @@ class _$LoadingImpl implements Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(ErrorScreen value) errorScreen,
-    required TResult Function(Loaded value) loaded,
+    required TResult Function(CagesInitial value) initial,
+    required TResult Function(CagesLoading value) loading,
+    required TResult Function(CagesErrorScreen value) errorScreen,
+    required TResult Function(CagesLoaded value) loaded,
   }) {
     return loading(this);
   }
@@ -295,10 +295,10 @@ class _$LoadingImpl implements Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(ErrorScreen value)? errorScreen,
-    TResult? Function(Loaded value)? loaded,
+    TResult? Function(CagesInitial value)? initial,
+    TResult? Function(CagesLoading value)? loading,
+    TResult? Function(CagesErrorScreen value)? errorScreen,
+    TResult? Function(CagesLoaded value)? loaded,
   }) {
     return loading?.call(this);
   }
@@ -306,10 +306,10 @@ class _$LoadingImpl implements Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(ErrorScreen value)? errorScreen,
-    TResult Function(Loaded value)? loaded,
+    TResult Function(CagesInitial value)? initial,
+    TResult Function(CagesLoading value)? loading,
+    TResult Function(CagesErrorScreen value)? errorScreen,
+    TResult Function(CagesLoaded value)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -319,8 +319,8 @@ class _$LoadingImpl implements Loading {
   }
 }
 
-abstract class Loading implements CagesState {
-  const factory Loading() = _$LoadingImpl;
+abstract class CagesLoading implements CagesState {
+  const factory CagesLoading() = _$LoadingImpl;
 }
 
 /// @nodoc
@@ -344,7 +344,7 @@ class __$$ErrorScreenImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorScreenImpl implements ErrorScreen {
+class _$ErrorScreenImpl implements CagesErrorScreen {
   const _$ErrorScreenImpl();
 
   @override
@@ -401,10 +401,10 @@ class _$ErrorScreenImpl implements ErrorScreen {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(ErrorScreen value) errorScreen,
-    required TResult Function(Loaded value) loaded,
+    required TResult Function(CagesInitial value) initial,
+    required TResult Function(CagesLoading value) loading,
+    required TResult Function(CagesErrorScreen value) errorScreen,
+    required TResult Function(CagesLoaded value) loaded,
   }) {
     return errorScreen(this);
   }
@@ -412,10 +412,10 @@ class _$ErrorScreenImpl implements ErrorScreen {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(ErrorScreen value)? errorScreen,
-    TResult? Function(Loaded value)? loaded,
+    TResult? Function(CagesInitial value)? initial,
+    TResult? Function(CagesLoading value)? loading,
+    TResult? Function(CagesErrorScreen value)? errorScreen,
+    TResult? Function(CagesLoaded value)? loaded,
   }) {
     return errorScreen?.call(this);
   }
@@ -423,10 +423,10 @@ class _$ErrorScreenImpl implements ErrorScreen {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(ErrorScreen value)? errorScreen,
-    TResult Function(Loaded value)? loaded,
+    TResult Function(CagesInitial value)? initial,
+    TResult Function(CagesLoading value)? loading,
+    TResult Function(CagesErrorScreen value)? errorScreen,
+    TResult Function(CagesLoaded value)? loaded,
     required TResult orElse(),
   }) {
     if (errorScreen != null) {
@@ -436,8 +436,8 @@ class _$ErrorScreenImpl implements ErrorScreen {
   }
 }
 
-abstract class ErrorScreen implements CagesState {
-  const factory ErrorScreen() = _$ErrorScreenImpl;
+abstract class CagesErrorScreen implements CagesState {
+  const factory CagesErrorScreen() = _$ErrorScreenImpl;
 }
 
 /// @nodoc
@@ -475,7 +475,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedImpl implements Loaded {
+class _$LoadedImpl implements CagesLoaded {
   const _$LoadedImpl({required final List<Cage> cages}) : _cages = cages;
 
   final List<Cage> _cages;
@@ -551,10 +551,10 @@ class _$LoadedImpl implements Loaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(ErrorScreen value) errorScreen,
-    required TResult Function(Loaded value) loaded,
+    required TResult Function(CagesInitial value) initial,
+    required TResult Function(CagesLoading value) loading,
+    required TResult Function(CagesErrorScreen value) errorScreen,
+    required TResult Function(CagesLoaded value) loaded,
   }) {
     return loaded(this);
   }
@@ -562,10 +562,10 @@ class _$LoadedImpl implements Loaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(ErrorScreen value)? errorScreen,
-    TResult? Function(Loaded value)? loaded,
+    TResult? Function(CagesInitial value)? initial,
+    TResult? Function(CagesLoading value)? loading,
+    TResult? Function(CagesErrorScreen value)? errorScreen,
+    TResult? Function(CagesLoaded value)? loaded,
   }) {
     return loaded?.call(this);
   }
@@ -573,10 +573,10 @@ class _$LoadedImpl implements Loaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(ErrorScreen value)? errorScreen,
-    TResult Function(Loaded value)? loaded,
+    TResult Function(CagesInitial value)? initial,
+    TResult Function(CagesLoading value)? loading,
+    TResult Function(CagesErrorScreen value)? errorScreen,
+    TResult Function(CagesLoaded value)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -586,8 +586,8 @@ class _$LoadedImpl implements Loaded {
   }
 }
 
-abstract class Loaded implements CagesState {
-  const factory Loaded({required final List<Cage> cages}) = _$LoadedImpl;
+abstract class CagesLoaded implements CagesState {
+  const factory CagesLoaded({required final List<Cage> cages}) = _$LoadedImpl;
 
   List<Cage> get cages;
 
