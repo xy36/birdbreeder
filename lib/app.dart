@@ -56,10 +56,11 @@ class App extends StatelessWidget {
         ),
         theme: themeData ??
             ThemeData(
+              brightness: Brightness.dark,
               colorSchemeSeed: Colors.cyan,
               inputDecorationTheme: const InputDecorationTheme(
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.zero,
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
                 ),
                 floatingLabelBehavior: FloatingLabelBehavior.always,
               ),
@@ -70,7 +71,7 @@ class App extends StatelessWidget {
             breakpoints: ScreenSize.getBreakpoints(),
           );
         },
-        themeMode: ThemeMode.light,
+        themeMode: ThemeMode.dark,
         localizationsDelegates: const [
           ...AppLocalizations.localizationsDelegates,
         ],

@@ -1,5 +1,6 @@
 import 'package:birdbreeder/features/menu/domain/entities/menu_pages.dart';
-import 'package:birdbreeder/shared/widgets/birdbreeder_widget.dart';
+import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
+import 'package:birdbreeder/services/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
 
@@ -27,7 +28,7 @@ class SideBar extends StatelessWidget {
     BuildContext context, {
     required bool extended,
   }) {
-    const itemMargin = EdgeInsets.symmetric(horizontal: 4, vertical: 2);
+    const itemMargin = EdgeInsets.symmetric(horizontal: 8, vertical: 2);
     const itemDecoration = BoxDecoration(
       borderRadius: BorderRadius.all(
         Radius.circular(6),
@@ -35,50 +36,12 @@ class SideBar extends StatelessWidget {
     );
 
     final baseTheme = SidebarXTheme(
-      decoration: const BoxDecoration(
-        border: Border(
-          right: BorderSide(
-            color: Colors.black12,
-          ),
-        ),
-
-        //color: Theme.of(context).primaryColor,
-        // gradient: LinearGradient(
-        //   begin: Alignment.topLeft,
-        //   end: Alignment.bottomRight,
-        //   colors: [
-        //     Theme.of(context).primaryColor,
-        //     Theme.of(context).primaryColorDark,
-        //   ],
-        // ),
-      ),
-
-      iconTheme: const IconThemeData(
-        //   color: Colors.white,
-        size: 20,
-      ),
-      textStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            // color: Colors.white,
-            fontSize: 14,
-          ),
-      selectedTextStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            // color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-      hoverTextStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            //  color: Colors.white,
-            fontSize: 14,
-          ),
-      // hoverColor: Colors.white.withAlpha(20),
+      textStyle: Theme.of(context).textTheme.bodyLarge,
+      selectedTextStyle: Theme.of(context).textTheme.titleLarge,
       itemMargin: itemMargin,
       selectedItemMargin: itemMargin,
-      selectedIconTheme: const IconThemeData(
-        //color: Colors.white,
-        size: 20,
-      ),
       selectedItemDecoration: itemDecoration.copyWith(
-        color: Colors.black12.withAlpha(20),
+        color: Theme.of(context).highlightColor,
       ),
       itemDecoration: itemDecoration,
       itemPadding: const EdgeInsets.all(14),
@@ -89,24 +52,11 @@ class SideBar extends StatelessWidget {
       selectedItemPadding: const EdgeInsets.all(14),
       selectedItemTextPadding: const EdgeInsets.only(
         left: 14,
-        top: 4,
       ),
     );
 
     return baseTheme.copyWith(
       width: extended ? defaultMenuOpenedWidth : baseTheme.width,
-    );
-  }
-
-  Widget _getHeaderDivider(BuildContext context) {
-    final pageHeight = MediaQuery.of(context).size.height;
-    //Please be aware that header height and menu element height might change;
-    const menuElementHeight = 56; //inluding spacing between elements;
-    final allMenuElementsHeight = MenuPage.values.length * menuElementHeight;
-    final menuFocalPoint = allMenuElementsHeight / 2;
-    final dividerHeight = (pageHeight / 2) - menuFocalPoint;
-    return Container(
-      height: dividerHeight,
     );
   }
 
@@ -117,20 +67,9 @@ class SideBar extends StatelessWidget {
       headerBuilder: (context, extended) => _Header(
         extended: extended,
       ),
-      separatorBuilder: (context, index) {
-        final separatorBeforeAccount = (MenuPage.account.index - 1) == index;
-        return Column(
-          children: [
-            const Divider(),
-            SizedBox(
-              height: separatorBeforeAccount ? 60 : 0,
-            ),
-          ],
-        );
-      },
+      headerDivider: const SizedBox(height: 16),
       showToggleButton: showToggleButton,
       animationDuration: Duration.zero,
-      headerDivider: _getHeaderDivider(context),
       extendedTheme: _getSidebarTheme(context, extended: true),
       theme: _getSidebarTheme(context, extended: false),
       items: _buildSidebarItems(context),
@@ -140,6 +79,16 @@ class SideBar extends StatelessWidget {
   List<SidebarXItem> _buildSidebarItems(BuildContext context) =>
       MenuPage.values.map((page) {
         return SidebarXItem(
+          iconBuilder: (selected, hovered) {
+            return Icon(
+              page.icon,
+              size: selected ? 28 : 24,
+              color: selected
+                  ? Theme.of(context).primaryColorLight
+                  : Theme.of(context).highlightColor,
+            );
+          },
+
           icon: page.icon,
           label: page.getLabel(context),
           // let the cubit handle the navigation to next page
@@ -155,12 +104,80 @@ class _Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    final user = s1.get<IAuthenticationService>().currentUser().asValue?.value;
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Theme.of(context).primaryColor.withAlpha(120),
+            blurRadius: 6,
+            spreadRadius: 2,
+            offset: const Offset(0, 2),
+          ),
+        ],
+        gradient: LinearGradient(
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+          colors: [
+            Theme.of(context).primaryColorLight.withAlpha(200),
+            Theme.of(context).primaryColor,
+          ],
+        ),
+      ),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 16, 8, 8),
         child: Align(
           alignment: extended ? Alignment.centerLeft : Alignment.center,
-          child: extended ? const BirdbreederWidget() : const Icon(Icons.menu),
+          child: extended
+              ? Column(
+                  spacing: 8,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      spacing: 8,
+                      children: [
+                        const DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(2),
+                            child: CircleAvatar(
+                              backgroundImage:
+                                  AssetImage('assets/images/login_image.jpg'),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            'BirdBreeder',
+                            style: Theme.of(context).textTheme.headlineMedium,
+                          ),
+                        ),
+                      ],
+                    ),
+                    if (user != null)
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'Hallo ',
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                            TextSpan(
+                              text: user.name ?? user.username,
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
+                          ],
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                      ),
+                  ],
+                )
+              : const Icon(Icons.menu),
         ),
       ),
     );

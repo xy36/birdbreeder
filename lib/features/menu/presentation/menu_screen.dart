@@ -65,7 +65,7 @@ class _MenuScreenState extends State<MenuScreen> {
       child: BlocListener<MenuCubit, MenuState>(
         listener: (context, state) {
           sidebarController.selectIndex(state.page.index);
-          Menu.closeMenuDrawer();
+          //Menu.closeMenuDrawer();
           context.router.replace(state.page.routeName);
         },
         child: BlocBuilder<MenuCubit, MenuState>(
@@ -79,7 +79,6 @@ class _MenuScreenState extends State<MenuScreen> {
             );
 
             final drawer = Drawer(
-              shape: const RoundedRectangleBorder(),
               child: sideBar,
             );
 
