@@ -20,6 +20,7 @@ class BirdsTable extends StatelessWidget {
       itemBuilder: (context, index) {
         final bird = birds[index];
         return Card(
+          color: Theme.of(context).highlightColor,
           child: ListTile(
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

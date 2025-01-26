@@ -36,6 +36,9 @@ class SideBar extends StatelessWidget {
     );
 
     final baseTheme = SidebarXTheme(
+      decoration: BoxDecoration(
+        color: Theme.of(context).canvasColor,
+      ),
       textStyle: Theme.of(context).textTheme.bodyLarge,
       selectedTextStyle: Theme.of(context).textTheme.titleLarge,
       itemMargin: itemMargin,
@@ -82,10 +85,8 @@ class SideBar extends StatelessWidget {
           iconBuilder: (selected, hovered) {
             return Icon(
               page.icon,
-              size: selected ? 28 : 24,
-              color: selected
-                  ? Theme.of(context).primaryColorLight
-                  : Theme.of(context).highlightColor,
+              size: selected ? 28 : 20,
+              color: Theme.of(context).primaryColorLight,
             );
           },
 
@@ -108,20 +109,12 @@ class _Header extends StatelessWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Theme.of(context).primaryColor.withAlpha(120),
-            blurRadius: 6,
-            spreadRadius: 2,
-            offset: const Offset(0, 2),
-          ),
-        ],
         gradient: LinearGradient(
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
+          begin: Alignment.topRight,
+          end: Alignment.bottomCenter,
           colors: [
-            Theme.of(context).primaryColorLight.withAlpha(200),
             Theme.of(context).primaryColor,
+            Theme.of(context).canvasColor,
           ],
         ),
       ),
@@ -138,12 +131,12 @@ class _Header extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       spacing: 8,
                       children: [
-                        const DecoratedBox(
+                        DecoratedBox(
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Theme.of(context).primaryColorLight,
                             shape: BoxShape.circle,
                           ),
-                          child: Padding(
+                          child: const Padding(
                             padding: EdgeInsets.all(2),
                             child: CircleAvatar(
                               backgroundImage:

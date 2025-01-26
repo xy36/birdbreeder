@@ -1,4 +1,4 @@
-import 'package:birdbreeder/bootstrap.dart';
+import 'package:birdbreeder/app_theme.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/birds/presentation/cubit/birds_cubit.dart';
@@ -54,17 +54,8 @@ class App extends StatelessWidget {
           reevaluateListenable:
               s1.get<IAuthenticationService>().authenticationStatus,
         ),
-        theme: themeData ??
-            ThemeData(
-              brightness: Brightness.dark,
-              colorSchemeSeed: Colors.cyan,
-              inputDecorationTheme: const InputDecorationTheme(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                ),
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-              ),
-            ),
+        theme: AppTheme.dark,
+        darkTheme: AppTheme.dark,
         builder: (context, child) {
           return ResponsiveBreakpoints.builder(
             child: child!,
