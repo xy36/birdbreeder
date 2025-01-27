@@ -24,12 +24,12 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    final size = ScreenSize.getScreenSize(context);
-
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: size.hPaddingMedium,
-        vertical: size.vPaddingMedium,
+      padding: EdgeInsets.all(
+        context.responsiveValueMobileAndGreater<double>(
+          mobile: 8,
+          greater: 16,
+        ),
       ),
       child: Form(
         key: formKey,

@@ -25,14 +25,14 @@ class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         CustomRoute<void>(
-          page: InitializationRoute.page,
-          path: '/initialization',
-          transitionsBuilder: TransitionsBuilders.fadeIn,
-        ),
-        CustomRoute<void>(
           page: LoginRoute.page,
           guards: [LoginGuard()],
           path: '/login',
+          transitionsBuilder: TransitionsBuilders.fadeIn,
+        ),
+        CustomRoute<void>(
+          page: InitializationRoute.page,
+          path: '/initialization',
           transitionsBuilder: TransitionsBuilders.fadeIn,
         ),
         CustomRoute<void>(

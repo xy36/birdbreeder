@@ -18,8 +18,6 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = ScreenSize.getScreenSize(context);
-
     return BlocProvider(
       create: (context) => LoginCubit(s1()),
       child: MultiBlocListener(
@@ -30,27 +28,27 @@ class LoginPage extends StatelessWidget {
           ),
           body: LayoutBuilder(
             builder: (context, constraints) {
-              return switch (size) {
-                ScreenSize.xs || ScreenSize.sm => const SingleChildScrollView(
-                    child: LoginForm(),
-                  ),
-                ScreenSize.md || ScreenSize.lg || ScreenSize.xl => Row(
-                    children: [
-                      const Expanded(
-                        child: ImageForm(),
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: SingleChildScrollView(
-                          child: SizedBox(
-                            width: constraints.maxWidth * 0.4,
-                            child: const LoginForm(),
-                          ),
+              return context.responsiveValueTabletLandscapeAndGreater(
+                tabletLandscape: const SingleChildScrollView(
+                  child: LoginForm(),
+                ),
+                greater: Row(
+                  children: [
+                    const Expanded(
+                      child: ImageForm(),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: SingleChildScrollView(
+                        child: SizedBox(
+                          width: constraints.maxWidth * 0.4,
+                          child: const LoginForm(),
                         ),
                       ),
-                    ],
-                  ),
-              };
+                    ),
+                  ],
+                ),
+              );
             },
           ),
         ),

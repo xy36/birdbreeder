@@ -8,8 +8,6 @@ import 'package:birdbreeder/features/contacts/presentation/cubit/contacts_cubit.
 import 'package:birdbreeder/features/species/presentation/cubit/species_cubit.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/injection.dart';
-import 'package:birdbreeder/services/screen_size.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 
 class App extends StatelessWidget {
   App({
@@ -57,10 +55,7 @@ class App extends StatelessWidget {
         theme: AppTheme.dark,
         darkTheme: AppTheme.dark,
         builder: (context, child) {
-          return ResponsiveBreakpoints.builder(
-            child: child!,
-            breakpoints: ScreenSize.getBreakpoints(),
-          );
+          return child!;
         },
         themeMode: ThemeMode.dark,
         localizationsDelegates: const [

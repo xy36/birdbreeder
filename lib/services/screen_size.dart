@@ -1,6 +1,5 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 
 enum ScreenSize {
   /// Extra small devices (smarterwatches, 600px and down)
@@ -10,13 +9,10 @@ enum ScreenSize {
   sm(601, 960),
 
   /// Medium devices (landscape tablets, 960px and up)
-  md(961, 1200),
+  md(961, 1440),
 
-  /// Large devices (laptops/desktops, 1200px and up)
-  lg(1201, 1920),
-
-  /// Extra large devices (large laptops and desktops, 1920px and up)
-  xl(1921, 10000);
+  /// Large devices (large laptops and desktops, 1920px and up)
+  lg(1440, 10000);
 
   const ScreenSize(this.minWidth, this.maxWidth);
 
@@ -30,24 +26,12 @@ enum ScreenSize {
     return value >= minWidth && value < maxWidth;
   }
 
-  /// Returns a list of all breakpoints
-  static List<Breakpoint> getBreakpoints() => ScreenSize.values
-      .map(
-        (e) => e.getBreakpoint(),
-      )
-      .toList();
-
-  /// Returns the [Breakpoint] for this [ScreenSize]
-  Breakpoint getBreakpoint() =>
-      Breakpoint(start: minWidth, end: maxWidth, name: name);
-
   /// Returns the [ScreenSize] for the current context
   static ScreenSize getScreenSize(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    //TODO; what is the default Screensize?
     return ScreenSize.values
             .firstWhereOrNull((element) => element.isBetween(width)) ??
-        ScreenSize.lg;
+        ScreenSize.xs;
   }
 
   double get drawerDialogInsetPadding => switch (this) {
@@ -55,72 +39,78 @@ enum ScreenSize {
         _ => 16.0,
       };
 
-  double get hPaddingSmall => switch (this) {
-        ScreenSize.xs => 8.0,
-        ScreenSize.sm => 16.0,
-        ScreenSize.md => 24.0,
-        ScreenSize.lg => 32.0,
-        ScreenSize.xl => 48.0,
-      };
-
-  double get vPaddingSmall => switch (this) {
-        ScreenSize.xs => 8.0,
-        ScreenSize.sm => 16.0,
-        ScreenSize.md => 24.0,
-        ScreenSize.lg => 32.0,
-        ScreenSize.xl => 48.0,
-      };
-
-  double get hPaddingMedium => switch (this) {
-        ScreenSize.xs => 16.0,
-        ScreenSize.sm => 24.0,
-        ScreenSize.md => 32.0,
-        ScreenSize.lg => 40.0,
-        ScreenSize.xl => 48.0,
-      };
-
-  double get vPaddingMedium => switch (this) {
-        ScreenSize.xs => 16.0,
-        ScreenSize.sm => 24.0,
-        ScreenSize.md => 32.0,
-        ScreenSize.lg => 40.0,
-        ScreenSize.xl => 48.0,
-      };
-
-  double get hPaddingLarge => switch (this) {
-        ScreenSize.xs => 24.0,
-        ScreenSize.sm => 32.0,
-        ScreenSize.md => 48.0,
-        ScreenSize.lg => 64.0,
-        ScreenSize.xl => 82.0,
-      };
-
-  double get vPaddingLarge => switch (this) {
-        ScreenSize.xs => 24.0,
-        ScreenSize.sm => 32.0,
-        ScreenSize.md => 48.0,
-        ScreenSize.lg => 64.0,
-        ScreenSize.xl => 82.0,
-      };
-
-  /// Returns true if the current ScreenSize is [ScreenSize.xs] or [ScreenSize.sm]
-  static bool isMobileOrTabletPortrait(BuildContext context) {
-    return ScreenSize.getScreenSize(context).isXs() ||
-        ScreenSize.getScreenSize(context).isSm();
-  }
-
   /// Returns true if the current ScreenSize is [ScreenSize.xs]
-  bool isXs() => this == xs;
+  bool isMobile() => this == xs;
 
   /// Returns true if the current ScreenSize is [ScreenSize.sm]
-  bool isSm() => this == sm;
+  bool isTabletPortrait() => this == sm;
 
   /// Returns true if the current ScreenSize is [ScreenSize.md]
-  bool isMd() => this == md;
+  bool isTabletLandscape() => this == md;
 
   /// Returns true if the current ScreenSize is [ScreenSize.lg]
-  bool isLg() => this == lg;
+  bool isDesktop() => this == lg;
+}
 
-  /// Returns true if the current ScreenSize is [ScreenSize.xl]
-  bool isXl() => this == xl;
+extension ScreenSizeExtension on BuildContext {
+  ScreenSize get screenSize => ScreenSize.getScreenSize(this);
+
+  /// Returns a response value based on the current screen size
+  /// If the current screen size is [ScreenSize.xs] the [mobile] value is returned
+  /// If the current screen size is [ScreenSize.sm] the [tabletPortrait] value is returned
+  /// If the current screen size is [ScreenSize.md] the [tabletLandscape] value is returned
+  /// If the current screen size is [ScreenSize.lg] the [desktop] value is returned
+  /// Fallback value is [mobile]
+  T responsiveValue<T>({
+    required T mobile,
+    required T? tabletPortrait,
+    required T? tabletLandscape,
+    required T? desktop,
+  }) {
+    return switch (screenSize) {
+      ScreenSize.xs => mobile,
+      ScreenSize.sm => tabletPortrait ?? mobile,
+      ScreenSize.md => tabletLandscape ?? mobile,
+      ScreenSize.lg => desktop ?? mobile,
+    };
+  }
+
+  /// Returns a response value based on the current screen size
+  /// All screen sizes greater than [ScreenSize.xs] will return the [greater] value
+  T responsiveValueMobileAndGreater<T>({
+    required T mobile,
+    required T greater,
+  }) =>
+      responsiveValue(
+        mobile: mobile,
+        tabletPortrait: greater,
+        tabletLandscape: greater,
+        desktop: greater,
+      );
+
+  /// Returns a response value based on the current screen size
+  /// All screen sizes greater than [ScreenSize.sm] will return the [greater] value
+  T responsiveValueTabletPortraitAndGreater<T>({
+    required T tabletPortrait,
+    required T greater,
+  }) =>
+      responsiveValue(
+        mobile: tabletPortrait,
+        tabletPortrait: tabletPortrait,
+        tabletLandscape: greater,
+        desktop: greater,
+      );
+
+  /// Returns a response value based on the current screen size
+  /// All screen sizes greater than [ScreenSize.md] will return the [greater] value
+  T responsiveValueTabletLandscapeAndGreater<T>({
+    required T tabletLandscape,
+    required T greater,
+  }) =>
+      responsiveValue(
+        mobile: tabletLandscape,
+        tabletPortrait: tabletLandscape,
+        tabletLandscape: tabletLandscape,
+        desktop: greater,
+      );
 }

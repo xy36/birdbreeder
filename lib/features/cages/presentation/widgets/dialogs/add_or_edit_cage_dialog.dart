@@ -44,7 +44,6 @@ class _AddOrEditCageDialogState extends State<AddOrEditCageDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final size = ScreenSize.getScreenSize(context);
     return BlocProvider.value(
       value: widget.cagesBloc,
       child: Builder(
@@ -72,9 +71,11 @@ class _AddOrEditCageDialogState extends State<AddOrEditCageDialog> {
             body: Form(
               key: formKey,
               child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: size.hPaddingSmall,
-                  vertical: size.vPaddingSmall,
+                padding: EdgeInsets.all(
+                  context.responsiveValueMobileAndGreater<double>(
+                    mobile: 8,
+                    greater: 16,
+                  ),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,

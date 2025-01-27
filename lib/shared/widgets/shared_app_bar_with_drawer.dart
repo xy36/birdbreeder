@@ -26,6 +26,7 @@ class SharedAppBarWithDrawer extends StatelessWidget
         : AppBar(
             title: Text(title ?? ''),
             centerTitle: true,
+            actions: actions,
           );
   }
 

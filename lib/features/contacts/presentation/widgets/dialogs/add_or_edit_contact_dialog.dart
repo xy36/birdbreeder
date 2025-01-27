@@ -45,7 +45,6 @@ class _AddOrEditContactDialogState extends State<AddOrEditContactDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final size = ScreenSize.getScreenSize(context);
     return BlocProvider.value(
       value: widget.contactsCubit,
       child: Scaffold(
@@ -73,9 +72,11 @@ class _AddOrEditContactDialogState extends State<AddOrEditContactDialog> {
           key: formKey,
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: size.hPaddingSmall,
-                vertical: size.vPaddingSmall,
+              padding: EdgeInsets.all(
+                context.responsiveValueMobileAndGreater<double>(
+                  mobile: 8,
+                  greater: 16,
+                ),
               ),
               child: Column(
                 children: <Widget>[

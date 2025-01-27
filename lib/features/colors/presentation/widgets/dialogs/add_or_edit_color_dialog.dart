@@ -43,7 +43,6 @@ class _AddOrEditColorDialogState extends State<AddOrEditColorDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final size = ScreenSize.getScreenSize(context);
     return BlocProvider.value(
       value: widget.colorsBloc,
       child: Builder(
@@ -72,9 +71,11 @@ class _AddOrEditColorDialogState extends State<AddOrEditColorDialog> {
             body: Form(
               key: formKey,
               child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: size.hPaddingSmall,
-                  vertical: size.vPaddingSmall,
+                padding: EdgeInsets.all(
+                  context.responsiveValueMobileAndGreater<double>(
+                    mobile: 8,
+                    greater: 16,
+                  ),
                 ),
                 child: Column(
                   children: [

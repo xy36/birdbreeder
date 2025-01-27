@@ -25,7 +25,7 @@ class _AddNewBirdButtonState extends State<AddNewBirdButton> {
 
 Future<void> openBird(BuildContext context, {Bird? bird}) async {
   final size = ScreenSize.getScreenSize(context);
-  if (size.isXs()) {
+  if (size.isMobile()) {
     await context.router.push(BirdRoute(bird: bird));
   } else {
     await showChildAsDrawerDialog(context, BirdPage(bird: bird));

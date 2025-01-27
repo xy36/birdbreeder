@@ -44,7 +44,6 @@ class _AddOrEditSpeciesDialogState extends State<AddOrEditSpeciesDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final size = ScreenSize.getScreenSize(context);
     return BlocProvider.value(
       value: widget.speciesBloc,
       child: Scaffold(
@@ -71,9 +70,11 @@ class _AddOrEditSpeciesDialogState extends State<AddOrEditSpeciesDialog> {
         body: Form(
           key: formKey,
           child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: size.hPaddingSmall,
-              vertical: size.vPaddingSmall,
+            padding: EdgeInsets.all(
+              context.responsiveValueMobileAndGreater<double>(
+                mobile: 8,
+                greater: 16,
+              ),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
