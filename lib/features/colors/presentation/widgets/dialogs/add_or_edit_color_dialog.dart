@@ -68,39 +68,46 @@ class _AddOrEditColorDialogState extends State<AddOrEditColorDialog> {
                   DeleteColorButton(color: _color!),
               ],
             ),
-            body: Form(
-              key: formKey,
-              child: Padding(
-                padding: EdgeInsets.all(
-                  context.responsiveValueMobileAndGreater<double>(
-                    mobile: 8,
-                    greater: 16,
-                  ),
+            body: DecoratedBox(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Theme.of(context).primaryColorLight,
                 ),
-                child: Column(
-                  children: [
-                    FieldWithLabel(
-                      label: context.l10n.colors__color,
-                      child: TextFormField(
-                        initialValue: _color?.name,
-                        decoration: InputDecoration(
-                          hintText: context.l10n.colors__color,
-                        ),
-                        onChanged: (value) {
-                          setState(() {
-                            _color = (_color ?? BirdColor.create())
-                                .copyWith(name: value);
-                          });
-                        },
-                        validator: (value) {
-                          if (value.isNullOrEmpty) {
-                            return context.l10n.common__required;
-                          }
-                          return null;
-                        },
-                      ),
+              ),
+              child: Form(
+                key: formKey,
+                child: Padding(
+                  padding: EdgeInsets.all(
+                    context.responsiveValueMobileAndGreater<double>(
+                      mobile: 8,
+                      greater: 16,
                     ),
-                  ],
+                  ),
+                  child: Column(
+                    children: [
+                      FieldWithLabel(
+                        label: context.l10n.colors__color,
+                        child: TextFormField(
+                          initialValue: _color?.name,
+                          decoration: InputDecoration(
+                            hintText: context.l10n.colors__color,
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              _color = (_color ?? BirdColor.create())
+                                  .copyWith(name: value);
+                            });
+                          },
+                          validator: (value) {
+                            if (value.isNullOrEmpty) {
+                              return context.l10n.common__required;
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

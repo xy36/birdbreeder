@@ -19,7 +19,10 @@ class _SpeciesScreenState extends State<SpeciesScreen> {
     return List<Species>.from(
       species.where((element) {
         if (searchQuery.isEmpty) return true;
-        return element.name!.toLowerCase().contains(searchQuery.toLowerCase());
+        return element.name!
+                .toLowerCase()
+                .contains(searchQuery.toLowerCase()) ||
+            element.latName!.toLowerCase().contains(searchQuery.toLowerCase());
       }),
     );
   }

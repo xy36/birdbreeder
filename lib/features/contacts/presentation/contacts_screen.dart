@@ -19,7 +19,12 @@ class _ContactsScreenState extends State<ContactsScreen> {
     return List<Contact>.from(
       contacts.where((contact) {
         if (searchQuery.isEmpty) return true;
-        return contact.name!.toLowerCase().contains(searchQuery.toLowerCase());
+        return contact.name!
+                .toLowerCase()
+                .contains(searchQuery.toLowerCase()) ||
+            contact.firstName!
+                .toLowerCase()
+                .contains(searchQuery.toLowerCase());
       }),
     );
   }
