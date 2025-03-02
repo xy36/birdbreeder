@@ -52,14 +52,25 @@ class ParentField extends StatelessWidget {
                 .birds
                 // filter own the bird itself
                 .where((b) => b.id != initialBird.id)
-                // filter out female birds
+                //filter out by species
+                .where(
+                  (b) => b.species == null || b.species == initialBird.species,
+                )
+                //filter out children
                 .where(
                   (b) =>
-                      b.sex !=
-                      switch (parentType) {
-                        ParentType.father => Sex.female,
-                        ParentType.mother => Sex.male,
-                      },
+                      b.id != initialBird.father?.id &&
+                      b.id != initialBird.mother?.id,
+                )
+                // filter out by sex
+                .where(
+                  (b) =>
+                      b.species == null ||
+                      b.sex ==
+                          switch (parentType) {
+                            ParentType.father => Sex.male,
+                            ParentType.mother => Sex.female,
+                          },
                 )
                 .toList()
             : <Bird>[];
