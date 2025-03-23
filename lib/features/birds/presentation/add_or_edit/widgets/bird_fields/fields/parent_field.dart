@@ -2,7 +2,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/domain/models/sex_enum.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/cubit/bird_cubit.dart';
-import 'package:birdbreeder/features/birds/presentation/cubit/birds_cubit.dart';
+import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/widgets/bottom_dropdown_search.dart';
 import 'package:birdbreeder/shared/widgets/field_with_label.dart';
 import 'package:collection/collection.dart';
@@ -20,8 +20,8 @@ class ParentField extends StatelessWidget {
   final ParentType parentType;
 
   Bird? get parentBird => switch (parentType) {
-        ParentType.father => initialBird.father,
-        ParentType.mother => initialBird.mother,
+        ParentType.father => initialBird.fatherResolved,
+        ParentType.mother => initialBird.motherResolved,
       };
 
   Future<void> _clearParent(BuildContext context) async {
@@ -45,10 +45,11 @@ class ParentField extends StatelessWidget {
       ParentType.mother => context.l10n.common__mother_ringnumber,
     };
 
-    return BlocBuilder<BirdsCubit, BirdsState>(
+    return BlocBuilder<BirdBreederCubit, BirdBreederState>(
       builder: (context, state) {
-        final possibleParent = (state is BirdsLoaded)
+        final possibleParent = (state is BirdBreederLoaded)
             ? (state)
+                .birdBreederResources
                 .birds
                 // filter own the bird itself
                 .where((b) => b.id != initialBird.id)
@@ -59,8 +60,7 @@ class ParentField extends StatelessWidget {
                 //filter out children
                 .where(
                   (b) =>
-                      b.id != initialBird.father?.id &&
-                      b.id != initialBird.mother?.id,
+                      b.id != initialBird.father && b.id != initialBird.mother,
                 )
                 // filter out by sex
                 .where(
@@ -95,16 +95,18 @@ class ParentField extends StatelessWidget {
             filterFn: _filterFn,
             onClear: () async => _clearParent(context),
             showSearchBox: possibleParent.length > 5,
-            selectedItem: (state is BirdsLoaded)
-                ? (state).birds.firstWhereOrNull(
+            selectedItem: (state is BirdBreederLoaded)
+                ? (state).birdBreederResources.birds.firstWhereOrNull(
                       (element) => element.id == parentBird?.id,
                     )
                 : null,
             onChanged: (bird) {
               context.read<BirdCubit>().changeBird(
                     switch (parentType) {
-                      ParentType.father => initialBird.copyWith(father: bird),
-                      ParentType.mother => initialBird.copyWith(mother: bird),
+                      ParentType.father =>
+                        initialBird.copyWith(father: bird?.id),
+                      ParentType.mother =>
+                        initialBird.copyWith(mother: bird?.id),
                     },
                   );
             },
@@ -116,13 +118,13 @@ class ParentField extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(bird.ringnumber ?? '-'),
-                  Text(bird.cage?.name ?? ''),
+                  Text(bird.cageResolved?.name ?? ''),
                 ],
               ),
               subtitle: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(bird.species?.name ?? ''),
+                  Text(bird.speciesResolved?.name ?? ''),
                   Text(bird.born.toDateFormat(context)),
                 ],
               ),

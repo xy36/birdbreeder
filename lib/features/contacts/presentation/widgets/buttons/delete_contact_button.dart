@@ -1,7 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/contacts/domain/models/contact.dart';
 import 'package:birdbreeder/features/contacts/presentation/cubit/contacts_cubit.dart';
-import 'package:birdbreeder/features/contacts/presentation/widgets/dialogs/delete_contact_dialog.dart';
+import 'package:birdbreeder/shared/widgets/dialogs/delete_dialog.dart';
 
 class DeleteContactButton extends StatelessWidget {
   const DeleteContactButton({
@@ -19,12 +19,14 @@ class DeleteContactButton extends StatelessWidget {
         final cubit = context.read<ContactsCubit>();
         await showDialog<String>(
           context: context,
-          builder: (context) => DeleteContactDialog(
-            contact: contact,
-            onDelete: cubit.delete,
+          builder: (context) => DeleteDialog(
+            title: context.l10n.contacts__delete_contact,
+            onDelete: () => cubit.delete(contact),
           ),
         );
-        // ignore: use_build_context_synchronously
+
+        if (!context.mounted) return;
+
         Navigator.of(context).pop();
       },
     );

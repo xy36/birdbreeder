@@ -1,13 +1,13 @@
-import 'package:birdbreeder/app_theme.dart';
+import 'package:birdbreeder/app_theme_blumine.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
-import 'package:birdbreeder/features/birds/presentation/cubit/birds_cubit.dart';
-import 'package:birdbreeder/features/cages/presentation/cubit/cages_cubit.dart';
-import 'package:birdbreeder/features/colors/presentation/cubit/colors_cubit.dart';
+import 'package:birdbreeder/features/cages/presentation/cage/cubit/cage_cubit.dart';
+import 'package:birdbreeder/features/colors/presentation/color/cubit/color_cubit.dart';
 import 'package:birdbreeder/features/contacts/presentation/cubit/contacts_cubit.dart';
 import 'package:birdbreeder/features/species/presentation/cubit/species_cubit.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/injection.dart';
+import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 
 class App extends StatelessWidget {
   App({
@@ -28,32 +28,30 @@ class App extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => BirdsCubit(s1())..load(),
+          lazy: false,
+          create: (context) => CageCubit(s1()),
         ),
         BlocProvider(
           lazy: false,
-          create: (context) => CagesCubit(s1())..load(),
+          create: (context) => ContactsCubit(s1()),
         ),
         BlocProvider(
           lazy: false,
-          create: (context) => ContactsCubit(s1())..load(),
+          create: (context) => SpeciesCubit(s1()),
         ),
         BlocProvider(
           lazy: false,
-          create: (context) => SpeciesCubit(s1())..load(),
+          create: (context) => ColorCubit(s1()),
         ),
-        BlocProvider(
-          lazy: false,
-          create: (context) => ColorsCubit(s1())..load(),
-        ),
+        BlocProvider.value(value: s1.get<BirdBreederCubit>()),
       ],
       child: MaterialApp.router(
         routerConfig: _appRouter.config(
           reevaluateListenable:
               s1.get<IAuthenticationService>().authenticationStatus,
         ),
-        theme: AppTheme.dark,
-        darkTheme: AppTheme.dark,
+        theme: AppThemeBlumine.dark,
+        darkTheme: AppThemeBlumine.dark,
         builder: (context, child) {
           return child!;
         },

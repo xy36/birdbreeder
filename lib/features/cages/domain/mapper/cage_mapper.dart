@@ -5,7 +5,6 @@ import 'package:birdbreeder/features/cages/domain/mapper/cage_mapper.auto_mappr.
 import 'package:birdbreeder/features/cages/domain/models/cage.dart';
 
 @AutoMappr([
-  MapType<CageDto, Cage>(),
   MapType<Cage, CageDto>(
     fields: [
       Field('user', custom: UserHelper.insertUser),

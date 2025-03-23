@@ -6,14 +6,19 @@ part 'cage.freezed.dart';
 class Cage with _$Cage {
   factory Cage({
     required String id,
-    String? name,
-    String? description,
-    int? width,
-    int? height,
-    int? depth,
+    required String? name,
+    required String? description,
+    required int? width,
+    required int? height,
+    required int? depth,
   }) = _Cage;
 
   factory Cage.create() => Cage(
         id: '',
+        name: null,
+        description: null,
+        width: null,
+        height: null,
+        depth: null,
       );
 }

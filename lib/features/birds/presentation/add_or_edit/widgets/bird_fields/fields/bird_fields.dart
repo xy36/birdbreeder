@@ -31,13 +31,12 @@ class BirdFields extends StatelessWidget {
             ),
             FieldWithLabel(
               label: context.l10n.common__cage,
-              child: CageField(bird: bird, birdResources: state.birdResources),
+              child: CageField(bird: bird),
             ),
             FieldWithLabel(
               label: context.l10n.common__species,
               child: SpeciesField(
                 bird: bird,
-                birdResources: state.birdResources,
               ),
             ),
             Row(
@@ -49,7 +48,6 @@ class BirdFields extends StatelessWidget {
                     label: context.l10n.common__color,
                     child: ColorField(
                       bird: bird,
-                      birdResources: state.birdResources,
                     ),
                   ),
                 ),

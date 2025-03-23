@@ -94,22 +94,116 @@ class BirdsOverviewRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [BreedingsPage]
-class BreedingsRoute extends PageRouteInfo<void> {
-  const BreedingsRoute({List<PageRouteInfo>? children})
-      : super(
-          BreedingsRoute.name,
+/// [BreedingPairPage]
+class BreedingPairRoute extends PageRouteInfo<BreedingPairRouteArgs> {
+  BreedingPairRoute({
+    Key? key,
+    BreedingPair? initialBreedingPair,
+    List<PageRouteInfo>? children,
+  }) : super(
+          BreedingPairRoute.name,
+          args: BreedingPairRouteArgs(
+            key: key,
+            initialBreedingPair: initialBreedingPair,
+          ),
           initialChildren: children,
         );
 
-  static const String name = 'BreedingsRoute';
+  static const String name = 'BreedingPairRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const BreedingsPage();
+      final args = data.argsAs<BreedingPairRouteArgs>(
+          orElse: () => const BreedingPairRouteArgs());
+      return BreedingPairPage(
+        key: args.key,
+        initialBreedingPair: args.initialBreedingPair,
+      );
     },
   );
+}
+
+class BreedingPairRouteArgs {
+  const BreedingPairRouteArgs({
+    this.key,
+    this.initialBreedingPair,
+  });
+
+  final Key? key;
+
+  final BreedingPair? initialBreedingPair;
+
+  @override
+  String toString() {
+    return 'BreedingPairRouteArgs{key: $key, initialBreedingPair: $initialBreedingPair}';
+  }
+}
+
+/// generated route for
+/// [BreedingPairsPage]
+class BreedingPairsRoute extends PageRouteInfo<void> {
+  const BreedingPairsRoute({List<PageRouteInfo>? children})
+      : super(
+          BreedingPairsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'BreedingPairsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const BreedingPairsPage();
+    },
+  );
+}
+
+/// generated route for
+/// [CagePage]
+class CageRoute extends PageRouteInfo<CageRouteArgs> {
+  CageRoute({
+    Key? key,
+    Cage? initialCage,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CageRoute.name,
+          args: CageRouteArgs(
+            key: key,
+            initialCage: initialCage,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'CageRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args =
+          data.argsAs<CageRouteArgs>(orElse: () => const CageRouteArgs());
+      return CagePage(
+        key: args.key,
+        initialCage: args.initialCage,
+      );
+    },
+  );
+}
+
+class CageRouteArgs {
+  const CageRouteArgs({
+    this.key,
+    this.initialCage,
+  });
+
+  final Key? key;
+
+  final Cage? initialCage;
+
+  @override
+  String toString() {
+    return 'CageRouteArgs{key: $key, initialCage: $initialCage}';
+  }
 }
 
 /// generated route for
@@ -129,6 +223,53 @@ class CagesRoute extends PageRouteInfo<void> {
       return const CagesPage();
     },
   );
+}
+
+/// generated route for
+/// [ColorPage]
+class ColorRoute extends PageRouteInfo<ColorRouteArgs> {
+  ColorRoute({
+    Key? key,
+    BirdColor? initialColor,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ColorRoute.name,
+          args: ColorRouteArgs(
+            key: key,
+            initialColor: initialColor,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ColorRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args =
+          data.argsAs<ColorRouteArgs>(orElse: () => const ColorRouteArgs());
+      return ColorPage(
+        key: args.key,
+        initialColor: args.initialColor,
+      );
+    },
+  );
+}
+
+class ColorRouteArgs {
+  const ColorRouteArgs({
+    this.key,
+    this.initialColor,
+  });
+
+  final Key? key;
+
+  final BirdColor? initialColor;
+
+  @override
+  String toString() {
+    return 'ColorRouteArgs{key: $key, initialColor: $initialColor}';
+  }
 }
 
 /// generated route for

@@ -30,10 +30,9 @@ class BirdFields extends StatelessWidget {
         builder: (context, state) {
           final fields = [
             RingnumberField(bird: bird),
-            CageField(bird: bird, birdResources: state.birdResources),
+            CageField(bird: bird),
             SpeciesField(
               bird: bird,
-              birdResources: state.birdResources,
             ),
             Row(
               spacing: 16,
@@ -42,7 +41,6 @@ class BirdFields extends StatelessWidget {
                   flex: 4,
                   child: ColorField(
                     bird: bird,
-                    birdResources: state.birdResources,
                   ),
                 ),
                 Expanded(

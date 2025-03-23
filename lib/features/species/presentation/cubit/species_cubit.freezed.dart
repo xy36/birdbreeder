@@ -18,32 +18,28 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SpeciesState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Species> species) loaded,
+    required TResult Function() loaded,
     required TResult Function() errorScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Species> species)? loaded,
+    TResult? Function()? loaded,
     TResult? Function()? errorScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Species> species)? loaded,
+    TResult Function()? loaded,
     TResult Function()? errorScreen,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SpeciesInitial value) initial,
     required TResult Function(SpeciesLoading value) loading,
     required TResult Function(SpeciesLoaded value) loaded,
     required TResult Function(SpeciesErrorScreen value) errorScreen,
@@ -51,7 +47,6 @@ mixin _$SpeciesState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SpeciesInitial value)? initial,
     TResult? Function(SpeciesLoading value)? loading,
     TResult? Function(SpeciesLoaded value)? loaded,
     TResult? Function(SpeciesErrorScreen value)? errorScreen,
@@ -59,7 +54,6 @@ mixin _$SpeciesState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SpeciesInitial value)? initial,
     TResult Function(SpeciesLoading value)? loading,
     TResult Function(SpeciesLoaded value)? loaded,
     TResult Function(SpeciesErrorScreen value)? errorScreen,
@@ -87,123 +81,6 @@ class _$SpeciesStateCopyWithImpl<$Res, $Val extends SpeciesState>
 
   /// Create a copy of SpeciesState
   /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$SpeciesInitialImplCopyWith<$Res> {
-  factory _$$SpeciesInitialImplCopyWith(_$SpeciesInitialImpl value,
-          $Res Function(_$SpeciesInitialImpl) then) =
-      __$$SpeciesInitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SpeciesInitialImplCopyWithImpl<$Res>
-    extends _$SpeciesStateCopyWithImpl<$Res, _$SpeciesInitialImpl>
-    implements _$$SpeciesInitialImplCopyWith<$Res> {
-  __$$SpeciesInitialImplCopyWithImpl(
-      _$SpeciesInitialImpl _value, $Res Function(_$SpeciesInitialImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SpeciesState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$SpeciesInitialImpl implements SpeciesInitial {
-  const _$SpeciesInitialImpl();
-
-  @override
-  String toString() {
-    return 'SpeciesState.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SpeciesInitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<Species> species) loaded,
-    required TResult Function() errorScreen,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<Species> species)? loaded,
-    TResult? Function()? errorScreen,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<Species> species)? loaded,
-    TResult Function()? errorScreen,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SpeciesInitial value) initial,
-    required TResult Function(SpeciesLoading value) loading,
-    required TResult Function(SpeciesLoaded value) loaded,
-    required TResult Function(SpeciesErrorScreen value) errorScreen,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SpeciesInitial value)? initial,
-    TResult? Function(SpeciesLoading value)? loading,
-    TResult? Function(SpeciesLoaded value)? loaded,
-    TResult? Function(SpeciesErrorScreen value)? errorScreen,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SpeciesInitial value)? initial,
-    TResult Function(SpeciesLoading value)? loading,
-    TResult Function(SpeciesLoaded value)? loaded,
-    TResult Function(SpeciesErrorScreen value)? errorScreen,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SpeciesInitial implements SpeciesState {
-  const factory SpeciesInitial() = _$SpeciesInitialImpl;
 }
 
 /// @nodoc
@@ -247,9 +124,8 @@ class _$SpeciesLoadingImpl implements SpeciesLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Species> species) loaded,
+    required TResult Function() loaded,
     required TResult Function() errorScreen,
   }) {
     return loading();
@@ -258,9 +134,8 @@ class _$SpeciesLoadingImpl implements SpeciesLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Species> species)? loaded,
+    TResult? Function()? loaded,
     TResult? Function()? errorScreen,
   }) {
     return loading?.call();
@@ -269,9 +144,8 @@ class _$SpeciesLoadingImpl implements SpeciesLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Species> species)? loaded,
+    TResult Function()? loaded,
     TResult Function()? errorScreen,
     required TResult orElse(),
   }) {
@@ -284,7 +158,6 @@ class _$SpeciesLoadingImpl implements SpeciesLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SpeciesInitial value) initial,
     required TResult Function(SpeciesLoading value) loading,
     required TResult Function(SpeciesLoaded value) loaded,
     required TResult Function(SpeciesErrorScreen value) errorScreen,
@@ -295,7 +168,6 @@ class _$SpeciesLoadingImpl implements SpeciesLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SpeciesInitial value)? initial,
     TResult? Function(SpeciesLoading value)? loading,
     TResult? Function(SpeciesLoaded value)? loaded,
     TResult? Function(SpeciesErrorScreen value)? errorScreen,
@@ -306,7 +178,6 @@ class _$SpeciesLoadingImpl implements SpeciesLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SpeciesInitial value)? initial,
     TResult Function(SpeciesLoading value)? loading,
     TResult Function(SpeciesLoaded value)? loaded,
     TResult Function(SpeciesErrorScreen value)? errorScreen,
@@ -328,8 +199,6 @@ abstract class _$$SpeciesLoadedImplCopyWith<$Res> {
   factory _$$SpeciesLoadedImplCopyWith(
           _$SpeciesLoadedImpl value, $Res Function(_$SpeciesLoadedImpl) then) =
       __$$SpeciesLoadedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<Species> species});
 }
 
 /// @nodoc
@@ -342,92 +211,57 @@ class __$$SpeciesLoadedImplCopyWithImpl<$Res>
 
   /// Create a copy of SpeciesState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? species = null,
-  }) {
-    return _then(_$SpeciesLoadedImpl(
-      species: null == species
-          ? _value._species
-          : species // ignore: cast_nullable_to_non_nullable
-              as List<Species>,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$SpeciesLoadedImpl implements SpeciesLoaded {
-  const _$SpeciesLoadedImpl({required final List<Species> species})
-      : _species = species;
-
-  final List<Species> _species;
-  @override
-  List<Species> get species {
-    if (_species is EqualUnmodifiableListView) return _species;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_species);
-  }
+  const _$SpeciesLoadedImpl();
 
   @override
   String toString() {
-    return 'SpeciesState.loaded(species: $species)';
+    return 'SpeciesState.loaded()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SpeciesLoadedImpl &&
-            const DeepCollectionEquality().equals(other._species, _species));
+        (other.runtimeType == runtimeType && other is _$SpeciesLoadedImpl);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_species));
-
-  /// Create a copy of SpeciesState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SpeciesLoadedImplCopyWith<_$SpeciesLoadedImpl> get copyWith =>
-      __$$SpeciesLoadedImplCopyWithImpl<_$SpeciesLoadedImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Species> species) loaded,
+    required TResult Function() loaded,
     required TResult Function() errorScreen,
   }) {
-    return loaded(species);
+    return loaded();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Species> species)? loaded,
+    TResult? Function()? loaded,
     TResult? Function()? errorScreen,
   }) {
-    return loaded?.call(species);
+    return loaded?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Species> species)? loaded,
+    TResult Function()? loaded,
     TResult Function()? errorScreen,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(species);
+      return loaded();
     }
     return orElse();
   }
@@ -435,7 +269,6 @@ class _$SpeciesLoadedImpl implements SpeciesLoaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SpeciesInitial value) initial,
     required TResult Function(SpeciesLoading value) loading,
     required TResult Function(SpeciesLoaded value) loaded,
     required TResult Function(SpeciesErrorScreen value) errorScreen,
@@ -446,7 +279,6 @@ class _$SpeciesLoadedImpl implements SpeciesLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SpeciesInitial value)? initial,
     TResult? Function(SpeciesLoading value)? loading,
     TResult? Function(SpeciesLoaded value)? loaded,
     TResult? Function(SpeciesErrorScreen value)? errorScreen,
@@ -457,7 +289,6 @@ class _$SpeciesLoadedImpl implements SpeciesLoaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SpeciesInitial value)? initial,
     TResult Function(SpeciesLoading value)? loading,
     TResult Function(SpeciesLoaded value)? loaded,
     TResult Function(SpeciesErrorScreen value)? errorScreen,
@@ -471,16 +302,7 @@ class _$SpeciesLoadedImpl implements SpeciesLoaded {
 }
 
 abstract class SpeciesLoaded implements SpeciesState {
-  const factory SpeciesLoaded({required final List<Species> species}) =
-      _$SpeciesLoadedImpl;
-
-  List<Species> get species;
-
-  /// Create a copy of SpeciesState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SpeciesLoadedImplCopyWith<_$SpeciesLoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory SpeciesLoaded() = _$SpeciesLoadedImpl;
 }
 
 /// @nodoc
@@ -524,9 +346,8 @@ class _$SpeciesErrorScreenImpl implements SpeciesErrorScreen {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Species> species) loaded,
+    required TResult Function() loaded,
     required TResult Function() errorScreen,
   }) {
     return errorScreen();
@@ -535,9 +356,8 @@ class _$SpeciesErrorScreenImpl implements SpeciesErrorScreen {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Species> species)? loaded,
+    TResult? Function()? loaded,
     TResult? Function()? errorScreen,
   }) {
     return errorScreen?.call();
@@ -546,9 +366,8 @@ class _$SpeciesErrorScreenImpl implements SpeciesErrorScreen {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Species> species)? loaded,
+    TResult Function()? loaded,
     TResult Function()? errorScreen,
     required TResult orElse(),
   }) {
@@ -561,7 +380,6 @@ class _$SpeciesErrorScreenImpl implements SpeciesErrorScreen {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SpeciesInitial value) initial,
     required TResult Function(SpeciesLoading value) loading,
     required TResult Function(SpeciesLoaded value) loaded,
     required TResult Function(SpeciesErrorScreen value) errorScreen,
@@ -572,7 +390,6 @@ class _$SpeciesErrorScreenImpl implements SpeciesErrorScreen {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SpeciesInitial value)? initial,
     TResult? Function(SpeciesLoading value)? loading,
     TResult? Function(SpeciesLoaded value)? loaded,
     TResult? Function(SpeciesErrorScreen value)? errorScreen,
@@ -583,7 +400,6 @@ class _$SpeciesErrorScreenImpl implements SpeciesErrorScreen {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SpeciesInitial value)? initial,
     TResult Function(SpeciesLoading value)? loading,
     TResult Function(SpeciesLoaded value)? loaded,
     TResult Function(SpeciesErrorScreen value)? errorScreen,

@@ -40,10 +40,16 @@ _$BirdDtoImpl _$$BirdDtoImplFromJson(Map<String, dynamic> json) =>
       sellPriceOffer: (json['sell_price_offer'] as num?)?.toDouble(),
       sellPriceReal: (json['sell_price_real'] as num?)?.toDouble(),
       sex: $enumDecodeNullable(_$SexEnumMap, json['sex']) ?? Sex.unknown,
-      expand: json['expand'] == null
-          ? null
-          : ExpandDto.fromJson(json['expand'] as Map<String, dynamic>),
       sold: json['sold'] as bool?,
+      isEgg: json['isEgg'] as bool?,
+      laid:
+          const DateTimeNullEmptyConverter().fromJson(json['laid'] as String?),
+      hatched: const DateTimeNullEmptyConverter()
+          .fromJson(json['hatched'] as String?),
+      flowOut: const DateTimeNullEmptyConverter()
+          .fromJson(json['flowOut'] as String?),
+      brood:
+          const StringNullEmptyConverter().fromJson(json['brood'] as String?),
       user: json['user'] as String?,
       children: (json['children'] as List<dynamic>?)
               ?.map((e) => e as String)
@@ -73,8 +79,12 @@ Map<String, dynamic> _$$BirdDtoImplToJson(_$BirdDtoImpl instance) =>
       'sell_price_offer': instance.sellPriceOffer,
       'sell_price_real': instance.sellPriceReal,
       'sex': _$SexEnumMap[instance.sex]!,
-      'expand': instance.expand,
       'sold': instance.sold,
+      'isEgg': instance.isEgg,
+      'laid': const DateTimeNullEmptyConverter().toJson(instance.laid),
+      'hatched': const DateTimeNullEmptyConverter().toJson(instance.hatched),
+      'flowOut': const DateTimeNullEmptyConverter().toJson(instance.flowOut),
+      'brood': const StringNullEmptyConverter().toJson(instance.brood),
       'user': instance.user,
       'children': instance.children,
     };

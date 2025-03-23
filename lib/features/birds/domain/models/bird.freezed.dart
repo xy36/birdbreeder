@@ -27,13 +27,18 @@ mixin _$Bird {
   double? get boughtPrice => throw _privateConstructorUsedError;
   double? get sellPriceOffer => throw _privateConstructorUsedError;
   double? get sellPriceReal => throw _privateConstructorUsedError;
-  Species? get species => throw _privateConstructorUsedError;
-  BirdColor? get color => throw _privateConstructorUsedError;
-  Cage? get cage => throw _privateConstructorUsedError;
-  Bird? get father => throw _privateConstructorUsedError;
-  Bird? get mother => throw _privateConstructorUsedError;
+  String? get species => throw _privateConstructorUsedError;
+  String? get color => throw _privateConstructorUsedError;
+  String? get cage => throw _privateConstructorUsedError;
+  String? get father => throw _privateConstructorUsedError;
+  String? get mother => throw _privateConstructorUsedError;
   Sex get sex => throw _privateConstructorUsedError;
   bool? get sold => throw _privateConstructorUsedError;
+  bool? get isEgg => throw _privateConstructorUsedError;
+  DateTime? get laid => throw _privateConstructorUsedError;
+  DateTime? get hatched => throw _privateConstructorUsedError;
+  DateTime? get flowOut => throw _privateConstructorUsedError;
+  String? get brood => throw _privateConstructorUsedError;
   List<String> get children => throw _privateConstructorUsedError;
 
   /// Create a copy of Bird
@@ -59,20 +64,19 @@ abstract class $BirdCopyWith<$Res> {
       double? boughtPrice,
       double? sellPriceOffer,
       double? sellPriceReal,
-      Species? species,
-      BirdColor? color,
-      Cage? cage,
-      Bird? father,
-      Bird? mother,
+      String? species,
+      String? color,
+      String? cage,
+      String? father,
+      String? mother,
       Sex sex,
       bool? sold,
+      bool? isEgg,
+      DateTime? laid,
+      DateTime? hatched,
+      DateTime? flowOut,
+      String? brood,
       List<String> children});
-
-  $SpeciesCopyWith<$Res>? get species;
-  $BirdColorCopyWith<$Res>? get color;
-  $CageCopyWith<$Res>? get cage;
-  $BirdCopyWith<$Res>? get father;
-  $BirdCopyWith<$Res>? get mother;
 }
 
 /// @nodoc
@@ -108,6 +112,11 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
     Object? mother = freezed,
     Object? sex = null,
     Object? sold = freezed,
+    Object? isEgg = freezed,
+    Object? laid = freezed,
+    Object? hatched = freezed,
+    Object? flowOut = freezed,
+    Object? brood = freezed,
     Object? children = null,
   }) {
     return _then(_value.copyWith(
@@ -158,23 +167,23 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
       species: freezed == species
           ? _value.species
           : species // ignore: cast_nullable_to_non_nullable
-              as Species?,
+              as String?,
       color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as BirdColor?,
+              as String?,
       cage: freezed == cage
           ? _value.cage
           : cage // ignore: cast_nullable_to_non_nullable
-              as Cage?,
+              as String?,
       father: freezed == father
           ? _value.father
           : father // ignore: cast_nullable_to_non_nullable
-              as Bird?,
+              as String?,
       mother: freezed == mother
           ? _value.mother
           : mother // ignore: cast_nullable_to_non_nullable
-              as Bird?,
+              as String?,
       sex: null == sex
           ? _value.sex
           : sex // ignore: cast_nullable_to_non_nullable
@@ -183,81 +192,31 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
           ? _value.sold
           : sold // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isEgg: freezed == isEgg
+          ? _value.isEgg
+          : isEgg // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      laid: freezed == laid
+          ? _value.laid
+          : laid // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      hatched: freezed == hatched
+          ? _value.hatched
+          : hatched // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      flowOut: freezed == flowOut
+          ? _value.flowOut
+          : flowOut // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      brood: freezed == brood
+          ? _value.brood
+          : brood // ignore: cast_nullable_to_non_nullable
+              as String?,
       children: null == children
           ? _value.children
           : children // ignore: cast_nullable_to_non_nullable
               as List<String>,
     ) as $Val);
-  }
-
-  /// Create a copy of Bird
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SpeciesCopyWith<$Res>? get species {
-    if (_value.species == null) {
-      return null;
-    }
-
-    return $SpeciesCopyWith<$Res>(_value.species!, (value) {
-      return _then(_value.copyWith(species: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Bird
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $BirdColorCopyWith<$Res>? get color {
-    if (_value.color == null) {
-      return null;
-    }
-
-    return $BirdColorCopyWith<$Res>(_value.color!, (value) {
-      return _then(_value.copyWith(color: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Bird
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CageCopyWith<$Res>? get cage {
-    if (_value.cage == null) {
-      return null;
-    }
-
-    return $CageCopyWith<$Res>(_value.cage!, (value) {
-      return _then(_value.copyWith(cage: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Bird
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $BirdCopyWith<$Res>? get father {
-    if (_value.father == null) {
-      return null;
-    }
-
-    return $BirdCopyWith<$Res>(_value.father!, (value) {
-      return _then(_value.copyWith(father: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Bird
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $BirdCopyWith<$Res>? get mother {
-    if (_value.mother == null) {
-      return null;
-    }
-
-    return $BirdCopyWith<$Res>(_value.mother!, (value) {
-      return _then(_value.copyWith(mother: value) as $Val);
-    });
   }
 }
 
@@ -280,25 +239,19 @@ abstract class _$$BirdImplCopyWith<$Res> implements $BirdCopyWith<$Res> {
       double? boughtPrice,
       double? sellPriceOffer,
       double? sellPriceReal,
-      Species? species,
-      BirdColor? color,
-      Cage? cage,
-      Bird? father,
-      Bird? mother,
+      String? species,
+      String? color,
+      String? cage,
+      String? father,
+      String? mother,
       Sex sex,
       bool? sold,
+      bool? isEgg,
+      DateTime? laid,
+      DateTime? hatched,
+      DateTime? flowOut,
+      String? brood,
       List<String> children});
-
-  @override
-  $SpeciesCopyWith<$Res>? get species;
-  @override
-  $BirdColorCopyWith<$Res>? get color;
-  @override
-  $CageCopyWith<$Res>? get cage;
-  @override
-  $BirdCopyWith<$Res>? get father;
-  @override
-  $BirdCopyWith<$Res>? get mother;
 }
 
 /// @nodoc
@@ -331,6 +284,11 @@ class __$$BirdImplCopyWithImpl<$Res>
     Object? mother = freezed,
     Object? sex = null,
     Object? sold = freezed,
+    Object? isEgg = freezed,
+    Object? laid = freezed,
+    Object? hatched = freezed,
+    Object? flowOut = freezed,
+    Object? brood = freezed,
     Object? children = null,
   }) {
     return _then(_$BirdImpl(
@@ -381,23 +339,23 @@ class __$$BirdImplCopyWithImpl<$Res>
       species: freezed == species
           ? _value.species
           : species // ignore: cast_nullable_to_non_nullable
-              as Species?,
+              as String?,
       color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as BirdColor?,
+              as String?,
       cage: freezed == cage
           ? _value.cage
           : cage // ignore: cast_nullable_to_non_nullable
-              as Cage?,
+              as String?,
       father: freezed == father
           ? _value.father
           : father // ignore: cast_nullable_to_non_nullable
-              as Bird?,
+              as String?,
       mother: freezed == mother
           ? _value.mother
           : mother // ignore: cast_nullable_to_non_nullable
-              as Bird?,
+              as String?,
       sex: null == sex
           ? _value.sex
           : sex // ignore: cast_nullable_to_non_nullable
@@ -406,6 +364,26 @@ class __$$BirdImplCopyWithImpl<$Res>
           ? _value.sold
           : sold // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isEgg: freezed == isEgg
+          ? _value.isEgg
+          : isEgg // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      laid: freezed == laid
+          ? _value.laid
+          : laid // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      hatched: freezed == hatched
+          ? _value.hatched
+          : hatched // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      flowOut: freezed == flowOut
+          ? _value.flowOut
+          : flowOut // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      brood: freezed == brood
+          ? _value.brood
+          : brood // ignore: cast_nullable_to_non_nullable
+              as String?,
       children: null == children
           ? _value._children
           : children // ignore: cast_nullable_to_non_nullable
@@ -419,24 +397,29 @@ class __$$BirdImplCopyWithImpl<$Res>
 class _$BirdImpl implements _Bird {
   _$BirdImpl(
       {required this.id,
-      this.created,
-      this.updated,
-      this.ringnumber,
-      this.born,
-      this.died,
-      this.bought,
-      this.sell,
-      this.boughtPrice,
-      this.sellPriceOffer,
-      this.sellPriceReal,
-      this.species,
-      this.color,
-      this.cage,
-      this.father,
-      this.mother,
+      required this.created,
+      required this.updated,
+      required this.ringnumber,
+      required this.born,
+      required this.died,
+      required this.bought,
+      required this.sell,
+      required this.boughtPrice,
+      required this.sellPriceOffer,
+      required this.sellPriceReal,
+      required this.species,
+      required this.color,
+      required this.cage,
+      required this.father,
+      required this.mother,
       this.sex = Sex.unknown,
-      this.sold,
-      final List<String> children = const []})
+      required this.sold,
+      required this.isEgg,
+      required this.laid,
+      required this.hatched,
+      required this.flowOut,
+      required this.brood,
+      required final List<String> children})
       : _children = children;
 
   @override
@@ -462,23 +445,32 @@ class _$BirdImpl implements _Bird {
   @override
   final double? sellPriceReal;
   @override
-  final Species? species;
+  final String? species;
   @override
-  final BirdColor? color;
+  final String? color;
   @override
-  final Cage? cage;
+  final String? cage;
   @override
-  final Bird? father;
+  final String? father;
   @override
-  final Bird? mother;
+  final String? mother;
   @override
   @JsonKey()
   final Sex sex;
   @override
   final bool? sold;
+  @override
+  final bool? isEgg;
+  @override
+  final DateTime? laid;
+  @override
+  final DateTime? hatched;
+  @override
+  final DateTime? flowOut;
+  @override
+  final String? brood;
   final List<String> _children;
   @override
-  @JsonKey()
   List<String> get children {
     if (_children is EqualUnmodifiableListView) return _children;
     // ignore: implicit_dynamic_type
@@ -487,7 +479,7 @@ class _$BirdImpl implements _Bird {
 
   @override
   String toString() {
-    return 'Bird(id: $id, created: $created, updated: $updated, ringnumber: $ringnumber, born: $born, died: $died, bought: $bought, sell: $sell, boughtPrice: $boughtPrice, sellPriceOffer: $sellPriceOffer, sellPriceReal: $sellPriceReal, species: $species, color: $color, cage: $cage, father: $father, mother: $mother, sex: $sex, sold: $sold, children: $children)';
+    return 'Bird(id: $id, created: $created, updated: $updated, ringnumber: $ringnumber, born: $born, died: $died, bought: $bought, sell: $sell, boughtPrice: $boughtPrice, sellPriceOffer: $sellPriceOffer, sellPriceReal: $sellPriceReal, species: $species, color: $color, cage: $cage, father: $father, mother: $mother, sex: $sex, sold: $sold, isEgg: $isEgg, laid: $laid, hatched: $hatched, flowOut: $flowOut, brood: $brood, children: $children)';
   }
 
   @override
@@ -517,6 +509,11 @@ class _$BirdImpl implements _Bird {
             (identical(other.mother, mother) || other.mother == mother) &&
             (identical(other.sex, sex) || other.sex == sex) &&
             (identical(other.sold, sold) || other.sold == sold) &&
+            (identical(other.isEgg, isEgg) || other.isEgg == isEgg) &&
+            (identical(other.laid, laid) || other.laid == laid) &&
+            (identical(other.hatched, hatched) || other.hatched == hatched) &&
+            (identical(other.flowOut, flowOut) || other.flowOut == flowOut) &&
+            (identical(other.brood, brood) || other.brood == brood) &&
             const DeepCollectionEquality().equals(other._children, _children));
   }
 
@@ -541,6 +538,11 @@ class _$BirdImpl implements _Bird {
         mother,
         sex,
         sold,
+        isEgg,
+        laid,
+        hatched,
+        flowOut,
+        brood,
         const DeepCollectionEquality().hash(_children)
       ]);
 
@@ -556,24 +558,29 @@ class _$BirdImpl implements _Bird {
 abstract class _Bird implements Bird {
   factory _Bird(
       {required final String id,
-      final DateTime? created,
-      final DateTime? updated,
-      final String? ringnumber,
-      final DateTime? born,
-      final DateTime? died,
-      final DateTime? bought,
-      final DateTime? sell,
-      final double? boughtPrice,
-      final double? sellPriceOffer,
-      final double? sellPriceReal,
-      final Species? species,
-      final BirdColor? color,
-      final Cage? cage,
-      final Bird? father,
-      final Bird? mother,
+      required final DateTime? created,
+      required final DateTime? updated,
+      required final String? ringnumber,
+      required final DateTime? born,
+      required final DateTime? died,
+      required final DateTime? bought,
+      required final DateTime? sell,
+      required final double? boughtPrice,
+      required final double? sellPriceOffer,
+      required final double? sellPriceReal,
+      required final String? species,
+      required final String? color,
+      required final String? cage,
+      required final String? father,
+      required final String? mother,
       final Sex sex,
-      final bool? sold,
-      final List<String> children}) = _$BirdImpl;
+      required final bool? sold,
+      required final bool? isEgg,
+      required final DateTime? laid,
+      required final DateTime? hatched,
+      required final DateTime? flowOut,
+      required final String? brood,
+      required final List<String> children}) = _$BirdImpl;
 
   @override
   String get id;
@@ -598,19 +605,29 @@ abstract class _Bird implements Bird {
   @override
   double? get sellPriceReal;
   @override
-  Species? get species;
+  String? get species;
   @override
-  BirdColor? get color;
+  String? get color;
   @override
-  Cage? get cage;
+  String? get cage;
   @override
-  Bird? get father;
+  String? get father;
   @override
-  Bird? get mother;
+  String? get mother;
   @override
   Sex get sex;
   @override
   bool? get sold;
+  @override
+  bool? get isEgg;
+  @override
+  DateTime? get laid;
+  @override
+  DateTime? get hatched;
+  @override
+  DateTime? get flowOut;
+  @override
+  String? get brood;
   @override
   List<String> get children;
 

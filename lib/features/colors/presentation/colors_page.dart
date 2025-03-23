@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/utils/flash_helper.dart';
+import 'package:birdbreeder/features/colors/presentation/color/cubit/color_cubit.dart';
+import 'package:birdbreeder/features/colors/presentation/color/cubit/color_cubit_event.dart';
 import 'package:birdbreeder/features/colors/presentation/colors_screen.dart';
-import 'package:birdbreeder/features/colors/presentation/cubit/colors_cubit.dart';
-import 'package:birdbreeder/features/colors/presentation/cubit/colors_cubit_event.dart';
 import 'package:bloc_presentation/bloc_presentation.dart';
 
 @RoutePage()
@@ -15,21 +15,21 @@ class ColorsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: context.read<ColorsCubit>(),
-      child: BlocPresentationListener<ColorsCubit, ColorsCubitEvent>(
+      value: context.read<ColorCubit>(),
+      child: BlocPresentationListener<ColorCubit, ColorCubitEvent>(
         listener: (context, event) {
           switch (event) {
-            case ColorsEventCreateFailed():
+            case ColorEventCreateFailed():
               context.showErrorBar<bool>(
                 content: Text(context.l10n.snackbar__create_failed),
               );
               break;
-            case ColorsEventUpdateFailed():
+            case ColorEventUpdateFailed():
               context.showErrorBar<bool>(
                 content: Text(context.l10n.snackbar__update_failed),
               );
               break;
-            case ColorsEventDeleteFailed():
+            case ColorEventDeleteFailed():
               context.showErrorBar<bool>(
                 content: Text(context.l10n.snackbar__delete_failed),
               );

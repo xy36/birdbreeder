@@ -108,7 +108,7 @@ class __$$BirdColorImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BirdColorImpl implements _BirdColor {
-  _$BirdColorImpl({required this.id, this.name});
+  _$BirdColorImpl({required this.id, required this.name});
 
   @override
   final String id;
@@ -142,7 +142,7 @@ class _$BirdColorImpl implements _BirdColor {
 }
 
 abstract class _BirdColor implements BirdColor {
-  factory _BirdColor({required final String id, final String? name}) =
+  factory _BirdColor({required final String id, required final String? name}) =
       _$BirdColorImpl;
 
   @override

@@ -2,7 +2,6 @@
 
 import 'package:birdbreeder/features/birds/data/converter/date_time_null_empty_converter.dart';
 import 'package:birdbreeder/features/birds/data/converter/string_null_empty_converter.dart';
-import 'package:birdbreeder/features/birds/data/dtos/expand_dto.dart';
 import 'package:birdbreeder/features/birds/domain/models/sex_enum.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -31,8 +30,12 @@ class BirdDto with _$BirdDto {
     @JsonKey(name: 'sell_price_offer') double? sellPriceOffer,
     @JsonKey(name: 'sell_price_real') double? sellPriceReal,
     @Default(Sex.unknown) Sex sex,
-    ExpandDto? expand,
     bool? sold,
+    bool? isEgg,
+    @DateTimeNullEmptyConverter() DateTime? laid,
+    @DateTimeNullEmptyConverter() DateTime? hatched,
+    @DateTimeNullEmptyConverter() DateTime? flowOut,
+    @StringNullEmptyConverter() String? brood,
     String? user,
     @Default([]) List<String> children,
   }) = _BirdDto;

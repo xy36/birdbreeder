@@ -1,5 +1,11 @@
 arb-dir: lib/l10n
-template-arb-file: intl_en.arb
+template-arb-file: intl_de.arb
 output-localization-file: app_localizations.dart
 nullable-getter: false
 untranslated-messages-file: untranslated_messages.json
+#chatGPT
+#arb-translate-api-key: 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
+#arb-translate-model-provider: open-ai
+#gemini
+#arb-translate-api-key: AIzaSyD0AZOqSyFsVyr8S_9rcB7H7Fr66283YAk
+arb-translate-model-provider: gemini

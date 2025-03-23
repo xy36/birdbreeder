@@ -1,18 +1,17 @@
-import 'package:birdbreeder/features/birds/data/repositories_impl/birds_repository_impl.dart';
-import 'package:birdbreeder/features/birds/domain/repositories/i_birds_repository.dart';
-import 'package:birdbreeder/features/cages/data/repositories_impl/cages_repository_impl.dart';
-import 'package:birdbreeder/features/cages/domain/repositories/i_cages_repository.dart';
-import 'package:birdbreeder/features/colors/data/repositories_impl/bird_colors_repository_impl.dart';
-import 'package:birdbreeder/features/colors/domain/repositories/i_color_repository.dart';
-import 'package:birdbreeder/features/contacts/data/repositories_impl/contact_repository_impl.dart';
-import 'package:birdbreeder/features/contacts/domain/repositories/i_contacts_repository.dart';
-import 'package:birdbreeder/features/species/data/repositories_impl/species_repository_impl.dart';
-import 'package:birdbreeder/features/species/domain/repositories/i_species_repository.dart';
+import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
+import 'package:birdbreeder/features/breedings/data/dtos/breeding_pair_dto.dart';
+import 'package:birdbreeder/features/breedings/data/dtos/brood_dto.dart';
+import 'package:birdbreeder/features/cages/data/dtos/cage_dto.dart';
+import 'package:birdbreeder/features/colors/data/dtos/bird_color_dto.dart';
+import 'package:birdbreeder/features/contacts/data/dtos/contact_dto.dart';
+import 'package:birdbreeder/features/species/data/dtos/species_dto.dart';
 import 'package:birdbreeder/services/authentication/authentication_service.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/logging_service.dart';
 import 'package:birdbreeder/services/pocketbase_service.dart';
 import 'package:birdbreeder/services/token_storage_service.dart';
+import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:birdbreeder/shared/repositories/ressource_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,38 +30,75 @@ Future<void> initializeDependencyInjection() async {
       () => AuthenticationService(s1(), s1()),
     )
     // Misc
-    ..registerLazySingleton<ISpeciesRepository>(
-      () => SpeciesRepositoryImpl(s1(), s1()),
+    ..registerLazySingleton<RessourceRepository<BirdDto>>(
+      () => RessourceRepository<BirdDto>(
+        loggingService: s1(),
+        recordService: s1.get<PocketBaseService>().birdsCollection,
+        fromJson: BirdDto.fromJson,
+        toJson: (bird) => bird.toJson(),
+      ),
     )
-    ..registerLazySingleton<ICagesRepository>(
-      () => CagesRepositoryImpl(s1(), s1()),
+    ..registerLazySingleton<RessourceRepository<BreedingPairDto>>(
+      () => RessourceRepository<BreedingPairDto>(
+        loggingService: s1(),
+        recordService: s1.get<PocketBaseService>().breedingPairCollection,
+        fromJson: BreedingPairDto.fromJson,
+        toJson: (breedingPair) => breedingPair.toJson(),
+      ),
     )
-    ..registerLazySingleton<IBirdColorsRepository>(
-      () => BirdColorsRepositoryImpl(s1(), s1()),
+    ..registerLazySingleton<RessourceRepository<BroodDto>>(
+      () => RessourceRepository<BroodDto>(
+        loggingService: s1(),
+        recordService: s1.get<PocketBaseService>().broodsCollection,
+        fromJson: BroodDto.fromJson,
+        toJson: (brood) => brood.toJson(),
+      ),
     )
-    ..registerLazySingleton<IContactsRepository>(
-      () => ContactsRepositoryImpl(s1(), s1()),
+    ..registerLazySingleton<RessourceRepository<CageDto>>(
+      () => RessourceRepository<CageDto>(
+        loggingService: s1(),
+        recordService: s1.get<PocketBaseService>().cagesCollection,
+        fromJson: CageDto.fromJson,
+        toJson: (cage) => cage.toJson(),
+      ),
     )
-    ..registerLazySingleton<IBirdsRepository>(
-      () => BirdsRepositoryImpl(s1(), s1()),
+    ..registerLazySingleton<RessourceRepository<SpeciesDto>>(
+      () => RessourceRepository<SpeciesDto>(
+        loggingService: s1(),
+        recordService: s1.get<PocketBaseService>().speciesCollection,
+        fromJson: SpeciesDto.fromJson,
+        toJson: (species) => species.toJson(),
+      ),
+    )
+    ..registerLazySingleton<RessourceRepository<BirdColorDto>>(
+      () => RessourceRepository<BirdColorDto>(
+        loggingService: s1(),
+        recordService: s1.get<PocketBaseService>().colorsCollection,
+        fromJson: BirdColorDto.fromJson,
+        toJson: (color) => color.toJson(),
+      ),
+    )
+    ..registerLazySingleton<RessourceRepository<ContactDto>>(
+      () => RessourceRepository<ContactDto>(
+        loggingService: s1(),
+        recordService: s1.get<PocketBaseService>().contactsCollection,
+        fromJson: ContactDto.fromJson,
+        toJson: (contact) => contact.toJson(),
+      ),
     )
 
     // Blocs
-    // ..registerLazySingleton<BirdsCubit>(
-    //   () => BirdsCubit(s1()),
-    // )
-    // ..registerLazySingleton<ColorsCubit>(
-    //   () => ColorsCubit(s1()),
-    // )
-    // ..registerLazySingleton<CagesCubit>(
-    //   () => CagesCubit(s1()),
-    // )
-    // ..registerLazySingleton<ContactsCubit>(
-    //   () => ContactsCubit(s1()),
-    // )
-    // ..registerLazySingleton<SpeciesCubit>(
-    //   () => SpeciesCubit(s1()),
-    // )
+    ..registerLazySingleton<BirdBreederCubit>(
+      () => BirdBreederCubit(
+        s1(),
+        s1(),
+        s1(),
+        s1(),
+        s1(),
+        s1(),
+        s1(),
+      ),
+    )
 
     // External
     ..registerLazySingleton<RouteObserver<ModalRoute<void>>>(

@@ -1,50 +1,57 @@
-import 'package:birdbreeder/common_imports.dart';
+import 'dart:ui';
 
-Future<void> showChildAsDrawerDialog(
+import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/services/screen_size.dart';
+
+Future<bool> showChildAsDrawerDialog(
   BuildContext context,
   Widget child,
 ) async {
-  await showDialog<dynamic>(
-    context: context,
-    builder: (
-      context,
-    ) {
-      final maxWidth = MediaQuery.of(context).size.width;
-      const dialogWidth = 500;
-      final insetPadding = maxWidth - dialogWidth;
-      return Dialog(
-        insetPadding:
-            EdgeInsets.only(left: insetPadding < 0 ? 0 : insetPadding),
-        child: child,
-      );
-    },
-    barrierDismissible: false,
-  );
-}
+  double getScreenWidth(BuildContext context) {
+    final size = ScreenSize.getScreenSize(context);
+    final widthFactor = switch (size) {
+      ScreenSize.xs => 1,
+      ScreenSize.sm => 1,
+      ScreenSize.md => 0.6,
+      ScreenSize.lg => 0.35,
+    };
+    return MediaQuery.of(context).size.width * widthFactor;
+  }
 
-Future<void> onDelete(BuildContext context, void Function() onDelete) async {
-  await showDialog<bool>(
+  final success = await showGeneralDialog<bool>(
     context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text(context.l10n.dialog__delete_bird_title),
-        content: Text(context.l10n.dialog__delete_bird_message),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text(context.l10n.common__cancel),
+    transitionBuilder: (context, a1, a2, widget) {
+      final curvedValue = Curves.easeInOut.transform(a1.value) - 1;
+      final width = getScreenWidth(context);
+      return Transform(
+        transform: Matrix4.translationValues(
+          curvedValue * -width,
+          0,
+          0,
+        ),
+        child: widget,
+      );
+    },
+    pageBuilder: (
+      BuildContext context,
+      Animation<double> animation,
+      Animation<double> secondaryAnimation,
+    ) {
+      return SafeArea(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+          child: Dialog(
+            insetPadding: EdgeInsets.zero,
+            alignment: Alignment.centerRight,
+            child: SizedBox(
+              width: getScreenWidth(context),
+              child: child,
+            ),
           ),
-          ElevatedButton(
-            onPressed: () {
-              onDelete();
-              Navigator.of(context).pop();
-            },
-            child: Text(context.l10n.common__ok),
-          ),
-        ],
+        ),
       );
     },
   );
+
+  return success ?? false;
 }

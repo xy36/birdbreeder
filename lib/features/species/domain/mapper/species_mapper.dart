@@ -5,7 +5,6 @@ import 'package:birdbreeder/features/species/domain/mapper/species_mapper.auto_m
 import 'package:birdbreeder/features/species/domain/models/species.dart';
 
 @AutoMappr([
-  MapType<SpeciesDto, Species>(),
   MapType<Species, SpeciesDto>(
     fields: [
       Field('user', custom: UserHelper.insertUser),

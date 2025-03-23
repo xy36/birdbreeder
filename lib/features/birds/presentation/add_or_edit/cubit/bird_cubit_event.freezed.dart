@@ -19,6 +19,7 @@ mixin _$BirdCubitEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() deleted,
+    required TResult Function() saved,
     required TResult Function() duplicated,
     required TResult Function() error,
   }) =>
@@ -26,6 +27,7 @@ mixin _$BirdCubitEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? deleted,
+    TResult? Function()? saved,
     TResult? Function()? duplicated,
     TResult? Function()? error,
   }) =>
@@ -33,6 +35,7 @@ mixin _$BirdCubitEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? deleted,
+    TResult Function()? saved,
     TResult Function()? duplicated,
     TResult Function()? error,
     required TResult orElse(),
@@ -41,6 +44,7 @@ mixin _$BirdCubitEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(BirdCubitEventDeleted value) deleted,
+    required TResult Function(BirdCubitEventSaved value) saved,
     required TResult Function(BirdCubitEventDuplicated value) duplicated,
     required TResult Function(BirdCubitEventError value) error,
   }) =>
@@ -48,6 +52,7 @@ mixin _$BirdCubitEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BirdCubitEventDeleted value)? deleted,
+    TResult? Function(BirdCubitEventSaved value)? saved,
     TResult? Function(BirdCubitEventDuplicated value)? duplicated,
     TResult? Function(BirdCubitEventError value)? error,
   }) =>
@@ -55,6 +60,7 @@ mixin _$BirdCubitEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BirdCubitEventDeleted value)? deleted,
+    TResult Function(BirdCubitEventSaved value)? saved,
     TResult Function(BirdCubitEventDuplicated value)? duplicated,
     TResult Function(BirdCubitEventError value)? error,
     required TResult orElse(),
@@ -127,6 +133,7 @@ class _$BirdCubitEventDeletedImpl implements BirdCubitEventDeleted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() deleted,
+    required TResult Function() saved,
     required TResult Function() duplicated,
     required TResult Function() error,
   }) {
@@ -137,6 +144,7 @@ class _$BirdCubitEventDeletedImpl implements BirdCubitEventDeleted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? deleted,
+    TResult? Function()? saved,
     TResult? Function()? duplicated,
     TResult? Function()? error,
   }) {
@@ -147,6 +155,7 @@ class _$BirdCubitEventDeletedImpl implements BirdCubitEventDeleted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? deleted,
+    TResult Function()? saved,
     TResult Function()? duplicated,
     TResult Function()? error,
     required TResult orElse(),
@@ -161,6 +170,7 @@ class _$BirdCubitEventDeletedImpl implements BirdCubitEventDeleted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(BirdCubitEventDeleted value) deleted,
+    required TResult Function(BirdCubitEventSaved value) saved,
     required TResult Function(BirdCubitEventDuplicated value) duplicated,
     required TResult Function(BirdCubitEventError value) error,
   }) {
@@ -171,6 +181,7 @@ class _$BirdCubitEventDeletedImpl implements BirdCubitEventDeleted {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BirdCubitEventDeleted value)? deleted,
+    TResult? Function(BirdCubitEventSaved value)? saved,
     TResult? Function(BirdCubitEventDuplicated value)? duplicated,
     TResult? Function(BirdCubitEventError value)? error,
   }) {
@@ -181,6 +192,7 @@ class _$BirdCubitEventDeletedImpl implements BirdCubitEventDeleted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BirdCubitEventDeleted value)? deleted,
+    TResult Function(BirdCubitEventSaved value)? saved,
     TResult Function(BirdCubitEventDuplicated value)? duplicated,
     TResult Function(BirdCubitEventError value)? error,
     required TResult orElse(),
@@ -194,6 +206,124 @@ class _$BirdCubitEventDeletedImpl implements BirdCubitEventDeleted {
 
 abstract class BirdCubitEventDeleted implements BirdCubitEvent {
   const factory BirdCubitEventDeleted() = _$BirdCubitEventDeletedImpl;
+}
+
+/// @nodoc
+abstract class _$$BirdCubitEventSavedImplCopyWith<$Res> {
+  factory _$$BirdCubitEventSavedImplCopyWith(_$BirdCubitEventSavedImpl value,
+          $Res Function(_$BirdCubitEventSavedImpl) then) =
+      __$$BirdCubitEventSavedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$BirdCubitEventSavedImplCopyWithImpl<$Res>
+    extends _$BirdCubitEventCopyWithImpl<$Res, _$BirdCubitEventSavedImpl>
+    implements _$$BirdCubitEventSavedImplCopyWith<$Res> {
+  __$$BirdCubitEventSavedImplCopyWithImpl(_$BirdCubitEventSavedImpl _value,
+      $Res Function(_$BirdCubitEventSavedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of BirdCubitEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$BirdCubitEventSavedImpl implements BirdCubitEventSaved {
+  const _$BirdCubitEventSavedImpl();
+
+  @override
+  String toString() {
+    return 'BirdCubitEvent.saved()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BirdCubitEventSavedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() deleted,
+    required TResult Function() saved,
+    required TResult Function() duplicated,
+    required TResult Function() error,
+  }) {
+    return saved();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? deleted,
+    TResult? Function()? saved,
+    TResult? Function()? duplicated,
+    TResult? Function()? error,
+  }) {
+    return saved?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? deleted,
+    TResult Function()? saved,
+    TResult Function()? duplicated,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (saved != null) {
+      return saved();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BirdCubitEventDeleted value) deleted,
+    required TResult Function(BirdCubitEventSaved value) saved,
+    required TResult Function(BirdCubitEventDuplicated value) duplicated,
+    required TResult Function(BirdCubitEventError value) error,
+  }) {
+    return saved(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(BirdCubitEventDeleted value)? deleted,
+    TResult? Function(BirdCubitEventSaved value)? saved,
+    TResult? Function(BirdCubitEventDuplicated value)? duplicated,
+    TResult? Function(BirdCubitEventError value)? error,
+  }) {
+    return saved?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BirdCubitEventDeleted value)? deleted,
+    TResult Function(BirdCubitEventSaved value)? saved,
+    TResult Function(BirdCubitEventDuplicated value)? duplicated,
+    TResult Function(BirdCubitEventError value)? error,
+    required TResult orElse(),
+  }) {
+    if (saved != null) {
+      return saved(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class BirdCubitEventSaved implements BirdCubitEvent {
+  const factory BirdCubitEventSaved() = _$BirdCubitEventSavedImpl;
 }
 
 /// @nodoc
@@ -241,6 +371,7 @@ class _$BirdCubitEventDuplicatedImpl implements BirdCubitEventDuplicated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() deleted,
+    required TResult Function() saved,
     required TResult Function() duplicated,
     required TResult Function() error,
   }) {
@@ -251,6 +382,7 @@ class _$BirdCubitEventDuplicatedImpl implements BirdCubitEventDuplicated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? deleted,
+    TResult? Function()? saved,
     TResult? Function()? duplicated,
     TResult? Function()? error,
   }) {
@@ -261,6 +393,7 @@ class _$BirdCubitEventDuplicatedImpl implements BirdCubitEventDuplicated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? deleted,
+    TResult Function()? saved,
     TResult Function()? duplicated,
     TResult Function()? error,
     required TResult orElse(),
@@ -275,6 +408,7 @@ class _$BirdCubitEventDuplicatedImpl implements BirdCubitEventDuplicated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(BirdCubitEventDeleted value) deleted,
+    required TResult Function(BirdCubitEventSaved value) saved,
     required TResult Function(BirdCubitEventDuplicated value) duplicated,
     required TResult Function(BirdCubitEventError value) error,
   }) {
@@ -285,6 +419,7 @@ class _$BirdCubitEventDuplicatedImpl implements BirdCubitEventDuplicated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BirdCubitEventDeleted value)? deleted,
+    TResult? Function(BirdCubitEventSaved value)? saved,
     TResult? Function(BirdCubitEventDuplicated value)? duplicated,
     TResult? Function(BirdCubitEventError value)? error,
   }) {
@@ -295,6 +430,7 @@ class _$BirdCubitEventDuplicatedImpl implements BirdCubitEventDuplicated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BirdCubitEventDeleted value)? deleted,
+    TResult Function(BirdCubitEventSaved value)? saved,
     TResult Function(BirdCubitEventDuplicated value)? duplicated,
     TResult Function(BirdCubitEventError value)? error,
     required TResult orElse(),
@@ -353,6 +489,7 @@ class _$BirdCubitEventErrorImpl implements BirdCubitEventError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() deleted,
+    required TResult Function() saved,
     required TResult Function() duplicated,
     required TResult Function() error,
   }) {
@@ -363,6 +500,7 @@ class _$BirdCubitEventErrorImpl implements BirdCubitEventError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? deleted,
+    TResult? Function()? saved,
     TResult? Function()? duplicated,
     TResult? Function()? error,
   }) {
@@ -373,6 +511,7 @@ class _$BirdCubitEventErrorImpl implements BirdCubitEventError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? deleted,
+    TResult Function()? saved,
     TResult Function()? duplicated,
     TResult Function()? error,
     required TResult orElse(),
@@ -387,6 +526,7 @@ class _$BirdCubitEventErrorImpl implements BirdCubitEventError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(BirdCubitEventDeleted value) deleted,
+    required TResult Function(BirdCubitEventSaved value) saved,
     required TResult Function(BirdCubitEventDuplicated value) duplicated,
     required TResult Function(BirdCubitEventError value) error,
   }) {
@@ -397,6 +537,7 @@ class _$BirdCubitEventErrorImpl implements BirdCubitEventError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BirdCubitEventDeleted value)? deleted,
+    TResult? Function(BirdCubitEventSaved value)? saved,
     TResult? Function(BirdCubitEventDuplicated value)? duplicated,
     TResult? Function(BirdCubitEventError value)? error,
   }) {
@@ -407,6 +548,7 @@ class _$BirdCubitEventErrorImpl implements BirdCubitEventError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BirdCubitEventDeleted value)? deleted,
+    TResult Function(BirdCubitEventSaved value)? saved,
     TResult Function(BirdCubitEventDuplicated value)? duplicated,
     TResult Function(BirdCubitEventError value)? error,
     required TResult orElse(),

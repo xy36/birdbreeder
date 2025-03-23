@@ -2,8 +2,8 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/cubit/bird_cubit.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/models/bird_mode.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/bird_fields.dart';
+import 'package:birdbreeder/shared/widgets/dialogs/delete_dialog.dart';
 import 'package:birdbreeder/shared/widgets/navigate_back_button.dart';
-import 'package:birdbreeder/shared/widgets/utils.dart';
 
 enum BirdActions {
   duplicate,
@@ -29,13 +29,13 @@ enum BirdActions {
     return switch (this) {
       duplicate => await context.read<BirdCubit>().duplicate(),
       delete => {
-          await onDelete(
-            context,
-            () async {
-              await context.read<BirdCubit>().delete();
-            },
-          ),
-        },
+          if (context.mounted)
+            await DeleteDialog.show(
+              context: context,
+              title: context.l10n.bird__delete_bird,
+              onDelete: () => context.read<BirdCubit>().delete(),
+            ),
+        }
     };
   }
 }
@@ -88,10 +88,10 @@ class BirdScreen extends StatelessWidget {
             ],
           ),
           body: state.maybeWhen(
-            loaded: (bird, isEdit, _) {
+            loaded: (bird, isEdit) {
               return BirdFields(bird: bird);
             },
-            loading: (bird, isEdit, _) {
+            loading: (bird, isEdit) {
               return const Center(child: CircularProgressIndicator());
             },
             orElse: () {

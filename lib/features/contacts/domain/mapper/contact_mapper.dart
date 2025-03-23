@@ -5,7 +5,6 @@ import 'package:birdbreeder/features/contacts/domain/mapper/contact_mapper.auto_
 import 'package:birdbreeder/features/contacts/domain/models/contact.dart';
 
 @AutoMappr([
-  MapType<ContactDto, Contact>(),
   MapType<Contact, ContactDto>(
     fields: [
       Field('user', custom: UserHelper.insertUser),

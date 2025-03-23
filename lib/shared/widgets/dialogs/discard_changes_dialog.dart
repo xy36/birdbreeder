@@ -10,7 +10,7 @@ class DiscardChangesDialog extends StatelessWidget {
     return AlertDialog(
       title: Text(context.l10n.dialog__discard_changes_title),
       content: Text(
-        context.l10n.dialog__discard_changes_message,
+        context.l10n.dialog__discard_changes_content,
       ),
       actions: [
         TextButton(

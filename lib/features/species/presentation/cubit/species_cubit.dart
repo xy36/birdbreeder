@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/core/extensions/mapper_extensions.dart';
+import 'package:birdbreeder/features/species/data/dtos/species_dto.dart';
 import 'package:birdbreeder/features/species/domain/models/species.dart';
-import 'package:birdbreeder/features/species/domain/repositories/i_species_repository.dart';
 import 'package:birdbreeder/features/species/presentation/cubit/species_cubit_event.dart';
-import 'package:birdbreeder/services/injection.dart';
-import 'package:birdbreeder/services/pocketbase_service.dart';
+import 'package:birdbreeder/shared/repositories/ressource_repository.dart';
 import 'package:bloc_presentation/bloc_presentation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -14,23 +14,15 @@ part 'species_state.dart';
 
 class SpeciesCubit extends Cubit<SpeciesState>
     with BlocPresentationMixin<SpeciesState, SpeciesCubitEvent> {
-  SpeciesCubit(this._speciesRepository) : super(const SpeciesInitial()) {
-    s1.get<PocketBaseService>().speciesCollection.subscribe(
-      '*',
-      (e) {
-        load();
-      },
-    );
-  }
-
-  final ISpeciesRepository _speciesRepository;
+  SpeciesCubit(this.ressourceRepository) : super(const SpeciesLoaded());
+  final RessourceRepository<SpeciesDto> ressourceRepository;
 
   Future<void> add(
     Species species,
   ) async {
     emit(const SpeciesLoading());
 
-    final result = await _speciesRepository.create(species);
+    final result = await ressourceRepository.create(species.toDto());
 
     if (result.isError) {
       emitPresentation(const SpeciesEventCreateFailed());
@@ -38,25 +30,13 @@ class SpeciesCubit extends Cubit<SpeciesState>
     }
   }
 
-  Future<void> load() async {
-    emit(const SpeciesLoading());
-
-    final result = await _speciesRepository.getAll();
-
-    if (result.isError) {
-      emit(const SpeciesErrorScreen());
-      return;
-    }
-
-    emit(SpeciesLoaded(species: result.asValue!.value));
-  }
-
   Future<void> edit(
     Species species,
   ) async {
     emit(const SpeciesLoading());
 
-    final result = await _speciesRepository.update(species);
+    final result =
+        await ressourceRepository.update(species.id, species.toDto());
 
     if (result.isError) {
       emitPresentation(const SpeciesEventUpdateFailed());
@@ -69,7 +49,7 @@ class SpeciesCubit extends Cubit<SpeciesState>
   ) async {
     emit(const SpeciesLoading());
 
-    final result = await _speciesRepository.delete(species);
+    final result = await ressourceRepository.delete(species.id);
 
     if (result.isError) {
       emitPresentation(const SpeciesEventDeleteFailed());

@@ -1,7 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/species/domain/models/species.dart';
 import 'package:birdbreeder/features/species/presentation/cubit/species_cubit.dart';
-import 'package:birdbreeder/features/species/presentation/widgets/dialogs/delete_species_dialog.dart';
+import 'package:birdbreeder/shared/widgets/dialogs/delete_dialog.dart';
 
 class DeleteSpeciesButton extends StatelessWidget {
   const DeleteSpeciesButton({
@@ -19,12 +19,14 @@ class DeleteSpeciesButton extends StatelessWidget {
         final bloc = context.read<SpeciesCubit>();
         await showDialog<String>(
           context: context,
-          builder: (context) => DeleteSpeciesDialog(
-            species: species,
-            onDelete: bloc.delete,
+          builder: (context) => DeleteDialog(
+            title: context.l10n.species__delete_species,
+            onDelete: () => bloc.delete(species),
           ),
         );
-        // ignore: use_build_context_synchronously
+
+        if (!context.mounted) return;
+
         Navigator.of(context).pop();
       },
     );

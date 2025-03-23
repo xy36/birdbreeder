@@ -15,6 +15,7 @@ dependencies:
   flutter:
     sdk: flutter
   async: ^2.8.2
+  awesome_extensions: ^2.0.20
   bloc: ^8.1.1
   bloc_presentation: ^1.0.0
   collection: ^1.17.1
@@ -47,6 +48,7 @@ dependencies:
   auto_mappr_annotation: ^2.2.0
   auto_route: ^9.2.2
   flex_color_scheme: ^8.1.0
+  arb_translate: ^1.1.0
 
 
 

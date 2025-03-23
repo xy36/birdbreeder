@@ -65,7 +65,7 @@ class _MenuScreenState extends State<MenuScreen> {
       child: BlocListener<MenuCubit, MenuState>(
         listener: (context, state) {
           sidebarController.selectIndex(state.page.index);
-          //Menu.closeMenuDrawer();
+          if (hasDrawer) Menu.closeMenuDrawer();
           context.router.replace(state.page.routeName);
         },
         child: BlocBuilder<MenuCubit, MenuState>(

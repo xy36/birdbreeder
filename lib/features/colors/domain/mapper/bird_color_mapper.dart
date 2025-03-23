@@ -5,7 +5,6 @@ import 'package:birdbreeder/features/colors/domain/mapper/bird_color_mapper.auto
 import 'package:birdbreeder/features/colors/domain/models/bird_color.dart';
 
 @AutoMappr([
-  MapType<BirdColorDto, BirdColor>(),
   MapType<BirdColor, BirdColorDto>(
     fields: [
       Field('user', custom: UserHelper.insertUser),

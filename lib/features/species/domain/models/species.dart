@@ -6,11 +6,13 @@ part 'species.freezed.dart';
 class Species with _$Species {
   factory Species({
     required String id,
-    String? name,
-    String? latName,
+    required String? name,
+    required String? latName,
   }) = _Species;
 
   factory Species.create() => Species(
         id: '',
+        name: null,
+        latName: null,
       );
 }

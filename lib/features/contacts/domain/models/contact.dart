@@ -6,18 +6,27 @@ part 'contact.freezed.dart';
 class Contact with _$Contact {
   factory Contact({
     required String id,
-    String? number,
-    String? firstName,
-    String? name,
-    String? email,
-    String? address,
-    String? city,
-    String? postalCode,
-    String? country,
-    String? website,
+    required String? number,
+    required String? firstName,
+    required String? name,
+    required String? email,
+    required String? address,
+    required String? city,
+    required String? postalCode,
+    required String? country,
+    required String? website,
   }) = _Contact;
 
   factory Contact.create() => Contact(
         id: '',
+        number: null,
+        firstName: null,
+        name: null,
+        email: null,
+        address: null,
+        city: null,
+        postalCode: null,
+        country: null,
+        website: null,
       );
 }

@@ -10,12 +10,11 @@
 import 'package:auto_mappr_annotation/auto_mappr_annotation.dart' as _i1;
 
 import '../../../../core/utils/user_helper.dart' as _i4;
-import '../../data/dtos/bird_color_dto.dart' as _i2;
-import '../models/bird_color.dart' as _i3;
+import '../../data/dtos/bird_color_dto.dart' as _i3;
+import '../models/bird_color.dart' as _i2;
 
 /// {@template package:birdbreeder/features/colors/domain/mapper/bird_color_mapper.dart}
 /// Available mappings:
-/// - `BirdColorDto` → `BirdColor`.
 /// - `BirdColor` → `BirdColorDto`.
 /// {@endtemplate}
 class $BirdColorMapper implements _i1.AutoMapprInterface {
@@ -31,16 +30,10 @@ class $BirdColorMapper implements _i1.AutoMapprInterface {
   bool canConvert<SOURCE, TARGET>({bool recursive = true}) {
     final sourceTypeOf = _typeOf<SOURCE>();
     final targetTypeOf = _typeOf<TARGET>();
-    if ((sourceTypeOf == _typeOf<_i2.BirdColorDto>() ||
-            sourceTypeOf == _typeOf<_i2.BirdColorDto?>()) &&
-        (targetTypeOf == _typeOf<_i3.BirdColor>() ||
-            targetTypeOf == _typeOf<_i3.BirdColor?>())) {
-      return true;
-    }
-    if ((sourceTypeOf == _typeOf<_i3.BirdColor>() ||
-            sourceTypeOf == _typeOf<_i3.BirdColor?>()) &&
-        (targetTypeOf == _typeOf<_i2.BirdColorDto>() ||
-            targetTypeOf == _typeOf<_i2.BirdColorDto?>())) {
+    if ((sourceTypeOf == _typeOf<_i2.BirdColor>() ||
+            sourceTypeOf == _typeOf<_i2.BirdColor?>()) &&
+        (targetTypeOf == _typeOf<_i3.BirdColorDto>() ||
+            targetTypeOf == _typeOf<_i3.BirdColorDto?>())) {
       return true;
     }
     if (recursive) {
@@ -234,24 +227,14 @@ class $BirdColorMapper implements _i1.AutoMapprInterface {
   }) {
     final sourceTypeOf = _typeOf<SOURCE>();
     final targetTypeOf = _typeOf<TARGET>();
-    if ((sourceTypeOf == _typeOf<_i2.BirdColorDto>() ||
-            sourceTypeOf == _typeOf<_i2.BirdColorDto?>()) &&
-        (targetTypeOf == _typeOf<_i3.BirdColor>() ||
-            targetTypeOf == _typeOf<_i3.BirdColor?>())) {
+    if ((sourceTypeOf == _typeOf<_i2.BirdColor>() ||
+            sourceTypeOf == _typeOf<_i2.BirdColor?>()) &&
+        (targetTypeOf == _typeOf<_i3.BirdColorDto>() ||
+            targetTypeOf == _typeOf<_i3.BirdColorDto?>())) {
       if (canReturnNull && model == null) {
         return null;
       }
-      return (_map__i2$BirdColorDto_To__i3$BirdColor(
-          (model as _i2.BirdColorDto?)) as TARGET);
-    }
-    if ((sourceTypeOf == _typeOf<_i3.BirdColor>() ||
-            sourceTypeOf == _typeOf<_i3.BirdColor?>()) &&
-        (targetTypeOf == _typeOf<_i2.BirdColorDto>() ||
-            targetTypeOf == _typeOf<_i2.BirdColorDto?>())) {
-      if (canReturnNull && model == null) {
-        return null;
-      }
-      return (_map__i3$BirdColor_To__i2$BirdColorDto((model as _i3.BirdColor?))
+      return (_map__i2$BirdColor_To__i3$BirdColorDto((model as _i2.BirdColor?))
           as TARGET);
     }
     throw Exception('No ${model.runtimeType} -> $targetTypeOf mapping.');
@@ -286,29 +269,15 @@ class $BirdColorMapper implements _i1.AutoMapprInterface {
     return false;
   }
 
-  _i3.BirdColor _map__i2$BirdColorDto_To__i3$BirdColor(
-      _i2.BirdColorDto? input) {
-    final model = input;
-    if (model == null) {
-      throw Exception(
-          r'Mapping BirdColorDto → BirdColor failed because BirdColorDto was null, and no default value was provided. '
-          r'Consider setting the whenSourceIsNull parameter on the MapType<BirdColorDto, BirdColor> to handle null values during mapping.');
-    }
-    return _i3.BirdColor(
-      id: model.id,
-      name: model.name,
-    );
-  }
-
-  _i2.BirdColorDto _map__i3$BirdColor_To__i2$BirdColorDto(
-      _i3.BirdColor? input) {
+  _i3.BirdColorDto _map__i2$BirdColor_To__i3$BirdColorDto(
+      _i2.BirdColor? input) {
     final model = input;
     if (model == null) {
       throw Exception(
           r'Mapping BirdColor → BirdColorDto failed because BirdColor was null, and no default value was provided. '
           r'Consider setting the whenSourceIsNull parameter on the MapType<BirdColor, BirdColorDto> to handle null values during mapping.');
     }
-    return _i2.BirdColorDto(
+    return _i3.BirdColorDto(
       id: model.id,
       name: model.name,
       user: _i4.UserHelper.insertUser(),

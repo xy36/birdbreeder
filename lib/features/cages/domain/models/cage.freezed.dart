@@ -163,11 +163,11 @@ class __$$CageImplCopyWithImpl<$Res>
 class _$CageImpl implements _Cage {
   _$CageImpl(
       {required this.id,
-      this.name,
-      this.description,
-      this.width,
-      this.height,
-      this.depth});
+      required this.name,
+      required this.description,
+      required this.width,
+      required this.height,
+      required this.depth});
 
   @override
   final String id;
@@ -217,11 +217,11 @@ class _$CageImpl implements _Cage {
 abstract class _Cage implements Cage {
   factory _Cage(
       {required final String id,
-      final String? name,
-      final String? description,
-      final int? width,
-      final int? height,
-      final int? depth}) = _$CageImpl;
+      required final String? name,
+      required final String? description,
+      required final int? width,
+      required final int? height,
+      required final int? depth}) = _$CageImpl;
 
   @override
   String get id;

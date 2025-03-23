@@ -9,8 +9,14 @@ import 'package:birdbreeder/features/authentication/presentation/sign_up_page.da
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/bird_page.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/birds_overview_page.dart';
-import 'package:birdbreeder/features/breedings/breedings_page.dart';
-import 'package:birdbreeder/features/cages/presentation/cages_page.dart';
+import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
+import 'package:birdbreeder/features/breedings/presentation/breeding_pair/breeding_pair_page.dart';
+import 'package:birdbreeder/features/breedings/presentation/breeding_pairs/breeding_pairs_page.dart';
+import 'package:birdbreeder/features/cages/domain/models/cage.dart';
+import 'package:birdbreeder/features/cages/presentation/cage/cage_page.dart';
+import 'package:birdbreeder/features/cages/presentation/cages/cages_page.dart';
+import 'package:birdbreeder/features/colors/domain/models/bird_color.dart';
+import 'package:birdbreeder/features/colors/presentation/color/color_page.dart';
 import 'package:birdbreeder/features/colors/presentation/colors_page.dart';
 import 'package:birdbreeder/features/contacts/presentation/contacts_page.dart';
 import 'package:birdbreeder/features/finances/finances_page.dart';
@@ -68,6 +74,12 @@ class AppRouter extends RootStackRouter {
               transitionsBuilder: TransitionsBuilders.slideLeft,
             ),
             CustomRoute<void>(
+              page: BreedingPairRoute.page,
+              path: 'cages/cage',
+              guards: [AuthGuard()],
+              transitionsBuilder: TransitionsBuilders.slideLeft,
+            ),
+            CustomRoute<void>(
               page: ColorsRoute.page,
               path: 'colors',
               guards: [AuthGuard()],
@@ -80,8 +92,14 @@ class AppRouter extends RootStackRouter {
               transitionsBuilder: TransitionsBuilders.slideLeft,
             ),
             CustomRoute<void>(
-              page: BreedingsRoute.page,
-              path: 'breedings',
+              page: BreedingPairsRoute.page,
+              path: 'breedingPairs',
+              guards: [AuthGuard()],
+              transitionsBuilder: TransitionsBuilders.slideLeft,
+            ),
+            CustomRoute<void>(
+              page: BreedingPairRoute.page,
+              path: 'breedingPairs/breedingPair',
               guards: [AuthGuard()],
               transitionsBuilder: TransitionsBuilders.slideLeft,
             ),

@@ -117,7 +117,7 @@ class __$$SpeciesImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SpeciesImpl implements _Species {
-  _$SpeciesImpl({required this.id, this.name, this.latName});
+  _$SpeciesImpl({required this.id, required this.name, required this.latName});
 
   @override
   final String id;
@@ -156,8 +156,8 @@ class _$SpeciesImpl implements _Species {
 abstract class _Species implements Species {
   factory _Species(
       {required final String id,
-      final String? name,
-      final String? latName}) = _$SpeciesImpl;
+      required final String? name,
+      required final String? latName}) = _$SpeciesImpl;
 
   @override
   String get id;

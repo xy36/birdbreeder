@@ -63,7 +63,7 @@ enum MenuPage {
       MenuPage.colors => const ColorsRoute(),
       MenuPage.species => const SpeciesRoute(),
       // MenuPage.addBird => BirdRoute(bird: null),
-      MenuPage.breedings => const BreedingsRoute(),
+      MenuPage.breedings => const BreedingPairsRoute(),
       MenuPage.finances => const FinancesRoute(),
       MenuPage.account => const AccountRoute(),
     };

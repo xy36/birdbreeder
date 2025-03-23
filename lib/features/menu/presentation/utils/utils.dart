@@ -1,7 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/services/screen_size.dart';
+import 'package:birdbreeder/core/extensions/screen_size_extensions.dart';
 
 bool showMenuAsDrawer(BuildContext context) {
-  final size = ScreenSize.getScreenSize(context);
-  return size.isMobile();
+  return context.isMobile;
 }

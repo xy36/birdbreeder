@@ -40,7 +40,7 @@ enum ScreenSize {
       };
 
   /// Returns true if the current ScreenSize is [ScreenSize.xs]
-  bool isMobile() => this == xs;
+  bool get isMobile => this == xs;
 
   /// Returns true if the current ScreenSize is [ScreenSize.sm]
   bool isTabletPortrait() => this == sm;

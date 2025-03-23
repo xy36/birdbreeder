@@ -10,12 +10,11 @@
 import 'package:auto_mappr_annotation/auto_mappr_annotation.dart' as _i1;
 
 import '../../../../core/utils/user_helper.dart' as _i4;
-import '../../data/dtos/cage_dto.dart' as _i2;
-import '../models/cage.dart' as _i3;
+import '../../data/dtos/cage_dto.dart' as _i3;
+import '../models/cage.dart' as _i2;
 
 /// {@template package:birdbreeder/features/cages/domain/mapper/cage_mapper.dart}
 /// Available mappings:
-/// - `CageDto` → `Cage`.
 /// - `Cage` → `CageDto`.
 /// {@endtemplate}
 class $CageMapper implements _i1.AutoMapprInterface {
@@ -31,16 +30,10 @@ class $CageMapper implements _i1.AutoMapprInterface {
   bool canConvert<SOURCE, TARGET>({bool recursive = true}) {
     final sourceTypeOf = _typeOf<SOURCE>();
     final targetTypeOf = _typeOf<TARGET>();
-    if ((sourceTypeOf == _typeOf<_i2.CageDto>() ||
-            sourceTypeOf == _typeOf<_i2.CageDto?>()) &&
-        (targetTypeOf == _typeOf<_i3.Cage>() ||
-            targetTypeOf == _typeOf<_i3.Cage?>())) {
-      return true;
-    }
-    if ((sourceTypeOf == _typeOf<_i3.Cage>() ||
-            sourceTypeOf == _typeOf<_i3.Cage?>()) &&
-        (targetTypeOf == _typeOf<_i2.CageDto>() ||
-            targetTypeOf == _typeOf<_i2.CageDto?>())) {
+    if ((sourceTypeOf == _typeOf<_i2.Cage>() ||
+            sourceTypeOf == _typeOf<_i2.Cage?>()) &&
+        (targetTypeOf == _typeOf<_i3.CageDto>() ||
+            targetTypeOf == _typeOf<_i3.CageDto?>())) {
       return true;
     }
     if (recursive) {
@@ -234,23 +227,14 @@ class $CageMapper implements _i1.AutoMapprInterface {
   }) {
     final sourceTypeOf = _typeOf<SOURCE>();
     final targetTypeOf = _typeOf<TARGET>();
-    if ((sourceTypeOf == _typeOf<_i2.CageDto>() ||
-            sourceTypeOf == _typeOf<_i2.CageDto?>()) &&
-        (targetTypeOf == _typeOf<_i3.Cage>() ||
-            targetTypeOf == _typeOf<_i3.Cage?>())) {
+    if ((sourceTypeOf == _typeOf<_i2.Cage>() ||
+            sourceTypeOf == _typeOf<_i2.Cage?>()) &&
+        (targetTypeOf == _typeOf<_i3.CageDto>() ||
+            targetTypeOf == _typeOf<_i3.CageDto?>())) {
       if (canReturnNull && model == null) {
         return null;
       }
-      return (_map__i2$CageDto_To__i3$Cage((model as _i2.CageDto?)) as TARGET);
-    }
-    if ((sourceTypeOf == _typeOf<_i3.Cage>() ||
-            sourceTypeOf == _typeOf<_i3.Cage?>()) &&
-        (targetTypeOf == _typeOf<_i2.CageDto>() ||
-            targetTypeOf == _typeOf<_i2.CageDto?>())) {
-      if (canReturnNull && model == null) {
-        return null;
-      }
-      return (_map__i3$Cage_To__i2$CageDto((model as _i3.Cage?)) as TARGET);
+      return (_map__i2$Cage_To__i3$CageDto((model as _i2.Cage?)) as TARGET);
     }
     throw Exception('No ${model.runtimeType} -> $targetTypeOf mapping.');
   }
@@ -284,31 +268,14 @@ class $CageMapper implements _i1.AutoMapprInterface {
     return false;
   }
 
-  _i3.Cage _map__i2$CageDto_To__i3$Cage(_i2.CageDto? input) {
-    final model = input;
-    if (model == null) {
-      throw Exception(
-          r'Mapping CageDto → Cage failed because CageDto was null, and no default value was provided. '
-          r'Consider setting the whenSourceIsNull parameter on the MapType<CageDto, Cage> to handle null values during mapping.');
-    }
-    return _i3.Cage(
-      id: model.id,
-      name: model.name,
-      description: model.description,
-      width: model.width,
-      height: model.height,
-      depth: model.depth,
-    );
-  }
-
-  _i2.CageDto _map__i3$Cage_To__i2$CageDto(_i3.Cage? input) {
+  _i3.CageDto _map__i2$Cage_To__i3$CageDto(_i2.Cage? input) {
     final model = input;
     if (model == null) {
       throw Exception(
           r'Mapping Cage → CageDto failed because Cage was null, and no default value was provided. '
           r'Consider setting the whenSourceIsNull parameter on the MapType<Cage, CageDto> to handle null values during mapping.');
     }
-    return _i2.CageDto(
+    return _i3.CageDto(
       id: model.id,
       name: model.name,
       description: model.description,

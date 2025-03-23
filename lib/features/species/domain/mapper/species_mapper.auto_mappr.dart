@@ -10,12 +10,11 @@
 import 'package:auto_mappr_annotation/auto_mappr_annotation.dart' as _i1;
 
 import '../../../../core/utils/user_helper.dart' as _i4;
-import '../../data/dtos/species_dto.dart' as _i2;
-import '../models/species.dart' as _i3;
+import '../../data/dtos/species_dto.dart' as _i3;
+import '../models/species.dart' as _i2;
 
 /// {@template package:birdbreeder/features/species/domain/mapper/species_mapper.dart}
 /// Available mappings:
-/// - `SpeciesDto` → `Species`.
 /// - `Species` → `SpeciesDto`.
 /// {@endtemplate}
 class $SpeciesMapper implements _i1.AutoMapprInterface {
@@ -31,16 +30,10 @@ class $SpeciesMapper implements _i1.AutoMapprInterface {
   bool canConvert<SOURCE, TARGET>({bool recursive = true}) {
     final sourceTypeOf = _typeOf<SOURCE>();
     final targetTypeOf = _typeOf<TARGET>();
-    if ((sourceTypeOf == _typeOf<_i2.SpeciesDto>() ||
-            sourceTypeOf == _typeOf<_i2.SpeciesDto?>()) &&
-        (targetTypeOf == _typeOf<_i3.Species>() ||
-            targetTypeOf == _typeOf<_i3.Species?>())) {
-      return true;
-    }
-    if ((sourceTypeOf == _typeOf<_i3.Species>() ||
-            sourceTypeOf == _typeOf<_i3.Species?>()) &&
-        (targetTypeOf == _typeOf<_i2.SpeciesDto>() ||
-            targetTypeOf == _typeOf<_i2.SpeciesDto?>())) {
+    if ((sourceTypeOf == _typeOf<_i2.Species>() ||
+            sourceTypeOf == _typeOf<_i2.Species?>()) &&
+        (targetTypeOf == _typeOf<_i3.SpeciesDto>() ||
+            targetTypeOf == _typeOf<_i3.SpeciesDto?>())) {
       return true;
     }
     if (recursive) {
@@ -234,24 +227,14 @@ class $SpeciesMapper implements _i1.AutoMapprInterface {
   }) {
     final sourceTypeOf = _typeOf<SOURCE>();
     final targetTypeOf = _typeOf<TARGET>();
-    if ((sourceTypeOf == _typeOf<_i2.SpeciesDto>() ||
-            sourceTypeOf == _typeOf<_i2.SpeciesDto?>()) &&
-        (targetTypeOf == _typeOf<_i3.Species>() ||
-            targetTypeOf == _typeOf<_i3.Species?>())) {
+    if ((sourceTypeOf == _typeOf<_i2.Species>() ||
+            sourceTypeOf == _typeOf<_i2.Species?>()) &&
+        (targetTypeOf == _typeOf<_i3.SpeciesDto>() ||
+            targetTypeOf == _typeOf<_i3.SpeciesDto?>())) {
       if (canReturnNull && model == null) {
         return null;
       }
-      return (_map__i2$SpeciesDto_To__i3$Species((model as _i2.SpeciesDto?))
-          as TARGET);
-    }
-    if ((sourceTypeOf == _typeOf<_i3.Species>() ||
-            sourceTypeOf == _typeOf<_i3.Species?>()) &&
-        (targetTypeOf == _typeOf<_i2.SpeciesDto>() ||
-            targetTypeOf == _typeOf<_i2.SpeciesDto?>())) {
-      if (canReturnNull && model == null) {
-        return null;
-      }
-      return (_map__i3$Species_To__i2$SpeciesDto((model as _i3.Species?))
+      return (_map__i2$Species_To__i3$SpeciesDto((model as _i2.Species?))
           as TARGET);
     }
     throw Exception('No ${model.runtimeType} -> $targetTypeOf mapping.');
@@ -286,28 +269,14 @@ class $SpeciesMapper implements _i1.AutoMapprInterface {
     return false;
   }
 
-  _i3.Species _map__i2$SpeciesDto_To__i3$Species(_i2.SpeciesDto? input) {
-    final model = input;
-    if (model == null) {
-      throw Exception(
-          r'Mapping SpeciesDto → Species failed because SpeciesDto was null, and no default value was provided. '
-          r'Consider setting the whenSourceIsNull parameter on the MapType<SpeciesDto, Species> to handle null values during mapping.');
-    }
-    return _i3.Species(
-      id: model.id,
-      name: model.name,
-      latName: model.latName,
-    );
-  }
-
-  _i2.SpeciesDto _map__i3$Species_To__i2$SpeciesDto(_i3.Species? input) {
+  _i3.SpeciesDto _map__i2$Species_To__i3$SpeciesDto(_i2.Species? input) {
     final model = input;
     if (model == null) {
       throw Exception(
           r'Mapping Species → SpeciesDto failed because Species was null, and no default value was provided. '
           r'Consider setting the whenSourceIsNull parameter on the MapType<Species, SpeciesDto> to handle null values during mapping.');
     }
-    return _i2.SpeciesDto(
+    return _i3.SpeciesDto(
       id: model.id,
       name: model.name,
       latName: model.latName,

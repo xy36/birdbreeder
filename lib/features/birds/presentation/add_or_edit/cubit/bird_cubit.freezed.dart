@@ -18,58 +18,39 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BirdState {
   Bird get bird => throw _privateConstructorUsedError;
   BirdMode get mode => throw _privateConstructorUsedError;
-  BirdResources get birdResources => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            Bird bird, BirdMode mode, BirdResources birdResources)
-        initial,
-    required TResult Function(
-            Bird bird, BirdMode mode, BirdResources birdResources)
-        loading,
-    required TResult Function(
-            Bird bird, BirdMode mode, BirdResources birdResources)
-        loaded,
+    required TResult Function(Bird bird, BirdMode mode) loading,
+    required TResult Function(Bird bird, BirdMode mode) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        initial,
-    TResult? Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        loading,
-    TResult? Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        loaded,
+    TResult? Function(Bird bird, BirdMode mode)? loading,
+    TResult? Function(Bird bird, BirdMode mode)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        initial,
-    TResult Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        loading,
-    TResult Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        loaded,
+    TResult Function(Bird bird, BirdMode mode)? loading,
+    TResult Function(Bird bird, BirdMode mode)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BirdInitial value) initial,
     required TResult Function(BirdLoading value) loading,
     required TResult Function(BirdLoaded value) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BirdInitial value)? initial,
     TResult? Function(BirdLoading value)? loading,
     TResult? Function(BirdLoaded value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BirdInitial value)? initial,
     TResult Function(BirdLoading value)? loading,
     TResult Function(BirdLoaded value)? loaded,
     required TResult orElse(),
@@ -88,10 +69,9 @@ abstract class $BirdStateCopyWith<$Res> {
   factory $BirdStateCopyWith(BirdState value, $Res Function(BirdState) then) =
       _$BirdStateCopyWithImpl<$Res, BirdState>;
   @useResult
-  $Res call({Bird bird, BirdMode mode, BirdResources birdResources});
+  $Res call({Bird bird, BirdMode mode});
 
   $BirdCopyWith<$Res> get bird;
-  $BirdResourcesCopyWith<$Res> get birdResources;
 }
 
 /// @nodoc
@@ -111,7 +91,6 @@ class _$BirdStateCopyWithImpl<$Res, $Val extends BirdState>
   $Res call({
     Object? bird = null,
     Object? mode = null,
-    Object? birdResources = null,
   }) {
     return _then(_value.copyWith(
       bird: null == bird
@@ -122,10 +101,6 @@ class _$BirdStateCopyWithImpl<$Res, $Val extends BirdState>
           ? _value.mode
           : mode // ignore: cast_nullable_to_non_nullable
               as BirdMode,
-      birdResources: null == birdResources
-          ? _value.birdResources
-          : birdResources // ignore: cast_nullable_to_non_nullable
-              as BirdResources,
     ) as $Val);
   }
 
@@ -138,208 +113,6 @@ class _$BirdStateCopyWithImpl<$Res, $Val extends BirdState>
       return _then(_value.copyWith(bird: value) as $Val);
     });
   }
-
-  /// Create a copy of BirdState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $BirdResourcesCopyWith<$Res> get birdResources {
-    return $BirdResourcesCopyWith<$Res>(_value.birdResources, (value) {
-      return _then(_value.copyWith(birdResources: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$BirdInitialImplCopyWith<$Res>
-    implements $BirdStateCopyWith<$Res> {
-  factory _$$BirdInitialImplCopyWith(
-          _$BirdInitialImpl value, $Res Function(_$BirdInitialImpl) then) =
-      __$$BirdInitialImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({Bird bird, BirdMode mode, BirdResources birdResources});
-
-  @override
-  $BirdCopyWith<$Res> get bird;
-  @override
-  $BirdResourcesCopyWith<$Res> get birdResources;
-}
-
-/// @nodoc
-class __$$BirdInitialImplCopyWithImpl<$Res>
-    extends _$BirdStateCopyWithImpl<$Res, _$BirdInitialImpl>
-    implements _$$BirdInitialImplCopyWith<$Res> {
-  __$$BirdInitialImplCopyWithImpl(
-      _$BirdInitialImpl _value, $Res Function(_$BirdInitialImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of BirdState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? bird = null,
-    Object? mode = null,
-    Object? birdResources = null,
-  }) {
-    return _then(_$BirdInitialImpl(
-      bird: null == bird
-          ? _value.bird
-          : bird // ignore: cast_nullable_to_non_nullable
-              as Bird,
-      mode: null == mode
-          ? _value.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as BirdMode,
-      birdResources: null == birdResources
-          ? _value.birdResources
-          : birdResources // ignore: cast_nullable_to_non_nullable
-              as BirdResources,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$BirdInitialImpl implements BirdInitial {
-  const _$BirdInitialImpl(
-      {required this.bird, required this.mode, required this.birdResources});
-
-  @override
-  final Bird bird;
-  @override
-  final BirdMode mode;
-  @override
-  final BirdResources birdResources;
-
-  @override
-  String toString() {
-    return 'BirdState.initial(bird: $bird, mode: $mode, birdResources: $birdResources)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$BirdInitialImpl &&
-            (identical(other.bird, bird) || other.bird == bird) &&
-            (identical(other.mode, mode) || other.mode == mode) &&
-            (identical(other.birdResources, birdResources) ||
-                other.birdResources == birdResources));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, bird, mode, birdResources);
-
-  /// Create a copy of BirdState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$BirdInitialImplCopyWith<_$BirdInitialImpl> get copyWith =>
-      __$$BirdInitialImplCopyWithImpl<_$BirdInitialImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            Bird bird, BirdMode mode, BirdResources birdResources)
-        initial,
-    required TResult Function(
-            Bird bird, BirdMode mode, BirdResources birdResources)
-        loading,
-    required TResult Function(
-            Bird bird, BirdMode mode, BirdResources birdResources)
-        loaded,
-  }) {
-    return initial(bird, mode, birdResources);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        initial,
-    TResult? Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        loading,
-    TResult? Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        loaded,
-  }) {
-    return initial?.call(bird, mode, birdResources);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        initial,
-    TResult Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        loading,
-    TResult Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        loaded,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(bird, mode, birdResources);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(BirdInitial value) initial,
-    required TResult Function(BirdLoading value) loading,
-    required TResult Function(BirdLoaded value) loaded,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BirdInitial value)? initial,
-    TResult? Function(BirdLoading value)? loading,
-    TResult? Function(BirdLoaded value)? loaded,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(BirdInitial value)? initial,
-    TResult Function(BirdLoading value)? loading,
-    TResult Function(BirdLoaded value)? loaded,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class BirdInitial implements BirdState {
-  const factory BirdInitial(
-      {required final Bird bird,
-      required final BirdMode mode,
-      required final BirdResources birdResources}) = _$BirdInitialImpl;
-
-  @override
-  Bird get bird;
-  @override
-  BirdMode get mode;
-  @override
-  BirdResources get birdResources;
-
-  /// Create a copy of BirdState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BirdInitialImplCopyWith<_$BirdInitialImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -350,12 +123,10 @@ abstract class _$$BirdLoadingImplCopyWith<$Res>
       __$$BirdLoadingImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Bird bird, BirdMode mode, BirdResources birdResources});
+  $Res call({Bird bird, BirdMode mode});
 
   @override
   $BirdCopyWith<$Res> get bird;
-  @override
-  $BirdResourcesCopyWith<$Res> get birdResources;
 }
 
 /// @nodoc
@@ -373,7 +144,6 @@ class __$$BirdLoadingImplCopyWithImpl<$Res>
   $Res call({
     Object? bird = null,
     Object? mode = null,
-    Object? birdResources = null,
   }) {
     return _then(_$BirdLoadingImpl(
       bird: null == bird
@@ -384,10 +154,6 @@ class __$$BirdLoadingImplCopyWithImpl<$Res>
           ? _value.mode
           : mode // ignore: cast_nullable_to_non_nullable
               as BirdMode,
-      birdResources: null == birdResources
-          ? _value.birdResources
-          : birdResources // ignore: cast_nullable_to_non_nullable
-              as BirdResources,
     ));
   }
 }
@@ -395,19 +161,16 @@ class __$$BirdLoadingImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BirdLoadingImpl implements BirdLoading {
-  const _$BirdLoadingImpl(
-      {required this.bird, required this.mode, required this.birdResources});
+  const _$BirdLoadingImpl({required this.bird, required this.mode});
 
   @override
   final Bird bird;
   @override
   final BirdMode mode;
-  @override
-  final BirdResources birdResources;
 
   @override
   String toString() {
-    return 'BirdState.loading(bird: $bird, mode: $mode, birdResources: $birdResources)';
+    return 'BirdState.loading(bird: $bird, mode: $mode)';
   }
 
   @override
@@ -416,13 +179,11 @@ class _$BirdLoadingImpl implements BirdLoading {
         (other.runtimeType == runtimeType &&
             other is _$BirdLoadingImpl &&
             (identical(other.bird, bird) || other.bird == bird) &&
-            (identical(other.mode, mode) || other.mode == mode) &&
-            (identical(other.birdResources, birdResources) ||
-                other.birdResources == birdResources));
+            (identical(other.mode, mode) || other.mode == mode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, bird, mode, birdResources);
+  int get hashCode => Object.hash(runtimeType, bird, mode);
 
   /// Create a copy of BirdState
   /// with the given fields replaced by the non-null parameter values.
@@ -435,45 +196,30 @@ class _$BirdLoadingImpl implements BirdLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            Bird bird, BirdMode mode, BirdResources birdResources)
-        initial,
-    required TResult Function(
-            Bird bird, BirdMode mode, BirdResources birdResources)
-        loading,
-    required TResult Function(
-            Bird bird, BirdMode mode, BirdResources birdResources)
-        loaded,
+    required TResult Function(Bird bird, BirdMode mode) loading,
+    required TResult Function(Bird bird, BirdMode mode) loaded,
   }) {
-    return loading(bird, mode, birdResources);
+    return loading(bird, mode);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        initial,
-    TResult? Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        loading,
-    TResult? Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        loaded,
+    TResult? Function(Bird bird, BirdMode mode)? loading,
+    TResult? Function(Bird bird, BirdMode mode)? loaded,
   }) {
-    return loading?.call(bird, mode, birdResources);
+    return loading?.call(bird, mode);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        initial,
-    TResult Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        loading,
-    TResult Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        loaded,
+    TResult Function(Bird bird, BirdMode mode)? loading,
+    TResult Function(Bird bird, BirdMode mode)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading(bird, mode, birdResources);
+      return loading(bird, mode);
     }
     return orElse();
   }
@@ -481,7 +227,6 @@ class _$BirdLoadingImpl implements BirdLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BirdInitial value) initial,
     required TResult Function(BirdLoading value) loading,
     required TResult Function(BirdLoaded value) loaded,
   }) {
@@ -491,7 +236,6 @@ class _$BirdLoadingImpl implements BirdLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BirdInitial value)? initial,
     TResult? Function(BirdLoading value)? loading,
     TResult? Function(BirdLoaded value)? loaded,
   }) {
@@ -501,7 +245,6 @@ class _$BirdLoadingImpl implements BirdLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BirdInitial value)? initial,
     TResult Function(BirdLoading value)? loading,
     TResult Function(BirdLoaded value)? loaded,
     required TResult orElse(),
@@ -516,15 +259,12 @@ class _$BirdLoadingImpl implements BirdLoading {
 abstract class BirdLoading implements BirdState {
   const factory BirdLoading(
       {required final Bird bird,
-      required final BirdMode mode,
-      required final BirdResources birdResources}) = _$BirdLoadingImpl;
+      required final BirdMode mode}) = _$BirdLoadingImpl;
 
   @override
   Bird get bird;
   @override
   BirdMode get mode;
-  @override
-  BirdResources get birdResources;
 
   /// Create a copy of BirdState
   /// with the given fields replaced by the non-null parameter values.
@@ -542,12 +282,10 @@ abstract class _$$BirdLoadedImplCopyWith<$Res>
       __$$BirdLoadedImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Bird bird, BirdMode mode, BirdResources birdResources});
+  $Res call({Bird bird, BirdMode mode});
 
   @override
   $BirdCopyWith<$Res> get bird;
-  @override
-  $BirdResourcesCopyWith<$Res> get birdResources;
 }
 
 /// @nodoc
@@ -565,7 +303,6 @@ class __$$BirdLoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? bird = null,
     Object? mode = null,
-    Object? birdResources = null,
   }) {
     return _then(_$BirdLoadedImpl(
       bird: null == bird
@@ -576,10 +313,6 @@ class __$$BirdLoadedImplCopyWithImpl<$Res>
           ? _value.mode
           : mode // ignore: cast_nullable_to_non_nullable
               as BirdMode,
-      birdResources: null == birdResources
-          ? _value.birdResources
-          : birdResources // ignore: cast_nullable_to_non_nullable
-              as BirdResources,
     ));
   }
 }
@@ -587,19 +320,16 @@ class __$$BirdLoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BirdLoadedImpl implements BirdLoaded {
-  const _$BirdLoadedImpl(
-      {required this.bird, required this.mode, required this.birdResources});
+  const _$BirdLoadedImpl({required this.bird, required this.mode});
 
   @override
   final Bird bird;
   @override
   final BirdMode mode;
-  @override
-  final BirdResources birdResources;
 
   @override
   String toString() {
-    return 'BirdState.loaded(bird: $bird, mode: $mode, birdResources: $birdResources)';
+    return 'BirdState.loaded(bird: $bird, mode: $mode)';
   }
 
   @override
@@ -608,13 +338,11 @@ class _$BirdLoadedImpl implements BirdLoaded {
         (other.runtimeType == runtimeType &&
             other is _$BirdLoadedImpl &&
             (identical(other.bird, bird) || other.bird == bird) &&
-            (identical(other.mode, mode) || other.mode == mode) &&
-            (identical(other.birdResources, birdResources) ||
-                other.birdResources == birdResources));
+            (identical(other.mode, mode) || other.mode == mode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, bird, mode, birdResources);
+  int get hashCode => Object.hash(runtimeType, bird, mode);
 
   /// Create a copy of BirdState
   /// with the given fields replaced by the non-null parameter values.
@@ -627,45 +355,30 @@ class _$BirdLoadedImpl implements BirdLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            Bird bird, BirdMode mode, BirdResources birdResources)
-        initial,
-    required TResult Function(
-            Bird bird, BirdMode mode, BirdResources birdResources)
-        loading,
-    required TResult Function(
-            Bird bird, BirdMode mode, BirdResources birdResources)
-        loaded,
+    required TResult Function(Bird bird, BirdMode mode) loading,
+    required TResult Function(Bird bird, BirdMode mode) loaded,
   }) {
-    return loaded(bird, mode, birdResources);
+    return loaded(bird, mode);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        initial,
-    TResult? Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        loading,
-    TResult? Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        loaded,
+    TResult? Function(Bird bird, BirdMode mode)? loading,
+    TResult? Function(Bird bird, BirdMode mode)? loaded,
   }) {
-    return loaded?.call(bird, mode, birdResources);
+    return loaded?.call(bird, mode);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        initial,
-    TResult Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        loading,
-    TResult Function(Bird bird, BirdMode mode, BirdResources birdResources)?
-        loaded,
+    TResult Function(Bird bird, BirdMode mode)? loading,
+    TResult Function(Bird bird, BirdMode mode)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(bird, mode, birdResources);
+      return loaded(bird, mode);
     }
     return orElse();
   }
@@ -673,7 +386,6 @@ class _$BirdLoadedImpl implements BirdLoaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BirdInitial value) initial,
     required TResult Function(BirdLoading value) loading,
     required TResult Function(BirdLoaded value) loaded,
   }) {
@@ -683,7 +395,6 @@ class _$BirdLoadedImpl implements BirdLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BirdInitial value)? initial,
     TResult? Function(BirdLoading value)? loading,
     TResult? Function(BirdLoaded value)? loaded,
   }) {
@@ -693,7 +404,6 @@ class _$BirdLoadedImpl implements BirdLoaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BirdInitial value)? initial,
     TResult Function(BirdLoading value)? loading,
     TResult Function(BirdLoaded value)? loaded,
     required TResult orElse(),
@@ -708,15 +418,12 @@ class _$BirdLoadedImpl implements BirdLoaded {
 abstract class BirdLoaded implements BirdState {
   const factory BirdLoaded(
       {required final Bird bird,
-      required final BirdMode mode,
-      required final BirdResources birdResources}) = _$BirdLoadedImpl;
+      required final BirdMode mode}) = _$BirdLoadedImpl;
 
   @override
   Bird get bird;
   @override
   BirdMode get mode;
-  @override
-  BirdResources get birdResources;
 
   /// Create a copy of BirdState
   /// with the given fields replaced by the non-null parameter values.

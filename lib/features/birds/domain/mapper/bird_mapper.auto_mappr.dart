@@ -9,14 +9,12 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_mappr_annotation/auto_mappr_annotation.dart' as _i1;
 
-import '../../../../core/utils/user_helper.dart' as _i5;
-import '../../data/dtos/bird_dto.dart' as _i2;
-import '../models/bird.dart' as _i3;
-import 'bird_mapper.dart' as _i4;
+import '../../../../core/utils/user_helper.dart' as _i4;
+import '../../data/dtos/bird_dto.dart' as _i3;
+import '../models/bird.dart' as _i2;
 
 /// {@template package:birdbreeder/features/birds/domain/mapper/bird_mapper.dart}
 /// Available mappings:
-/// - `BirdDto` → `Bird`.
 /// - `Bird` → `BirdDto`.
 /// {@endtemplate}
 class $BirdMapper implements _i1.AutoMapprInterface {
@@ -32,16 +30,10 @@ class $BirdMapper implements _i1.AutoMapprInterface {
   bool canConvert<SOURCE, TARGET>({bool recursive = true}) {
     final sourceTypeOf = _typeOf<SOURCE>();
     final targetTypeOf = _typeOf<TARGET>();
-    if ((sourceTypeOf == _typeOf<_i2.BirdDto>() ||
-            sourceTypeOf == _typeOf<_i2.BirdDto?>()) &&
-        (targetTypeOf == _typeOf<_i3.Bird>() ||
-            targetTypeOf == _typeOf<_i3.Bird?>())) {
-      return true;
-    }
-    if ((sourceTypeOf == _typeOf<_i3.Bird>() ||
-            sourceTypeOf == _typeOf<_i3.Bird?>()) &&
-        (targetTypeOf == _typeOf<_i2.BirdDto>() ||
-            targetTypeOf == _typeOf<_i2.BirdDto?>())) {
+    if ((sourceTypeOf == _typeOf<_i2.Bird>() ||
+            sourceTypeOf == _typeOf<_i2.Bird?>()) &&
+        (targetTypeOf == _typeOf<_i3.BirdDto>() ||
+            targetTypeOf == _typeOf<_i3.BirdDto?>())) {
       return true;
     }
     if (recursive) {
@@ -235,23 +227,14 @@ class $BirdMapper implements _i1.AutoMapprInterface {
   }) {
     final sourceTypeOf = _typeOf<SOURCE>();
     final targetTypeOf = _typeOf<TARGET>();
-    if ((sourceTypeOf == _typeOf<_i2.BirdDto>() ||
-            sourceTypeOf == _typeOf<_i2.BirdDto?>()) &&
-        (targetTypeOf == _typeOf<_i3.Bird>() ||
-            targetTypeOf == _typeOf<_i3.Bird?>())) {
+    if ((sourceTypeOf == _typeOf<_i2.Bird>() ||
+            sourceTypeOf == _typeOf<_i2.Bird?>()) &&
+        (targetTypeOf == _typeOf<_i3.BirdDto>() ||
+            targetTypeOf == _typeOf<_i3.BirdDto?>())) {
       if (canReturnNull && model == null) {
         return null;
       }
-      return (_map__i2$BirdDto_To__i3$Bird((model as _i2.BirdDto?)) as TARGET);
-    }
-    if ((sourceTypeOf == _typeOf<_i3.Bird>() ||
-            sourceTypeOf == _typeOf<_i3.Bird?>()) &&
-        (targetTypeOf == _typeOf<_i2.BirdDto>() ||
-            targetTypeOf == _typeOf<_i2.BirdDto?>())) {
-      if (canReturnNull && model == null) {
-        return null;
-      }
-      return (_map__i3$Bird_To__i2$BirdDto((model as _i3.Bird?)) as TARGET);
+      return (_map__i2$Bird_To__i3$BirdDto((model as _i2.Bird?)) as TARGET);
     }
     throw Exception('No ${model.runtimeType} -> $targetTypeOf mapping.');
   }
@@ -285,44 +268,14 @@ class $BirdMapper implements _i1.AutoMapprInterface {
     return false;
   }
 
-  _i3.Bird _map__i2$BirdDto_To__i3$Bird(_i2.BirdDto? input) {
-    final model = input;
-    if (model == null) {
-      throw Exception(
-          r'Mapping BirdDto → Bird failed because BirdDto was null, and no default value was provided. '
-          r'Consider setting the whenSourceIsNull parameter on the MapType<BirdDto, Bird> to handle null values during mapping.');
-    }
-    return _i3.Bird(
-      id: model.id,
-      created: model.created,
-      updated: model.updated,
-      ringnumber: model.ringnumber,
-      born: model.born,
-      died: model.died,
-      bought: model.bought,
-      sell: model.sell,
-      boughtPrice: model.boughtPrice,
-      sellPriceOffer: model.sellPriceOffer,
-      sellPriceReal: model.sellPriceReal,
-      species: _i4.BirdMapper.convertSpeciesFromDto(model),
-      color: _i4.BirdMapper.convertColorFromDto(model),
-      cage: _i4.BirdMapper.convertCageFromDto(model),
-      father: _i4.BirdMapper.convertFatherFromDto(model),
-      mother: _i4.BirdMapper.convertMotherFromDto(model),
-      sex: model.sex,
-      sold: model.sold,
-      children: model.children,
-    );
-  }
-
-  _i2.BirdDto _map__i3$Bird_To__i2$BirdDto(_i3.Bird? input) {
+  _i3.BirdDto _map__i2$Bird_To__i3$BirdDto(_i2.Bird? input) {
     final model = input;
     if (model == null) {
       throw Exception(
           r'Mapping Bird → BirdDto failed because Bird was null, and no default value was provided. '
           r'Consider setting the whenSourceIsNull parameter on the MapType<Bird, BirdDto> to handle null values during mapping.');
     }
-    return _i2.BirdDto(
+    return _i3.BirdDto(
       id: model.id,
       created: model.created,
       updated: model.updated,
@@ -331,17 +284,22 @@ class $BirdMapper implements _i1.AutoMapprInterface {
       died: model.died,
       sell: model.sell,
       bought: model.bought,
-      species: _i4.BirdMapper.convertSpeciesFromModel(model),
-      color: _i4.BirdMapper.convertColorFromModel(model),
-      cage: _i4.BirdMapper.convertCageFromModel(model),
-      father: _i4.BirdMapper.convertFatherFromModel(model),
-      mother: _i4.BirdMapper.convertMotherFromModel(model),
+      species: model.species,
+      color: model.color,
+      cage: model.cage,
+      father: model.father,
+      mother: model.mother,
       boughtPrice: model.boughtPrice,
       sellPriceOffer: model.sellPriceOffer,
       sellPriceReal: model.sellPriceReal,
       sex: model.sex,
       sold: model.sold,
-      user: _i5.UserHelper.insertUser(),
+      isEgg: model.isEgg,
+      laid: model.laid,
+      hatched: model.hatched,
+      flowOut: model.flowOut,
+      brood: model.brood,
+      user: _i4.UserHelper.insertUser(),
       children: model.children,
     );
   }

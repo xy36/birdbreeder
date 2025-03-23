@@ -216,15 +216,15 @@ class __$$ContactImplCopyWithImpl<$Res>
 class _$ContactImpl implements _Contact {
   _$ContactImpl(
       {required this.id,
-      this.number,
-      this.firstName,
-      this.name,
-      this.email,
-      this.address,
-      this.city,
-      this.postalCode,
-      this.country,
-      this.website});
+      required this.number,
+      required this.firstName,
+      required this.name,
+      required this.email,
+      required this.address,
+      required this.city,
+      required this.postalCode,
+      required this.country,
+      required this.website});
 
   @override
   final String id;
@@ -287,15 +287,15 @@ class _$ContactImpl implements _Contact {
 abstract class _Contact implements Contact {
   factory _Contact(
       {required final String id,
-      final String? number,
-      final String? firstName,
-      final String? name,
-      final String? email,
-      final String? address,
-      final String? city,
-      final String? postalCode,
-      final String? country,
-      final String? website}) = _$ContactImpl;
+      required final String? number,
+      required final String? firstName,
+      required final String? name,
+      required final String? email,
+      required final String? address,
+      required final String? city,
+      required final String? postalCode,
+      required final String? country,
+      required final String? website}) = _$ContactImpl;
 
   @override
   String get id;

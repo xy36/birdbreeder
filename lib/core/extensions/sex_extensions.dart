@@ -11,6 +11,6 @@ extension SexExtensions on Sex {
   Widget getIcon(BuildContext context) => switch (this) {
         Sex.male => const Icon(Icons.male),
         Sex.female => const Icon(Icons.female),
-        Sex.unknown => const Icon(Icons.help),
+        Sex.unknown => const Icon(Icons.question_mark),
       };
 }

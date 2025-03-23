@@ -52,8 +52,16 @@ mixin _$BirdDto {
   @JsonKey(name: 'sell_price_real')
   double? get sellPriceReal => throw _privateConstructorUsedError;
   Sex get sex => throw _privateConstructorUsedError;
-  ExpandDto? get expand => throw _privateConstructorUsedError;
   bool? get sold => throw _privateConstructorUsedError;
+  bool? get isEgg => throw _privateConstructorUsedError;
+  @DateTimeNullEmptyConverter()
+  DateTime? get laid => throw _privateConstructorUsedError;
+  @DateTimeNullEmptyConverter()
+  DateTime? get hatched => throw _privateConstructorUsedError;
+  @DateTimeNullEmptyConverter()
+  DateTime? get flowOut => throw _privateConstructorUsedError;
+  @StringNullEmptyConverter()
+  String? get brood => throw _privateConstructorUsedError;
   String? get user => throw _privateConstructorUsedError;
   List<String> get children => throw _privateConstructorUsedError;
 
@@ -91,12 +99,14 @@ abstract class $BirdDtoCopyWith<$Res> {
       @JsonKey(name: 'sell_price_offer') double? sellPriceOffer,
       @JsonKey(name: 'sell_price_real') double? sellPriceReal,
       Sex sex,
-      ExpandDto? expand,
       bool? sold,
+      bool? isEgg,
+      @DateTimeNullEmptyConverter() DateTime? laid,
+      @DateTimeNullEmptyConverter() DateTime? hatched,
+      @DateTimeNullEmptyConverter() DateTime? flowOut,
+      @StringNullEmptyConverter() String? brood,
       String? user,
       List<String> children});
-
-  $ExpandDtoCopyWith<$Res>? get expand;
 }
 
 /// @nodoc
@@ -133,8 +143,12 @@ class _$BirdDtoCopyWithImpl<$Res, $Val extends BirdDto>
     Object? sellPriceOffer = freezed,
     Object? sellPriceReal = freezed,
     Object? sex = null,
-    Object? expand = freezed,
     Object? sold = freezed,
+    Object? isEgg = freezed,
+    Object? laid = freezed,
+    Object? hatched = freezed,
+    Object? flowOut = freezed,
+    Object? brood = freezed,
     Object? user = freezed,
     Object? children = null,
   }) {
@@ -215,14 +229,30 @@ class _$BirdDtoCopyWithImpl<$Res, $Val extends BirdDto>
           ? _value.sex
           : sex // ignore: cast_nullable_to_non_nullable
               as Sex,
-      expand: freezed == expand
-          ? _value.expand
-          : expand // ignore: cast_nullable_to_non_nullable
-              as ExpandDto?,
       sold: freezed == sold
           ? _value.sold
           : sold // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isEgg: freezed == isEgg
+          ? _value.isEgg
+          : isEgg // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      laid: freezed == laid
+          ? _value.laid
+          : laid // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      hatched: freezed == hatched
+          ? _value.hatched
+          : hatched // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      flowOut: freezed == flowOut
+          ? _value.flowOut
+          : flowOut // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      brood: freezed == brood
+          ? _value.brood
+          : brood // ignore: cast_nullable_to_non_nullable
+              as String?,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -232,20 +262,6 @@ class _$BirdDtoCopyWithImpl<$Res, $Val extends BirdDto>
           : children // ignore: cast_nullable_to_non_nullable
               as List<String>,
     ) as $Val);
-  }
-
-  /// Create a copy of BirdDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ExpandDtoCopyWith<$Res>? get expand {
-    if (_value.expand == null) {
-      return null;
-    }
-
-    return $ExpandDtoCopyWith<$Res>(_value.expand!, (value) {
-      return _then(_value.copyWith(expand: value) as $Val);
-    });
   }
 }
 
@@ -276,13 +292,14 @@ abstract class _$$BirdDtoImplCopyWith<$Res> implements $BirdDtoCopyWith<$Res> {
       @JsonKey(name: 'sell_price_offer') double? sellPriceOffer,
       @JsonKey(name: 'sell_price_real') double? sellPriceReal,
       Sex sex,
-      ExpandDto? expand,
       bool? sold,
+      bool? isEgg,
+      @DateTimeNullEmptyConverter() DateTime? laid,
+      @DateTimeNullEmptyConverter() DateTime? hatched,
+      @DateTimeNullEmptyConverter() DateTime? flowOut,
+      @StringNullEmptyConverter() String? brood,
       String? user,
       List<String> children});
-
-  @override
-  $ExpandDtoCopyWith<$Res>? get expand;
 }
 
 /// @nodoc
@@ -317,8 +334,12 @@ class __$$BirdDtoImplCopyWithImpl<$Res>
     Object? sellPriceOffer = freezed,
     Object? sellPriceReal = freezed,
     Object? sex = null,
-    Object? expand = freezed,
     Object? sold = freezed,
+    Object? isEgg = freezed,
+    Object? laid = freezed,
+    Object? hatched = freezed,
+    Object? flowOut = freezed,
+    Object? brood = freezed,
     Object? user = freezed,
     Object? children = null,
   }) {
@@ -399,14 +420,30 @@ class __$$BirdDtoImplCopyWithImpl<$Res>
           ? _value.sex
           : sex // ignore: cast_nullable_to_non_nullable
               as Sex,
-      expand: freezed == expand
-          ? _value.expand
-          : expand // ignore: cast_nullable_to_non_nullable
-              as ExpandDto?,
       sold: freezed == sold
           ? _value.sold
           : sold // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isEgg: freezed == isEgg
+          ? _value.isEgg
+          : isEgg // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      laid: freezed == laid
+          ? _value.laid
+          : laid // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      hatched: freezed == hatched
+          ? _value.hatched
+          : hatched // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      flowOut: freezed == flowOut
+          ? _value.flowOut
+          : flowOut // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      brood: freezed == brood
+          ? _value.brood
+          : brood // ignore: cast_nullable_to_non_nullable
+              as String?,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -442,8 +479,12 @@ class _$BirdDtoImpl implements _BirdDto {
       @JsonKey(name: 'sell_price_offer') this.sellPriceOffer,
       @JsonKey(name: 'sell_price_real') this.sellPriceReal,
       this.sex = Sex.unknown,
-      this.expand,
       this.sold,
+      this.isEgg,
+      @DateTimeNullEmptyConverter() this.laid,
+      @DateTimeNullEmptyConverter() this.hatched,
+      @DateTimeNullEmptyConverter() this.flowOut,
+      @StringNullEmptyConverter() this.brood,
       this.user,
       final List<String> children = const []})
       : _children = children;
@@ -504,9 +545,21 @@ class _$BirdDtoImpl implements _BirdDto {
   @JsonKey()
   final Sex sex;
   @override
-  final ExpandDto? expand;
-  @override
   final bool? sold;
+  @override
+  final bool? isEgg;
+  @override
+  @DateTimeNullEmptyConverter()
+  final DateTime? laid;
+  @override
+  @DateTimeNullEmptyConverter()
+  final DateTime? hatched;
+  @override
+  @DateTimeNullEmptyConverter()
+  final DateTime? flowOut;
+  @override
+  @StringNullEmptyConverter()
+  final String? brood;
   @override
   final String? user;
   final List<String> _children;
@@ -520,7 +573,7 @@ class _$BirdDtoImpl implements _BirdDto {
 
   @override
   String toString() {
-    return 'BirdDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, ringnumber: $ringnumber, born: $born, died: $died, sell: $sell, bought: $bought, species: $species, color: $color, cage: $cage, father: $father, mother: $mother, boughtPrice: $boughtPrice, sellPriceOffer: $sellPriceOffer, sellPriceReal: $sellPriceReal, sex: $sex, expand: $expand, sold: $sold, user: $user, children: $children)';
+    return 'BirdDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, ringnumber: $ringnumber, born: $born, died: $died, sell: $sell, bought: $bought, species: $species, color: $color, cage: $cage, father: $father, mother: $mother, boughtPrice: $boughtPrice, sellPriceOffer: $sellPriceOffer, sellPriceReal: $sellPriceReal, sex: $sex, sold: $sold, isEgg: $isEgg, laid: $laid, hatched: $hatched, flowOut: $flowOut, brood: $brood, user: $user, children: $children)';
   }
 
   @override
@@ -553,8 +606,12 @@ class _$BirdDtoImpl implements _BirdDto {
             (identical(other.sellPriceReal, sellPriceReal) ||
                 other.sellPriceReal == sellPriceReal) &&
             (identical(other.sex, sex) || other.sex == sex) &&
-            (identical(other.expand, expand) || other.expand == expand) &&
             (identical(other.sold, sold) || other.sold == sold) &&
+            (identical(other.isEgg, isEgg) || other.isEgg == isEgg) &&
+            (identical(other.laid, laid) || other.laid == laid) &&
+            (identical(other.hatched, hatched) || other.hatched == hatched) &&
+            (identical(other.flowOut, flowOut) || other.flowOut == flowOut) &&
+            (identical(other.brood, brood) || other.brood == brood) &&
             (identical(other.user, user) || other.user == user) &&
             const DeepCollectionEquality().equals(other._children, _children));
   }
@@ -582,8 +639,12 @@ class _$BirdDtoImpl implements _BirdDto {
         sellPriceOffer,
         sellPriceReal,
         sex,
-        expand,
         sold,
+        isEgg,
+        laid,
+        hatched,
+        flowOut,
+        brood,
         user,
         const DeepCollectionEquality().hash(_children)
       ]);
@@ -625,8 +686,12 @@ abstract class _BirdDto implements BirdDto {
       @JsonKey(name: 'sell_price_offer') final double? sellPriceOffer,
       @JsonKey(name: 'sell_price_real') final double? sellPriceReal,
       final Sex sex,
-      final ExpandDto? expand,
       final bool? sold,
+      final bool? isEgg,
+      @DateTimeNullEmptyConverter() final DateTime? laid,
+      @DateTimeNullEmptyConverter() final DateTime? hatched,
+      @DateTimeNullEmptyConverter() final DateTime? flowOut,
+      @StringNullEmptyConverter() final String? brood,
       final String? user,
       final List<String> children}) = _$BirdDtoImpl;
 
@@ -684,9 +749,21 @@ abstract class _BirdDto implements BirdDto {
   @override
   Sex get sex;
   @override
-  ExpandDto? get expand;
-  @override
   bool? get sold;
+  @override
+  bool? get isEgg;
+  @override
+  @DateTimeNullEmptyConverter()
+  DateTime? get laid;
+  @override
+  @DateTimeNullEmptyConverter()
+  DateTime? get hatched;
+  @override
+  @DateTimeNullEmptyConverter()
+  DateTime? get flowOut;
+  @override
+  @StringNullEmptyConverter()
+  String? get brood;
   @override
   String? get user;
   @override

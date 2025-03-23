@@ -1,6 +1,12 @@
 import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
 import 'package:birdbreeder/features/birds/domain/mapper/bird_mapper.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
+import 'package:birdbreeder/features/breedings/data/dtos/breeding_pair_dto.dart';
+import 'package:birdbreeder/features/breedings/data/dtos/brood_dto.dart';
+import 'package:birdbreeder/features/breedings/domain/mapper/breeding_pair_mapper.dart';
+import 'package:birdbreeder/features/breedings/domain/mapper/brood_mapper.dart';
+import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
+import 'package:birdbreeder/features/breedings/domain/models/brood.dart';
 import 'package:birdbreeder/features/cages/data/dtos/cage_dto.dart';
 import 'package:birdbreeder/features/cages/domain/mapper/cage_mapper.dart';
 import 'package:birdbreeder/features/cages/domain/models/cage.dart';
@@ -80,5 +86,29 @@ extension CageDtoMapperExtension on CageDto {
 extension UserMapperExtension on UserDto {
   User toModel() {
     return UserMapper().convert<UserDto, User>(this);
+  }
+}
+
+extension BreedingPairMapperExtension on BreedingPair {
+  BreedingPairDto toDto() {
+    return BreedingPairMapper().convert<BreedingPair, BreedingPairDto>(this);
+  }
+}
+
+extension BreedingPairDtoMapperExtension on BreedingPairDto {
+  BreedingPair toModel() {
+    return BreedingPairMapper().convert<BreedingPairDto, BreedingPair>(this);
+  }
+}
+
+extension BroodMapperExtension on Brood {
+  BroodDto toDto() {
+    return BroodMapper().convert<Brood, BroodDto>(this);
+  }
+}
+
+extension BroodDtoMapperExtension on BroodDto {
+  Brood toModel() {
+    return BroodMapper().convert<BroodDto, Brood>(this);
   }
 }

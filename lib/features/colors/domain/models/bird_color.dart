@@ -6,10 +6,11 @@ part 'bird_color.freezed.dart';
 class BirdColor with _$BirdColor {
   factory BirdColor({
     required String id,
-    String? name,
+    required String? name,
   }) = _BirdColor;
 
   factory BirdColor.create() => BirdColor(
         id: '',
+        name: null,
       );
 }

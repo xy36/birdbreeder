@@ -42,14 +42,7 @@ class BirdsTable extends StatelessWidget {
               runSpacing: 10,
               spacing: 10,
               children: [
-                // if (bird.origin != null)
-                //   Chip(
-                //     label: Text(
-                //       bird.origin?.name(context) ??
-                //           Origin.unknown.name(context),
-                //     ),
-                //   ),
-                if (bird.cage?.name != null)
+                if (bird.cageResolved?.name != null)
                   Chip(
                     backgroundColor:
                         Theme.of(context).primaryColor.withAlpha(80),
@@ -57,11 +50,10 @@ class BirdsTable extends StatelessWidget {
                       color: Colors.transparent,
                     ),
                     label: Text(
-                      bird.cage?.name ?? '',
+                      bird.cageResolved?.name ?? '',
                     ),
                   ),
-
-                if (bird.species?.name != null)
+                if (bird.speciesResolved?.name != null)
                   Chip(
                     backgroundColor:
                         Theme.of(context).primaryColor.withAlpha(60),
@@ -69,10 +61,10 @@ class BirdsTable extends StatelessWidget {
                       color: Colors.transparent,
                     ),
                     label: Text(
-                      bird.species!.name!,
+                      bird.speciesResolved!.name!,
                     ),
                   ),
-                if (bird.color?.name != null)
+                if (bird.colorResolved?.name != null)
                   Chip(
                     backgroundColor:
                         Theme.of(context).primaryColor.withAlpha(100),
@@ -80,7 +72,18 @@ class BirdsTable extends StatelessWidget {
                       color: Colors.transparent,
                     ),
                     label: Text(
-                      bird.color!.name!,
+                      bird.colorResolved!.name!,
+                    ),
+                  ),
+                if (bird.brood != null)
+                  Chip(
+                    backgroundColor:
+                        Theme.of(context).primaryColor.withAlpha(100),
+                    side: const BorderSide(
+                      color: Colors.transparent,
+                    ),
+                    label: Text(
+                      bird.broodResolved?.notes ?? '-',
                     ),
                   ),
               ],
@@ -92,24 +95,6 @@ class BirdsTable extends StatelessWidget {
               unawaited(
                 openBird(context, bird: bird),
               );
-              //await context.router.push(BirdRoute(bird: bird));
-
-              // if (!mounted) return;
-
-              // context
-              //     .read<BirdsBloc>()
-              //     .add(const BirdsEvent.load());
-
-              // if (ScreenSize.isMobileOrTabletPortrait(
-              //   context,
-              // )) {
-              //   //context.router.push(AddBirdRoute());
-
-              //   //context.router
-              //   //    .pushWidget(EditBirdPage(bird: bird));
-
-              //   return;
-              // }
             },
           ),
         );

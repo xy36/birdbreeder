@@ -10,12 +10,11 @@
 import 'package:auto_mappr_annotation/auto_mappr_annotation.dart' as _i1;
 
 import '../../../../core/utils/user_helper.dart' as _i4;
-import '../../data/dtos/contact_dto.dart' as _i2;
-import '../models/contact.dart' as _i3;
+import '../../data/dtos/contact_dto.dart' as _i3;
+import '../models/contact.dart' as _i2;
 
 /// {@template package:birdbreeder/features/contacts/domain/mapper/contact_mapper.dart}
 /// Available mappings:
-/// - `ContactDto` → `Contact`.
 /// - `Contact` → `ContactDto`.
 /// {@endtemplate}
 class $ContactMapper implements _i1.AutoMapprInterface {
@@ -31,16 +30,10 @@ class $ContactMapper implements _i1.AutoMapprInterface {
   bool canConvert<SOURCE, TARGET>({bool recursive = true}) {
     final sourceTypeOf = _typeOf<SOURCE>();
     final targetTypeOf = _typeOf<TARGET>();
-    if ((sourceTypeOf == _typeOf<_i2.ContactDto>() ||
-            sourceTypeOf == _typeOf<_i2.ContactDto?>()) &&
-        (targetTypeOf == _typeOf<_i3.Contact>() ||
-            targetTypeOf == _typeOf<_i3.Contact?>())) {
-      return true;
-    }
-    if ((sourceTypeOf == _typeOf<_i3.Contact>() ||
-            sourceTypeOf == _typeOf<_i3.Contact?>()) &&
-        (targetTypeOf == _typeOf<_i2.ContactDto>() ||
-            targetTypeOf == _typeOf<_i2.ContactDto?>())) {
+    if ((sourceTypeOf == _typeOf<_i2.Contact>() ||
+            sourceTypeOf == _typeOf<_i2.Contact?>()) &&
+        (targetTypeOf == _typeOf<_i3.ContactDto>() ||
+            targetTypeOf == _typeOf<_i3.ContactDto?>())) {
       return true;
     }
     if (recursive) {
@@ -234,24 +227,14 @@ class $ContactMapper implements _i1.AutoMapprInterface {
   }) {
     final sourceTypeOf = _typeOf<SOURCE>();
     final targetTypeOf = _typeOf<TARGET>();
-    if ((sourceTypeOf == _typeOf<_i2.ContactDto>() ||
-            sourceTypeOf == _typeOf<_i2.ContactDto?>()) &&
-        (targetTypeOf == _typeOf<_i3.Contact>() ||
-            targetTypeOf == _typeOf<_i3.Contact?>())) {
+    if ((sourceTypeOf == _typeOf<_i2.Contact>() ||
+            sourceTypeOf == _typeOf<_i2.Contact?>()) &&
+        (targetTypeOf == _typeOf<_i3.ContactDto>() ||
+            targetTypeOf == _typeOf<_i3.ContactDto?>())) {
       if (canReturnNull && model == null) {
         return null;
       }
-      return (_map__i2$ContactDto_To__i3$Contact((model as _i2.ContactDto?))
-          as TARGET);
-    }
-    if ((sourceTypeOf == _typeOf<_i3.Contact>() ||
-            sourceTypeOf == _typeOf<_i3.Contact?>()) &&
-        (targetTypeOf == _typeOf<_i2.ContactDto>() ||
-            targetTypeOf == _typeOf<_i2.ContactDto?>())) {
-      if (canReturnNull && model == null) {
-        return null;
-      }
-      return (_map__i3$Contact_To__i2$ContactDto((model as _i3.Contact?))
+      return (_map__i2$Contact_To__i3$ContactDto((model as _i2.Contact?))
           as TARGET);
     }
     throw Exception('No ${model.runtimeType} -> $targetTypeOf mapping.');
@@ -286,35 +269,14 @@ class $ContactMapper implements _i1.AutoMapprInterface {
     return false;
   }
 
-  _i3.Contact _map__i2$ContactDto_To__i3$Contact(_i2.ContactDto? input) {
-    final model = input;
-    if (model == null) {
-      throw Exception(
-          r'Mapping ContactDto → Contact failed because ContactDto was null, and no default value was provided. '
-          r'Consider setting the whenSourceIsNull parameter on the MapType<ContactDto, Contact> to handle null values during mapping.');
-    }
-    return _i3.Contact(
-      id: model.id,
-      number: model.number,
-      firstName: model.firstName,
-      name: model.name,
-      email: model.email,
-      address: model.address,
-      city: model.city,
-      postalCode: model.postalCode,
-      country: model.country,
-      website: model.website,
-    );
-  }
-
-  _i2.ContactDto _map__i3$Contact_To__i2$ContactDto(_i3.Contact? input) {
+  _i3.ContactDto _map__i2$Contact_To__i3$ContactDto(_i2.Contact? input) {
     final model = input;
     if (model == null) {
       throw Exception(
           r'Mapping Contact → ContactDto failed because Contact was null, and no default value was provided. '
           r'Consider setting the whenSourceIsNull parameter on the MapType<Contact, ContactDto> to handle null values during mapping.');
     }
-    return _i2.ContactDto(
+    return _i3.ContactDto(
       id: model.id,
       number: model.number,
       firstName: model.firstName,

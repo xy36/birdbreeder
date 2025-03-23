@@ -1,5 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/services/screen_size.dart';
+import 'package:birdbreeder/core/extensions/screen_size_extensions.dart';
 
 class SearchBarWidget extends StatefulWidget {
   const SearchBarWidget({super.key, required this.onChanged});
@@ -31,7 +31,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
     super.dispose();
   }
 
-  double get width => ScreenSize.getScreenSize(context).isMobile()
+  double get width => context.isMobile
       ? MediaQuery.of(context).size.width - 150
       : MediaQuery.of(context).size.width / 3;
 
