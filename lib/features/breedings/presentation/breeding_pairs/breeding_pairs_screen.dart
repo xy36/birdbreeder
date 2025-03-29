@@ -18,7 +18,7 @@ import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.
 import 'package:birdbreeder/shared/repositories/ressource_repository.dart';
 import 'package:birdbreeder/shared/widgets/search_bar_widget.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
-import 'package:collection/collection.dart';
+import 'package:trina_grid/trina_grid.dart';
 
 class BreedingPairsScreen extends StatefulWidget {
   const BreedingPairsScreen({super.key});
@@ -30,7 +30,7 @@ class BreedingPairsScreen extends StatefulWidget {
 class _BreedingPairsScreenState extends State<BreedingPairsScreen> {
   String searchQuery = '';
 
-  List<BreedingPair> filteredCages(List<BreedingPair> breedingPairs) {
+  List<BreedingPair> filteredBreedingPairs(List<BreedingPair> breedingPairs) {
     return List<BreedingPair>.from(
       breedingPairs.where((breedingPair) {
         if (searchQuery.isEmpty) return true;
@@ -57,34 +57,10 @@ class _BreedingPairsScreenState extends State<BreedingPairsScreen> {
     }
   }
 
+  late TrinaGridStateManager stateManager;
+
   @override
   Widget build(BuildContext context) {
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     title: const Text('Brutpaare'),
-    //   ),
-    //   floatingActionButton: FloatingActionButton(
-    //     onPressed: () {},
-    //     child: const Icon(Icons.add),
-    //   ),
-    //   body: Column(
-    //     children: [
-    //       ListTile(
-    //         title: const Text('2023'),
-    //         onTap: () {},
-    //       ),
-    //       ListTile(
-    //         title: const Text('2024'),
-    //         onTap: () {},
-    //       ),
-    //       ListTile(
-    //         title: const Text('2025'),
-    //         onTap: () {},
-    //       ),
-    //     ],
-    //   ),
-    // );
-
     return Scaffold(
       appBar: SharedAppBarWithDrawer(
         title: context.l10n.breedings__title,
@@ -108,8 +84,9 @@ class _BreedingPairsScreenState extends State<BreedingPairsScreen> {
             initial: (_) => const SharedLoadingWidget(),
             loading: (_) => const SharedLoadingWidget(),
             loaded: (loadedState) {
-              final breedingPairs =
-                  filteredCages(loadedState.birdBreederResources.breedingPairs);
+              final breedingPairs = filteredBreedingPairs(
+                loadedState.birdBreederResources.breedingPairs,
+              );
 
               return ListView.separated(
                 itemCount: breedingPairs.length,
@@ -130,6 +107,45 @@ class _BreedingPairsScreenState extends State<BreedingPairsScreen> {
                       differentSpecies = true;
                     }
                   }
+
+                  // final columns = [
+                  //   TrinaColumn(
+                  //     title: 'Gelegt',
+                  //     field: 'laid',
+                  //     type: TrinaColumnType.date(),
+                  //   ),
+                  //   TrinaColumn(
+                  //     title: 'Geschlüpft',
+                  //     field: 'hatched',
+                  //     type: TrinaColumnType.text(),
+                  //   ),
+                  // ];
+
+                  // final rows = (breedingPair.children ?? []).map(
+                  //   (birdId) {
+                  //     final bird = loadedState.birdBreederResources.birds
+                  //         .findById(birdId);
+                  //     return TrinaRow(
+                  //       cells: {
+                  //         'laid': TrinaCell(
+                  //           value: bird?.laid?.toDateFormat(context) ?? '-',
+                  //         ),
+                  //         'hatched': TrinaCell(
+                  //           value: bird?.hatched?.toDateFormat(context) ?? '-',
+                  //         ),
+                  //       },
+                  //     );
+                  //   },
+                  // ).toList();
+
+                  // final grid = TrinaGrid(
+
+                  //   columns: columns,
+                  //   rows: rows,
+                  //   onLoaded: (TrinaGridOnLoadedEvent event) {
+                  //     stateManager = event.stateManager;
+                  //   },
+                  // );
 
                   return Card(
                     child: ExpansionTile(
@@ -213,8 +229,8 @@ class _BreedingPairsScreenState extends State<BreedingPairsScreen> {
                                 }
 
                                 final updatedPair = breedingPair.copyWith(
-                                  children: [
-                                    ...breedingPair.children ?? [],
+                                  broods: [
+                                    ...breedingPair.broods ?? [],
                                     birdResult.asValue!.value.id,
                                   ],
                                 );
@@ -240,51 +256,126 @@ class _BreedingPairsScreenState extends State<BreedingPairsScreen> {
                             ),
                           ],
                         ),
-                        ...(breedingPair.children ?? []).map(
-                          (birdId) {
-                            final birds = breedingPair.childrenResolved;
-                            final bird = birds.firstWhereOrNull(
-                              (element) => element.id == birdId,
-                            );
-                            final brood = bird?.broodResolved;
-                            return ListTile(
-                              title: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                spacing: 8,
-                                children: [
-                                  DecoratedBox(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Theme.of(context).primaryColor,
-                                      ),
-                                      borderRadius: BorderRadius.circular(25),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8),
-                                      child: Text(
-                                        brood?.start.toDateFormat(context) ??
-                                            '-',
-                                      ),
-                                    ),
-                                  ),
-                                  Text(
-                                    bird?.ringnumber ?? '-',
-                                  ),
-                                  Text(
-                                    bird?.laid.toDateFormat(context) ?? '-',
-                                  ),
-                                  Text(
-                                    brood?.start.toDateFormat(context) ?? '--',
-                                  ),
-                                  Text(
-                                    brood?.notes ?? '-',
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
+
+                        /// get all broods of children distinceted
+
+                        ExpansionPanelList.radio(
+                          children: [
+                            // ...breedingPair.childrenResolved
+                            //     .map((e) => e.broodResolved)
+                            //     .distinct()
+                            //     .whereType<Brood>()
+                            //     .map((e) {
+                            //   return ExpansionPanelRadio(
+                            //     headerBuilder: (context, bool) =>
+                            //         Text(e.notes ?? '-'),
+                            //     body: Column(
+                            //       children: breedingPair.childrenResolved
+                            //           .where((b) => b.brood == e.id)
+                            //           .map(
+                            //             (b2) => Row(
+                            //               mainAxisAlignment:
+                            //                   MainAxisAlignment.spaceBetween,
+                            //               children: [
+                            //                 Text(b2.laid.toDateFormat(context)),
+                            //                 Text(
+                            //                   b2.hatched.toDateFormat(context),
+                            //                 ),
+                            //                 Checkbox(
+                            //                   value: b2.isEgg,
+                            //                   onChanged: null,
+                            //                 ),
+                            //               ],
+                            //             ),
+                            //           )
+                            //           .toList(),
+                            //     ),
+                            //     value: e.id,
+                            //   );
+                            // }),
+                            ExpansionPanelRadio(
+                              headerBuilder: (context, bool) =>
+                                  const Text('test'),
+                              body: const Text('test1'),
+                              value: 1,
+                            ),
+                            ExpansionPanelRadio(
+                              headerBuilder: (context, bool) =>
+                                  const Text('test'),
+                              body: const Text('test1'),
+                              value: 2,
+                            ),
+                          ],
                         ),
+
+                        /// split children by brood
+                        // ...breedingPair.childrenResolved
+                        //     .groupBy((element) => element.brood)
+                        //     .entries
+                        //     .map((e) {
+                        //   final brood = e.value.first.broodResolved;
+                        //   return Column(
+                        //     children: [
+                        //       if (brood != null)
+                        //         EggRowHeader(
+                        //           brood: brood,
+                        //         ),
+                        //       //...e.value.map((bird) => EggRow(egg: bird)),
+                        //     ],
+                        //   );
+                        // }),
+
+                        // ...(breedingPair.children ?? []).map(
+                        //   (birdId) {
+                        //     final birds = breedingPair.childrenResolved;
+                        //     final bird = birds.firstWhereOrNull(
+                        //       (element) => element.id == birdId,
+                        //     );
+
+                        //     if (bird == null || bird.isEgg == false)
+                        //       return const SizedBox();
+
+                        //     return EggRow(egg: bird);
+
+                        //     final brood = bird.broodResolved;
+                        //     return ListTile(
+                        //       title: Row(
+                        //         mainAxisAlignment:
+                        //             MainAxisAlignment.spaceBetween,
+                        //         spacing: 8,
+                        //         children: [
+                        //           DecoratedBox(
+                        //             decoration: BoxDecoration(
+                        //               border: Border.all(
+                        //                 color: Theme.of(context).primaryColor,
+                        //               ),
+                        //               borderRadius: BorderRadius.circular(25),
+                        //             ),
+                        //             child: Padding(
+                        //               padding: const EdgeInsets.all(8),
+                        //               child: Text(
+                        //                 brood?.start.toDateFormat(context) ??
+                        //                     '-',
+                        //               ),
+                        //             ),
+                        //           ),
+                        //           Text(
+                        //             bird.ringnumber ?? '-',
+                        //           ),
+                        //           Text(
+                        //             bird.laid.toDateFormat(context) ?? '-',
+                        //           ),
+                        //           Text(
+                        //             brood?.start.toDateFormat(context) ?? '--',
+                        //           ),
+                        //           Text(
+                        //             brood?.notes ?? '-',
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     );
+                        //   },
+                        // ),
                       ],
                     ),
                   );
@@ -294,6 +385,69 @@ class _BreedingPairsScreenState extends State<BreedingPairsScreen> {
           );
         },
       ),
+    );
+  }
+}
+
+class EggRowHeader extends StatelessWidget {
+  const EggRowHeader({super.key, required this.brood});
+
+  final Brood brood;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(brood.notes ?? '-'),
+        const Row(
+          children: [
+            Expanded(child: Text('Gelegt')),
+            Expanded(
+              child: Text('Geschlüpft'),
+            ),
+            Expanded(
+              child: Text('Ausgeflossen'),
+            ),
+            Expanded(
+              child: Text('Brut'),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class EggRow extends StatelessWidget {
+  const EggRow({super.key, required this.egg});
+
+  final Bird egg;
+
+  @override
+  Widget build(BuildContext context) {
+    Widget widget = const SizedBox();
+
+    widget = Row(
+      children: [
+        Expanded(
+          child: Text(egg.laid.toDateFormat(context)),
+        ),
+        Expanded(
+          child: Text(egg.hatched.toDateFormat(context)),
+        ),
+        Expanded(
+          child: Text(egg.flowOut.toDateFormat(context)),
+        ),
+        Expanded(
+          child: Text(egg.broodResolved?.notes ?? '-'),
+        ),
+      ],
+    );
+
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: widget,
     );
   }
 }

@@ -22,6 +22,10 @@ _$BroodDtoImpl _$$BroodDtoImplFromJson(Map<String, dynamic> json) =>
       end: const DateTimeNullEmptyConverter().fromJson(json['end'] as String?),
       notes:
           const StringNullEmptyConverter().fromJson(json['notes'] as String?),
+      cage: const StringNullEmptyConverter().fromJson(json['cage'] as String?),
+      children: (json['children'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
       user: json['user'] as String?,
     );
 
@@ -35,5 +39,7 @@ Map<String, dynamic> _$$BroodDtoImplToJson(_$BroodDtoImpl instance) =>
       'start': const DateTimeNullEmptyConverter().toJson(instance.start),
       'end': const DateTimeNullEmptyConverter().toJson(instance.end),
       'notes': const StringNullEmptyConverter().toJson(instance.notes),
+      'cage': const StringNullEmptyConverter().toJson(instance.cage),
+      'children': instance.children,
       'user': instance.user,
     };

@@ -18,6 +18,8 @@ class BroodDto with _$BroodDto {
     @DateTimeNullEmptyConverter() DateTime? start,
     @DateTimeNullEmptyConverter() DateTime? end,
     @StringNullEmptyConverter() String? notes,
+    @StringNullEmptyConverter() String? cage,
+    List<String>? children,
     String? user,
   }) = _BroodDto;
 

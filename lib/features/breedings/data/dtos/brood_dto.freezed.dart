@@ -31,6 +31,9 @@ mixin _$BroodDto {
   DateTime? get end => throw _privateConstructorUsedError;
   @StringNullEmptyConverter()
   String? get notes => throw _privateConstructorUsedError;
+  @StringNullEmptyConverter()
+  String? get cage => throw _privateConstructorUsedError;
+  List<String>? get children => throw _privateConstructorUsedError;
   String? get user => throw _privateConstructorUsedError;
 
   /// Serializes this BroodDto to a JSON map.
@@ -57,6 +60,8 @@ abstract class $BroodDtoCopyWith<$Res> {
       @DateTimeNullEmptyConverter() DateTime? start,
       @DateTimeNullEmptyConverter() DateTime? end,
       @StringNullEmptyConverter() String? notes,
+      @StringNullEmptyConverter() String? cage,
+      List<String>? children,
       String? user});
 }
 
@@ -83,6 +88,8 @@ class _$BroodDtoCopyWithImpl<$Res, $Val extends BroodDto>
     Object? start = freezed,
     Object? end = freezed,
     Object? notes = freezed,
+    Object? cage = freezed,
+    Object? children = freezed,
     Object? user = freezed,
   }) {
     return _then(_value.copyWith(
@@ -118,6 +125,14 @@ class _$BroodDtoCopyWithImpl<$Res, $Val extends BroodDto>
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
+      cage: freezed == cage
+          ? _value.cage
+          : cage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      children: freezed == children
+          ? _value.children
+          : children // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -143,6 +158,8 @@ abstract class _$$BroodDtoImplCopyWith<$Res>
       @DateTimeNullEmptyConverter() DateTime? start,
       @DateTimeNullEmptyConverter() DateTime? end,
       @StringNullEmptyConverter() String? notes,
+      @StringNullEmptyConverter() String? cage,
+      List<String>? children,
       String? user});
 }
 
@@ -167,6 +184,8 @@ class __$$BroodDtoImplCopyWithImpl<$Res>
     Object? start = freezed,
     Object? end = freezed,
     Object? notes = freezed,
+    Object? cage = freezed,
+    Object? children = freezed,
     Object? user = freezed,
   }) {
     return _then(_$BroodDtoImpl(
@@ -202,6 +221,14 @@ class __$$BroodDtoImplCopyWithImpl<$Res>
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
+      cage: freezed == cage
+          ? _value.cage
+          : cage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      children: freezed == children
+          ? _value._children
+          : children // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -222,7 +249,10 @@ class _$BroodDtoImpl implements _BroodDto {
       @DateTimeNullEmptyConverter() this.start,
       @DateTimeNullEmptyConverter() this.end,
       @StringNullEmptyConverter() this.notes,
-      this.user});
+      @StringNullEmptyConverter() this.cage,
+      final List<String>? children,
+      this.user})
+      : _children = children;
 
   factory _$BroodDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$BroodDtoImplFromJson(json);
@@ -247,11 +277,24 @@ class _$BroodDtoImpl implements _BroodDto {
   @StringNullEmptyConverter()
   final String? notes;
   @override
+  @StringNullEmptyConverter()
+  final String? cage;
+  final List<String>? _children;
+  @override
+  List<String>? get children {
+    final value = _children;
+    if (value == null) return null;
+    if (_children is EqualUnmodifiableListView) return _children;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
   final String? user;
 
   @override
   String toString() {
-    return 'BroodDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, start: $start, end: $end, notes: $notes, user: $user)';
+    return 'BroodDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, start: $start, end: $end, notes: $notes, cage: $cage, children: $children, user: $user)';
   }
 
   @override
@@ -269,13 +312,26 @@ class _$BroodDtoImpl implements _BroodDto {
             (identical(other.start, start) || other.start == start) &&
             (identical(other.end, end) || other.end == end) &&
             (identical(other.notes, notes) || other.notes == notes) &&
+            (identical(other.cage, cage) || other.cage == cage) &&
+            const DeepCollectionEquality().equals(other._children, _children) &&
             (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, collectionId, collectionName,
-      created, updated, start, end, notes, user);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      collectionId,
+      collectionName,
+      created,
+      updated,
+      start,
+      end,
+      notes,
+      cage,
+      const DeepCollectionEquality().hash(_children),
+      user);
 
   /// Create a copy of BroodDto
   /// with the given fields replaced by the non-null parameter values.
@@ -303,6 +359,8 @@ abstract class _BroodDto implements BroodDto {
       @DateTimeNullEmptyConverter() final DateTime? start,
       @DateTimeNullEmptyConverter() final DateTime? end,
       @StringNullEmptyConverter() final String? notes,
+      @StringNullEmptyConverter() final String? cage,
+      final List<String>? children,
       final String? user}) = _$BroodDtoImpl;
 
   factory _BroodDto.fromJson(Map<String, dynamic> json) =
@@ -327,6 +385,11 @@ abstract class _BroodDto implements BroodDto {
   @override
   @StringNullEmptyConverter()
   String? get notes;
+  @override
+  @StringNullEmptyConverter()
+  String? get cage;
+  @override
+  List<String>? get children;
   @override
   String? get user;
 

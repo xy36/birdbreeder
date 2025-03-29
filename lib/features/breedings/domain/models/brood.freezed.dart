@@ -20,6 +20,8 @@ mixin _$Brood {
   DateTime? get start => throw _privateConstructorUsedError;
   DateTime? get end => throw _privateConstructorUsedError;
   String? get notes => throw _privateConstructorUsedError;
+  String? get cage => throw _privateConstructorUsedError;
+  List<String>? get children => throw _privateConstructorUsedError;
 
   /// Create a copy of Brood
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +34,13 @@ abstract class $BroodCopyWith<$Res> {
   factory $BroodCopyWith(Brood value, $Res Function(Brood) then) =
       _$BroodCopyWithImpl<$Res, Brood>;
   @useResult
-  $Res call({String id, DateTime? start, DateTime? end, String? notes});
+  $Res call(
+      {String id,
+      DateTime? start,
+      DateTime? end,
+      String? notes,
+      String? cage,
+      List<String>? children});
 }
 
 /// @nodoc
@@ -54,6 +62,8 @@ class _$BroodCopyWithImpl<$Res, $Val extends Brood>
     Object? start = freezed,
     Object? end = freezed,
     Object? notes = freezed,
+    Object? cage = freezed,
+    Object? children = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -72,6 +82,14 @@ class _$BroodCopyWithImpl<$Res, $Val extends Brood>
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
+      cage: freezed == cage
+          ? _value.cage
+          : cage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      children: freezed == children
+          ? _value.children
+          : children // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ) as $Val);
   }
 }
@@ -83,7 +101,13 @@ abstract class _$$BroodImplCopyWith<$Res> implements $BroodCopyWith<$Res> {
       __$$BroodImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, DateTime? start, DateTime? end, String? notes});
+  $Res call(
+      {String id,
+      DateTime? start,
+      DateTime? end,
+      String? notes,
+      String? cage,
+      List<String>? children});
 }
 
 /// @nodoc
@@ -103,6 +127,8 @@ class __$$BroodImplCopyWithImpl<$Res>
     Object? start = freezed,
     Object? end = freezed,
     Object? notes = freezed,
+    Object? cage = freezed,
+    Object? children = freezed,
   }) {
     return _then(_$BroodImpl(
       id: null == id
@@ -121,6 +147,14 @@ class __$$BroodImplCopyWithImpl<$Res>
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
+      cage: freezed == cage
+          ? _value.cage
+          : cage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      children: freezed == children
+          ? _value._children
+          : children // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
@@ -132,7 +166,10 @@ class _$BroodImpl implements _Brood {
       {required this.id,
       required this.start,
       required this.end,
-      required this.notes});
+      required this.notes,
+      required this.cage,
+      required final List<String>? children})
+      : _children = children;
 
   @override
   final String id;
@@ -142,10 +179,21 @@ class _$BroodImpl implements _Brood {
   final DateTime? end;
   @override
   final String? notes;
+  @override
+  final String? cage;
+  final List<String>? _children;
+  @override
+  List<String>? get children {
+    final value = _children;
+    if (value == null) return null;
+    if (_children is EqualUnmodifiableListView) return _children;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'Brood(id: $id, start: $start, end: $end, notes: $notes)';
+    return 'Brood(id: $id, start: $start, end: $end, notes: $notes, cage: $cage, children: $children)';
   }
 
   @override
@@ -156,11 +204,14 @@ class _$BroodImpl implements _Brood {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.start, start) || other.start == start) &&
             (identical(other.end, end) || other.end == end) &&
-            (identical(other.notes, notes) || other.notes == notes));
+            (identical(other.notes, notes) || other.notes == notes) &&
+            (identical(other.cage, cage) || other.cage == cage) &&
+            const DeepCollectionEquality().equals(other._children, _children));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, start, end, notes);
+  int get hashCode => Object.hash(runtimeType, id, start, end, notes, cage,
+      const DeepCollectionEquality().hash(_children));
 
   /// Create a copy of Brood
   /// with the given fields replaced by the non-null parameter values.
@@ -176,7 +227,9 @@ abstract class _Brood implements Brood {
       {required final String id,
       required final DateTime? start,
       required final DateTime? end,
-      required final String? notes}) = _$BroodImpl;
+      required final String? notes,
+      required final String? cage,
+      required final List<String>? children}) = _$BroodImpl;
 
   @override
   String get id;
@@ -186,6 +239,10 @@ abstract class _Brood implements Brood {
   DateTime? get end;
   @override
   String? get notes;
+  @override
+  String? get cage;
+  @override
+  List<String>? get children;
 
   /// Create a copy of Brood
   /// with the given fields replaced by the non-null parameter values.

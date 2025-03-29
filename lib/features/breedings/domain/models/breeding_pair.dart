@@ -12,7 +12,7 @@ class BreedingPair with _$BreedingPair {
     required DateTime? end,
     required String? father,
     required String? mother,
-    required List<String>? children,
+    required List<String>? broods,
   }) = _BreedingPair;
 
   factory BreedingPair.create() => BreedingPair(
@@ -21,6 +21,6 @@ class BreedingPair with _$BreedingPair {
         end: null,
         father: null,
         mother: null,
-        children: [],
+        broods: [],
       );
 }

@@ -91,7 +91,7 @@ extension BirdBreederResovlerExtension on BirdBreederCubit {
       mother: breedingPairDto.mother,
       start: breedingPairDto.start,
       end: breedingPairDto.end,
-      children: breedingPairDto.children,
+      broods: breedingPairDto.broods,
     );
   }
 
@@ -130,6 +130,8 @@ extension BirdBreederResovlerExtension on BirdBreederCubit {
       start: broodDto.start,
       end: broodDto.end,
       notes: broodDto.notes,
+      cage: broodDto.cage,
+      children: broodDto.children,
     );
   }
 }

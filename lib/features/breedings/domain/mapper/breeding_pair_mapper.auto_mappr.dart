@@ -283,7 +283,7 @@ class $BreedingPairMapper implements _i1.AutoMapprInterface {
       end: model.end,
       father: model.father,
       mother: model.mother,
-      children: model.children,
+      broods: model.broods,
       user: _i4.UserHelper.insertUser(),
     );
   }

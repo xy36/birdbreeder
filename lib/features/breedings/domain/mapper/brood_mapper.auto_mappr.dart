@@ -280,6 +280,8 @@ class $BroodMapper implements _i1.AutoMapprInterface {
       start: model.start,
       end: model.end,
       notes: model.notes,
+      cage: model.cage,
+      children: model.children,
       user: _i4.UserHelper.insertUser(),
     );
   }

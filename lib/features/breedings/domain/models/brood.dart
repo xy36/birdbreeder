@@ -11,6 +11,8 @@ class Brood with _$Brood {
     required DateTime? start,
     required DateTime? end,
     required String? notes,
+    required String? cage,
+    required List<String>? children,
   }) = _Brood;
 
   factory Brood.create() => Brood(
@@ -18,5 +20,7 @@ class Brood with _$Brood {
         start: null,
         end: null,
         notes: null,
+        cage: null,
+        children: null,
       );
 }

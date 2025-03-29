@@ -33,7 +33,7 @@ mixin _$BreedingPairDto {
   String? get father => throw _privateConstructorUsedError;
   @StringNullEmptyConverter()
   String? get mother => throw _privateConstructorUsedError;
-  List<String>? get children => throw _privateConstructorUsedError;
+  List<String>? get broods => throw _privateConstructorUsedError;
   String? get user => throw _privateConstructorUsedError;
 
   /// Serializes this BreedingPairDto to a JSON map.
@@ -62,7 +62,7 @@ abstract class $BreedingPairDtoCopyWith<$Res> {
       @DateTimeNullEmptyConverter() DateTime? end,
       @StringNullEmptyConverter() String? father,
       @StringNullEmptyConverter() String? mother,
-      List<String>? children,
+      List<String>? broods,
       String? user});
 }
 
@@ -90,7 +90,7 @@ class _$BreedingPairDtoCopyWithImpl<$Res, $Val extends BreedingPairDto>
     Object? end = freezed,
     Object? father = freezed,
     Object? mother = freezed,
-    Object? children = freezed,
+    Object? broods = freezed,
     Object? user = freezed,
   }) {
     return _then(_value.copyWith(
@@ -130,9 +130,9 @@ class _$BreedingPairDtoCopyWithImpl<$Res, $Val extends BreedingPairDto>
           ? _value.mother
           : mother // ignore: cast_nullable_to_non_nullable
               as String?,
-      children: freezed == children
-          ? _value.children
-          : children // ignore: cast_nullable_to_non_nullable
+      broods: freezed == broods
+          ? _value.broods
+          : broods // ignore: cast_nullable_to_non_nullable
               as List<String>?,
       user: freezed == user
           ? _value.user
@@ -160,7 +160,7 @@ abstract class _$$BreedingPairDtoImplCopyWith<$Res>
       @DateTimeNullEmptyConverter() DateTime? end,
       @StringNullEmptyConverter() String? father,
       @StringNullEmptyConverter() String? mother,
-      List<String>? children,
+      List<String>? broods,
       String? user});
 }
 
@@ -186,7 +186,7 @@ class __$$BreedingPairDtoImplCopyWithImpl<$Res>
     Object? end = freezed,
     Object? father = freezed,
     Object? mother = freezed,
-    Object? children = freezed,
+    Object? broods = freezed,
     Object? user = freezed,
   }) {
     return _then(_$BreedingPairDtoImpl(
@@ -226,9 +226,9 @@ class __$$BreedingPairDtoImplCopyWithImpl<$Res>
           ? _value.mother
           : mother // ignore: cast_nullable_to_non_nullable
               as String?,
-      children: freezed == children
-          ? _value._children
-          : children // ignore: cast_nullable_to_non_nullable
+      broods: freezed == broods
+          ? _value._broods
+          : broods // ignore: cast_nullable_to_non_nullable
               as List<String>?,
       user: freezed == user
           ? _value.user
@@ -251,9 +251,9 @@ class _$BreedingPairDtoImpl implements _BreedingPairDto {
       @DateTimeNullEmptyConverter() this.end,
       @StringNullEmptyConverter() this.father,
       @StringNullEmptyConverter() this.mother,
-      final List<String>? children,
+      final List<String>? broods,
       this.user})
-      : _children = children;
+      : _broods = broods;
 
   factory _$BreedingPairDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$BreedingPairDtoImplFromJson(json);
@@ -280,12 +280,12 @@ class _$BreedingPairDtoImpl implements _BreedingPairDto {
   @override
   @StringNullEmptyConverter()
   final String? mother;
-  final List<String>? _children;
+  final List<String>? _broods;
   @override
-  List<String>? get children {
-    final value = _children;
+  List<String>? get broods {
+    final value = _broods;
     if (value == null) return null;
-    if (_children is EqualUnmodifiableListView) return _children;
+    if (_broods is EqualUnmodifiableListView) return _broods;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -295,7 +295,7 @@ class _$BreedingPairDtoImpl implements _BreedingPairDto {
 
   @override
   String toString() {
-    return 'BreedingPairDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, start: $start, end: $end, father: $father, mother: $mother, children: $children, user: $user)';
+    return 'BreedingPairDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, start: $start, end: $end, father: $father, mother: $mother, broods: $broods, user: $user)';
   }
 
   @override
@@ -314,7 +314,7 @@ class _$BreedingPairDtoImpl implements _BreedingPairDto {
             (identical(other.end, end) || other.end == end) &&
             (identical(other.father, father) || other.father == father) &&
             (identical(other.mother, mother) || other.mother == mother) &&
-            const DeepCollectionEquality().equals(other._children, _children) &&
+            const DeepCollectionEquality().equals(other._broods, _broods) &&
             (identical(other.user, user) || other.user == user));
   }
 
@@ -331,7 +331,7 @@ class _$BreedingPairDtoImpl implements _BreedingPairDto {
       end,
       father,
       mother,
-      const DeepCollectionEquality().hash(_children),
+      const DeepCollectionEquality().hash(_broods),
       user);
 
   /// Create a copy of BreedingPairDto
@@ -362,7 +362,7 @@ abstract class _BreedingPairDto implements BreedingPairDto {
       @DateTimeNullEmptyConverter() final DateTime? end,
       @StringNullEmptyConverter() final String? father,
       @StringNullEmptyConverter() final String? mother,
-      final List<String>? children,
+      final List<String>? broods,
       final String? user}) = _$BreedingPairDtoImpl;
 
   factory _BreedingPairDto.fromJson(Map<String, dynamic> json) =
@@ -391,7 +391,7 @@ abstract class _BreedingPairDto implements BreedingPairDto {
   @StringNullEmptyConverter()
   String? get mother;
   @override
-  List<String>? get children;
+  List<String>? get broods;
   @override
   String? get user;
 

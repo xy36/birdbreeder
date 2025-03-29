@@ -19,7 +19,7 @@ class BreedingPairDto with _$BreedingPairDto {
     @DateTimeNullEmptyConverter() DateTime? end,
     @StringNullEmptyConverter() String? father,
     @StringNullEmptyConverter() String? mother,
-    List<String>? children,
+    List<String>? broods,
     String? user,
   }) = _BreedingPairDto;
 
