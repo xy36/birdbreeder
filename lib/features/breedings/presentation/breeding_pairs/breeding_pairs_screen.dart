@@ -18,7 +18,6 @@ import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.
 import 'package:birdbreeder/shared/repositories/ressource_repository.dart';
 import 'package:birdbreeder/shared/widgets/search_bar_widget.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
-import 'package:trina_grid/trina_grid.dart';
 
 class BreedingPairsScreen extends StatefulWidget {
   const BreedingPairsScreen({super.key});
@@ -56,8 +55,6 @@ class _BreedingPairsScreenState extends State<BreedingPairsScreen> {
       );
     }
   }
-
-  late TrinaGridStateManager stateManager;
 
   @override
   Widget build(BuildContext context) {
