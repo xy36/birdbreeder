@@ -14,6 +14,7 @@
             "name": "birdbreeder (profile mode)",
             "request": "launch",
             "type": "dart",
+            "program": "lib/main_development.dart",
             "flutterMode": "profile"
         },
         {

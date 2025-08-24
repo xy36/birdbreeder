@@ -8,6 +8,7 @@ class ContactDto with _$ContactDto {
   factory ContactDto({
     required String id,
     String? number,
+    String? phone,
     String? firstName,
     String? name,
     String? email,

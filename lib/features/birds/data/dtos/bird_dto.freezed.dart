@@ -25,45 +25,58 @@ mixin _$BirdDto {
   String? get collectionName => throw _privateConstructorUsedError;
   DateTime? get created => throw _privateConstructorUsedError;
   DateTime? get updated => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ringnumber')
   @StringNullEmptyConverter()
-  String? get ringnumber => throw _privateConstructorUsedError;
-  @DateTimeNullEmptyConverter()
-  DateTime? get born => throw _privateConstructorUsedError;
-  @DateTimeNullEmptyConverter()
-  DateTime? get died => throw _privateConstructorUsedError;
-  @DateTimeNullEmptyConverter()
-  DateTime? get sell => throw _privateConstructorUsedError;
-  @DateTimeNullEmptyConverter()
-  DateTime? get bought => throw _privateConstructorUsedError;
+  String? get ringNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'species')
   @StringNullEmptyConverter()
-  String? get species => throw _privateConstructorUsedError;
+  String? get speciesId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'color')
   @StringNullEmptyConverter()
-  String? get color => throw _privateConstructorUsedError;
-  @StringNullEmptyConverter()
-  String? get cage => throw _privateConstructorUsedError;
-  @StringNullEmptyConverter()
-  String? get father => throw _privateConstructorUsedError;
-  @StringNullEmptyConverter()
-  String? get mother => throw _privateConstructorUsedError;
-  @JsonKey(name: 'bought_price')
-  double? get boughtPrice => throw _privateConstructorUsedError;
-  @JsonKey(name: 'sell_price_offer')
-  double? get sellPriceOffer => throw _privateConstructorUsedError;
-  @JsonKey(name: 'sell_price_real')
-  double? get sellPriceReal => throw _privateConstructorUsedError;
+  String? get colorId => throw _privateConstructorUsedError;
   Sex get sex => throw _privateConstructorUsedError;
-  bool? get sold => throw _privateConstructorUsedError;
-  bool? get isEgg => throw _privateConstructorUsedError;
-  @DateTimeNullEmptyConverter()
-  DateTime? get laid => throw _privateConstructorUsedError;
-  @DateTimeNullEmptyConverter()
-  DateTime? get hatched => throw _privateConstructorUsedError;
-  @DateTimeNullEmptyConverter()
-  DateTime? get flowOut => throw _privateConstructorUsedError;
+  @JsonKey(name: 'father')
   @StringNullEmptyConverter()
-  String? get brood => throw _privateConstructorUsedError;
+  String? get fatherId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'mother')
+  @StringNullEmptyConverter()
+  String? get motherId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'cage')
+  @StringNullEmptyConverter()
+  String? get cageId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'brood')
+  @StringNullEmptyConverter()
+  String? get broodId => throw _privateConstructorUsedError;
+  @DateTimeNullEmptyConverter()
+  DateTime? get laidAt => throw _privateConstructorUsedError;
+  @DateTimeNullEmptyConverter()
+  DateTime? get hatchedAt => throw _privateConstructorUsedError;
+  @DateTimeNullEmptyConverter()
+  DateTime? get fledgedAt => throw _privateConstructorUsedError;
+  @DateTimeNullEmptyConverter()
+  DateTime? get diedAt => throw _privateConstructorUsedError;
+  SaleStatus get saleStatus => throw _privateConstructorUsedError;
+  @DateTimeNullEmptyConverter()
+  DateTime? get listedAt => throw _privateConstructorUsedError;
+  @DateTimeNullEmptyConverter()
+  DateTime? get soldAt => throw _privateConstructorUsedError;
+  double? get askingPrice => throw _privateConstructorUsedError;
+  double? get finalPrice => throw _privateConstructorUsedError;
+  @DateTimeNullEmptyConverter()
+  DateTime? get boughtAt => throw _privateConstructorUsedError;
+  double? get boughtPrice => throw _privateConstructorUsedError;
+  @StringNullEmptyConverter()
+  String? get notes => throw _privateConstructorUsedError;
+  @JsonKey(name: 'boughtFrom')
+  @StringNullEmptyConverter()
+  String? get boughtFromId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'soldTo')
+  @StringNullEmptyConverter()
+  String? get soldToId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'owner')
+  @StringNullEmptyConverter()
+  String? get ownerId => throw _privateConstructorUsedError;
   String? get user => throw _privateConstructorUsedError;
-  List<String> get children => throw _privateConstructorUsedError;
 
   /// Serializes this BirdDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -85,28 +98,34 @@ abstract class $BirdDtoCopyWith<$Res> {
       String? collectionName,
       DateTime? created,
       DateTime? updated,
-      @StringNullEmptyConverter() String? ringnumber,
-      @DateTimeNullEmptyConverter() DateTime? born,
-      @DateTimeNullEmptyConverter() DateTime? died,
-      @DateTimeNullEmptyConverter() DateTime? sell,
-      @DateTimeNullEmptyConverter() DateTime? bought,
-      @StringNullEmptyConverter() String? species,
-      @StringNullEmptyConverter() String? color,
-      @StringNullEmptyConverter() String? cage,
-      @StringNullEmptyConverter() String? father,
-      @StringNullEmptyConverter() String? mother,
-      @JsonKey(name: 'bought_price') double? boughtPrice,
-      @JsonKey(name: 'sell_price_offer') double? sellPriceOffer,
-      @JsonKey(name: 'sell_price_real') double? sellPriceReal,
+      @JsonKey(name: 'ringnumber')
+      @StringNullEmptyConverter()
+      String? ringNumber,
+      @JsonKey(name: 'species') @StringNullEmptyConverter() String? speciesId,
+      @JsonKey(name: 'color') @StringNullEmptyConverter() String? colorId,
       Sex sex,
-      bool? sold,
-      bool? isEgg,
-      @DateTimeNullEmptyConverter() DateTime? laid,
-      @DateTimeNullEmptyConverter() DateTime? hatched,
-      @DateTimeNullEmptyConverter() DateTime? flowOut,
-      @StringNullEmptyConverter() String? brood,
-      String? user,
-      List<String> children});
+      @JsonKey(name: 'father') @StringNullEmptyConverter() String? fatherId,
+      @JsonKey(name: 'mother') @StringNullEmptyConverter() String? motherId,
+      @JsonKey(name: 'cage') @StringNullEmptyConverter() String? cageId,
+      @JsonKey(name: 'brood') @StringNullEmptyConverter() String? broodId,
+      @DateTimeNullEmptyConverter() DateTime? laidAt,
+      @DateTimeNullEmptyConverter() DateTime? hatchedAt,
+      @DateTimeNullEmptyConverter() DateTime? fledgedAt,
+      @DateTimeNullEmptyConverter() DateTime? diedAt,
+      SaleStatus saleStatus,
+      @DateTimeNullEmptyConverter() DateTime? listedAt,
+      @DateTimeNullEmptyConverter() DateTime? soldAt,
+      double? askingPrice,
+      double? finalPrice,
+      @DateTimeNullEmptyConverter() DateTime? boughtAt,
+      double? boughtPrice,
+      @StringNullEmptyConverter() String? notes,
+      @JsonKey(name: 'boughtFrom')
+      @StringNullEmptyConverter()
+      String? boughtFromId,
+      @JsonKey(name: 'soldTo') @StringNullEmptyConverter() String? soldToId,
+      @JsonKey(name: 'owner') @StringNullEmptyConverter() String? ownerId,
+      String? user});
 }
 
 /// @nodoc
@@ -129,28 +148,30 @@ class _$BirdDtoCopyWithImpl<$Res, $Val extends BirdDto>
     Object? collectionName = freezed,
     Object? created = freezed,
     Object? updated = freezed,
-    Object? ringnumber = freezed,
-    Object? born = freezed,
-    Object? died = freezed,
-    Object? sell = freezed,
-    Object? bought = freezed,
-    Object? species = freezed,
-    Object? color = freezed,
-    Object? cage = freezed,
-    Object? father = freezed,
-    Object? mother = freezed,
-    Object? boughtPrice = freezed,
-    Object? sellPriceOffer = freezed,
-    Object? sellPriceReal = freezed,
+    Object? ringNumber = freezed,
+    Object? speciesId = freezed,
+    Object? colorId = freezed,
     Object? sex = null,
-    Object? sold = freezed,
-    Object? isEgg = freezed,
-    Object? laid = freezed,
-    Object? hatched = freezed,
-    Object? flowOut = freezed,
-    Object? brood = freezed,
+    Object? fatherId = freezed,
+    Object? motherId = freezed,
+    Object? cageId = freezed,
+    Object? broodId = freezed,
+    Object? laidAt = freezed,
+    Object? hatchedAt = freezed,
+    Object? fledgedAt = freezed,
+    Object? diedAt = freezed,
+    Object? saleStatus = null,
+    Object? listedAt = freezed,
+    Object? soldAt = freezed,
+    Object? askingPrice = freezed,
+    Object? finalPrice = freezed,
+    Object? boughtAt = freezed,
+    Object? boughtPrice = freezed,
+    Object? notes = freezed,
+    Object? boughtFromId = freezed,
+    Object? soldToId = freezed,
+    Object? ownerId = freezed,
     Object? user = freezed,
-    Object? children = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -173,94 +194,102 @@ class _$BirdDtoCopyWithImpl<$Res, $Val extends BirdDto>
           ? _value.updated
           : updated // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      ringnumber: freezed == ringnumber
-          ? _value.ringnumber
-          : ringnumber // ignore: cast_nullable_to_non_nullable
+      ringNumber: freezed == ringNumber
+          ? _value.ringNumber
+          : ringNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      born: freezed == born
-          ? _value.born
-          : born // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      died: freezed == died
-          ? _value.died
-          : died // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      sell: freezed == sell
-          ? _value.sell
-          : sell // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      bought: freezed == bought
-          ? _value.bought
-          : bought // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      species: freezed == species
-          ? _value.species
-          : species // ignore: cast_nullable_to_non_nullable
+      speciesId: freezed == speciesId
+          ? _value.speciesId
+          : speciesId // ignore: cast_nullable_to_non_nullable
               as String?,
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      colorId: freezed == colorId
+          ? _value.colorId
+          : colorId // ignore: cast_nullable_to_non_nullable
               as String?,
-      cage: freezed == cage
-          ? _value.cage
-          : cage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      father: freezed == father
-          ? _value.father
-          : father // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mother: freezed == mother
-          ? _value.mother
-          : mother // ignore: cast_nullable_to_non_nullable
-              as String?,
-      boughtPrice: freezed == boughtPrice
-          ? _value.boughtPrice
-          : boughtPrice // ignore: cast_nullable_to_non_nullable
-              as double?,
-      sellPriceOffer: freezed == sellPriceOffer
-          ? _value.sellPriceOffer
-          : sellPriceOffer // ignore: cast_nullable_to_non_nullable
-              as double?,
-      sellPriceReal: freezed == sellPriceReal
-          ? _value.sellPriceReal
-          : sellPriceReal // ignore: cast_nullable_to_non_nullable
-              as double?,
       sex: null == sex
           ? _value.sex
           : sex // ignore: cast_nullable_to_non_nullable
               as Sex,
-      sold: freezed == sold
-          ? _value.sold
-          : sold // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isEgg: freezed == isEgg
-          ? _value.isEgg
-          : isEgg // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      laid: freezed == laid
-          ? _value.laid
-          : laid // ignore: cast_nullable_to_non_nullable
+      fatherId: freezed == fatherId
+          ? _value.fatherId
+          : fatherId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      motherId: freezed == motherId
+          ? _value.motherId
+          : motherId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cageId: freezed == cageId
+          ? _value.cageId
+          : cageId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      broodId: freezed == broodId
+          ? _value.broodId
+          : broodId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      laidAt: freezed == laidAt
+          ? _value.laidAt
+          : laidAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      hatched: freezed == hatched
-          ? _value.hatched
-          : hatched // ignore: cast_nullable_to_non_nullable
+      hatchedAt: freezed == hatchedAt
+          ? _value.hatchedAt
+          : hatchedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      flowOut: freezed == flowOut
-          ? _value.flowOut
-          : flowOut // ignore: cast_nullable_to_non_nullable
+      fledgedAt: freezed == fledgedAt
+          ? _value.fledgedAt
+          : fledgedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      brood: freezed == brood
-          ? _value.brood
-          : brood // ignore: cast_nullable_to_non_nullable
+      diedAt: freezed == diedAt
+          ? _value.diedAt
+          : diedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      saleStatus: null == saleStatus
+          ? _value.saleStatus
+          : saleStatus // ignore: cast_nullable_to_non_nullable
+              as SaleStatus,
+      listedAt: freezed == listedAt
+          ? _value.listedAt
+          : listedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      soldAt: freezed == soldAt
+          ? _value.soldAt
+          : soldAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      askingPrice: freezed == askingPrice
+          ? _value.askingPrice
+          : askingPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      finalPrice: freezed == finalPrice
+          ? _value.finalPrice
+          : finalPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      boughtAt: freezed == boughtAt
+          ? _value.boughtAt
+          : boughtAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      boughtPrice: freezed == boughtPrice
+          ? _value.boughtPrice
+          : boughtPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      notes: freezed == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
+      boughtFromId: freezed == boughtFromId
+          ? _value.boughtFromId
+          : boughtFromId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soldToId: freezed == soldToId
+          ? _value.soldToId
+          : soldToId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ownerId: freezed == ownerId
+          ? _value.ownerId
+          : ownerId // ignore: cast_nullable_to_non_nullable
               as String?,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as String?,
-      children: null == children
-          ? _value.children
-          : children // ignore: cast_nullable_to_non_nullable
-              as List<String>,
     ) as $Val);
   }
 }
@@ -278,28 +307,34 @@ abstract class _$$BirdDtoImplCopyWith<$Res> implements $BirdDtoCopyWith<$Res> {
       String? collectionName,
       DateTime? created,
       DateTime? updated,
-      @StringNullEmptyConverter() String? ringnumber,
-      @DateTimeNullEmptyConverter() DateTime? born,
-      @DateTimeNullEmptyConverter() DateTime? died,
-      @DateTimeNullEmptyConverter() DateTime? sell,
-      @DateTimeNullEmptyConverter() DateTime? bought,
-      @StringNullEmptyConverter() String? species,
-      @StringNullEmptyConverter() String? color,
-      @StringNullEmptyConverter() String? cage,
-      @StringNullEmptyConverter() String? father,
-      @StringNullEmptyConverter() String? mother,
-      @JsonKey(name: 'bought_price') double? boughtPrice,
-      @JsonKey(name: 'sell_price_offer') double? sellPriceOffer,
-      @JsonKey(name: 'sell_price_real') double? sellPriceReal,
+      @JsonKey(name: 'ringnumber')
+      @StringNullEmptyConverter()
+      String? ringNumber,
+      @JsonKey(name: 'species') @StringNullEmptyConverter() String? speciesId,
+      @JsonKey(name: 'color') @StringNullEmptyConverter() String? colorId,
       Sex sex,
-      bool? sold,
-      bool? isEgg,
-      @DateTimeNullEmptyConverter() DateTime? laid,
-      @DateTimeNullEmptyConverter() DateTime? hatched,
-      @DateTimeNullEmptyConverter() DateTime? flowOut,
-      @StringNullEmptyConverter() String? brood,
-      String? user,
-      List<String> children});
+      @JsonKey(name: 'father') @StringNullEmptyConverter() String? fatherId,
+      @JsonKey(name: 'mother') @StringNullEmptyConverter() String? motherId,
+      @JsonKey(name: 'cage') @StringNullEmptyConverter() String? cageId,
+      @JsonKey(name: 'brood') @StringNullEmptyConverter() String? broodId,
+      @DateTimeNullEmptyConverter() DateTime? laidAt,
+      @DateTimeNullEmptyConverter() DateTime? hatchedAt,
+      @DateTimeNullEmptyConverter() DateTime? fledgedAt,
+      @DateTimeNullEmptyConverter() DateTime? diedAt,
+      SaleStatus saleStatus,
+      @DateTimeNullEmptyConverter() DateTime? listedAt,
+      @DateTimeNullEmptyConverter() DateTime? soldAt,
+      double? askingPrice,
+      double? finalPrice,
+      @DateTimeNullEmptyConverter() DateTime? boughtAt,
+      double? boughtPrice,
+      @StringNullEmptyConverter() String? notes,
+      @JsonKey(name: 'boughtFrom')
+      @StringNullEmptyConverter()
+      String? boughtFromId,
+      @JsonKey(name: 'soldTo') @StringNullEmptyConverter() String? soldToId,
+      @JsonKey(name: 'owner') @StringNullEmptyConverter() String? ownerId,
+      String? user});
 }
 
 /// @nodoc
@@ -320,28 +355,30 @@ class __$$BirdDtoImplCopyWithImpl<$Res>
     Object? collectionName = freezed,
     Object? created = freezed,
     Object? updated = freezed,
-    Object? ringnumber = freezed,
-    Object? born = freezed,
-    Object? died = freezed,
-    Object? sell = freezed,
-    Object? bought = freezed,
-    Object? species = freezed,
-    Object? color = freezed,
-    Object? cage = freezed,
-    Object? father = freezed,
-    Object? mother = freezed,
-    Object? boughtPrice = freezed,
-    Object? sellPriceOffer = freezed,
-    Object? sellPriceReal = freezed,
+    Object? ringNumber = freezed,
+    Object? speciesId = freezed,
+    Object? colorId = freezed,
     Object? sex = null,
-    Object? sold = freezed,
-    Object? isEgg = freezed,
-    Object? laid = freezed,
-    Object? hatched = freezed,
-    Object? flowOut = freezed,
-    Object? brood = freezed,
+    Object? fatherId = freezed,
+    Object? motherId = freezed,
+    Object? cageId = freezed,
+    Object? broodId = freezed,
+    Object? laidAt = freezed,
+    Object? hatchedAt = freezed,
+    Object? fledgedAt = freezed,
+    Object? diedAt = freezed,
+    Object? saleStatus = null,
+    Object? listedAt = freezed,
+    Object? soldAt = freezed,
+    Object? askingPrice = freezed,
+    Object? finalPrice = freezed,
+    Object? boughtAt = freezed,
+    Object? boughtPrice = freezed,
+    Object? notes = freezed,
+    Object? boughtFromId = freezed,
+    Object? soldToId = freezed,
+    Object? ownerId = freezed,
     Object? user = freezed,
-    Object? children = null,
   }) {
     return _then(_$BirdDtoImpl(
       id: null == id
@@ -364,94 +401,102 @@ class __$$BirdDtoImplCopyWithImpl<$Res>
           ? _value.updated
           : updated // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      ringnumber: freezed == ringnumber
-          ? _value.ringnumber
-          : ringnumber // ignore: cast_nullable_to_non_nullable
+      ringNumber: freezed == ringNumber
+          ? _value.ringNumber
+          : ringNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      born: freezed == born
-          ? _value.born
-          : born // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      died: freezed == died
-          ? _value.died
-          : died // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      sell: freezed == sell
-          ? _value.sell
-          : sell // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      bought: freezed == bought
-          ? _value.bought
-          : bought // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      species: freezed == species
-          ? _value.species
-          : species // ignore: cast_nullable_to_non_nullable
+      speciesId: freezed == speciesId
+          ? _value.speciesId
+          : speciesId // ignore: cast_nullable_to_non_nullable
               as String?,
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      colorId: freezed == colorId
+          ? _value.colorId
+          : colorId // ignore: cast_nullable_to_non_nullable
               as String?,
-      cage: freezed == cage
-          ? _value.cage
-          : cage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      father: freezed == father
-          ? _value.father
-          : father // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mother: freezed == mother
-          ? _value.mother
-          : mother // ignore: cast_nullable_to_non_nullable
-              as String?,
-      boughtPrice: freezed == boughtPrice
-          ? _value.boughtPrice
-          : boughtPrice // ignore: cast_nullable_to_non_nullable
-              as double?,
-      sellPriceOffer: freezed == sellPriceOffer
-          ? _value.sellPriceOffer
-          : sellPriceOffer // ignore: cast_nullable_to_non_nullable
-              as double?,
-      sellPriceReal: freezed == sellPriceReal
-          ? _value.sellPriceReal
-          : sellPriceReal // ignore: cast_nullable_to_non_nullable
-              as double?,
       sex: null == sex
           ? _value.sex
           : sex // ignore: cast_nullable_to_non_nullable
               as Sex,
-      sold: freezed == sold
-          ? _value.sold
-          : sold // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isEgg: freezed == isEgg
-          ? _value.isEgg
-          : isEgg // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      laid: freezed == laid
-          ? _value.laid
-          : laid // ignore: cast_nullable_to_non_nullable
+      fatherId: freezed == fatherId
+          ? _value.fatherId
+          : fatherId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      motherId: freezed == motherId
+          ? _value.motherId
+          : motherId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cageId: freezed == cageId
+          ? _value.cageId
+          : cageId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      broodId: freezed == broodId
+          ? _value.broodId
+          : broodId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      laidAt: freezed == laidAt
+          ? _value.laidAt
+          : laidAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      hatched: freezed == hatched
-          ? _value.hatched
-          : hatched // ignore: cast_nullable_to_non_nullable
+      hatchedAt: freezed == hatchedAt
+          ? _value.hatchedAt
+          : hatchedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      flowOut: freezed == flowOut
-          ? _value.flowOut
-          : flowOut // ignore: cast_nullable_to_non_nullable
+      fledgedAt: freezed == fledgedAt
+          ? _value.fledgedAt
+          : fledgedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      brood: freezed == brood
-          ? _value.brood
-          : brood // ignore: cast_nullable_to_non_nullable
+      diedAt: freezed == diedAt
+          ? _value.diedAt
+          : diedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      saleStatus: null == saleStatus
+          ? _value.saleStatus
+          : saleStatus // ignore: cast_nullable_to_non_nullable
+              as SaleStatus,
+      listedAt: freezed == listedAt
+          ? _value.listedAt
+          : listedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      soldAt: freezed == soldAt
+          ? _value.soldAt
+          : soldAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      askingPrice: freezed == askingPrice
+          ? _value.askingPrice
+          : askingPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      finalPrice: freezed == finalPrice
+          ? _value.finalPrice
+          : finalPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      boughtAt: freezed == boughtAt
+          ? _value.boughtAt
+          : boughtAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      boughtPrice: freezed == boughtPrice
+          ? _value.boughtPrice
+          : boughtPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      notes: freezed == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
+      boughtFromId: freezed == boughtFromId
+          ? _value.boughtFromId
+          : boughtFromId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      soldToId: freezed == soldToId
+          ? _value.soldToId
+          : soldToId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ownerId: freezed == ownerId
+          ? _value.ownerId
+          : ownerId // ignore: cast_nullable_to_non_nullable
               as String?,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as String?,
-      children: null == children
-          ? _value._children
-          : children // ignore: cast_nullable_to_non_nullable
-              as List<String>,
     ));
   }
 }
@@ -465,29 +510,32 @@ class _$BirdDtoImpl implements _BirdDto {
       this.collectionName,
       this.created,
       this.updated,
-      @StringNullEmptyConverter() this.ringnumber,
-      @DateTimeNullEmptyConverter() this.born,
-      @DateTimeNullEmptyConverter() this.died,
-      @DateTimeNullEmptyConverter() this.sell,
-      @DateTimeNullEmptyConverter() this.bought,
-      @StringNullEmptyConverter() this.species,
-      @StringNullEmptyConverter() this.color,
-      @StringNullEmptyConverter() this.cage,
-      @StringNullEmptyConverter() this.father,
-      @StringNullEmptyConverter() this.mother,
-      @JsonKey(name: 'bought_price') this.boughtPrice,
-      @JsonKey(name: 'sell_price_offer') this.sellPriceOffer,
-      @JsonKey(name: 'sell_price_real') this.sellPriceReal,
+      @JsonKey(name: 'ringnumber') @StringNullEmptyConverter() this.ringNumber,
+      @JsonKey(name: 'species') @StringNullEmptyConverter() this.speciesId,
+      @JsonKey(name: 'color') @StringNullEmptyConverter() this.colorId,
       this.sex = Sex.unknown,
-      this.sold,
-      this.isEgg,
-      @DateTimeNullEmptyConverter() this.laid,
-      @DateTimeNullEmptyConverter() this.hatched,
-      @DateTimeNullEmptyConverter() this.flowOut,
-      @StringNullEmptyConverter() this.brood,
-      this.user,
-      final List<String> children = const []})
-      : _children = children;
+      @JsonKey(name: 'father') @StringNullEmptyConverter() this.fatherId,
+      @JsonKey(name: 'mother') @StringNullEmptyConverter() this.motherId,
+      @JsonKey(name: 'cage') @StringNullEmptyConverter() this.cageId,
+      @JsonKey(name: 'brood') @StringNullEmptyConverter() this.broodId,
+      @DateTimeNullEmptyConverter() this.laidAt,
+      @DateTimeNullEmptyConverter() this.hatchedAt,
+      @DateTimeNullEmptyConverter() this.fledgedAt,
+      @DateTimeNullEmptyConverter() this.diedAt,
+      this.saleStatus = SaleStatus.notForSale,
+      @DateTimeNullEmptyConverter() this.listedAt,
+      @DateTimeNullEmptyConverter() this.soldAt,
+      this.askingPrice,
+      this.finalPrice,
+      @DateTimeNullEmptyConverter() this.boughtAt,
+      this.boughtPrice,
+      @StringNullEmptyConverter() this.notes,
+      @JsonKey(name: 'boughtFrom')
+      @StringNullEmptyConverter()
+      this.boughtFromId,
+      @JsonKey(name: 'soldTo') @StringNullEmptyConverter() this.soldToId,
+      @JsonKey(name: 'owner') @StringNullEmptyConverter() this.ownerId,
+      this.user});
 
   factory _$BirdDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$BirdDtoImplFromJson(json);
@@ -503,77 +551,87 @@ class _$BirdDtoImpl implements _BirdDto {
   @override
   final DateTime? updated;
   @override
+  @JsonKey(name: 'ringnumber')
   @StringNullEmptyConverter()
-  final String? ringnumber;
+  final String? ringNumber;
   @override
-  @DateTimeNullEmptyConverter()
-  final DateTime? born;
-  @override
-  @DateTimeNullEmptyConverter()
-  final DateTime? died;
-  @override
-  @DateTimeNullEmptyConverter()
-  final DateTime? sell;
-  @override
-  @DateTimeNullEmptyConverter()
-  final DateTime? bought;
-  @override
+  @JsonKey(name: 'species')
   @StringNullEmptyConverter()
-  final String? species;
+  final String? speciesId;
   @override
+  @JsonKey(name: 'color')
   @StringNullEmptyConverter()
-  final String? color;
-  @override
-  @StringNullEmptyConverter()
-  final String? cage;
-  @override
-  @StringNullEmptyConverter()
-  final String? father;
-  @override
-  @StringNullEmptyConverter()
-  final String? mother;
-  @override
-  @JsonKey(name: 'bought_price')
-  final double? boughtPrice;
-  @override
-  @JsonKey(name: 'sell_price_offer')
-  final double? sellPriceOffer;
-  @override
-  @JsonKey(name: 'sell_price_real')
-  final double? sellPriceReal;
+  final String? colorId;
   @override
   @JsonKey()
   final Sex sex;
   @override
-  final bool? sold;
-  @override
-  final bool? isEgg;
-  @override
-  @DateTimeNullEmptyConverter()
-  final DateTime? laid;
-  @override
-  @DateTimeNullEmptyConverter()
-  final DateTime? hatched;
-  @override
-  @DateTimeNullEmptyConverter()
-  final DateTime? flowOut;
-  @override
+  @JsonKey(name: 'father')
   @StringNullEmptyConverter()
-  final String? brood;
+  final String? fatherId;
   @override
-  final String? user;
-  final List<String> _children;
+  @JsonKey(name: 'mother')
+  @StringNullEmptyConverter()
+  final String? motherId;
+  @override
+  @JsonKey(name: 'cage')
+  @StringNullEmptyConverter()
+  final String? cageId;
+  @override
+  @JsonKey(name: 'brood')
+  @StringNullEmptyConverter()
+  final String? broodId;
+  @override
+  @DateTimeNullEmptyConverter()
+  final DateTime? laidAt;
+  @override
+  @DateTimeNullEmptyConverter()
+  final DateTime? hatchedAt;
+  @override
+  @DateTimeNullEmptyConverter()
+  final DateTime? fledgedAt;
+  @override
+  @DateTimeNullEmptyConverter()
+  final DateTime? diedAt;
   @override
   @JsonKey()
-  List<String> get children {
-    if (_children is EqualUnmodifiableListView) return _children;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_children);
-  }
+  final SaleStatus saleStatus;
+  @override
+  @DateTimeNullEmptyConverter()
+  final DateTime? listedAt;
+  @override
+  @DateTimeNullEmptyConverter()
+  final DateTime? soldAt;
+  @override
+  final double? askingPrice;
+  @override
+  final double? finalPrice;
+  @override
+  @DateTimeNullEmptyConverter()
+  final DateTime? boughtAt;
+  @override
+  final double? boughtPrice;
+  @override
+  @StringNullEmptyConverter()
+  final String? notes;
+  @override
+  @JsonKey(name: 'boughtFrom')
+  @StringNullEmptyConverter()
+  final String? boughtFromId;
+  @override
+  @JsonKey(name: 'soldTo')
+  @StringNullEmptyConverter()
+  final String? soldToId;
+  @override
+  @JsonKey(name: 'owner')
+  @StringNullEmptyConverter()
+  final String? ownerId;
+  @override
+  final String? user;
 
   @override
   String toString() {
-    return 'BirdDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, ringnumber: $ringnumber, born: $born, died: $died, sell: $sell, bought: $bought, species: $species, color: $color, cage: $cage, father: $father, mother: $mother, boughtPrice: $boughtPrice, sellPriceOffer: $sellPriceOffer, sellPriceReal: $sellPriceReal, sex: $sex, sold: $sold, isEgg: $isEgg, laid: $laid, hatched: $hatched, flowOut: $flowOut, brood: $brood, user: $user, children: $children)';
+    return 'BirdDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, ringNumber: $ringNumber, speciesId: $speciesId, colorId: $colorId, sex: $sex, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, broodId: $broodId, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, diedAt: $diedAt, saleStatus: $saleStatus, listedAt: $listedAt, soldAt: $soldAt, askingPrice: $askingPrice, finalPrice: $finalPrice, boughtAt: $boughtAt, boughtPrice: $boughtPrice, notes: $notes, boughtFromId: $boughtFromId, soldToId: $soldToId, ownerId: $ownerId, user: $user)';
   }
 
   @override
@@ -588,32 +646,44 @@ class _$BirdDtoImpl implements _BirdDto {
                 other.collectionName == collectionName) &&
             (identical(other.created, created) || other.created == created) &&
             (identical(other.updated, updated) || other.updated == updated) &&
-            (identical(other.ringnumber, ringnumber) ||
-                other.ringnumber == ringnumber) &&
-            (identical(other.born, born) || other.born == born) &&
-            (identical(other.died, died) || other.died == died) &&
-            (identical(other.sell, sell) || other.sell == sell) &&
-            (identical(other.bought, bought) || other.bought == bought) &&
-            (identical(other.species, species) || other.species == species) &&
-            (identical(other.color, color) || other.color == color) &&
-            (identical(other.cage, cage) || other.cage == cage) &&
-            (identical(other.father, father) || other.father == father) &&
-            (identical(other.mother, mother) || other.mother == mother) &&
+            (identical(other.ringNumber, ringNumber) ||
+                other.ringNumber == ringNumber) &&
+            (identical(other.speciesId, speciesId) ||
+                other.speciesId == speciesId) &&
+            (identical(other.colorId, colorId) || other.colorId == colorId) &&
+            (identical(other.sex, sex) || other.sex == sex) &&
+            (identical(other.fatherId, fatherId) ||
+                other.fatherId == fatherId) &&
+            (identical(other.motherId, motherId) ||
+                other.motherId == motherId) &&
+            (identical(other.cageId, cageId) || other.cageId == cageId) &&
+            (identical(other.broodId, broodId) || other.broodId == broodId) &&
+            (identical(other.laidAt, laidAt) || other.laidAt == laidAt) &&
+            (identical(other.hatchedAt, hatchedAt) ||
+                other.hatchedAt == hatchedAt) &&
+            (identical(other.fledgedAt, fledgedAt) ||
+                other.fledgedAt == fledgedAt) &&
+            (identical(other.diedAt, diedAt) || other.diedAt == diedAt) &&
+            (identical(other.saleStatus, saleStatus) ||
+                other.saleStatus == saleStatus) &&
+            (identical(other.listedAt, listedAt) ||
+                other.listedAt == listedAt) &&
+            (identical(other.soldAt, soldAt) || other.soldAt == soldAt) &&
+            (identical(other.askingPrice, askingPrice) ||
+                other.askingPrice == askingPrice) &&
+            (identical(other.finalPrice, finalPrice) ||
+                other.finalPrice == finalPrice) &&
+            (identical(other.boughtAt, boughtAt) ||
+                other.boughtAt == boughtAt) &&
             (identical(other.boughtPrice, boughtPrice) ||
                 other.boughtPrice == boughtPrice) &&
-            (identical(other.sellPriceOffer, sellPriceOffer) ||
-                other.sellPriceOffer == sellPriceOffer) &&
-            (identical(other.sellPriceReal, sellPriceReal) ||
-                other.sellPriceReal == sellPriceReal) &&
-            (identical(other.sex, sex) || other.sex == sex) &&
-            (identical(other.sold, sold) || other.sold == sold) &&
-            (identical(other.isEgg, isEgg) || other.isEgg == isEgg) &&
-            (identical(other.laid, laid) || other.laid == laid) &&
-            (identical(other.hatched, hatched) || other.hatched == hatched) &&
-            (identical(other.flowOut, flowOut) || other.flowOut == flowOut) &&
-            (identical(other.brood, brood) || other.brood == brood) &&
-            (identical(other.user, user) || other.user == user) &&
-            const DeepCollectionEquality().equals(other._children, _children));
+            (identical(other.notes, notes) || other.notes == notes) &&
+            (identical(other.boughtFromId, boughtFromId) ||
+                other.boughtFromId == boughtFromId) &&
+            (identical(other.soldToId, soldToId) ||
+                other.soldToId == soldToId) &&
+            (identical(other.ownerId, ownerId) || other.ownerId == ownerId) &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -625,28 +695,30 @@ class _$BirdDtoImpl implements _BirdDto {
         collectionName,
         created,
         updated,
-        ringnumber,
-        born,
-        died,
-        sell,
-        bought,
-        species,
-        color,
-        cage,
-        father,
-        mother,
-        boughtPrice,
-        sellPriceOffer,
-        sellPriceReal,
+        ringNumber,
+        speciesId,
+        colorId,
         sex,
-        sold,
-        isEgg,
-        laid,
-        hatched,
-        flowOut,
-        brood,
-        user,
-        const DeepCollectionEquality().hash(_children)
+        fatherId,
+        motherId,
+        cageId,
+        broodId,
+        laidAt,
+        hatchedAt,
+        fledgedAt,
+        diedAt,
+        saleStatus,
+        listedAt,
+        soldAt,
+        askingPrice,
+        finalPrice,
+        boughtAt,
+        boughtPrice,
+        notes,
+        boughtFromId,
+        soldToId,
+        ownerId,
+        user
       ]);
 
   /// Create a copy of BirdDto
@@ -672,28 +744,42 @@ abstract class _BirdDto implements BirdDto {
       final String? collectionName,
       final DateTime? created,
       final DateTime? updated,
-      @StringNullEmptyConverter() final String? ringnumber,
-      @DateTimeNullEmptyConverter() final DateTime? born,
-      @DateTimeNullEmptyConverter() final DateTime? died,
-      @DateTimeNullEmptyConverter() final DateTime? sell,
-      @DateTimeNullEmptyConverter() final DateTime? bought,
-      @StringNullEmptyConverter() final String? species,
-      @StringNullEmptyConverter() final String? color,
-      @StringNullEmptyConverter() final String? cage,
-      @StringNullEmptyConverter() final String? father,
-      @StringNullEmptyConverter() final String? mother,
-      @JsonKey(name: 'bought_price') final double? boughtPrice,
-      @JsonKey(name: 'sell_price_offer') final double? sellPriceOffer,
-      @JsonKey(name: 'sell_price_real') final double? sellPriceReal,
+      @JsonKey(name: 'ringnumber')
+      @StringNullEmptyConverter()
+      final String? ringNumber,
+      @JsonKey(name: 'species')
+      @StringNullEmptyConverter()
+      final String? speciesId,
+      @JsonKey(name: 'color') @StringNullEmptyConverter() final String? colorId,
       final Sex sex,
-      final bool? sold,
-      final bool? isEgg,
-      @DateTimeNullEmptyConverter() final DateTime? laid,
-      @DateTimeNullEmptyConverter() final DateTime? hatched,
-      @DateTimeNullEmptyConverter() final DateTime? flowOut,
-      @StringNullEmptyConverter() final String? brood,
-      final String? user,
-      final List<String> children}) = _$BirdDtoImpl;
+      @JsonKey(name: 'father')
+      @StringNullEmptyConverter()
+      final String? fatherId,
+      @JsonKey(name: 'mother')
+      @StringNullEmptyConverter()
+      final String? motherId,
+      @JsonKey(name: 'cage') @StringNullEmptyConverter() final String? cageId,
+      @JsonKey(name: 'brood') @StringNullEmptyConverter() final String? broodId,
+      @DateTimeNullEmptyConverter() final DateTime? laidAt,
+      @DateTimeNullEmptyConverter() final DateTime? hatchedAt,
+      @DateTimeNullEmptyConverter() final DateTime? fledgedAt,
+      @DateTimeNullEmptyConverter() final DateTime? diedAt,
+      final SaleStatus saleStatus,
+      @DateTimeNullEmptyConverter() final DateTime? listedAt,
+      @DateTimeNullEmptyConverter() final DateTime? soldAt,
+      final double? askingPrice,
+      final double? finalPrice,
+      @DateTimeNullEmptyConverter() final DateTime? boughtAt,
+      final double? boughtPrice,
+      @StringNullEmptyConverter() final String? notes,
+      @JsonKey(name: 'boughtFrom')
+      @StringNullEmptyConverter()
+      final String? boughtFromId,
+      @JsonKey(name: 'soldTo')
+      @StringNullEmptyConverter()
+      final String? soldToId,
+      @JsonKey(name: 'owner') @StringNullEmptyConverter() final String? ownerId,
+      final String? user}) = _$BirdDtoImpl;
 
   factory _BirdDto.fromJson(Map<String, dynamic> json) = _$BirdDtoImpl.fromJson;
 
@@ -708,66 +794,81 @@ abstract class _BirdDto implements BirdDto {
   @override
   DateTime? get updated;
   @override
+  @JsonKey(name: 'ringnumber')
   @StringNullEmptyConverter()
-  String? get ringnumber;
+  String? get ringNumber;
   @override
-  @DateTimeNullEmptyConverter()
-  DateTime? get born;
-  @override
-  @DateTimeNullEmptyConverter()
-  DateTime? get died;
-  @override
-  @DateTimeNullEmptyConverter()
-  DateTime? get sell;
-  @override
-  @DateTimeNullEmptyConverter()
-  DateTime? get bought;
-  @override
+  @JsonKey(name: 'species')
   @StringNullEmptyConverter()
-  String? get species;
+  String? get speciesId;
   @override
+  @JsonKey(name: 'color')
   @StringNullEmptyConverter()
-  String? get color;
-  @override
-  @StringNullEmptyConverter()
-  String? get cage;
-  @override
-  @StringNullEmptyConverter()
-  String? get father;
-  @override
-  @StringNullEmptyConverter()
-  String? get mother;
-  @override
-  @JsonKey(name: 'bought_price')
-  double? get boughtPrice;
-  @override
-  @JsonKey(name: 'sell_price_offer')
-  double? get sellPriceOffer;
-  @override
-  @JsonKey(name: 'sell_price_real')
-  double? get sellPriceReal;
+  String? get colorId;
   @override
   Sex get sex;
   @override
-  bool? get sold;
+  @JsonKey(name: 'father')
+  @StringNullEmptyConverter()
+  String? get fatherId;
   @override
-  bool? get isEgg;
+  @JsonKey(name: 'mother')
+  @StringNullEmptyConverter()
+  String? get motherId;
+  @override
+  @JsonKey(name: 'cage')
+  @StringNullEmptyConverter()
+  String? get cageId;
+  @override
+  @JsonKey(name: 'brood')
+  @StringNullEmptyConverter()
+  String? get broodId;
   @override
   @DateTimeNullEmptyConverter()
-  DateTime? get laid;
+  DateTime? get laidAt;
   @override
   @DateTimeNullEmptyConverter()
-  DateTime? get hatched;
+  DateTime? get hatchedAt;
   @override
   @DateTimeNullEmptyConverter()
-  DateTime? get flowOut;
+  DateTime? get fledgedAt;
+  @override
+  @DateTimeNullEmptyConverter()
+  DateTime? get diedAt;
+  @override
+  SaleStatus get saleStatus;
+  @override
+  @DateTimeNullEmptyConverter()
+  DateTime? get listedAt;
+  @override
+  @DateTimeNullEmptyConverter()
+  DateTime? get soldAt;
+  @override
+  double? get askingPrice;
+  @override
+  double? get finalPrice;
+  @override
+  @DateTimeNullEmptyConverter()
+  DateTime? get boughtAt;
+  @override
+  double? get boughtPrice;
   @override
   @StringNullEmptyConverter()
-  String? get brood;
+  String? get notes;
+  @override
+  @JsonKey(name: 'boughtFrom')
+  @StringNullEmptyConverter()
+  String? get boughtFromId;
+  @override
+  @JsonKey(name: 'soldTo')
+  @StringNullEmptyConverter()
+  String? get soldToId;
+  @override
+  @JsonKey(name: 'owner')
+  @StringNullEmptyConverter()
+  String? get ownerId;
   @override
   String? get user;
-  @override
-  List<String> get children;
 
   /// Create a copy of BirdDto
   /// with the given fields replaced by the non-null parameter values.

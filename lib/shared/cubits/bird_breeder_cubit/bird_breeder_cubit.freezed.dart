@@ -160,8 +160,9 @@ class __$$BirdBreederInitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BirdBreederInitialImpl implements BirdBreederInitial {
-  const _$BirdBreederInitialImpl({required this.birdBreederResources});
+class _$BirdBreederInitialImpl extends BirdBreederInitial {
+  const _$BirdBreederInitialImpl({required this.birdBreederResources})
+      : super._();
 
   @override
   final BirdBreederResources birdBreederResources;
@@ -263,10 +264,11 @@ class _$BirdBreederInitialImpl implements BirdBreederInitial {
   }
 }
 
-abstract class BirdBreederInitial implements BirdBreederState {
+abstract class BirdBreederInitial extends BirdBreederState {
   const factory BirdBreederInitial(
           {required final BirdBreederResources birdBreederResources}) =
       _$BirdBreederInitialImpl;
+  const BirdBreederInitial._() : super._();
 
   @override
   BirdBreederResources get birdBreederResources;
@@ -319,8 +321,9 @@ class __$$BirdBreederLoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BirdBreederLoadingImpl implements BirdBreederLoading {
-  const _$BirdBreederLoadingImpl({required this.birdBreederResources});
+class _$BirdBreederLoadingImpl extends BirdBreederLoading {
+  const _$BirdBreederLoadingImpl({required this.birdBreederResources})
+      : super._();
 
   @override
   final BirdBreederResources birdBreederResources;
@@ -422,10 +425,11 @@ class _$BirdBreederLoadingImpl implements BirdBreederLoading {
   }
 }
 
-abstract class BirdBreederLoading implements BirdBreederState {
+abstract class BirdBreederLoading extends BirdBreederState {
   const factory BirdBreederLoading(
           {required final BirdBreederResources birdBreederResources}) =
       _$BirdBreederLoadingImpl;
+  const BirdBreederLoading._() : super._();
 
   @override
   BirdBreederResources get birdBreederResources;
@@ -478,8 +482,9 @@ class __$$BirdBreederLoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BirdBreederLoadedImpl implements BirdBreederLoaded {
-  const _$BirdBreederLoadedImpl({required this.birdBreederResources});
+class _$BirdBreederLoadedImpl extends BirdBreederLoaded {
+  const _$BirdBreederLoadedImpl({required this.birdBreederResources})
+      : super._();
 
   @override
   final BirdBreederResources birdBreederResources;
@@ -581,10 +586,11 @@ class _$BirdBreederLoadedImpl implements BirdBreederLoaded {
   }
 }
 
-abstract class BirdBreederLoaded implements BirdBreederState {
+abstract class BirdBreederLoaded extends BirdBreederState {
   const factory BirdBreederLoaded(
           {required final BirdBreederResources birdBreederResources}) =
       _$BirdBreederLoadedImpl;
+  const BirdBreederLoaded._() : super._();
 
   @override
   BirdBreederResources get birdBreederResources;

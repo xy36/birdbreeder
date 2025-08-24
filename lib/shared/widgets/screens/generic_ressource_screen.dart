@@ -1,8 +1,9 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/cages/domain/models/cage.dart';
-import 'package:birdbreeder/features/colors/domain/models/bird_color.dart';
+import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
 import 'package:birdbreeder/features/contacts/domain/models/contact.dart';
-import 'package:birdbreeder/features/species/domain/models/species.dart';
+import 'package:birdbreeder/features/ressourcen_center/domain/models/bird_color.dart';
+import 'package:birdbreeder/features/ressourcen_center/domain/models/cage.dart';
+import 'package:birdbreeder/features/ressourcen_center/domain/models/species.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/widgets/search_bar_widget.dart';
 
@@ -11,13 +12,15 @@ class RessourceScreen<T> extends StatefulWidget {
     super.key,
     required this.fn,
     required this.itemBuilder,
-    required this.onAddOrEdit,
+    required this.onAdd,
+    required this.onItemTap,
     required this.title,
   });
 
   final bool Function(T object, String query) fn;
   final Widget Function(T object) itemBuilder;
-  final void Function(BuildContext context, T? ressource) onAddOrEdit;
+  final void Function(BuildContext context) onAdd;
+  final void Function(BuildContext context, T ressource) onItemTap;
   final String title;
 
   @override
@@ -44,7 +47,8 @@ class _RessourceScreenState<T> extends State<RessourceScreen<T>> {
             BirdColor => birdBreederResources.colors as List<T>,
             Species => birdBreederResources.species as List<T>,
             Contact => birdBreederResources.contacts as List<T>,
-            _ => <T>[],
+            BreedingPair => birdBreederResources.breedingPairs as List<T>,
+            _ => throw Exception('Unsupported type for ressource screen'),
           },
           orElse: () => <T>[],
         );
@@ -65,13 +69,13 @@ class _RessourceScreenState<T> extends State<RessourceScreen<T>> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => widget.onAddOrEdit(context, null),
+        onPressed: () => widget.onAdd(context),
         child: const Icon(Icons.add),
       ),
       body: ListView.builder(
         itemCount: filteredRessource.length,
         itemBuilder: (context, index) => GestureDetector(
-          onTap: () => widget.onAddOrEdit(context, filteredRessource[index]),
+          onTap: () => widget.onItemTap(context, filteredRessource[index]),
           child: widget.itemBuilder(
             filteredRessource[index],
           ),

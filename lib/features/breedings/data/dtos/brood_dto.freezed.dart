@@ -33,7 +33,8 @@ mixin _$BroodDto {
   String? get notes => throw _privateConstructorUsedError;
   @StringNullEmptyConverter()
   String? get cage => throw _privateConstructorUsedError;
-  List<String>? get children => throw _privateConstructorUsedError;
+  @StringNullEmptyConverter()
+  String? get breedingPair => throw _privateConstructorUsedError;
   String? get user => throw _privateConstructorUsedError;
 
   /// Serializes this BroodDto to a JSON map.
@@ -61,7 +62,7 @@ abstract class $BroodDtoCopyWith<$Res> {
       @DateTimeNullEmptyConverter() DateTime? end,
       @StringNullEmptyConverter() String? notes,
       @StringNullEmptyConverter() String? cage,
-      List<String>? children,
+      @StringNullEmptyConverter() String? breedingPair,
       String? user});
 }
 
@@ -89,7 +90,7 @@ class _$BroodDtoCopyWithImpl<$Res, $Val extends BroodDto>
     Object? end = freezed,
     Object? notes = freezed,
     Object? cage = freezed,
-    Object? children = freezed,
+    Object? breedingPair = freezed,
     Object? user = freezed,
   }) {
     return _then(_value.copyWith(
@@ -129,10 +130,10 @@ class _$BroodDtoCopyWithImpl<$Res, $Val extends BroodDto>
           ? _value.cage
           : cage // ignore: cast_nullable_to_non_nullable
               as String?,
-      children: freezed == children
-          ? _value.children
-          : children // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+      breedingPair: freezed == breedingPair
+          ? _value.breedingPair
+          : breedingPair // ignore: cast_nullable_to_non_nullable
+              as String?,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -159,7 +160,7 @@ abstract class _$$BroodDtoImplCopyWith<$Res>
       @DateTimeNullEmptyConverter() DateTime? end,
       @StringNullEmptyConverter() String? notes,
       @StringNullEmptyConverter() String? cage,
-      List<String>? children,
+      @StringNullEmptyConverter() String? breedingPair,
       String? user});
 }
 
@@ -185,7 +186,7 @@ class __$$BroodDtoImplCopyWithImpl<$Res>
     Object? end = freezed,
     Object? notes = freezed,
     Object? cage = freezed,
-    Object? children = freezed,
+    Object? breedingPair = freezed,
     Object? user = freezed,
   }) {
     return _then(_$BroodDtoImpl(
@@ -225,10 +226,10 @@ class __$$BroodDtoImplCopyWithImpl<$Res>
           ? _value.cage
           : cage // ignore: cast_nullable_to_non_nullable
               as String?,
-      children: freezed == children
-          ? _value._children
-          : children // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+      breedingPair: freezed == breedingPair
+          ? _value.breedingPair
+          : breedingPair // ignore: cast_nullable_to_non_nullable
+              as String?,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -250,9 +251,8 @@ class _$BroodDtoImpl implements _BroodDto {
       @DateTimeNullEmptyConverter() this.end,
       @StringNullEmptyConverter() this.notes,
       @StringNullEmptyConverter() this.cage,
-      final List<String>? children,
-      this.user})
-      : _children = children;
+      @StringNullEmptyConverter() this.breedingPair,
+      this.user});
 
   factory _$BroodDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$BroodDtoImplFromJson(json);
@@ -279,22 +279,15 @@ class _$BroodDtoImpl implements _BroodDto {
   @override
   @StringNullEmptyConverter()
   final String? cage;
-  final List<String>? _children;
   @override
-  List<String>? get children {
-    final value = _children;
-    if (value == null) return null;
-    if (_children is EqualUnmodifiableListView) return _children;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  @StringNullEmptyConverter()
+  final String? breedingPair;
   @override
   final String? user;
 
   @override
   String toString() {
-    return 'BroodDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, start: $start, end: $end, notes: $notes, cage: $cage, children: $children, user: $user)';
+    return 'BroodDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, start: $start, end: $end, notes: $notes, cage: $cage, breedingPair: $breedingPair, user: $user)';
   }
 
   @override
@@ -313,25 +306,15 @@ class _$BroodDtoImpl implements _BroodDto {
             (identical(other.end, end) || other.end == end) &&
             (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.cage, cage) || other.cage == cage) &&
-            const DeepCollectionEquality().equals(other._children, _children) &&
+            (identical(other.breedingPair, breedingPair) ||
+                other.breedingPair == breedingPair) &&
             (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      collectionId,
-      collectionName,
-      created,
-      updated,
-      start,
-      end,
-      notes,
-      cage,
-      const DeepCollectionEquality().hash(_children),
-      user);
+  int get hashCode => Object.hash(runtimeType, id, collectionId, collectionName,
+      created, updated, start, end, notes, cage, breedingPair, user);
 
   /// Create a copy of BroodDto
   /// with the given fields replaced by the non-null parameter values.
@@ -360,7 +343,7 @@ abstract class _BroodDto implements BroodDto {
       @DateTimeNullEmptyConverter() final DateTime? end,
       @StringNullEmptyConverter() final String? notes,
       @StringNullEmptyConverter() final String? cage,
-      final List<String>? children,
+      @StringNullEmptyConverter() final String? breedingPair,
       final String? user}) = _$BroodDtoImpl;
 
   factory _BroodDto.fromJson(Map<String, dynamic> json) =
@@ -389,7 +372,8 @@ abstract class _BroodDto implements BroodDto {
   @StringNullEmptyConverter()
   String? get cage;
   @override
-  List<String>? get children;
+  @StringNullEmptyConverter()
+  String? get breedingPair;
   @override
   String? get user;
 

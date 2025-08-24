@@ -9,13 +9,13 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_mappr_annotation/auto_mappr_annotation.dart' as _i1;
 
-import '../../../../core/utils/user_helper.dart' as _i4;
 import '../../data/dtos/contact_dto.dart' as _i3;
 import '../models/contact.dart' as _i2;
 
 /// {@template package:birdbreeder/features/contacts/domain/mapper/contact_mapper.dart}
 /// Available mappings:
 /// - `Contact` → `ContactDto`.
+/// - `ContactDto` → `Contact`.
 /// {@endtemplate}
 class $ContactMapper implements _i1.AutoMapprInterface {
   const $ContactMapper();
@@ -34,6 +34,12 @@ class $ContactMapper implements _i1.AutoMapprInterface {
             sourceTypeOf == _typeOf<_i2.Contact?>()) &&
         (targetTypeOf == _typeOf<_i3.ContactDto>() ||
             targetTypeOf == _typeOf<_i3.ContactDto?>())) {
+      return true;
+    }
+    if ((sourceTypeOf == _typeOf<_i3.ContactDto>() ||
+            sourceTypeOf == _typeOf<_i3.ContactDto?>()) &&
+        (targetTypeOf == _typeOf<_i2.Contact>() ||
+            targetTypeOf == _typeOf<_i2.Contact?>())) {
       return true;
     }
     if (recursive) {
@@ -237,6 +243,16 @@ class $ContactMapper implements _i1.AutoMapprInterface {
       return (_map__i2$Contact_To__i3$ContactDto((model as _i2.Contact?))
           as TARGET);
     }
+    if ((sourceTypeOf == _typeOf<_i3.ContactDto>() ||
+            sourceTypeOf == _typeOf<_i3.ContactDto?>()) &&
+        (targetTypeOf == _typeOf<_i2.Contact>() ||
+            targetTypeOf == _typeOf<_i2.Contact?>())) {
+      if (canReturnNull && model == null) {
+        return null;
+      }
+      return (_map__i3$ContactDto_To__i2$Contact((model as _i3.ContactDto?))
+          as TARGET);
+    }
     throw Exception('No ${model.runtimeType} -> $targetTypeOf mapping.');
   }
 
@@ -279,6 +295,7 @@ class $ContactMapper implements _i1.AutoMapprInterface {
     return _i3.ContactDto(
       id: model.id,
       number: model.number,
+      phone: model.phone,
       firstName: model.firstName,
       name: model.name,
       email: model.email,
@@ -287,7 +304,28 @@ class $ContactMapper implements _i1.AutoMapprInterface {
       country: model.country,
       postalCode: model.postalCode,
       website: model.website,
-      user: _i4.UserHelper.insertUser(),
+    );
+  }
+
+  _i2.Contact _map__i3$ContactDto_To__i2$Contact(_i3.ContactDto? input) {
+    final model = input;
+    if (model == null) {
+      throw Exception(
+          r'Mapping ContactDto → Contact failed because ContactDto was null, and no default value was provided. '
+          r'Consider setting the whenSourceIsNull parameter on the MapType<ContactDto, Contact> to handle null values during mapping.');
+    }
+    return _i2.Contact(
+      id: model.id,
+      number: model.number,
+      phone: model.phone,
+      firstName: model.firstName,
+      name: model.name,
+      email: model.email,
+      address: model.address,
+      city: model.city,
+      postalCode: model.postalCode,
+      country: model.country,
+      website: model.website,
     );
   }
 }

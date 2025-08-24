@@ -9,13 +9,13 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_mappr_annotation/auto_mappr_annotation.dart' as _i1;
 
-import '../../../../core/utils/user_helper.dart' as _i4;
 import '../../data/dtos/brood_dto.dart' as _i3;
 import '../models/brood.dart' as _i2;
 
 /// {@template package:birdbreeder/features/breedings/domain/mapper/brood_mapper.dart}
 /// Available mappings:
 /// - `Brood` → `BroodDto`.
+/// - `BroodDto` → `Brood`.
 /// {@endtemplate}
 class $BroodMapper implements _i1.AutoMapprInterface {
   const $BroodMapper();
@@ -34,6 +34,12 @@ class $BroodMapper implements _i1.AutoMapprInterface {
             sourceTypeOf == _typeOf<_i2.Brood?>()) &&
         (targetTypeOf == _typeOf<_i3.BroodDto>() ||
             targetTypeOf == _typeOf<_i3.BroodDto?>())) {
+      return true;
+    }
+    if ((sourceTypeOf == _typeOf<_i3.BroodDto>() ||
+            sourceTypeOf == _typeOf<_i3.BroodDto?>()) &&
+        (targetTypeOf == _typeOf<_i2.Brood>() ||
+            targetTypeOf == _typeOf<_i2.Brood?>())) {
       return true;
     }
     if (recursive) {
@@ -236,6 +242,16 @@ class $BroodMapper implements _i1.AutoMapprInterface {
       }
       return (_map__i2$Brood_To__i3$BroodDto((model as _i2.Brood?)) as TARGET);
     }
+    if ((sourceTypeOf == _typeOf<_i3.BroodDto>() ||
+            sourceTypeOf == _typeOf<_i3.BroodDto?>()) &&
+        (targetTypeOf == _typeOf<_i2.Brood>() ||
+            targetTypeOf == _typeOf<_i2.Brood?>())) {
+      if (canReturnNull && model == null) {
+        return null;
+      }
+      return (_map__i3$BroodDto_To__i2$Brood((model as _i3.BroodDto?))
+          as TARGET);
+    }
     throw Exception('No ${model.runtimeType} -> $targetTypeOf mapping.');
   }
 
@@ -281,8 +297,24 @@ class $BroodMapper implements _i1.AutoMapprInterface {
       end: model.end,
       notes: model.notes,
       cage: model.cage,
-      children: model.children,
-      user: _i4.UserHelper.insertUser(),
+      breedingPair: model.breedingPair,
+    );
+  }
+
+  _i2.Brood _map__i3$BroodDto_To__i2$Brood(_i3.BroodDto? input) {
+    final model = input;
+    if (model == null) {
+      throw Exception(
+          r'Mapping BroodDto → Brood failed because BroodDto was null, and no default value was provided. '
+          r'Consider setting the whenSourceIsNull parameter on the MapType<BroodDto, Brood> to handle null values during mapping.');
+    }
+    return _i2.Brood(
+      id: model.id,
+      start: model.start,
+      end: model.end,
+      notes: model.notes,
+      cage: model.cage,
+      breedingPair: model.breedingPair,
     );
   }
 }

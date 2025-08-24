@@ -1,62 +1,149 @@
+import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/birds/domain/models/sex_enum.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-export 'package:birdbreeder/core/extensions/birds_extension.dart';
-
 part 'bird.freezed.dart';
+part 'bird.g.dart';
+
+typedef BirdId = String;
+typedef CageId = String;
+typedef SpeciesId = String;
+typedef ColorId = String;
+typedef BroodId = String;
+typedef ContactId = String;
+
+enum LifeStage {
+  egg,
+  chick,
+  adult,
+  deceased;
+
+  String getDisplayName(BuildContext context) {
+    switch (this) {
+      case LifeStage.egg:
+        return context.l10n.bird__life_stage_egg;
+      case LifeStage.chick:
+        return context.l10n.bird__life_stage_chick;
+      case LifeStage.adult:
+        return context.l10n.bird__life_stage_adult;
+      case LifeStage.deceased:
+        return context.l10n.bird__life_stage_deceased;
+    }
+  }
+
+  IconData get icon => switch (this) {
+        LifeStage.egg => Icons.egg,
+        LifeStage.chick => Icons.child_care,
+        LifeStage.adult => Icons.emoji_nature,
+        LifeStage.deceased => Icons.health_and_safety,
+      };
+}
+
+enum SaleStatus {
+  notForSale,
+  listed,
+  reserved,
+  sold;
+
+  String getDisplayName(BuildContext context) {
+    switch (this) {
+      case SaleStatus.notForSale:
+        return context.l10n.bird__sale_status_not_for_sale;
+      case SaleStatus.listed:
+        return context.l10n.bird__sale_status_listed;
+      case SaleStatus.reserved:
+        return context.l10n.bird__sale_status_reserved;
+      case SaleStatus.sold:
+        return context.l10n.bird__sale_status_sold;
+    }
+  }
+
+  String getSubtitle(BuildContext context) {
+    switch (this) {
+      case SaleStatus.notForSale:
+        return 'Dieser Vogel steht aktuell nicht zum Verkauf.';
+      case SaleStatus.listed:
+        return 'Dieser Vogel ist zum Verkauf angeboten.';
+      case SaleStatus.reserved:
+        return 'Dieser Vogel ist reserviert.';
+      case SaleStatus.sold:
+        return 'Dieser Vogel wurde verkauft.';
+    }
+  }
+}
 
 @freezed
 class Bird with _$Bird {
-  factory Bird({
-    required String id,
-    required DateTime? created,
-    required DateTime? updated,
-    required String? ringnumber,
-    required DateTime? born,
-    required DateTime? died,
-    required DateTime? bought,
-    required DateTime? sell,
-    required double? boughtPrice,
-    required double? sellPriceOffer,
-    required double? sellPriceReal,
-    required String? species,
-    required String? color,
-    required String? cage,
-    required String? father,
-    required String? mother,
+  @JsonSerializable(explicitToJson: true)
+  const factory Bird({
+    required BirdId id,
+
+    // Audit
+    DateTime? createdAt,
+    DateTime? updatedAt,
+
+    // Identity
+    String? ringNumber,
+    SpeciesId? speciesId,
+    ColorId? colorId,
+    ContactId? ownerId,
+
+    // Sex & parents
     @Default(Sex.unknown) Sex sex,
-    required bool? sold,
-    required bool? isEgg,
-    required DateTime? laid,
-    required DateTime? hatched,
-    required DateTime? flowOut,
-    required String? brood,
-    required List<String> children,
+    BirdId? fatherId,
+    BirdId? motherId,
+
+    // Housing & brood
+    CageId? cageId,
+    BroodId? broodId,
+
+    // Lifecycle
+    DateTime? laidAt,
+    DateTime? hatchedAt,
+    DateTime? fledgedAt,
+    DateTime? diedAt,
+
+    // Commerce
+    @Default(SaleStatus.notForSale) SaleStatus saleStatus,
+    DateTime? listedAt,
+    DateTime? soldAt,
+    double? askingPrice,
+    double? finalPrice,
+    DateTime? boughtAt,
+    double? boughtPrice,
+    ContactId? boughtFromId,
+    ContactId? soldToId,
+
+    // Notes
+    String? notes,
   }) = _Bird;
 
-  factory Bird.create() => Bird(
+  factory Bird.fromJson(Map<String, dynamic> json) => _$BirdFromJson(json);
+
+  /// Factory to create a new empty bird object (id is '', created/updated are null)
+  factory Bird.create() => const Bird(
         id: '',
-        created: null,
-        updated: null,
-        ringnumber: null,
-        born: null,
-        died: null,
-        bought: null,
-        sell: null,
-        boughtPrice: null,
-        sellPriceOffer: null,
-        sellPriceReal: null,
-        species: null,
-        color: null,
-        cage: null,
-        father: null,
-        mother: null,
-        sold: null,
-        isEgg: null,
-        laid: null,
-        hatched: null,
-        flowOut: null,
-        brood: null,
-        children: [],
       );
+
+  /// Factory to create a new egg bird object
+  factory Bird.egg({
+    String? ringNumber,
+    DateTime? laidAt,
+    BirdId? fatherId,
+    BirdId? motherId,
+    String? speciesId,
+    BroodId? broodId,
+  }) {
+    final now = DateTime.now();
+    return Bird.create().copyWith(
+      createdAt: now,
+      updatedAt: now,
+      ringNumber: ringNumber,
+      speciesId: speciesId,
+      fatherId: fatherId,
+      motherId: motherId,
+      broodId: broodId,
+      laidAt: laidAt,
+    );
+  }
 }

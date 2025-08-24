@@ -1,13 +1,12 @@
-import 'package:birdbreeder/app_theme_blumine.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
-import 'package:birdbreeder/features/cages/presentation/cage/cubit/cage_cubit.dart';
-import 'package:birdbreeder/features/colors/presentation/color/cubit/color_cubit.dart';
-import 'package:birdbreeder/features/contacts/presentation/cubit/contacts_cubit.dart';
-import 'package:birdbreeder/features/species/presentation/cubit/species_cubit.dart';
+import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_filter_cubit.dart';
+import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_search_cubit.dart';
+import 'package:birdbreeder/features/contacts/presentation/cubit/contact_search_cubit.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 class App extends StatelessWidget {
   App({
@@ -25,37 +24,45 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const useDarkTheme = false;
+
+    final lightTheme = FlexThemeData.light(scheme: FlexScheme.aquaBlue);
+    final darkTheme = FlexThemeData.dark(scheme: FlexScheme.redWine);
+
+    var theme = useDarkTheme ? darkTheme : lightTheme;
+
+    theme = theme.copyWith(
+      inputDecorationTheme: theme.inputDecorationTheme.copyWith(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(
+            width: 2,
+          ),
+        ),
+      ),
+      cardTheme: theme.cardTheme.copyWith(),
+    );
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          lazy: false,
-          create: (context) => CageCubit(s1()),
-        ),
-        BlocProvider(
-          lazy: false,
-          create: (context) => ContactsCubit(s1()),
-        ),
-        BlocProvider(
-          lazy: false,
-          create: (context) => SpeciesCubit(s1()),
-        ),
-        BlocProvider(
-          lazy: false,
-          create: (context) => ColorCubit(s1()),
-        ),
         BlocProvider.value(value: s1.get<BirdBreederCubit>()),
+        BlocProvider(create: (context) => ContactSearchCubit()),
+        BlocProvider(create: (context) => BirdSearchCubit()),
+        BlocProvider(create: (context) => BirdsFilterCubit()),
       ],
       child: MaterialApp.router(
         routerConfig: _appRouter.config(
           reevaluateListenable:
               s1.get<IAuthenticationService>().authenticationStatus,
         ),
-        theme: AppThemeBlumine.dark,
-        darkTheme: AppThemeBlumine.dark,
+        theme: theme,
+        darkTheme: darkTheme,
         builder: (context, child) {
           return child!;
         },
-        themeMode: ThemeMode.dark,
+        themeMode: useDarkTheme ? ThemeMode.dark : ThemeMode.light,
         localizationsDelegates: const [
           ...AppLocalizations.localizationsDelegates,
         ],

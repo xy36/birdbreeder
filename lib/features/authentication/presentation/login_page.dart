@@ -23,33 +23,35 @@ class LoginPage extends StatelessWidget {
       child: MultiBlocListener(
         listeners: [LoginErrorListener()],
         child: Scaffold(
-          appBar: AppBar(
-            toolbarHeight: 0,
-          ),
-          body: LayoutBuilder(
-            builder: (context, constraints) {
-              return context.responsiveValueTabletLandscapeAndGreater(
-                tabletLandscape: const SingleChildScrollView(
-                  child: LoginForm(),
-                ),
-                greater: Row(
-                  children: [
-                    const Expanded(
-                      child: ImageForm(),
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return context.responsiveValueTabletLandscapeAndGreater(
+                    tabletLandscape: const SingleChildScrollView(
+                      child: LoginForm(),
                     ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: SingleChildScrollView(
-                        child: SizedBox(
-                          width: constraints.maxWidth * 0.4,
-                          child: const LoginForm(),
+                    greater: Row(
+                      children: [
+                        const Expanded(
+                          child: ImageForm(),
                         ),
-                      ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: SingleChildScrollView(
+                            child: SizedBox(
+                              width: constraints.maxWidth * 0.4,
+                              child: const LoginForm(),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              );
-            },
+                  );
+                },
+              ),
+            ),
           ),
         ),
       ),

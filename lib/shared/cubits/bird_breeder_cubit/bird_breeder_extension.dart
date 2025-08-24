@@ -1,10 +1,10 @@
 import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/breeding_pair_dto.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/brood_dto.dart';
-import 'package:birdbreeder/features/cages/data/dtos/cage_dto.dart';
-import 'package:birdbreeder/features/colors/data/dtos/bird_color_dto.dart';
 import 'package:birdbreeder/features/contacts/data/dtos/contact_dto.dart';
-import 'package:birdbreeder/features/species/data/dtos/species_dto.dart';
+import 'package:birdbreeder/features/ressourcen_center/data/dtos/bird_color_dto.dart';
+import 'package:birdbreeder/features/ressourcen_center/data/dtos/cage_dto.dart';
+import 'package:birdbreeder/features/ressourcen_center/data/dtos/species_dto.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/services/pocketbase_service.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';

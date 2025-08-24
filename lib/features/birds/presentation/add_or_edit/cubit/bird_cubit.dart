@@ -1,10 +1,10 @@
-import 'package:birdbreeder/core/extensions/mapper_extensions.dart';
-import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/cubit/bird_cubit_event.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/models/bird_mode.dart';
-import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/models/bird_breeder_resources.dart';
-import 'package:birdbreeder/shared/repositories/ressource_repository.dart';
+import 'package:birdbreeder/features/ressourcen_center/domain/models/bird_color.dart';
+import 'package:birdbreeder/features/ressourcen_center/domain/models/cage.dart';
+import 'package:birdbreeder/features/ressourcen_center/domain/models/species.dart';
+import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_presentation/bloc_presentation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -15,8 +15,7 @@ part 'bird_state.dart';
 class BirdCubit extends Cubit<BirdState>
     with BlocPresentationMixin<BirdState, BirdCubitEvent> {
   BirdCubit(
-    this.birdsRepo,
-    this.resources, {
+    this.birdBreederCubit, {
     required this.initialBird,
   }) : super(
           BirdLoaded(
@@ -28,8 +27,7 @@ class BirdCubit extends Cubit<BirdState>
   }
 
   Bird? initialBird;
-  final RessourceRepository<BirdDto> birdsRepo;
-  final BirdBreederResources resources;
+  final BirdBreederCubit birdBreederCubit;
 
   Future<void> changeBird(Bird bird) async {
     return emit(
@@ -42,16 +40,11 @@ class BirdCubit extends Cubit<BirdState>
 
   Future<void> save() async {
     final result = switch (state.mode) {
-      BirdMode.create => await birdsRepo.create(state.bird.toDto()),
-      BirdMode.edit =>
-        await birdsRepo.update(state.bird.id, state.bird.toDto()),
+      BirdMode.create => await birdBreederCubit.addBird(state.bird),
+      BirdMode.edit => await birdBreederCubit.updateBird(state.bird),
     };
 
-    if (result.isError) {
-      emitPresentation(
-        const BirdCubitEvent.error(),
-      );
-
+    if (result == null) {
       return emit(
         BirdLoaded(
           bird: state.bird,
@@ -60,11 +53,11 @@ class BirdCubit extends Cubit<BirdState>
       );
     }
 
-    initialBird = state.bird;
+    initialBird = result;
 
     emit(
       BirdLoaded(
-        bird: state.bird,
+        bird: result,
         mode: BirdMode.edit,
       ),
     );
@@ -75,19 +68,14 @@ class BirdCubit extends Cubit<BirdState>
   }
 
   Future<void> duplicate() async {
-    final result = await birdsRepo.create(
-      state.bird
-          .copyWith(
-            id: '',
-            ringnumber: 'Duplicate of ${state.bird.ringnumber ?? ''}',
-          )
-          .toDto(),
+    final result = await birdBreederCubit.addBird(
+      state.bird.copyWith(
+        id: '',
+        ringNumber: 'Copy of ${state.bird.ringNumber ?? ''}',
+      ),
     );
 
-    if (result.isError) {
-      emitPresentation(
-        const BirdCubitEvent.error(),
-      );
+    if (result == null) {
       return emit(
         BirdLoaded(
           bird: state.bird,
@@ -109,22 +97,51 @@ class BirdCubit extends Cubit<BirdState>
       ),
     );
 
-    final result = await birdsRepo.delete(state.bird.id);
-
-    if (result.isError) {
-      emitPresentation(
-        const BirdCubitEvent.error(),
-      );
-      emit(
-        BirdLoaded(
-          bird: state.bird,
-          mode: state.mode,
-        ),
-      );
-    }
+    await birdBreederCubit.deleteBird(state.bird);
 
     emitPresentation(
       const BirdCubitEvent.deleted(),
     );
+  }
+
+  Future<void> addAndSelectSpecies(String speciesName) async {
+    final species =
+        await birdBreederCubit.addSpecies(Species.create(name: speciesName));
+
+    if (species != null) {
+      emit(
+        BirdLoaded(
+          bird: state.bird.copyWith(speciesId: species.id),
+          mode: state.mode,
+        ),
+      );
+    }
+  }
+
+  Future<void> addAndSelectCage(String cageName) async {
+    final cage = await birdBreederCubit.addCage(Cage.create(name: cageName));
+
+    if (cage != null) {
+      emit(
+        BirdLoaded(
+          bird: state.bird.copyWith(cageId: cage.id),
+          mode: state.mode,
+        ),
+      );
+    }
+  }
+
+  Future<void> addAndSelectColor(String colorName) async {
+    final color =
+        await birdBreederCubit.addColor(BirdColor.create(name: colorName));
+
+    if (color != null) {
+      emit(
+        BirdLoaded(
+          bird: state.bird.copyWith(colorId: color.id),
+          mode: state.mode,
+        ),
+      );
+    }
   }
 }

@@ -10,6 +10,7 @@ _$ContactDtoImpl _$$ContactDtoImplFromJson(Map<String, dynamic> json) =>
     _$ContactDtoImpl(
       id: json['id'] as String,
       number: json['number'] as String?,
+      phone: json['phone'] as String?,
       firstName: json['firstName'] as String?,
       name: json['name'] as String?,
       email: json['email'] as String?,
@@ -25,6 +26,7 @@ Map<String, dynamic> _$$ContactDtoImplToJson(_$ContactDtoImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'number': instance.number,
+      'phone': instance.phone,
       'firstName': instance.firstName,
       'name': instance.name,
       'email': instance.email,

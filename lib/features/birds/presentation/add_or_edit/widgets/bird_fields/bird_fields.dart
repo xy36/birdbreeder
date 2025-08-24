@@ -1,78 +1,145 @@
+import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
-import 'package:birdbreeder/features/birds/presentation/add_or_edit/cubit/bird_cubit.dart';
-import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/fields/born_date_field.dart';
-import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/fields/bought_date_field.dart';
-import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/fields/bought_price_field.dart';
-import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/fields/cage_field.dart';
-import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/fields/color_field.dart';
-import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/fields/created_information.dart';
-import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/fields/died_date_field.dart';
-import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/fields/parent_field.dart';
-import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/fields/ringnumber_field.dart';
-import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/fields/sell_date_field.dart';
-import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/fields/sell_price_offer_field.dart';
-import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/fields/sell_price_real_field.dart';
-import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/fields/sex_field.dart';
-import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/fields/species_field.dart';
-import 'package:birdbreeder/services/screen_size.dart';
+import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/breeding/children_section.dart';
+import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/breeding/parent_section.dart';
+import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/general/identification_section.dart';
+import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/general/keeping_section.dart';
+import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/general/notes_section.dart';
+import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/purchase_and_sale/purchase_section.dart';
+import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/purchase_and_sale/sale_section.dart';
+import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/purchase_and_sale/sale_status_section.dart';
+import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/status_and_life_cycle/health_section.dart';
+import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/status_and_life_cycle/life_stage_section.dart';
 
-class BirdFields extends StatelessWidget {
+enum BirdSections {
+  general,
+  statusAndLifeCycle,
+  breeding,
+  purchaseAndSale;
+
+  String getDisplayName(BuildContext context) {
+    switch (this) {
+      case BirdSections.general:
+        return context.l10n.bird__tab_general;
+      case BirdSections.statusAndLifeCycle:
+        return context.l10n.bird__status_and_lifecycle_section_title;
+      case BirdSections.breeding:
+        return context.l10n.bird__tab_breeding;
+      case BirdSections.purchaseAndSale:
+        return context.l10n.bird__tab_purchase_and_sale;
+    }
+  }
+
+  Widget getIcon() {
+    return Icon(
+      switch (this) {
+        BirdSections.general => Icons.info_outline,
+        BirdSections.breeding => Icons.pets,
+        BirdSections.statusAndLifeCycle => Icons.timelapse,
+        BirdSections.purchaseAndSale => Icons.attach_money,
+      },
+    );
+  }
+
+  List<Widget> getSectionWidgets(BuildContext context, Bird bird) {
+    switch (this) {
+      case BirdSections.general:
+        return [
+          IdentificationSection(bird),
+          KeepingSection(bird),
+          NotesSection(bird),
+        ];
+      case BirdSections.statusAndLifeCycle:
+        return [
+          LifeStageSection(bird),
+          HealthSection(bird),
+        ];
+      case BirdSections.breeding:
+        return [
+          ParentSection(bird),
+          ChildrenSection(bird),
+        ];
+      case BirdSections.purchaseAndSale:
+        return [
+          SaleStatusSection(bird),
+          PurchaseSection(bird),
+          SaleSection(bird),
+        ];
+    }
+  }
+}
+
+final formKey = GlobalKey<FormBuilderState>();
+
+class BirdFields extends StatefulWidget {
   const BirdFields({super.key, required this.bird});
 
   final Bird bird;
 
   @override
+  State<BirdFields> createState() => _BirdFieldsState();
+}
+
+class _BirdFieldsState extends State<BirdFields> with TickerProviderStateMixin {
+  late final TabController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = TabController(length: BirdSections.values.length, vsync: this);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final size = ScreenSize.getScreenSize(context);
-    return SingleChildScrollView(
-      child: BlocBuilder<BirdCubit, BirdState>(
-        builder: (context, state) {
-          final fields = [
-            RingnumberField(bird: bird),
-            CageField(bird: bird),
-            SpeciesField(
-              bird: bird,
-            ),
-            Row(
-              spacing: 16,
-              children: [
-                Expanded(
-                  flex: 4,
-                  child: ColorField(
-                    bird: bird,
+    return FormBuilder(
+      key: formKey,
+      child: Column(
+        children: [
+          TabBar(
+            controller: controller,
+            isScrollable: true,
+            physics: const BouncingScrollPhysics(),
+            tabAlignment: TabAlignment.center,
+            tabs: BirdSections.values
+                .map(
+                  (tab) => Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Tab(
+                      icon: tab.getIcon(),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                        child: Text(
+                          tab.getDisplayName(context),
+                          style: context.bodySmall,
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: SexField(bird: bird),
-                ),
-              ],
+                )
+                .toList(),
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: controller,
+              children: BirdSections.values
+                  .map(
+                    (e) => SingleChildScrollView(
+                      physics: const AlwaysScrollableScrollPhysics(
+                        parent: BouncingScrollPhysics(),
+                      ),
+                      child: Column(
+                        children: e.getSectionWidgets(context, widget.bird),
+                      ),
+                    ),
+                  )
+                  .toList(),
             ),
-            ParentField(initialBird: bird, parentType: ParentType.father),
-            ParentField(initialBird: bird, parentType: ParentType.mother),
-            BornDateField(bird: bird),
-            BoughtDateField(bird: bird),
-            SellDateField(bird: bird),
-            DiedDateField(bird: bird),
-            BoughtPriceField(bird: bird),
-            SellPriceOfferField(bird: bird),
-            SellPriceRealField(bird: bird),
-            CreatedInformation(bird: bird),
-          ];
-          return Column(
-            spacing: 16,
-            children: <Widget>[
-              ...fields.map(
-                (e) => Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: size.drawerDialogInsetPadding,
-                  ),
-                  child: e,
-                ),
-              ),
-            ],
-          );
-        },
+          ),
+        ],
       ),
     );
   }

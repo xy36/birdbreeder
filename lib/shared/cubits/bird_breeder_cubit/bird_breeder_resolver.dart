@@ -4,14 +4,14 @@ import 'package:birdbreeder/features/breedings/data/dtos/breeding_pair_dto.dart'
 import 'package:birdbreeder/features/breedings/data/dtos/brood_dto.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
 import 'package:birdbreeder/features/breedings/domain/models/brood.dart';
-import 'package:birdbreeder/features/cages/data/dtos/cage_dto.dart';
-import 'package:birdbreeder/features/cages/domain/models/cage.dart';
-import 'package:birdbreeder/features/colors/data/dtos/bird_color_dto.dart';
-import 'package:birdbreeder/features/colors/domain/models/bird_color.dart';
 import 'package:birdbreeder/features/contacts/data/dtos/contact_dto.dart';
 import 'package:birdbreeder/features/contacts/domain/models/contact.dart';
-import 'package:birdbreeder/features/species/data/dtos/species_dto.dart';
-import 'package:birdbreeder/features/species/domain/models/species.dart';
+import 'package:birdbreeder/features/ressourcen_center/data/dtos/bird_color_dto.dart';
+import 'package:birdbreeder/features/ressourcen_center/data/dtos/cage_dto.dart';
+import 'package:birdbreeder/features/ressourcen_center/data/dtos/species_dto.dart';
+import 'package:birdbreeder/features/ressourcen_center/domain/models/bird_color.dart';
+import 'package:birdbreeder/features/ressourcen_center/domain/models/cage.dart';
+import 'package:birdbreeder/features/ressourcen_center/domain/models/species.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:collection/collection.dart';
 
@@ -64,6 +64,7 @@ extension BirdBreederResovlerExtension on BirdBreederCubit {
   Contact resolveContactDto(ContactDto contactDto) {
     return Contact(
       id: contactDto.id,
+      phone: contactDto.phone,
       name: contactDto.name,
       email: contactDto.email,
       address: contactDto.address,
@@ -91,36 +92,38 @@ extension BirdBreederResovlerExtension on BirdBreederCubit {
       mother: breedingPairDto.mother,
       start: breedingPairDto.start,
       end: breedingPairDto.end,
-      broods: breedingPairDto.broods,
+      notes: breedingPairDto.notes,
     );
   }
 
   Bird resolveBirdDto(BirdDto birdDto) {
     return Bird(
       id: birdDto.id,
-      ringnumber: birdDto.ringnumber,
-      species: birdDto.species,
-      born: birdDto.born,
-      bought: birdDto.bought,
-      cage: birdDto.cage,
-      color: birdDto.color,
-      father: birdDto.father,
-      mother: birdDto.mother,
+      ringNumber: birdDto.ringNumber,
+      speciesId: birdDto.speciesId,
+      colorId: birdDto.colorId,
+      fatherId: birdDto.fatherId,
+      motherId: birdDto.motherId,
+      cageId: birdDto.cageId,
+      broodId: birdDto.broodId,
+      laidAt: birdDto.laidAt,
+      hatchedAt: birdDto.hatchedAt,
+      fledgedAt: birdDto.fledgedAt,
+      diedAt: birdDto.diedAt,
+      saleStatus: birdDto.saleStatus,
+      listedAt: birdDto.listedAt,
+      soldAt: birdDto.soldAt,
+      askingPrice: birdDto.askingPrice,
+      finalPrice: birdDto.finalPrice,
+      boughtAt: birdDto.boughtAt,
       boughtPrice: birdDto.boughtPrice,
-      created: birdDto.created,
-      sell: birdDto.sell,
-      sellPriceOffer: birdDto.sellPriceOffer,
-      sellPriceReal: birdDto.sellPriceReal,
       sex: birdDto.sex,
-      died: birdDto.died,
-      sold: birdDto.sold,
-      flowOut: birdDto.flowOut,
-      hatched: birdDto.hatched,
-      isEgg: birdDto.isEgg,
-      laid: birdDto.laid,
-      brood: birdDto.brood,
-      updated: birdDto.updated,
-      children: birdDto.children,
+      notes: birdDto.notes,
+      boughtFromId: birdDto.boughtFromId,
+      soldToId: birdDto.soldToId,
+      ownerId: birdDto.ownerId,
+      createdAt: birdDto.created,
+      updatedAt: birdDto.updated,
     );
   }
 
@@ -131,7 +134,7 @@ extension BirdBreederResovlerExtension on BirdBreederCubit {
       end: broodDto.end,
       notes: broodDto.notes,
       cage: broodDto.cage,
-      children: broodDto.children,
+      breedingPair: broodDto.breedingPair,
     );
   }
 }

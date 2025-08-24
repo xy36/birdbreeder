@@ -94,29 +94,76 @@ class BirdsOverviewRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [BreedingPairPage]
-class BreedingPairRoute extends PageRouteInfo<BreedingPairRouteArgs> {
-  BreedingPairRoute({
+/// [BreedingPairDetailsPage]
+class BreedingPairDetailsRoute
+    extends PageRouteInfo<BreedingPairDetailsRouteArgs> {
+  BreedingPairDetailsRoute({
+    Key? key,
+    required String breedingPairId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          BreedingPairDetailsRoute.name,
+          args: BreedingPairDetailsRouteArgs(
+            key: key,
+            breedingPairId: breedingPairId,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'BreedingPairDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<BreedingPairDetailsRouteArgs>();
+      return BreedingPairDetailsPage(
+        key: args.key,
+        breedingPairId: args.breedingPairId,
+      );
+    },
+  );
+}
+
+class BreedingPairDetailsRouteArgs {
+  const BreedingPairDetailsRouteArgs({
+    this.key,
+    required this.breedingPairId,
+  });
+
+  final Key? key;
+
+  final String breedingPairId;
+
+  @override
+  String toString() {
+    return 'BreedingPairDetailsRouteArgs{key: $key, breedingPairId: $breedingPairId}';
+  }
+}
+
+/// generated route for
+/// [BreedingPairEditPage]
+class BreedingPairEditRoute extends PageRouteInfo<BreedingPairEditRouteArgs> {
+  BreedingPairEditRoute({
     Key? key,
     BreedingPair? initialBreedingPair,
     List<PageRouteInfo>? children,
   }) : super(
-          BreedingPairRoute.name,
-          args: BreedingPairRouteArgs(
+          BreedingPairEditRoute.name,
+          args: BreedingPairEditRouteArgs(
             key: key,
             initialBreedingPair: initialBreedingPair,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'BreedingPairRoute';
+  static const String name = 'BreedingPairEditRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<BreedingPairRouteArgs>(
-          orElse: () => const BreedingPairRouteArgs());
-      return BreedingPairPage(
+      final args = data.argsAs<BreedingPairEditRouteArgs>(
+          orElse: () => const BreedingPairEditRouteArgs());
+      return BreedingPairEditPage(
         key: args.key,
         initialBreedingPair: args.initialBreedingPair,
       );
@@ -124,8 +171,8 @@ class BreedingPairRoute extends PageRouteInfo<BreedingPairRouteArgs> {
   );
 }
 
-class BreedingPairRouteArgs {
-  const BreedingPairRouteArgs({
+class BreedingPairEditRouteArgs {
+  const BreedingPairEditRouteArgs({
     this.key,
     this.initialBreedingPair,
   });
@@ -136,7 +183,7 @@ class BreedingPairRouteArgs {
 
   @override
   String toString() {
-    return 'BreedingPairRouteArgs{key: $key, initialBreedingPair: $initialBreedingPair}';
+    return 'BreedingPairEditRouteArgs{key: $key, initialBreedingPair: $initialBreedingPair}';
   }
 }
 
@@ -160,29 +207,75 @@ class BreedingPairsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [CagePage]
-class CageRoute extends PageRouteInfo<CageRouteArgs> {
-  CageRoute({
+/// [BroodPage]
+class BroodRoute extends PageRouteInfo<BroodRouteArgs> {
+  BroodRoute({
+    Key? key,
+    required String broodId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          BroodRoute.name,
+          args: BroodRouteArgs(
+            key: key,
+            broodId: broodId,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'BroodRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<BroodRouteArgs>();
+      return BroodPage(
+        key: args.key,
+        broodId: args.broodId,
+      );
+    },
+  );
+}
+
+class BroodRouteArgs {
+  const BroodRouteArgs({
+    this.key,
+    required this.broodId,
+  });
+
+  final Key? key;
+
+  final String broodId;
+
+  @override
+  String toString() {
+    return 'BroodRouteArgs{key: $key, broodId: $broodId}';
+  }
+}
+
+/// generated route for
+/// [CageDetailsPage]
+class CageDetailsRoute extends PageRouteInfo<CageDetailsRouteArgs> {
+  CageDetailsRoute({
     Key? key,
     Cage? initialCage,
     List<PageRouteInfo>? children,
   }) : super(
-          CageRoute.name,
-          args: CageRouteArgs(
+          CageDetailsRoute.name,
+          args: CageDetailsRouteArgs(
             key: key,
             initialCage: initialCage,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'CageRoute';
+  static const String name = 'CageDetailsRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args =
-          data.argsAs<CageRouteArgs>(orElse: () => const CageRouteArgs());
-      return CagePage(
+      final args = data.argsAs<CageDetailsRouteArgs>(
+          orElse: () => const CageDetailsRouteArgs());
+      return CageDetailsPage(
         key: args.key,
         initialCage: args.initialCage,
       );
@@ -190,8 +283,8 @@ class CageRoute extends PageRouteInfo<CageRouteArgs> {
   );
 }
 
-class CageRouteArgs {
-  const CageRouteArgs({
+class CageDetailsRouteArgs {
+  const CageDetailsRouteArgs({
     this.key,
     this.initialCage,
   });
@@ -202,53 +295,53 @@ class CageRouteArgs {
 
   @override
   String toString() {
-    return 'CageRouteArgs{key: $key, initialCage: $initialCage}';
+    return 'CageDetailsRouteArgs{key: $key, initialCage: $initialCage}';
   }
 }
 
 /// generated route for
-/// [CagesPage]
-class CagesRoute extends PageRouteInfo<void> {
-  const CagesRoute({List<PageRouteInfo>? children})
+/// [CagesTab]
+class CagesTabRoute extends PageRouteInfo<void> {
+  const CagesTabRoute({List<PageRouteInfo>? children})
       : super(
-          CagesRoute.name,
+          CagesTabRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CagesRoute';
+  static const String name = 'CagesTabRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const CagesPage();
+      return const CagesTab();
     },
   );
 }
 
 /// generated route for
-/// [ColorPage]
-class ColorRoute extends PageRouteInfo<ColorRouteArgs> {
-  ColorRoute({
+/// [ColorDetailsPage]
+class ColorDetailsRoute extends PageRouteInfo<ColorDetailsRouteArgs> {
+  ColorDetailsRoute({
     Key? key,
     BirdColor? initialColor,
     List<PageRouteInfo>? children,
   }) : super(
-          ColorRoute.name,
-          args: ColorRouteArgs(
+          ColorDetailsRoute.name,
+          args: ColorDetailsRouteArgs(
             key: key,
             initialColor: initialColor,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'ColorRoute';
+  static const String name = 'ColorDetailsRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args =
-          data.argsAs<ColorRouteArgs>(orElse: () => const ColorRouteArgs());
-      return ColorPage(
+      final args = data.argsAs<ColorDetailsRouteArgs>(
+          orElse: () => const ColorDetailsRouteArgs());
+      return ColorDetailsPage(
         key: args.key,
         initialColor: args.initialColor,
       );
@@ -256,8 +349,8 @@ class ColorRoute extends PageRouteInfo<ColorRouteArgs> {
   );
 }
 
-class ColorRouteArgs {
-  const ColorRouteArgs({
+class ColorDetailsRouteArgs {
+  const ColorDetailsRouteArgs({
     this.key,
     this.initialColor,
   });
@@ -268,27 +361,74 @@ class ColorRouteArgs {
 
   @override
   String toString() {
-    return 'ColorRouteArgs{key: $key, initialColor: $initialColor}';
+    return 'ColorDetailsRouteArgs{key: $key, initialColor: $initialColor}';
   }
 }
 
 /// generated route for
-/// [ColorsPage]
-class ColorsRoute extends PageRouteInfo<void> {
-  const ColorsRoute({List<PageRouteInfo>? children})
+/// [ColorsTab]
+class ColorsTabRoute extends PageRouteInfo<void> {
+  const ColorsTabRoute({List<PageRouteInfo>? children})
       : super(
-          ColorsRoute.name,
+          ColorsTabRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'ColorsRoute';
+  static const String name = 'ColorsTabRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const ColorsPage();
+      return const ColorsTab();
     },
   );
+}
+
+/// generated route for
+/// [ContactDetailsPage]
+class ContactDetailsRoute extends PageRouteInfo<ContactDetailsRouteArgs> {
+  ContactDetailsRoute({
+    Key? key,
+    Contact? initialContact,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ContactDetailsRoute.name,
+          args: ContactDetailsRouteArgs(
+            key: key,
+            initialContact: initialContact,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ContactDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ContactDetailsRouteArgs>(
+          orElse: () => const ContactDetailsRouteArgs());
+      return ContactDetailsPage(
+        key: args.key,
+        initialContact: args.initialContact,
+      );
+    },
+  );
+}
+
+class ContactDetailsRouteArgs {
+  const ContactDetailsRouteArgs({
+    this.key,
+    this.initialContact,
+  });
+
+  final Key? key;
+
+  final Contact? initialContact;
+
+  @override
+  String toString() {
+    return 'ContactDetailsRouteArgs{key: $key, initialContact: $initialContact}';
+  }
 }
 
 /// generated route for
@@ -306,6 +446,25 @@ class ContactsRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const ContactsPage();
+    },
+  );
+}
+
+/// generated route for
+/// [ContactsTab]
+class ContactsTabRoute extends PageRouteInfo<void> {
+  const ContactsTabRoute({List<PageRouteInfo>? children})
+      : super(
+          ContactsTabRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ContactsTabRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ContactsTab();
     },
   );
 }
@@ -422,6 +581,25 @@ class MenuRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ResourcesCenterPage]
+class ResourcesCenterRoute extends PageRouteInfo<void> {
+  const ResourcesCenterRoute({List<PageRouteInfo>? children})
+      : super(
+          ResourcesCenterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ResourcesCenterRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ResourcesCenterPage();
+    },
+  );
+}
+
+/// generated route for
 /// [SignUpPage]
 class SignUpRoute extends PageRouteInfo<SignUpRouteArgs> {
   SignUpRoute({
@@ -457,20 +635,67 @@ class SignUpRouteArgs {
 }
 
 /// generated route for
-/// [SpeciesPage]
-class SpeciesRoute extends PageRouteInfo<void> {
-  const SpeciesRoute({List<PageRouteInfo>? children})
-      : super(
-          SpeciesRoute.name,
+/// [SpeciesDetailsPage]
+class SpeciesDetailsRoute extends PageRouteInfo<SpeciesDetailsRouteArgs> {
+  SpeciesDetailsRoute({
+    Key? key,
+    Species? initialSpecies,
+    List<PageRouteInfo>? children,
+  }) : super(
+          SpeciesDetailsRoute.name,
+          args: SpeciesDetailsRouteArgs(
+            key: key,
+            initialSpecies: initialSpecies,
+          ),
           initialChildren: children,
         );
 
-  static const String name = 'SpeciesRoute';
+  static const String name = 'SpeciesDetailsRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const SpeciesPage();
+      final args = data.argsAs<SpeciesDetailsRouteArgs>(
+          orElse: () => const SpeciesDetailsRouteArgs());
+      return SpeciesDetailsPage(
+        key: args.key,
+        initialSpecies: args.initialSpecies,
+      );
+    },
+  );
+}
+
+class SpeciesDetailsRouteArgs {
+  const SpeciesDetailsRouteArgs({
+    this.key,
+    this.initialSpecies,
+  });
+
+  final Key? key;
+
+  final Species? initialSpecies;
+
+  @override
+  String toString() {
+    return 'SpeciesDetailsRouteArgs{key: $key, initialSpecies: $initialSpecies}';
+  }
+}
+
+/// generated route for
+/// [SpeciesTab]
+class SpeciesTabRoute extends PageRouteInfo<void> {
+  const SpeciesTabRoute({List<PageRouteInfo>? children})
+      : super(
+          SpeciesTabRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SpeciesTabRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SpeciesTab();
     },
   );
 }

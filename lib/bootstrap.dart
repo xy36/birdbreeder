@@ -3,24 +3,46 @@ import 'dart:developer';
 
 import 'package:birdbreeder/services/initialization_service.dart';
 import 'package:birdbreeder/services/injection.dart';
+import 'package:birdbreeder/services/logging_service.dart';
 import 'package:birdbreeder/services/pocketbase_service.dart';
+import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
 ThemeData? themeData;
 
 class AppBlocObserver extends BlocObserver {
+  Logger get logger => s1.get<LoggingService>().logger;
+
   @override
   void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
+    if (bloc is BirdBreederCubit) {
+      logger.d(
+        '[${bloc.runtimeType}] '
+        '${_short(change.currentState)} \n→ ${_short(change.nextState)}',
+      );
+    }
     super.onChange(bloc, change);
-    log('onChange(${bloc.runtimeType}, $change)');
   }
 
   @override
   void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
-    log('onError(${bloc.runtimeType}, $error, $stackTrace)');
+    logger.e(
+      '[${bloc.runtimeType}] ERROR: $error',
+      error: error,
+      stackTrace: stackTrace,
+    );
     super.onError(bloc, error, stackTrace);
   }
+}
+
+// Hilfsfunktion: kürzt lange States (Listen nur als Count)
+String _short(Object? state) {
+  if (state is BirdBreederState) {
+    return state.short();
+  }
+  return state.toString();
 }
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {

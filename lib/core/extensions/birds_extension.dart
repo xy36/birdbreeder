@@ -2,12 +2,14 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/bird_color_extension.dart';
 import 'package:birdbreeder/core/extensions/brood_extension.dart';
 import 'package:birdbreeder/core/extensions/cage_extension.dart';
+import 'package:birdbreeder/core/extensions/contact_extension.dart';
 import 'package:birdbreeder/core/extensions/species_extension.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/breedings/domain/models/brood.dart';
-import 'package:birdbreeder/features/cages/domain/models/cage.dart';
-import 'package:birdbreeder/features/colors/domain/models/bird_color.dart';
-import 'package:birdbreeder/features/species/domain/models/species.dart';
+import 'package:birdbreeder/features/contacts/domain/models/contact.dart';
+import 'package:birdbreeder/features/ressourcen_center/domain/models/bird_color.dart';
+import 'package:birdbreeder/features/ressourcen_center/domain/models/cage.dart';
+import 'package:birdbreeder/features/ressourcen_center/domain/models/species.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/models/bird_breeder_resources.dart';
@@ -15,7 +17,7 @@ import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/models/bird_breeder
 extension BirdsExtension on Bird {
   bool filter(String filter) {
     final isRingNumberMatch =
-        ringnumber?.toLowerCase().contains(filter.toLowerCase()) ?? false;
+        ringNumber?.toLowerCase().contains(filter.toLowerCase()) ?? false;
     final isColorMatch =
         colorResolved?.name?.toLowerCase().contains(filter.toLowerCase()) ??
             false;
@@ -33,24 +35,76 @@ extension BirdsExtension on Bird {
   BirdBreederResources Function() get _birdBreederResources =>
       () => s1.get<BirdBreederCubit>().state.birdBreederResources;
 
-  Species? get speciesResolved => species == null
+  Species? get speciesResolved => speciesId == null
       ? null
-      : _birdBreederResources().species.findById(species!);
+      : _birdBreederResources().species.findById(speciesId!);
 
   Cage? get cageResolved =>
-      cage == null ? null : _birdBreederResources().cages.findById(cage!);
+      cageId == null ? null : _birdBreederResources().cages.findById(cageId!);
 
-  BirdColor? get colorResolved =>
-      color == null ? null : _birdBreederResources().colors.findById(color!);
+  Contact? get ownerResolved => ownerId == null
+      ? null
+      : _birdBreederResources().contacts.findById(ownerId!);
 
-  Bird? get fatherResolved =>
-      father == null ? null : _birdBreederResources().birds.findById(father!);
+  Contact? get boughtFromResolved => boughtFromId == null
+      ? null
+      : _birdBreederResources().contacts.findById(boughtFromId!);
 
-  Bird? get motherResolved =>
-      mother == null ? null : _birdBreederResources().birds.findById(mother!);
+  Contact? get soldToResolved => soldToId == null
+      ? null
+      : _birdBreederResources().contacts.findById(soldToId!);
 
-  Brood? get broodResolved =>
-      brood == null ? null : _birdBreederResources().broods.findById(brood!);
+  BirdColor? get colorResolved => colorId == null
+      ? null
+      : _birdBreederResources().colors.findById(colorId!);
+
+  Bird? get fatherResolved => fatherId == null
+      ? null
+      : _birdBreederResources().birds.findById(fatherId!);
+
+  Bird? get motherResolved => motherId == null
+      ? null
+      : _birdBreederResources().birds.findById(motherId!);
+
+  Brood? get broodResolved => broodId == null
+      ? null
+      : _birdBreederResources().broods.findById(broodId!);
+
+  List<Bird> get childrenResolved {
+    return _birdBreederResources()
+        .birds
+        .where((e) => id == e.fatherId || id == e.motherId)
+        .toList();
+  }
+
+  DateTime? get effectiveBornAt => hatchedAt ?? laidAt ?? fledgedAt;
+
+  LifeStage? get lifeStage {
+    if (diedAt == null &&
+        fledgedAt == null &&
+        hatchedAt == null &&
+        laidAt == null) {
+      return null;
+    }
+
+    if (diedAt != null) {
+      return LifeStage.deceased;
+    } else if (fledgedAt != null) {
+      return LifeStage.adult;
+    } else if (hatchedAt != null) {
+      return LifeStage.chick;
+    } else {
+      return LifeStage.egg;
+    }
+  }
+
+  bool changed<T>(Bird? initial, T? Function(Bird) pick) {
+    if (initial == null) return false;
+    final a = pick(this);
+    final b = pick(initial);
+    // einfache Equality – bei Collections ggf. DeepCollectionEquality nutzen
+    return a != b;
+  }
 }
 
 extension BirdsListExtension on List<Bird> {

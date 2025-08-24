@@ -2,6 +2,7 @@
 import 'package:birdbreeder/app.dart';
 import 'package:birdbreeder/app_config.dart';
 import 'package:birdbreeder/bootstrap.dart';
+import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/services/injection.dart';
 
 const blankSentryDSN = '';
@@ -12,6 +13,8 @@ final appConfig = AppConfig(
 );
 
 Future<void> main() async {
+  Bloc.observer = AppBlocObserver();
+
   // Register the app config as a singleton.
   s1.registerSingleton<AppConfig>(
     appConfig,

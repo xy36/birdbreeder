@@ -1,28 +1,32 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/core/extensions/mapper_extensions.dart';
 import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/breeding_pair_dto.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/brood_dto.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
 import 'package:birdbreeder/features/breedings/domain/models/brood.dart';
-import 'package:birdbreeder/features/cages/data/dtos/cage_dto.dart';
-import 'package:birdbreeder/features/cages/domain/models/cage.dart';
-import 'package:birdbreeder/features/colors/data/dtos/bird_color_dto.dart';
-import 'package:birdbreeder/features/colors/domain/models/bird_color.dart';
 import 'package:birdbreeder/features/contacts/data/dtos/contact_dto.dart';
 import 'package:birdbreeder/features/contacts/domain/models/contact.dart';
-import 'package:birdbreeder/features/species/data/dtos/species_dto.dart';
-import 'package:birdbreeder/features/species/domain/models/species.dart';
+import 'package:birdbreeder/features/ressourcen_center/data/dtos/bird_color_dto.dart';
+import 'package:birdbreeder/features/ressourcen_center/data/dtos/cage_dto.dart';
+import 'package:birdbreeder/features/ressourcen_center/data/dtos/species_dto.dart';
+import 'package:birdbreeder/features/ressourcen_center/domain/models/bird_color.dart';
+import 'package:birdbreeder/features/ressourcen_center/domain/models/cage.dart';
+import 'package:birdbreeder/features/ressourcen_center/domain/models/species.dart';
+import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit_event.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_extension.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_resolver.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/models/bird_breeder_resources.dart';
 import 'package:birdbreeder/shared/repositories/ressource_repository.dart';
+import 'package:bloc_presentation/bloc_presentation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'bird_breeder_cubit.freezed.dart';
 part 'bird_breeder_state.dart';
 
-class BirdBreederCubit extends Cubit<BirdBreederState> {
+class BirdBreederCubit extends Cubit<BirdBreederState>
+    with BlocPresentationMixin<BirdBreederState, BirdBreederCubitEvent> {
   BirdBreederCubit(
     this._breedingsRepository,
     this._birdsRepository,
@@ -64,90 +68,40 @@ class BirdBreederCubit extends Cubit<BirdBreederState> {
   final RessourceRepository<BirdDto> _birdsRepository;
 
   Future<void> initialLoad() async {
-    emitLoading();
-
-    await loadCages();
-    await loadColors();
-    await loadContacts();
-    await loadSpecies();
-    await loadBroods();
-    await loadBirds();
-    await loadBreedingPairs();
-  }
-
-  Future<void> loadBirds({bool silently = true}) async {
-    if (!silently) emitLoading();
-
-    final birds = await _birdsRepository.getAll();
-    final resolvedBirds = birds.asValue?.value.map(resolveBirdDto).toList();
-
-    emitLoaded(birds: resolvedBirds);
-  }
-
-  Future<void> loadBreedingPairs({bool silently = true}) async {
-    if (!silently) emitLoading();
-
-    final breedingPairs = await _breedingsRepository.getAll();
-    final resolvedBreedingPairs =
-        breedingPairs.asValue?.value.map(resolveBreedingPairDto).toList();
-
-    emitLoaded(breedingPairs: resolvedBreedingPairs);
-  }
-
-  Future<void> loadBroods({bool silently = true}) async {
-    if (!silently) emitLoading();
-
-    final broods = await _broodsRepository.getAll();
-    final resolvedBroods = broods.asValue?.value.map(resolveBroodDto).toList();
-
-    emitLoaded(broods: resolvedBroods);
-  }
-
-  Future<void> loadCages({bool silently = true}) async {
-    if (!silently) emitLoading();
-
-    final cages = await _cagesRepository.getAll();
-    final resolvedCages = cages.asValue?.value.map(resolveCageDto).toList();
-
-    emitLoaded(
-      cages: resolvedCages,
-    );
-  }
-
-  Future<void> loadColors({bool silently = true}) async {
-    if (!silently) emitLoading();
-
-    final colors = await _birdColorsRepository.getAll();
-    final resolvedColors = colors.asValue?.value.map(resolveColorDto).toList();
-
-    emitLoaded(colors: resolvedColors);
-  }
-
-  Future<void> loadContacts({bool silently = true}) async {
-    if (!silently) emitLoading();
-
-    final contacts = await _contactsRepository.getAll();
-    final resolvedContacts =
-        contacts.asValue?.value.map(resolveContactDto).toList();
-
-    emitLoaded(contacts: resolvedContacts);
-  }
-
-  Future<void> loadSpecies({bool silently = true}) async {
-    if (!silently) emitLoading();
-
-    final species = await _speciesRepository.getAll();
-    final resolvedSpecies =
-        species.asValue?.value.map(resolveSpeciesDto).toList();
-
-    emitLoaded(species: resolvedSpecies);
-  }
-
-  void emitLoading() {
     emit(
       BirdBreederLoading(
         birdBreederResources: state.birdBreederResources,
       ),
+    );
+
+    final birdsF = _fetchBirds();
+    final pairsF = _fetchBreedingPairs();
+    final broodsF = _fetchBroods();
+    final cagesF = _fetchCages();
+    final colorsF = _fetchColors();
+    final contactsF = _fetchContacts();
+    final speciesF = _fetchSpecies();
+
+    await Future.wait(
+      [birdsF, pairsF, broodsF, cagesF, colorsF, contactsF, speciesF],
+    );
+
+    final birds = await birdsF;
+    final breedingPairs = await pairsF;
+    final broods = await broodsF;
+    final cages = await cagesF;
+    final colors = await colorsF;
+    final contacts = await contactsF;
+    final species = await speciesF;
+
+    emitLoaded(
+      birds: birds,
+      breedingPairs: breedingPairs,
+      broods: broods,
+      cages: cages,
+      colors: colors,
+      contacts: contacts,
+      species: species,
     );
   }
 
@@ -187,5 +141,409 @@ class BirdBreederCubit extends Cubit<BirdBreederState> {
     unsubscribeFromBroods();
 
     return super.close();
+  }
+
+  Future<void> addBrood(BreedingPair breedingPair) async {
+    await _broodsRepository.create(
+      Brood(
+        id: '',
+        start: DateTime.now(),
+        end: null,
+        notes: null,
+        cage: null,
+        breedingPair: breedingPair.id,
+      ).toDto(),
+    );
+  }
+
+  Future<void> deleteBrood(String id) async {
+    await _broodsRepository.delete(id);
+
+    // After deleting the brood, we need to update all breeding pairs that contain this brood
+    final birds = state.birdBreederResources.birds;
+
+    birds
+        .where(
+      (bird) => bird.broodId == id,
+    )
+        .forEach(
+      (bird) async {
+        await _birdsRepository.update(
+          bird.id,
+          bird.copyWith(broodId: null).toDto(),
+        );
+      },
+    );
+  }
+
+  Future<void> deleteColor(BirdColor color) async {
+    final result = await _birdColorsRepository.delete(color.id);
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.deleteFailed(),
+      );
+      return;
+    }
+
+    // After deleting the color, we need to update all birds that have this color
+    final birds = state.birdBreederResources.birds;
+
+    birds
+        .where(
+      (bird) => bird.colorId == color.id,
+    )
+        .forEach(
+      (bird) async {
+        await _birdsRepository.update(
+          bird.id,
+          bird.copyWith(colorId: null).toDto(),
+        );
+      },
+    );
+  }
+
+  Future<BirdColor?> addColor(BirdColor color) async {
+    final result = await _birdColorsRepository.create(color.toDto());
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.addFailed(),
+      );
+      return null;
+    }
+    return result.asValue?.value.toModel();
+  }
+
+  Future<BirdColor?> updateColor(BirdColor color) async {
+    final result = await _birdColorsRepository.update(color.id, color.toDto());
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.updateFailed(),
+      );
+      return null;
+    }
+
+    // After updating the color, we need to update all birds that have this color
+    final birds = state.birdBreederResources.birds;
+    birds
+        .where(
+      (bird) => bird.colorId == color.id,
+    )
+        .forEach(
+      (bird) async {
+        await _birdsRepository.update(
+          bird.id,
+          bird.copyWith(colorId: color.id).toDto(),
+        );
+      },
+    );
+
+    return result.asValue?.value.toModel();
+  }
+
+  Future<Contact?> addContact(Contact contact) async {
+    final result = await _contactsRepository.create(contact.toDto());
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.addFailed(),
+      );
+      return null;
+    }
+    return result.asValue?.value.toModel();
+  }
+
+  Future<Contact?> updateContact(Contact contact) async {
+    final result =
+        await _contactsRepository.update(contact.id, contact.toDto());
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.updateFailed(),
+      );
+      return null;
+    }
+    return result.asValue?.value.toModel();
+  }
+
+  Future<void> deleteContact(Contact contact) async {
+    final result = await _contactsRepository.delete(contact.id);
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.deleteFailed(),
+      );
+      return;
+    }
+
+    // After deleting the contact, we need to update all birds that have this contact
+    //TODO: add this when we have a contact field in the bird
+    // final birds = state.birdBreederResources.birds;
+
+    // birds
+    //     .where(
+    //   (bird) => bird.contact?.contains(contact.id) ?? false,
+    // )
+    //     .forEach(
+    //   (bird) async {
+    //     await _birdsRepository.update(
+    //       bird.id,
+    //       bird.copyWith(contact: null).toDto(),
+    //     );
+    //   },
+    // );
+  }
+
+  Future<Bird?> addBird(Bird bird) async {
+    final result = await _birdsRepository.create(bird.toDto());
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.addFailed(),
+      );
+      return null;
+    }
+
+    return result.asValue?.value.toModel();
+  }
+
+  // create crud methods for cages
+  Future<Cage?> addCage(Cage cage) async {
+    final result = await _cagesRepository.create(cage.toDto());
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.addFailed(),
+      );
+      return null;
+    }
+
+    return result.asValue?.value.toModel();
+  }
+
+  Future<Cage?> updateCage(Cage cage) async {
+    final result = await _cagesRepository.update(cage.id, cage.toDto());
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.updateFailed(),
+      );
+      return null;
+    }
+    return result.asValue?.value.toModel();
+  }
+
+  Future<void> deleteCage(Cage cage) async {
+    final result = await _cagesRepository.delete(cage.id);
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.deleteFailed(),
+      );
+      return;
+    }
+
+    // After deleting the cage, we need to update all birds that have this cage
+    final birds = state.birdBreederResources.birds;
+
+    birds
+        .where(
+      (bird) => bird.cageId == cage.id,
+    )
+        .forEach(
+      (bird) async {
+        await _birdsRepository.update(
+          bird.id,
+          bird.copyWith(cageId: null).toDto(),
+        );
+      },
+    );
+  }
+
+  Future<Species?> addSpecies(Species species) async {
+    final result = await _speciesRepository.create(species.toDto());
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.addFailed(),
+      );
+      return null;
+    }
+
+    return result.asValue?.value.toModel();
+  }
+
+  Future<Species?> updateSpecies(Species species) async {
+    final result = await _speciesRepository.update(species.id, species.toDto());
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.updateFailed(),
+      );
+      return null;
+    }
+
+    return result.asValue?.value.toModel();
+  }
+
+  Future<void> deleteSpecies(Species species) async {
+    final result = await _speciesRepository.delete(species.id);
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.deleteFailed(),
+      );
+      return;
+    }
+
+    // After deleting the species, we need to update all birds that have this species
+    final birds = state.birdBreederResources.birds;
+
+    birds
+        .where(
+      (bird) => bird.speciesId == species.id,
+    )
+        .forEach(
+      (bird) async {
+        await _birdsRepository.update(
+          bird.id,
+          bird.copyWith(speciesId: null).toDto(),
+        );
+      },
+    );
+  }
+
+  Future<BreedingPair?> addBreedingPair(BreedingPair breedingPair) async {
+    final result = await _breedingsRepository.create(breedingPair.toDto());
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.addFailed(),
+      );
+      return null;
+    }
+    return result.asValue?.value.toModel();
+  }
+
+  Future<BreedingPair?> updateBreedingPair(BreedingPair breedingPair) async {
+    final result = await _breedingsRepository.update(
+      breedingPair.id,
+      breedingPair.toDto(),
+    );
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.updateFailed(),
+      );
+      return null;
+    }
+
+    return result.asValue?.value.toModel();
+
+    // TODO: After updating the breeding pair, we need to update all broods that have this breeding pair
+  }
+
+  Future<void> deleteBreedingPair(BreedingPair breedingPair) async {
+    final result = await _breedingsRepository.delete(breedingPair.id);
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.deleteFailed(),
+      );
+      return;
+    }
+
+    //TODO: After deleting the breeding pair, we need to update all broods that have this breeding pair?
+  }
+
+  Future<Bird?> updateBird(Bird bird) async {
+    final result = await _birdsRepository.update(bird.id, bird.toDto());
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.updateFailed(),
+      );
+      return null;
+    }
+
+    return result.asValue?.value.toModel();
+  }
+
+  Future<void> deleteBird(Bird bird) async {
+    final result = await _birdsRepository.delete(bird.id);
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.deleteFailed(),
+      );
+      return;
+    }
+  }
+
+  Future<void> duplicateBird(Bird bird) async {
+    final result = await _birdsRepository.create(
+      bird
+          .copyWith(
+            id: '',
+            ringNumber: 'Copy of ${bird.ringNumber ?? ''}',
+          )
+          .toDto(),
+    );
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.duplicateFailed(),
+      );
+    }
+  }
+
+  Future<List<Species>> getSpecies() async {
+    return state.birdBreederResources.species;
+  }
+
+  Future<List<Cage>> getCages() async {
+    return state.birdBreederResources.cages;
+  }
+
+  Future<List<BirdColor>> getColors() async {
+    return state.birdBreederResources.colors;
+  }
+
+  // --- Helpers ---
+  Future<List<Bird>> _fetchBirds() async {
+    final res = await _birdsRepository.getAll();
+    return res.asValue?.value.map(resolveBirdDto).toList() ?? const [];
+  }
+
+  Future<List<BreedingPair>> _fetchBreedingPairs() async {
+    final res = await _breedingsRepository.getAll();
+    return res.asValue?.value.map(resolveBreedingPairDto).toList() ?? const [];
+  }
+
+  Future<List<Brood>> _fetchBroods() async {
+    final res = await _broodsRepository.getAll();
+    return res.asValue?.value.map(resolveBroodDto).toList() ?? const [];
+  }
+
+  Future<List<Cage>> _fetchCages() async {
+    final res = await _cagesRepository.getAll();
+    return res.asValue?.value.map(resolveCageDto).toList() ?? const [];
+  }
+
+  Future<List<BirdColor>> _fetchColors() async {
+    final res = await _birdColorsRepository.getAll();
+    return res.asValue?.value.map(resolveColorDto).toList() ?? const [];
+  }
+
+  Future<List<Contact>> _fetchContacts() async {
+    final res = await _contactsRepository.getAll();
+    return res.asValue?.value.map(resolveContactDto).toList() ?? const [];
+  }
+
+  Future<List<Species>> _fetchSpecies() async {
+    final res = await _speciesRepository.getAll();
+    return res.asValue?.value.map(resolveSpeciesDto).toList() ?? const [];
   }
 }

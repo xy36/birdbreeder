@@ -17,44 +17,50 @@ _$BirdDtoImpl _$$BirdDtoImplFromJson(Map<String, dynamic> json) =>
       updated: json['updated'] == null
           ? null
           : DateTime.parse(json['updated'] as String),
-      ringnumber: const StringNullEmptyConverter()
+      ringNumber: const StringNullEmptyConverter()
           .fromJson(json['ringnumber'] as String?),
-      born:
-          const DateTimeNullEmptyConverter().fromJson(json['born'] as String?),
-      died:
-          const DateTimeNullEmptyConverter().fromJson(json['died'] as String?),
-      sell:
-          const DateTimeNullEmptyConverter().fromJson(json['sell'] as String?),
-      bought: const DateTimeNullEmptyConverter()
-          .fromJson(json['bought'] as String?),
-      species:
+      speciesId:
           const StringNullEmptyConverter().fromJson(json['species'] as String?),
-      color:
+      colorId:
           const StringNullEmptyConverter().fromJson(json['color'] as String?),
-      cage: const StringNullEmptyConverter().fromJson(json['cage'] as String?),
-      father:
-          const StringNullEmptyConverter().fromJson(json['father'] as String?),
-      mother:
-          const StringNullEmptyConverter().fromJson(json['mother'] as String?),
-      boughtPrice: (json['bought_price'] as num?)?.toDouble(),
-      sellPriceOffer: (json['sell_price_offer'] as num?)?.toDouble(),
-      sellPriceReal: (json['sell_price_real'] as num?)?.toDouble(),
       sex: $enumDecodeNullable(_$SexEnumMap, json['sex']) ?? Sex.unknown,
-      sold: json['sold'] as bool?,
-      isEgg: json['isEgg'] as bool?,
-      laid:
-          const DateTimeNullEmptyConverter().fromJson(json['laid'] as String?),
-      hatched: const DateTimeNullEmptyConverter()
-          .fromJson(json['hatched'] as String?),
-      flowOut: const DateTimeNullEmptyConverter()
-          .fromJson(json['flowOut'] as String?),
-      brood:
+      fatherId:
+          const StringNullEmptyConverter().fromJson(json['father'] as String?),
+      motherId:
+          const StringNullEmptyConverter().fromJson(json['mother'] as String?),
+      cageId:
+          const StringNullEmptyConverter().fromJson(json['cage'] as String?),
+      broodId:
           const StringNullEmptyConverter().fromJson(json['brood'] as String?),
+      laidAt: const DateTimeNullEmptyConverter()
+          .fromJson(json['laidAt'] as String?),
+      hatchedAt: const DateTimeNullEmptyConverter()
+          .fromJson(json['hatchedAt'] as String?),
+      fledgedAt: const DateTimeNullEmptyConverter()
+          .fromJson(json['fledgedAt'] as String?),
+      diedAt: const DateTimeNullEmptyConverter()
+          .fromJson(json['diedAt'] as String?),
+      saleStatus:
+          $enumDecodeNullable(_$SaleStatusEnumMap, json['saleStatus']) ??
+              SaleStatus.notForSale,
+      listedAt: const DateTimeNullEmptyConverter()
+          .fromJson(json['listedAt'] as String?),
+      soldAt: const DateTimeNullEmptyConverter()
+          .fromJson(json['soldAt'] as String?),
+      askingPrice: (json['askingPrice'] as num?)?.toDouble(),
+      finalPrice: (json['finalPrice'] as num?)?.toDouble(),
+      boughtAt: const DateTimeNullEmptyConverter()
+          .fromJson(json['boughtAt'] as String?),
+      boughtPrice: (json['boughtPrice'] as num?)?.toDouble(),
+      notes:
+          const StringNullEmptyConverter().fromJson(json['notes'] as String?),
+      boughtFromId: const StringNullEmptyConverter()
+          .fromJson(json['boughtFrom'] as String?),
+      soldToId:
+          const StringNullEmptyConverter().fromJson(json['soldTo'] as String?),
+      ownerId:
+          const StringNullEmptyConverter().fromJson(json['owner'] as String?),
       user: json['user'] as String?,
-      children: (json['children'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
     );
 
 Map<String, dynamic> _$$BirdDtoImplToJson(_$BirdDtoImpl instance) =>
@@ -65,32 +71,44 @@ Map<String, dynamic> _$$BirdDtoImplToJson(_$BirdDtoImpl instance) =>
       'created': instance.created?.toIso8601String(),
       'updated': instance.updated?.toIso8601String(),
       'ringnumber':
-          const StringNullEmptyConverter().toJson(instance.ringnumber),
-      'born': const DateTimeNullEmptyConverter().toJson(instance.born),
-      'died': const DateTimeNullEmptyConverter().toJson(instance.died),
-      'sell': const DateTimeNullEmptyConverter().toJson(instance.sell),
-      'bought': const DateTimeNullEmptyConverter().toJson(instance.bought),
-      'species': const StringNullEmptyConverter().toJson(instance.species),
-      'color': const StringNullEmptyConverter().toJson(instance.color),
-      'cage': const StringNullEmptyConverter().toJson(instance.cage),
-      'father': const StringNullEmptyConverter().toJson(instance.father),
-      'mother': const StringNullEmptyConverter().toJson(instance.mother),
-      'bought_price': instance.boughtPrice,
-      'sell_price_offer': instance.sellPriceOffer,
-      'sell_price_real': instance.sellPriceReal,
+          const StringNullEmptyConverter().toJson(instance.ringNumber),
+      'species': const StringNullEmptyConverter().toJson(instance.speciesId),
+      'color': const StringNullEmptyConverter().toJson(instance.colorId),
       'sex': _$SexEnumMap[instance.sex]!,
-      'sold': instance.sold,
-      'isEgg': instance.isEgg,
-      'laid': const DateTimeNullEmptyConverter().toJson(instance.laid),
-      'hatched': const DateTimeNullEmptyConverter().toJson(instance.hatched),
-      'flowOut': const DateTimeNullEmptyConverter().toJson(instance.flowOut),
-      'brood': const StringNullEmptyConverter().toJson(instance.brood),
+      'father': const StringNullEmptyConverter().toJson(instance.fatherId),
+      'mother': const StringNullEmptyConverter().toJson(instance.motherId),
+      'cage': const StringNullEmptyConverter().toJson(instance.cageId),
+      'brood': const StringNullEmptyConverter().toJson(instance.broodId),
+      'laidAt': const DateTimeNullEmptyConverter().toJson(instance.laidAt),
+      'hatchedAt':
+          const DateTimeNullEmptyConverter().toJson(instance.hatchedAt),
+      'fledgedAt':
+          const DateTimeNullEmptyConverter().toJson(instance.fledgedAt),
+      'diedAt': const DateTimeNullEmptyConverter().toJson(instance.diedAt),
+      'saleStatus': _$SaleStatusEnumMap[instance.saleStatus]!,
+      'listedAt': const DateTimeNullEmptyConverter().toJson(instance.listedAt),
+      'soldAt': const DateTimeNullEmptyConverter().toJson(instance.soldAt),
+      'askingPrice': instance.askingPrice,
+      'finalPrice': instance.finalPrice,
+      'boughtAt': const DateTimeNullEmptyConverter().toJson(instance.boughtAt),
+      'boughtPrice': instance.boughtPrice,
+      'notes': const StringNullEmptyConverter().toJson(instance.notes),
+      'boughtFrom':
+          const StringNullEmptyConverter().toJson(instance.boughtFromId),
+      'soldTo': const StringNullEmptyConverter().toJson(instance.soldToId),
+      'owner': const StringNullEmptyConverter().toJson(instance.ownerId),
       'user': instance.user,
-      'children': instance.children,
     };
 
 const _$SexEnumMap = {
   Sex.male: 'male',
   Sex.female: 'female',
   Sex.unknown: 'unknown',
+};
+
+const _$SaleStatusEnumMap = {
+  SaleStatus.notForSale: 'notForSale',
+  SaleStatus.listed: 'listed',
+  SaleStatus.reserved: 'reserved',
+  SaleStatus.sold: 'sold',
 };

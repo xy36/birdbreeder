@@ -5,5 +5,6 @@ import 'package:birdbreeder/services/authentication/models/user.dart';
 
 @AutoMappr([
   MapType<UserDto, User>(),
+  MapType<User, UserDto>(),
 ])
 class UserMapper extends $UserMapper {}

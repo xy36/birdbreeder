@@ -4,29 +4,46 @@ import 'package:birdbreeder/features/menu/presentation/utils/utils.dart';
 
 class SharedAppBarWithDrawer extends StatelessWidget
     implements PreferredSizeWidget {
-  const SharedAppBarWithDrawer({super.key, this.title, this.actions});
+  const SharedAppBarWithDrawer({
+    super.key,
+    this.title,
+    this.actions,
+    this.hideMenuButton = false,
+    this.titleWidget,
+    this.bottom,
+  });
 
   final String? title;
 
+  final Widget? titleWidget;
+
   final List<Widget>? actions;
+
+  final bool hideMenuButton;
+
+  final PreferredSizeWidget? bottom;
 
   @override
   Widget build(BuildContext context) {
     return showMenuAsDrawer(context)
         ? AppBar(
-            title: Text(title ?? ''),
+            title: titleWidget ?? Text(title ?? ''),
             actions: actions,
-            leading: IconButton(
-              icon: const Icon(Icons.menu),
-              onPressed: () async {
-                Menu.toggleMenuDrawer();
-              },
-            ),
+            bottom: bottom,
+            leading: hideMenuButton
+                ? null
+                : IconButton(
+                    icon: const Icon(Icons.menu),
+                    onPressed: () async {
+                      Menu.toggleMenuDrawer();
+                    },
+                  ),
           )
         : AppBar(
             title: Text(title ?? ''),
             centerTitle: true,
             actions: actions,
+            bottom: bottom,
           );
   }
 

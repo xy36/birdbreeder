@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Contact {
   String get id => throw _privateConstructorUsedError;
   String? get number => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
   String? get firstName => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
@@ -41,6 +42,7 @@ abstract class $ContactCopyWith<$Res> {
   $Res call(
       {String id,
       String? number,
+      String? phone,
       String? firstName,
       String? name,
       String? email,
@@ -68,6 +70,7 @@ class _$ContactCopyWithImpl<$Res, $Val extends Contact>
   $Res call({
     Object? id = null,
     Object? number = freezed,
+    Object? phone = freezed,
     Object? firstName = freezed,
     Object? name = freezed,
     Object? email = freezed,
@@ -85,6 +88,10 @@ class _$ContactCopyWithImpl<$Res, $Val extends Contact>
       number: freezed == number
           ? _value.number
           : number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String?,
       firstName: freezed == firstName
           ? _value.firstName
@@ -132,6 +139,7 @@ abstract class _$$ContactImplCopyWith<$Res> implements $ContactCopyWith<$Res> {
   $Res call(
       {String id,
       String? number,
+      String? phone,
       String? firstName,
       String? name,
       String? email,
@@ -157,6 +165,7 @@ class __$$ContactImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? number = freezed,
+    Object? phone = freezed,
     Object? firstName = freezed,
     Object? name = freezed,
     Object? email = freezed,
@@ -174,6 +183,10 @@ class __$$ContactImplCopyWithImpl<$Res>
       number: freezed == number
           ? _value.number
           : number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String?,
       firstName: freezed == firstName
           ? _value.firstName
@@ -217,6 +230,7 @@ class _$ContactImpl implements _Contact {
   _$ContactImpl(
       {required this.id,
       required this.number,
+      required this.phone,
       required this.firstName,
       required this.name,
       required this.email,
@@ -230,6 +244,8 @@ class _$ContactImpl implements _Contact {
   final String id;
   @override
   final String? number;
+  @override
+  final String? phone;
   @override
   final String? firstName;
   @override
@@ -249,7 +265,7 @@ class _$ContactImpl implements _Contact {
 
   @override
   String toString() {
-    return 'Contact(id: $id, number: $number, firstName: $firstName, name: $name, email: $email, address: $address, city: $city, postalCode: $postalCode, country: $country, website: $website)';
+    return 'Contact(id: $id, number: $number, phone: $phone, firstName: $firstName, name: $name, email: $email, address: $address, city: $city, postalCode: $postalCode, country: $country, website: $website)';
   }
 
   @override
@@ -259,6 +275,7 @@ class _$ContactImpl implements _Contact {
             other is _$ContactImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.number, number) || other.number == number) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.name, name) || other.name == name) &&
@@ -272,8 +289,8 @@ class _$ContactImpl implements _Contact {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, number, firstName, name,
-      email, address, city, postalCode, country, website);
+  int get hashCode => Object.hash(runtimeType, id, number, phone, firstName,
+      name, email, address, city, postalCode, country, website);
 
   /// Create a copy of Contact
   /// with the given fields replaced by the non-null parameter values.
@@ -288,6 +305,7 @@ abstract class _Contact implements Contact {
   factory _Contact(
       {required final String id,
       required final String? number,
+      required final String? phone,
       required final String? firstName,
       required final String? name,
       required final String? email,
@@ -301,6 +319,8 @@ abstract class _Contact implements Contact {
   String get id;
   @override
   String? get number;
+  @override
+  String? get phone;
   @override
   String? get firstName;
   @override

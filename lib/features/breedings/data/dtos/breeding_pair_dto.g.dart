@@ -25,8 +25,8 @@ _$BreedingPairDtoImpl _$$BreedingPairDtoImplFromJson(
           const StringNullEmptyConverter().fromJson(json['father'] as String?),
       mother:
           const StringNullEmptyConverter().fromJson(json['mother'] as String?),
-      broods:
-          (json['broods'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      notes:
+          const StringNullEmptyConverter().fromJson(json['notes'] as String?),
       user: json['user'] as String?,
     );
 
@@ -42,6 +42,6 @@ Map<String, dynamic> _$$BreedingPairDtoImplToJson(
       'end': const DateTimeNullEmptyConverter().toJson(instance.end),
       'father': const StringNullEmptyConverter().toJson(instance.father),
       'mother': const StringNullEmptyConverter().toJson(instance.mother),
-      'broods': instance.broods,
+      'notes': const StringNullEmptyConverter().toJson(instance.notes),
       'user': instance.user,
     };

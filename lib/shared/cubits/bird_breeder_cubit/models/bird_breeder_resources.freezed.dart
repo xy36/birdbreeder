@@ -178,7 +178,8 @@ class __$$BirdBreederResourcesImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BirdBreederResourcesImpl implements _BirdBreederResources {
+class _$BirdBreederResourcesImpl extends _BirdBreederResources
+    with DiagnosticableTreeMixin {
   const _$BirdBreederResourcesImpl(
       {required final List<Bird> birds,
       required final List<BreedingPair> breedingPairs,
@@ -193,7 +194,8 @@ class _$BirdBreederResourcesImpl implements _BirdBreederResources {
         _cages = cages,
         _colors = colors,
         _contacts = contacts,
-        _species = species;
+        _species = species,
+        super._();
 
   final List<Bird> _birds;
   @override
@@ -252,8 +254,22 @@ class _$BirdBreederResourcesImpl implements _BirdBreederResources {
   }
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'BirdBreederResources(birds: $birds, breedingPairs: $breedingPairs, broods: $broods, cages: $cages, colors: $colors, contacts: $contacts, species: $species)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'BirdBreederResources'))
+      ..add(DiagnosticsProperty('birds', birds))
+      ..add(DiagnosticsProperty('breedingPairs', breedingPairs))
+      ..add(DiagnosticsProperty('broods', broods))
+      ..add(DiagnosticsProperty('cages', cages))
+      ..add(DiagnosticsProperty('colors', colors))
+      ..add(DiagnosticsProperty('contacts', contacts))
+      ..add(DiagnosticsProperty('species', species));
   }
 
   @override
@@ -293,7 +309,7 @@ class _$BirdBreederResourcesImpl implements _BirdBreederResources {
               this, _$identity);
 }
 
-abstract class _BirdBreederResources implements BirdBreederResources {
+abstract class _BirdBreederResources extends BirdBreederResources {
   const factory _BirdBreederResources(
       {required final List<Bird> birds,
       required final List<BreedingPair> breedingPairs,
@@ -302,6 +318,7 @@ abstract class _BirdBreederResources implements BirdBreederResources {
       required final List<BirdColor> colors,
       required final List<Contact> contacts,
       required final List<Species> species}) = _$BirdBreederResourcesImpl;
+  const _BirdBreederResources._() : super._();
 
   @override
   List<Bird> get birds;

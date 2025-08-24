@@ -9,13 +9,13 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_mappr_annotation/auto_mappr_annotation.dart' as _i1;
 
-import '../../../../core/utils/user_helper.dart' as _i4;
 import '../../data/dtos/breeding_pair_dto.dart' as _i3;
 import '../models/breeding_pair.dart' as _i2;
 
 /// {@template package:birdbreeder/features/breedings/domain/mapper/breeding_pair_mapper.dart}
 /// Available mappings:
 /// - `BreedingPair` → `BreedingPairDto`.
+/// - `BreedingPairDto` → `BreedingPair`.
 /// {@endtemplate}
 class $BreedingPairMapper implements _i1.AutoMapprInterface {
   const $BreedingPairMapper();
@@ -34,6 +34,12 @@ class $BreedingPairMapper implements _i1.AutoMapprInterface {
             sourceTypeOf == _typeOf<_i2.BreedingPair?>()) &&
         (targetTypeOf == _typeOf<_i3.BreedingPairDto>() ||
             targetTypeOf == _typeOf<_i3.BreedingPairDto?>())) {
+      return true;
+    }
+    if ((sourceTypeOf == _typeOf<_i3.BreedingPairDto>() ||
+            sourceTypeOf == _typeOf<_i3.BreedingPairDto?>()) &&
+        (targetTypeOf == _typeOf<_i2.BreedingPair>() ||
+            targetTypeOf == _typeOf<_i2.BreedingPair?>())) {
       return true;
     }
     if (recursive) {
@@ -237,6 +243,16 @@ class $BreedingPairMapper implements _i1.AutoMapprInterface {
       return (_map__i2$BreedingPair_To__i3$BreedingPairDto(
           (model as _i2.BreedingPair?)) as TARGET);
     }
+    if ((sourceTypeOf == _typeOf<_i3.BreedingPairDto>() ||
+            sourceTypeOf == _typeOf<_i3.BreedingPairDto?>()) &&
+        (targetTypeOf == _typeOf<_i2.BreedingPair>() ||
+            targetTypeOf == _typeOf<_i2.BreedingPair?>())) {
+      if (canReturnNull && model == null) {
+        return null;
+      }
+      return (_map__i3$BreedingPairDto_To__i2$BreedingPair(
+          (model as _i3.BreedingPairDto?)) as TARGET);
+    }
     throw Exception('No ${model.runtimeType} -> $targetTypeOf mapping.');
   }
 
@@ -283,8 +299,25 @@ class $BreedingPairMapper implements _i1.AutoMapprInterface {
       end: model.end,
       father: model.father,
       mother: model.mother,
-      broods: model.broods,
-      user: _i4.UserHelper.insertUser(),
+      notes: model.notes,
+    );
+  }
+
+  _i2.BreedingPair _map__i3$BreedingPairDto_To__i2$BreedingPair(
+      _i3.BreedingPairDto? input) {
+    final model = input;
+    if (model == null) {
+      throw Exception(
+          r'Mapping BreedingPairDto → BreedingPair failed because BreedingPairDto was null, and no default value was provided. '
+          r'Consider setting the whenSourceIsNull parameter on the MapType<BreedingPairDto, BreedingPair> to handle null values during mapping.');
+    }
+    return _i2.BreedingPair(
+      id: model.id,
+      start: model.start,
+      end: model.end,
+      father: model.father,
+      mother: model.mother,
+      notes: model.notes,
     );
   }
 }

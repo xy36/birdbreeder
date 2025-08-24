@@ -32,7 +32,7 @@ class PocketBaseService {
     );
     pb = PocketBase(
       'https://pocketbase.birdbreeder.de/',
-      // 'http://$_host:8090/',
+      //'http://$_host:8090/',
       authStore: customAuthStore,
     );
   }

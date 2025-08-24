@@ -15,6 +15,7 @@ import '../models/user.dart' as _i3;
 /// {@template package:birdbreeder/services/authentication/mapper/user_mapper.dart}
 /// Available mappings:
 /// - `UserDto` → `User`.
+/// - `User` → `UserDto`.
 /// {@endtemplate}
 class $UserMapper implements _i1.AutoMapprInterface {
   const $UserMapper();
@@ -33,6 +34,12 @@ class $UserMapper implements _i1.AutoMapprInterface {
             sourceTypeOf == _typeOf<_i2.UserDto?>()) &&
         (targetTypeOf == _typeOf<_i3.User>() ||
             targetTypeOf == _typeOf<_i3.User?>())) {
+      return true;
+    }
+    if ((sourceTypeOf == _typeOf<_i3.User>() ||
+            sourceTypeOf == _typeOf<_i3.User?>()) &&
+        (targetTypeOf == _typeOf<_i2.UserDto>() ||
+            targetTypeOf == _typeOf<_i2.UserDto?>())) {
       return true;
     }
     if (recursive) {
@@ -235,6 +242,15 @@ class $UserMapper implements _i1.AutoMapprInterface {
       }
       return (_map__i2$UserDto_To__i3$User((model as _i2.UserDto?)) as TARGET);
     }
+    if ((sourceTypeOf == _typeOf<_i3.User>() ||
+            sourceTypeOf == _typeOf<_i3.User?>()) &&
+        (targetTypeOf == _typeOf<_i2.UserDto>() ||
+            targetTypeOf == _typeOf<_i2.UserDto?>())) {
+      if (canReturnNull && model == null) {
+        return null;
+      }
+      return (_map__i3$User_To__i2$UserDto((model as _i3.User?)) as TARGET);
+    }
     throw Exception('No ${model.runtimeType} -> $targetTypeOf mapping.');
   }
 
@@ -275,6 +291,24 @@ class $UserMapper implements _i1.AutoMapprInterface {
           r'Consider setting the whenSourceIsNull parameter on the MapType<UserDto, User> to handle null values during mapping.');
     }
     return _i3.User(
+      id: model.id,
+      username: model.username,
+      verified: model.verified,
+      emailVisibility: model.emailVisibility,
+      email: model.email,
+      name: model.name,
+      avatar: model.avatar,
+    );
+  }
+
+  _i2.UserDto _map__i3$User_To__i2$UserDto(_i3.User? input) {
+    final model = input;
+    if (model == null) {
+      throw Exception(
+          r'Mapping User → UserDto failed because User was null, and no default value was provided. '
+          r'Consider setting the whenSourceIsNull parameter on the MapType<User, UserDto> to handle null values during mapping.');
+    }
+    return _i2.UserDto(
       id: model.id,
       username: model.username,
       verified: model.verified,

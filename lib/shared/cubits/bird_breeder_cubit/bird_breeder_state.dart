@@ -11,4 +11,15 @@ class BirdBreederState with _$BirdBreederState {
   const factory BirdBreederState.loaded({
     required BirdBreederResources birdBreederResources,
   }) = BirdBreederLoaded;
+
+  const BirdBreederState._();
+
+  String get label => when(
+        initial: (_) => 'Initial',
+        loading: (_) => 'Loading',
+        loaded: (_) => 'Loaded',
+      );
+
+  String short() =>
+      '$label(birdBreederResources:${birdBreederResources.short()})';
 }

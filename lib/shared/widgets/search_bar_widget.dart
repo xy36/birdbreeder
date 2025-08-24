@@ -39,15 +39,18 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        AnimatedContainer(
+        AnimatedCrossFade(
           duration: const Duration(milliseconds: 300),
-          width: showSearch ? width : 0,
-          child: Padding(
-            padding: const EdgeInsets.all(4),
+          crossFadeState:
+              showSearch ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+          firstChild: const SizedBox.shrink(),
+          secondChild: SizedBox(
+            width: width,
             child: SearchBar(
+              elevation: const WidgetStatePropertyAll(0),
               controller: controller,
               autoFocus: true,
-              hintText: 'Search',
+              hintText: context.l10n.common__search,
               onChanged: widget.onChanged,
               trailing: [
                 if (controller.text.isNotEmpty)

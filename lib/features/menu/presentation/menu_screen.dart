@@ -84,9 +84,9 @@ class _MenuScreenState extends State<MenuScreen> {
 
             return Scaffold(
               key: Menu._menuScaffoldKey,
-              drawerEdgeDragWidth: 500,
+              // drawerEdgeDragWidth: 500,
               drawer: hasDrawer ? drawer : null,
-              drawerEnableOpenDragGesture: hasDrawer,
+              //drawerEnableOpenDragGesture: hasDrawer,
               body: Row(
                 children: [
                   // if not web, show the sidebar in a drawer

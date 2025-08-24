@@ -7,6 +7,7 @@ class Contact with _$Contact {
   factory Contact({
     required String id,
     required String? number,
+    required String? phone,
     required String? firstName,
     required String? name,
     required String? email,
@@ -20,6 +21,7 @@ class Contact with _$Contact {
   factory Contact.create() => Contact(
         id: '',
         number: null,
+        phone: null,
         firstName: null,
         name: null,
         email: null,

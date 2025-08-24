@@ -9,13 +9,13 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_mappr_annotation/auto_mappr_annotation.dart' as _i1;
 
-import '../../../../core/utils/user_helper.dart' as _i4;
 import '../../data/dtos/bird_dto.dart' as _i3;
 import '../models/bird.dart' as _i2;
 
 /// {@template package:birdbreeder/features/birds/domain/mapper/bird_mapper.dart}
 /// Available mappings:
 /// - `Bird` → `BirdDto`.
+/// - `BirdDto` → `Bird`.
 /// {@endtemplate}
 class $BirdMapper implements _i1.AutoMapprInterface {
   const $BirdMapper();
@@ -34,6 +34,12 @@ class $BirdMapper implements _i1.AutoMapprInterface {
             sourceTypeOf == _typeOf<_i2.Bird?>()) &&
         (targetTypeOf == _typeOf<_i3.BirdDto>() ||
             targetTypeOf == _typeOf<_i3.BirdDto?>())) {
+      return true;
+    }
+    if ((sourceTypeOf == _typeOf<_i3.BirdDto>() ||
+            sourceTypeOf == _typeOf<_i3.BirdDto?>()) &&
+        (targetTypeOf == _typeOf<_i2.Bird>() ||
+            targetTypeOf == _typeOf<_i2.Bird?>())) {
       return true;
     }
     if (recursive) {
@@ -236,6 +242,15 @@ class $BirdMapper implements _i1.AutoMapprInterface {
       }
       return (_map__i2$Bird_To__i3$BirdDto((model as _i2.Bird?)) as TARGET);
     }
+    if ((sourceTypeOf == _typeOf<_i3.BirdDto>() ||
+            sourceTypeOf == _typeOf<_i3.BirdDto?>()) &&
+        (targetTypeOf == _typeOf<_i2.Bird>() ||
+            targetTypeOf == _typeOf<_i2.Bird?>())) {
+      if (canReturnNull && model == null) {
+        return null;
+      }
+      return (_map__i3$BirdDto_To__i2$Bird((model as _i3.BirdDto?)) as TARGET);
+    }
     throw Exception('No ${model.runtimeType} -> $targetTypeOf mapping.');
   }
 
@@ -277,30 +292,64 @@ class $BirdMapper implements _i1.AutoMapprInterface {
     }
     return _i3.BirdDto(
       id: model.id,
-      created: model.created,
-      updated: model.updated,
-      ringnumber: model.ringnumber,
-      born: model.born,
-      died: model.died,
-      sell: model.sell,
-      bought: model.bought,
-      species: model.species,
-      color: model.color,
-      cage: model.cage,
-      father: model.father,
-      mother: model.mother,
-      boughtPrice: model.boughtPrice,
-      sellPriceOffer: model.sellPriceOffer,
-      sellPriceReal: model.sellPriceReal,
+      ringNumber: model.ringNumber,
+      speciesId: model.speciesId,
+      colorId: model.colorId,
       sex: model.sex,
-      sold: model.sold,
-      isEgg: model.isEgg,
-      laid: model.laid,
-      hatched: model.hatched,
-      flowOut: model.flowOut,
-      brood: model.brood,
-      user: _i4.UserHelper.insertUser(),
-      children: model.children,
+      fatherId: model.fatherId,
+      motherId: model.motherId,
+      cageId: model.cageId,
+      broodId: model.broodId,
+      laidAt: model.laidAt,
+      hatchedAt: model.hatchedAt,
+      fledgedAt: model.fledgedAt,
+      diedAt: model.diedAt,
+      saleStatus: model.saleStatus,
+      listedAt: model.listedAt,
+      soldAt: model.soldAt,
+      askingPrice: model.askingPrice,
+      finalPrice: model.finalPrice,
+      boughtAt: model.boughtAt,
+      boughtPrice: model.boughtPrice,
+      notes: model.notes,
+      boughtFromId: model.boughtFromId,
+      soldToId: model.soldToId,
+      ownerId: model.ownerId,
+    );
+  }
+
+  _i2.Bird _map__i3$BirdDto_To__i2$Bird(_i3.BirdDto? input) {
+    final model = input;
+    if (model == null) {
+      throw Exception(
+          r'Mapping BirdDto → Bird failed because BirdDto was null, and no default value was provided. '
+          r'Consider setting the whenSourceIsNull parameter on the MapType<BirdDto, Bird> to handle null values during mapping.');
+    }
+    return _i2.Bird(
+      id: model.id,
+      ringNumber: model.ringNumber,
+      speciesId: model.speciesId,
+      colorId: model.colorId,
+      ownerId: model.ownerId,
+      sex: model.sex,
+      fatherId: model.fatherId,
+      motherId: model.motherId,
+      cageId: model.cageId,
+      broodId: model.broodId,
+      laidAt: model.laidAt,
+      hatchedAt: model.hatchedAt,
+      fledgedAt: model.fledgedAt,
+      diedAt: model.diedAt,
+      saleStatus: model.saleStatus,
+      listedAt: model.listedAt,
+      soldAt: model.soldAt,
+      askingPrice: model.askingPrice,
+      finalPrice: model.finalPrice,
+      boughtAt: model.boughtAt,
+      boughtPrice: model.boughtPrice,
+      boughtFromId: model.boughtFromId,
+      soldToId: model.soldToId,
+      notes: model.notes,
     );
   }
 }

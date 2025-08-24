@@ -22,6 +22,7 @@ ContactDto _$ContactDtoFromJson(Map<String, dynamic> json) {
 mixin _$ContactDto {
   String get id => throw _privateConstructorUsedError;
   String? get number => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
   String? get firstName => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
@@ -51,6 +52,7 @@ abstract class $ContactDtoCopyWith<$Res> {
   $Res call(
       {String id,
       String? number,
+      String? phone,
       String? firstName,
       String? name,
       String? email,
@@ -79,6 +81,7 @@ class _$ContactDtoCopyWithImpl<$Res, $Val extends ContactDto>
   $Res call({
     Object? id = null,
     Object? number = freezed,
+    Object? phone = freezed,
     Object? firstName = freezed,
     Object? name = freezed,
     Object? email = freezed,
@@ -97,6 +100,10 @@ class _$ContactDtoCopyWithImpl<$Res, $Val extends ContactDto>
       number: freezed == number
           ? _value.number
           : number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String?,
       firstName: freezed == firstName
           ? _value.firstName
@@ -149,6 +156,7 @@ abstract class _$$ContactDtoImplCopyWith<$Res>
   $Res call(
       {String id,
       String? number,
+      String? phone,
       String? firstName,
       String? name,
       String? email,
@@ -175,6 +183,7 @@ class __$$ContactDtoImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? number = freezed,
+    Object? phone = freezed,
     Object? firstName = freezed,
     Object? name = freezed,
     Object? email = freezed,
@@ -193,6 +202,10 @@ class __$$ContactDtoImplCopyWithImpl<$Res>
       number: freezed == number
           ? _value.number
           : number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String?,
       firstName: freezed == firstName
           ? _value.firstName
@@ -240,6 +253,7 @@ class _$ContactDtoImpl implements _ContactDto {
   _$ContactDtoImpl(
       {required this.id,
       this.number,
+      this.phone,
       this.firstName,
       this.name,
       this.email,
@@ -257,6 +271,8 @@ class _$ContactDtoImpl implements _ContactDto {
   final String id;
   @override
   final String? number;
+  @override
+  final String? phone;
   @override
   final String? firstName;
   @override
@@ -278,7 +294,7 @@ class _$ContactDtoImpl implements _ContactDto {
 
   @override
   String toString() {
-    return 'ContactDto(id: $id, number: $number, firstName: $firstName, name: $name, email: $email, address: $address, city: $city, country: $country, postalCode: $postalCode, website: $website, user: $user)';
+    return 'ContactDto(id: $id, number: $number, phone: $phone, firstName: $firstName, name: $name, email: $email, address: $address, city: $city, country: $country, postalCode: $postalCode, website: $website, user: $user)';
   }
 
   @override
@@ -288,6 +304,7 @@ class _$ContactDtoImpl implements _ContactDto {
             other is _$ContactDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.number, number) || other.number == number) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.name, name) || other.name == name) &&
@@ -303,8 +320,8 @@ class _$ContactDtoImpl implements _ContactDto {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, number, firstName, name,
-      email, address, city, country, postalCode, website, user);
+  int get hashCode => Object.hash(runtimeType, id, number, phone, firstName,
+      name, email, address, city, country, postalCode, website, user);
 
   /// Create a copy of ContactDto
   /// with the given fields replaced by the non-null parameter values.
@@ -326,6 +343,7 @@ abstract class _ContactDto implements ContactDto {
   factory _ContactDto(
       {required final String id,
       final String? number,
+      final String? phone,
       final String? firstName,
       final String? name,
       final String? email,
@@ -343,6 +361,8 @@ abstract class _ContactDto implements ContactDto {
   String get id;
   @override
   String? get number;
+  @override
+  String? get phone;
   @override
   String? get firstName;
   @override

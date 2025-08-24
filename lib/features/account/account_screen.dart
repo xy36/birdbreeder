@@ -2,7 +2,6 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/authentication/models/user.dart';
 import 'package:birdbreeder/services/injection.dart';
-import 'package:birdbreeder/shared/widgets/shared_app_bar_with_drawer.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});

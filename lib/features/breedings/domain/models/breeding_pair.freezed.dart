@@ -21,7 +21,7 @@ mixin _$BreedingPair {
   DateTime? get end => throw _privateConstructorUsedError;
   String? get father => throw _privateConstructorUsedError;
   String? get mother => throw _privateConstructorUsedError;
-  List<String>? get broods => throw _privateConstructorUsedError;
+  String? get notes => throw _privateConstructorUsedError;
 
   /// Create a copy of BreedingPair
   /// with the given fields replaced by the non-null parameter values.
@@ -42,7 +42,7 @@ abstract class $BreedingPairCopyWith<$Res> {
       DateTime? end,
       String? father,
       String? mother,
-      List<String>? broods});
+      String? notes});
 }
 
 /// @nodoc
@@ -65,7 +65,7 @@ class _$BreedingPairCopyWithImpl<$Res, $Val extends BreedingPair>
     Object? end = freezed,
     Object? father = freezed,
     Object? mother = freezed,
-    Object? broods = freezed,
+    Object? notes = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -88,10 +88,10 @@ class _$BreedingPairCopyWithImpl<$Res, $Val extends BreedingPair>
           ? _value.mother
           : mother // ignore: cast_nullable_to_non_nullable
               as String?,
-      broods: freezed == broods
-          ? _value.broods
-          : broods // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+      notes: freezed == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -110,7 +110,7 @@ abstract class _$$BreedingPairImplCopyWith<$Res>
       DateTime? end,
       String? father,
       String? mother,
-      List<String>? broods});
+      String? notes});
 }
 
 /// @nodoc
@@ -131,7 +131,7 @@ class __$$BreedingPairImplCopyWithImpl<$Res>
     Object? end = freezed,
     Object? father = freezed,
     Object? mother = freezed,
-    Object? broods = freezed,
+    Object? notes = freezed,
   }) {
     return _then(_$BreedingPairImpl(
       id: null == id
@@ -154,10 +154,10 @@ class __$$BreedingPairImplCopyWithImpl<$Res>
           ? _value.mother
           : mother // ignore: cast_nullable_to_non_nullable
               as String?,
-      broods: freezed == broods
-          ? _value._broods
-          : broods // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+      notes: freezed == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -171,8 +171,7 @@ class _$BreedingPairImpl implements _BreedingPair {
       required this.end,
       required this.father,
       required this.mother,
-      required final List<String>? broods})
-      : _broods = broods;
+      required this.notes});
 
   @override
   final String id;
@@ -184,19 +183,12 @@ class _$BreedingPairImpl implements _BreedingPair {
   final String? father;
   @override
   final String? mother;
-  final List<String>? _broods;
   @override
-  List<String>? get broods {
-    final value = _broods;
-    if (value == null) return null;
-    if (_broods is EqualUnmodifiableListView) return _broods;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  final String? notes;
 
   @override
   String toString() {
-    return 'BreedingPair(id: $id, start: $start, end: $end, father: $father, mother: $mother, broods: $broods)';
+    return 'BreedingPair(id: $id, start: $start, end: $end, father: $father, mother: $mother, notes: $notes)';
   }
 
   @override
@@ -209,12 +201,12 @@ class _$BreedingPairImpl implements _BreedingPair {
             (identical(other.end, end) || other.end == end) &&
             (identical(other.father, father) || other.father == father) &&
             (identical(other.mother, mother) || other.mother == mother) &&
-            const DeepCollectionEquality().equals(other._broods, _broods));
+            (identical(other.notes, notes) || other.notes == notes));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, start, end, father, mother,
-      const DeepCollectionEquality().hash(_broods));
+  int get hashCode =>
+      Object.hash(runtimeType, id, start, end, father, mother, notes);
 
   /// Create a copy of BreedingPair
   /// with the given fields replaced by the non-null parameter values.
@@ -232,7 +224,7 @@ abstract class _BreedingPair implements BreedingPair {
       required final DateTime? end,
       required final String? father,
       required final String? mother,
-      required final List<String>? broods}) = _$BreedingPairImpl;
+      required final String? notes}) = _$BreedingPairImpl;
 
   @override
   String get id;
@@ -245,7 +237,7 @@ abstract class _BreedingPair implements BreedingPair {
   @override
   String? get mother;
   @override
-  List<String>? get broods;
+  String? get notes;
 
   /// Create a copy of BreedingPair
   /// with the given fields replaced by the non-null parameter values.
