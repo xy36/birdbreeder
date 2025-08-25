@@ -19,11 +19,6 @@ jobs:
         with:
           # Für Flutter/Dart-Projekte:
           release-type: simple
-
-          # Optional – wenn du Releases ohne PR direkt erstellen willst:
-          # release-as: ""           # leer lassen (automatisch bumpen)
-          # changelog-path: CHANGELOG.md
-          # bump-minor-pre-major: true
-          # bump-patch-for-minor-pre-major: true
-          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+          package-name: birdbreeder
+          token: ${{ secrets.GITHUB_TOKEN }}
 
