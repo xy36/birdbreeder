@@ -9,6 +9,7 @@ on:
 permissions:
   contents: write        # nötig für Tags & Releases
   pull-requests: write   # nötig für den Release-PR
+  issues: write
 
 jobs:
   release:
