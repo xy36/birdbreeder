@@ -70,23 +70,29 @@ class _BottomDropdownSearchState<T> extends State<BottomDropdownSearch<T>> {
         isVisible: widget.onClear != null,
         onPressed: () => widget.onClear?.call(),
       ),
-      popupProps: PopupProps.dialog(
+      popupProps: PopupProps.modalBottomSheet(
         title: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
           child: Text(widget.title, style: context.titleLarge),
         ),
-        dialogProps: DialogProps(
-          insetPadding: const EdgeInsets.all(8),
-          contentPadding: const EdgeInsets.all(12),
-          actionsAlignment: MainAxisAlignment.end,
-          actionsPadding: const EdgeInsets.all(12),
-          actions: [
-            ElevatedButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(context.l10n.common__close),
-            ),
-          ],
+        modalBottomSheetProps: ModalBottomSheetProps(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          padding: const EdgeInsets.all(12),
         ),
+        // dialogProps: DialogProps(
+        //   insetPadding: const EdgeInsets.all(8),
+        //   contentPadding: const EdgeInsets.all(12),
+        //   actionsAlignment: MainAxisAlignment.end,
+        //   actionsPadding: const EdgeInsets.all(12),
+        //   actions: [
+        //     ElevatedButton(
+        //       onPressed: () => Navigator.of(context).pop(),
+        //       child: Text(context.l10n.common__close),
+        //     ),
+        //   ],
+        // ),
         listViewProps: const ListViewProps(
           physics: BouncingScrollPhysics(),
         ),

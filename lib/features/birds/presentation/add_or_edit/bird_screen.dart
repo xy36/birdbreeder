@@ -40,6 +40,8 @@ enum BirdActions {
   }
 }
 
+final neutralFocus = FocusNode();
+
 class BirdScreen extends StatelessWidget {
   const BirdScreen({super.key});
 

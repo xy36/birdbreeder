@@ -33,7 +33,10 @@ class ColorField extends StatelessWidget {
       hint: context.l10n.common__color,
       items: colors,
       selectedItem: bird.colorResolved,
-      apply: (b, v) => b.copyWith(colorId: v?.id),
+      apply: (b, v) {
+        FocusScope.of(context).unfocus();
+        return b.copyWith(colorId: v?.id);
+      },
       itemAsString: (item) => item.name ?? '-',
       title: context.l10n.bird__color_dropdown_title,
       filterFn: filterFn,

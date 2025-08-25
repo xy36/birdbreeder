@@ -2,6 +2,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/birds_extension.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/cubit/bird_cubit.dart';
+import 'package:birdbreeder/features/birds/presentation/add_or_edit/models/bird_mode.dart';
 import 'package:birdbreeder/shared/widgets/field_with_label.dart';
 
 class BirdPropertyField<T> extends StatelessWidget {
@@ -35,10 +36,12 @@ class BirdPropertyField<T> extends StatelessWidget {
     final cubit = context.read<BirdCubit>();
     final initial = cubit.initialBird;
     final value = select(bird);
+    final showHasChangedIndicator = cubit.state.mode == BirdMode.edit;
 
     return FieldWithLabel(
       label: label,
-      hasChangedIndicator: bird.changed<T>(initial, select),
+      hasChangedIndicator:
+          showHasChangedIndicator && bird.changed<T>(initial, select),
       child: builder(
         context,
         value,

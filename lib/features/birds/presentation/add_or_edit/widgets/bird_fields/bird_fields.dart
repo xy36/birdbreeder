@@ -9,7 +9,6 @@ import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/purchase_and_sale/purchase_section.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/purchase_and_sale/sale_section.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/purchase_and_sale/sale_status_section.dart';
-import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/status_and_life_cycle/health_section.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/status_and_life_cycle/life_stage_section.dart';
 
 enum BirdSections {
@@ -53,7 +52,8 @@ enum BirdSections {
       case BirdSections.statusAndLifeCycle:
         return [
           LifeStageSection(bird),
-          HealthSection(bird),
+          //TODO: comment in when implemented
+          //HealthSection(bird),
         ];
       case BirdSections.breeding:
         return [

@@ -15,6 +15,7 @@ class RingnumberField extends StatelessWidget {
       hint: context.l10n.common__ringnumber,
       select: (b) => b.ringNumber ?? '',
       apply: (b, v) => b.copyWith(ringNumber: v),
+      maxLines: 1,
     );
   }
 }

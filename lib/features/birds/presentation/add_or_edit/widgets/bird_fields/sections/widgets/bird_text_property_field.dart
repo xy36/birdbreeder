@@ -45,6 +45,9 @@ class BirdTextPropertyField extends StatelessWidget {
           initialValue: initialValue,
           minLines: minLines,
           maxLines: maxLines,
+          onTapOutside: (event) {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           decoration: InputDecoration(
             hintText: hint ?? context.l10n.common__hint_text,
             contentPadding: const EdgeInsets.all(8),
