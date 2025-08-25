@@ -1,0 +1,29 @@
+name: Release Please
+
+on:
+  push:
+    branches:
+      - main         # ggf. auf "master" ändern
+  workflow_dispatch: # manuell auslösbar
+
+permissions:
+  contents: write        # nötig für Tags & Releases
+  pull-requests: write   # nötig für den Release-PR
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release Please
+        uses: googleapis/release-please-action@v4
+        with:
+          # Für Flutter/Dart-Projekte:
+          release-type: dart
+          package-name: birdbreeder
+
+          # Optional – wenn du Releases ohne PR direkt erstellen willst:
+          # release-as: ""           # leer lassen (automatisch bumpen)
+          # changelog-path: CHANGELOG.md
+          # bump-minor-pre-major: true
+          # bump-patch-for-minor-pre-major: true
+
