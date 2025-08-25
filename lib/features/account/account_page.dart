@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:birdbreeder/features/account/account_screen.dart';
 import 'package:flutter/material.dart';
-
-import 'account_screen.dart';
 
 @RoutePage()
 class AccountPage extends StatelessWidget {
@@ -9,6 +8,6 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AccountScreen();
+    return const AccountScreen();
   }
 }
