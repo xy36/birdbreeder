@@ -18,8 +18,7 @@ jobs:
         uses: googleapis/release-please-action@v4
         with:
           # Für Flutter/Dart-Projekte:
-          release-type: dart
-          package-name: birdbreeder
+          release-type: simple
 
           # Optional – wenn du Releases ohne PR direkt erstellen willst:
           # release-as: ""           # leer lassen (automatisch bumpen)
