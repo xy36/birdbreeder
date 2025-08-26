@@ -12,7 +12,7 @@ class Header extends StatelessWidget {
           alignment: WrapAlignment.center,
           children: [
             Text(
-              context.l10n.login__welcome_text,
+              context.tr.login.welcome.text,
               style: Theme.of(context).textTheme.displayLarge,
             ),
             const BirdbreederWidget(),
@@ -20,7 +20,7 @@ class Header extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          context.l10n.login__welcome_sub_text,
+          context.tr.login.welcome.sub_text,
           style: Theme.of(context).textTheme.titleMedium,
         ),
       ],

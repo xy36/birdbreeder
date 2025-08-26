@@ -1,0 +1,322 @@
+{
+    "@@locale": "de",
+    "app": {
+        "title": "birdbreeder"
+    },
+    "finances": {
+        "title": "Finanzen"
+    },
+    "account": {
+        "title": "Konto"
+    },
+    "breedings": {
+        "title": "Züchtungen"
+    },
+    "colors": {
+        "title": "Farben",
+        "add": "Farbe hinzufügen",
+        "delete": "Farbe löschen?",
+        "color": "Farbe"
+    },
+    "cages": {
+        "title": "Volieren",
+        "add": "Voliere hinzufügen",
+        "delete": "Voliere löschen?",
+        "name": "Name des Volieres",
+        "description": "Beschreibung",
+        "height": "Höhe",
+        "width": "Breite",
+        "depth": "Tiefe"
+    },
+    "species": {
+        "title": "Arten",
+        "add": "Art hinzufügen",
+        "delete": "Art löschen?",
+        "name": "Name der Art",
+        "latin_name": "Lateinischer Name"
+    },
+    "contacts": {
+        "title(count)": "Kontakte ({{count}})",
+        "edit": "Kontakt bearbeiten",
+        "create": "Kontakt erstellen",
+        "deleted": "Kontakt gelöscht",
+        "saved": "Kontakt gespeichert",
+        "fields": {
+            "first_name": "Vorname",
+            "last_name": "Nachname",
+            "email": "E-Mail",
+            "number": "Züchternummer",
+            "phone": "Telefonnummer",
+            "address": "Adresse",
+            "city": "Stadt",
+            "country": "Land",
+            "postal": "Postleitzahl",
+            "website": "Webseite"
+        },
+        "contact": "Kontakt löschen?",
+        "add": "Kontakt hinzufügen?",
+        "sections": {
+            "personal": "Persönliche Informationen",
+            "breeder": "Züchterinformationen",
+            "contact": "Kontaktinformationen",
+            "address": "Adresse",
+            "meta": "Metadaten"
+        },
+        "actionButton": {
+            "open_website_tooltipp": "Webseite öffnen",
+            "send_email_tooltipp": "E-Mail schreiben",
+            "call_tooltipp": "Anrufen"
+        }
+    },
+    "breeding_pairs": {
+        "title": "Zuchtpaar",
+        "add": "Zuchtpaar hinzufügen",
+        "delete": "Zuchtpaar löschen?"
+    },
+    "resources": {
+        "title": "Ressourcen",
+        "usage_count(param=count)": {
+            "zero": "In keinem Vogel verwendet",
+            "one": "Verwendet in einem Vogel",
+            "other": "Verwendet in {{n}} Vögel"
+        }
+    },
+    "birds": {
+        "title": "Vögel"
+    },
+    "bird": {
+        "title": "Vogel",
+        "edit": "Vogel bearbeiten",
+        "deleted": "Vogel gelöscht",
+        "saved": "Vogel gespeichert",
+        "delete": "Vogel löschen?",
+        "duplicate": "Vogel duplizieren",
+        "add": "Vogel hinzufügen",
+        "select_color_label": "Farbe auswählen",
+        "select_species_label": "Art auswählen",
+        "select_cage_label": "Voliere auswählen",
+        "select_owner_label": "Besitzer auswählen",
+        "select_sold_to_label": "Verkauft an auswählen",
+        "select_bought_from_label": "Gekauft von auswählen",
+        "created_information(date, time)": "Erstellt am {{DateTime date}} um {{time}}",
+        "tabs": {
+            "general": "Allgemein",
+            "state_and_life": "Zustand",
+            "breeding": "Zucht",
+            "purchase_and_sale": "Finanzen"
+        },
+        "sections": {
+            "identification": {
+                "title": "Identifikation",
+                "subTitle": "Informationen zur Identifikation des Vogels"
+            },
+            "keeping": {
+                "title": "Haltung",
+                "subTitle": "Informationen zur Haltung des Vogels"
+            },
+            "status": {
+                "title": "Status",
+                "subTitle": "Informationen zum Status des Vogels"
+            },
+            "sale": {
+                "title": "Verkauf",
+                "subTitle": "Informationen zum Verkauf des Vogels"
+            },
+            "purchase": {
+                "title": "Kauf",
+                "subTitle": "Informationen zum Kauf des Vogels"
+            },
+            "health": {
+                "title": "Gesundheit",
+                "subTitle": "Informationen zur Gesundheit des Vogels"
+            },
+            "life": {
+                "title": "Lebensphase",
+                "subTitle": "Informationen zur Lebensphase des Vogels"
+            },
+            "notes": {
+                "title": "Notizen",
+                "subTitle": "Informationen zu den Notizen des Vogels"
+            },
+            "parent": {
+                "title": "Eltern",
+                "subTitle": "Informationen zu den Eltern des Vogels"
+            },
+            "children": {
+                "title": "Nachkommen",
+                "subTitle": "Informationen zu den Nachkommen des Vogels"
+            }
+        }
+    },
+    "common": {
+        "bottom_sheet": {
+            "search_empty_builder_text(text)": "Die Suche nach {{text}} hat leider nichts ergeben."
+        },
+        "life_stage": {
+            "egg": "Ei",
+            "chick": "Küken",
+            "adult": "Erwachsen",
+            "deceased": "Verstorben"
+        },
+        "sale_status": {
+            "name": "Kauf/Verkaufsstatus",
+            "not_for_sale": "Nicht zum Verkauf",
+            "listed": "Zum Verkauf angeboten",
+            "reserved": "Reserviert",
+            "sold": "Verkauft"
+        },
+        "all_label": "Alle",
+        "more_label": "Mehr",
+        "less_label": "Weniger",
+        "search": "Suchen",
+        "countbird(param=count)": {
+            "zero": "Keine Vögel",
+            "one": "1 Vogel",
+            "other": "{count} Vögel"
+        },
+        "optional": "Optional",
+        "apply": "Übernehmen",
+        "reset": "Zurücksetzen",
+        "add": "Hinzufügen",
+        "close": "Schließen",
+        "cancel": "Abbrechen",
+        "ok": "Ok",
+        "sex": {
+            "name": "Geschlecht",
+            "male": "Hahn",
+            "female": "Henne",
+            "unknown": "Unbekannt"
+        },
+        "sell": {
+            "year": "Verkaufsjahr",
+            "bird": "Vogel verkaufen",
+            "price": {
+                "final": "Tatsächlicher Verkaufspreis",
+                "asking": "Gewünschter Verkaufspreis"
+            }
+        },
+        "bought": {
+            "year": "Kaufjahr",
+            "from": "Gekauft von",
+            "at": "Gekauft am",
+            "price": "Kaufpreis"
+        },
+        "sorting": {
+            "name": "Sortierung",
+            "updated": "Zuletzt aktualisiert (neu → alt)",
+            "age": "Alter (jung → alt)",
+            "ringnumber": "Ringnummer (A → Z)"
+        },
+        "something_went_wrong": "Hoppla, etwas ist schiefgelaufen.",
+        "save": "Speichern",
+        "general": "Allgemein",
+        "ringnumber": "Ringnummer",
+        "notes": "Notizen",
+        "clutches": "Gelege",
+        "laid": "Gelegt",
+        "fertilzed": "Befruchtet",
+        "hatched": "Geschlüpft",
+        "fledged": "Ausgeflogen",
+        "origin": "Herkunft",
+        "species": "Art",
+        "color": "Farbe",
+        "cage": "Voliere",
+        "owner": "Besitzer",
+        "sold": {
+            "to": "Verkauft an",
+            "at": "Verkauft am"
+        },
+        "gender": "Geschlecht",
+        "diedAt": "Sterbedatum",
+        "father": "Vater",
+        "mother": "Mutter",
+        "partner": "Partner",
+        "is_for_sale": "Zum Verkauf",
+        "yes": "Ja",
+        "no": "Nein",
+        "unit": {
+            "m": "m",
+            "cm": "cm"
+        },
+        "email": "E-Mail",
+        "password": "Passwort",
+        "hint": {
+            "select": "Auswählen",
+            "text": "Eingabe"
+        },
+        "required": "Dieses Feld muss ausgefüllt werden"
+    },
+    "login": {
+        "signIn": "Anmelden",
+        "welcome": {
+            "text": "Willkommen bei ",
+            "subText": "Geben Sie Ihre E-Mail und Ihr Passwort ein, um auf Ihr Konto zuzugreifen"
+        },
+        "field": {
+            "email": {
+                "hint": "Geben Sie Ihre E-Mail ein",
+                "validation": {
+                    "error": "Bitte geben Sie Ihre E-Mail ein"
+                }
+            },
+            "password": {
+                "hint": "Geben Sie Ihr Passwort ein",
+                "validation": {
+                    "error": "Bitte geben Sie Ihr Passwort ein"
+                }
+            }
+        }
+    },
+    "menu": {
+        "name": {
+            "birds": "Vögel",
+            "contacts": "Kontakte",
+            "resources": "Ressourcen",
+            "breedings": "Züchtungen",
+            "finances": "Finanzen",
+            "account": "Konto"
+        },
+        "addBird": "Vogel hinzufügen"
+    },
+    "error": {
+        "message": "Entschuldigung, es ist ein Fehler aufgetreten"
+    },
+    "dialog": {
+        "discard_changes": {
+            "title": "Änderungen verwerfen?",
+            "content": "Deine Änderungen werden verworfen, bist du sicher?"
+        },
+        "delete_entry": {
+            "content": "Möchten Sie diesen Eintrag wirklich löschen?"
+        }
+    },
+    "pop_up_menu": {
+        "bird": {
+            "edit": "Bearbeiten",
+            "show": "Anzeigen",
+            "duplicate": "Duplizieren",
+            "delete": "Löschen"
+        }
+    },
+    "snackbars": {
+        "general": {
+            "create_failed": "Konnte nicht erstellt werden",
+            "update_failed": "Konnte nicht aktualisiert werden",
+            "delete_failed": "Konnte nicht gelöscht werden",
+            "failed": "Konnte nicht gelöscht werden"
+        },
+        "contacts": {
+            "create_failed": "Kontakt konnte nicht erstellt werden",
+            "update_failed": "Kontakt konnte nicht aktualisiert werden",
+            "delete_failed": "Kontakt konnte nicht gelöscht werden"
+        },
+        "error": {
+            "data": {
+                "fetch": "Fehler beim Abrufen der Daten",
+                "save": "Fehler beim Speichern der Daten",
+                "delete": "Fehler beim Löschen der Daten"
+            },
+            "login": "Email oder Passwort ist falsch!"
+        }
+    }
+}

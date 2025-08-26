@@ -17,7 +17,7 @@ class ContactListener
             switch (event) {
               case ContactCubitEventDeleted():
                 context.showInfoBar<Contact>(
-                  content: Text(context.l10n.contacts__deleted),
+                  content: Text(context.tr.contacts.deleted),
                 );
                 context.router.maybePop();
                 break;
@@ -29,7 +29,7 @@ class ContactListener
                 break;
               case ContactCubitEventSaved():
                 context.showSuccessBar<bool>(
-                  content: Text(context.l10n.contacts__saved),
+                  content: Text(context.tr.contacts.saved),
                 );
                 context.pop();
                 break;

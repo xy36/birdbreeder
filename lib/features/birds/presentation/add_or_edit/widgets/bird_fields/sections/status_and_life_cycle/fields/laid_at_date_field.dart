@@ -14,11 +14,10 @@ class LaidAtDateField extends StatelessWidget {
   Widget build(BuildContext context) {
     return BirdDatePropertyField(
       bird: bird,
-      label: context.l10n.common__laid,
+      label: context.tr.common.laid,
       name: 'laid_at_date_field',
       apply: (b, v) => b.copyWith(laidAt: v),
       select: (b) => b.laidAt,
-      hint: context.l10n.common__laid,
     );
   }
 }

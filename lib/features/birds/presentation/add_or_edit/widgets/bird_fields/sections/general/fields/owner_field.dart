@@ -26,12 +26,11 @@ class OwnerField extends StatelessWidget {
 
     return BirdDropdownPropertyField<Contact>(
       bird: bird,
-      label: context.l10n.common__owner,
+      label: context.tr.common.owner,
       name: 'owner_field',
-      hint: context.l10n.common__owner,
       select: (b) => b.ownerResolved,
       apply: (b, v) => b.copyWith(ownerId: v?.id),
-      title: context.l10n.bird__owner_dropdown_title,
+      title: context.tr.bird.select_owner_label,
       filterFn: filterFn,
       items: contacts,
       itemAsString: (item) => item.name ?? '-',

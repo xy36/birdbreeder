@@ -49,7 +49,7 @@ class BirdTextPropertyField extends StatelessWidget {
             FocusManager.instance.primaryFocus?.unfocus();
           },
           decoration: InputDecoration(
-            hintText: hint ?? context.l10n.common__hint_text,
+            hintText: hint ?? label,
             contentPadding: const EdgeInsets.all(8),
             suffixIcon: suffixIcon,
             suffixText: suffixText,

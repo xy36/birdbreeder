@@ -48,7 +48,7 @@ class ContactCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final cs = theme.colorScheme;
-    final l10n = context.l10n;
+    final l10n = context.tr;
 
     final locationText = _joinNonEmpty([contact.city, contact.country], ' • ');
 
@@ -154,7 +154,7 @@ class ContactCard extends StatelessWidget {
                 spacing: 8,
                 children: [
                   _ActionIconButton(
-                    tooltip: l10n.contacts__action_button_call_tooltip,
+                    tooltip: l10n.contacts.action_button.call_tooltipp,
                     icon: Icons.call_outlined,
                     enabled: (contact.phone != null &&
                         contact.phone!.trim().isNotEmpty),
@@ -164,7 +164,7 @@ class ContactCard extends StatelessWidget {
                         : null,
                   ),
                   _ActionIconButton(
-                    tooltip: l10n.contacts__action_button_email_tooltip,
+                    tooltip: l10n.contacts.action_button.send_email_tooltipp,
                     icon: Icons.alternate_email,
                     enabled: (contact.email != null &&
                         contact.email!.trim().isNotEmpty),
@@ -174,7 +174,7 @@ class ContactCard extends StatelessWidget {
                         : null,
                   ),
                   _ActionIconButton(
-                    tooltip: l10n.contacts__action_button_website_tooltip,
+                    tooltip: l10n.contacts.action_button.open_website_tooltipp,
                     icon: Icons.public,
                     enabled: (contact.website != null &&
                         contact.website!.trim().isNotEmpty),

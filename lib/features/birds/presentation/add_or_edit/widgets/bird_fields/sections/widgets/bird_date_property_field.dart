@@ -1,3 +1,4 @@
+import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/widgets/bird_property_field.dart';
@@ -38,7 +39,7 @@ class BirdDatePropertyField extends StatelessWidget {
           builder: (field) {
             return InputDecorator(
               decoration: InputDecoration(
-                hintText: hint ?? context.l10n.common__hint_select,
+                hintText: hint ?? label,
                 contentPadding: const EdgeInsets.all(8),
                 suffixIcon: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -71,7 +72,12 @@ class BirdDatePropertyField extends StatelessWidget {
                 child: Text(
                   field.value != null
                       ? context.getDateFormat().format(field.value!)
-                      : '',
+                      : hint ?? label,
+                  style: field.value != null
+                      ? context.bodyLarge
+                      : context.bodyLarge?.copyWith(
+                          color: Theme.of(context).hintColor,
+                        ),
                 ),
               ),
             );

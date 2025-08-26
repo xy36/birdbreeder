@@ -13,8 +13,8 @@ class SaleStatusSection extends StatelessWidget {
     return SectionCard(
       collapsible: true,
       icon: Icons.insights,
-      title: context.l10n.bird__section_title_status,
-      subtitle: context.l10n.bird__section_sub_title_status,
+      title: context.tr.bird.sections.status.title,
+      subtitle: context.tr.bird.sections.status.sub_title,
       children: [
         SaleStatusField(bird: bird),
       ],

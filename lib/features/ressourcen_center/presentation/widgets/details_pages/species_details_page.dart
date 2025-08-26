@@ -47,7 +47,7 @@ class _SpeciesDetailsPageState extends State<SpeciesDetailsPage> {
     final cubit = context.read<BirdBreederCubit>();
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n.species__add_species),
+        title: Text(context.tr.species.add),
         leading: NavigateBackButton(discardDialogEnabled: isDirty),
         actions: [
           IconButton(
@@ -85,11 +85,11 @@ class _SpeciesDetailsPageState extends State<SpeciesDetailsPage> {
             spacing: 16,
             children: [
               FieldWithLabel(
-                label: context.l10n.species__name,
+                label: context.tr.species.name,
                 child: TextFormField(
                   initialValue: _species?.name,
                   decoration: InputDecoration(
-                    hintText: context.l10n.species__name,
+                    hintText: context.tr.species.name,
                   ),
                   onChanged: (value) {
                     setState(() {
@@ -99,18 +99,18 @@ class _SpeciesDetailsPageState extends State<SpeciesDetailsPage> {
                   },
                   validator: (value) {
                     if (value.isNullOrEmpty) {
-                      return context.l10n.common__required;
+                      return context.tr.common.required;
                     }
                     return null;
                   },
                 ),
               ),
               FieldWithLabel(
-                label: context.l10n.species__latin_name,
+                label: context.tr.species.latin_name,
                 child: TextFormField(
                   initialValue: _species?.latName,
                   decoration: InputDecoration(
-                    hintText: context.l10n.species__latin_name,
+                    hintText: context.tr.species.latin_name,
                   ),
                   onChanged: (value) {
                     setState(() {

@@ -14,9 +14,8 @@ class DiedAtDateField extends StatelessWidget {
   Widget build(BuildContext context) {
     return BirdDatePropertyField(
       bird: bird,
-      label: context.l10n.common__died_date,
+      label: context.tr.common.died_at,
       name: 'died_at_date_field',
-      hint: context.l10n.common__died_date,
       select: (b) => b.diedAt,
       apply: (b, v) => b.copyWith(diedAt: v),
     );

@@ -47,7 +47,7 @@ class _CageDetailsPageState extends State<CageDetailsPage> {
     final cubit = context.read<BirdBreederCubit>();
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n.cages__add_cage),
+        title: Text(context.tr.cages.add),
         leading: NavigateBackButton(discardDialogEnabled: isDirty),
         actions: [
           IconButton(
@@ -82,11 +82,11 @@ class _CageDetailsPageState extends State<CageDetailsPage> {
           child: Column(
             children: [
               FieldWithLabel(
-                label: context.l10n.cages__name,
+                label: context.tr.cages.name,
                 child: TextFormField(
                   initialValue: _cage?.name,
                   decoration: InputDecoration(
-                    hintText: context.l10n.cages__name,
+                    hintText: context.tr.cages.name,
                   ),
                   onChanged: (value) {
                     setState(() {
@@ -95,20 +95,20 @@ class _CageDetailsPageState extends State<CageDetailsPage> {
                   },
                   validator: (value) {
                     if (value.isNullOrEmpty) {
-                      return context.l10n.common__required;
+                      return context.tr.common.required;
                     }
                     return null;
                   },
                 ),
               ),
               FieldWithLabel(
-                label: context.l10n.cages__description,
+                label: context.tr.cages.description,
                 child: TextFormField(
                   initialValue: _cage?.description,
                   minLines: 3,
                   maxLines: 10,
                   decoration: InputDecoration(
-                    hintText: context.l10n.cages__description,
+                    hintText: context.tr.cages.description,
                   ),
                   onChanged: (value) {
                     setState(() {
@@ -119,12 +119,12 @@ class _CageDetailsPageState extends State<CageDetailsPage> {
                 ),
               ),
               FieldWithLabel(
-                label: context.l10n.cages__height,
+                label: context.tr.cages.height,
                 child: TextFormField(
                   initialValue: _cage?.height?.toString(),
                   decoration: InputDecoration(
-                    hintText: context.l10n.cages__height,
-                    suffix: Text(context.l10n.common__unit_m),
+                    hintText: context.tr.cages.height,
+                    suffix: Text(context.tr.common.unit.m),
                   ),
                   inputFormatters: [
                     FilteringTextInputFormatter.allow(RegExp('[0-9]')),
@@ -138,12 +138,12 @@ class _CageDetailsPageState extends State<CageDetailsPage> {
                 ),
               ),
               FieldWithLabel(
-                label: context.l10n.cages__width,
+                label: context.tr.cages.width,
                 child: TextFormField(
                   initialValue: _cage?.width?.toString(),
                   decoration: InputDecoration(
-                    hintText: context.l10n.cages__width,
-                    suffix: Text(context.l10n.common__unit_m),
+                    hintText: context.tr.cages.width,
+                    suffix: Text(context.tr.common.unit.m),
                   ),
                   inputFormatters: [
                     FilteringTextInputFormatter.allow(RegExp('[0-9]')),
@@ -157,12 +157,12 @@ class _CageDetailsPageState extends State<CageDetailsPage> {
                 ),
               ),
               FieldWithLabel(
-                label: context.l10n.cages__depth,
+                label: context.tr.cages.depth,
                 child: TextFormField(
                   initialValue: _cage?.depth?.toString(),
                   decoration: InputDecoration(
-                    hintText: context.l10n.cages__depth,
-                    suffix: Text(context.l10n.common__unit_m),
+                    hintText: context.tr.cages.depth,
+                    suffix: Text(context.tr.common.unit.m),
                   ),
                   inputFormatters: [
                     FilteringTextInputFormatter.allow(RegExp('[0-9]')),

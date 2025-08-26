@@ -55,8 +55,8 @@ class ParentField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final label = switch (parentType) {
-      ParentType.father => context.l10n.common__father_ringnumber,
-      ParentType.mother => context.l10n.common__mother_ringnumber,
+      ParentType.father => context.tr.common.father,
+      ParentType.mother => context.tr.common.mother,
     };
 
     return BlocBuilder<BirdBreederCubit, BirdBreederState>(
@@ -99,7 +99,7 @@ class ParentField extends StatelessWidget {
           },
           hint: label,
           title: label,
-          searchHint: context.l10n.common__search,
+          searchHint: context.tr.common.search,
           filterFn: _filterFn,
           onClear: () async => _clearParent(context),
           selectedItem: (state is BirdBreederLoaded)

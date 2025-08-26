@@ -19,7 +19,7 @@ class SignInButton extends StatelessWidget {
                 return const CircularProgressIndicator();
               }
               return Text(
-                context.l10n.login__sign_in,
+                context.tr.login.sign_in,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: Theme.of(context).colorScheme.primary,
                       fontWeight: FontWeight.bold,

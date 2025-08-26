@@ -15,8 +15,8 @@ class ChildrenSection extends StatelessWidget {
       collapsible: true,
       icon: Icons.child_friendly,
       title:
-          '${context.l10n.bird__section_title_children} (${bird.childrenResolved.length})',
-      subtitle: context.l10n.bird__section_sub_title_children,
+          '${context.tr.bird.sections.children.title} (${bird.childrenResolved.length})',
+      subtitle: context.tr.bird.sections.children.sub_title,
       children: [
         ListView.separated(
           primary: false,

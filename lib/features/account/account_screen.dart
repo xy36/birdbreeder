@@ -9,7 +9,7 @@ class AccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SharedAppBarWithDrawer(title: context.l10n.account__title),
+      appBar: SharedAppBarWithDrawer(title: context.tr.account.title),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

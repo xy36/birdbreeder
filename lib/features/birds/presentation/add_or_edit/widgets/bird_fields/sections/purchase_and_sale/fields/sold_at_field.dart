@@ -13,12 +13,11 @@ class SoldAtField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BirdDatePropertyField(
-      label: context.l10n.common__sold_at,
+      label: context.tr.common.sold.at,
       bird: bird,
       name: 'sold_at_field',
       apply: (b, v) => b.copyWith(soldAt: v),
       select: (b) => b.soldAt,
-      hint: context.l10n.common__sold_at,
     );
   }
 }

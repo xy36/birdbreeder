@@ -13,12 +13,12 @@ enum BirdActions {
     return switch (this) {
       duplicate => PopupMenuItem(
           value: BirdActions.duplicate,
-          child: Text(context.l10n.pop_up_menu__bird_duplicate),
+          child: Text(context.tr.pop_up_menu.bird.duplicate),
         ),
       delete => PopupMenuItem(
           value: BirdActions.delete,
           child: Text(
-            context.l10n.pop_up_menu__bird_delete,
+            context.tr.pop_up_menu.bird.delete,
             style: const TextStyle(color: Colors.red),
           ),
         )
@@ -32,7 +32,7 @@ enum BirdActions {
           if (context.mounted)
             await DeleteDialog.show(
               context: context,
-              title: context.l10n.bird__delete_bird,
+              title: context.tr.bird.delete,
               onDelete: () => context.read<BirdCubit>().delete(),
             ),
         }
@@ -54,8 +54,8 @@ class BirdScreen extends StatelessWidget {
           appBar: AppBar(
             title: Text(
               switch (state.mode) {
-                BirdMode.edit => context.l10n.bird__edit,
-                BirdMode.create => context.l10n.bird__add_bird,
+                BirdMode.edit => context.tr.bird.edit,
+                BirdMode.create => context.tr.bird.add,
               },
             ),
             centerTitle: false,
@@ -98,7 +98,7 @@ class BirdScreen extends StatelessWidget {
             },
             orElse: () {
               return Center(
-                child: Text(context.l10n.common__error_screen_text),
+                child: Text(context.tr.common.something_went_wrong),
               );
             },
           ),

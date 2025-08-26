@@ -61,7 +61,7 @@ class _BirdFilterSheetState extends State<BirdFilterSheet> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     InlineTwoRowMultiChips(
-                      title: context.l10n.common__species,
+                      title: context.tr.common.species,
                       items: r.species
                           .map((s) => Option(id: s.id, label: s.name ?? '-'))
                           .toList(),
@@ -76,7 +76,7 @@ class _BirdFilterSheetState extends State<BirdFilterSheet> {
 
                     // Sex
                     Section(
-                      title: context.l10n.common__sex,
+                      title: context.tr.common.sex.name,
                       child: AllOrSomeChips<Sex>(
                         values: Sex.values,
                         isSelected: (s) => f.sexes.contains(s),
@@ -88,7 +88,7 @@ class _BirdFilterSheetState extends State<BirdFilterSheet> {
                     ),
 
                     InlineTwoRowMultiChips(
-                      title: context.l10n.common__cage,
+                      title: context.tr.common.cage,
                       items: r.cages
                           .map((c) => Option(id: c.id, label: c.name ?? '-'))
                           .toList(),
@@ -103,7 +103,7 @@ class _BirdFilterSheetState extends State<BirdFilterSheet> {
 
                     // Color
                     InlineTwoRowMultiChips(
-                      title: context.l10n.common__color,
+                      title: context.tr.common.color,
                       items: r.colors
                           .map((c) => Option(id: c.id, label: c.name ?? '-'))
                           .toList(),
@@ -118,8 +118,7 @@ class _BirdFilterSheetState extends State<BirdFilterSheet> {
 
                     // LifeStage + Status
                     Section(
-                      title:
-                          context.l10n.bird__status_and_lifecycle_section_title,
+                      title: context.tr.bird.sections.life.title,
                       child: AllOrSomeChips<LifeStage>(
                         values: LifeStage.values,
                         isSelected: (ls) => f.lifeStages.contains(ls),
@@ -133,7 +132,7 @@ class _BirdFilterSheetState extends State<BirdFilterSheet> {
                     ),
 
                     Section(
-                      title: context.l10n.bird__sale_status_title,
+                      title: context.tr.bird.sections.sale.title,
                       child: AllOrSomeChips<SaleStatus>(
                         values: SaleStatus.values,
                         isSelected: (s) => f.saleStatus.contains(s),
@@ -148,7 +147,7 @@ class _BirdFilterSheetState extends State<BirdFilterSheet> {
 
                     // Sort
                     Section(
-                      title: context.l10n.filter_sheet__sorting,
+                      title: context.tr.common.sorting.name,
                       child: DropdownButtonFormField<BirdSort>(
                         value: f.sort ?? BirdSort.updatedDesc,
                         isExpanded: true,
@@ -184,14 +183,14 @@ class _BirdFilterSheetState extends State<BirdFilterSheet> {
                       const BirdFilter(),
                     ); // reset to defaults
                   },
-                  child: Text(context.l10n.common__reset),
+                  child: Text(context.tr.common.reset),
                 ),
                 const Spacer(),
                 FilledButton(
                   onPressed: () {
                     Navigator.pop(context, f);
                   },
-                  child: Text(context.l10n.common__apply),
+                  child: Text(context.tr.common.apply),
                 ),
               ],
             ),

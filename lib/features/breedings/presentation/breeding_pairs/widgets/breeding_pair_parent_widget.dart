@@ -38,7 +38,7 @@ class BreedingPairParentWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    context.l10n.common__ringnumber,
+                    context.tr.common.ringnumber,
                     style: TextStyle(
                       fontSize: 10,
                       color: Theme.of(context).colorScheme.onSurfaceVariant,

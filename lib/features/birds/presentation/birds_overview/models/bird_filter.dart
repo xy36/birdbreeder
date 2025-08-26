@@ -13,11 +13,11 @@ enum BirdSort {
   String getDisplayName(BuildContext context) {
     switch (this) {
       case BirdSort.updatedDesc:
-        return context.l10n.filter_sheet__sorting_updated;
+        return context.tr.common.sorting.updated;
       case BirdSort.ageAsc:
-        return context.l10n.filter_sheet__sorting_age;
+        return context.tr.common.sorting.age;
       case BirdSort.ringAsc:
-        return context.l10n.filter_sheet__sorting_ringnumber;
+        return context.tr.common.sorting.ringnumber;
     }
   }
 }

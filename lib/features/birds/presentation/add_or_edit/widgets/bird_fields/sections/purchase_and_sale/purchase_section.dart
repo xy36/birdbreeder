@@ -15,8 +15,8 @@ class PurchaseSection extends StatelessWidget {
     return SectionCard(
       collapsible: true,
       icon: Icons.sell,
-      title: context.l10n.bird__section_title_purchase,
-      subtitle: context.l10n.bird__section_sub_title_purchase,
+      title: context.tr.bird.sections.purchase.title,
+      subtitle: context.tr.bird.sections.purchase.sub_title,
       children: [
         BoughtPriceField(bird: bird),
         BoughtAtField(bird: bird),

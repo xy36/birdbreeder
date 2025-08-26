@@ -15,7 +15,7 @@ class FinalPriceField extends StatelessWidget {
   Widget build(BuildContext context) {
     return BirdTextPropertyField(
       bird: bird,
-      label: context.l10n.common__sell_price_real,
+      label: context.tr.common.sell.price.kFinal,
       name: 'final_price_field',
       apply: (b, v) => b.copyWith(finalPrice: double.tryParse(v!)),
       select: (b) => b.finalPrice?.toString(),

@@ -13,8 +13,8 @@ class NotesSection extends StatelessWidget {
     return SectionCard(
       collapsible: true,
       icon: Icons.note_alt,
-      title: context.l10n.bird__section_title_notes,
-      subtitle: context.l10n.bird__section_sub_title_notes,
+      title: context.tr.bird.sections.notes.title,
+      subtitle: context.tr.bird.sections.notes.sub_title,
       children: [
         NotesField(bird: bird),
       ],

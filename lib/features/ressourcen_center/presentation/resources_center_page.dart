@@ -15,7 +15,7 @@ class ResourcesCenterPage extends StatelessWidget {
       builder: (context, child, controller) {
         return Scaffold(
           appBar: SharedAppBarWithDrawer(
-            title: context.l10n.resources__title,
+            title: context.tr.resources.title,
             actions: [
               IconButton(
                 icon: const Icon(Icons.add),

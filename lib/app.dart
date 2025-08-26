@@ -3,10 +3,12 @@ import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_filter_cubit.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_search_cubit.dart';
 import 'package:birdbreeder/features/contacts/presentation/cubit/contact_search_cubit.dart';
+import 'package:birdbreeder/i18n/translations.g.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class App extends StatelessWidget {
   App({
@@ -63,10 +65,9 @@ class App extends StatelessWidget {
           return child!;
         },
         themeMode: useDarkTheme ? ThemeMode.dark : ThemeMode.light,
-        localizationsDelegates: const [
-          ...AppLocalizations.localizationsDelegates,
-        ],
-        supportedLocales: AppLocalizations.supportedLocales,
+        locale: TranslationProvider.of(context).flutterLocale,
+        supportedLocales: AppLocaleUtils.supportedLocales,
+        localizationsDelegates: GlobalMaterialLocalizations.delegates,
       ),
     );
   }

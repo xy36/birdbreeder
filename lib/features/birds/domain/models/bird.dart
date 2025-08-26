@@ -21,13 +21,13 @@ enum LifeStage {
   String getDisplayName(BuildContext context) {
     switch (this) {
       case LifeStage.egg:
-        return context.l10n.bird__life_stage_egg;
+        return context.tr.common.life_stage.egg;
       case LifeStage.chick:
-        return context.l10n.bird__life_stage_chick;
+        return context.tr.common.life_stage.chick;
       case LifeStage.adult:
-        return context.l10n.bird__life_stage_adult;
+        return context.tr.common.life_stage.adult;
       case LifeStage.deceased:
-        return context.l10n.bird__life_stage_deceased;
+        return context.tr.common.life_stage.deceased;
     }
   }
 
@@ -48,13 +48,13 @@ enum SaleStatus {
   String getDisplayName(BuildContext context) {
     switch (this) {
       case SaleStatus.notForSale:
-        return context.l10n.bird__sale_status_not_for_sale;
+        return context.tr.common.sale_status.not_for_sale;
       case SaleStatus.listed:
-        return context.l10n.bird__sale_status_listed;
+        return context.tr.common.sale_status.listed;
       case SaleStatus.reserved:
-        return context.l10n.bird__sale_status_reserved;
+        return context.tr.common.sale_status.reserved;
       case SaleStatus.sold:
-        return context.l10n.bird__sale_status_sold;
+        return context.tr.common.sale_status.sold;
     }
   }
 

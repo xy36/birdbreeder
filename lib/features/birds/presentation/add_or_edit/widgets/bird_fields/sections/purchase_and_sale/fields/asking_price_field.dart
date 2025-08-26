@@ -16,10 +16,9 @@ class AskingPriceField extends StatelessWidget {
     return BirdTextPropertyField(
       bird: bird,
       name: 'sell_price_offer_field',
-      label: context.l10n.common__sell_price_offer,
+      label: context.tr.common.sell.price.asking,
       apply: (b, v) => b.copyWith(askingPrice: double.tryParse(v!)),
       select: (b) => b.askingPrice?.toString(),
-      hint: context.l10n.common__sell_price_offer,
       suffixText: currencySymbol,
     );
   }

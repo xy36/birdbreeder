@@ -18,8 +18,8 @@ class LifeStageSection extends StatelessWidget {
     return SectionCard(
       collapsible: true,
       icon: Icons.note_alt,
-      title: context.l10n.bird__section_title_life_stage,
-      subtitle: context.l10n.bird__section_sub_title_life_stage,
+      title: context.tr.bird.sections.life.title,
+      subtitle: context.tr.bird.sections.life.sub_title,
       children: [
         if (bird.lifeStage != null) LifeStageField(bird: bird),
         LaidAtDateField(bird: bird),

@@ -47,7 +47,7 @@ class _ColorDetailsPageState extends State<ColorDetailsPage> {
     final cubit = context.read<BirdBreederCubit>();
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n.colors__add_color),
+        title: Text(context.tr.colors.add),
         leading: NavigateBackButton(discardDialogEnabled: isDirty),
         actions: [
           IconButton(
@@ -82,11 +82,11 @@ class _ColorDetailsPageState extends State<ColorDetailsPage> {
           child: Column(
             children: [
               FieldWithLabel(
-                label: context.l10n.colors__color,
+                label: context.tr.colors.color,
                 child: TextFormField(
                   initialValue: _color?.name,
                   decoration: InputDecoration(
-                    hintText: context.l10n.colors__color,
+                    hintText: context.tr.colors.color,
                   ),
                   onChanged: (value) {
                     setState(() {
@@ -96,7 +96,7 @@ class _ColorDetailsPageState extends State<ColorDetailsPage> {
                   },
                   validator: (value) {
                     if (value.isNullOrEmpty) {
-                      return context.l10n.common__required;
+                      return context.tr.common.required;
                     }
                     return null;
                   },

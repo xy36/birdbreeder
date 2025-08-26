@@ -25,17 +25,15 @@ class BoughtFromField extends StatelessWidget {
 
     return BirdDropdownPropertyField<Contact>(
       bird: bird,
-      label: context.l10n.common__bought_from,
+      label: context.tr.common.bought.from,
       name: 'bought_from_field',
-      hint: context.l10n.common__bought_from,
       select: (b) => b.boughtFromResolved,
       apply: (b, v) => b.copyWith(boughtFromId: v?.id),
-      title: context.l10n.bird__bought_from_dropdown_title,
+      title: context.tr.bird.select_bought_from_label,
       filterFn: filterFn,
       items: contacts,
       itemAsString: (item) => item.name ?? '-',
       selectedItem: bird.boughtFromResolved,
-      searchHint: context.l10n.bird__bought_from_dropdown_hint,
       onClear: () => context.read<BirdCubit>().changeBird(
             bird.copyWith(boughtFromId: null),
           ),

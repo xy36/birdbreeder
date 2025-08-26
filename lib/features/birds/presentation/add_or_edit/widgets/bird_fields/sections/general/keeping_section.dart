@@ -14,8 +14,8 @@ class KeepingSection extends StatelessWidget {
     return SectionCard(
       collapsible: true,
       icon: Icons.info_outline_rounded,
-      title: context.l10n.bird__section_title_keeping,
-      subtitle: context.l10n.bird__section_sub_title_keeping,
+      title: context.tr.bird.sections.keeping.title,
+      subtitle: context.tr.bird.sections.keeping.sub_title,
       children: [
         CageField(bird: bird),
         OwnerField(bird: bird),

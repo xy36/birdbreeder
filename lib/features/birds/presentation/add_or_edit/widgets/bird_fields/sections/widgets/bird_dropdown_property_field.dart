@@ -61,7 +61,7 @@ class BirdDropdownPropertyField<T> extends StatelessWidget {
           filterFn: filterFn,
           onClear: onClear,
           onAdd: onAdd,
-          hint: hint,
+          hint: hint ?? label,
           itemBuilder: itemBuilder,
         );
       },

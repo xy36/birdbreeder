@@ -3,9 +3,9 @@ import 'package:birdbreeder/features/birds/domain/models/sex_enum.dart';
 
 extension SexExtensions on Sex {
   String getDisplayName(BuildContext context) => switch (this) {
-        Sex.male => context.l10n.common__sex_male,
-        Sex.female => context.l10n.common__sex_female,
-        Sex.unknown => context.l10n.common__sex_unknown,
+        Sex.male => context.tr.common.sex.male,
+        Sex.female => context.tr.common.sex.female,
+        Sex.unknown => context.tr.common.sex.unknown,
       };
 
   Widget getIcon(BuildContext context, {double size = 24}) => switch (this) {

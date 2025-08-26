@@ -10,9 +10,8 @@ class RingnumberField extends StatelessWidget {
   Widget build(BuildContext context) {
     return BirdTextPropertyField(
       bird: bird,
-      label: context.l10n.common__ringnumber,
+      label: context.tr.common.ringnumber,
       name: 'ring_number_field',
-      hint: context.l10n.common__ringnumber,
       select: (b) => b.ringNumber ?? '',
       apply: (b, v) => b.copyWith(ringNumber: v),
       maxLines: 1,

@@ -8,7 +8,7 @@ class BirdbreederWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      context.l10n.app_title,
+      context.tr.app.title,
       style: Theme.of(context).textTheme.displayLarge?.copyWith(
             color: Theme.of(context).colorScheme.primary,
             fontWeight: FontWeight.bold,

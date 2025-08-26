@@ -13,8 +13,7 @@ class LoginErrorListener extends BlocListener<LoginCubit, LoginState> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 showCloseIcon: true,
-                content:
-                    Center(child: Text(context.l10n.snackbar__error_login)),
+                content: Center(child: Text(context.tr.snackbars.error.login)),
               ),
             );
           },

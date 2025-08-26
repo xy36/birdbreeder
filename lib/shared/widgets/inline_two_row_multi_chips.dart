@@ -52,11 +52,10 @@ class _InlineTwoRowMultiChipsState extends State<InlineTwoRowMultiChips> {
     _working = {...widget.selectedIds};
   }
 
-  String get _moreLabel => widget.moreLabel ?? context.l10n.common__more_label;
-  String get _lessLabel => widget.lessLabel ?? context.l10n.common__less_label;
-  String get _allLabel => widget.allLabel ?? context.l10n.common__all_label;
-  String get _searchHint =>
-      widget.searchHint ?? context.l10n.common__search_hint;
+  String get _moreLabel => widget.moreLabel ?? context.tr.common.more_label;
+  String get _lessLabel => widget.lessLabel ?? context.tr.common.less_label;
+  String get _allLabel => widget.allLabel ?? context.tr.common.all_label;
+  String get _searchHint => widget.searchHint ?? context.tr.common.search;
 
   @override
   Widget build(BuildContext context) {

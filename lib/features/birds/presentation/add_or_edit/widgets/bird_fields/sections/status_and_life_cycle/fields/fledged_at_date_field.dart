@@ -13,12 +13,11 @@ class FledgedAtDateField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BirdDatePropertyField(
-      label: context.l10n.common__fledged,
+      label: context.tr.common.fledged,
       bird: bird,
       name: 'fledged_at_date_field',
       apply: (b, v) => b.copyWith(fledgedAt: v),
       select: (b) => b.fledgedAt,
-      hint: context.l10n.common__fledged,
     );
   }
 }

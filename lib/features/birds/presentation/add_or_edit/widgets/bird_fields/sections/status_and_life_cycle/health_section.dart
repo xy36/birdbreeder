@@ -12,8 +12,8 @@ class HealthSection extends StatelessWidget {
     return SectionCard(
       collapsible: true,
       icon: Icons.health_and_safety_rounded,
-      title: context.l10n.bird__section_title_health,
-      subtitle: context.l10n.bird__section_sub_title_health,
+      title: context.tr.bird.sections.health.title,
+      subtitle: context.tr.bird.sections.health.sub_title,
       children: const [
         // Add health-related fields here
       ],

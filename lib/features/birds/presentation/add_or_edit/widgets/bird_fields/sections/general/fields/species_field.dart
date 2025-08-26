@@ -24,10 +24,9 @@ class SpeciesField extends StatelessWidget {
         context.watch<BirdBreederCubit>().state.birdBreederResources.species;
     return BirdDropdownPropertyField<Species>(
       bird: bird,
-      label: context.l10n.common__species,
+      label: context.tr.common.species,
       name: 'species_field',
       select: (b) => b.speciesResolved,
-      hint: context.l10n.common__species,
       items: species,
       selectedItem: bird.speciesResolved,
       apply: (bird, value) {
@@ -40,7 +39,7 @@ class SpeciesField extends StatelessWidget {
         );
       },
       itemAsString: (item) => item.name ?? '-',
-      title: context.l10n.bird__species_dropdown_title,
+      title: context.tr.bird.select_species_label,
       filterFn: filterFn,
       onClear: () => context.read<BirdCubit>().changeBird(
             bird.copyWith(speciesId: null),

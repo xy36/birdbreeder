@@ -27,10 +27,9 @@ class ColorField extends StatelessWidget {
 
     return BirdDropdownPropertyField<BirdColor>(
       bird: bird,
-      label: context.l10n.common__color,
+      label: context.tr.common.color,
       name: 'color_field',
       select: (b) => b.colorResolved,
-      hint: context.l10n.common__color,
       items: colors,
       selectedItem: bird.colorResolved,
       apply: (b, v) {
@@ -38,7 +37,7 @@ class ColorField extends StatelessWidget {
         return b.copyWith(colorId: v?.id);
       },
       itemAsString: (item) => item.name ?? '-',
-      title: context.l10n.bird__color_dropdown_title,
+      title: context.tr.bird.select_color_label,
       filterFn: filterFn,
       onClear: () => cubit.changeBird(
         bird.copyWith(colorId: null),

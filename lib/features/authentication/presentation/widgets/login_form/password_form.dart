@@ -19,13 +19,13 @@ class _PasswordFormState extends State<PasswordForm> {
       children: [
         Align(
           alignment: Alignment.centerLeft,
-          child: Text(context.l10n.common__password),
+          child: Text(context.tr.common.password),
         ),
         const SizedBox(height: 8),
         TextFormField(
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return context.l10n.login__password_validation_error;
+              return context.tr.login.field.password.validation.error;
             }
             return null;
           },
@@ -40,7 +40,7 @@ class _PasswordFormState extends State<PasswordForm> {
                 });
               },
             ),
-            hintText: context.l10n.login__password_hint,
+            hintText: context.tr.login.field.password.hint,
           ),
         ),
       ],

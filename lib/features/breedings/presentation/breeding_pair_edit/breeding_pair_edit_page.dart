@@ -256,35 +256,30 @@ class BreedingPairCompareTable extends StatelessWidget {
     );
 
     final sexRow = CompareTableRow(
-      label: context.l10n.common__sex,
+      label: context.tr.common.sex.name,
       motherValue: mother?.sex.getDisplayName(context) ?? '-',
       fatherValue: father?.sex.getDisplayName(context) ?? '-',
     );
 
     final ringNumberRow = CompareTableRow(
-      label: context.l10n.common__ringnumber,
+      label: context.tr.common.ringnumber,
       motherValue: mother?.ringNumber ?? '-',
       fatherValue: father?.ringNumber ?? '-',
     );
     final cageRow = CompareTableRow(
-      label: context.l10n.common__cage,
+      label: context.tr.common.cage,
       motherValue: mother?.cageResolved?.name ?? '-',
       fatherValue: father?.cageResolved?.name ?? '-',
     );
     final speciesRow = CompareTableRow(
-      label: context.l10n.common__species,
+      label: context.tr.common.species,
       motherValue: mother?.speciesResolved?.name ?? '-',
       fatherValue: father?.speciesResolved?.name ?? '-',
     );
     final colorRow = CompareTableRow(
-      label: context.l10n.common__color,
+      label: context.tr.common.color,
       motherValue: mother?.colorResolved?.name ?? '-',
       fatherValue: father?.colorResolved?.name ?? '-',
-    );
-    final bornDateRow = CompareTableRow(
-      label: context.l10n.common__born_date,
-      motherValue: mother?.effectiveBornAt.toDateFormat(context) ?? '-',
-      fatherValue: father?.effectiveBornAt.toDateFormat(context) ?? '-',
     );
 
     return Card(
@@ -300,7 +295,6 @@ class BreedingPairCompareTable extends StatelessWidget {
             cageRow,
             speciesRow,
             colorRow,
-            bornDateRow,
             const Divider(),
           ],
         ),
@@ -344,13 +338,12 @@ class ParentInfoColumn extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('${context.l10n.common__sex}:'),
+          Text('${context.tr.common.sex.name}:'),
           const Divider(),
-          Text('${context.l10n.common__ringnumber}:'),
-          Text('${context.l10n.common__cage}:'),
-          Text('${context.l10n.common__species}:'),
-          Text('${context.l10n.common__color}:'),
-          Text('${context.l10n.common__born_date}:'),
+          Text('${context.tr.common.ringnumber}:'),
+          Text('${context.tr.common.cage}:'),
+          Text('${context.tr.common.species}:'),
+          Text('${context.tr.common.color}:'),
         ],
       ),
     );
@@ -392,8 +385,8 @@ class ParentField extends StatelessWidget {
 
     return FieldWithLabel(
       label: switch (parentType) {
-        ParentType.mother => context.l10n.common__mother,
-        ParentType.father => context.l10n.common__father,
+        ParentType.mother => context.tr.common.mother,
+        ParentType.father => context.tr.common.father,
       },
       child: BottomDropdownSearch<Bird>(
         items: birds,
@@ -414,8 +407,8 @@ class ParentField extends StatelessWidget {
           );
         },
         itemAsString: (item) => item.ringNumber ?? '-',
-        title: context.l10n.bird__cage_dropdown_title,
-        searchHintText: context.l10n.bird__cage_dropdown_hint,
+        title: context.tr.bird.select_cage_label,
+        searchHintText: context.tr.bird.select_cage_label,
         showSearchBox: birds.length > 2,
         filterFn: (bird, filter) => bird.filter(filter),
       ),

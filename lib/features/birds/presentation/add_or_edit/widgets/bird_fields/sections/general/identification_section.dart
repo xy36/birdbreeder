@@ -16,8 +16,8 @@ class IdentificationSection extends StatelessWidget {
     return SectionCard(
       collapsible: true,
       icon: Icons.badge,
-      title: context.l10n.bird__section_title_identification,
-      subtitle: context.l10n.bird__section_sub_title_identification,
+      title: context.tr.bird.sections.identification.title,
+      subtitle: context.tr.bird.sections.identification.sub_title,
       children: [
         RingnumberField(bird: bird),
         SpeciesField(bird: bird),

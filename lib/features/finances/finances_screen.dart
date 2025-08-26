@@ -6,7 +6,7 @@ class FinancesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SharedAppBarWithDrawer(title: context.l10n.finances__title),
+      appBar: SharedAppBarWithDrawer(title: context.tr.finances.title),
     );
   }
 }

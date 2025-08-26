@@ -15,7 +15,7 @@ class SaleStatusField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FieldWithLabel(
-      label: context.l10n.common__sale_status,
+      label: context.tr.common.sale_status.name,
       hasChangedIndicator:
           bird.saleStatus != context.read<BirdCubit>().initialBird?.saleStatus,
       child: GroupedRadio(

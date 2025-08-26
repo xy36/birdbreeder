@@ -20,13 +20,13 @@ enum BirdSections {
   String getDisplayName(BuildContext context) {
     switch (this) {
       case BirdSections.general:
-        return context.l10n.bird__tab_general;
+        return context.tr.bird.tabs.general;
       case BirdSections.statusAndLifeCycle:
-        return context.l10n.bird__status_and_lifecycle_section_title;
+        return context.tr.bird.tabs.state_and_life;
       case BirdSections.breeding:
-        return context.l10n.bird__tab_breeding;
+        return context.tr.bird.tabs.breeding;
       case BirdSections.purchaseAndSale:
-        return context.l10n.bird__tab_purchase_and_sale;
+        return context.tr.bird.tabs.purchase_and_sale;
     }
   }
 

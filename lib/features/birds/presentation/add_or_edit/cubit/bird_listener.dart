@@ -16,23 +16,23 @@ class BirdListener extends BlocPresentationListener<BirdCubit, BirdCubitEvent> {
             switch (event) {
               case BirdCubitEventDeleted():
                 context.showInfoBar<Bird>(
-                  content: Text(context.l10n.bird__deleted),
+                  content: Text(context.tr.bird.deleted),
                 );
                 context.router.maybePop();
                 break;
               case BirdCubitEventDuplicated():
                 context.showInfoBar<Bird>(
-                  content: Text(context.l10n.bird__duplicated),
+                  content: Text(context.tr.bird.duplicate),
                 );
                 break;
               case BirdCubitEventError():
                 context.showErrorBar<bool>(
-                  content: const Text('Something went wrong!'),
+                  content: Text(context.tr.common.something_went_wrong),
                 );
                 break;
               case BirdCubitEventSaved():
                 context.showSuccessBar<bool>(
-                  content: Text(context.l10n.bird__saved),
+                  content: Text(context.tr.bird.saved),
                 );
                 context.pop();
                 break;

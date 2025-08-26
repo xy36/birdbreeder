@@ -89,7 +89,7 @@ class _BottomDropdownSearchState<T> extends State<BottomDropdownSearch<T>> {
         //   actions: [
         //     ElevatedButton(
         //       onPressed: () => Navigator.of(context).pop(),
-        //       child: Text(context.l10n.common__close),
+        //       child: Text(context.tr.common__close),
         //     ),
         //   ],
         // ),
@@ -115,8 +115,8 @@ class _BottomDropdownSearchState<T> extends State<BottomDropdownSearch<T>> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
               child: Text(
-                context.l10n.common__search_empty_builder_text(
-                  searchEntry,
+                context.tr.common.bottom_sheet.search_empty_builder_text(
+                  Text: searchEntry,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -138,7 +138,7 @@ class _BottomDropdownSearchState<T> extends State<BottomDropdownSearch<T>> {
                                 horizontal: 8,
                               ),
                               child: TextButton(
-                                child: Text(context.l10n.common__add),
+                                child: Text(context.tr.common.add),
                                 onPressed: () {
                                   widget.onAdd?.call(value.text.trim());
                                   _searchController.clear();

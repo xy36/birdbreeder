@@ -26,12 +26,11 @@ class CageField extends StatelessWidget {
 
     return BirdDropdownPropertyField<Cage>(
       bird: bird,
-      label: context.l10n.common__cage,
+      label: context.tr.common.cage,
       name: 'cage_field',
-      hint: context.l10n.common__cage,
       select: (b) => b.cageResolved,
       apply: (b, v) => b.copyWith(cageId: v?.id),
-      title: context.l10n.bird__cage_dropdown_title,
+      title: context.tr.bird.select_cage_label,
       filterFn: filterFn,
       items: cages,
       itemAsString: (item) => item.name ?? '-',

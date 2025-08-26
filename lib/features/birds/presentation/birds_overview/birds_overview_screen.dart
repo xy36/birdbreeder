@@ -26,7 +26,7 @@ class _BirdsOverviewScreenState extends State<BirdsOverviewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SharedAppBarWithDrawer(
-        title: context.l10n.birds__title,
+        title: context.tr.birds.title,
         actions: [
           BlocBuilder<BirdSearchCubit, BaseSearch>(
             builder: (context, state) {

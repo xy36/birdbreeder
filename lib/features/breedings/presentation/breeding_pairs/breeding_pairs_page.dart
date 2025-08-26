@@ -58,7 +58,7 @@ class _BreedingPairsPageState extends State<BreedingPairsPage> {
       },
       onItemTap: _onItemTap,
       onAdd: _onAdd,
-      title: context.l10n.breedings__title,
+      title: context.tr.breedings.title,
     );
   }
 }

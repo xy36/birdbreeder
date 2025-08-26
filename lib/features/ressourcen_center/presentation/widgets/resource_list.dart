@@ -3,6 +3,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/bird_color_extension.dart';
 import 'package:birdbreeder/core/extensions/cage_extension.dart';
 import 'package:birdbreeder/core/extensions/species_extension.dart';
+import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/birds_overview_header.dart';
 import 'package:birdbreeder/features/contacts/domain/models/contact.dart';
 import 'package:birdbreeder/features/ressourcen_center/domain/models/bird_color.dart';
 import 'package:birdbreeder/features/ressourcen_center/domain/models/cage.dart';
@@ -44,21 +45,8 @@ class _ResourceListState<T> extends State<ResourceList<T>> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(12),
-          child: Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.search),
-                    hintText: context.l10n.common__search_hint,
-                    isDense: true,
-                  ),
-                  onChanged: (v) => setState(() => _q = v),
-                ),
-              ),
-            ],
-          ),
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          child: GenericSearchBar(onSearch: (v) => setState(() => _q = v)),
         ),
         Expanded(
           child: ListView.separated(
@@ -121,14 +109,14 @@ class _ResourceListState<T> extends State<ResourceList<T>> {
   }
 
   Widget? _subtitleOf(T item) {
-    final usage = switch (item) {
+    final num? usage = switch (item) {
       final Species s => s.usageCount,
       final Cage c => c.usageCount,
       final BirdColor bc => bc.usageCount,
       _ => null,
     };
     if (usage == null) return null;
-    return Text(context.l10n.common__count_bird(usage));
+    return Text(context.tr.resources.usage_count(count: usage, N: usage));
   }
 
   Widget _trailingOf(T item) {

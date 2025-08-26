@@ -8,22 +8,22 @@ class DiscardChangesDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(context.l10n.dialog__discard_changes_title),
+      title: Text(context.tr.dialog.discard_changes.title),
       content: Text(
-        context.l10n.dialog__discard_changes_content,
+        context.tr.dialog.discard_changes.content,
       ),
       actions: [
         TextButton(
           onPressed: () {
             Navigator.of(context).pop(false);
           },
-          child: Text(context.l10n.common__cancel),
+          child: Text(context.tr.common.cancel),
         ),
         ElevatedButton(
           onPressed: () {
             Navigator.of(context).pop(true);
           },
-          child: Text(context.l10n.common__ok),
+          child: Text(context.tr.common.ok),
         ),
       ],
     );

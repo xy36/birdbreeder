@@ -15,11 +15,10 @@ class BoughtPriceField extends StatelessWidget {
   Widget build(BuildContext context) {
     return BirdTextPropertyField(
       bird: bird,
-      label: context.l10n.common__bought_price,
+      label: context.tr.common.bought.price,
       name: 'bought_price_field',
       apply: (b, v) => b.copyWith(boughtPrice: double.tryParse(v!)),
       select: (b) => b.boughtPrice?.toString(),
-      hint: context.l10n.common__bought_price,
       suffixText: currencySymbol,
     );
   }

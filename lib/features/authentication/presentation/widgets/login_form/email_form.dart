@@ -10,18 +10,18 @@ class EmailForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FieldWithLabel(
-      label: context.l10n.common__email,
+      label: context.tr.common.email,
       child: TextFormField(
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return context.l10n.login__email_validation_error;
+            return context.tr.login.field.email.validation.error;
           }
           return null;
         },
         onChanged: onChanged,
         decoration: InputDecoration(
           suffixIcon: emailIcon,
-          hintText: context.l10n.login__email_hint,
+          hintText: context.tr.login.field.email.hint,
         ),
       ),
     );

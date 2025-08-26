@@ -25,16 +25,14 @@ class SoldToField extends StatelessWidget {
 
     return BirdDropdownPropertyField<Contact>(
       bird: bird,
-      label: context.l10n.common__sold_to,
+      label: context.tr.common.sold.to,
       name: 'sold_to_field',
-      hint: context.l10n.common__sold_to,
       select: (b) => b.soldToResolved,
       apply: (b, v) => b.copyWith(soldToId: v?.id),
       items: contacts,
       selectedItem: bird.soldToResolved,
       itemAsString: (item) => item.name ?? '-',
-      title: context.l10n.bird__sold_to_dropdown_title,
-      searchHint: context.l10n.bird__sold_to_dropdown_hint,
+      title: context.tr.bird.select_sold_to_label,
       filterFn: filterFn,
       onClear: () => context.read<BirdCubit>().changeBird(
             bird.copyWith(ownerId: null),

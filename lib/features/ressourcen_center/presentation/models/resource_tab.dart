@@ -13,11 +13,11 @@ enum ResourceTab {
   String getDisplayName(BuildContext context) {
     switch (this) {
       case ResourceTab.species:
-        return context.l10n.species__title;
+        return context.tr.species.title;
       case ResourceTab.cages:
-        return context.l10n.cages__title;
+        return context.tr.cages.title;
       case ResourceTab.colors:
-        return context.l10n.colors__title;
+        return context.tr.colors.title;
     }
   }
 

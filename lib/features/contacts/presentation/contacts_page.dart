@@ -24,8 +24,7 @@ class _ContactsPageState extends State<ContactsPage> {
     final contacts = context.watch<ContactSearchCubit>().searchedItems.length;
     return Scaffold(
       appBar: SharedAppBarWithDrawer(
-        title:
-            context.l10n.contacts__title + (contacts > 0 ? ' ($contacts)' : ''),
+        title: context.tr.contacts.title(Count: contacts),
         actions: [
           BlocBuilder<ContactSearchCubit, BaseSearch>(
             builder: (context, state) {

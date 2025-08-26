@@ -41,8 +41,8 @@ class ContactDetailsPage extends StatelessWidget {
               appBar: AppBar(
                 title: Text(
                   switch (state.mode) {
-                    ContactMode.edit => context.l10n.contacts__edit,
-                    ContactMode.create => context.l10n.contacts__create,
+                    ContactMode.edit => context.tr.contacts.edit,
+                    ContactMode.create => context.tr.contacts.create,
                   },
                 ),
                 centerTitle: false,
@@ -87,7 +87,7 @@ class ContactDetailsPage extends StatelessWidget {
                         // PERSONAL
                         SectionCard(
                           icon: Icons.person_outline,
-                          title: context.l10n.contacts__section_personal,
+                          title: context.tr.contacts.sections.personal,
                           collapsible: true,
                           errorCount: 0, // or compute dynamically per section
                           children: [
@@ -97,8 +97,7 @@ class ContactDetailsPage extends StatelessWidget {
                                   contact: state.contact,
                                   apply: (Contact c, String? v) =>
                                       c.copyWith(firstName: v?.capitalizeFirst),
-                                  label:
-                                      context.l10n.contacts__field_first_name,
+                                  label: context.tr.contacts.fields.first_name,
                                   name: 'first_name_field',
                                   select: (Contact c) => c.firstName,
                                   suffixIcon: const Icon(Icons.person),
@@ -108,7 +107,7 @@ class ContactDetailsPage extends StatelessWidget {
                                   isRequired: true,
                                 ),
                                 ContactTextPropertyField(
-                                  label: context.l10n.contacts__field_last_name,
+                                  label: context.tr.contacts.fields.last_name,
                                   apply: (Contact c, String? v) =>
                                       c.copyWith(name: v?.capitalizeFirst),
                                   contact: state.contact,
@@ -128,13 +127,13 @@ class ContactDetailsPage extends StatelessWidget {
                         // BREEDER INFORMATION
                         SectionCard(
                           icon: Icons.pets,
-                          title: context.l10n.contacts__section_breeder,
+                          title: context.tr.contacts.sections.breeder,
                           collapsible: true,
                           children: [
                             SectionGrid(
                               children: [
                                 ContactTextPropertyField(
-                                  label: context.l10n.contacts__field_number,
+                                  label: context.tr.contacts.fields.number,
                                   apply: (Contact c, String? v) =>
                                       c.copyWith(number: v),
                                   contact: state.contact,
@@ -151,24 +150,24 @@ class ContactDetailsPage extends StatelessWidget {
                         // CONTACT
                         SectionCard(
                           icon: Icons.alternate_email,
-                          title: context.l10n.contacts__section_contact,
+                          title: context.tr.contacts.sections.contact,
                           collapsible: true,
                           children: [
                             SectionGrid(
                               children: [
                                 ContactTextPropertyField(
-                                  label: context.l10n.contacts__field_phone,
+                                  label: context.tr.contacts.fields.phone,
                                   contact: state.contact,
                                   apply: (Contact c, String? v) =>
                                       c.copyWith(phone: v),
                                   name: 'phone_field',
                                   select: (Contact c) => c.phone,
-                                  hint: context.l10n.contacts__field_phone,
+                                  hint: context.tr.contacts.fields.phone,
                                   suffixIcon: const Icon(Icons.phone),
                                 ),
                                 ContactTextPropertyField(
                                   contact: state.contact,
-                                  label: context.l10n.contacts__field_email,
+                                  label: context.tr.contacts.fields.email,
                                   apply: (Contact c, String? v) =>
                                       c.copyWith(email: v),
                                   name: 'email_field',
@@ -178,12 +177,12 @@ class ContactDetailsPage extends StatelessWidget {
                                 ),
                                 ContactTextPropertyField(
                                   contact: state.contact,
-                                  label: context.l10n.contacts__field_website,
+                                  label: context.tr.contacts.fields.website,
                                   apply: (Contact c, String? v) =>
                                       c.copyWith(website: v),
                                   name: 'website_field',
                                   select: (Contact c) => c.website,
-                                  hint: context.l10n.contacts__field_website,
+                                  hint: context.tr.contacts.fields.website,
                                   suffixIcon: const Icon(Icons.language),
                                 ),
                               ],
@@ -194,13 +193,13 @@ class ContactDetailsPage extends StatelessWidget {
                         // ADDRESS
                         SectionCard(
                           icon: Icons.location_on_outlined,
-                          title: context.l10n.contacts__section_address,
+                          title: context.tr.contacts.sections.address,
                           collapsible: true,
                           children: [
                             Column(
                               children: [
                                 ContactTextPropertyField(
-                                  label: context.l10n.contacts__field_address,
+                                  label: context.tr.contacts.fields.address,
                                   contact: state.contact,
                                   apply: (Contact c, String? v) =>
                                       c.copyWith(address: v?.capitalizeFirst),
@@ -211,8 +210,7 @@ class ContactDetailsPage extends StatelessWidget {
                                   children: [
                                     // city + postal
                                     ContactTextPropertyField(
-                                      label: context
-                                          .l10n.contacts__field_postal_code,
+                                      label: context.tr.contacts.fields.postal,
                                       contact: state.contact,
                                       apply: (Contact c, String? v) =>
                                           c.copyWith(postalCode: v),
@@ -221,7 +219,7 @@ class ContactDetailsPage extends StatelessWidget {
                                     ),
 
                                     ContactTextPropertyField(
-                                      label: context.l10n.contacts__field_city,
+                                      label: context.tr.contacts.fields.city,
                                       contact: state.contact,
                                       apply: (Contact c, String? v) =>
                                           c.copyWith(city: v?.capitalizeFirst),
@@ -231,7 +229,7 @@ class ContactDetailsPage extends StatelessWidget {
                                   ],
                                 ),
                                 ContactTextPropertyField(
-                                  label: context.l10n.contacts__field_country,
+                                  label: context.tr.contacts.fields.country,
                                   contact: state.contact,
                                   apply: (Contact c, String? v) =>
                                       c.copyWith(country: v?.capitalizeFirst),

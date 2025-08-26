@@ -14,11 +14,10 @@ class HatchedAtDateField extends StatelessWidget {
   Widget build(BuildContext context) {
     return BirdDatePropertyField(
       bird: bird,
-      label: context.l10n.common__hatched,
+      label: context.tr.common.hatched,
       name: 'hatched_at_date_field',
       apply: (b, v) => b.copyWith(hatchedAt: v),
       select: (b) => b.hatchedAt,
-      hint: context.l10n.common__hatched,
     );
   }
 }

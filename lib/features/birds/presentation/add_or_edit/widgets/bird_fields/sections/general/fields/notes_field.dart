@@ -15,8 +15,7 @@ class NotesField extends StatelessWidget {
     return BirdTextPropertyField(
       bird: bird,
       name: 'notes_field',
-      label: context.l10n.common__notes,
-      hint: context.l10n.common__notes,
+      label: context.tr.common.notes,
       apply: (bird, value) => bird.copyWith(notes: value),
       select: (b) => b.notes ?? '',
       minLines: 4,

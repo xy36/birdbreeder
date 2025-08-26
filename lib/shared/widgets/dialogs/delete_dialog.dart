@@ -32,20 +32,20 @@ class DeleteDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(title),
-      content: Text(context.l10n.dialog__delete_content),
+      content: Text(context.tr.dialog.delete_entry.content),
       actions: [
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text(context.l10n.common__cancel),
+          child: Text(context.tr.common.cancel),
         ),
         ElevatedButton(
           onPressed: () {
             onDelete();
             Navigator.of(context).pop();
           },
-          child: Text(context.l10n.common__ok),
+          child: Text(context.tr.common.ok),
         ),
       ],
     );

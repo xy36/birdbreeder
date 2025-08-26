@@ -50,7 +50,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
               elevation: const WidgetStatePropertyAll(0),
               controller: controller,
               autoFocus: true,
-              hintText: context.l10n.common__search,
+              hintText: context.tr.common.search,
               onChanged: widget.onChanged,
               trailing: [
                 if (controller.text.isNotEmpty)

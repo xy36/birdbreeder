@@ -13,8 +13,8 @@ class ParentSection extends StatelessWidget {
     return SectionCard(
       collapsible: true,
       icon: Icons.family_restroom,
-      title: context.l10n.bird__section_title_parent,
-      subtitle: context.l10n.bird__section_sub_title_parent,
+      title: context.tr.bird.sections.parent.title,
+      subtitle: context.tr.bird.sections.parent.sub_title,
       children: [
         ParentField(
           initialBird: bird,

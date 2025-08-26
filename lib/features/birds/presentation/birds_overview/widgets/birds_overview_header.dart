@@ -57,6 +57,7 @@ class _GenericSearchBarState extends State<GenericSearchBar> {
         onTapOutside: (_) {
           FocusScope.of(context).unfocus();
         },
+        hintText: context.tr.common.search,
         trailing: [
           if (_ctrl.text.isEmpty)
             const SizedBox.shrink()

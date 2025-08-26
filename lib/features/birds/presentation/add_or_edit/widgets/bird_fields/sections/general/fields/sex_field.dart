@@ -16,7 +16,7 @@ class SexField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FieldWithLabel(
-      label: context.l10n.common__sex,
+      label: context.tr.common.sex.name,
       hasChangedIndicator:
           bird.sex != context.read<BirdCubit>().initialBird?.sex,
       child: SegmentedButton(
