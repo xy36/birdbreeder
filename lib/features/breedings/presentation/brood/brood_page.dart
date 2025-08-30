@@ -54,8 +54,8 @@ class BroodPage extends StatelessWidget {
               broodId: broodId,
               laidAt: DateTime.now(),
               speciesId: pair?.fatherResolved?.speciesId,
-              fatherId: pair?.father,
-              motherId: pair?.mother,
+              fatherId: pair?.fatherId,
+              motherId: pair?.motherId,
             );
 
             context.read<BirdBreederCubit>().addBird(

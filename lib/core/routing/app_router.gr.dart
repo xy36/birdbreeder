@@ -141,53 +141,6 @@ class BreedingPairDetailsRouteArgs {
 }
 
 /// generated route for
-/// [BreedingPairEditPage]
-class BreedingPairEditRoute extends PageRouteInfo<BreedingPairEditRouteArgs> {
-  BreedingPairEditRoute({
-    Key? key,
-    BreedingPair? initialBreedingPair,
-    List<PageRouteInfo>? children,
-  }) : super(
-          BreedingPairEditRoute.name,
-          args: BreedingPairEditRouteArgs(
-            key: key,
-            initialBreedingPair: initialBreedingPair,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'BreedingPairEditRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<BreedingPairEditRouteArgs>(
-          orElse: () => const BreedingPairEditRouteArgs());
-      return BreedingPairEditPage(
-        key: args.key,
-        initialBreedingPair: args.initialBreedingPair,
-      );
-    },
-  );
-}
-
-class BreedingPairEditRouteArgs {
-  const BreedingPairEditRouteArgs({
-    this.key,
-    this.initialBreedingPair,
-  });
-
-  final Key? key;
-
-  final BreedingPair? initialBreedingPair;
-
-  @override
-  String toString() {
-    return 'BreedingPairEditRouteArgs{key: $key, initialBreedingPair: $initialBreedingPair}';
-  }
-}
-
-/// generated route for
 /// [BreedingPairsPage]
 class BreedingPairsRoute extends PageRouteInfo<void> {
   const BreedingPairsRoute({List<PageRouteInfo>? children})

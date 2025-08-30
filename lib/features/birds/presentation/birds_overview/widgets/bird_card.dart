@@ -1,8 +1,8 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/birds_extension.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
-import 'package:birdbreeder/features/birds/domain/models/sex_enum.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/bird_screen.dart';
+import 'package:birdbreeder/shared/widgets/sex_badge.dart';
 
 /// Reusable card widget for displaying a bird in a list/grid.
 class BirdCard extends StatelessWidget {
@@ -12,6 +12,7 @@ class BirdCard extends StatelessWidget {
     this.compact = false,
     this.onTap,
     this.onDuplicate,
+    this.onEdit,
     this.onMoveCage,
     this.onDelete,
   });
@@ -22,6 +23,7 @@ class BirdCard extends StatelessWidget {
 
   final VoidCallback? onTap;
   final VoidCallback? onDuplicate;
+  final VoidCallback? onEdit;
   final VoidCallback? onMoveCage;
   final VoidCallback? onDelete;
 
@@ -83,7 +85,7 @@ class BirdCard extends StatelessWidget {
         Positioned(
           right: -2,
           bottom: -2,
-          child: _sexBadge(context, bird.sex),
+          child: SexBadge(sex: bird.sex),
         ),
       ],
     );
@@ -101,18 +103,6 @@ class BirdCard extends StatelessWidget {
     );
   }
 
-  /// Small circular badge for sex.
-  Widget _sexBadge(BuildContext context, Sex sex) {
-    return Container(
-      padding: const EdgeInsets.all(2),
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.black.withOpacity(0.65),
-      ),
-      child: sex.getIcon(context, size: 16),
-    );
-  }
-
   /// Popup menu with common actions.
   Widget _moreMenu(BuildContext context) {
     return PopupMenuButton<BirdActions>(
@@ -121,15 +111,24 @@ class BirdCard extends StatelessWidget {
           case BirdActions.duplicate:
             onDuplicate?.call();
             break;
+          case BirdActions.edit:
+            onEdit?.call();
+            break;
           case BirdActions.delete:
             onDelete?.call();
             break;
         }
       },
-      itemBuilder: (context) => [
-        BirdActions.duplicate.getItem(context),
-        BirdActions.delete.getItem(context),
-      ],
+      itemBuilder: (context) => BirdActions.values.map((action) {
+        switch (action) {
+          case BirdActions.duplicate:
+            return BirdActions.duplicate.getItem(context);
+          case BirdActions.edit:
+            return BirdActions.edit.getItem(context);
+          case BirdActions.delete:
+            return BirdActions.delete.getItem(context);
+        }
+      }).toList(),
       icon: const Icon(Icons.more_vert_rounded),
     );
   }

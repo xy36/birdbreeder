@@ -1,10 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/core/extensions/breeding_pairs_extension.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
-import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
-import 'package:birdbreeder/features/breedings/presentation/breeding_pairs/widgets/breeding_pairs_list_item.dart';
-import 'package:birdbreeder/shared/widgets/screens/generic_ressource_screen.dart';
+import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/birds_overview_header.dart';
+import 'package:birdbreeder/features/breedings/presentation/breeding_pairs/widgets/add_breeding_pair_sheet.dart';
+import 'package:birdbreeder/features/breedings/presentation/breeding_pairs/widgets/breeding_pair_card.dart';
+import 'package:birdbreeder/features/breedings/presentation/cubit/breeding_pair_search_cubit.dart';
+import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:birdbreeder/shared/cubits/generic_search_cubit/base_search.dart';
+import 'package:birdbreeder/shared/widgets/utils.dart';
 
 @RoutePage()
 class BreedingPairsPage extends StatefulWidget {
@@ -17,48 +20,100 @@ class BreedingPairsPage extends StatefulWidget {
 }
 
 class _BreedingPairsPageState extends State<BreedingPairsPage> {
-  String searchQuery = '';
-
-  Future<void> _onItemTap(
-    BuildContext context,
-    BreedingPair breedingPair,
-  ) async {
-    await context.router.push(
-      BreedingPairDetailsRoute(
-        breedingPairId: breedingPair.id,
-      ),
-    );
-  }
-
-  Future<void> _onAdd(
-    BuildContext context,
-  ) async {
-    await context.router.push(
-      BreedingPairEditRoute(),
-    );
-  }
-
-  bool _searchFilter(BreedingPair breedingPair, String query) {
-    return breedingPair.fatherResolved!.ringNumber!
-            .toLowerCase()
-            .contains(query.toLowerCase()) ||
-        breedingPair.motherResolved!.ringNumber!
-            .toLowerCase()
-            .contains(query.toLowerCase());
-  }
-
   @override
   Widget build(BuildContext context) {
-    return RessourceScreen<BreedingPair>(
-      fn: _searchFilter,
-      itemBuilder: (breedingPair) {
-        return BreedingPairsListItem(
-          breedingPair: breedingPair,
-        );
-      },
-      onItemTap: _onItemTap,
-      onAdd: _onAdd,
-      title: context.tr.breedings.title,
+    final breedingPairs = context
+        .watch<BirdBreederCubit>()
+        .state
+        .birdBreederResources
+        .breedingPairs;
+
+    context.read<BreedingPairSearchCubit>().setItems(breedingPairs);
+
+    return Scaffold(
+      appBar: SharedAppBarWithDrawer(
+        title: context.tr.breeding_pairs.title,
+        actions: [
+          BlocBuilder<BreedingPairSearchCubit, BaseSearch>(
+            builder: (context, state) {
+              return IconButton(
+                onPressed: () {
+                  context.read<BreedingPairSearchCubit>().toggleActive();
+                },
+                icon: AnimatedCrossFade(
+                  firstChild: const Icon(Icons.search),
+                  secondChild: const Icon(Icons.search_off),
+                  crossFadeState: state.isActive
+                      ? CrossFadeState.showSecond
+                      : CrossFadeState.showFirst,
+                  duration: const Duration(milliseconds: 300),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          BlocBuilder<BreedingPairSearchCubit, BaseSearch>(
+            builder: (context, state) {
+              return AnimatedCrossFade(
+                firstChild: const SizedBox.shrink(),
+                secondChild: GenericSearchBar(
+                  initialQuery: state.query,
+                  onSearch: (query) {
+                    context.read<BreedingPairSearchCubit>().setSearch(query);
+                  },
+                ),
+                crossFadeState: state.isActive
+                    ? CrossFadeState.showSecond
+                    : CrossFadeState.showFirst,
+                duration: const Duration(milliseconds: 300),
+              );
+            },
+          ),
+          Expanded(
+            child: BlocBuilder<BreedingPairSearchCubit, BaseSearch>(
+              builder: (context, state) {
+                final searchedBreedingPairs =
+                    context.read<BreedingPairSearchCubit>().searchedItems;
+                return ListView.builder(
+                  physics: const AlwaysScrollableScrollPhysics(
+                    parent: BouncingScrollPhysics(),
+                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                  itemCount: searchedBreedingPairs.length,
+                  itemBuilder: (context, i) {
+                    final breedingPair = searchedBreedingPairs[i];
+
+                    return BreedingPairCard(
+                      breedingPair: breedingPair,
+                      onTap: () {
+                        context.router.push(
+                          BreedingPairDetailsRoute(
+                            breedingPairId: breedingPair.id,
+                          ),
+                        );
+                      },
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          // show bottom modal view
+          await openSheet<void>(
+            context,
+            const AddBreedingPairSheet(breedingPair: null),
+          );
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }

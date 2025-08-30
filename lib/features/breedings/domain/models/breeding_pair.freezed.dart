@@ -19,8 +19,10 @@ mixin _$BreedingPair {
   String get id => throw _privateConstructorUsedError;
   DateTime? get start => throw _privateConstructorUsedError;
   DateTime? get end => throw _privateConstructorUsedError;
-  String? get father => throw _privateConstructorUsedError;
-  String? get mother => throw _privateConstructorUsedError;
+  String get fatherId => throw _privateConstructorUsedError;
+  String get motherId => throw _privateConstructorUsedError;
+  String? get cageId => throw _privateConstructorUsedError;
+  BreedingPairStatus get status => throw _privateConstructorUsedError;
   String? get notes => throw _privateConstructorUsedError;
 
   /// Create a copy of BreedingPair
@@ -40,8 +42,10 @@ abstract class $BreedingPairCopyWith<$Res> {
       {String id,
       DateTime? start,
       DateTime? end,
-      String? father,
-      String? mother,
+      String fatherId,
+      String motherId,
+      String? cageId,
+      BreedingPairStatus status,
       String? notes});
 }
 
@@ -63,8 +67,10 @@ class _$BreedingPairCopyWithImpl<$Res, $Val extends BreedingPair>
     Object? id = null,
     Object? start = freezed,
     Object? end = freezed,
-    Object? father = freezed,
-    Object? mother = freezed,
+    Object? fatherId = null,
+    Object? motherId = null,
+    Object? cageId = freezed,
+    Object? status = null,
     Object? notes = freezed,
   }) {
     return _then(_value.copyWith(
@@ -80,14 +86,22 @@ class _$BreedingPairCopyWithImpl<$Res, $Val extends BreedingPair>
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      father: freezed == father
-          ? _value.father
-          : father // ignore: cast_nullable_to_non_nullable
+      fatherId: null == fatherId
+          ? _value.fatherId
+          : fatherId // ignore: cast_nullable_to_non_nullable
+              as String,
+      motherId: null == motherId
+          ? _value.motherId
+          : motherId // ignore: cast_nullable_to_non_nullable
+              as String,
+      cageId: freezed == cageId
+          ? _value.cageId
+          : cageId // ignore: cast_nullable_to_non_nullable
               as String?,
-      mother: freezed == mother
-          ? _value.mother
-          : mother // ignore: cast_nullable_to_non_nullable
-              as String?,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as BreedingPairStatus,
       notes: freezed == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
@@ -108,8 +122,10 @@ abstract class _$$BreedingPairImplCopyWith<$Res>
       {String id,
       DateTime? start,
       DateTime? end,
-      String? father,
-      String? mother,
+      String fatherId,
+      String motherId,
+      String? cageId,
+      BreedingPairStatus status,
       String? notes});
 }
 
@@ -129,8 +145,10 @@ class __$$BreedingPairImplCopyWithImpl<$Res>
     Object? id = null,
     Object? start = freezed,
     Object? end = freezed,
-    Object? father = freezed,
-    Object? mother = freezed,
+    Object? fatherId = null,
+    Object? motherId = null,
+    Object? cageId = freezed,
+    Object? status = null,
     Object? notes = freezed,
   }) {
     return _then(_$BreedingPairImpl(
@@ -146,14 +164,22 @@ class __$$BreedingPairImplCopyWithImpl<$Res>
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      father: freezed == father
-          ? _value.father
-          : father // ignore: cast_nullable_to_non_nullable
+      fatherId: null == fatherId
+          ? _value.fatherId
+          : fatherId // ignore: cast_nullable_to_non_nullable
+              as String,
+      motherId: null == motherId
+          ? _value.motherId
+          : motherId // ignore: cast_nullable_to_non_nullable
+              as String,
+      cageId: freezed == cageId
+          ? _value.cageId
+          : cageId // ignore: cast_nullable_to_non_nullable
               as String?,
-      mother: freezed == mother
-          ? _value.mother
-          : mother // ignore: cast_nullable_to_non_nullable
-              as String?,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as BreedingPairStatus,
       notes: freezed == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
@@ -169,8 +195,10 @@ class _$BreedingPairImpl implements _BreedingPair {
       {required this.id,
       required this.start,
       required this.end,
-      required this.father,
-      required this.mother,
+      required this.fatherId,
+      required this.motherId,
+      required this.cageId,
+      required this.status,
       required this.notes});
 
   @override
@@ -180,15 +208,19 @@ class _$BreedingPairImpl implements _BreedingPair {
   @override
   final DateTime? end;
   @override
-  final String? father;
+  final String fatherId;
   @override
-  final String? mother;
+  final String motherId;
+  @override
+  final String? cageId;
+  @override
+  final BreedingPairStatus status;
   @override
   final String? notes;
 
   @override
   String toString() {
-    return 'BreedingPair(id: $id, start: $start, end: $end, father: $father, mother: $mother, notes: $notes)';
+    return 'BreedingPair(id: $id, start: $start, end: $end, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, status: $status, notes: $notes)';
   }
 
   @override
@@ -199,14 +231,18 @@ class _$BreedingPairImpl implements _BreedingPair {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.start, start) || other.start == start) &&
             (identical(other.end, end) || other.end == end) &&
-            (identical(other.father, father) || other.father == father) &&
-            (identical(other.mother, mother) || other.mother == mother) &&
+            (identical(other.fatherId, fatherId) ||
+                other.fatherId == fatherId) &&
+            (identical(other.motherId, motherId) ||
+                other.motherId == motherId) &&
+            (identical(other.cageId, cageId) || other.cageId == cageId) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.notes, notes) || other.notes == notes));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, start, end, father, mother, notes);
+  int get hashCode => Object.hash(
+      runtimeType, id, start, end, fatherId, motherId, cageId, status, notes);
 
   /// Create a copy of BreedingPair
   /// with the given fields replaced by the non-null parameter values.
@@ -222,8 +258,10 @@ abstract class _BreedingPair implements BreedingPair {
       {required final String id,
       required final DateTime? start,
       required final DateTime? end,
-      required final String? father,
-      required final String? mother,
+      required final String fatherId,
+      required final String motherId,
+      required final String? cageId,
+      required final BreedingPairStatus status,
       required final String? notes}) = _$BreedingPairImpl;
 
   @override
@@ -233,9 +271,13 @@ abstract class _BreedingPair implements BreedingPair {
   @override
   DateTime? get end;
   @override
-  String? get father;
+  String get fatherId;
   @override
-  String? get mother;
+  String get motherId;
+  @override
+  String? get cageId;
+  @override
+  BreedingPairStatus get status;
   @override
   String? get notes;
 

@@ -21,10 +21,10 @@ _$BreedingPairDtoImpl _$$BreedingPairDtoImplFromJson(
       start:
           const DateTimeNullEmptyConverter().fromJson(json['start'] as String?),
       end: const DateTimeNullEmptyConverter().fromJson(json['end'] as String?),
-      father:
-          const StringNullEmptyConverter().fromJson(json['father'] as String?),
-      mother:
-          const StringNullEmptyConverter().fromJson(json['mother'] as String?),
+      fatherId: json['father'] as String,
+      motherId: json['mother'] as String,
+      cageId: json['cage'] as String?,
+      status: $enumDecode(_$BreedingPairStatusEnumMap, json['status']),
       notes:
           const StringNullEmptyConverter().fromJson(json['notes'] as String?),
       user: json['user'] as String?,
@@ -40,8 +40,16 @@ Map<String, dynamic> _$$BreedingPairDtoImplToJson(
       'updated': instance.updated?.toIso8601String(),
       'start': const DateTimeNullEmptyConverter().toJson(instance.start),
       'end': const DateTimeNullEmptyConverter().toJson(instance.end),
-      'father': const StringNullEmptyConverter().toJson(instance.father),
-      'mother': const StringNullEmptyConverter().toJson(instance.mother),
+      'father': instance.fatherId,
+      'mother': instance.motherId,
+      'cage': instance.cageId,
+      'status': _$BreedingPairStatusEnumMap[instance.status]!,
       'notes': const StringNullEmptyConverter().toJson(instance.notes),
       'user': instance.user,
     };
+
+const _$BreedingPairStatusEnumMap = {
+  BreedingPairStatus.active: 'active',
+  BreedingPairStatus.paused: 'paused',
+  BreedingPairStatus.finished: 'finished',
+};

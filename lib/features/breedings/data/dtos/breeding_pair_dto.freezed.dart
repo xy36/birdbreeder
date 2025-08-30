@@ -29,10 +29,13 @@ mixin _$BreedingPairDto {
   DateTime? get start => throw _privateConstructorUsedError;
   @DateTimeNullEmptyConverter()
   DateTime? get end => throw _privateConstructorUsedError;
-  @StringNullEmptyConverter()
-  String? get father => throw _privateConstructorUsedError;
-  @StringNullEmptyConverter()
-  String? get mother => throw _privateConstructorUsedError;
+  @JsonKey(name: 'father')
+  String get fatherId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'mother')
+  String get motherId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'cage')
+  String? get cageId => throw _privateConstructorUsedError;
+  BreedingPairStatus get status => throw _privateConstructorUsedError;
   @StringNullEmptyConverter()
   String? get notes => throw _privateConstructorUsedError;
   String? get user => throw _privateConstructorUsedError;
@@ -61,8 +64,10 @@ abstract class $BreedingPairDtoCopyWith<$Res> {
       DateTime? updated,
       @DateTimeNullEmptyConverter() DateTime? start,
       @DateTimeNullEmptyConverter() DateTime? end,
-      @StringNullEmptyConverter() String? father,
-      @StringNullEmptyConverter() String? mother,
+      @JsonKey(name: 'father') String fatherId,
+      @JsonKey(name: 'mother') String motherId,
+      @JsonKey(name: 'cage') String? cageId,
+      BreedingPairStatus status,
       @StringNullEmptyConverter() String? notes,
       String? user});
 }
@@ -89,8 +94,10 @@ class _$BreedingPairDtoCopyWithImpl<$Res, $Val extends BreedingPairDto>
     Object? updated = freezed,
     Object? start = freezed,
     Object? end = freezed,
-    Object? father = freezed,
-    Object? mother = freezed,
+    Object? fatherId = null,
+    Object? motherId = null,
+    Object? cageId = freezed,
+    Object? status = null,
     Object? notes = freezed,
     Object? user = freezed,
   }) {
@@ -123,14 +130,22 @@ class _$BreedingPairDtoCopyWithImpl<$Res, $Val extends BreedingPairDto>
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      father: freezed == father
-          ? _value.father
-          : father // ignore: cast_nullable_to_non_nullable
+      fatherId: null == fatherId
+          ? _value.fatherId
+          : fatherId // ignore: cast_nullable_to_non_nullable
+              as String,
+      motherId: null == motherId
+          ? _value.motherId
+          : motherId // ignore: cast_nullable_to_non_nullable
+              as String,
+      cageId: freezed == cageId
+          ? _value.cageId
+          : cageId // ignore: cast_nullable_to_non_nullable
               as String?,
-      mother: freezed == mother
-          ? _value.mother
-          : mother // ignore: cast_nullable_to_non_nullable
-              as String?,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as BreedingPairStatus,
       notes: freezed == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
@@ -159,8 +174,10 @@ abstract class _$$BreedingPairDtoImplCopyWith<$Res>
       DateTime? updated,
       @DateTimeNullEmptyConverter() DateTime? start,
       @DateTimeNullEmptyConverter() DateTime? end,
-      @StringNullEmptyConverter() String? father,
-      @StringNullEmptyConverter() String? mother,
+      @JsonKey(name: 'father') String fatherId,
+      @JsonKey(name: 'mother') String motherId,
+      @JsonKey(name: 'cage') String? cageId,
+      BreedingPairStatus status,
       @StringNullEmptyConverter() String? notes,
       String? user});
 }
@@ -185,8 +202,10 @@ class __$$BreedingPairDtoImplCopyWithImpl<$Res>
     Object? updated = freezed,
     Object? start = freezed,
     Object? end = freezed,
-    Object? father = freezed,
-    Object? mother = freezed,
+    Object? fatherId = null,
+    Object? motherId = null,
+    Object? cageId = freezed,
+    Object? status = null,
     Object? notes = freezed,
     Object? user = freezed,
   }) {
@@ -219,14 +238,22 @@ class __$$BreedingPairDtoImplCopyWithImpl<$Res>
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      father: freezed == father
-          ? _value.father
-          : father // ignore: cast_nullable_to_non_nullable
+      fatherId: null == fatherId
+          ? _value.fatherId
+          : fatherId // ignore: cast_nullable_to_non_nullable
+              as String,
+      motherId: null == motherId
+          ? _value.motherId
+          : motherId // ignore: cast_nullable_to_non_nullable
+              as String,
+      cageId: freezed == cageId
+          ? _value.cageId
+          : cageId // ignore: cast_nullable_to_non_nullable
               as String?,
-      mother: freezed == mother
-          ? _value.mother
-          : mother // ignore: cast_nullable_to_non_nullable
-              as String?,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as BreedingPairStatus,
       notes: freezed == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
@@ -250,8 +277,10 @@ class _$BreedingPairDtoImpl implements _BreedingPairDto {
       this.updated,
       @DateTimeNullEmptyConverter() this.start,
       @DateTimeNullEmptyConverter() this.end,
-      @StringNullEmptyConverter() this.father,
-      @StringNullEmptyConverter() this.mother,
+      @JsonKey(name: 'father') required this.fatherId,
+      @JsonKey(name: 'mother') required this.motherId,
+      @JsonKey(name: 'cage') this.cageId,
+      required this.status,
       @StringNullEmptyConverter() this.notes,
       this.user});
 
@@ -275,11 +304,16 @@ class _$BreedingPairDtoImpl implements _BreedingPairDto {
   @DateTimeNullEmptyConverter()
   final DateTime? end;
   @override
-  @StringNullEmptyConverter()
-  final String? father;
+  @JsonKey(name: 'father')
+  final String fatherId;
   @override
-  @StringNullEmptyConverter()
-  final String? mother;
+  @JsonKey(name: 'mother')
+  final String motherId;
+  @override
+  @JsonKey(name: 'cage')
+  final String? cageId;
+  @override
+  final BreedingPairStatus status;
   @override
   @StringNullEmptyConverter()
   final String? notes;
@@ -288,7 +322,7 @@ class _$BreedingPairDtoImpl implements _BreedingPairDto {
 
   @override
   String toString() {
-    return 'BreedingPairDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, start: $start, end: $end, father: $father, mother: $mother, notes: $notes, user: $user)';
+    return 'BreedingPairDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, start: $start, end: $end, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, status: $status, notes: $notes, user: $user)';
   }
 
   @override
@@ -305,16 +339,33 @@ class _$BreedingPairDtoImpl implements _BreedingPairDto {
             (identical(other.updated, updated) || other.updated == updated) &&
             (identical(other.start, start) || other.start == start) &&
             (identical(other.end, end) || other.end == end) &&
-            (identical(other.father, father) || other.father == father) &&
-            (identical(other.mother, mother) || other.mother == mother) &&
+            (identical(other.fatherId, fatherId) ||
+                other.fatherId == fatherId) &&
+            (identical(other.motherId, motherId) ||
+                other.motherId == motherId) &&
+            (identical(other.cageId, cageId) || other.cageId == cageId) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, collectionId, collectionName,
-      created, updated, start, end, father, mother, notes, user);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      collectionId,
+      collectionName,
+      created,
+      updated,
+      start,
+      end,
+      fatherId,
+      motherId,
+      cageId,
+      status,
+      notes,
+      user);
 
   /// Create a copy of BreedingPairDto
   /// with the given fields replaced by the non-null parameter values.
@@ -342,8 +393,10 @@ abstract class _BreedingPairDto implements BreedingPairDto {
       final DateTime? updated,
       @DateTimeNullEmptyConverter() final DateTime? start,
       @DateTimeNullEmptyConverter() final DateTime? end,
-      @StringNullEmptyConverter() final String? father,
-      @StringNullEmptyConverter() final String? mother,
+      @JsonKey(name: 'father') required final String fatherId,
+      @JsonKey(name: 'mother') required final String motherId,
+      @JsonKey(name: 'cage') final String? cageId,
+      required final BreedingPairStatus status,
       @StringNullEmptyConverter() final String? notes,
       final String? user}) = _$BreedingPairDtoImpl;
 
@@ -367,11 +420,16 @@ abstract class _BreedingPairDto implements BreedingPairDto {
   @DateTimeNullEmptyConverter()
   DateTime? get end;
   @override
-  @StringNullEmptyConverter()
-  String? get father;
+  @JsonKey(name: 'father')
+  String get fatherId;
   @override
-  @StringNullEmptyConverter()
-  String? get mother;
+  @JsonKey(name: 'mother')
+  String get motherId;
+  @override
+  @JsonKey(name: 'cage')
+  String? get cageId;
+  @override
+  BreedingPairStatus get status;
   @override
   @StringNullEmptyConverter()
   String? get notes;

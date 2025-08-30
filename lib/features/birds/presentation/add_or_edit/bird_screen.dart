@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/cubit/bird_cubit.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/models/bird_mode.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/bird_fields.dart';
@@ -6,6 +8,7 @@ import 'package:birdbreeder/shared/widgets/dialogs/delete_dialog.dart';
 import 'package:birdbreeder/shared/widgets/navigate_back_button.dart';
 
 enum BirdActions {
+  edit,
   duplicate,
   delete;
 
@@ -13,12 +16,16 @@ enum BirdActions {
     return switch (this) {
       duplicate => PopupMenuItem(
           value: BirdActions.duplicate,
-          child: Text(context.tr.pop_up_menu.bird.duplicate),
+          child: Text(context.tr.pop_up_menu.duplicate),
+        ),
+      edit => PopupMenuItem(
+          value: BirdActions.edit,
+          child: Text(context.tr.pop_up_menu.edit),
         ),
       delete => PopupMenuItem(
           value: BirdActions.delete,
           child: Text(
-            context.tr.pop_up_menu.bird.delete,
+            context.tr.pop_up_menu.delete,
             style: const TextStyle(color: Colors.red),
           ),
         )
@@ -28,6 +35,8 @@ enum BirdActions {
   Future<void> executeAction(BuildContext context) async {
     return switch (this) {
       duplicate => await context.read<BirdCubit>().duplicate(),
+      edit => context.router
+          .push(BirdRoute(bird: context.read<BirdCubit>().state.bird)),
       delete => {
           if (context.mounted)
             await DeleteDialog.show(
@@ -39,8 +48,6 @@ enum BirdActions {
     };
   }
 }
-
-final neutralFocus = FocusNode();
 
 class BirdScreen extends StatelessWidget {
   const BirdScreen({super.key});

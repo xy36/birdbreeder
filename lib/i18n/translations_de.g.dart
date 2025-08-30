@@ -239,6 +239,14 @@ class TranslationsBreedingPairsDe {
 
   /// de: 'Zuchtpaar löschen?'
   String get delete => 'Zuchtpaar löschen?';
+
+  late final TranslationsBreedingPairsStatusDe status = TranslationsBreedingPairsStatusDe.internal(_root);
+
+  /// de: 'Startdatum'
+  String get start_date => 'Startdatum';
+
+  /// de: 'Notizen (optional)'
+  String get notes => 'Notizen (optional)';
 }
 
 // Path: resources
@@ -382,6 +390,19 @@ class TranslationsCommonDe {
   late final TranslationsCommonSexDe sex = TranslationsCommonSexDe.internal(_root);
   late final TranslationsCommonSellDe sell = TranslationsCommonSellDe.internal(_root);
   late final TranslationsCommonBoughtDe bought = TranslationsCommonBoughtDe.internal(_root);
+
+  /// de: 'Eier'
+  String get eggs_short => 'Eier';
+
+  /// de: 'geschl.'
+  String get hatched_short => 'geschl.';
+
+  /// de: 'ausgef.'
+  String get fledged_short => 'ausgef.';
+
+  /// de: 'gest.'
+  String get died_short => 'gest.';
+
   late final TranslationsCommonSortingDe sorting = TranslationsCommonSortingDe.internal(_root);
 
   /// de: 'Hoppla, etwas ist schiefgelaufen.'
@@ -527,7 +548,18 @@ class TranslationsPopUpMenuDe {
   final Translations _root; // ignore: unused_field
 
   // Translations
-  late final TranslationsPopUpMenuBirdDe bird = TranslationsPopUpMenuBirdDe.internal(_root);
+
+  /// de: 'Bearbeiten'
+  String get edit => 'Bearbeiten';
+
+  /// de: 'Anzeigen'
+  String get show => 'Anzeigen';
+
+  /// de: 'Duplizieren'
+  String get duplicate => 'Duplizieren';
+
+  /// de: 'Löschen'
+  String get delete => 'Löschen';
 }
 
 // Path: snackbars
@@ -539,6 +571,7 @@ class TranslationsSnackbarsDe {
   // Translations
   late final TranslationsSnackbarsGeneralDe general = TranslationsSnackbarsGeneralDe.internal(_root);
   late final TranslationsSnackbarsContactsDe contacts = TranslationsSnackbarsContactsDe.internal(_root);
+  late final TranslationsSnackbarsBreedingPairsDe breeding_pairs = TranslationsSnackbarsBreedingPairsDe.internal(_root);
   late final TranslationsSnackbarsErrorDe error = TranslationsSnackbarsErrorDe.internal(_root);
 }
 
@@ -621,6 +654,27 @@ class TranslationsContactsActionButtonDe {
 
   /// de: 'Anrufen'
   String get call_tooltipp => 'Anrufen';
+}
+
+// Path: breeding_pairs.status
+class TranslationsBreedingPairsStatusDe {
+  TranslationsBreedingPairsStatusDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Status'
+  String get name => 'Status';
+
+  /// de: 'Aktiv'
+  String get active => 'Aktiv';
+
+  /// de: 'Pausiert'
+  String get paused => 'Pausiert';
+
+  /// de: 'Beendet'
+  String get finished => 'Beendet';
 }
 
 // Path: bird.tabs
@@ -925,27 +979,6 @@ class TranslationsDialogDeleteEntryDe {
   String get content => 'Möchten Sie diesen Eintrag wirklich löschen?';
 }
 
-// Path: pop_up_menu.bird
-class TranslationsPopUpMenuBirdDe {
-  TranslationsPopUpMenuBirdDe.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// de: 'Bearbeiten'
-  String get edit => 'Bearbeiten';
-
-  /// de: 'Anzeigen'
-  String get show => 'Anzeigen';
-
-  /// de: 'Duplizieren'
-  String get duplicate => 'Duplizieren';
-
-  /// de: 'Löschen'
-  String get delete => 'Löschen';
-}
-
 // Path: snackbars.general
 class TranslationsSnackbarsGeneralDe {
   TranslationsSnackbarsGeneralDe.internal(this._root);
@@ -983,6 +1016,24 @@ class TranslationsSnackbarsContactsDe {
 
   /// de: 'Kontakt konnte nicht gelöscht werden'
   String get delete_failed => 'Kontakt konnte nicht gelöscht werden';
+}
+
+// Path: snackbars.breeding_pairs
+class TranslationsSnackbarsBreedingPairsDe {
+  TranslationsSnackbarsBreedingPairsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Zuchtpaar konnte nicht erstellt werden'
+  String get create_failed => 'Zuchtpaar konnte nicht erstellt werden';
+
+  /// de: 'Zuchtpaar konnte nicht aktualisiert werden'
+  String get update_failed => 'Zuchtpaar konnte nicht aktualisiert werden';
+
+  /// de: 'Zuchtpaar konnte nicht gelöscht werden'
+  String get delete_failed => 'Zuchtpaar konnte nicht gelöscht werden';
 }
 
 // Path: snackbars.error

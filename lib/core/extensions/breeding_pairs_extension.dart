@@ -1,8 +1,10 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/birds_extension.dart';
+import 'package:birdbreeder/core/extensions/cage_extension.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
 import 'package:birdbreeder/features/breedings/domain/models/brood.dart';
+import 'package:birdbreeder/features/ressourcen_center/domain/models/cage.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 
@@ -27,11 +29,17 @@ extension BreedingPairsExtension on BreedingPair {
   List<Brood> get _broods =>
       s1.get<BirdBreederCubit>().state.birdBreederResources.broods;
 
+  /// Returns a function that returns the cages from the state
+  List<Cage> get _cages =>
+      s1.get<BirdBreederCubit>().state.birdBreederResources.cages;
+
   /// Returns the father bird resolved from the state
-  Bird? get fatherResolved => father == null ? null : _birds.findById(father!);
+  Bird? get fatherResolved => _birds.findById(fatherId);
 
   /// Returns the mother bird resolved from the state
-  Bird? get motherResolved => mother == null ? null : _birds.findById(mother!);
+  Bird? get motherResolved => _birds.findById(motherId);
+
+  Cage? get cageResolved => cageId != null ? _cages.findById(cageId!) : null;
 
   /// Returns the latest brood resolved by start date
   Brood? get latestBrood => broodsResolved.isEmpty

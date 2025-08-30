@@ -1,5 +1,4 @@
 {
-    "@@locale": "de",
     "app": {
         "title": "birdbreeder"
     },
@@ -71,7 +70,15 @@
     "breeding_pairs": {
         "title": "Zuchtpaar",
         "add": "Zuchtpaar hinzufügen",
-        "delete": "Zuchtpaar löschen?"
+        "delete": "Zuchtpaar löschen?",
+        "status": {
+            "name": "Status",
+            "active": "Aktiv",
+            "paused": "Pausiert",
+            "finished": "Beendet"
+        },
+        "start_date": "Startdatum",
+        "notes": "Notizen (optional)"
     },
     "resources": {
         "title": "Ressourcen",
@@ -201,6 +208,10 @@
             "at": "Gekauft am",
             "price": "Kaufpreis"
         },
+        "eggs_short": "Eier",
+        "hatched_short": "geschl.",
+        "fledged_short": "ausgef.",
+        "died_short": "gest.",
         "sorting": {
             "name": "Sortierung",
             "updated": "Zuletzt aktualisiert (neu → alt)",
@@ -291,12 +302,10 @@
         }
     },
     "pop_up_menu": {
-        "bird": {
-            "edit": "Bearbeiten",
-            "show": "Anzeigen",
-            "duplicate": "Duplizieren",
-            "delete": "Löschen"
-        }
+        "edit": "Bearbeiten",
+        "show": "Anzeigen",
+        "duplicate": "Duplizieren",
+        "delete": "Löschen"
     },
     "snackbars": {
         "general": {
@@ -309,6 +318,11 @@
             "create_failed": "Kontakt konnte nicht erstellt werden",
             "update_failed": "Kontakt konnte nicht aktualisiert werden",
             "delete_failed": "Kontakt konnte nicht gelöscht werden"
+        },
+        "breeding_pairs": {
+            "create_failed": "Zuchtpaar konnte nicht erstellt werden",
+            "update_failed": "Zuchtpaar konnte nicht aktualisiert werden",
+            "delete_failed": "Zuchtpaar konnte nicht gelöscht werden"
         },
         "error": {
             "data": {

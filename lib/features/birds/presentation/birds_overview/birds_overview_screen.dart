@@ -3,6 +3,7 @@ import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/widget_extensions.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
+import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_filter_cubit.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_search_cubit.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/models/bird_filter.dart';
@@ -14,19 +15,48 @@ import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.
 import 'package:birdbreeder/shared/cubits/generic_search_cubit/base_search.dart';
 import 'package:birdbreeder/shared/widgets/buttons/button_bird_add.dart';
 
+enum BirdOverviewMode {
+  picker,
+  viewer,
+}
+
 class BirdsOverviewScreen extends StatefulWidget {
-  const BirdsOverviewScreen({super.key});
+  const BirdsOverviewScreen({
+    super.key,
+    this.mode = BirdOverviewMode.viewer,
+    this.scrollController,
+  });
+
+  final BirdOverviewMode mode;
+  final ScrollController? scrollController;
 
   @override
   State<BirdsOverviewScreen> createState() => _BirdsOverviewScreenState();
 }
 
 class _BirdsOverviewScreenState extends State<BirdsOverviewScreen> {
+  void openBird(Bird bird) {
+    context.router.push(BirdRoute(bird: bird));
+  }
+
+  void pickBird(Bird bird) {
+    context.router.maybePop(bird);
+  }
+
+  void duplicate(Bird bird) {
+    context.read<BirdBreederCubit>().duplicateBird(bird);
+  }
+
+  void delete(Bird bird) {
+    context.read<BirdBreederCubit>().deleteBird(bird);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SharedAppBarWithDrawer(
         title: context.tr.birds.title,
+        hideMenuButton: widget.mode == BirdOverviewMode.picker,
         actions: [
           BlocBuilder<BirdSearchCubit, BaseSearch>(
             builder: (context, state) {
@@ -109,23 +139,17 @@ class _BirdsOverviewScreenState extends State<BirdsOverviewScreen> {
                           final searchedBirds =
                               context.read<BirdSearchCubit>().searchedItems;
                           return ListView.builder(
+                            controller: widget.scrollController,
                             itemCount: searchedBirds.length,
                             itemBuilder: (context, i) => BirdCard(
                               bird: searchedBirds[i],
-                              onTap: () {
-                                context.router
-                                    .push(BirdRoute(bird: searchedBirds[i]));
-                              },
-                              onDuplicate: () {
-                                context.read<BirdBreederCubit>().duplicateBird(
-                                      searchedBirds[i],
-                                    );
-                              },
-                              onDelete: () {
-                                context.read<BirdBreederCubit>().deleteBird(
-                                      searchedBirds[i],
-                                    );
-                              },
+                              onTap: () =>
+                                  widget.mode == BirdOverviewMode.picker
+                                      ? pickBird(searchedBirds[i])
+                                      : openBird(searchedBirds[i]),
+                              onDuplicate: () => duplicate(searchedBirds[i]),
+                              onDelete: () => delete(searchedBirds[i]),
+                              onEdit: () => openBird(searchedBirds[i]),
                             ),
                           );
                         },

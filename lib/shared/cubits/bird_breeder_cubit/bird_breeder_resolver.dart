@@ -88,10 +88,12 @@ extension BirdBreederResovlerExtension on BirdBreederCubit {
   BreedingPair resolveBreedingPairDto(BreedingPairDto breedingPairDto) {
     return BreedingPair(
       id: breedingPairDto.id,
-      father: breedingPairDto.father,
-      mother: breedingPairDto.mother,
+      fatherId: breedingPairDto.fatherId,
+      motherId: breedingPairDto.motherId,
+      cageId: breedingPairDto.cageId,
       start: breedingPairDto.start,
       end: breedingPairDto.end,
+      status: breedingPairDto.status,
       notes: breedingPairDto.notes,
     );
   }

@@ -24,8 +24,6 @@ class DeleteDialog extends StatelessWidget {
     );
 
     if (!context.mounted) return;
-
-    Navigator.of(context).pop();
   }
 
   @override

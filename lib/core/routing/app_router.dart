@@ -10,9 +10,7 @@ import 'package:birdbreeder/features/authentication/presentation/sign_up_page.da
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/bird_page.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/birds_overview_page.dart';
-import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/breeding_pair_details_page.dart';
-import 'package:birdbreeder/features/breedings/presentation/breeding_pair_edit/breeding_pair_edit_page.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pairs/breeding_pairs_page.dart';
 import 'package:birdbreeder/features/breedings/presentation/brood/brood_page.dart';
 import 'package:birdbreeder/features/contacts/domain/models/contact.dart';
@@ -65,17 +63,11 @@ class AppRouter extends RootStackRouter {
             AutoRoute(page: BirdRoute.page, path: 'birds/bird'),
             AutoRoute(page: ContactsRoute.page, path: 'contacts'),
             AutoRoute(page: ContactDetailsRoute.page, path: 'contacts/details'),
-            // AutoRoute(page: CagesRoute.page, path: 'cages'),
             AutoRoute(page: CageDetailsRoute.page, path: 'cages/details'),
-            // AutoRoute(page: ColorsRoute.page, path: 'colors'),
             AutoRoute(page: ColorDetailsRoute.page, path: 'colors/details'),
-            // AutoRoute(page: SpeciesRoute.page, path: 'species'),
             AutoRoute(page: SpeciesDetailsRoute.page, path: 'species/details'),
             AutoRoute(page: BreedingPairsRoute.page, path: 'breedingPairs'),
-            AutoRoute(
-              page: BreedingPairEditRoute.page,
-              path: 'breedingPairs/edit',
-            ),
+
             AutoRoute(
               page: BreedingPairDetailsRoute.page,
               path: 'breedingPairs/details',
