@@ -54,6 +54,8 @@ mixin _$BirdDto {
   @DateTimeNullEmptyConverter()
   DateTime? get fledgedAt => throw _privateConstructorUsedError;
   @DateTimeNullEmptyConverter()
+  DateTime? get bornAt => throw _privateConstructorUsedError;
+  @DateTimeNullEmptyConverter()
   DateTime? get diedAt => throw _privateConstructorUsedError;
   SaleStatus get saleStatus => throw _privateConstructorUsedError;
   @DateTimeNullEmptyConverter()
@@ -76,6 +78,7 @@ mixin _$BirdDto {
   @JsonKey(name: 'owner')
   @StringNullEmptyConverter()
   String? get ownerId => throw _privateConstructorUsedError;
+  bool? get unknownLifecycle => throw _privateConstructorUsedError;
   String? get user => throw _privateConstructorUsedError;
 
   /// Serializes this BirdDto to a JSON map.
@@ -111,6 +114,7 @@ abstract class $BirdDtoCopyWith<$Res> {
       @DateTimeNullEmptyConverter() DateTime? laidAt,
       @DateTimeNullEmptyConverter() DateTime? hatchedAt,
       @DateTimeNullEmptyConverter() DateTime? fledgedAt,
+      @DateTimeNullEmptyConverter() DateTime? bornAt,
       @DateTimeNullEmptyConverter() DateTime? diedAt,
       SaleStatus saleStatus,
       @DateTimeNullEmptyConverter() DateTime? listedAt,
@@ -125,6 +129,7 @@ abstract class $BirdDtoCopyWith<$Res> {
       String? boughtFromId,
       @JsonKey(name: 'soldTo') @StringNullEmptyConverter() String? soldToId,
       @JsonKey(name: 'owner') @StringNullEmptyConverter() String? ownerId,
+      bool? unknownLifecycle,
       String? user});
 }
 
@@ -159,6 +164,7 @@ class _$BirdDtoCopyWithImpl<$Res, $Val extends BirdDto>
     Object? laidAt = freezed,
     Object? hatchedAt = freezed,
     Object? fledgedAt = freezed,
+    Object? bornAt = freezed,
     Object? diedAt = freezed,
     Object? saleStatus = null,
     Object? listedAt = freezed,
@@ -171,6 +177,7 @@ class _$BirdDtoCopyWithImpl<$Res, $Val extends BirdDto>
     Object? boughtFromId = freezed,
     Object? soldToId = freezed,
     Object? ownerId = freezed,
+    Object? unknownLifecycle = freezed,
     Object? user = freezed,
   }) {
     return _then(_value.copyWith(
@@ -238,6 +245,10 @@ class _$BirdDtoCopyWithImpl<$Res, $Val extends BirdDto>
           ? _value.fledgedAt
           : fledgedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      bornAt: freezed == bornAt
+          ? _value.bornAt
+          : bornAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       diedAt: freezed == diedAt
           ? _value.diedAt
           : diedAt // ignore: cast_nullable_to_non_nullable
@@ -286,6 +297,10 @@ class _$BirdDtoCopyWithImpl<$Res, $Val extends BirdDto>
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
               as String?,
+      unknownLifecycle: freezed == unknownLifecycle
+          ? _value.unknownLifecycle
+          : unknownLifecycle // ignore: cast_nullable_to_non_nullable
+              as bool?,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -320,6 +335,7 @@ abstract class _$$BirdDtoImplCopyWith<$Res> implements $BirdDtoCopyWith<$Res> {
       @DateTimeNullEmptyConverter() DateTime? laidAt,
       @DateTimeNullEmptyConverter() DateTime? hatchedAt,
       @DateTimeNullEmptyConverter() DateTime? fledgedAt,
+      @DateTimeNullEmptyConverter() DateTime? bornAt,
       @DateTimeNullEmptyConverter() DateTime? diedAt,
       SaleStatus saleStatus,
       @DateTimeNullEmptyConverter() DateTime? listedAt,
@@ -334,6 +350,7 @@ abstract class _$$BirdDtoImplCopyWith<$Res> implements $BirdDtoCopyWith<$Res> {
       String? boughtFromId,
       @JsonKey(name: 'soldTo') @StringNullEmptyConverter() String? soldToId,
       @JsonKey(name: 'owner') @StringNullEmptyConverter() String? ownerId,
+      bool? unknownLifecycle,
       String? user});
 }
 
@@ -366,6 +383,7 @@ class __$$BirdDtoImplCopyWithImpl<$Res>
     Object? laidAt = freezed,
     Object? hatchedAt = freezed,
     Object? fledgedAt = freezed,
+    Object? bornAt = freezed,
     Object? diedAt = freezed,
     Object? saleStatus = null,
     Object? listedAt = freezed,
@@ -378,6 +396,7 @@ class __$$BirdDtoImplCopyWithImpl<$Res>
     Object? boughtFromId = freezed,
     Object? soldToId = freezed,
     Object? ownerId = freezed,
+    Object? unknownLifecycle = freezed,
     Object? user = freezed,
   }) {
     return _then(_$BirdDtoImpl(
@@ -445,6 +464,10 @@ class __$$BirdDtoImplCopyWithImpl<$Res>
           ? _value.fledgedAt
           : fledgedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      bornAt: freezed == bornAt
+          ? _value.bornAt
+          : bornAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       diedAt: freezed == diedAt
           ? _value.diedAt
           : diedAt // ignore: cast_nullable_to_non_nullable
@@ -493,6 +516,10 @@ class __$$BirdDtoImplCopyWithImpl<$Res>
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
               as String?,
+      unknownLifecycle: freezed == unknownLifecycle
+          ? _value.unknownLifecycle
+          : unknownLifecycle // ignore: cast_nullable_to_non_nullable
+              as bool?,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -521,6 +548,7 @@ class _$BirdDtoImpl implements _BirdDto {
       @DateTimeNullEmptyConverter() this.laidAt,
       @DateTimeNullEmptyConverter() this.hatchedAt,
       @DateTimeNullEmptyConverter() this.fledgedAt,
+      @DateTimeNullEmptyConverter() this.bornAt,
       @DateTimeNullEmptyConverter() this.diedAt,
       this.saleStatus = SaleStatus.notForSale,
       @DateTimeNullEmptyConverter() this.listedAt,
@@ -535,6 +563,7 @@ class _$BirdDtoImpl implements _BirdDto {
       this.boughtFromId,
       @JsonKey(name: 'soldTo') @StringNullEmptyConverter() this.soldToId,
       @JsonKey(name: 'owner') @StringNullEmptyConverter() this.ownerId,
+      this.unknownLifecycle,
       this.user});
 
   factory _$BirdDtoImpl.fromJson(Map<String, dynamic> json) =>
@@ -592,6 +621,9 @@ class _$BirdDtoImpl implements _BirdDto {
   final DateTime? fledgedAt;
   @override
   @DateTimeNullEmptyConverter()
+  final DateTime? bornAt;
+  @override
+  @DateTimeNullEmptyConverter()
   final DateTime? diedAt;
   @override
   @JsonKey()
@@ -627,11 +659,13 @@ class _$BirdDtoImpl implements _BirdDto {
   @StringNullEmptyConverter()
   final String? ownerId;
   @override
+  final bool? unknownLifecycle;
+  @override
   final String? user;
 
   @override
   String toString() {
-    return 'BirdDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, ringNumber: $ringNumber, speciesId: $speciesId, colorId: $colorId, sex: $sex, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, broodId: $broodId, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, diedAt: $diedAt, saleStatus: $saleStatus, listedAt: $listedAt, soldAt: $soldAt, askingPrice: $askingPrice, finalPrice: $finalPrice, boughtAt: $boughtAt, boughtPrice: $boughtPrice, notes: $notes, boughtFromId: $boughtFromId, soldToId: $soldToId, ownerId: $ownerId, user: $user)';
+    return 'BirdDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, ringNumber: $ringNumber, speciesId: $speciesId, colorId: $colorId, sex: $sex, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, broodId: $broodId, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, bornAt: $bornAt, diedAt: $diedAt, saleStatus: $saleStatus, listedAt: $listedAt, soldAt: $soldAt, askingPrice: $askingPrice, finalPrice: $finalPrice, boughtAt: $boughtAt, boughtPrice: $boughtPrice, notes: $notes, boughtFromId: $boughtFromId, soldToId: $soldToId, ownerId: $ownerId, unknownLifecycle: $unknownLifecycle, user: $user)';
   }
 
   @override
@@ -663,6 +697,7 @@ class _$BirdDtoImpl implements _BirdDto {
                 other.hatchedAt == hatchedAt) &&
             (identical(other.fledgedAt, fledgedAt) ||
                 other.fledgedAt == fledgedAt) &&
+            (identical(other.bornAt, bornAt) || other.bornAt == bornAt) &&
             (identical(other.diedAt, diedAt) || other.diedAt == diedAt) &&
             (identical(other.saleStatus, saleStatus) ||
                 other.saleStatus == saleStatus) &&
@@ -683,6 +718,8 @@ class _$BirdDtoImpl implements _BirdDto {
             (identical(other.soldToId, soldToId) ||
                 other.soldToId == soldToId) &&
             (identical(other.ownerId, ownerId) || other.ownerId == ownerId) &&
+            (identical(other.unknownLifecycle, unknownLifecycle) ||
+                other.unknownLifecycle == unknownLifecycle) &&
             (identical(other.user, user) || other.user == user));
   }
 
@@ -706,6 +743,7 @@ class _$BirdDtoImpl implements _BirdDto {
         laidAt,
         hatchedAt,
         fledgedAt,
+        bornAt,
         diedAt,
         saleStatus,
         listedAt,
@@ -718,6 +756,7 @@ class _$BirdDtoImpl implements _BirdDto {
         boughtFromId,
         soldToId,
         ownerId,
+        unknownLifecycle,
         user
       ]);
 
@@ -763,6 +802,7 @@ abstract class _BirdDto implements BirdDto {
       @DateTimeNullEmptyConverter() final DateTime? laidAt,
       @DateTimeNullEmptyConverter() final DateTime? hatchedAt,
       @DateTimeNullEmptyConverter() final DateTime? fledgedAt,
+      @DateTimeNullEmptyConverter() final DateTime? bornAt,
       @DateTimeNullEmptyConverter() final DateTime? diedAt,
       final SaleStatus saleStatus,
       @DateTimeNullEmptyConverter() final DateTime? listedAt,
@@ -779,6 +819,7 @@ abstract class _BirdDto implements BirdDto {
       @StringNullEmptyConverter()
       final String? soldToId,
       @JsonKey(name: 'owner') @StringNullEmptyConverter() final String? ownerId,
+      final bool? unknownLifecycle,
       final String? user}) = _$BirdDtoImpl;
 
   factory _BirdDto.fromJson(Map<String, dynamic> json) = _$BirdDtoImpl.fromJson;
@@ -834,6 +875,9 @@ abstract class _BirdDto implements BirdDto {
   DateTime? get fledgedAt;
   @override
   @DateTimeNullEmptyConverter()
+  DateTime? get bornAt;
+  @override
+  @DateTimeNullEmptyConverter()
   DateTime? get diedAt;
   @override
   SaleStatus get saleStatus;
@@ -867,6 +911,8 @@ abstract class _BirdDto implements BirdDto {
   @JsonKey(name: 'owner')
   @StringNullEmptyConverter()
   String? get ownerId;
+  @override
+  bool? get unknownLifecycle;
   @override
   String? get user;
 

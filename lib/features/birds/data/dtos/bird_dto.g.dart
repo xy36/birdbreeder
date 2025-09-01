@@ -38,6 +38,8 @@ _$BirdDtoImpl _$$BirdDtoImplFromJson(Map<String, dynamic> json) =>
           .fromJson(json['hatchedAt'] as String?),
       fledgedAt: const DateTimeNullEmptyConverter()
           .fromJson(json['fledgedAt'] as String?),
+      bornAt: const DateTimeNullEmptyConverter()
+          .fromJson(json['bornAt'] as String?),
       diedAt: const DateTimeNullEmptyConverter()
           .fromJson(json['diedAt'] as String?),
       saleStatus:
@@ -60,6 +62,7 @@ _$BirdDtoImpl _$$BirdDtoImplFromJson(Map<String, dynamic> json) =>
           const StringNullEmptyConverter().fromJson(json['soldTo'] as String?),
       ownerId:
           const StringNullEmptyConverter().fromJson(json['owner'] as String?),
+      unknownLifecycle: json['unknownLifecycle'] as bool?,
       user: json['user'] as String?,
     );
 
@@ -84,6 +87,7 @@ Map<String, dynamic> _$$BirdDtoImplToJson(_$BirdDtoImpl instance) =>
           const DateTimeNullEmptyConverter().toJson(instance.hatchedAt),
       'fledgedAt':
           const DateTimeNullEmptyConverter().toJson(instance.fledgedAt),
+      'bornAt': const DateTimeNullEmptyConverter().toJson(instance.bornAt),
       'diedAt': const DateTimeNullEmptyConverter().toJson(instance.diedAt),
       'saleStatus': _$SaleStatusEnumMap[instance.saleStatus]!,
       'listedAt': const DateTimeNullEmptyConverter().toJson(instance.listedAt),
@@ -97,6 +101,7 @@ Map<String, dynamic> _$$BirdDtoImplToJson(_$BirdDtoImpl instance) =>
           const StringNullEmptyConverter().toJson(instance.boughtFromId),
       'soldTo': const StringNullEmptyConverter().toJson(instance.soldToId),
       'owner': const StringNullEmptyConverter().toJson(instance.ownerId),
+      'unknownLifecycle': instance.unknownLifecycle,
       'user': instance.user,
     };
 

@@ -28,6 +28,7 @@ class BirdDto with _$BirdDto {
     @DateTimeNullEmptyConverter() DateTime? laidAt,
     @DateTimeNullEmptyConverter() DateTime? hatchedAt,
     @DateTimeNullEmptyConverter() DateTime? fledgedAt,
+    @DateTimeNullEmptyConverter() DateTime? bornAt,
     @DateTimeNullEmptyConverter() DateTime? diedAt,
     @Default(SaleStatus.notForSale) SaleStatus saleStatus,
     @DateTimeNullEmptyConverter() DateTime? listedAt,
@@ -42,6 +43,7 @@ class BirdDto with _$BirdDto {
     ContactId? boughtFromId,
     @JsonKey(name: 'soldTo') @StringNullEmptyConverter() ContactId? soldToId,
     @JsonKey(name: 'owner') @StringNullEmptyConverter() ContactId? ownerId,
+    bool? unknownLifecycle,
     String? user,
   }) = _BirdDto;
 

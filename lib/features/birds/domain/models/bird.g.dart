@@ -32,6 +32,9 @@ _$BirdImpl _$$BirdImplFromJson(Map<String, dynamic> json) => _$BirdImpl(
       fledgedAt: json['fledgedAt'] == null
           ? null
           : DateTime.parse(json['fledgedAt'] as String),
+      bornAt: json['bornAt'] == null
+          ? null
+          : DateTime.parse(json['bornAt'] as String),
       diedAt: json['diedAt'] == null
           ? null
           : DateTime.parse(json['diedAt'] as String),
@@ -52,6 +55,7 @@ _$BirdImpl _$$BirdImplFromJson(Map<String, dynamic> json) => _$BirdImpl(
       boughtPrice: (json['boughtPrice'] as num?)?.toDouble(),
       boughtFromId: json['boughtFromId'] as String?,
       soldToId: json['soldToId'] as String?,
+      unknownLifecycle: json['unknownLifecycle'] as bool?,
       notes: json['notes'] as String?,
     );
 
@@ -72,6 +76,7 @@ Map<String, dynamic> _$$BirdImplToJson(_$BirdImpl instance) =>
       'laidAt': instance.laidAt?.toIso8601String(),
       'hatchedAt': instance.hatchedAt?.toIso8601String(),
       'fledgedAt': instance.fledgedAt?.toIso8601String(),
+      'bornAt': instance.bornAt?.toIso8601String(),
       'diedAt': instance.diedAt?.toIso8601String(),
       'saleStatus': _$SaleStatusEnumMap[instance.saleStatus]!,
       'listedAt': instance.listedAt?.toIso8601String(),
@@ -82,6 +87,7 @@ Map<String, dynamic> _$$BirdImplToJson(_$BirdImpl instance) =>
       'boughtPrice': instance.boughtPrice,
       'boughtFromId': instance.boughtFromId,
       'soldToId': instance.soldToId,
+      'unknownLifecycle': instance.unknownLifecycle,
       'notes': instance.notes,
     };
 

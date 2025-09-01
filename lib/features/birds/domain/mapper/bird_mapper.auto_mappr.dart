@@ -303,6 +303,7 @@ class $BirdMapper implements _i1.AutoMapprInterface {
       laidAt: model.laidAt,
       hatchedAt: model.hatchedAt,
       fledgedAt: model.fledgedAt,
+      bornAt: model.bornAt,
       diedAt: model.diedAt,
       saleStatus: model.saleStatus,
       listedAt: model.listedAt,
@@ -315,6 +316,7 @@ class $BirdMapper implements _i1.AutoMapprInterface {
       boughtFromId: model.boughtFromId,
       soldToId: model.soldToId,
       ownerId: model.ownerId,
+      unknownLifecycle: model.unknownLifecycle,
     );
   }
 
@@ -339,6 +341,7 @@ class $BirdMapper implements _i1.AutoMapprInterface {
       laidAt: model.laidAt,
       hatchedAt: model.hatchedAt,
       fledgedAt: model.fledgedAt,
+      bornAt: model.bornAt,
       diedAt: model.diedAt,
       saleStatus: model.saleStatus,
       listedAt: model.listedAt,
@@ -349,6 +352,7 @@ class $BirdMapper implements _i1.AutoMapprInterface {
       boughtPrice: model.boughtPrice,
       boughtFromId: model.boughtFromId,
       soldToId: model.soldToId,
+      unknownLifecycle: model.unknownLifecycle,
       notes: model.notes,
     );
   }

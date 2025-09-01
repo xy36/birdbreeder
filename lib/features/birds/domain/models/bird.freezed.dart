@@ -35,6 +35,7 @@ mixin _$Bird {
   DateTime? get laidAt => throw _privateConstructorUsedError;
   DateTime? get hatchedAt => throw _privateConstructorUsedError;
   DateTime? get fledgedAt => throw _privateConstructorUsedError;
+  DateTime? get bornAt => throw _privateConstructorUsedError;
   DateTime? get diedAt => throw _privateConstructorUsedError; // Commerce
   SaleStatus get saleStatus => throw _privateConstructorUsedError;
   DateTime? get listedAt => throw _privateConstructorUsedError;
@@ -44,7 +45,8 @@ mixin _$Bird {
   DateTime? get boughtAt => throw _privateConstructorUsedError;
   double? get boughtPrice => throw _privateConstructorUsedError;
   String? get boughtFromId => throw _privateConstructorUsedError;
-  String? get soldToId => throw _privateConstructorUsedError; // Notes
+  String? get soldToId => throw _privateConstructorUsedError; // Lifecycle
+  bool? get unknownLifecycle => throw _privateConstructorUsedError; // Notes
   String? get notes => throw _privateConstructorUsedError;
 
   /// Serializes this Bird to a JSON map.
@@ -77,6 +79,7 @@ abstract class $BirdCopyWith<$Res> {
       DateTime? laidAt,
       DateTime? hatchedAt,
       DateTime? fledgedAt,
+      DateTime? bornAt,
       DateTime? diedAt,
       SaleStatus saleStatus,
       DateTime? listedAt,
@@ -87,6 +90,7 @@ abstract class $BirdCopyWith<$Res> {
       double? boughtPrice,
       String? boughtFromId,
       String? soldToId,
+      bool? unknownLifecycle,
       String? notes});
 }
 
@@ -120,6 +124,7 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
     Object? laidAt = freezed,
     Object? hatchedAt = freezed,
     Object? fledgedAt = freezed,
+    Object? bornAt = freezed,
     Object? diedAt = freezed,
     Object? saleStatus = null,
     Object? listedAt = freezed,
@@ -130,6 +135,7 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
     Object? boughtPrice = freezed,
     Object? boughtFromId = freezed,
     Object? soldToId = freezed,
+    Object? unknownLifecycle = freezed,
     Object? notes = freezed,
   }) {
     return _then(_value.copyWith(
@@ -193,6 +199,10 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
           ? _value.fledgedAt
           : fledgedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      bornAt: freezed == bornAt
+          ? _value.bornAt
+          : bornAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       diedAt: freezed == diedAt
           ? _value.diedAt
           : diedAt // ignore: cast_nullable_to_non_nullable
@@ -233,6 +243,10 @@ class _$BirdCopyWithImpl<$Res, $Val extends Bird>
           ? _value.soldToId
           : soldToId // ignore: cast_nullable_to_non_nullable
               as String?,
+      unknownLifecycle: freezed == unknownLifecycle
+          ? _value.unknownLifecycle
+          : unknownLifecycle // ignore: cast_nullable_to_non_nullable
+              as bool?,
       notes: freezed == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
@@ -264,6 +278,7 @@ abstract class _$$BirdImplCopyWith<$Res> implements $BirdCopyWith<$Res> {
       DateTime? laidAt,
       DateTime? hatchedAt,
       DateTime? fledgedAt,
+      DateTime? bornAt,
       DateTime? diedAt,
       SaleStatus saleStatus,
       DateTime? listedAt,
@@ -274,6 +289,7 @@ abstract class _$$BirdImplCopyWith<$Res> implements $BirdCopyWith<$Res> {
       double? boughtPrice,
       String? boughtFromId,
       String? soldToId,
+      bool? unknownLifecycle,
       String? notes});
 }
 
@@ -304,6 +320,7 @@ class __$$BirdImplCopyWithImpl<$Res>
     Object? laidAt = freezed,
     Object? hatchedAt = freezed,
     Object? fledgedAt = freezed,
+    Object? bornAt = freezed,
     Object? diedAt = freezed,
     Object? saleStatus = null,
     Object? listedAt = freezed,
@@ -314,6 +331,7 @@ class __$$BirdImplCopyWithImpl<$Res>
     Object? boughtPrice = freezed,
     Object? boughtFromId = freezed,
     Object? soldToId = freezed,
+    Object? unknownLifecycle = freezed,
     Object? notes = freezed,
   }) {
     return _then(_$BirdImpl(
@@ -377,6 +395,10 @@ class __$$BirdImplCopyWithImpl<$Res>
           ? _value.fledgedAt
           : fledgedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      bornAt: freezed == bornAt
+          ? _value.bornAt
+          : bornAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       diedAt: freezed == diedAt
           ? _value.diedAt
           : diedAt // ignore: cast_nullable_to_non_nullable
@@ -417,6 +439,10 @@ class __$$BirdImplCopyWithImpl<$Res>
           ? _value.soldToId
           : soldToId // ignore: cast_nullable_to_non_nullable
               as String?,
+      unknownLifecycle: freezed == unknownLifecycle
+          ? _value.unknownLifecycle
+          : unknownLifecycle // ignore: cast_nullable_to_non_nullable
+              as bool?,
       notes: freezed == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
@@ -445,6 +471,7 @@ class _$BirdImpl implements _Bird {
       this.laidAt,
       this.hatchedAt,
       this.fledgedAt,
+      this.bornAt,
       this.diedAt,
       this.saleStatus = SaleStatus.notForSale,
       this.listedAt,
@@ -455,6 +482,7 @@ class _$BirdImpl implements _Bird {
       this.boughtPrice,
       this.boughtFromId,
       this.soldToId,
+      this.unknownLifecycle,
       this.notes});
 
   factory _$BirdImpl.fromJson(Map<String, dynamic> json) =>
@@ -497,6 +525,8 @@ class _$BirdImpl implements _Bird {
   @override
   final DateTime? fledgedAt;
   @override
+  final DateTime? bornAt;
+  @override
   final DateTime? diedAt;
 // Commerce
   @override
@@ -518,13 +548,16 @@ class _$BirdImpl implements _Bird {
   final String? boughtFromId;
   @override
   final String? soldToId;
+// Lifecycle
+  @override
+  final bool? unknownLifecycle;
 // Notes
   @override
   final String? notes;
 
   @override
   String toString() {
-    return 'Bird(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, ringNumber: $ringNumber, speciesId: $speciesId, colorId: $colorId, ownerId: $ownerId, sex: $sex, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, broodId: $broodId, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, diedAt: $diedAt, saleStatus: $saleStatus, listedAt: $listedAt, soldAt: $soldAt, askingPrice: $askingPrice, finalPrice: $finalPrice, boughtAt: $boughtAt, boughtPrice: $boughtPrice, boughtFromId: $boughtFromId, soldToId: $soldToId, notes: $notes)';
+    return 'Bird(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, ringNumber: $ringNumber, speciesId: $speciesId, colorId: $colorId, ownerId: $ownerId, sex: $sex, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, broodId: $broodId, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, bornAt: $bornAt, diedAt: $diedAt, saleStatus: $saleStatus, listedAt: $listedAt, soldAt: $soldAt, askingPrice: $askingPrice, finalPrice: $finalPrice, boughtAt: $boughtAt, boughtPrice: $boughtPrice, boughtFromId: $boughtFromId, soldToId: $soldToId, unknownLifecycle: $unknownLifecycle, notes: $notes)';
   }
 
   @override
@@ -555,6 +588,7 @@ class _$BirdImpl implements _Bird {
                 other.hatchedAt == hatchedAt) &&
             (identical(other.fledgedAt, fledgedAt) ||
                 other.fledgedAt == fledgedAt) &&
+            (identical(other.bornAt, bornAt) || other.bornAt == bornAt) &&
             (identical(other.diedAt, diedAt) || other.diedAt == diedAt) &&
             (identical(other.saleStatus, saleStatus) ||
                 other.saleStatus == saleStatus) &&
@@ -573,6 +607,8 @@ class _$BirdImpl implements _Bird {
                 other.boughtFromId == boughtFromId) &&
             (identical(other.soldToId, soldToId) ||
                 other.soldToId == soldToId) &&
+            (identical(other.unknownLifecycle, unknownLifecycle) ||
+                other.unknownLifecycle == unknownLifecycle) &&
             (identical(other.notes, notes) || other.notes == notes));
   }
 
@@ -595,6 +631,7 @@ class _$BirdImpl implements _Bird {
         laidAt,
         hatchedAt,
         fledgedAt,
+        bornAt,
         diedAt,
         saleStatus,
         listedAt,
@@ -605,6 +642,7 @@ class _$BirdImpl implements _Bird {
         boughtPrice,
         boughtFromId,
         soldToId,
+        unknownLifecycle,
         notes
       ]);
 
@@ -641,6 +679,7 @@ abstract class _Bird implements Bird {
       final DateTime? laidAt,
       final DateTime? hatchedAt,
       final DateTime? fledgedAt,
+      final DateTime? bornAt,
       final DateTime? diedAt,
       final SaleStatus saleStatus,
       final DateTime? listedAt,
@@ -651,6 +690,7 @@ abstract class _Bird implements Bird {
       final double? boughtPrice,
       final String? boughtFromId,
       final String? soldToId,
+      final bool? unknownLifecycle,
       final String? notes}) = _$BirdImpl;
 
   factory _Bird.fromJson(Map<String, dynamic> json) = _$BirdImpl.fromJson;
@@ -686,6 +726,8 @@ abstract class _Bird implements Bird {
   @override
   DateTime? get fledgedAt;
   @override
+  DateTime? get bornAt;
+  @override
   DateTime? get diedAt; // Commerce
   @override
   SaleStatus get saleStatus;
@@ -704,7 +746,9 @@ abstract class _Bird implements Bird {
   @override
   String? get boughtFromId;
   @override
-  String? get soldToId; // Notes
+  String? get soldToId; // Lifecycle
+  @override
+  bool? get unknownLifecycle; // Notes
   @override
   String? get notes;
 

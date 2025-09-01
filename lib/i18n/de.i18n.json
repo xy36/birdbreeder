@@ -139,7 +139,10 @@
             },
             "life": {
                 "title": "Lebensphase",
-                "subTitle": "Informationen zur Lebensphase des Vogels"
+                "subTitle": "Informationen zur Lebensphase des Vogels",
+                "unknown_lifecycle_title": "Unbekannte Lebenszyklusdaten?",
+                "unknown_lifecycle_sub_title": "Wenn die Lebenszyklusdaten nicht bekannt sind, aktivieren Sie diese Option.",
+                "unknown_lifecycle_description": "Wenn ein Geburtsdatum vorhanden ist, wird der Vogel als Erwachsen betrachtet. Wenn ein Sterbedatum vorhanden ist, wird der Vogel als Verstorben betrachtet."
             },
             "notes": {
                 "title": "Notizen",
@@ -238,7 +241,8 @@
             "at": "Verkauft am"
         },
         "gender": "Geschlecht",
-        "diedAt": "Sterbedatum",
+        "died_at": "Sterbedatum",
+        "born_at": "Geburtsdatum",
         "father": "Vater",
         "mother": "Mutter",
         "partner": "Partner",

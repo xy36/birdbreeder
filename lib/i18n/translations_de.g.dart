@@ -458,6 +458,9 @@ class TranslationsCommonDe {
   /// de: 'Sterbedatum'
   String get died_at => 'Sterbedatum';
 
+  /// de: 'Geburtsdatum'
+  String get born_at => 'Geburtsdatum';
+
   /// de: 'Vater'
   String get father => 'Vater';
 
@@ -1152,6 +1155,16 @@ class TranslationsBirdSectionsLifeDe {
 
   /// de: 'Informationen zur Lebensphase des Vogels'
   String get sub_title => 'Informationen zur Lebensphase des Vogels';
+
+  /// de: 'Unbekannte Lebenszyklusdaten?'
+  String get unknown_lifecycle_title => 'Unbekannte Lebenszyklusdaten?';
+
+  /// de: 'Wenn die Lebenszyklusdaten nicht bekannt sind, aktivieren Sie diese Option.'
+  String get unknown_lifecycle_sub_title => 'Wenn die Lebenszyklusdaten nicht bekannt sind, aktivieren Sie diese Option.';
+
+  /// de: 'Wenn ein Geburtsdatum vorhanden ist, wird der Vogel als Erwachsen betrachtet. Wenn ein Sterbedatum vorhanden ist, wird der Vogel als Verstorben betrachtet.'
+  String get unknown_lifecycle_description =>
+      'Wenn ein Geburtsdatum vorhanden ist, wird der Vogel als Erwachsen betrachtet. Wenn ein Sterbedatum vorhanden ist, wird der Vogel als Verstorben betrachtet.';
 }
 
 // Path: bird.sections.notes

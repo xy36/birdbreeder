@@ -101,6 +101,7 @@ class Bird with _$Bird {
     DateTime? laidAt,
     DateTime? hatchedAt,
     DateTime? fledgedAt,
+    DateTime? bornAt,
     DateTime? diedAt,
 
     // Commerce
@@ -113,6 +114,9 @@ class Bird with _$Bird {
     double? boughtPrice,
     ContactId? boughtFromId,
     ContactId? soldToId,
+
+    // Lifecycle
+    bool? unknownLifecycle,
 
     // Notes
     String? notes,

@@ -126,6 +126,8 @@ extension BirdBreederResovlerExtension on BirdBreederCubit {
       ownerId: birdDto.ownerId,
       createdAt: birdDto.created,
       updatedAt: birdDto.updated,
+      bornAt: birdDto.bornAt,
+      unknownLifecycle: birdDto.unknownLifecycle,
     );
   }
 
