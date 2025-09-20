@@ -25,9 +25,9 @@ mixin _$BreedingPairDto {
   String? get collectionName => throw _privateConstructorUsedError;
   DateTime? get created => throw _privateConstructorUsedError;
   DateTime? get updated => throw _privateConstructorUsedError;
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get start => throw _privateConstructorUsedError;
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get end => throw _privateConstructorUsedError;
   @JsonKey(name: 'father')
   String get fatherId => throw _privateConstructorUsedError;
@@ -62,8 +62,8 @@ abstract class $BreedingPairDtoCopyWith<$Res> {
       String? collectionName,
       DateTime? created,
       DateTime? updated,
-      @DateTimeNullEmptyConverter() DateTime? start,
-      @DateTimeNullEmptyConverter() DateTime? end,
+      @UtcDateTimeConverter() DateTime? start,
+      @UtcDateTimeConverter() DateTime? end,
       @JsonKey(name: 'father') String fatherId,
       @JsonKey(name: 'mother') String motherId,
       @JsonKey(name: 'cage') String? cageId,
@@ -172,8 +172,8 @@ abstract class _$$BreedingPairDtoImplCopyWith<$Res>
       String? collectionName,
       DateTime? created,
       DateTime? updated,
-      @DateTimeNullEmptyConverter() DateTime? start,
-      @DateTimeNullEmptyConverter() DateTime? end,
+      @UtcDateTimeConverter() DateTime? start,
+      @UtcDateTimeConverter() DateTime? end,
       @JsonKey(name: 'father') String fatherId,
       @JsonKey(name: 'mother') String motherId,
       @JsonKey(name: 'cage') String? cageId,
@@ -275,8 +275,8 @@ class _$BreedingPairDtoImpl implements _BreedingPairDto {
       this.collectionName,
       this.created,
       this.updated,
-      @DateTimeNullEmptyConverter() this.start,
-      @DateTimeNullEmptyConverter() this.end,
+      @UtcDateTimeConverter() this.start,
+      @UtcDateTimeConverter() this.end,
       @JsonKey(name: 'father') required this.fatherId,
       @JsonKey(name: 'mother') required this.motherId,
       @JsonKey(name: 'cage') this.cageId,
@@ -298,10 +298,10 @@ class _$BreedingPairDtoImpl implements _BreedingPairDto {
   @override
   final DateTime? updated;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   final DateTime? start;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   final DateTime? end;
   @override
   @JsonKey(name: 'father')
@@ -391,8 +391,8 @@ abstract class _BreedingPairDto implements BreedingPairDto {
       final String? collectionName,
       final DateTime? created,
       final DateTime? updated,
-      @DateTimeNullEmptyConverter() final DateTime? start,
-      @DateTimeNullEmptyConverter() final DateTime? end,
+      @UtcDateTimeConverter() final DateTime? start,
+      @UtcDateTimeConverter() final DateTime? end,
       @JsonKey(name: 'father') required final String fatherId,
       @JsonKey(name: 'mother') required final String motherId,
       @JsonKey(name: 'cage') final String? cageId,
@@ -414,10 +414,10 @@ abstract class _BreedingPairDto implements BreedingPairDto {
   @override
   DateTime? get updated;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get start;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get end;
   @override
   @JsonKey(name: 'father')

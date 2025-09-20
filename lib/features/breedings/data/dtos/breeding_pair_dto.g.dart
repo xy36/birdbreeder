@@ -18,9 +18,8 @@ _$BreedingPairDtoImpl _$$BreedingPairDtoImplFromJson(
       updated: json['updated'] == null
           ? null
           : DateTime.parse(json['updated'] as String),
-      start:
-          const DateTimeNullEmptyConverter().fromJson(json['start'] as String?),
-      end: const DateTimeNullEmptyConverter().fromJson(json['end'] as String?),
+      start: const UtcDateTimeConverter().fromJson(json['start'] as String?),
+      end: const UtcDateTimeConverter().fromJson(json['end'] as String?),
       fatherId: json['father'] as String,
       motherId: json['mother'] as String,
       cageId: json['cage'] as String?,
@@ -38,8 +37,8 @@ Map<String, dynamic> _$$BreedingPairDtoImplToJson(
       'collectionName': instance.collectionName,
       'created': instance.created?.toIso8601String(),
       'updated': instance.updated?.toIso8601String(),
-      'start': const DateTimeNullEmptyConverter().toJson(instance.start),
-      'end': const DateTimeNullEmptyConverter().toJson(instance.end),
+      'start': const UtcDateTimeConverter().toJson(instance.start),
+      'end': const UtcDateTimeConverter().toJson(instance.end),
       'father': instance.fatherId,
       'mother': instance.motherId,
       'cage': instance.cageId,

@@ -25,9 +25,9 @@ mixin _$BroodDto {
   String? get collectionName => throw _privateConstructorUsedError;
   DateTime? get created => throw _privateConstructorUsedError;
   DateTime? get updated => throw _privateConstructorUsedError;
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get start => throw _privateConstructorUsedError;
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get end => throw _privateConstructorUsedError;
   @StringNullEmptyConverter()
   String? get notes => throw _privateConstructorUsedError;
@@ -58,8 +58,8 @@ abstract class $BroodDtoCopyWith<$Res> {
       String? collectionName,
       DateTime? created,
       DateTime? updated,
-      @DateTimeNullEmptyConverter() DateTime? start,
-      @DateTimeNullEmptyConverter() DateTime? end,
+      @UtcDateTimeConverter() DateTime? start,
+      @UtcDateTimeConverter() DateTime? end,
       @StringNullEmptyConverter() String? notes,
       @StringNullEmptyConverter() String? cage,
       @StringNullEmptyConverter() String? breedingPair,
@@ -156,8 +156,8 @@ abstract class _$$BroodDtoImplCopyWith<$Res>
       String? collectionName,
       DateTime? created,
       DateTime? updated,
-      @DateTimeNullEmptyConverter() DateTime? start,
-      @DateTimeNullEmptyConverter() DateTime? end,
+      @UtcDateTimeConverter() DateTime? start,
+      @UtcDateTimeConverter() DateTime? end,
       @StringNullEmptyConverter() String? notes,
       @StringNullEmptyConverter() String? cage,
       @StringNullEmptyConverter() String? breedingPair,
@@ -247,8 +247,8 @@ class _$BroodDtoImpl implements _BroodDto {
       this.collectionName,
       this.created,
       this.updated,
-      @DateTimeNullEmptyConverter() this.start,
-      @DateTimeNullEmptyConverter() this.end,
+      @UtcDateTimeConverter() this.start,
+      @UtcDateTimeConverter() this.end,
       @StringNullEmptyConverter() this.notes,
       @StringNullEmptyConverter() this.cage,
       @StringNullEmptyConverter() this.breedingPair,
@@ -268,10 +268,10 @@ class _$BroodDtoImpl implements _BroodDto {
   @override
   final DateTime? updated;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   final DateTime? start;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   final DateTime? end;
   @override
   @StringNullEmptyConverter()
@@ -339,8 +339,8 @@ abstract class _BroodDto implements BroodDto {
       final String? collectionName,
       final DateTime? created,
       final DateTime? updated,
-      @DateTimeNullEmptyConverter() final DateTime? start,
-      @DateTimeNullEmptyConverter() final DateTime? end,
+      @UtcDateTimeConverter() final DateTime? start,
+      @UtcDateTimeConverter() final DateTime? end,
       @StringNullEmptyConverter() final String? notes,
       @StringNullEmptyConverter() final String? cage,
       @StringNullEmptyConverter() final String? breedingPair,
@@ -360,10 +360,10 @@ abstract class _BroodDto implements BroodDto {
   @override
   DateTime? get updated;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get start;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get end;
   @override
   @StringNullEmptyConverter()

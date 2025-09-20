@@ -1,4 +1,5 @@
 import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
+import 'package:birdbreeder/features/birds/data/dtos/egg_dto.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/breeding_pair_dto.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/brood_dto.dart';
 import 'package:birdbreeder/features/contacts/data/dtos/contact_dto.dart';
@@ -294,5 +295,44 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
 
   void unsubscribeFromBroods() {
     s1.get<PocketBaseService>().broodsCollection.unsubscribe();
+  }
+
+  void subscribeToEggs() {
+    s1.get<PocketBaseService>().eggsCollection.subscribe(
+      '*',
+      (e) {
+        if (e.record == null) return;
+        final egg = EggDto.fromJson(e.record!.toJson());
+
+        switch (e.action) {
+          case 'update':
+            emitLoaded(
+              eggs: state.birdBreederResources.eggs
+                  .map((e) => e.id == egg.id ? resolveEggDto(egg) : e)
+                  .toList(),
+            );
+            break;
+          case 'create':
+            emitLoaded(
+              eggs: [
+                ...state.birdBreederResources.eggs,
+                resolveEggDto(egg),
+              ],
+            );
+            break;
+          case 'delete':
+            emitLoaded(
+              eggs: state.birdBreederResources.eggs
+                  .where((e) => e.id != egg.id)
+                  .toList(),
+            );
+            break;
+        }
+      },
+    );
+  }
+
+  void unsubscribeFromEggs() {
+    s1.get<PocketBaseService>().eggsCollection.unsubscribe();
   }
 }

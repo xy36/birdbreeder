@@ -1,6 +1,9 @@
 import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
+import 'package:birdbreeder/features/birds/data/dtos/egg_dto.dart';
 import 'package:birdbreeder/features/birds/domain/mapper/bird_mapper.dart';
+import 'package:birdbreeder/features/birds/domain/mapper/egg_mapper.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
+import 'package:birdbreeder/features/birds/domain/models/egg.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/breeding_pair_dto.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/brood_dto.dart';
 import 'package:birdbreeder/features/breedings/domain/mapper/breeding_pair_mapper.dart';
@@ -110,5 +113,17 @@ extension BroodMapperExtension on Brood {
 extension BroodDtoMapperExtension on BroodDto {
   Brood toModel() {
     return BroodMapper().convert<BroodDto, Brood>(this);
+  }
+}
+
+extension EggMapperExtension on Egg {
+  EggDto toDto() {
+    return EggMapper().convert<Egg, EggDto>(this);
+  }
+}
+
+extension EggDtoMapperExtension on EggDto {
+  Egg toModel() {
+    return EggMapper().convert<EggDto, Egg>(this);
   }
 }

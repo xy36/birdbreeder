@@ -47,24 +47,24 @@ mixin _$BirdDto {
   @JsonKey(name: 'brood')
   @StringNullEmptyConverter()
   String? get broodId => throw _privateConstructorUsedError;
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get laidAt => throw _privateConstructorUsedError;
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get hatchedAt => throw _privateConstructorUsedError;
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get fledgedAt => throw _privateConstructorUsedError;
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get bornAt => throw _privateConstructorUsedError;
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get diedAt => throw _privateConstructorUsedError;
   SaleStatus get saleStatus => throw _privateConstructorUsedError;
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get listedAt => throw _privateConstructorUsedError;
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get soldAt => throw _privateConstructorUsedError;
   double? get askingPrice => throw _privateConstructorUsedError;
   double? get finalPrice => throw _privateConstructorUsedError;
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get boughtAt => throw _privateConstructorUsedError;
   double? get boughtPrice => throw _privateConstructorUsedError;
   @StringNullEmptyConverter()
@@ -111,17 +111,17 @@ abstract class $BirdDtoCopyWith<$Res> {
       @JsonKey(name: 'mother') @StringNullEmptyConverter() String? motherId,
       @JsonKey(name: 'cage') @StringNullEmptyConverter() String? cageId,
       @JsonKey(name: 'brood') @StringNullEmptyConverter() String? broodId,
-      @DateTimeNullEmptyConverter() DateTime? laidAt,
-      @DateTimeNullEmptyConverter() DateTime? hatchedAt,
-      @DateTimeNullEmptyConverter() DateTime? fledgedAt,
-      @DateTimeNullEmptyConverter() DateTime? bornAt,
-      @DateTimeNullEmptyConverter() DateTime? diedAt,
+      @UtcDateTimeConverter() DateTime? laidAt,
+      @UtcDateTimeConverter() DateTime? hatchedAt,
+      @UtcDateTimeConverter() DateTime? fledgedAt,
+      @UtcDateTimeConverter() DateTime? bornAt,
+      @UtcDateTimeConverter() DateTime? diedAt,
       SaleStatus saleStatus,
-      @DateTimeNullEmptyConverter() DateTime? listedAt,
-      @DateTimeNullEmptyConverter() DateTime? soldAt,
+      @UtcDateTimeConverter() DateTime? listedAt,
+      @UtcDateTimeConverter() DateTime? soldAt,
       double? askingPrice,
       double? finalPrice,
-      @DateTimeNullEmptyConverter() DateTime? boughtAt,
+      @UtcDateTimeConverter() DateTime? boughtAt,
       double? boughtPrice,
       @StringNullEmptyConverter() String? notes,
       @JsonKey(name: 'boughtFrom')
@@ -332,17 +332,17 @@ abstract class _$$BirdDtoImplCopyWith<$Res> implements $BirdDtoCopyWith<$Res> {
       @JsonKey(name: 'mother') @StringNullEmptyConverter() String? motherId,
       @JsonKey(name: 'cage') @StringNullEmptyConverter() String? cageId,
       @JsonKey(name: 'brood') @StringNullEmptyConverter() String? broodId,
-      @DateTimeNullEmptyConverter() DateTime? laidAt,
-      @DateTimeNullEmptyConverter() DateTime? hatchedAt,
-      @DateTimeNullEmptyConverter() DateTime? fledgedAt,
-      @DateTimeNullEmptyConverter() DateTime? bornAt,
-      @DateTimeNullEmptyConverter() DateTime? diedAt,
+      @UtcDateTimeConverter() DateTime? laidAt,
+      @UtcDateTimeConverter() DateTime? hatchedAt,
+      @UtcDateTimeConverter() DateTime? fledgedAt,
+      @UtcDateTimeConverter() DateTime? bornAt,
+      @UtcDateTimeConverter() DateTime? diedAt,
       SaleStatus saleStatus,
-      @DateTimeNullEmptyConverter() DateTime? listedAt,
-      @DateTimeNullEmptyConverter() DateTime? soldAt,
+      @UtcDateTimeConverter() DateTime? listedAt,
+      @UtcDateTimeConverter() DateTime? soldAt,
       double? askingPrice,
       double? finalPrice,
-      @DateTimeNullEmptyConverter() DateTime? boughtAt,
+      @UtcDateTimeConverter() DateTime? boughtAt,
       double? boughtPrice,
       @StringNullEmptyConverter() String? notes,
       @JsonKey(name: 'boughtFrom')
@@ -545,17 +545,17 @@ class _$BirdDtoImpl implements _BirdDto {
       @JsonKey(name: 'mother') @StringNullEmptyConverter() this.motherId,
       @JsonKey(name: 'cage') @StringNullEmptyConverter() this.cageId,
       @JsonKey(name: 'brood') @StringNullEmptyConverter() this.broodId,
-      @DateTimeNullEmptyConverter() this.laidAt,
-      @DateTimeNullEmptyConverter() this.hatchedAt,
-      @DateTimeNullEmptyConverter() this.fledgedAt,
-      @DateTimeNullEmptyConverter() this.bornAt,
-      @DateTimeNullEmptyConverter() this.diedAt,
+      @UtcDateTimeConverter() this.laidAt,
+      @UtcDateTimeConverter() this.hatchedAt,
+      @UtcDateTimeConverter() this.fledgedAt,
+      @UtcDateTimeConverter() this.bornAt,
+      @UtcDateTimeConverter() this.diedAt,
       this.saleStatus = SaleStatus.notForSale,
-      @DateTimeNullEmptyConverter() this.listedAt,
-      @DateTimeNullEmptyConverter() this.soldAt,
+      @UtcDateTimeConverter() this.listedAt,
+      @UtcDateTimeConverter() this.soldAt,
       this.askingPrice,
       this.finalPrice,
-      @DateTimeNullEmptyConverter() this.boughtAt,
+      @UtcDateTimeConverter() this.boughtAt,
       this.boughtPrice,
       @StringNullEmptyConverter() this.notes,
       @JsonKey(name: 'boughtFrom')
@@ -611,35 +611,35 @@ class _$BirdDtoImpl implements _BirdDto {
   @StringNullEmptyConverter()
   final String? broodId;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   final DateTime? laidAt;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   final DateTime? hatchedAt;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   final DateTime? fledgedAt;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   final DateTime? bornAt;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   final DateTime? diedAt;
   @override
   @JsonKey()
   final SaleStatus saleStatus;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   final DateTime? listedAt;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   final DateTime? soldAt;
   @override
   final double? askingPrice;
   @override
   final double? finalPrice;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   final DateTime? boughtAt;
   @override
   final double? boughtPrice;
@@ -799,17 +799,17 @@ abstract class _BirdDto implements BirdDto {
       final String? motherId,
       @JsonKey(name: 'cage') @StringNullEmptyConverter() final String? cageId,
       @JsonKey(name: 'brood') @StringNullEmptyConverter() final String? broodId,
-      @DateTimeNullEmptyConverter() final DateTime? laidAt,
-      @DateTimeNullEmptyConverter() final DateTime? hatchedAt,
-      @DateTimeNullEmptyConverter() final DateTime? fledgedAt,
-      @DateTimeNullEmptyConverter() final DateTime? bornAt,
-      @DateTimeNullEmptyConverter() final DateTime? diedAt,
+      @UtcDateTimeConverter() final DateTime? laidAt,
+      @UtcDateTimeConverter() final DateTime? hatchedAt,
+      @UtcDateTimeConverter() final DateTime? fledgedAt,
+      @UtcDateTimeConverter() final DateTime? bornAt,
+      @UtcDateTimeConverter() final DateTime? diedAt,
       final SaleStatus saleStatus,
-      @DateTimeNullEmptyConverter() final DateTime? listedAt,
-      @DateTimeNullEmptyConverter() final DateTime? soldAt,
+      @UtcDateTimeConverter() final DateTime? listedAt,
+      @UtcDateTimeConverter() final DateTime? soldAt,
       final double? askingPrice,
       final double? finalPrice,
-      @DateTimeNullEmptyConverter() final DateTime? boughtAt,
+      @UtcDateTimeConverter() final DateTime? boughtAt,
       final double? boughtPrice,
       @StringNullEmptyConverter() final String? notes,
       @JsonKey(name: 'boughtFrom')
@@ -865,34 +865,34 @@ abstract class _BirdDto implements BirdDto {
   @StringNullEmptyConverter()
   String? get broodId;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get laidAt;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get hatchedAt;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get fledgedAt;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get bornAt;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get diedAt;
   @override
   SaleStatus get saleStatus;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get listedAt;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get soldAt;
   @override
   double? get askingPrice;
   @override
   double? get finalPrice;
   @override
-  @DateTimeNullEmptyConverter()
+  @UtcDateTimeConverter()
   DateTime? get boughtAt;
   @override
   double? get boughtPrice;

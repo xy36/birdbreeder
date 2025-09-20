@@ -19,6 +19,7 @@ mixin _$BirdBreederResources {
   List<Bird> get birds => throw _privateConstructorUsedError;
   List<BreedingPair> get breedingPairs => throw _privateConstructorUsedError;
   List<Brood> get broods => throw _privateConstructorUsedError;
+  List<Egg> get eggs => throw _privateConstructorUsedError;
   List<Cage> get cages => throw _privateConstructorUsedError;
   List<BirdColor> get colors => throw _privateConstructorUsedError;
   List<Contact> get contacts => throw _privateConstructorUsedError;
@@ -41,6 +42,7 @@ abstract class $BirdBreederResourcesCopyWith<$Res> {
       {List<Bird> birds,
       List<BreedingPair> breedingPairs,
       List<Brood> broods,
+      List<Egg> eggs,
       List<Cage> cages,
       List<BirdColor> colors,
       List<Contact> contacts,
@@ -66,6 +68,7 @@ class _$BirdBreederResourcesCopyWithImpl<$Res,
     Object? birds = null,
     Object? breedingPairs = null,
     Object? broods = null,
+    Object? eggs = null,
     Object? cages = null,
     Object? colors = null,
     Object? contacts = null,
@@ -84,6 +87,10 @@ class _$BirdBreederResourcesCopyWithImpl<$Res,
           ? _value.broods
           : broods // ignore: cast_nullable_to_non_nullable
               as List<Brood>,
+      eggs: null == eggs
+          ? _value.eggs
+          : eggs // ignore: cast_nullable_to_non_nullable
+              as List<Egg>,
       cages: null == cages
           ? _value.cages
           : cages // ignore: cast_nullable_to_non_nullable
@@ -116,6 +123,7 @@ abstract class _$$BirdBreederResourcesImplCopyWith<$Res>
       {List<Bird> birds,
       List<BreedingPair> breedingPairs,
       List<Brood> broods,
+      List<Egg> eggs,
       List<Cage> cages,
       List<BirdColor> colors,
       List<Contact> contacts,
@@ -138,6 +146,7 @@ class __$$BirdBreederResourcesImplCopyWithImpl<$Res>
     Object? birds = null,
     Object? breedingPairs = null,
     Object? broods = null,
+    Object? eggs = null,
     Object? cages = null,
     Object? colors = null,
     Object? contacts = null,
@@ -156,6 +165,10 @@ class __$$BirdBreederResourcesImplCopyWithImpl<$Res>
           ? _value._broods
           : broods // ignore: cast_nullable_to_non_nullable
               as List<Brood>,
+      eggs: null == eggs
+          ? _value._eggs
+          : eggs // ignore: cast_nullable_to_non_nullable
+              as List<Egg>,
       cages: null == cages
           ? _value._cages
           : cages // ignore: cast_nullable_to_non_nullable
@@ -184,6 +197,7 @@ class _$BirdBreederResourcesImpl extends _BirdBreederResources
       {required final List<Bird> birds,
       required final List<BreedingPair> breedingPairs,
       required final List<Brood> broods,
+      required final List<Egg> eggs,
       required final List<Cage> cages,
       required final List<BirdColor> colors,
       required final List<Contact> contacts,
@@ -191,6 +205,7 @@ class _$BirdBreederResourcesImpl extends _BirdBreederResources
       : _birds = birds,
         _breedingPairs = breedingPairs,
         _broods = broods,
+        _eggs = eggs,
         _cages = cages,
         _colors = colors,
         _contacts = contacts,
@@ -219,6 +234,14 @@ class _$BirdBreederResourcesImpl extends _BirdBreederResources
     if (_broods is EqualUnmodifiableListView) return _broods;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_broods);
+  }
+
+  final List<Egg> _eggs;
+  @override
+  List<Egg> get eggs {
+    if (_eggs is EqualUnmodifiableListView) return _eggs;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_eggs);
   }
 
   final List<Cage> _cages;
@@ -255,7 +278,7 @@ class _$BirdBreederResourcesImpl extends _BirdBreederResources
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BirdBreederResources(birds: $birds, breedingPairs: $breedingPairs, broods: $broods, cages: $cages, colors: $colors, contacts: $contacts, species: $species)';
+    return 'BirdBreederResources(birds: $birds, breedingPairs: $breedingPairs, broods: $broods, eggs: $eggs, cages: $cages, colors: $colors, contacts: $contacts, species: $species)';
   }
 
   @override
@@ -266,6 +289,7 @@ class _$BirdBreederResourcesImpl extends _BirdBreederResources
       ..add(DiagnosticsProperty('birds', birds))
       ..add(DiagnosticsProperty('breedingPairs', breedingPairs))
       ..add(DiagnosticsProperty('broods', broods))
+      ..add(DiagnosticsProperty('eggs', eggs))
       ..add(DiagnosticsProperty('cages', cages))
       ..add(DiagnosticsProperty('colors', colors))
       ..add(DiagnosticsProperty('contacts', contacts))
@@ -281,6 +305,7 @@ class _$BirdBreederResourcesImpl extends _BirdBreederResources
             const DeepCollectionEquality()
                 .equals(other._breedingPairs, _breedingPairs) &&
             const DeepCollectionEquality().equals(other._broods, _broods) &&
+            const DeepCollectionEquality().equals(other._eggs, _eggs) &&
             const DeepCollectionEquality().equals(other._cages, _cages) &&
             const DeepCollectionEquality().equals(other._colors, _colors) &&
             const DeepCollectionEquality().equals(other._contacts, _contacts) &&
@@ -293,6 +318,7 @@ class _$BirdBreederResourcesImpl extends _BirdBreederResources
       const DeepCollectionEquality().hash(_birds),
       const DeepCollectionEquality().hash(_breedingPairs),
       const DeepCollectionEquality().hash(_broods),
+      const DeepCollectionEquality().hash(_eggs),
       const DeepCollectionEquality().hash(_cages),
       const DeepCollectionEquality().hash(_colors),
       const DeepCollectionEquality().hash(_contacts),
@@ -314,6 +340,7 @@ abstract class _BirdBreederResources extends BirdBreederResources {
       {required final List<Bird> birds,
       required final List<BreedingPair> breedingPairs,
       required final List<Brood> broods,
+      required final List<Egg> eggs,
       required final List<Cage> cages,
       required final List<BirdColor> colors,
       required final List<Contact> contacts,
@@ -326,6 +353,8 @@ abstract class _BirdBreederResources extends BirdBreederResources {
   List<BreedingPair> get breedingPairs;
   @override
   List<Brood> get broods;
+  @override
+  List<Egg> get eggs;
   @override
   List<Cage> get cages;
   @override

@@ -14,6 +14,7 @@
     "colors": {
         "title": "Farben",
         "add": "Farbe hinzufügen",
+        "pick": "Farbe auswählen",
         "delete": "Farbe löschen?",
         "color": "Farbe"
     },
@@ -78,6 +79,7 @@
             "finished": "Beendet"
         },
         "start_date": "Startdatum",
+        "end_date": "Enddatum (optional)",
         "notes": "Notizen (optional)"
     },
     "resources": {
@@ -158,6 +160,56 @@
             }
         }
     },
+    "brood": {
+        "name": "Gelege",
+        "overview": "Brutübersicht",
+        "add": "Gelege hinzufügen",
+        "delete": "Gelege löschen?",
+        "edit": "Gelege bearbeiten",
+        "empty": "Noch kein Gelege hinzugefügt",
+        "since": "Seit {{date}}",
+        "eggs_count(param=count)": {
+            "zero": "Keine Eier",
+            "one": "1 Ei",
+            "other": "{{count}} Eier"
+        },
+        "kpi": {
+            "eggs": "Eier",
+            "hatched": "Geschlüpft",
+            "fledged": "Ausgeflogen"
+        },
+        "hatched_count(param=count)": {
+            "zero": "Keine geschlüpft",
+            "one": "1 geschlüpft",
+            "other": "{{count}} geschlüpft"
+        },
+        "fledged_count(param=count)": {
+            "zero": "Keine ausgeflogen",
+            "one": "1 ausgeflogen",
+            "other": "{{count}} ausgeflogen"
+        },
+        "notes": "Notizen (optional)",
+        "created_information(date, time)": "Erstellt am {{DateTime date}} um {{time}}"
+    },
+    "egg": {
+        "name": "Ei",
+        "add": "Ei hinzufügen",
+        "status": {
+            "laid": "Gelegt",
+            "fertilized": "Befruchtet",
+            "unfertilized": "Unbefruchtet",
+            "hatched": "Geschlüpft",
+            "dead": "Gestorben",
+            "fledged": "Ausgeflogen",
+            "unknown": "Unbekannt"
+        },
+        "action": {
+            "set_ringnumber": "Neue Ringnummer eintragen"
+        },
+        "pick_laid_date": "Lege-Datum auswählen",
+        "pick_fledged_date": "Ausgeflogen-Datum auswählen",
+        "pick_hatched_date": "Geschlüpft-Datum auswählen"
+    },
     "common": {
         "bottom_sheet": {
             "search_empty_builder_text(text)": "Die Suche nach {{text}} hat leider nichts ergeben."
@@ -179,6 +231,7 @@
         "more_label": "Mehr",
         "less_label": "Weniger",
         "search": "Suchen",
+        "search_hint": "Suchen ...",
         "countbird(param=count)": {
             "zero": "Keine Vögel",
             "one": "1 Vogel",
@@ -211,7 +264,10 @@
             "at": "Gekauft am",
             "price": "Kaufpreis"
         },
-        "eggs_short": "Eier",
+        "eggs_short": {
+            "one": "Ei",
+            "other": "Eier"
+        },
         "hatched_short": "geschl.",
         "fledged_short": "ausgef.",
         "died_short": "gest.",
@@ -306,8 +362,16 @@
         }
     },
     "pop_up_menu": {
+        "open": "Öffnen",
         "edit": "Bearbeiten",
         "show": "Anzeigen",
+        "set_ringnumber": "Ringnummer setzen",
+        "set_color": "Farbe setzen",
+        "mark_hatched": "Als geschlüpft markieren",
+        "mark_fledged": "Als ausgeflogen markieren",
+        "mark_died": "Als gestorben im Ei markieren",
+        "mark_unfertilized": "Als unbefruchtet markieren",
+        "mark_fertilized": "Als befruchtet markieren",
         "duplicate": "Duplizieren",
         "delete": "Löschen"
     },

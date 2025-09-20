@@ -1,4 +1,5 @@
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
+import 'package:birdbreeder/features/birds/domain/models/egg.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
 import 'package:birdbreeder/features/breedings/domain/models/brood.dart';
 import 'package:birdbreeder/features/contacts/domain/models/contact.dart';
@@ -16,6 +17,7 @@ class BirdBreederResources with _$BirdBreederResources {
     required List<Bird> birds,
     required List<BreedingPair> breedingPairs,
     required List<Brood> broods,
+    required List<Egg> eggs,
     required List<Cage> cages,
     required List<BirdColor> colors,
     required List<Contact> contacts,
@@ -26,5 +28,5 @@ class BirdBreederResources with _$BirdBreederResources {
   String short() => '(birds:${birds.length}, pairs:${breedingPairs.length}, '
       'broods:${broods.length}, cages:${cages.length}, '
       'colors:${colors.length}, contacts:${contacts.length}, '
-      'species:${species.length})';
+      'species:${species.length}, eggs:${eggs.length})';
 }

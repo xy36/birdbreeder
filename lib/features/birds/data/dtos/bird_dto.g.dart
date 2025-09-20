@@ -32,27 +32,23 @@ _$BirdDtoImpl _$$BirdDtoImplFromJson(Map<String, dynamic> json) =>
           const StringNullEmptyConverter().fromJson(json['cage'] as String?),
       broodId:
           const StringNullEmptyConverter().fromJson(json['brood'] as String?),
-      laidAt: const DateTimeNullEmptyConverter()
-          .fromJson(json['laidAt'] as String?),
-      hatchedAt: const DateTimeNullEmptyConverter()
-          .fromJson(json['hatchedAt'] as String?),
-      fledgedAt: const DateTimeNullEmptyConverter()
-          .fromJson(json['fledgedAt'] as String?),
-      bornAt: const DateTimeNullEmptyConverter()
-          .fromJson(json['bornAt'] as String?),
-      diedAt: const DateTimeNullEmptyConverter()
-          .fromJson(json['diedAt'] as String?),
+      laidAt: const UtcDateTimeConverter().fromJson(json['laidAt'] as String?),
+      hatchedAt:
+          const UtcDateTimeConverter().fromJson(json['hatchedAt'] as String?),
+      fledgedAt:
+          const UtcDateTimeConverter().fromJson(json['fledgedAt'] as String?),
+      bornAt: const UtcDateTimeConverter().fromJson(json['bornAt'] as String?),
+      diedAt: const UtcDateTimeConverter().fromJson(json['diedAt'] as String?),
       saleStatus:
           $enumDecodeNullable(_$SaleStatusEnumMap, json['saleStatus']) ??
               SaleStatus.notForSale,
-      listedAt: const DateTimeNullEmptyConverter()
-          .fromJson(json['listedAt'] as String?),
-      soldAt: const DateTimeNullEmptyConverter()
-          .fromJson(json['soldAt'] as String?),
+      listedAt:
+          const UtcDateTimeConverter().fromJson(json['listedAt'] as String?),
+      soldAt: const UtcDateTimeConverter().fromJson(json['soldAt'] as String?),
       askingPrice: (json['askingPrice'] as num?)?.toDouble(),
       finalPrice: (json['finalPrice'] as num?)?.toDouble(),
-      boughtAt: const DateTimeNullEmptyConverter()
-          .fromJson(json['boughtAt'] as String?),
+      boughtAt:
+          const UtcDateTimeConverter().fromJson(json['boughtAt'] as String?),
       boughtPrice: (json['boughtPrice'] as num?)?.toDouble(),
       notes:
           const StringNullEmptyConverter().fromJson(json['notes'] as String?),
@@ -82,19 +78,17 @@ Map<String, dynamic> _$$BirdDtoImplToJson(_$BirdDtoImpl instance) =>
       'mother': const StringNullEmptyConverter().toJson(instance.motherId),
       'cage': const StringNullEmptyConverter().toJson(instance.cageId),
       'brood': const StringNullEmptyConverter().toJson(instance.broodId),
-      'laidAt': const DateTimeNullEmptyConverter().toJson(instance.laidAt),
-      'hatchedAt':
-          const DateTimeNullEmptyConverter().toJson(instance.hatchedAt),
-      'fledgedAt':
-          const DateTimeNullEmptyConverter().toJson(instance.fledgedAt),
-      'bornAt': const DateTimeNullEmptyConverter().toJson(instance.bornAt),
-      'diedAt': const DateTimeNullEmptyConverter().toJson(instance.diedAt),
+      'laidAt': const UtcDateTimeConverter().toJson(instance.laidAt),
+      'hatchedAt': const UtcDateTimeConverter().toJson(instance.hatchedAt),
+      'fledgedAt': const UtcDateTimeConverter().toJson(instance.fledgedAt),
+      'bornAt': const UtcDateTimeConverter().toJson(instance.bornAt),
+      'diedAt': const UtcDateTimeConverter().toJson(instance.diedAt),
       'saleStatus': _$SaleStatusEnumMap[instance.saleStatus]!,
-      'listedAt': const DateTimeNullEmptyConverter().toJson(instance.listedAt),
-      'soldAt': const DateTimeNullEmptyConverter().toJson(instance.soldAt),
+      'listedAt': const UtcDateTimeConverter().toJson(instance.listedAt),
+      'soldAt': const UtcDateTimeConverter().toJson(instance.soldAt),
       'askingPrice': instance.askingPrice,
       'finalPrice': instance.finalPrice,
-      'boughtAt': const DateTimeNullEmptyConverter().toJson(instance.boughtAt),
+      'boughtAt': const UtcDateTimeConverter().toJson(instance.boughtAt),
       'boughtPrice': instance.boughtPrice,
       'notes': const StringNullEmptyConverter().toJson(instance.notes),
       'boughtFrom':

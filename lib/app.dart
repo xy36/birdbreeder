@@ -29,7 +29,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     const useDarkTheme = false;
 
-    final lightTheme = FlexThemeData.light(scheme: FlexScheme.aquaBlue);
+    final lightTheme = FlexThemeData.light(scheme: FlexScheme.amber);
     final darkTheme = FlexThemeData.dark(scheme: FlexScheme.redWine);
 
     var theme = useDarkTheme ? darkTheme : lightTheme;
@@ -46,7 +46,6 @@ class App extends StatelessWidget {
           ),
         ),
       ),
-      cardTheme: theme.cardTheme.copyWith(),
     );
     return MultiBlocProvider(
       providers: [

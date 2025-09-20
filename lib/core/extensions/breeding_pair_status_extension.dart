@@ -10,17 +10,34 @@ extension BreedingPairStatusExtension on BreedingPairStatus {
       };
 
   Widget getIcon(BuildContext context, {double size = 24}) => switch (this) {
-        BreedingPairStatus.active =>
-          Icon(Icons.play_arrow, color: color, size: size),
+        BreedingPairStatus.active => Icon(
+            Icons.play_arrow,
+            color: getForegroundColor(context),
+            size: size,
+          ),
         BreedingPairStatus.paused =>
-          Icon(Icons.pause, color: color, size: size),
+          Icon(Icons.pause, color: getForegroundColor(context), size: size),
         BreedingPairStatus.finished =>
-          Icon(Icons.stop, color: color, size: size),
+          Icon(Icons.stop, color: getForegroundColor(context), size: size),
       };
 
-  Color get color => switch (this) {
-        BreedingPairStatus.active => Colors.blue,
-        BreedingPairStatus.paused => Colors.pink,
-        BreedingPairStatus.finished => Colors.grey,
-      };
+  Color getBackgroundColor(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+
+    return switch (this) {
+      BreedingPairStatus.active => scheme.primaryContainer,
+      BreedingPairStatus.paused => scheme.secondaryContainer,
+      BreedingPairStatus.finished => scheme.surfaceTint,
+    };
+  }
+
+  Color getForegroundColor(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+
+    return switch (this) {
+      BreedingPairStatus.active => scheme.onPrimaryContainer,
+      BreedingPairStatus.paused => scheme.onSecondaryContainer,
+      BreedingPairStatus.finished => scheme.onSurface,
+    };
+  }
 }

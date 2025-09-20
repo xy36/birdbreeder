@@ -1,7 +1,9 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/mapper_extensions.dart';
 import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
+import 'package:birdbreeder/features/birds/data/dtos/egg_dto.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
+import 'package:birdbreeder/features/birds/domain/models/egg.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/breeding_pair_dto.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/brood_dto.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
@@ -35,6 +37,7 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
     this._cagesRepository,
     this._speciesRepository,
     this._broodsRepository,
+    this._eggsRepository,
   ) : super(
           const BirdBreederState.initial(
             birdBreederResources: BirdBreederResources(
@@ -45,6 +48,7 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
               colors: [],
               contacts: [],
               species: [],
+              eggs: [],
             ),
           ),
         ) {
@@ -55,6 +59,7 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
     subscribeToSpecies();
     subscribeToBreedingPairs();
     subscribeToBroods();
+    subscribeToEggs();
 
     initialLoad();
   }
@@ -66,6 +71,7 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   final RessourceRepository<BreedingPairDto> _breedingsRepository;
   final RessourceRepository<BroodDto> _broodsRepository;
   final RessourceRepository<BirdDto> _birdsRepository;
+  final RessourceRepository<EggDto> _eggsRepository;
 
   Future<void> initialLoad() async {
     emit(
@@ -81,6 +87,7 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
     final colorsF = _fetchColors();
     final contactsF = _fetchContacts();
     final speciesF = _fetchSpecies();
+    final eggsF = _fetchEggs();
 
     await Future.wait(
       [birdsF, pairsF, broodsF, cagesF, colorsF, contactsF, speciesF],
@@ -93,6 +100,7 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
     final colors = await colorsF;
     final contacts = await contactsF;
     final species = await speciesF;
+    final eggs = await eggsF;
 
     emitLoaded(
       birds: birds,
@@ -102,6 +110,7 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
       colors: colors,
       contacts: contacts,
       species: species,
+      eggs: eggs,
     );
   }
 
@@ -113,6 +122,7 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
     List<BirdColor>? colors,
     List<Contact>? contacts,
     List<Species>? species,
+    List<Egg>? eggs,
   }) {
     emit(
       BirdBreederLoaded(
@@ -125,6 +135,7 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
           colors: colors ?? state.birdBreederResources.colors,
           contacts: contacts ?? state.birdBreederResources.contacts,
           species: species ?? state.birdBreederResources.species,
+          eggs: eggs ?? state.birdBreederResources.eggs,
         ),
       ),
     );
@@ -139,21 +150,23 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
     unsubscribeFromBreedingPairs();
     unsubscribeFromBirds();
     unsubscribeFromBroods();
+    unsubscribeFromEggs();
 
     return super.close();
   }
 
-  Future<void> addBrood(BreedingPair breedingPair) async {
-    await _broodsRepository.create(
-      Brood(
-        id: '',
-        start: DateTime.now(),
-        end: null,
-        notes: null,
-        cage: null,
-        breedingPair: breedingPair.id,
-      ).toDto(),
+  Future<Brood?> addBrood(Brood brood) async {
+    final result = await _broodsRepository.create(
+      brood.toDto(),
     );
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.addFailed(),
+      );
+      return null;
+    }
+    return result.asValue?.value.toModel();
   }
 
   Future<void> deleteBrood(String id) async {
@@ -174,6 +187,18 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
         );
       },
     );
+  }
+
+  Future<Brood?> updateBrood(Brood brood) async {
+    final result = await _broodsRepository.update(brood.id, brood.toDto());
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.updateFailed(),
+      );
+      return null;
+    }
+    return result.asValue?.value.toModel();
   }
 
   Future<void> deleteColor(BirdColor color) async {
@@ -499,6 +524,41 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
     }
   }
 
+  Future<Egg?> addEgg(Egg egg) async {
+    final result = await _eggsRepository.create(egg.toDto());
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.addFailed(),
+      );
+      return null;
+    }
+    return result.asValue?.value.toModel();
+  }
+
+  Future<Egg?> updateEgg(Egg egg) async {
+    final result = await _eggsRepository.update(egg.id, egg.toDto());
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.updateFailed(),
+      );
+      return null;
+    }
+    return result.asValue?.value.toModel();
+  }
+
+  Future<void> deleteEgg(Egg egg) async {
+    final result = await _eggsRepository.delete(egg.id);
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.deleteFailed(),
+      );
+      return;
+    }
+  }
+
   Future<List<Species>> getSpecies() async {
     return state.birdBreederResources.species;
   }
@@ -545,5 +605,10 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   Future<List<Species>> _fetchSpecies() async {
     final res = await _speciesRepository.getAll();
     return res.asValue?.value.map(resolveSpeciesDto).toList() ?? const [];
+  }
+
+  Future<List<Egg>> _fetchEggs() async {
+    final res = await _eggsRepository.getAll();
+    return res.asValue?.value.map(resolveEggDto).toList() ?? const [];
   }
 }

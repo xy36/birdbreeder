@@ -2,6 +2,7 @@
 
 import 'package:birdbreeder/features/birds/data/converter/date_time_null_empty_converter.dart';
 import 'package:birdbreeder/features/birds/data/converter/string_null_empty_converter.dart';
+import 'package:birdbreeder/features/birds/data/converter/utc_date_time_converter.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -16,8 +17,8 @@ class BreedingPairDto with _$BreedingPairDto {
     String? collectionName,
     DateTime? created,
     DateTime? updated,
-    @DateTimeNullEmptyConverter() DateTime? start,
-    @DateTimeNullEmptyConverter() DateTime? end,
+    @UtcDateTimeConverter() DateTime? start,
+    @UtcDateTimeConverter() DateTime? end,
     @JsonKey(name: 'father') required String fatherId,
     @JsonKey(name: 'mother') required String motherId,
     @JsonKey(name: 'cage') String? cageId,

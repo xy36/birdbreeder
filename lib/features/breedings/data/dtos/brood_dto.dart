@@ -1,7 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:birdbreeder/features/birds/data/converter/date_time_null_empty_converter.dart';
 import 'package:birdbreeder/features/birds/data/converter/string_null_empty_converter.dart';
+import 'package:birdbreeder/features/birds/data/converter/utc_date_time_converter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'brood_dto.freezed.dart';
@@ -15,8 +15,8 @@ class BroodDto with _$BroodDto {
     String? collectionName,
     DateTime? created,
     DateTime? updated,
-    @DateTimeNullEmptyConverter() DateTime? start,
-    @DateTimeNullEmptyConverter() DateTime? end,
+    @UtcDateTimeConverter() DateTime? start,
+    @UtcDateTimeConverter() DateTime? end,
     @StringNullEmptyConverter() String? notes,
     @StringNullEmptyConverter() String? cage,
     @StringNullEmptyConverter() String? breedingPair,

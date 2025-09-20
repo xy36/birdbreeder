@@ -1,60 +1,13 @@
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/birds_extension.dart';
-import 'package:birdbreeder/core/extensions/breeding_pair_status_extension.dart';
 import 'package:birdbreeder/core/extensions/breeding_pairs_extension.dart';
 import 'package:birdbreeder/core/extensions/brood_extension.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/domain/models/sex_enum.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
 import 'package:birdbreeder/features/breedings/domain/models/brood.dart';
-import 'package:birdbreeder/features/breedings/presentation/breeding_pairs/widgets/add_breeding_pair_sheet.dart';
-import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
-import 'package:birdbreeder/shared/widgets/dialogs/delete_dialog.dart';
-import 'package:birdbreeder/shared/widgets/utils.dart';
-
-enum BreedingPairActions {
-  edit,
-  delete;
-
-  PopupMenuEntry<BreedingPairActions> getItem(BuildContext context) {
-    return switch (this) {
-      edit => PopupMenuItem(
-          value: BreedingPairActions.edit,
-          child: Text(context.tr.pop_up_menu.edit),
-        ),
-      delete => PopupMenuItem(
-          value: BreedingPairActions.delete,
-          child: Text(
-            context.tr.pop_up_menu.delete,
-            style: const TextStyle(color: Colors.red),
-          ),
-        )
-    };
-  }
-
-  Future<void> executeAction(
-    BuildContext context,
-    BreedingPair breedingPair,
-  ) async {
-    return switch (this) {
-      edit => await openSheet<void>(
-          context,
-          AddBreedingPairSheet(breedingPair: breedingPair),
-        ),
-      delete => {
-          if (context.mounted)
-            await DeleteDialog.show(
-              context: context,
-              title: context.tr.breeding_pairs.delete,
-              onDelete: () => context
-                  .read<BirdBreederCubit>()
-                  .deleteBreedingPair(breedingPair),
-            ),
-        }
-    };
-  }
-}
+import 'package:birdbreeder/features/breedings/presentation/breeding_pairs/models/breeding_pair_actions.dart';
 
 class BreedingPairCard extends StatelessWidget {
   BreedingPairCard({
@@ -69,10 +22,9 @@ class BreedingPairCard extends StatelessWidget {
   final List<Brood> _broods;
 
   List<Brood> get broods => breedingPair.broodsResolved;
-  int? get laid => _broods.laidCount;
-  int? get hatched => _broods.hatchedCount;
-  int? get fledged => _broods.fledgedCount;
-  int? get died => _broods.diedCount;
+  int get laid => _broods.laidCount;
+  int get hatched => _broods.hatchedCount;
+  int get fledged => _broods.fledgedCount;
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +63,7 @@ class BreedingPairCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  _StatusChip(status: breedingPair.status),
+                  breedingPair.status.getChip(context),
                 ],
               ),
               const Divider(),
@@ -133,30 +85,21 @@ class BreedingPairCard extends StatelessWidget {
                       spacing: 16,
                       runSpacing: 8,
                       children: [
-                        if (laid != null)
-                          _Stat(
-                            icon: Icons.egg_outlined,
-                            label: context.tr.common.eggs_short,
-                            value: laid!,
-                          ),
-                        if (hatched != null)
-                          _Stat(
-                            icon: Icons.cruelty_free_outlined,
-                            label: context.tr.common.hatched_short,
-                            value: hatched!,
-                          ),
-                        if (fledged != null)
-                          _Stat(
-                            icon: Icons.flight_takeoff,
-                            label: context.tr.common.fledged_short,
-                            value: fledged!,
-                          ),
-                        if (died != null)
-                          _Stat(
-                            icon: Icons.cancel_outlined,
-                            label: context.tr.common.died_short,
-                            value: died!,
-                          ),
+                        _Stat(
+                          icon: Icons.egg_outlined,
+                          label: context.tr.common.eggs_short(n: laid),
+                          value: laid,
+                        ),
+                        _Stat(
+                          icon: Icons.cruelty_free_outlined,
+                          label: context.tr.common.hatched_short,
+                          value: hatched,
+                        ),
+                        _Stat(
+                          icon: Icons.flight_takeoff,
+                          label: context.tr.common.fledged_short,
+                          value: fledged,
+                        ),
                       ],
                     ),
                   ),
@@ -170,18 +113,12 @@ class BreedingPairCard extends StatelessWidget {
     );
   }
 
-  /// Popup menu with common actions.
   Widget _moreMenu(BuildContext context, BreedingPair breedingPair) {
     return PopupMenuButton<BreedingPairActions>(
       onSelected: (v) => v.executeAction(context, breedingPair),
-      itemBuilder: (context) => BreedingPairActions.values.map((action) {
-        switch (action) {
-          case BreedingPairActions.edit:
-            return BreedingPairActions.edit.getItem(context);
-          case BreedingPairActions.delete:
-            return BreedingPairActions.delete.getItem(context);
-        }
-      }).toList(),
+      itemBuilder: (context) => BreedingPairActions.values
+          .map((action) => action.getItem(context))
+          .toList(),
       icon: const Icon(Icons.more_vert_rounded),
     );
   }
@@ -218,30 +155,6 @@ class _ParentLabel extends StatelessWidget {
             ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _StatusChip extends StatelessWidget {
-  const _StatusChip({required this.status});
-  final BreedingPairStatus status;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-      decoration: BoxDecoration(
-        color: status.color.withValues(alpha: 0.15),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Text(
-        status.getDisplayName(context),
-        style: TextStyle(
-          color: status.color,
-          fontWeight: FontWeight.w600,
-          fontSize: 12,
-        ),
       ),
     );
   }

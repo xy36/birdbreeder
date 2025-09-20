@@ -1,5 +1,7 @@
 import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
+import 'package:birdbreeder/features/birds/data/dtos/egg_dto.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
+import 'package:birdbreeder/features/birds/domain/models/egg.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/breeding_pair_dto.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/brood_dto.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
@@ -139,6 +141,24 @@ extension BirdBreederResovlerExtension on BirdBreederCubit {
       notes: broodDto.notes,
       cage: broodDto.cage,
       breedingPair: broodDto.breedingPair,
+    );
+  }
+
+  Egg resolveEggDto(EggDto eggDto) {
+    return Egg(
+      id: eggDto.id,
+      broodId: eggDto.broodId,
+      number: eggDto.number,
+      laidAt: eggDto.laidAt,
+      hatchedAt: eggDto.hatchedAt,
+      fledgedAt: eggDto.fledgedAt,
+      status: eggDto.status,
+      ringnumber: eggDto.ringnumber,
+      colorId: eggDto.colorId,
+      cageId: eggDto.cageId,
+      speciesId: eggDto.speciesId,
+      birdId: eggDto.birdId,
+      notes: eggDto.notes,
     );
   }
 }

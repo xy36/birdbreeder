@@ -106,29 +106,11 @@ class BirdCard extends StatelessWidget {
   /// Popup menu with common actions.
   Widget _moreMenu(BuildContext context) {
     return PopupMenuButton<BirdActions>(
-      onSelected: (v) {
-        switch (v) {
-          case BirdActions.duplicate:
-            onDuplicate?.call();
-            break;
-          case BirdActions.edit:
-            onEdit?.call();
-            break;
-          case BirdActions.delete:
-            onDelete?.call();
-            break;
-        }
-      },
-      itemBuilder: (context) => BirdActions.values.map((action) {
-        switch (action) {
-          case BirdActions.duplicate:
-            return BirdActions.duplicate.getItem(context);
-          case BirdActions.edit:
-            return BirdActions.edit.getItem(context);
-          case BirdActions.delete:
-            return BirdActions.delete.getItem(context);
-        }
-      }).toList(),
+      onSelected: (v) => v.executeAction(
+        context,
+      ),
+      itemBuilder: (context) =>
+          BirdActions.values.map((action) => action.getItem(context)).toList(),
       icon: const Icon(Icons.more_vert_rounded),
     );
   }

@@ -2,6 +2,7 @@
 
 import 'package:birdbreeder/features/birds/data/converter/date_time_null_empty_converter.dart';
 import 'package:birdbreeder/features/birds/data/converter/string_null_empty_converter.dart';
+import 'package:birdbreeder/features/birds/data/converter/utc_date_time_converter.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/domain/models/sex_enum.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -25,17 +26,17 @@ class BirdDto with _$BirdDto {
     @JsonKey(name: 'mother') @StringNullEmptyConverter() String? motherId,
     @JsonKey(name: 'cage') @StringNullEmptyConverter() String? cageId,
     @JsonKey(name: 'brood') @StringNullEmptyConverter() String? broodId,
-    @DateTimeNullEmptyConverter() DateTime? laidAt,
-    @DateTimeNullEmptyConverter() DateTime? hatchedAt,
-    @DateTimeNullEmptyConverter() DateTime? fledgedAt,
-    @DateTimeNullEmptyConverter() DateTime? bornAt,
-    @DateTimeNullEmptyConverter() DateTime? diedAt,
+    @UtcDateTimeConverter() DateTime? laidAt,
+    @UtcDateTimeConverter() DateTime? hatchedAt,
+    @UtcDateTimeConverter() DateTime? fledgedAt,
+    @UtcDateTimeConverter() DateTime? bornAt,
+    @UtcDateTimeConverter() DateTime? diedAt,
     @Default(SaleStatus.notForSale) SaleStatus saleStatus,
-    @DateTimeNullEmptyConverter() DateTime? listedAt,
-    @DateTimeNullEmptyConverter() DateTime? soldAt,
+    @UtcDateTimeConverter() DateTime? listedAt,
+    @UtcDateTimeConverter() DateTime? soldAt,
     double? askingPrice,
     double? finalPrice,
-    @DateTimeNullEmptyConverter() DateTime? boughtAt,
+    @UtcDateTimeConverter() DateTime? boughtAt,
     double? boughtPrice,
     @StringNullEmptyConverter() String? notes,
     @JsonKey(name: 'boughtFrom')

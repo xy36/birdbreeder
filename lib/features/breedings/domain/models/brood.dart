@@ -15,12 +15,19 @@ class Brood with _$Brood {
     required String? breedingPair,
   }) = _Brood;
 
-  factory Brood.create() => Brood(
+  factory Brood.create({
+    required String breedingPairId,
+    DateTime? start,
+    DateTime? end,
+    String? notes,
+    String? cage,
+  }) =>
+      Brood(
         id: '',
-        start: null,
-        end: null,
-        notes: null,
-        cage: null,
-        breedingPair: null,
+        start: start,
+        end: end,
+        notes: notes,
+        cage: cage,
+        breedingPair: breedingPairId,
       );
 }

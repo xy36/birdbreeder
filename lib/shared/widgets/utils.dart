@@ -1,14 +1,21 @@
 import 'dart:ui';
 
+import 'package:auto_route/auto_route.dart';
+import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
+import 'package:birdbreeder/features/birds/domain/models/egg.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/birds_overview_screen.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_filter_cubit.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_search_cubit.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/models/bird_filter.dart';
+import 'package:birdbreeder/features/breedings/domain/models/brood.dart';
+import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/broods_tab/egg_tile.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/services/screen_size.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:birdbreeder/shared/widgets/bottom_sheet/bottom_sheet_header.dart';
+import 'package:flutter/services.dart';
 
 Future<bool> showChildAsDrawerDialog(
   BuildContext context,
@@ -69,6 +76,7 @@ Future<T?> openSheet<T>(
 ) async {
   // Fokus vom vorherigen Textfeld lösen, damit nix zurückspringt
   FocusManager.instance.primaryFocus?.unfocus();
+  final insets = MediaQuery.viewInsetsOf(context);
 
   return showModalBottomSheet<T>(
     context: context,
@@ -79,7 +87,90 @@ Future<T?> openSheet<T>(
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
     ),
-    builder: (context) => child,
+    builder: (context) => AnimatedPadding(
+      duration: const Duration(milliseconds: 120),
+      padding: EdgeInsets.only(
+        bottom: insets.bottom,
+      ),
+      child: child,
+    ),
+  );
+}
+
+Future<void> onOpenBrood(BuildContext context, Brood brood) async {
+  await openSheet<Brood>(
+    context,
+    DraggableScrollableSheet(
+      expand: false,
+      builder: (context, scrollController) =>
+          BlocBuilder<BirdBreederCubit, BirdBreederState>(
+        builder: (context, state) {
+          final eggs = state.birdBreederResources.eggs
+              .where((egg) => egg.broodId == brood.id)
+              .sortedBy(
+                (egg) => egg.laidAt,
+              );
+
+          return Column(
+            children: [
+              BottomSheetHeader(title: 'Eier im Gelege (${eggs.length})'),
+              Expanded(
+                child: eggs.isNotEmpty
+                    ? ListView.builder(
+                        itemCount: eggs.length,
+                        itemBuilder: (context, index) {
+                          final egg = eggs.elementAt(index);
+                          return EggTile(
+                            egg: egg,
+                          );
+                        },
+                        controller: scrollController,
+                      )
+                    : const EmptyEgg(),
+              ),
+              SafeArea(
+                top: false,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: FilledButton.icon(
+                          icon: const Icon(Icons.check),
+                          onPressed: () async {
+                            final laidDate = await promptDateValue(
+                              context,
+                              title: context.tr.egg.pick_laid_date,
+                            );
+
+                            if (!context.mounted || laidDate == null) return;
+
+                            await context.read<BirdBreederCubit>().addEgg(
+                                  Egg.create(
+                                    broodId: brood.id,
+                                    number: context
+                                            .read<BirdBreederCubit>()
+                                            .state
+                                            .birdBreederResources
+                                            .eggs
+                                            .length +
+                                        1,
+                                    laidAt: laidDate,
+                                  ),
+                                );
+                          },
+                          label: Text(context.tr.egg.add),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
+      ),
+    ),
   );
 }
 
@@ -106,4 +197,205 @@ Future<Bird?> onPickBird(BuildContext context, {BirdFilter? birdFilter}) async {
     ),
   );
   return bird;
+}
+
+Future<T?> promptValueSelector<T>(
+  BuildContext context, {
+  T? initialValue,
+  required List<T> values,
+  required String title,
+  required bool Function(T item, String filter) filterFn,
+  required Widget? Function(BuildContext context, T item, int index)
+      itemBuilder,
+  Future<void> Function(String value)? onAdd,
+}) async {
+  FocusManager.instance.primaryFocus?.unfocus();
+
+  var searchTerm = '';
+
+  final color = await openSheet<T?>(
+    context,
+    StatefulBuilder(
+      builder: (context, setState) {
+        final filteredColors =
+            values.where((item) => filterFn(item, searchTerm)).toList();
+        return Column(
+          children: [
+            BottomSheetHeader(title: title),
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: SearchBar(
+                hintText: context.tr.common.search_hint,
+                onChanged: (value) {
+                  setState(() {
+                    searchTerm = value;
+                  });
+                },
+              ),
+            ),
+            if (filteredColors.isEmpty)
+              Padding(
+                padding: const EdgeInsets.all(24),
+                child: searchTerm.isEmpty
+                    ? const Text('Nichts vorhanden')
+                    : FilledButton(
+                        onPressed: () async {
+                          await onAdd?.call(searchTerm);
+
+                          if (!context.mounted) return;
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(
+                          '${context.tr.common.add} "$searchTerm"',
+                        ),
+                      ),
+              )
+            else
+              Expanded(
+                child: ListView.builder(
+                  itemCount: filteredColors.length,
+                  itemBuilder: (context, index) =>
+                      itemBuilder(context, filteredColors[index], index)?.onTap(
+                    () => context.router.maybePop(filteredColors[index]),
+                  ),
+                ),
+              ),
+          ],
+        );
+      },
+    ),
+  );
+
+  return color;
+}
+
+Future<DateTime?> promptDateValue(
+  BuildContext context, {
+  DateTime? initialDate,
+  String? title,
+}) async {
+  FocusManager.instance.primaryFocus?.unfocus();
+  final now = DateTime.now();
+  final picked = await showDatePicker(
+    helpText: title,
+    context: context,
+    initialDate: initialDate ?? now,
+    firstDate: DateTime(now.year - 50),
+    lastDate: DateTime(now.year + 10),
+  );
+
+  return picked;
+}
+
+Future<String?> promptTextValue(
+  BuildContext context, {
+  required String title,
+  String? labelText,
+  String? initialValue,
+  String? hintText,
+  IconData? icon,
+  TextInputType keyboardType = TextInputType.text,
+  List<TextInputFormatter>? inputFormatters,
+  String? Function(String value)? validator,
+}) async {
+  FocusManager.instance.primaryFocus?.unfocus();
+  final ctrl = TextEditingController(text: initialValue ?? '');
+  String? error;
+
+  return openSheet<String>(
+    context,
+    Padding(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+      child: StatefulBuilder(
+        builder: (ctx, setState) {
+          void trySubmit() {
+            final v = ctrl.text.trim();
+            final err = validator?.call(v);
+            if (err != null) {
+              setState(() => error = err);
+              return;
+            }
+            Navigator.pop(ctx, v.isEmpty ? null : v);
+          }
+
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    icon: const Icon(Icons.close),
+                    onPressed: () => Navigator.pop(ctx),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              TextField(
+                controller: ctrl,
+                keyboardType: keyboardType,
+                inputFormatters: inputFormatters,
+                decoration: InputDecoration(
+                  labelText: labelText,
+                  hintText: hintText,
+                  prefixIcon: icon != null ? Icon(icon) : null,
+                  errorText: error,
+                ),
+                autofocus: true,
+                onSubmitted: (_) => trySubmit(),
+              ),
+              const SizedBox(height: 12),
+              Row(
+                children: [
+                  OutlinedButton(
+                    onPressed: () => Navigator.pop(ctx),
+                    child: const Text('Abbrechen'),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: FilledButton.icon(
+                      icon: const Icon(Icons.check),
+                      label: const Text('Speichern'),
+                      onPressed: trySubmit,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          );
+        },
+      ),
+    ),
+  );
+}
+
+class EmptyEgg extends StatelessWidget {
+  const EmptyEgg({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final t = Theme.of(context).textTheme;
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.egg_outlined, size: 40),
+            const SizedBox(height: 12),
+            Text('Noch kein Ei gelegt', style: t.titleMedium),
+          ],
+        ),
+      ),
+    );
+  }
 }

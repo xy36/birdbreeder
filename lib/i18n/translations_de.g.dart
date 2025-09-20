@@ -53,6 +53,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
   late final TranslationsResourcesDe resources = TranslationsResourcesDe.internal(_root);
   late final TranslationsBirdsDe birds = TranslationsBirdsDe.internal(_root);
   late final TranslationsBirdDe bird = TranslationsBirdDe.internal(_root);
+  late final TranslationsBroodDe brood = TranslationsBroodDe.internal(_root);
+  late final TranslationsEggDe egg = TranslationsEggDe.internal(_root);
   late final TranslationsCommonDe common = TranslationsCommonDe.internal(_root);
   late final TranslationsLoginDe login = TranslationsLoginDe.internal(_root);
   late final TranslationsMenuDe menu = TranslationsMenuDe.internal(_root);
@@ -123,6 +125,9 @@ class TranslationsColorsDe {
 
   /// de: 'Farbe hinzufügen'
   String get add => 'Farbe hinzufügen';
+
+  /// de: 'Farbe auswählen'
+  String get pick => 'Farbe auswählen';
 
   /// de: 'Farbe löschen?'
   String get delete => 'Farbe löschen?';
@@ -245,6 +250,9 @@ class TranslationsBreedingPairsDe {
   /// de: 'Startdatum'
   String get start_date => 'Startdatum';
 
+  /// de: 'Enddatum (optional)'
+  String get end_date => 'Enddatum (optional)';
+
   /// de: 'Notizen (optional)'
   String get notes => 'Notizen (optional)';
 }
@@ -335,6 +343,95 @@ class TranslationsBirdDe {
   late final TranslationsBirdSectionsDe sections = TranslationsBirdSectionsDe.internal(_root);
 }
 
+// Path: brood
+class TranslationsBroodDe {
+  TranslationsBroodDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Gelege'
+  String get name => 'Gelege';
+
+  /// de: 'Brutübersicht'
+  String get overview => 'Brutübersicht';
+
+  /// de: 'Gelege hinzufügen'
+  String get add => 'Gelege hinzufügen';
+
+  /// de: 'Gelege löschen?'
+  String get delete => 'Gelege löschen?';
+
+  /// de: 'Gelege bearbeiten'
+  String get edit => 'Gelege bearbeiten';
+
+  /// de: 'Noch kein Gelege hinzugefügt'
+  String get empty => 'Noch kein Gelege hinzugefügt';
+
+  /// de: 'Seit {{date}}'
+  String since({required Object Date}) => 'Seit ${Date}';
+
+  /// de: '(zero) {Keine Eier} (one) {1 Ei} (other) {{{count}} Eier}'
+  String eggs_count({required num count, required Object Count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(
+        count,
+        zero: 'Keine Eier',
+        one: '1 Ei',
+        other: '${Count} Eier',
+      );
+
+  late final TranslationsBroodKpiDe kpi = TranslationsBroodKpiDe.internal(_root);
+
+  /// de: '(zero) {Keine geschlüpft} (one) {1 geschlüpft} (other) {{{count}} geschlüpft}'
+  String hatched_count({required num count, required Object Count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(
+        count,
+        zero: 'Keine geschlüpft',
+        one: '1 geschlüpft',
+        other: '${Count} geschlüpft',
+      );
+
+  /// de: '(zero) {Keine ausgeflogen} (one) {1 ausgeflogen} (other) {{{count}} ausgeflogen}'
+  String fledged_count({required num count, required Object Count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(
+        count,
+        zero: 'Keine ausgeflogen',
+        one: '1 ausgeflogen',
+        other: '${Count} ausgeflogen',
+      );
+
+  /// de: 'Notizen (optional)'
+  String get notes => 'Notizen (optional)';
+
+  /// de: 'Erstellt am {{DateTime date}} um {{time}}'
+  String created_information({required Object DateTimeDate, required Object Time}) => 'Erstellt am ${DateTimeDate} um ${Time}';
+}
+
+// Path: egg
+class TranslationsEggDe {
+  TranslationsEggDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Ei'
+  String get name => 'Ei';
+
+  /// de: 'Ei hinzufügen'
+  String get add => 'Ei hinzufügen';
+
+  late final TranslationsEggStatusDe status = TranslationsEggStatusDe.internal(_root);
+  late final TranslationsEggActionDe action = TranslationsEggActionDe.internal(_root);
+
+  /// de: 'Lege-Datum auswählen'
+  String get pick_laid_date => 'Lege-Datum auswählen';
+
+  /// de: 'Ausgeflogen-Datum auswählen'
+  String get pick_fledged_date => 'Ausgeflogen-Datum auswählen';
+
+  /// de: 'Geschlüpft-Datum auswählen'
+  String get pick_hatched_date => 'Geschlüpft-Datum auswählen';
+}
+
 // Path: common
 class TranslationsCommonDe {
   TranslationsCommonDe.internal(this._root);
@@ -357,6 +454,9 @@ class TranslationsCommonDe {
 
   /// de: 'Suchen'
   String get search => 'Suchen';
+
+  /// de: 'Suchen ...'
+  String get search_hint => 'Suchen ...';
 
   /// de: '(zero) {Keine Vögel} (one) {1 Vogel} (other) {{count} Vögel}'
   String countbird({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(
@@ -391,8 +491,12 @@ class TranslationsCommonDe {
   late final TranslationsCommonSellDe sell = TranslationsCommonSellDe.internal(_root);
   late final TranslationsCommonBoughtDe bought = TranslationsCommonBoughtDe.internal(_root);
 
-  /// de: 'Eier'
-  String get eggs_short => 'Eier';
+  /// de: '(one) {Ei} (other) {Eier}'
+  String eggs_short({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(
+        n,
+        one: 'Ei',
+        other: 'Eier',
+      );
 
   /// de: 'geschl.'
   String get hatched_short => 'geschl.';
@@ -552,11 +656,35 @@ class TranslationsPopUpMenuDe {
 
   // Translations
 
+  /// de: 'Öffnen'
+  String get open => 'Öffnen';
+
   /// de: 'Bearbeiten'
   String get edit => 'Bearbeiten';
 
   /// de: 'Anzeigen'
   String get show => 'Anzeigen';
+
+  /// de: 'Ringnummer setzen'
+  String get set_ringnumber => 'Ringnummer setzen';
+
+  /// de: 'Farbe setzen'
+  String get set_color => 'Farbe setzen';
+
+  /// de: 'Als geschlüpft markieren'
+  String get mark_hatched => 'Als geschlüpft markieren';
+
+  /// de: 'Als ausgeflogen markieren'
+  String get mark_fledged => 'Als ausgeflogen markieren';
+
+  /// de: 'Als gestorben im Ei markieren'
+  String get mark_died => 'Als gestorben im Ei markieren';
+
+  /// de: 'Als unbefruchtet markieren'
+  String get mark_unfertilized => 'Als unbefruchtet markieren';
+
+  /// de: 'Als befruchtet markieren'
+  String get mark_fertilized => 'Als befruchtet markieren';
 
   /// de: 'Duplizieren'
   String get duplicate => 'Duplizieren';
@@ -718,6 +846,66 @@ class TranslationsBirdSectionsDe {
   late final TranslationsBirdSectionsNotesDe notes = TranslationsBirdSectionsNotesDe.internal(_root);
   late final TranslationsBirdSectionsParentDe parent = TranslationsBirdSectionsParentDe.internal(_root);
   late final TranslationsBirdSectionsChildrenDe children = TranslationsBirdSectionsChildrenDe.internal(_root);
+}
+
+// Path: brood.kpi
+class TranslationsBroodKpiDe {
+  TranslationsBroodKpiDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Eier'
+  String get eggs => 'Eier';
+
+  /// de: 'Geschlüpft'
+  String get hatched => 'Geschlüpft';
+
+  /// de: 'Ausgeflogen'
+  String get fledged => 'Ausgeflogen';
+}
+
+// Path: egg.status
+class TranslationsEggStatusDe {
+  TranslationsEggStatusDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Gelegt'
+  String get laid => 'Gelegt';
+
+  /// de: 'Befruchtet'
+  String get fertilized => 'Befruchtet';
+
+  /// de: 'Unbefruchtet'
+  String get unfertilized => 'Unbefruchtet';
+
+  /// de: 'Geschlüpft'
+  String get hatched => 'Geschlüpft';
+
+  /// de: 'Gestorben'
+  String get dead => 'Gestorben';
+
+  /// de: 'Ausgeflogen'
+  String get fledged => 'Ausgeflogen';
+
+  /// de: 'Unbekannt'
+  String get unknown => 'Unbekannt';
+}
+
+// Path: egg.action
+class TranslationsEggActionDe {
+  TranslationsEggActionDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Neue Ringnummer eintragen'
+  String get set_ringnumber => 'Neue Ringnummer eintragen';
 }
 
 // Path: common.bottom_sheet

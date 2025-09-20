@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/core/extensions/breeding_pair_status_extension.dart';
 import 'package:birdbreeder/core/extensions/breeding_pairs_extension.dart';
 import 'package:birdbreeder/core/extensions/generic_join.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
+import 'package:birdbreeder/features/breedings/presentation/breeding_pairs/widgets/cage_picker_field.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pairs/widgets/parent_picker_field.dart';
 import 'package:birdbreeder/features/ressourcen_center/domain/models/cage.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
@@ -184,6 +184,11 @@ class _AddBreedingPairSheetState extends State<AddBreedingPairSheet> {
                                 ),
                               ),
                             ],
+                          ),
+                          CagePickerField(
+                            initialValue: _cage,
+                            enabled: !_submitting,
+                            onChanged: (cage) => _cage = cage,
                           ),
                           TextFormField(
                             controller: _notesCtrl,

@@ -1,4 +1,5 @@
 import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
+import 'package:birdbreeder/features/birds/data/dtos/egg_dto.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/breeding_pair_dto.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/brood_dto.dart';
 import 'package:birdbreeder/features/contacts/data/dtos/contact_dto.dart';
@@ -86,10 +87,19 @@ Future<void> initializeDependencyInjection() async {
         toJson: (contact) => contact.toJson(),
       ),
     )
+    ..registerLazySingleton<RessourceRepository<EggDto>>(
+      () => RessourceRepository<EggDto>(
+        loggingService: s1(),
+        recordService: s1.get<PocketBaseService>().eggsCollection,
+        fromJson: EggDto.fromJson,
+        toJson: (egg) => egg.toJson(),
+      ),
+    )
 
     // Blocs
     ..registerLazySingleton<BirdBreederCubit>(
       () => BirdBreederCubit(
+        s1(),
         s1(),
         s1(),
         s1(),
