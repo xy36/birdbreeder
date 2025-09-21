@@ -3,6 +3,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/birds_extension.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/widgets/section_card.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class ChildrenSection extends StatelessWidget {
   const ChildrenSection(this.bird, {super.key});
@@ -13,7 +14,7 @@ class ChildrenSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return SectionCard(
       collapsible: true,
-      icon: Icons.child_friendly,
+      icon: AppIcons.birdSectionChildren,
       title:
           '${context.tr.bird.sections.children.title} (${bird.childrenResolved.length})',
       subtitle: context.tr.bird.sections.children.sub_title,
@@ -38,7 +39,7 @@ class ChildrenSection extends StatelessWidget {
                   ),
                 ],
               ),
-              leading: Icon(b.lifeStage?.icon ?? Icons.question_mark),
+              leading: Icon(b.lifeStage?.icon ?? AppIcons.unknown),
               subtitle: Row(
                 spacing: 8,
                 children: [

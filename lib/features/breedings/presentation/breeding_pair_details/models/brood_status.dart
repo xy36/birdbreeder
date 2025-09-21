@@ -1,4 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 enum BroodStatus {
   active,
@@ -6,9 +7,9 @@ enum BroodStatus {
   completed;
 
   IconData get iconData => switch (this) {
-        inactive => Icons.pause_circle_filled,
-        active => Icons.play_circle_fill,
-        completed => Icons.check_circle,
+        inactive => AppIcons.broodStatusInactive,
+        active => AppIcons.broodStatusActive,
+        completed => AppIcons.broodStatusCompleted,
       };
 
   Color get color => switch (this) {

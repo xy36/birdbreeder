@@ -1,6 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/field_with_label.dart';
-import 'package:birdbreeder/shared/widgets/icons.dart';
 
 class EmailForm extends StatelessWidget {
   const EmailForm({super.key, required this.onChanged});
@@ -20,7 +20,7 @@ class EmailForm extends StatelessWidget {
         },
         onChanged: onChanged,
         decoration: InputDecoration(
-          suffixIcon: emailIcon,
+          suffixIcon: const Icon(AppIcons.email),
           hintText: context.tr.login.field.email.hint,
         ),
       ),

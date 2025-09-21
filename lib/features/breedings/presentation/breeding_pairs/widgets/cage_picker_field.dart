@@ -1,6 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/ressourcen_center/domain/models/cage.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 
 enum ParentType { father, mother }
@@ -63,13 +64,13 @@ class CagePickerField extends StatelessWidget {
             isEmpty: !hasValue,
             decoration: InputDecoration(
               labelText: 'Select Cage',
-              prefixIcon: const Icon(Icons.cottage),
+              prefixIcon: const Icon(AppIcons.cage),
               errorText: field.errorText,
               enabled: enabled,
               suffixIcon: hasValue && enabled
                   ? IconButton(
                       tooltip: context.tr.common.reset,
-                      icon: const Icon(Icons.clear),
+                      icon: const Icon(AppIcons.clear),
                       onPressed: () {
                         field.didChange(null);
                         onChanged?.call(null);

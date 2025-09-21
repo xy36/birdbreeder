@@ -9,6 +9,7 @@ import 'package:birdbreeder/features/breedings/presentation/breeding_pairs/widge
 import 'package:birdbreeder/features/breedings/presentation/breeding_pairs/widgets/parent_picker_field.dart';
 import 'package:birdbreeder/features/ressourcen_center/domain/models/cage.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/bottom_sheet/bottom_sheet_footer.dart';
 import 'package:birdbreeder/shared/widgets/bottom_sheet/bottom_sheet_header.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -149,7 +150,7 @@ class _AddBreedingPairSheetState extends State<AddBreedingPairSheet> {
                                   decoration: InputDecoration(
                                     labelText:
                                         context.tr.breeding_pairs.start_date,
-                                    prefixIcon: const Icon(Icons.event),
+                                    prefixIcon: const Icon(AppIcons.date),
                                   ),
                                   controller: TextEditingController(
                                     text: MaterialLocalizations.of(context)
@@ -166,7 +167,7 @@ class _AddBreedingPairSheetState extends State<AddBreedingPairSheet> {
                                   decoration: InputDecoration(
                                     labelText:
                                         context.tr.breeding_pairs.status.name,
-                                    prefixIcon: const Icon(Icons.flag),
+                                    prefixIcon: const Icon(AppIcons.status),
                                   ),
                                   items: BreedingPairStatus.values
                                       .map(
@@ -197,7 +198,7 @@ class _AddBreedingPairSheetState extends State<AddBreedingPairSheet> {
                             decoration: InputDecoration(
                               labelText: context.tr.breeding_pairs.notes,
                               alignLabelWithHint: true,
-                              prefixIcon: const Icon(Icons.notes),
+                              prefixIcon: const Icon(AppIcons.notes),
                             ),
                             enabled: !_submitting,
                           ),

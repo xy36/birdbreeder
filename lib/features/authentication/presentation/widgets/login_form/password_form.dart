@@ -1,5 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/shared/widgets/icons.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class PasswordForm extends StatefulWidget {
   const PasswordForm({super.key, required this.onChanged});
@@ -33,7 +33,9 @@ class _PasswordFormState extends State<PasswordForm> {
           onChanged: widget.onChanged,
           decoration: InputDecoration(
             suffixIcon: IconButton(
-              icon: _obscurePassword ? visibilityIcon : visibilityOffIcon,
+              icon: Icon(
+                _obscurePassword ? AppIcons.visibility : AppIcons.visibilityOff,
+              ),
               onPressed: () {
                 setState(() {
                   _obscurePassword = !_obscurePassword;

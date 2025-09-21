@@ -6,6 +6,7 @@ import 'package:birdbreeder/features/contacts/presentation/cubit/contact_search_
 import 'package:birdbreeder/features/contacts/presentation/widgets/contact_item.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/cubits/generic_search_cubit/base_search.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/buttons/app_action_button.dart';
 
 @RoutePage()
@@ -33,8 +34,8 @@ class _ContactsPageState extends State<ContactsPage> {
                   context.read<ContactSearchCubit>().toggleActive();
                 },
                 icon: AnimatedCrossFade(
-                  firstChild: const Icon(Icons.search),
-                  secondChild: const Icon(Icons.search_off),
+                  firstChild: const Icon(AppIcons.search),
+                  secondChild: const Icon(AppIcons.searchOff),
                   crossFadeState: state.isActive
                       ? CrossFadeState.showSecond
                       : CrossFadeState.showFirst,

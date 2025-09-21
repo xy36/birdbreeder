@@ -9,6 +9,7 @@ import 'package:birdbreeder/features/contacts/presentation/widgets/contact_text_
 import 'package:birdbreeder/features/contacts/presentation/widgets/section_grid.dart';
 import 'package:birdbreeder/services/screen_size.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/buttons/app_action_button.dart';
 import 'package:birdbreeder/shared/widgets/buttons/generic_button.dart';
 import 'package:birdbreeder/shared/widgets/navigate_back_button.dart';
@@ -52,8 +53,8 @@ class ContactDetailsPage extends StatelessWidget {
                     IconButton(
                       icon: Icon(
                         switch (state.mode) {
-                          ContactMode.edit => Icons.save,
-                          ContactMode.create => Icons.check,
+                          ContactMode.edit => AppIcons.save,
+                          ContactMode.create => AppIcons.accept,
                         },
                       ),
                       onPressed: () async {
@@ -86,7 +87,7 @@ class ContactDetailsPage extends StatelessWidget {
                       children: <Widget>[
                         // PERSONAL
                         SectionCard(
-                          icon: Icons.person_outline,
+                          icon: AppIcons.contactSectionPersonal,
                           title: context.tr.contacts.sections.personal,
                           collapsible: true,
                           errorCount: 0, // or compute dynamically per section
@@ -100,7 +101,7 @@ class ContactDetailsPage extends StatelessWidget {
                                   label: context.tr.contacts.fields.first_name,
                                   name: 'first_name_field',
                                   select: (Contact c) => c.firstName,
-                                  suffixIcon: const Icon(Icons.person),
+                                  suffixIcon: const Icon(AppIcons.firstname),
                                   autofillHints: const [
                                     AutofillHints.givenName,
                                   ],
@@ -114,7 +115,7 @@ class ContactDetailsPage extends StatelessWidget {
                                   name: 'last_name_field',
                                   select: (Contact c) => c.name,
                                   isRequired: true,
-                                  suffixIcon: const Icon(Icons.badge),
+                                  suffixIcon: const Icon(AppIcons.lastname),
                                   autofillHints: const [
                                     AutofillHints.familyName,
                                   ],
@@ -126,7 +127,7 @@ class ContactDetailsPage extends StatelessWidget {
 
                         // BREEDER INFORMATION
                         SectionCard(
-                          icon: Icons.pets,
+                          icon: AppIcons.contactSectionBreederInformation,
                           title: context.tr.contacts.sections.breeder,
                           collapsible: true,
                           children: [
@@ -140,7 +141,8 @@ class ContactDetailsPage extends StatelessWidget {
                                   name: 'breeder_number_field',
                                   select: (Contact c) => c.number,
                                   isRequired: true,
-                                  suffixIcon: const Icon(Icons.numbers),
+                                  suffixIcon:
+                                      const Icon(AppIcons.breederNumber),
                                 ),
                               ],
                             ),
@@ -149,7 +151,7 @@ class ContactDetailsPage extends StatelessWidget {
 
                         // CONTACT
                         SectionCard(
-                          icon: Icons.alternate_email,
+                          icon: AppIcons.contactSectionContactInformation,
                           title: context.tr.contacts.sections.contact,
                           collapsible: true,
                           children: [
@@ -163,7 +165,7 @@ class ContactDetailsPage extends StatelessWidget {
                                   name: 'phone_field',
                                   select: (Contact c) => c.phone,
                                   hint: context.tr.contacts.fields.phone,
-                                  suffixIcon: const Icon(Icons.phone),
+                                  suffixIcon: const Icon(AppIcons.phone),
                                 ),
                                 ContactTextPropertyField(
                                   contact: state.contact,
@@ -172,7 +174,7 @@ class ContactDetailsPage extends StatelessWidget {
                                       c.copyWith(email: v),
                                   name: 'email_field',
                                   select: (Contact c) => c.email,
-                                  suffixIcon: const Icon(Icons.email),
+                                  suffixIcon: const Icon(AppIcons.email),
                                   validator: FormBuilderValidators.email(),
                                 ),
                                 ContactTextPropertyField(
@@ -183,7 +185,7 @@ class ContactDetailsPage extends StatelessWidget {
                                   name: 'website_field',
                                   select: (Contact c) => c.website,
                                   hint: context.tr.contacts.fields.website,
-                                  suffixIcon: const Icon(Icons.language),
+                                  suffixIcon: const Icon(AppIcons.website),
                                 ),
                               ],
                             ),
@@ -192,7 +194,7 @@ class ContactDetailsPage extends StatelessWidget {
 
                         // ADDRESS
                         SectionCard(
-                          icon: Icons.location_on_outlined,
+                          icon: AppIcons.contactSectionAddress,
                           title: context.tr.contacts.sections.address,
                           collapsible: true,
                           children: [
@@ -205,6 +207,8 @@ class ContactDetailsPage extends StatelessWidget {
                                       c.copyWith(address: v?.capitalizeFirst),
                                   name: 'address_field',
                                   select: (Contact c) => c.address,
+                                  hint: context.tr.contacts.fields.address,
+                                  suffixIcon: const Icon(AppIcons.address),
                                 ),
                                 SectionGrid(
                                   children: [
@@ -216,6 +220,9 @@ class ContactDetailsPage extends StatelessWidget {
                                           c.copyWith(postalCode: v),
                                       name: 'postal_code_field',
                                       select: (Contact c) => c.postalCode,
+                                      hint: context.tr.contacts.fields.postal,
+                                      suffixIcon:
+                                          const Icon(AppIcons.postalCode),
                                     ),
 
                                     ContactTextPropertyField(
@@ -225,6 +232,8 @@ class ContactDetailsPage extends StatelessWidget {
                                           c.copyWith(city: v?.capitalizeFirst),
                                       name: 'city_field',
                                       select: (Contact c) => c.city,
+                                      hint: context.tr.contacts.fields.city,
+                                      suffixIcon: const Icon(AppIcons.city),
                                     ),
                                   ],
                                 ),
@@ -235,6 +244,8 @@ class ContactDetailsPage extends StatelessWidget {
                                       c.copyWith(country: v?.capitalizeFirst),
                                   name: 'country_field',
                                   select: (Contact c) => c.country,
+                                  hint: context.tr.contacts.fields.country,
+                                  suffixIcon: const Icon(AppIcons.country),
                                 ),
                               ],
                             ),

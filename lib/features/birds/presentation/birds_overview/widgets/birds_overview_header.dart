@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class GenericSearchBar extends StatefulWidget {
   const GenericSearchBar({
@@ -63,7 +64,7 @@ class _GenericSearchBarState extends State<GenericSearchBar> {
             const SizedBox.shrink()
           else
             IconButton(
-              icon: const Icon(Icons.clear),
+              icon: const Icon(AppIcons.clear),
               onPressed: () {
                 _ctrl.clear();
                 _onChanged('');

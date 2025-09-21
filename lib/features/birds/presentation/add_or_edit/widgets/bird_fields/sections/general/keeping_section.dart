@@ -3,6 +3,7 @@ import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/general/fields/cage_field.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/general/fields/owner_field.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/widgets/section_card.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class KeepingSection extends StatelessWidget {
   const KeepingSection(this.bird, {super.key});
@@ -13,7 +14,7 @@ class KeepingSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return SectionCard(
       collapsible: true,
-      icon: Icons.info_outline_rounded,
+      icon: AppIcons.birdSectionKeeping,
       title: context.tr.bird.sections.keeping.title,
       subtitle: context.tr.bird.sections.keeping.sub_title,
       children: [

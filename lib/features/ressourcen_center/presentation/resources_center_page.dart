@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/ressourcen_center/presentation/models/resource_tab.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 @RoutePage()
 class ResourcesCenterPage extends StatelessWidget {
@@ -18,7 +19,7 @@ class ResourcesCenterPage extends StatelessWidget {
             title: context.tr.resources.title,
             actions: [
               IconButton(
-                icon: const Icon(Icons.add),
+                icon: const Icon(AppIcons.add),
                 onPressed: () {
                   final tab = ResourceTab.values[controller.index];
 

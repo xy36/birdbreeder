@@ -1,9 +1,9 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 enum BreedingPairDetailsTabs {
   overview,
   broods,
-  //timetable,
   ;
 
   String getDisplayName(BuildContext context) {
@@ -12,17 +12,14 @@ enum BreedingPairDetailsTabs {
         return 'Übersicht';
       case BreedingPairDetailsTabs.broods:
         return 'Gelege';
-      //case BreedingPairDetailsTabs.timetable:
-      //  return 'Zeitplan';
     }
   }
 
   Widget getIcon() {
     return Icon(
       switch (this) {
-        BreedingPairDetailsTabs.overview => Icons.info_outline,
-        BreedingPairDetailsTabs.broods => Icons.egg_outlined,
-        //BreedingPairDetailsTabs.timetable => Icons.timelapse,
+        BreedingPairDetailsTabs.overview => AppIcons.breedingPairTabOverview,
+        BreedingPairDetailsTabs.broods => AppIcons.breedingPairTabBroods,
       },
     );
   }

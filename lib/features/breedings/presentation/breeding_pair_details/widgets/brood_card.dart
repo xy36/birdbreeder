@@ -3,6 +3,7 @@ import 'package:birdbreeder/core/extensions/brood_extension.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
 import 'package:birdbreeder/features/breedings/domain/models/brood.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/models/brood_actions.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 
 class BroodCard extends StatelessWidget {
@@ -51,7 +52,7 @@ class BroodCard extends StatelessWidget {
                 Text(
                   range,
                   style: text.bodySmall?.copyWith(
-                    color: text.bodySmall?.color?.withOpacity(0.8),
+                    color: text.bodySmall?.color?.withValues(alpha: 0.8),
                   ),
                 ),
               const SizedBox(height: 12),
@@ -63,17 +64,17 @@ class BroodCard extends StatelessWidget {
                     runSpacing: 8,
                     children: [
                       _Stat(
-                        icon: Icons.egg_outlined,
+                        icon: AppIcons.egg,
                         label: context.tr.common.eggs_short(n: brood.laidCount),
                         value: brood.laidCount,
                       ),
                       _Stat(
-                        icon: Icons.cruelty_free_outlined,
+                        icon: AppIcons.hatched,
                         label: context.tr.common.hatched_short,
                         value: brood.hatchedCount,
                       ),
                       _Stat(
-                        icon: Icons.flight_takeoff,
+                        icon: AppIcons.fledged,
                         label: context.tr.common.fledged_short,
                         value: brood.fledgedCount,
                       ),
@@ -101,7 +102,7 @@ class BroodCard extends StatelessWidget {
             (action) => action.getItem(context),
           )
           .toList(),
-      icon: const Icon(Icons.more_vert_rounded),
+      icon: const Icon(AppIcons.more),
     );
   }
 

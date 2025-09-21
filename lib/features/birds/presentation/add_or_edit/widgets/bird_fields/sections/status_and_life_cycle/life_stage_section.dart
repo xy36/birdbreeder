@@ -10,6 +10,7 @@ import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/status_and_life_cycle/fields/life_stage_field.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/status_and_life_cycle/fields/unknown_lifecycle_field.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/widgets/section_card.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class LifeStageSection extends StatelessWidget {
   const LifeStageSection(this.bird, {super.key});
@@ -20,7 +21,7 @@ class LifeStageSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return SectionCard(
       collapsible: true,
-      icon: Icons.note_alt,
+      icon: AppIcons.birdSectionLifeStage,
       title: context.tr.bird.sections.life.title,
       subtitle: context.tr.bird.sections.life.sub_title,
       children: [

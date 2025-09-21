@@ -1,5 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/birds/domain/models/sex_enum.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'bird.freezed.dart';
@@ -32,10 +33,10 @@ enum LifeStage {
   }
 
   IconData get icon => switch (this) {
-        LifeStage.egg => Icons.egg,
-        LifeStage.chick => Icons.child_care,
-        LifeStage.adult => Icons.emoji_nature,
-        LifeStage.deceased => Icons.health_and_safety,
+        LifeStage.egg => AppIcons.lifeStageEgg,
+        LifeStage.chick => AppIcons.lifeStageChick,
+        LifeStage.adult => AppIcons.lifeStageAdult,
+        LifeStage.deceased => AppIcons.lifeStageDeceased,
       };
 }
 

@@ -3,10 +3,10 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/screen_size_extensions.dart';
 import 'package:birdbreeder/features/ressourcen_center/domain/models/cage.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/buttons/app_action_button.dart';
 import 'package:birdbreeder/shared/widgets/buttons/generic_button.dart';
 import 'package:birdbreeder/shared/widgets/field_with_label.dart';
-import 'package:birdbreeder/shared/widgets/icons.dart';
 import 'package:birdbreeder/shared/widgets/navigate_back_button.dart';
 import 'package:flutter/services.dart';
 
@@ -40,7 +40,7 @@ class _CageDetailsPageState extends State<CageDetailsPage> {
 
   bool get isValid => formKey.currentState?.validate() == true && _cage != null;
 
-  Widget get icon => isEdit ? saveIcon : acceptIcon;
+  Widget get icon => Icon(isEdit ? AppIcons.save : AppIcons.accept);
 
   @override
   Widget build(BuildContext context) {

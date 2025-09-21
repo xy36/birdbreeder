@@ -7,6 +7,7 @@ import 'package:birdbreeder/features/breedings/presentation/breeding_pairs/widge
 import 'package:birdbreeder/features/breedings/presentation/cubit/breeding_pair_search_cubit.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/cubits/generic_search_cubit/base_search.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 
 @RoutePage()
@@ -41,8 +42,8 @@ class _BreedingPairsPageState extends State<BreedingPairsPage> {
                   context.read<BreedingPairSearchCubit>().toggleActive();
                 },
                 icon: AnimatedCrossFade(
-                  firstChild: const Icon(Icons.search),
-                  secondChild: const Icon(Icons.search_off),
+                  firstChild: const Icon(AppIcons.search),
+                  secondChild: const Icon(AppIcons.searchOff),
                   crossFadeState: state.isActive
                       ? CrossFadeState.showSecond
                       : CrossFadeState.showFirst,
@@ -112,7 +113,7 @@ class _BreedingPairsPageState extends State<BreedingPairsPage> {
             const AddBreedingPairSheet(breedingPair: null),
           );
         },
-        child: const Icon(Icons.add),
+        child: const Icon(AppIcons.add),
       ),
     );
   }

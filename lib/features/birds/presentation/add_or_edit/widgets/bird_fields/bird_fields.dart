@@ -10,6 +10,7 @@ import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/purchase_and_sale/sale_section.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/purchase_and_sale/sale_status_section.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/status_and_life_cycle/life_stage_section.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 enum BirdSections {
   general,
@@ -33,10 +34,10 @@ enum BirdSections {
   Widget getIcon() {
     return Icon(
       switch (this) {
-        BirdSections.general => Icons.info_outline,
-        BirdSections.breeding => Icons.pets,
-        BirdSections.statusAndLifeCycle => Icons.timelapse,
-        BirdSections.purchaseAndSale => Icons.attach_money,
+        BirdSections.general => AppIcons.birdTabsGeneral,
+        BirdSections.breeding => AppIcons.birdTabsBreeding,
+        BirdSections.statusAndLifeCycle => AppIcons.birdTabsStatusAndLifeCycle,
+        BirdSections.purchaseAndSale => AppIcons.birdTabsPurchaseAndSale,
       },
     );
   }

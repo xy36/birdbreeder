@@ -3,6 +3,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
 import 'package:birdbreeder/features/breedings/domain/models/brood.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/bottom_sheet/bottom_sheet_footer.dart';
 import 'package:birdbreeder/shared/widgets/bottom_sheet/bottom_sheet_header.dart';
 
@@ -72,7 +73,7 @@ class _AddBroodSheetState extends State<AddBroodSheet> {
                       readOnly: true,
                       decoration: InputDecoration(
                         labelText: context.tr.breeding_pairs.start_date,
-                        prefixIcon: const Icon(Icons.event),
+                        prefixIcon: const Icon(AppIcons.date),
                       ),
                       controller: TextEditingController(
                         text: MaterialLocalizations.of(context)
@@ -84,7 +85,7 @@ class _AddBroodSheetState extends State<AddBroodSheet> {
                       readOnly: true,
                       decoration: InputDecoration(
                         labelText: context.tr.breeding_pairs.end_date,
-                        prefixIcon: const Icon(Icons.event),
+                        prefixIcon: const Icon(AppIcons.date),
                       ),
                       controller: TextEditingController(
                         text: _endAt != null
@@ -101,7 +102,7 @@ class _AddBroodSheetState extends State<AddBroodSheet> {
                       decoration: InputDecoration(
                         labelText: context.tr.breeding_pairs.notes,
                         alignLabelWithHint: true,
-                        prefixIcon: const Icon(Icons.notes),
+                        prefixIcon: const Icon(AppIcons.notes),
                       ),
                     ),
                   ],

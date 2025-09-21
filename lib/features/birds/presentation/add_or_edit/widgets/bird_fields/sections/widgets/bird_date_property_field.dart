@@ -2,7 +2,7 @@ import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/widgets/bird_property_field.dart';
-import 'package:birdbreeder/shared/widgets/icons.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class BirdDatePropertyField extends StatelessWidget {
   const BirdDatePropertyField({
@@ -44,10 +44,10 @@ class BirdDatePropertyField extends StatelessWidget {
                 suffixIcon: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    dateIcon,
+                    const Icon(AppIcons.date),
                     if (field.value != null)
                       IconButton(
-                        icon: const Icon(Icons.clear),
+                        icon: const Icon(AppIcons.clear),
                         onPressed: () {
                           field.didChange(null);
                           onChanged(null);

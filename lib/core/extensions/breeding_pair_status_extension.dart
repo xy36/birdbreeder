@@ -1,5 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 extension BreedingPairStatusExtension on BreedingPairStatus {
   String getDisplayName(BuildContext context) => switch (this) {
@@ -11,14 +12,20 @@ extension BreedingPairStatusExtension on BreedingPairStatus {
 
   Widget getIcon(BuildContext context, {double size = 24}) => switch (this) {
         BreedingPairStatus.active => Icon(
-            Icons.play_arrow,
+            AppIcons.breedingPairStatusActive,
             color: getForegroundColor(context),
             size: size,
           ),
-        BreedingPairStatus.paused =>
-          Icon(Icons.pause, color: getForegroundColor(context), size: size),
-        BreedingPairStatus.finished =>
-          Icon(Icons.stop, color: getForegroundColor(context), size: size),
+        BreedingPairStatus.paused => Icon(
+            AppIcons.breedingPairStatusPaused,
+            color: getForegroundColor(context),
+            size: size,
+          ),
+        BreedingPairStatus.finished => Icon(
+            AppIcons.breedingPairStatusFinished,
+            color: getForegroundColor(context),
+            size: size,
+          ),
       };
 
   Color getBackgroundColor(BuildContext context) {

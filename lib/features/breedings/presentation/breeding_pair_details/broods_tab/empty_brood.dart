@@ -1,5 +1,6 @@
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class EmptyBrood extends StatelessWidget {
   const EmptyBrood({
@@ -18,15 +19,15 @@ class EmptyBrood extends StatelessWidget {
               children: [
                 Transform.translate(
                   offset: const Offset(-20, 0),
-                  child: const Icon(Icons.egg_outlined, size: 40),
+                  child: const Icon(AppIcons.egg, size: 40),
                 ),
                 Transform.translate(
                   offset: const Offset(0, -15),
-                  child: const Icon(Icons.egg_outlined, size: 40),
+                  child: const Icon(AppIcons.egg, size: 40),
                 ),
                 Transform.translate(
                   offset: const Offset(20, 0),
-                  child: const Icon(Icons.egg_outlined, size: 40),
+                  child: const Icon(AppIcons.egg, size: 40),
                 ),
               ],
             ),

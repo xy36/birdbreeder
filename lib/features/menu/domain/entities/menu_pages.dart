@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 enum MenuPage {
   birds(),
@@ -19,17 +20,17 @@ enum MenuPage {
   IconData get icon {
     switch (this) {
       case MenuPage.birds:
-        return Icons.check_circle_outline;
+        return AppIcons.menuBirds;
       case MenuPage.contacts:
-        return Icons.contacts;
+        return AppIcons.menuContacts;
       case MenuPage.breedings:
-        return Icons.baby_changing_station;
+        return AppIcons.menuBreedings;
       case MenuPage.finances:
-        return Icons.attach_money;
+        return AppIcons.menuFinances;
       case MenuPage.resources:
-        return Icons.folder;
+        return AppIcons.menuResources;
       case MenuPage.account:
-        return Icons.account_circle;
+        return AppIcons.menuAccount;
     }
   }
 

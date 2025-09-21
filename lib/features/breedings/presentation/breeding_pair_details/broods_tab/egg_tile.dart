@@ -4,6 +4,7 @@ import 'package:birdbreeder/core/extensions/egg_extension.dart';
 import 'package:birdbreeder/core/extensions/generic_join.dart';
 import 'package:birdbreeder/features/birds/domain/models/egg.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/models/egg_actions.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class EggTile extends StatelessWidget {
   const EggTile({
@@ -64,13 +65,13 @@ class EggTile extends StatelessWidget {
                         _textWithIcon(
                           context,
                           egg.ringnumber!,
-                          Icons.animation_outlined,
+                          AppIcons.ringNumber,
                         ),
                       if (egg.colorId != null)
                         _textWithIcon(
                           context,
                           egg.colorResolved?.name ?? '-',
-                          Icons.color_lens_outlined,
+                          AppIcons.color,
                         ),
                     ],
                   ),
@@ -80,20 +81,20 @@ class EggTile extends StatelessWidget {
             ),
             Row(
               children: <Widget>[
-                _dateWidget(context, egg.laidAt, fg, Icons.egg_outlined),
+                _dateWidget(context, egg.laidAt, fg, AppIcons.egg),
                 if (egg.hatchedAt != null)
-                  _dateWidget(context, egg.hatchedAt!, fg, Icons.access_alarm),
+                  _dateWidget(context, egg.hatchedAt!, fg, AppIcons.hatched),
                 if (egg.fledgedAt != null)
                   _dateWidget(
                     context,
                     egg.fledgedAt!,
                     fg,
-                    Icons.flight_takeoff,
+                    AppIcons.fledged,
                   ),
               ].genericJoin(
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Icon(Icons.circle, size: 4, color: fg),
+                  child: Icon(AppIcons.separator, size: 4, color: fg),
                 ),
               ),
             ),
@@ -152,7 +153,7 @@ class EggTile extends StatelessWidget {
       onSelected: (v) => v.executeAction(context, egg),
       itemBuilder: (context) =>
           EggActions.values.map((action) => action.getItem(context)).toList(),
-      icon: const Icon(Icons.more_vert_rounded),
+      icon: const Icon(AppIcons.more),
     );
   }
 }

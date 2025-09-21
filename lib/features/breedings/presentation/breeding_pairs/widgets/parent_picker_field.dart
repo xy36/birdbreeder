@@ -2,6 +2,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/domain/models/sex_enum.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/models/bird_filter.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 
 enum ParentType { father, mother }
@@ -35,7 +36,7 @@ class ParentPickerField extends StatelessWidget {
       };
 
   IconData get _icon =>
-      parentType == ParentType.father ? Icons.male : Icons.female;
+      parentType == ParentType.father ? AppIcons.sexMale : AppIcons.sexFemale;
 
   String get name => 'parent_${parentType.name}';
 
@@ -84,7 +85,7 @@ class ParentPickerField extends StatelessWidget {
               suffixIcon: hasValue && enabled
                   ? IconButton(
                       tooltip: context.tr.common.reset,
-                      icon: const Icon(Icons.clear),
+                      icon: const Icon(AppIcons.clear),
                       onPressed: () {
                         field.didChange(null);
                         onChanged?.call(null);

@@ -8,6 +8,7 @@ import 'package:birdbreeder/features/contacts/domain/models/contact.dart';
 import 'package:birdbreeder/features/ressourcen_center/domain/models/bird_color.dart';
 import 'package:birdbreeder/features/ressourcen_center/domain/models/cage.dart';
 import 'package:birdbreeder/features/ressourcen_center/domain/models/species.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 /// Generic list for a resource type (Species/Cages/Colors).
 class ResourceList<T> extends StatefulWidget {
@@ -124,7 +125,7 @@ class _ResourceListState<T> extends State<ResourceList<T>> {
       spacing: 4,
       children: [
         IconButton(
-          icon: const Icon(Icons.delete),
+          icon: const Icon(AppIcons.delete),
           onPressed: () => widget.onDelete(item),
         ),
       ],

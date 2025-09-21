@@ -1,4 +1,5 @@
 import 'package:birdbreeder/core/extensions/build_context_extensions.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -21,43 +22,43 @@ enum EggStatus {
       EggStatus.laid => (
           scheme.primaryFixed,
           scheme.onSurfaceVariant,
-          Icons.egg_outlined,
+          AppIcons.eggStatusLaid,
           context.tr.egg.status.laid
         ),
       EggStatus.fertilized => (
           scheme.tertiaryContainer,
           scheme.onTertiaryContainer,
-          Icons.close,
+          AppIcons.eggStatusFertilized,
           context.tr.egg.status.fertilized
         ),
       EggStatus.unfertilized => (
           scheme.errorContainer,
           scheme.onErrorContainer,
-          Icons.close,
+          AppIcons.eggStatusUnfertilized,
           context.tr.egg.status.unfertilized
         ),
       EggStatus.dead => (
           scheme.errorContainer,
           scheme.onErrorContainer,
-          Icons.close,
+          AppIcons.eggStatusDead,
           context.tr.egg.status.dead,
         ),
       EggStatus.hatched => (
           scheme.primaryContainer,
           scheme.onPrimaryContainer,
-          Icons.egg_outlined,
+          AppIcons.eggStatusHatched,
           context.tr.egg.status.hatched
         ),
       EggStatus.fledged => (
           scheme.primaryFixedDim,
           scheme.onPrimaryFixed,
-          Icons.egg_outlined,
+          AppIcons.eggStatusFledged,
           context.tr.egg.status.fledged
         ),
       EggStatus.unknown => (
           scheme.surfaceContainerLow,
           scheme.onSurfaceVariant,
-          Icons.help_outline,
+          AppIcons.eggStatusUnknown,
           context.tr.egg.status.unknown
         ),
     };

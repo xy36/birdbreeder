@@ -1,6 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/widgets/bird_property_field.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 
 class BirdSelectPropertyField extends StatelessWidget {
@@ -69,7 +70,7 @@ class BirdSelectPropertyField extends StatelessWidget {
                   suffixIcon: hasValue
                       ? IconButton(
                           tooltip: context.tr.common.reset,
-                          icon: const Icon(Icons.clear),
+                          icon: const Icon(AppIcons.clear),
                           onPressed: () {
                             field.didChange(null);
                             onChanged.call(null);

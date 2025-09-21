@@ -1,6 +1,7 @@
 import 'package:birdbreeder/features/menu/domain/entities/menu_pages.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/injection.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
 
@@ -170,7 +171,7 @@ class _Header extends StatelessWidget {
                       ),
                   ],
                 )
-              : const Icon(Icons.menu),
+              : const Icon(AppIcons.menu),
         ),
       ),
     );

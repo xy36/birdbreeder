@@ -2,6 +2,7 @@ import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/contact_extension.dart';
 import 'package:birdbreeder/features/contacts/domain/models/contact.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactCard extends StatelessWidget {
@@ -155,7 +156,7 @@ class ContactCard extends StatelessWidget {
                 children: [
                   _ActionIconButton(
                     tooltip: l10n.contacts.action_button.call_tooltipp,
-                    icon: Icons.call_outlined,
+                    icon: AppIcons.phone,
                     enabled: (contact.phone != null &&
                         contact.phone!.trim().isNotEmpty),
                     onPressed: (contact.phone != null &&
@@ -165,7 +166,7 @@ class ContactCard extends StatelessWidget {
                   ),
                   _ActionIconButton(
                     tooltip: l10n.contacts.action_button.send_email_tooltipp,
-                    icon: Icons.alternate_email,
+                    icon: AppIcons.email,
                     enabled: (contact.email != null &&
                         contact.email!.trim().isNotEmpty),
                     onPressed: (contact.email != null &&
@@ -175,7 +176,7 @@ class ContactCard extends StatelessWidget {
                   ),
                   _ActionIconButton(
                     tooltip: l10n.contacts.action_button.open_website_tooltipp,
-                    icon: Icons.public,
+                    icon: AppIcons.country,
                     enabled: (contact.website != null &&
                         contact.website!.trim().isNotEmpty),
                     onPressed: (contact.website != null &&
@@ -185,11 +186,11 @@ class ContactCard extends StatelessWidget {
                   ),
                   const Spacer(),
                   _StatPill(
-                    icon: Icons.sell,
+                    icon: AppIcons.sell,
                     label: '${contact.birdsSoldCount}',
                   ),
                   _StatPill(
-                    icon: Icons.shopping_bag,
+                    icon: AppIcons.buy,
                     label: '${contact.birdsBoughtCount}',
                   ),
                 ],

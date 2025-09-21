@@ -1,6 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/models/pair_totals.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/overview_tab/kpi_card.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class KpiCards extends StatelessWidget {
   const KpiCards({super.key, required this.totals, this.eta});
@@ -24,17 +25,17 @@ class KpiCards extends StatelessWidget {
           ),
           children: [
             KpiCard(
-              icon: Icons.egg_outlined,
+              icon: AppIcons.egg,
               label: context.tr.brood.kpi.eggs,
               value: totals.eggs,
             ),
             KpiCard(
-              icon: Icons.cruelty_free_outlined,
+              icon: AppIcons.hatched,
               label: context.tr.brood.kpi.hatched,
               value: totals.hatched,
             ),
             KpiCard(
-              icon: Icons.flight_takeoff,
+              icon: AppIcons.fledged,
               label: context.tr.brood.kpi.fledged,
               value: totals.fledged,
             ),

@@ -4,6 +4,7 @@ import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/purchase_and_sale/fields/bought_from_field.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/purchase_and_sale/fields/bought_price_field.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/widgets/section_card.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class PurchaseSection extends StatelessWidget {
   const PurchaseSection(this.bird, {super.key});
@@ -14,7 +15,7 @@ class PurchaseSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return SectionCard(
       collapsible: true,
-      icon: Icons.sell,
+      icon: AppIcons.birdSectionPurchase,
       title: context.tr.bird.sections.purchase.title,
       subtitle: context.tr.bird.sections.purchase.sub_title,
       children: [

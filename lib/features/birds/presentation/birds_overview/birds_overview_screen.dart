@@ -13,6 +13,7 @@ import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/b
 import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/random_bird_fab.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/cubits/generic_search_cubit/base_search.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/buttons/button_bird_add.dart';
 
 enum BirdOverviewMode {
@@ -65,8 +66,8 @@ class _BirdsOverviewScreenState extends State<BirdsOverviewScreen> {
                   context.read<BirdSearchCubit>().toggleActive();
                 },
                 icon: AnimatedCrossFade(
-                  firstChild: const Icon(Icons.search),
-                  secondChild: const Icon(Icons.search_off),
+                  firstChild: const Icon(AppIcons.search),
+                  secondChild: const Icon(AppIcons.searchOff),
                   crossFadeState: state.isActive
                       ? CrossFadeState.showSecond
                       : CrossFadeState.showFirst,
@@ -80,7 +81,7 @@ class _BirdsOverviewScreenState extends State<BirdsOverviewScreen> {
               final hasActiveFilter = filter != const BirdFilter();
 
               return IconButton(
-                icon: const Icon(Icons.filter_list_rounded),
+                icon: const Icon(AppIcons.filter),
                 onPressed: () async {
                   final applied = await showModalBottomSheet<BirdFilter?>(
                     context: context,

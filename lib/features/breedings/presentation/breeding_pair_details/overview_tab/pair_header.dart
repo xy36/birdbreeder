@@ -3,6 +3,7 @@ import 'package:birdbreeder/core/extensions/breeding_pairs_extension.dart';
 import 'package:birdbreeder/features/birds/domain/models/sex_enum.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/overview_tab/status_chip.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class PairHeader extends StatelessWidget {
   const PairHeader({super.key, required this.pair});
@@ -16,7 +17,7 @@ class PairHeader extends StatelessWidget {
     if (pair.cageResolved?.name != null) {
       sub.addAll(
         [
-          const WidgetSpan(child: Icon(Icons.home_work_outlined, size: 16)),
+          const WidgetSpan(child: Icon(AppIcons.cage, size: 16)),
           TextSpan(text: ' ${pair.cageResolved!.name}'),
         ],
       );
@@ -26,7 +27,7 @@ class PairHeader extends StatelessWidget {
       final since =
           MaterialLocalizations.of(context).formatShortDate(pair.start!);
       sub.addAll([
-        const WidgetSpan(child: Icon(Icons.event_available, size: 16)),
+        const WidgetSpan(child: Icon(AppIcons.date, size: 16)),
         TextSpan(text: context.tr.brood.since(Date: since)),
       ]);
     }

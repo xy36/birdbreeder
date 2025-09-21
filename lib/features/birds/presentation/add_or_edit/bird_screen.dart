@@ -4,6 +4,7 @@ import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/cubit/bird_cubit.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/models/bird_mode.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/bird_fields.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/dialogs/delete_dialog.dart';
 import 'package:birdbreeder/shared/widgets/navigate_back_button.dart';
 
@@ -72,8 +73,8 @@ class BirdScreen extends StatelessWidget {
                 IconButton(
                   icon: Icon(
                     switch (state.mode) {
-                      BirdMode.edit => Icons.save,
-                      BirdMode.create => Icons.check,
+                      BirdMode.edit => AppIcons.save,
+                      BirdMode.create => AppIcons.accept,
                     },
                   ),
                   onPressed: () async {
@@ -82,7 +83,7 @@ class BirdScreen extends StatelessWidget {
                 ),
               if (state.mode == BirdMode.edit)
                 PopupMenuButton<BirdActions>(
-                  icon: const Icon(Icons.more_vert),
+                  icon: const Icon(AppIcons.more),
                   onSelected: (value) async {
                     await value.executeAction(context);
                   },

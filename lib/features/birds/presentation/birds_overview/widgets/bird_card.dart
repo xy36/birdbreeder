@@ -2,6 +2,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/birds_extension.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/bird_screen.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/sex_badge.dart';
 
 /// Reusable card widget for displaying a bird in a list/grid.
@@ -80,7 +81,7 @@ class BirdCard extends StatelessWidget {
         CircleAvatar(
           radius: compact ? 18 : 22,
           // TODO: Replace with bird image if you have one
-          child: const Icon(Icons.pets_rounded),
+          child: const Icon(AppIcons.birdAvatar),
         ),
         Positioned(
           right: -2,
@@ -111,7 +112,7 @@ class BirdCard extends StatelessWidget {
       ),
       itemBuilder: (context) =>
           BirdActions.values.map((action) => action.getItem(context)).toList(),
-      icon: const Icon(Icons.more_vert_rounded),
+      icon: const Icon(AppIcons.more),
     );
   }
 }

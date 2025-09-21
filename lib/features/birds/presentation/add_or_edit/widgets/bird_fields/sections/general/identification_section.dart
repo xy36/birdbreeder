@@ -5,6 +5,7 @@ import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/general/fields/sex_field.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/general/fields/species_field.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/widgets/section_card.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class IdentificationSection extends StatelessWidget {
   const IdentificationSection(this.bird, {super.key});
@@ -15,7 +16,7 @@ class IdentificationSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return SectionCard(
       collapsible: true,
-      icon: Icons.badge,
+      icon: AppIcons.birdSectionIdentification,
       title: context.tr.bird.sections.identification.title,
       subtitle: context.tr.bird.sections.identification.sub_title,
       children: [

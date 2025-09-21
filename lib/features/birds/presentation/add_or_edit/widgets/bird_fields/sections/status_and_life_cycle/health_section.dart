@@ -1,6 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/widgets/section_card.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class HealthSection extends StatelessWidget {
   const HealthSection(this.bird, {super.key});
@@ -11,7 +12,7 @@ class HealthSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return SectionCard(
       collapsible: true,
-      icon: Icons.health_and_safety_rounded,
+      icon: AppIcons.birdSectionHealth,
       title: context.tr.bird.sections.health.title,
       subtitle: context.tr.bird.sections.health.sub_title,
       children: const [

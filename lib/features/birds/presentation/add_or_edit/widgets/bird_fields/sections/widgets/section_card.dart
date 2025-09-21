@@ -1,5 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/sections/widgets/section_badge.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class SectionCard extends StatefulWidget {
   const SectionCard({
@@ -101,9 +102,8 @@ class _SectionCardState extends State<SectionCard> {
                               icon: AnimatedRotation(
                                 turns: _expanded ? 0.5 : 0.0,
                                 duration: const Duration(milliseconds: 150),
-                                child: const Icon(Icons.expand_more),
+                                child: const Icon(AppIcons.expand),
                               ),
-                              tooltip: _expanded ? 'Collapse' : 'Expand',
                             ),
                           ],
                         ],

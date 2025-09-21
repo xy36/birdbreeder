@@ -8,6 +8,7 @@ import 'package:birdbreeder/features/birds/domain/models/sex_enum.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
 import 'package:birdbreeder/features/breedings/domain/models/brood.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pairs/models/breeding_pair_actions.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class BreedingPairCard extends StatelessWidget {
   BreedingPairCard({
@@ -56,7 +57,7 @@ class BreedingPairCard extends StatelessWidget {
                         _ParentLabel(
                           bird: father,
                         ),
-                        const Icon(Icons.close),
+                        const Icon(AppIcons.close),
                         _ParentLabel(
                           bird: mother,
                         ),
@@ -70,7 +71,7 @@ class BreedingPairCard extends StatelessWidget {
               if (breedingPair.cageResolved?.name != null)
                 Row(
                   children: [
-                    const Icon(Icons.home_work_outlined, size: 16),
+                    const Icon(AppIcons.cage, size: 16),
                     const SizedBox(width: 4),
                     Text(
                       breedingPair.cageResolved!.name!,
@@ -86,17 +87,17 @@ class BreedingPairCard extends StatelessWidget {
                       runSpacing: 8,
                       children: [
                         _Stat(
-                          icon: Icons.egg_outlined,
+                          icon: AppIcons.egg,
                           label: context.tr.common.eggs_short(n: laid),
                           value: laid,
                         ),
                         _Stat(
-                          icon: Icons.cruelty_free_outlined,
+                          icon: AppIcons.hatched,
                           label: context.tr.common.hatched_short,
                           value: hatched,
                         ),
                         _Stat(
-                          icon: Icons.flight_takeoff,
+                          icon: AppIcons.fledged,
                           label: context.tr.common.fledged_short,
                           value: fledged,
                         ),
@@ -119,7 +120,7 @@ class BreedingPairCard extends StatelessWidget {
       itemBuilder: (context) => BreedingPairActions.values
           .map((action) => action.getItem(context))
           .toList(),
-      icon: const Icon(Icons.more_vert_rounded),
+      icon: const Icon(AppIcons.more),
     );
   }
 }
