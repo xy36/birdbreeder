@@ -78,10 +78,12 @@ class _BreedingPairsPageState extends State<BreedingPairsPage> {
               builder: (context, state) {
                 final searchedBreedingPairs =
                     context.read<BreedingPairSearchCubit>().searchedItems;
-                return ListView.builder(
+                return ListView.separated(
                   physics: const AlwaysScrollableScrollPhysics(
                     parent: BouncingScrollPhysics(),
                   ),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 12),
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                   itemCount: searchedBreedingPairs.length,
