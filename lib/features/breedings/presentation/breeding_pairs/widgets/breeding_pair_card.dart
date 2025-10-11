@@ -29,14 +29,6 @@ class BreedingPairCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final father = breedingPair.fatherResolved;
-    final mother = breedingPair.motherResolved;
-
-    if (father == null || mother == null) {
-      return const SizedBox();
-    }
-    final theme = Theme.of(context);
-
     return Card(
       elevation: 1,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
@@ -48,25 +40,7 @@ class BreedingPairCard extends StatelessWidget {
             spacing: 8,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Row(
-                      spacing: 12,
-                      children: [
-                        _ParentLabel(
-                          bird: father,
-                        ),
-                        const Icon(AppIcons.close),
-                        _ParentLabel(
-                          bird: mother,
-                        ),
-                      ],
-                    ),
-                  ),
-                  breedingPair.status.getChip(context),
-                ],
-              ),
+              BreedingPairHeader(breedingPair: breedingPair),
               const Divider(),
               if (breedingPair.cageResolved?.name != null)
                 Row(
@@ -75,7 +49,7 @@ class BreedingPairCard extends StatelessWidget {
                     const SizedBox(width: 4),
                     Text(
                       breedingPair.cageResolved!.name!,
-                      style: theme.textTheme.bodySmall,
+                      style: context.textTheme.bodySmall,
                     ),
                   ],
                 ),
@@ -121,6 +95,24 @@ class BreedingPairCard extends StatelessWidget {
           .map((action) => action.getItem(context))
           .toList(),
       icon: const Icon(AppIcons.more),
+    );
+  }
+}
+
+class _UnknownParentLabel extends StatelessWidget {
+  const _UnknownParentLabel();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(4),
+      child: Text(
+        '???',
+        style: context.textTheme.titleMedium?.copyWith(
+          fontWeight: FontWeight.bold,
+        ),
+        overflow: TextOverflow.ellipsis,
+      ),
     );
   }
 }
@@ -175,6 +167,99 @@ class _Stat extends StatelessWidget {
         Icon(icon, size: 16),
         const SizedBox(width: 4),
         Text('$value $label', style: Theme.of(context).textTheme.bodySmall),
+      ],
+    );
+  }
+}
+
+class BreedingPairHeader extends StatelessWidget {
+  const BreedingPairHeader({
+    super.key,
+    required this.breedingPair,
+    this.showSubtitle = false,
+  });
+
+  final bool showSubtitle;
+
+  final BreedingPair breedingPair;
+
+  Bird? get father => breedingPair.fatherResolved;
+
+  Bird? get mother => breedingPair.motherResolved;
+
+  @override
+  Widget build(BuildContext context) {
+    final sub = <InlineSpan>[];
+
+    if (breedingPair.cageResolved?.name != null) {
+      sub.addAll(
+        [
+          const WidgetSpan(child: Icon(AppIcons.cage, size: 16)),
+          TextSpan(text: ' ${breedingPair.cageResolved!.name}'),
+        ],
+      );
+    }
+    if (breedingPair.start != null) {
+      if (sub.isNotEmpty) sub.add(const TextSpan(text: '  •  '));
+      final since = MaterialLocalizations.of(context)
+          .formatShortDate(breedingPair.start!);
+      sub.addAll([
+        const WidgetSpan(child: Icon(AppIcons.date, size: 16)),
+        TextSpan(text: context.tr.brood.since(Date: since)),
+      ]);
+    }
+
+    return Column(
+      spacing: 8,
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: Row(
+                spacing: 12,
+                children: [
+                  if (father != null)
+                    _ParentLabel(
+                      bird: father!,
+                    )
+                  else
+                    const _UnknownParentLabel(),
+                  const Icon(AppIcons.close),
+                  if (mother != null)
+                    _ParentLabel(
+                      bird: mother!,
+                    )
+                  else
+                    const _UnknownParentLabel(),
+                ],
+              ),
+            ),
+            breedingPair.status.getChip(context),
+          ],
+        ),
+        if (showSubtitle)
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (sub.isNotEmpty)
+                      Text.rich(
+                        TextSpan(children: sub),
+                        style: context.bodySmall?.copyWith(
+                          color:
+                              context.bodySmall?.color?.withValues(alpha: 0.8),
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                  ],
+                ),
+              ),
+            ],
+          ),
       ],
     );
   }

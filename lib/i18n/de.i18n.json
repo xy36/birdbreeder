@@ -167,6 +167,7 @@
     "brood": {
         "name": "Gelege",
         "overview": "Brutübersicht",
+        "latest": "Letzte Brut",
         "add": "Gelege hinzufügen",
         "delete": "Gelege löschen?",
         "edit": "Gelege bearbeiten",

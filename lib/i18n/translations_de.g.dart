@@ -369,6 +369,9 @@ class TranslationsBroodDe {
   /// de: 'Brutübersicht'
   String get overview => 'Brutübersicht';
 
+  /// de: 'Letzte Brut'
+  String get latest => 'Letzte Brut';
+
   /// de: 'Gelege hinzufügen'
   String get add => 'Gelege hinzufügen';
 

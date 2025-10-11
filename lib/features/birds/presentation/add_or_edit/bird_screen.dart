@@ -32,22 +32,6 @@ enum BirdActions {
         )
     };
   }
-
-  Future<void> executeAction(BuildContext context) async {
-    return switch (this) {
-      duplicate => await context.read<BirdCubit>().duplicate(),
-      edit => context.router
-          .push(BirdRoute(bird: context.read<BirdCubit>().state.bird)),
-      delete => {
-          if (context.mounted)
-            await DeleteDialog.show(
-              context: context,
-              title: context.tr.bird.delete,
-              onDelete: () => context.read<BirdCubit>().delete(),
-            ),
-        }
-    };
-  }
 }
 
 class BirdScreen extends StatelessWidget {
@@ -84,8 +68,20 @@ class BirdScreen extends StatelessWidget {
               if (state.mode == BirdMode.edit)
                 PopupMenuButton<BirdActions>(
                   icon: const Icon(AppIcons.more),
-                  onSelected: (value) async {
-                    await value.executeAction(context);
+                  onSelected: (value) async => switch (value) {
+                    BirdActions.duplicate =>
+                      await context.read<BirdCubit>().duplicate(),
+                    BirdActions.edit => context.router.push(
+                        BirdRoute(bird: context.read<BirdCubit>().state.bird),
+                      ),
+                    BirdActions.delete => {
+                        if (context.mounted)
+                          await DeleteDialog.show(
+                            context: context,
+                            title: context.tr.bird.delete,
+                            onDelete: () => context.read<BirdCubit>().delete(),
+                          ),
+                      }
                   },
                   itemBuilder: (BuildContext context) => switch (state.mode) {
                     BirdMode.edit => [

@@ -6,8 +6,8 @@ import 'package:birdbreeder/features/breedings/presentation/breeding_pair_detail
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 
-class EmptyBrood extends StatelessWidget {
-  const EmptyBrood({
+class AddBroodTile extends StatelessWidget {
+  const AddBroodTile({
     super.key,
     required this.breedingPair,
   });
@@ -30,9 +30,9 @@ class EmptyBrood extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(AppIcons.egg, size: 40),
+                const Icon(AppIcons.add, size: 40),
                 const SizedBox(height: 12),
-                Text(context.tr.brood.empty, style: context.titleMedium),
+                Text(context.tr.brood.add, style: context.titleMedium),
               ],
             ),
           ),

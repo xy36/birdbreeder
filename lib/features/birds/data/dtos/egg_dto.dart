@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:birdbreeder/features/birds/data/converter/string_null_empty_converter.dart';
 import 'package:birdbreeder/features/birds/data/converter/utc_date_time_converter.dart';
 import 'package:birdbreeder/features/birds/domain/models/egg.dart';

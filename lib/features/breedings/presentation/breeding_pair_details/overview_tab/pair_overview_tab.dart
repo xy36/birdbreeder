@@ -5,8 +5,8 @@ import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart'
 import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/broods_tab/empty_brood.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/models/pair_totals.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/overview_tab/kpi_cards.dart';
-import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/overview_tab/pair_header.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/widgets/brood_card.dart';
+import 'package:birdbreeder/features/breedings/presentation/breeding_pairs/widgets/breeding_pair_card.dart';
 
 class PairOverviewTab extends StatelessWidget {
   const PairOverviewTab({
@@ -32,23 +32,38 @@ class PairOverviewTab extends StatelessWidget {
           .fold<int>(0, (a, b) => a + b),
     );
 
+    final divider = [
+      const SizedBox(height: 8),
+      const Divider(),
+      const SizedBox(height: 16),
+    ];
+
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
       children: [
-        PairHeader(pair: pair),
-        const SizedBox(height: 24),
+        BreedingPairHeader(
+          breedingPair: pair,
+          showSubtitle: true,
+        ),
+        ...divider,
+        Text(
+          context.tr.brood.latest,
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        const SizedBox(height: 12),
+        if (pair.latestBrood != null) ...[
+          BroodCard(
+            brood: pair.latestBrood!,
+            breedingPair: pair,
+          ),
+        ] else
+          EmptyBrood(breedingPair: pair),
+        ...divider,
         KpiCards(
           totals: totals,
           eta: pair.latestBrood?.start,
         ),
         const SizedBox(height: 24),
-        if (pair.latestBrood != null)
-          BroodCard(
-            brood: pair.latestBrood!,
-            breedingPair: pair,
-          )
-        else
-          const EmptyBrood(),
       ],
     );
   }

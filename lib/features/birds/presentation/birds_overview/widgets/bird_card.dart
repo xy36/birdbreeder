@@ -1,8 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/birds_extension.dart';
+import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/bird_screen.dart';
+import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/icons.dart';
+import 'package:birdbreeder/shared/widgets/dialogs/delete_dialog.dart';
 import 'package:birdbreeder/shared/widgets/sex_badge.dart';
 
 /// Reusable card widget for displaying a bird in a list/grid.
@@ -106,10 +110,21 @@ class BirdCard extends StatelessWidget {
 
   /// Popup menu with common actions.
   Widget _moreMenu(BuildContext context) {
+    final birdCubit = context.read<BirdBreederCubit>();
+
     return PopupMenuButton<BirdActions>(
-      onSelected: (v) => v.executeAction(
-        context,
-      ),
+      onSelected: (v) async => switch (v) {
+        BirdActions.duplicate => await birdCubit.duplicateBird(bird),
+        BirdActions.edit => context.router.push(BirdRoute(bird: bird)),
+        BirdActions.delete => {
+            if (context.mounted)
+              await DeleteDialog.show(
+                context: context,
+                title: context.tr.bird.delete,
+                onDelete: () => birdCubit.deleteBird(bird),
+              ),
+          }
+      },
       itemBuilder: (context) =>
           BirdActions.values.map((action) => action.getItem(context)).toList(),
       icon: const Icon(AppIcons.more),

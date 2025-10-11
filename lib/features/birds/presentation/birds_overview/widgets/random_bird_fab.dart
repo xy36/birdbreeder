@@ -23,12 +23,6 @@ class RandomBirdFab extends StatelessWidget {
         final cages =
             context.read<BirdBreederCubit>().state.birdBreederResources.cages;
 
-        final contacts = context
-            .read<BirdBreederCubit>()
-            .state
-            .birdBreederResources
-            .contacts;
-
         final born = DateTime.now().subtract(
           Duration(days: Random().nextInt(365 * 10)),
         );

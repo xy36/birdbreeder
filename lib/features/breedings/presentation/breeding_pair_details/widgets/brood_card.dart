@@ -25,7 +25,6 @@ class BroodCard extends StatelessWidget {
 
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      elevation: 1.5,
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
         onTap: () => onOpenBrood(context, brood),

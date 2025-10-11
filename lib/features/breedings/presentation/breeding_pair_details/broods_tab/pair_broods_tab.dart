@@ -2,7 +2,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/brood_extension.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
 import 'package:birdbreeder/features/breedings/domain/models/brood.dart';
-import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/broods_tab/empty_brood.dart';
+import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/broods_tab/add_brood_tile.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/widgets/brood_card.dart';
 
 class PairBroodsTab extends StatelessWidget {
@@ -26,20 +26,21 @@ class PairBroodsTab extends StatelessWidget {
       });
 
     return Scaffold(
-      body: list.isEmpty
-          ? const EmptyBrood()
-          : ListView.separated(
-              padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
-              itemCount: list.length,
-              separatorBuilder: (_, __) => const SizedBox(height: 12),
-              itemBuilder: (_, i) {
-                final brood = list[i];
-                return BroodCard(
-                  brood: brood,
-                  breedingPair: breedingPair,
-                );
-              },
-            ),
+      body: ListView.separated(
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+        itemCount: list.length + 1,
+        separatorBuilder: (_, __) => const SizedBox(height: 12),
+        itemBuilder: (_, i) {
+          if (i == list.length) {
+            return AddBroodTile(breedingPair: breedingPair);
+          }
+          final brood = list[i];
+          return BroodCard(
+            brood: brood,
+            breedingPair: breedingPair,
+          );
+        },
+      ),
     );
   }
 }
