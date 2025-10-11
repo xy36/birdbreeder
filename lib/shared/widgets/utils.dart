@@ -1,7 +1,5 @@
 import 'dart:ui';
 
-import 'package:auto_route/auto_route.dart';
-import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/domain/models/egg.dart';
@@ -15,6 +13,7 @@ import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/services/screen_size.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/widgets/bottom_sheet/bottom_sheet_header.dart';
+import 'package:birdbreeder/shared/widgets/value_selector.dart';
 import 'package:flutter/services.dart';
 
 Future<bool> showChildAsDrawerDialog(
@@ -204,69 +203,29 @@ Future<T?> promptValueSelector<T>(
   T? initialValue,
   required List<T> values,
   required String title,
-  required bool Function(T item, String filter) filterFn,
-  required Widget? Function(BuildContext context, T item, int index)
-      itemBuilder,
-  Future<void> Function(String value)? onAdd,
+  required Widget Function(BuildContext context, T item, int index) itemBuilder,
+  required bool Function(T item, String filter)? filterFn,
+  Future<T?> Function(String value)? onAdd,
 }) async {
   FocusManager.instance.primaryFocus?.unfocus();
 
-  var searchTerm = '';
-
-  final color = await openSheet<T?>(
+  return openSheet<T?>(
     context,
-    StatefulBuilder(
-      builder: (context, setState) {
-        final filteredColors =
-            values.where((item) => filterFn(item, searchTerm)).toList();
-        return Column(
-          children: [
-            BottomSheetHeader(title: title),
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: SearchBar(
-                hintText: context.tr.common.search_hint,
-                onChanged: (value) {
-                  setState(() {
-                    searchTerm = value;
-                  });
-                },
-              ),
-            ),
-            if (filteredColors.isEmpty)
-              Padding(
-                padding: const EdgeInsets.all(24),
-                child: searchTerm.isEmpty
-                    ? const Text('Nichts vorhanden')
-                    : FilledButton(
-                        onPressed: () async {
-                          await onAdd?.call(searchTerm);
+    ValueSelector<T>(
+      initialValue: initialValue,
+      values: values,
+      title: title,
+      itemBuilder: itemBuilder,
+      filterFn: filterFn,
+      onAdd: (String value) async {
+        final createdValue = await onAdd?.call(value);
 
-                          if (!context.mounted) return;
-                          Navigator.of(context).pop();
-                        },
-                        child: Text(
-                          '${context.tr.common.add} "$searchTerm"',
-                        ),
-                      ),
-              )
-            else
-              Expanded(
-                child: ListView.builder(
-                  itemCount: filteredColors.length,
-                  itemBuilder: (context, index) =>
-                      itemBuilder(context, filteredColors[index], index)?.onTap(
-                    () => context.router.maybePop(filteredColors[index]),
-                  ),
-                ),
-              ),
-          ],
-        );
+        if (!context.mounted) return;
+
+        Navigator.pop(context, createdValue);
       },
     ),
   );
-
-  return color;
 }
 
 Future<DateTime?> promptDateValue(

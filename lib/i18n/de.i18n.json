@@ -14,6 +14,7 @@
     "colors": {
         "title": "Farben",
         "add": "Farbe hinzufügen",
+        "select": "Farbe auswählen",
         "pick": "Farbe auswählen",
         "delete": "Farbe löschen?",
         "color": "Farbe"
@@ -21,6 +22,7 @@
     "cages": {
         "title": "Volieren",
         "add": "Voliere hinzufügen",
+        "select": "Voliere auswählen",
         "delete": "Voliere löschen?",
         "name": "Name des Volieres",
         "description": "Beschreibung",
@@ -31,6 +33,7 @@
     "species": {
         "title": "Arten",
         "add": "Art hinzufügen",
+        "select": "Art auswählen",
         "delete": "Art löschen?",
         "name": "Name der Art",
         "latin_name": "Lateinischer Name"
@@ -55,6 +58,7 @@
         },
         "contact": "Kontakt löschen?",
         "add": "Kontakt hinzufügen?",
+        "select": "Kontakt auswählen",
         "sections": {
             "personal": "Persönliche Informationen",
             "breeder": "Züchterinformationen",

@@ -127,6 +127,9 @@ class TranslationsColorsDe {
   String get add => 'Farbe hinzufügen';
 
   /// de: 'Farbe auswählen'
+  String get select => 'Farbe auswählen';
+
+  /// de: 'Farbe auswählen'
   String get pick => 'Farbe auswählen';
 
   /// de: 'Farbe löschen?'
@@ -149,6 +152,9 @@ class TranslationsCagesDe {
 
   /// de: 'Voliere hinzufügen'
   String get add => 'Voliere hinzufügen';
+
+  /// de: 'Voliere auswählen'
+  String get select => 'Voliere auswählen';
 
   /// de: 'Voliere löschen?'
   String get delete => 'Voliere löschen?';
@@ -182,6 +188,9 @@ class TranslationsSpeciesDe {
 
   /// de: 'Art hinzufügen'
   String get add => 'Art hinzufügen';
+
+  /// de: 'Art auswählen'
+  String get select => 'Art auswählen';
 
   /// de: 'Art löschen?'
   String get delete => 'Art löschen?';
@@ -223,6 +232,9 @@ class TranslationsContactsDe {
 
   /// de: 'Kontakt hinzufügen?'
   String get add => 'Kontakt hinzufügen?';
+
+  /// de: 'Kontakt auswählen'
+  String get select => 'Kontakt auswählen';
 
   late final TranslationsContactsSectionsDe sections = TranslationsContactsSectionsDe.internal(_root);
   late final TranslationsContactsActionButtonDe action_button = TranslationsContactsActionButtonDe.internal(_root);

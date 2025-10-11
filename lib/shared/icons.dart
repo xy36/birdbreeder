@@ -87,6 +87,7 @@ class AppIcons {
   static const IconData date = Icons.calendar_month;
   static const IconData ringNumber = Icons.animation_outlined;
   static const IconData color = Icons.color_lens_outlined;
+  static const IconData species = Icons.pets_outlined;
   static const IconData separator = Icons.circle;
 
   static const IconData menu = Icons.menu;
