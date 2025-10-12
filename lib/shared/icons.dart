@@ -103,4 +103,9 @@ class AppIcons {
   static const IconData menuFinances = Icons.attach_money;
   static const IconData menuResources = Icons.folder;
   static const IconData menuAccount = Icons.account_circle;
+
+  static const IconData snackWarning = Icons.warning;
+  static const IconData snackError = Icons.error_outline;
+  static const IconData snackInfo = Icons.info_outline;
+  static const IconData snackSuccess = Icons.check_circle_outline;
 }

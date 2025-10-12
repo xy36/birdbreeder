@@ -380,29 +380,8 @@
         "delete": "Löschen"
     },
     "snackbars": {
-        "general": {
-            "create_failed": "Konnte nicht erstellt werden",
-            "update_failed": "Konnte nicht aktualisiert werden",
-            "delete_failed": "Konnte nicht gelöscht werden",
-            "failed": "Konnte nicht gelöscht werden"
-        },
-        "contacts": {
-            "create_failed": "Kontakt konnte nicht erstellt werden",
-            "update_failed": "Kontakt konnte nicht aktualisiert werden",
-            "delete_failed": "Kontakt konnte nicht gelöscht werden"
-        },
-        "breeding_pairs": {
-            "create_failed": "Zuchtpaar konnte nicht erstellt werden",
-            "update_failed": "Zuchtpaar konnte nicht aktualisiert werden",
-            "delete_failed": "Zuchtpaar konnte nicht gelöscht werden"
-        },
-        "error": {
-            "data": {
-                "fetch": "Fehler beim Abrufen der Daten",
-                "save": "Fehler beim Speichern der Daten",
-                "delete": "Fehler beim Löschen der Daten"
-            },
-            "login": "Email oder Passwort ist falsch!"
-        }
+        "sign_in_failed": "Anmeldung fehlgeschlagen, bitte überprüfen Sie Ihre Anmeldedaten und Ihre Internetverbindung.",
+        "sign_up_failed": "Registrierung fehlgeschlagen, bitte überprüfen Sie Ihre Eingaben und Ihre Internetverbindung.",
+        "sign_up_success": "Registrierung erfolgreich, Sie werden automatisch angemeldet."
     }
 }

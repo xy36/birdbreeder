@@ -115,6 +115,7 @@ class AuthenticationService implements IAuthenticationService {
           'email': email,
           'password': password,
           'passwordConfirm': password,
+          'userName': _userNameFromEmail(email),
           'firstName': firstName,
           'lastName': lastName,
         },
@@ -194,6 +195,14 @@ class AuthenticationService implements IAuthenticationService {
     if (authenticationStatus.value != newStatus) {
       authenticationStatus.value = newStatus;
     }
+  }
+
+  String _userNameFromEmail(String email) {
+    final atIdx = email.indexOf('@');
+    if (atIdx > 0) {
+      return email.substring(0, atIdx);
+    }
+    return email;
   }
 
   String _clientMessage(ClientException e) {

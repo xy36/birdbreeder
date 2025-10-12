@@ -740,10 +740,15 @@ class TranslationsSnackbarsDe {
   final Translations _root; // ignore: unused_field
 
   // Translations
-  late final TranslationsSnackbarsGeneralDe general = TranslationsSnackbarsGeneralDe.internal(_root);
-  late final TranslationsSnackbarsContactsDe contacts = TranslationsSnackbarsContactsDe.internal(_root);
-  late final TranslationsSnackbarsBreedingPairsDe breeding_pairs = TranslationsSnackbarsBreedingPairsDe.internal(_root);
-  late final TranslationsSnackbarsErrorDe error = TranslationsSnackbarsErrorDe.internal(_root);
+
+  /// de: 'Anmeldung fehlgeschlagen, bitte überprüfen Sie Ihre Anmeldedaten und Ihre Internetverbindung.'
+  String get sign_in_failed => 'Anmeldung fehlgeschlagen, bitte überprüfen Sie Ihre Anmeldedaten und Ihre Internetverbindung.';
+
+  /// de: 'Registrierung fehlgeschlagen, bitte überprüfen Sie Ihre Eingaben und Ihre Internetverbindung.'
+  String get sign_up_failed => 'Registrierung fehlgeschlagen, bitte überprüfen Sie Ihre Eingaben und Ihre Internetverbindung.';
+
+  /// de: 'Registrierung erfolgreich, Sie werden automatisch angemeldet.'
+  String get sign_up_success => 'Registrierung erfolgreich, Sie werden automatisch angemeldet.';
 }
 
 // Path: contacts.fields
@@ -1214,76 +1219,6 @@ class TranslationsDialogDeleteEntryDe {
   String get content => 'Möchten Sie diesen Eintrag wirklich löschen?';
 }
 
-// Path: snackbars.general
-class TranslationsSnackbarsGeneralDe {
-  TranslationsSnackbarsGeneralDe.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// de: 'Konnte nicht erstellt werden'
-  String get create_failed => 'Konnte nicht erstellt werden';
-
-  /// de: 'Konnte nicht aktualisiert werden'
-  String get update_failed => 'Konnte nicht aktualisiert werden';
-
-  /// de: 'Konnte nicht gelöscht werden'
-  String get delete_failed => 'Konnte nicht gelöscht werden';
-
-  /// de: 'Konnte nicht gelöscht werden'
-  String get failed => 'Konnte nicht gelöscht werden';
-}
-
-// Path: snackbars.contacts
-class TranslationsSnackbarsContactsDe {
-  TranslationsSnackbarsContactsDe.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// de: 'Kontakt konnte nicht erstellt werden'
-  String get create_failed => 'Kontakt konnte nicht erstellt werden';
-
-  /// de: 'Kontakt konnte nicht aktualisiert werden'
-  String get update_failed => 'Kontakt konnte nicht aktualisiert werden';
-
-  /// de: 'Kontakt konnte nicht gelöscht werden'
-  String get delete_failed => 'Kontakt konnte nicht gelöscht werden';
-}
-
-// Path: snackbars.breeding_pairs
-class TranslationsSnackbarsBreedingPairsDe {
-  TranslationsSnackbarsBreedingPairsDe.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// de: 'Zuchtpaar konnte nicht erstellt werden'
-  String get create_failed => 'Zuchtpaar konnte nicht erstellt werden';
-
-  /// de: 'Zuchtpaar konnte nicht aktualisiert werden'
-  String get update_failed => 'Zuchtpaar konnte nicht aktualisiert werden';
-
-  /// de: 'Zuchtpaar konnte nicht gelöscht werden'
-  String get delete_failed => 'Zuchtpaar konnte nicht gelöscht werden';
-}
-
-// Path: snackbars.error
-class TranslationsSnackbarsErrorDe {
-  TranslationsSnackbarsErrorDe.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-  late final TranslationsSnackbarsErrorDataDe data = TranslationsSnackbarsErrorDataDe.internal(_root);
-
-  /// de: 'Email oder Passwort ist falsch!'
-  String get login => 'Email oder Passwort ist falsch!';
-}
-
 // Path: bird.sections.identification
 class TranslationsBirdSectionsIdentificationDe {
   TranslationsBirdSectionsIdentificationDe.internal(this._root);
@@ -1457,22 +1392,4 @@ class TranslationsCommonSellPriceDe {
 
   /// de: 'Gewünschter Verkaufspreis'
   String get asking => 'Gewünschter Verkaufspreis';
-}
-
-// Path: snackbars.error.data
-class TranslationsSnackbarsErrorDataDe {
-  TranslationsSnackbarsErrorDataDe.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// de: 'Fehler beim Abrufen der Daten'
-  String get fetch => 'Fehler beim Abrufen der Daten';
-
-  /// de: 'Fehler beim Speichern der Daten'
-  String get save => 'Fehler beim Speichern der Daten';
-
-  /// de: 'Fehler beim Löschen der Daten'
-  String get delete => 'Fehler beim Löschen der Daten';
 }

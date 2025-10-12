@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/authentication/presentation/auth/cubit/auth_page_cubit.dart';
+import 'package:birdbreeder/features/authentication/presentation/auth/cubit/auth_page_listener.dart';
 import 'package:birdbreeder/features/authentication/presentation/auth/cubit/auth_page_state.dart';
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:flutter/services.dart';
@@ -55,13 +56,10 @@ class _AuthScreenBodyState extends State<_AuthScreenBody>
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthPageCubit, AuthPageState>(
-      listenWhen: (p, n) => p.error != n.error || p.user != n.user,
-      listener: (context, state) {
-        if (state.error != null) {
-          // implement show snackbar
-        }
-      },
+    return MultiBlocListener(
+      listeners: [
+        AuthPageListener(),
+      ],
       child: Stack(
         children: [
           Scaffold(

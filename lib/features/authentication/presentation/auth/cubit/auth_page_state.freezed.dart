@@ -17,7 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AuthPageState {
   bool get isLoading => throw _privateConstructorUsedError;
-  String? get error => throw _privateConstructorUsedError;
   User? get user => throw _privateConstructorUsedError;
 
   /// Create a copy of AuthPageState
@@ -33,7 +32,7 @@ abstract class $AuthPageStateCopyWith<$Res> {
           AuthPageState value, $Res Function(AuthPageState) then) =
       _$AuthPageStateCopyWithImpl<$Res, AuthPageState>;
   @useResult
-  $Res call({bool isLoading, String? error, User? user});
+  $Res call({bool isLoading, User? user});
 
   $UserCopyWith<$Res>? get user;
 }
@@ -54,7 +53,6 @@ class _$AuthPageStateCopyWithImpl<$Res, $Val extends AuthPageState>
   @override
   $Res call({
     Object? isLoading = null,
-    Object? error = freezed,
     Object? user = freezed,
   }) {
     return _then(_value.copyWith(
@@ -62,10 +60,6 @@ class _$AuthPageStateCopyWithImpl<$Res, $Val extends AuthPageState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String?,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -96,7 +90,7 @@ abstract class _$$AuthPageStateImplCopyWith<$Res>
       __$$AuthPageStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, String? error, User? user});
+  $Res call({bool isLoading, User? user});
 
   @override
   $UserCopyWith<$Res>? get user;
@@ -116,7 +110,6 @@ class __$$AuthPageStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
-    Object? error = freezed,
     Object? user = freezed,
   }) {
     return _then(_$AuthPageStateImpl(
@@ -124,10 +117,6 @@ class __$$AuthPageStateImplCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String?,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -139,19 +128,17 @@ class __$$AuthPageStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AuthPageStateImpl implements _AuthPageState {
-  const _$AuthPageStateImpl({this.isLoading = false, this.error, this.user});
+  const _$AuthPageStateImpl({this.isLoading = false, this.user});
 
   @override
   @JsonKey()
   final bool isLoading;
   @override
-  final String? error;
-  @override
   final User? user;
 
   @override
   String toString() {
-    return 'AuthPageState(isLoading: $isLoading, error: $error, user: $user)';
+    return 'AuthPageState(isLoading: $isLoading, user: $user)';
   }
 
   @override
@@ -161,12 +148,11 @@ class _$AuthPageStateImpl implements _AuthPageState {
             other is _$AuthPageStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            (identical(other.error, error) || other.error == error) &&
             (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, error, user);
+  int get hashCode => Object.hash(runtimeType, isLoading, user);
 
   /// Create a copy of AuthPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -178,15 +164,11 @@ class _$AuthPageStateImpl implements _AuthPageState {
 }
 
 abstract class _AuthPageState implements AuthPageState {
-  const factory _AuthPageState(
-      {final bool isLoading,
-      final String? error,
-      final User? user}) = _$AuthPageStateImpl;
+  const factory _AuthPageState({final bool isLoading, final User? user}) =
+      _$AuthPageStateImpl;
 
   @override
   bool get isLoading;
-  @override
-  String? get error;
   @override
   User? get user;
 

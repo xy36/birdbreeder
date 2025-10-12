@@ -7,7 +7,6 @@ part 'auth_page_state.freezed.dart';
 class AuthPageState with _$AuthPageState {
   const factory AuthPageState({
     @Default(false) bool isLoading,
-    String? error,
     User? user,
   }) = _AuthPageState;
 }

@@ -7,6 +7,7 @@ import 'package:birdbreeder/features/contacts/presentation/cubit/contact_search_
 import 'package:birdbreeder/i18n/translations.g.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/injection.dart';
+import 'package:birdbreeder/services/snackbar_service.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -56,6 +57,7 @@ class App extends StatelessWidget {
         BlocProvider(create: (context) => BirdsFilterCubit()),
       ],
       child: MaterialApp.router(
+        scaffoldMessengerKey: s1.get<SnackbarService>().messengerKey,
         routerConfig: _appRouter.config(
           reevaluateListenable:
               s1.get<IAuthenticationService>().authenticationStatus,

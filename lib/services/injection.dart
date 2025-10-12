@@ -10,6 +10,7 @@ import 'package:birdbreeder/services/authentication/authentication_service.dart'
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/logging_service.dart';
 import 'package:birdbreeder/services/pocketbase_service.dart';
+import 'package:birdbreeder/services/snackbar_service.dart';
 import 'package:birdbreeder/services/token_storage_service.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/repositories/ressource_repository.dart';
@@ -27,6 +28,7 @@ Future<void> initializeDependencyInjection() async {
     ..registerSingleton<LoggingService>(LoggingService())
     ..registerSingleton<TokenStorageService>(TokenStorageService(prefs, s1()))
     ..registerSingleton<PocketBaseService>(PocketBaseService())
+    ..registerSingleton<SnackbarService>(SnackbarService())
     ..registerLazySingleton<IAuthenticationService>(
       () => AuthenticationService(s1(), s1()),
     )

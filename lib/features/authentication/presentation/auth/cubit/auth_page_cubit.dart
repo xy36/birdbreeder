@@ -1,23 +1,30 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/features/authentication/presentation/auth/cubit/auth_page_event.dart';
 import 'package:birdbreeder/features/authentication/presentation/auth/cubit/auth_page_state.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/injection.dart';
-import 'package:pocketbase/pocketbase.dart';
+import 'package:bloc_presentation/bloc_presentation.dart';
 
-class AuthPageCubit extends Cubit<AuthPageState> {
+class AuthPageCubit extends Cubit<AuthPageState>
+    with BlocPresentationMixin<AuthPageState, AuthPageEvent> {
   AuthPageCubit() : super(const AuthPageState());
 
   final _auth = s1.get<IAuthenticationService>();
 
   Future<void> signIn(String email, String password) async {
-    emit(state.copyWith(isLoading: true, error: null));
+    emit(
+      state.copyWith(
+        isLoading: true,
+      ),
+    );
     final res = await _auth.signInWithEmailAndPassword(email, password);
 
     if (res.isError) {
+      emitPresentation(const AuthPageEvent.signInFailed());
+
       return emit(
         state.copyWith(
           isLoading: false,
-          error: _errorMessage(res.asError!.error),
         ),
       );
     }
@@ -31,7 +38,11 @@ class AuthPageCubit extends Cubit<AuthPageState> {
     String firstName,
     String lastName,
   ) async {
-    emit(state.copyWith(isLoading: true, error: null));
+    emit(
+      state.copyWith(
+        isLoading: true,
+      ),
+    );
     final res = await _auth.signUpWithEmailAndPassword(
       email,
       password,
@@ -39,24 +50,20 @@ class AuthPageCubit extends Cubit<AuthPageState> {
       lastName,
     );
 
+    emitPresentation(
+      res.isError
+          ? const AuthPageEvent.signUpFailed()
+          : const AuthPageEvent.signUpSucceeded(),
+    );
+
     if (res.isError) {
       return emit(
         state.copyWith(
           isLoading: false,
-          error: _errorMessage(res.asError!.error),
         ),
       );
     }
 
     emit(state.copyWith(isLoading: false, user: res.asValue!.value));
-  }
-
-  String _errorMessage(Object err) {
-    if (err is ClientException) {
-      final msg = err.response['message']?.toString();
-      if (msg != null && msg.isNotEmpty) return msg;
-      return 'PocketBase error (HTTP ${err.statusCode})';
-    }
-    return err.toString();
   }
 }
