@@ -90,7 +90,7 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
     final eggsF = _fetchEggs();
 
     await Future.wait(
-      [birdsF, pairsF, broodsF, cagesF, colorsF, contactsF, speciesF],
+      [birdsF, pairsF, broodsF, cagesF, colorsF, contactsF, speciesF, eggsF],
     );
 
     final birds = await birdsF;
