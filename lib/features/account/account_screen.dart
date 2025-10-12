@@ -41,8 +41,8 @@ class UserWidget extends StatelessWidget {
     return Column(
       children: [
         Text('Email: ${user?.email}'),
-        Text('Username: ${user?.username}'),
-        Text('Name: ${user?.name}'),
+        Text('First Name: ${user?.firstName}'),
+        Text('Last Name: ${user?.lastName}'),
       ],
     );
   }

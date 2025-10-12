@@ -292,11 +292,11 @@ class $UserMapper implements _i1.AutoMapprInterface {
     }
     return _i3.User(
       id: model.id,
-      username: model.username,
+      firstName: model.firstName,
+      lastName: model.lastName,
       verified: model.verified,
       emailVisibility: model.emailVisibility,
       email: model.email,
-      name: model.name,
       avatar: model.avatar,
     );
   }
@@ -310,11 +310,11 @@ class $UserMapper implements _i1.AutoMapprInterface {
     }
     return _i2.UserDto(
       id: model.id,
-      username: model.username,
+      firstName: model.firstName,
+      lastName: model.lastName,
       verified: model.verified,
       emailVisibility: model.emailVisibility,
       email: model.email,
-      name: model.name,
       avatar: model.avatar,
     );
   }

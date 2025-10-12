@@ -92,6 +92,12 @@ extension UserMapperExtension on UserDto {
   }
 }
 
+extension UserDtoMapperExtension on User {
+  UserDto toDto() {
+    return UserMapper().convert<User, UserDto>(this);
+  }
+}
+
 extension BreedingPairMapperExtension on BreedingPair {
   BreedingPairDto toDto() {
     return BreedingPairMapper().convert<BreedingPair, BreedingPairDto>(this);

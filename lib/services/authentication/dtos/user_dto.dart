@@ -9,11 +9,11 @@ class UserDto with _$UserDto {
     required String id,
     String? collectionId,
     String? collectionName,
-    String? username,
+    String? firstName,
+    String? lastName,
     bool? verified,
     bool? emailVisibility,
     String? email,
-    String? name,
     String? avatar,
   }) = _UserDto;
 

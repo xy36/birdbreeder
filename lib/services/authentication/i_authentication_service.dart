@@ -11,13 +11,13 @@ abstract class IAuthenticationService {
   Future<Result<User>> signUpWithEmailAndPassword(
     String email,
     String password,
+    String firstName,
+    String lastName,
   );
   Future<Result<User>> signInWithEmailAndPassword(
     String email,
     String password,
   );
-  Future<Result<User>> signInWithGoogle();
-  Future<Result<User>> signInWithFacebook();
   Future<Result<void>> signOut();
   Result<User?> currentUser();
 }

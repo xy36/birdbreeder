@@ -7,11 +7,11 @@ part 'user.g.dart';
 class User with _$User {
   factory User({
     required String id,
-    String? username,
+    String? firstName,
+    String? lastName,
     bool? verified,
     bool? emailVisibility,
     String? email,
-    String? name,
     String? avatar,
   }) = _User;
 

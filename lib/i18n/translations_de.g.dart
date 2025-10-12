@@ -56,7 +56,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
   late final TranslationsBroodDe brood = TranslationsBroodDe.internal(_root);
   late final TranslationsEggDe egg = TranslationsEggDe.internal(_root);
   late final TranslationsCommonDe common = TranslationsCommonDe.internal(_root);
-  late final TranslationsLoginDe login = TranslationsLoginDe.internal(_root);
+  late final TranslationsAuthDe auth = TranslationsAuthDe.internal(_root);
   late final TranslationsMenuDe menu = TranslationsMenuDe.internal(_root);
   late final TranslationsErrorDe error = TranslationsErrorDe.internal(_root);
   late final TranslationsDialogDe dialog = TranslationsDialogDe.internal(_root);
@@ -72,8 +72,8 @@ class TranslationsAppDe {
 
   // Translations
 
-  /// de: 'birdbreeder'
-  String get title => 'birdbreeder';
+  /// de: 'Birdbreeder'
+  String get title => 'Birdbreeder';
 }
 
 // Path: finances
@@ -612,9 +612,9 @@ class TranslationsCommonDe {
   String get required => 'Dieses Feld muss ausgefüllt werden';
 }
 
-// Path: login
-class TranslationsLoginDe {
-  TranslationsLoginDe.internal(this._root);
+// Path: auth
+class TranslationsAuthDe {
+  TranslationsAuthDe.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -623,8 +623,33 @@ class TranslationsLoginDe {
   /// de: 'Anmelden'
   String get sign_in => 'Anmelden';
 
-  late final TranslationsLoginWelcomeDe welcome = TranslationsLoginWelcomeDe.internal(_root);
-  late final TranslationsLoginFieldDe field = TranslationsLoginFieldDe.internal(_root);
+  /// de: 'Registrieren'
+  String get sign_up => 'Registrieren';
+
+  /// de: 'Passwort bestätigen'
+  String get confirm_password => 'Passwort bestätigen';
+
+  /// de: 'Passwörter stimmen nicht überein'
+  String get passwords_do_not_match => 'Passwörter stimmen nicht überein';
+
+  /// de: 'Konto erstellen'
+  String get create_account => 'Konto erstellen';
+
+  /// de: 'Vorname'
+  String get first_name => 'Vorname';
+
+  /// de: 'Nachname'
+  String get last_name => 'Nachname';
+
+  /// de: 'Melden Sie sich an, um fortzufahren. Wenn Sie noch kein Konto haben, können Sie eines erstellen. Wechseln Sie einfach zur Registerkarte "Konto erstellen".'
+  String get sign_in_text =>
+      'Melden Sie sich an, um fortzufahren. Wenn Sie noch kein Konto haben, können Sie eines erstellen. Wechseln Sie einfach zur Registerkarte "Konto erstellen".';
+
+  /// de: 'Erstellen Sie ein Konto, um fortzufahren. Wenn Sie bereits ein Konto haben, können Sie sich einfach anmelden. Wechseln Sie einfach zur Registerkarte "Anmelden".'
+  String get sign_up_text =>
+      'Erstellen Sie ein Konto, um fortzufahren. Wenn Sie bereits ein Konto haben, können Sie sich einfach anmelden. Wechseln Sie einfach zur Registerkarte "Anmelden".';
+
+  late final TranslationsAuthValidatorsDe validators = TranslationsAuthValidatorsDe.internal(_root);
 }
 
 // Path: menu
@@ -1105,30 +1130,34 @@ class TranslationsCommonHintDe {
   String get text => 'Eingabe';
 }
 
-// Path: login.welcome
-class TranslationsLoginWelcomeDe {
-  TranslationsLoginWelcomeDe.internal(this._root);
+// Path: auth.validators
+class TranslationsAuthValidatorsDe {
+  TranslationsAuthValidatorsDe.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
   // Translations
 
-  /// de: 'Willkommen bei '
-  String get text => 'Willkommen bei ';
+  /// de: 'Bitte geben Sie eine gültige E-Mail-Adresse ein'
+  String get email => 'Bitte geben Sie eine gültige E-Mail-Adresse ein';
 
-  /// de: 'Geben Sie Ihre E-Mail und Ihr Passwort ein, um auf Ihr Konto zuzugreifen'
-  String get sub_text => 'Geben Sie Ihre E-Mail und Ihr Passwort ein, um auf Ihr Konto zuzugreifen';
-}
+  /// de: 'Bitte geben Sie eine gültige E-Mail-Adresse ein'
+  String get email_format => 'Bitte geben Sie eine gültige E-Mail-Adresse ein';
 
-// Path: login.field
-class TranslationsLoginFieldDe {
-  TranslationsLoginFieldDe.internal(this._root);
+  /// de: 'Bitte geben Sie ein Passwort ein'
+  String get password => 'Bitte geben Sie ein Passwort ein';
 
-  final Translations _root; // ignore: unused_field
+  /// de: 'Das Passwort muss mindestens 6 Zeichen lang sein'
+  String get password_length => 'Das Passwort muss mindestens 6 Zeichen lang sein';
 
-  // Translations
-  late final TranslationsLoginFieldEmailDe email = TranslationsLoginFieldEmailDe.internal(_root);
-  late final TranslationsLoginFieldPasswordDe password = TranslationsLoginFieldPasswordDe.internal(_root);
+  /// de: 'Bitte geben Sie Ihren Vornamen ein'
+  String get first_name => 'Bitte geben Sie Ihren Vornamen ein';
+
+  /// de: 'Der Vorname muss mindestens 3 Zeichen lang sein'
+  String get first_name_length => 'Der Vorname muss mindestens 3 Zeichen lang sein';
+
+  /// de: 'Bitte geben Sie Ihren Nachnamen ein'
+  String get last_name => 'Bitte geben Sie Ihren Nachnamen ein';
 }
 
 // Path: menu.name
@@ -1430,34 +1459,6 @@ class TranslationsCommonSellPriceDe {
   String get asking => 'Gewünschter Verkaufspreis';
 }
 
-// Path: login.field.email
-class TranslationsLoginFieldEmailDe {
-  TranslationsLoginFieldEmailDe.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// de: 'Geben Sie Ihre E-Mail ein'
-  String get hint => 'Geben Sie Ihre E-Mail ein';
-
-  late final TranslationsLoginFieldEmailValidationDe validation = TranslationsLoginFieldEmailValidationDe.internal(_root);
-}
-
-// Path: login.field.password
-class TranslationsLoginFieldPasswordDe {
-  TranslationsLoginFieldPasswordDe.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// de: 'Geben Sie Ihr Passwort ein'
-  String get hint => 'Geben Sie Ihr Passwort ein';
-
-  late final TranslationsLoginFieldPasswordValidationDe validation = TranslationsLoginFieldPasswordValidationDe.internal(_root);
-}
-
 // Path: snackbars.error.data
 class TranslationsSnackbarsErrorDataDe {
   TranslationsSnackbarsErrorDataDe.internal(this._root);
@@ -1474,28 +1475,4 @@ class TranslationsSnackbarsErrorDataDe {
 
   /// de: 'Fehler beim Löschen der Daten'
   String get delete => 'Fehler beim Löschen der Daten';
-}
-
-// Path: login.field.email.validation
-class TranslationsLoginFieldEmailValidationDe {
-  TranslationsLoginFieldEmailValidationDe.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// de: 'Bitte geben Sie Ihre E-Mail ein'
-  String get error => 'Bitte geben Sie Ihre E-Mail ein';
-}
-
-// Path: login.field.password.validation
-class TranslationsLoginFieldPasswordValidationDe {
-  TranslationsLoginFieldPasswordValidationDe.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// de: 'Bitte geben Sie Ihr Passwort ein'
-  String get error => 'Bitte geben Sie Ihr Passwort ein';
 }

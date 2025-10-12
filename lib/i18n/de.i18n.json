@@ -1,6 +1,6 @@
 {
     "app": {
-        "title": "birdbreeder"
+        "title": "Birdbreeder"
     },
     "finances": {
         "title": "Finanzen"
@@ -322,25 +322,24 @@
         },
         "required": "Dieses Feld muss ausgefüllt werden"
     },
-    "login": {
-        "signIn": "Anmelden",
-        "welcome": {
-            "text": "Willkommen bei ",
-            "subText": "Geben Sie Ihre E-Mail und Ihr Passwort ein, um auf Ihr Konto zuzugreifen"
-        },
-        "field": {
-            "email": {
-                "hint": "Geben Sie Ihre E-Mail ein",
-                "validation": {
-                    "error": "Bitte geben Sie Ihre E-Mail ein"
-                }
-            },
-            "password": {
-                "hint": "Geben Sie Ihr Passwort ein",
-                "validation": {
-                    "error": "Bitte geben Sie Ihr Passwort ein"
-                }
-            }
+    "auth": {
+        "sign_in": "Anmelden",
+        "sign_up": "Registrieren",
+        "confirm_password": "Passwort bestätigen",
+        "passwords_do_not_match": "Passwörter stimmen nicht überein",
+        "create_account": "Konto erstellen",
+        "first_name": "Vorname",
+        "last_name": "Nachname",
+        "sign_in_text": "Melden Sie sich an, um fortzufahren. Wenn Sie noch kein Konto haben, können Sie eines erstellen. Wechseln Sie einfach zur Registerkarte \"Konto erstellen\".",
+        "sign_up_text": "Erstellen Sie ein Konto, um fortzufahren. Wenn Sie bereits ein Konto haben, können Sie sich einfach anmelden. Wechseln Sie einfach zur Registerkarte \"Anmelden\".",
+        "validators": {
+            "email": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+            "email_format": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+            "password": "Bitte geben Sie ein Passwort ein",
+            "password_length": "Das Passwort muss mindestens 6 Zeichen lang sein",
+            "first_name": "Bitte geben Sie Ihren Vornamen ein",
+            "first_name_length": "Der Vorname muss mindestens 3 Zeichen lang sein",
+            "last_name": "Bitte geben Sie Ihren Nachnamen ein"
         }
     },
     "menu": {

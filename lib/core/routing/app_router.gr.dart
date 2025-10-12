@@ -29,6 +29,25 @@ class AccountRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [AuthScreen]
+class AuthRoute extends PageRouteInfo<void> {
+  const AuthRoute({List<PageRouteInfo>? children})
+      : super(
+          AuthRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AuthRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AuthScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [BirdPage]
 class BirdRoute extends PageRouteInfo<BirdRouteArgs> {
   BirdRoute({
@@ -480,41 +499,6 @@ class InitializationRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [LoginPage]
-class LoginRoute extends PageRouteInfo<LoginRouteArgs> {
-  LoginRoute({
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
-          LoginRoute.name,
-          args: LoginRouteArgs(key: key),
-          initialChildren: children,
-        );
-
-  static const String name = 'LoginRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args =
-          data.argsAs<LoginRouteArgs>(orElse: () => const LoginRouteArgs());
-      return LoginPage(key: args.key);
-    },
-  );
-}
-
-class LoginRouteArgs {
-  const LoginRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'LoginRouteArgs{key: $key}';
-  }
-}
-
-/// generated route for
 /// [MenuPage]
 class MenuRoute extends PageRouteInfo<void> {
   const MenuRoute({List<PageRouteInfo>? children})
@@ -550,41 +534,6 @@ class ResourcesCenterRoute extends PageRouteInfo<void> {
       return const ResourcesCenterPage();
     },
   );
-}
-
-/// generated route for
-/// [SignUpPage]
-class SignUpRoute extends PageRouteInfo<SignUpRouteArgs> {
-  SignUpRoute({
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
-          SignUpRoute.name,
-          args: SignUpRouteArgs(key: key),
-          initialChildren: children,
-        );
-
-  static const String name = 'SignUpRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args =
-          data.argsAs<SignUpRouteArgs>(orElse: () => const SignUpRouteArgs());
-      return SignUpPage(key: args.key);
-    },
-  );
-}
-
-class SignUpRouteArgs {
-  const SignUpRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'SignUpRouteArgs{key: $key}';
-  }
 }
 
 /// generated route for

@@ -4,9 +4,8 @@ import 'package:birdbreeder/core/routing/auth_guard.dart';
 import 'package:birdbreeder/core/routing/empty_router_page.dart';
 import 'package:birdbreeder/core/routing/login_guard.dart';
 import 'package:birdbreeder/features/account/account_page.dart';
+import 'package:birdbreeder/features/authentication/presentation/auth/auth_screen.dart';
 import 'package:birdbreeder/features/authentication/presentation/initialization_page.dart';
-import 'package:birdbreeder/features/authentication/presentation/login_page.dart';
-import 'package:birdbreeder/features/authentication/presentation/sign_up_page.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/bird_page.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/birds_overview_page.dart';
@@ -37,8 +36,8 @@ class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         CustomRoute<void>(
-          page: LoginRoute.page,
-          path: '/login',
+          page: AuthRoute.page,
+          path: '/auth',
           guards: [LoginGuard()],
           transitionsBuilder: TransitionsBuilders.fadeIn,
         ),

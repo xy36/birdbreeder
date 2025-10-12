@@ -23,11 +23,11 @@ mixin _$UserDto {
   String get id => throw _privateConstructorUsedError;
   String? get collectionId => throw _privateConstructorUsedError;
   String? get collectionName => throw _privateConstructorUsedError;
-  String? get username => throw _privateConstructorUsedError;
+  String? get firstName => throw _privateConstructorUsedError;
+  String? get lastName => throw _privateConstructorUsedError;
   bool? get verified => throw _privateConstructorUsedError;
   bool? get emailVisibility => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
   String? get avatar => throw _privateConstructorUsedError;
 
   /// Serializes this UserDto to a JSON map.
@@ -48,11 +48,11 @@ abstract class $UserDtoCopyWith<$Res> {
       {String id,
       String? collectionId,
       String? collectionName,
-      String? username,
+      String? firstName,
+      String? lastName,
       bool? verified,
       bool? emailVisibility,
       String? email,
-      String? name,
       String? avatar});
 }
 
@@ -74,11 +74,11 @@ class _$UserDtoCopyWithImpl<$Res, $Val extends UserDto>
     Object? id = null,
     Object? collectionId = freezed,
     Object? collectionName = freezed,
-    Object? username = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? verified = freezed,
     Object? emailVisibility = freezed,
     Object? email = freezed,
-    Object? name = freezed,
     Object? avatar = freezed,
   }) {
     return _then(_value.copyWith(
@@ -94,9 +94,13 @@ class _$UserDtoCopyWithImpl<$Res, $Val extends UserDto>
           ? _value.collectionName
           : collectionName // ignore: cast_nullable_to_non_nullable
               as String?,
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
       verified: freezed == verified
           ? _value.verified
@@ -109,10 +113,6 @@ class _$UserDtoCopyWithImpl<$Res, $Val extends UserDto>
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       avatar: freezed == avatar
           ? _value.avatar
@@ -133,11 +133,11 @@ abstract class _$$UserDtoImplCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
       {String id,
       String? collectionId,
       String? collectionName,
-      String? username,
+      String? firstName,
+      String? lastName,
       bool? verified,
       bool? emailVisibility,
       String? email,
-      String? name,
       String? avatar});
 }
 
@@ -157,11 +157,11 @@ class __$$UserDtoImplCopyWithImpl<$Res>
     Object? id = null,
     Object? collectionId = freezed,
     Object? collectionName = freezed,
-    Object? username = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? verified = freezed,
     Object? emailVisibility = freezed,
     Object? email = freezed,
-    Object? name = freezed,
     Object? avatar = freezed,
   }) {
     return _then(_$UserDtoImpl(
@@ -177,9 +177,13 @@ class __$$UserDtoImplCopyWithImpl<$Res>
           ? _value.collectionName
           : collectionName // ignore: cast_nullable_to_non_nullable
               as String?,
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
       verified: freezed == verified
           ? _value.verified
@@ -192,10 +196,6 @@ class __$$UserDtoImplCopyWithImpl<$Res>
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       avatar: freezed == avatar
           ? _value.avatar
@@ -212,11 +212,11 @@ class _$UserDtoImpl implements _UserDto {
       {required this.id,
       this.collectionId,
       this.collectionName,
-      this.username,
+      this.firstName,
+      this.lastName,
       this.verified,
       this.emailVisibility,
       this.email,
-      this.name,
       this.avatar});
 
   factory _$UserDtoImpl.fromJson(Map<String, dynamic> json) =>
@@ -229,7 +229,9 @@ class _$UserDtoImpl implements _UserDto {
   @override
   final String? collectionName;
   @override
-  final String? username;
+  final String? firstName;
+  @override
+  final String? lastName;
   @override
   final bool? verified;
   @override
@@ -237,13 +239,11 @@ class _$UserDtoImpl implements _UserDto {
   @override
   final String? email;
   @override
-  final String? name;
-  @override
   final String? avatar;
 
   @override
   String toString() {
-    return 'UserDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, username: $username, verified: $verified, emailVisibility: $emailVisibility, email: $email, name: $name, avatar: $avatar)';
+    return 'UserDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, firstName: $firstName, lastName: $lastName, verified: $verified, emailVisibility: $emailVisibility, email: $email, avatar: $avatar)';
   }
 
   @override
@@ -256,21 +256,22 @@ class _$UserDtoImpl implements _UserDto {
                 other.collectionId == collectionId) &&
             (identical(other.collectionName, collectionName) ||
                 other.collectionName == collectionName) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
             (identical(other.verified, verified) ||
                 other.verified == verified) &&
             (identical(other.emailVisibility, emailVisibility) ||
                 other.emailVisibility == emailVisibility) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.name, name) || other.name == name) &&
             (identical(other.avatar, avatar) || other.avatar == avatar));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, collectionId, collectionName,
-      username, verified, emailVisibility, email, name, avatar);
+      firstName, lastName, verified, emailVisibility, email, avatar);
 
   /// Create a copy of UserDto
   /// with the given fields replaced by the non-null parameter values.
@@ -293,11 +294,11 @@ abstract class _UserDto implements UserDto {
       {required final String id,
       final String? collectionId,
       final String? collectionName,
-      final String? username,
+      final String? firstName,
+      final String? lastName,
       final bool? verified,
       final bool? emailVisibility,
       final String? email,
-      final String? name,
       final String? avatar}) = _$UserDtoImpl;
 
   factory _UserDto.fromJson(Map<String, dynamic> json) = _$UserDtoImpl.fromJson;
@@ -309,15 +310,15 @@ abstract class _UserDto implements UserDto {
   @override
   String? get collectionName;
   @override
-  String? get username;
+  String? get firstName;
+  @override
+  String? get lastName;
   @override
   bool? get verified;
   @override
   bool? get emailVisibility;
   @override
   String? get email;
-  @override
-  String? get name;
   @override
   String? get avatar;
 

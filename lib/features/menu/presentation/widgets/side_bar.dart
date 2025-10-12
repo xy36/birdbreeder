@@ -162,7 +162,10 @@ class _Header extends StatelessWidget {
                               style: Theme.of(context).textTheme.bodyLarge,
                             ),
                             TextSpan(
-                              text: user.name ?? user.username,
+                              text: (user.firstName == null &&
+                                      user.lastName == null)
+                                  ? '-'
+                                  : [user.firstName, user.lastName].join(' '),
                               style: Theme.of(context).textTheme.titleLarge,
                             ),
                           ],

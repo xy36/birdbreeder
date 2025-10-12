@@ -11,11 +11,11 @@ _$UserDtoImpl _$$UserDtoImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       collectionId: json['collectionId'] as String?,
       collectionName: json['collectionName'] as String?,
-      username: json['username'] as String?,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
       verified: json['verified'] as bool?,
       emailVisibility: json['emailVisibility'] as bool?,
       email: json['email'] as String?,
-      name: json['name'] as String?,
       avatar: json['avatar'] as String?,
     );
 
@@ -24,10 +24,10 @@ Map<String, dynamic> _$$UserDtoImplToJson(_$UserDtoImpl instance) =>
       'id': instance.id,
       'collectionId': instance.collectionId,
       'collectionName': instance.collectionName,
-      'username': instance.username,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
       'verified': instance.verified,
       'emailVisibility': instance.emailVisibility,
       'email': instance.email,
-      'name': instance.name,
       'avatar': instance.avatar,
     };

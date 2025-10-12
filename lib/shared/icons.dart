@@ -55,12 +55,20 @@ class AppIcons {
   static const IconData breederNumber = Icons.numbers;
   static const IconData phone = Icons.phone;
   static const IconData email = Icons.email;
+  static const IconData password = Icons.lock;
+  static const IconData visibilityOn = Icons.visibility;
+  static const IconData visibilityOff = Icons.visibility_off;
   static const IconData website = Icons.language;
   static const IconData address = Icons.home;
   static const IconData postalCode = Icons.local_post_office;
   static const IconData city = Icons.location_city;
   static const IconData country = Icons.public;
 
+  static const IconData firstName = Icons.person;
+  static const IconData lastName = Icons.person;
+  static const IconData signIn = Icons.login;
+  static const IconData signOut = Icons.logout;
+  static const IconData signUp = Icons.person_add;
   static const IconData save = Icons.save;
   static const IconData delete = Icons.delete;
   static const IconData add = Icons.add;
@@ -82,8 +90,6 @@ class AppIcons {
   static const IconData sell = Icons.sell;
   static const IconData buy = Icons.shopping_bag;
 
-  static const IconData visibility = Icons.visibility;
-  static const IconData visibilityOff = Icons.visibility_off;
   static const IconData date = Icons.calendar_month;
   static const IconData ringNumber = Icons.animation_outlined;
   static const IconData color = Icons.color_lens_outlined;

@@ -21,11 +21,11 @@ User _$UserFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$User {
   String get id => throw _privateConstructorUsedError;
-  String? get username => throw _privateConstructorUsedError;
+  String? get firstName => throw _privateConstructorUsedError;
+  String? get lastName => throw _privateConstructorUsedError;
   bool? get verified => throw _privateConstructorUsedError;
   bool? get emailVisibility => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
   String? get avatar => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
@@ -44,11 +44,11 @@ abstract class $UserCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String? username,
+      String? firstName,
+      String? lastName,
       bool? verified,
       bool? emailVisibility,
       String? email,
-      String? name,
       String? avatar});
 }
 
@@ -68,11 +68,11 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @override
   $Res call({
     Object? id = null,
-    Object? username = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? verified = freezed,
     Object? emailVisibility = freezed,
     Object? email = freezed,
-    Object? name = freezed,
     Object? avatar = freezed,
   }) {
     return _then(_value.copyWith(
@@ -80,9 +80,13 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
       verified: freezed == verified
           ? _value.verified
@@ -95,10 +99,6 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       avatar: freezed == avatar
           ? _value.avatar
@@ -117,11 +117,11 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String? username,
+      String? firstName,
+      String? lastName,
       bool? verified,
       bool? emailVisibility,
       String? email,
-      String? name,
       String? avatar});
 }
 
@@ -138,11 +138,11 @@ class __$$UserImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? username = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? verified = freezed,
     Object? emailVisibility = freezed,
     Object? email = freezed,
-    Object? name = freezed,
     Object? avatar = freezed,
   }) {
     return _then(_$UserImpl(
@@ -150,9 +150,13 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
       verified: freezed == verified
           ? _value.verified
@@ -165,10 +169,6 @@ class __$$UserImplCopyWithImpl<$Res>
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       avatar: freezed == avatar
           ? _value.avatar
@@ -183,11 +183,11 @@ class __$$UserImplCopyWithImpl<$Res>
 class _$UserImpl implements _User {
   _$UserImpl(
       {required this.id,
-      this.username,
+      this.firstName,
+      this.lastName,
       this.verified,
       this.emailVisibility,
       this.email,
-      this.name,
       this.avatar});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
@@ -196,7 +196,9 @@ class _$UserImpl implements _User {
   @override
   final String id;
   @override
-  final String? username;
+  final String? firstName;
+  @override
+  final String? lastName;
   @override
   final bool? verified;
   @override
@@ -204,13 +206,11 @@ class _$UserImpl implements _User {
   @override
   final String? email;
   @override
-  final String? name;
-  @override
   final String? avatar;
 
   @override
   String toString() {
-    return 'User(id: $id, username: $username, verified: $verified, emailVisibility: $emailVisibility, email: $email, name: $name, avatar: $avatar)';
+    return 'User(id: $id, firstName: $firstName, lastName: $lastName, verified: $verified, emailVisibility: $emailVisibility, email: $email, avatar: $avatar)';
   }
 
   @override
@@ -219,21 +219,22 @@ class _$UserImpl implements _User {
         (other.runtimeType == runtimeType &&
             other is _$UserImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
             (identical(other.verified, verified) ||
                 other.verified == verified) &&
             (identical(other.emailVisibility, emailVisibility) ||
                 other.emailVisibility == emailVisibility) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.name, name) || other.name == name) &&
             (identical(other.avatar, avatar) || other.avatar == avatar));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, username, verified,
-      emailVisibility, email, name, avatar);
+  int get hashCode => Object.hash(runtimeType, id, firstName, lastName,
+      verified, emailVisibility, email, avatar);
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -254,11 +255,11 @@ class _$UserImpl implements _User {
 abstract class _User implements User {
   factory _User(
       {required final String id,
-      final String? username,
+      final String? firstName,
+      final String? lastName,
       final bool? verified,
       final bool? emailVisibility,
       final String? email,
-      final String? name,
       final String? avatar}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
@@ -266,15 +267,15 @@ abstract class _User implements User {
   @override
   String get id;
   @override
-  String? get username;
+  String? get firstName;
+  @override
+  String? get lastName;
   @override
   bool? get verified;
   @override
   bool? get emailVisibility;
   @override
   String? get email;
-  @override
-  String? get name;
   @override
   String? get avatar;
 

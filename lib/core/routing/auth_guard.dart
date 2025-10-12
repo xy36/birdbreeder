@@ -15,11 +15,11 @@ class AuthGuard extends AutoRouteGuard {
         break;
       case AuthenticationStatus.unauthenticated:
         resolver.next(false);
-        router.replaceAll([LoginRoute()]);
+        router.replaceAll([const AuthRoute()]);
         break;
       case AuthenticationStatus.unknown:
         resolver.next(false);
-        router.replaceAll([LoginRoute()]);
+        router.replaceAll([const AuthRoute()]);
         break;
     }
   }
