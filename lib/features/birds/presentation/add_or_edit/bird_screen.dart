@@ -5,6 +5,7 @@ import 'package:birdbreeder/features/birds/presentation/add_or_edit/cubit/bird_c
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/models/bird_mode.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/bird_fields.dart';
 import 'package:birdbreeder/shared/icons.dart';
+import 'package:birdbreeder/shared/widgets/bird_breeder_wrapper.dart';
 import 'package:birdbreeder/shared/widgets/dialogs/delete_dialog.dart';
 import 'package:birdbreeder/shared/widgets/navigate_back_button.dart';
 
@@ -93,18 +94,20 @@ class BirdScreen extends StatelessWidget {
                 ),
             ],
           ),
-          body: state.maybeWhen(
-            loaded: (bird, isEdit) {
-              return BirdFields(bird: bird);
-            },
-            loading: (bird, isEdit) {
-              return const Center(child: CircularProgressIndicator());
-            },
-            orElse: () {
-              return Center(
-                child: Text(context.tr.common.something_went_wrong),
-              );
-            },
+          body: BirdBreederWrapper(
+            child: state.maybeWhen(
+              loaded: (bird, isEdit) {
+                return BirdFields(bird: bird);
+              },
+              loading: (bird, isEdit) {
+                return const Center(child: CircularProgressIndicator());
+              },
+              orElse: () {
+                return Center(
+                  child: Text(context.tr.common.something_went_wrong),
+                );
+              },
+            ),
           ),
         );
       },

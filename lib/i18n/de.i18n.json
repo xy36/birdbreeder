@@ -56,7 +56,7 @@
             "postal": "Postleitzahl",
             "website": "Webseite"
         },
-        "contact": "Kontakt löschen?",
+        "delete": "Kontakt löschen?",
         "add": "Kontakt hinzufügen?",
         "select": "Kontakt auswählen",
         "sections": {

@@ -228,7 +228,7 @@ class TranslationsContactsDe {
   late final TranslationsContactsFieldsDe fields = TranslationsContactsFieldsDe.internal(_root);
 
   /// de: 'Kontakt löschen?'
-  String get contact => 'Kontakt löschen?';
+  String get delete => 'Kontakt löschen?';
 
   /// de: 'Kontakt hinzufügen?'
   String get add => 'Kontakt hinzufügen?';

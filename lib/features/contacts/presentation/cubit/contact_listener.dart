@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/core/utils/flash_helper.dart';
-import 'package:birdbreeder/features/contacts/domain/models/contact.dart';
 import 'package:birdbreeder/features/contacts/presentation/cubit/contact_cubit.dart';
 import 'package:birdbreeder/features/contacts/presentation/cubit/contact_cubit_event.dart';
 import 'package:bloc_presentation/bloc_presentation.dart';
@@ -16,20 +14,20 @@ class ContactListener
           listener: (context, event) {
             switch (event) {
               case ContactCubitEventDeleted():
-                context.showInfoBar<Contact>(
-                  content: Text(context.tr.contacts.deleted),
+                context.snackInfo(
+                  context.tr.contacts.deleted,
                 );
                 context.router.maybePop();
                 break;
 
               case ContactCubitEventError():
-                context.showErrorBar<bool>(
-                  content: const Text('Something went wrong!'),
+                context.snackError(
+                  context.tr.common.something_went_wrong,
                 );
                 break;
               case ContactCubitEventSaved():
-                context.showSuccessBar<bool>(
-                  content: Text(context.tr.contacts.saved),
+                context.snackSuccess(
+                  context.tr.contacts.saved,
                 );
                 context.pop();
                 break;

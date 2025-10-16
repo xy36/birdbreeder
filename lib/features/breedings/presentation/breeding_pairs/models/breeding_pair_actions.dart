@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pairs/widgets/add_breeding_pair_sheet.dart';
@@ -39,9 +40,15 @@ enum BreedingPairActions {
             await DeleteDialog.show(
               context: context,
               title: context.tr.breeding_pairs.delete,
-              onDelete: () => context
-                  .read<BirdBreederCubit>()
-                  .deleteBreedingPair(breedingPair),
+              onDelete: () async {
+                await context.maybePop();
+
+                if (context.mounted) {
+                  await context
+                      .read<BirdBreederCubit>()
+                      .deleteBreedingPair(breedingPair);
+                }
+              },
             ),
         }
     };

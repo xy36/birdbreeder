@@ -156,6 +156,12 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   }
 
   Future<Brood?> addBrood(Brood brood) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _broodsRepository.create(
       brood.toDto(),
     );
@@ -164,13 +170,36 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
       emitPresentation(
         const BirdBreederCubitEvent.addFailed(),
       );
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
+      );
       return null;
     }
     return result.asValue?.value.toModel();
   }
 
   Future<void> deleteBrood(String id) async {
-    await _broodsRepository.delete(id);
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
+    final result = await _broodsRepository.delete(id);
+
+    if (result.isError) {
+      emitPresentation(
+        const BirdBreederCubitEvent.deleteFailed(),
+      );
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
+      );
+      return;
+    }
 
     // After deleting the brood, we need to update all breeding pairs that contain this brood
     final birds = state.birdBreederResources.birds;
@@ -181,20 +210,37 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
     )
         .forEach(
       (bird) async {
-        await _birdsRepository.update(
+        final result = await _birdsRepository.update(
           bird.id,
           bird.copyWith(broodId: null).toDto(),
         );
+
+        if (result.isError) {
+          emitPresentation(
+            const BirdBreederCubitEvent.updateFailed(),
+          );
+        }
       },
     );
   }
 
   Future<Brood?> updateBrood(Brood brood) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _broodsRepository.update(brood.id, brood.toDto());
 
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.updateFailed(),
+      );
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
       );
       return null;
     }
@@ -202,11 +248,22 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   }
 
   Future<void> deleteColor(BirdColor color) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _birdColorsRepository.delete(color.id);
 
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.deleteFailed(),
+      );
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
       );
       return;
     }
@@ -220,20 +277,29 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
     )
         .forEach(
       (bird) async {
-        await _birdsRepository.update(
-          bird.id,
-          bird.copyWith(colorId: null).toDto(),
-        );
+        await updateBird(bird.copyWith(colorId: null));
       },
     );
   }
 
   Future<BirdColor?> addColor(BirdColor color) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _birdColorsRepository.create(color.toDto());
 
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.addFailed(),
+      );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
       );
       return null;
     }
@@ -241,11 +307,23 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   }
 
   Future<BirdColor?> updateColor(BirdColor color) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _birdColorsRepository.update(color.id, color.toDto());
 
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.updateFailed(),
+      );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
       );
       return null;
     }
@@ -258,10 +336,7 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
     )
         .forEach(
       (bird) async {
-        await _birdsRepository.update(
-          bird.id,
-          bird.copyWith(colorId: color.id).toDto(),
-        );
+        await updateBird(bird.copyWith(colorId: color.id));
       },
     );
 
@@ -269,11 +344,23 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   }
 
   Future<Contact?> addContact(Contact contact) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _contactsRepository.create(contact.toDto());
 
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.addFailed(),
+      );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
       );
       return null;
     }
@@ -281,6 +368,12 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   }
 
   Future<Contact?> updateContact(Contact contact) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result =
         await _contactsRepository.update(contact.id, contact.toDto());
 
@@ -288,17 +381,35 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
       emitPresentation(
         const BirdBreederCubitEvent.updateFailed(),
       );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
+      );
       return null;
     }
     return result.asValue?.value.toModel();
   }
 
   Future<void> deleteContact(Contact contact) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _contactsRepository.delete(contact.id);
 
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.deleteFailed(),
+      );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
       );
       return;
     }
@@ -322,11 +433,23 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   }
 
   Future<Bird?> addBird(Bird bird) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _birdsRepository.create(bird.toDto());
 
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.addFailed(),
+      );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
       );
       return null;
     }
@@ -336,11 +459,23 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
 
   // create crud methods for cages
   Future<Cage?> addCage(Cage cage) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _cagesRepository.create(cage.toDto());
 
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.addFailed(),
+      );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
       );
       return null;
     }
@@ -349,11 +484,23 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   }
 
   Future<Cage?> updateCage(Cage cage) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _cagesRepository.update(cage.id, cage.toDto());
 
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.updateFailed(),
+      );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
       );
       return null;
     }
@@ -361,11 +508,23 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   }
 
   Future<void> deleteCage(Cage cage) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _cagesRepository.delete(cage.id);
 
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.deleteFailed(),
+      );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
       );
       return;
     }
@@ -379,20 +538,29 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
     )
         .forEach(
       (bird) async {
-        await _birdsRepository.update(
-          bird.id,
-          bird.copyWith(cageId: null).toDto(),
-        );
+        await updateBird(bird.copyWith(cageId: null));
       },
     );
   }
 
   Future<Species?> addSpecies(Species species) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _speciesRepository.create(species.toDto());
 
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.addFailed(),
+      );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
       );
       return null;
     }
@@ -401,11 +569,23 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   }
 
   Future<Species?> updateSpecies(Species species) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _speciesRepository.update(species.id, species.toDto());
 
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.updateFailed(),
+      );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
       );
       return null;
     }
@@ -414,11 +594,23 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   }
 
   Future<void> deleteSpecies(Species species) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _speciesRepository.delete(species.id);
 
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.deleteFailed(),
+      );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
       );
       return;
     }
@@ -432,20 +624,29 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
     )
         .forEach(
       (bird) async {
-        await _birdsRepository.update(
-          bird.id,
-          bird.copyWith(speciesId: null).toDto(),
-        );
+        await updateBird(bird.copyWith(speciesId: null));
       },
     );
   }
 
   Future<BreedingPair?> addBreedingPair(BreedingPair breedingPair) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _breedingsRepository.create(breedingPair.toDto());
 
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.addFailed(),
+      );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
       );
       return null;
     }
@@ -453,6 +654,12 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   }
 
   Future<BreedingPair?> updateBreedingPair(BreedingPair breedingPair) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _breedingsRepository.update(
       breedingPair.id,
       breedingPair.toDto(),
@@ -461,6 +668,12 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.updateFailed(),
+      );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
       );
       return null;
     }
@@ -471,11 +684,23 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   }
 
   Future<void> deleteBreedingPair(BreedingPair breedingPair) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _breedingsRepository.delete(breedingPair.id);
 
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.deleteFailed(),
+      );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
       );
       return;
     }
@@ -484,11 +709,25 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   }
 
   Future<Bird?> updateBird(Bird bird) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
+    await Future.delayed(const Duration(milliseconds: 1000));
+
     final result = await _birdsRepository.update(bird.id, bird.toDto());
 
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.updateFailed(),
+      );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
       );
       return null;
     }
@@ -497,17 +736,35 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   }
 
   Future<void> deleteBird(Bird bird) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _birdsRepository.delete(bird.id);
 
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.deleteFailed(),
       );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
+      );
       return;
     }
   }
 
   Future<void> duplicateBird(Bird bird) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _birdsRepository.create(
       bird
           .copyWith(
@@ -521,15 +778,33 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
       emitPresentation(
         const BirdBreederCubitEvent.duplicateFailed(),
       );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
+      );
     }
   }
 
   Future<Egg?> addEgg(Egg egg) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _eggsRepository.create(egg.toDto());
 
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.addFailed(),
+      );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
       );
       return null;
     }
@@ -537,11 +812,23 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   }
 
   Future<Egg?> updateEgg(Egg egg) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _eggsRepository.update(egg.id, egg.toDto());
 
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.updateFailed(),
+      );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
       );
       return null;
     }
@@ -549,11 +836,23 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   }
 
   Future<void> deleteEgg(Egg egg) async {
+    emit(
+      BirdBreederLoading(
+        birdBreederResources: state.birdBreederResources,
+      ),
+    );
+
     final result = await _eggsRepository.delete(egg.id);
 
     if (result.isError) {
       emitPresentation(
         const BirdBreederCubitEvent.deleteFailed(),
+      );
+
+      emit(
+        BirdBreederLoaded(
+          birdBreederResources: state.birdBreederResources,
+        ),
       );
       return;
     }

@@ -3,6 +3,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/ressourcen_center/presentation/models/resource_tab.dart';
 import 'package:birdbreeder/shared/icons.dart';
+import 'package:birdbreeder/shared/widgets/bird_breeder_wrapper.dart';
 
 @RoutePage()
 class ResourcesCenterPage extends StatelessWidget {
@@ -35,21 +36,23 @@ class ResourcesCenterPage extends StatelessWidget {
               ),
             ],
           ),
-          body: Column(
-            children: [
-              TabBar(
-                controller: controller,
-                tabs: ResourceTab.values
-                    .map((tab) => Tab(text: tab.getDisplayName(context)))
-                    .toList(),
-              ),
-              Expanded(
-                child: TabBarView(
+          body: BirdBreederWrapper(
+            child: Column(
+              children: [
+                TabBar(
                   controller: controller,
-                  children: ResourceTab.values.map((e) => e.child).toList(),
+                  tabs: ResourceTab.values
+                      .map((tab) => Tab(text: tab.getDisplayName(context)))
+                      .toList(),
                 ),
-              ),
-            ],
+                Expanded(
+                  child: TabBarView(
+                    controller: controller,
+                    children: ResourceTab.values.map((e) => e.child).toList(),
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },

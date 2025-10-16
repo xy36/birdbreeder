@@ -128,7 +128,8 @@ class AppActionButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(25),
           child: Padding(
             padding: const EdgeInsets.all(8),
-            child: Icon(actionButtonType.icon, size: 16, color: Colors.white),
+            child: Icon(actionButtonType.icon,
+                size: 24, color: Theme.of(context).colorScheme.primary),
           ),
         );
       case ButtonType.floatingActionButton:

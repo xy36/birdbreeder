@@ -8,6 +8,7 @@ import 'package:birdbreeder/features/breedings/presentation/cubit/breeding_pair_
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/cubits/generic_search_cubit/base_search.dart';
 import 'package:birdbreeder/shared/icons.dart';
+import 'package:birdbreeder/shared/widgets/bird_breeder_wrapper.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 
 @RoutePage()
@@ -54,58 +55,60 @@ class _BreedingPairsPageState extends State<BreedingPairsPage> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          BlocBuilder<BreedingPairSearchCubit, BaseSearch>(
-            builder: (context, state) {
-              return AnimatedCrossFade(
-                firstChild: const SizedBox.shrink(),
-                secondChild: GenericSearchBar(
-                  initialQuery: state.query,
-                  onSearch: (query) {
-                    context.read<BreedingPairSearchCubit>().setSearch(query);
-                  },
-                ),
-                crossFadeState: state.isActive
-                    ? CrossFadeState.showSecond
-                    : CrossFadeState.showFirst,
-                duration: const Duration(milliseconds: 300),
-              );
-            },
-          ),
-          Expanded(
-            child: BlocBuilder<BreedingPairSearchCubit, BaseSearch>(
+      body: BirdBreederWrapper(
+        child: Column(
+          children: [
+            BlocBuilder<BreedingPairSearchCubit, BaseSearch>(
               builder: (context, state) {
-                final searchedBreedingPairs =
-                    context.read<BreedingPairSearchCubit>().searchedItems;
-                return ListView.separated(
-                  physics: const AlwaysScrollableScrollPhysics(
-                    parent: BouncingScrollPhysics(),
+                return AnimatedCrossFade(
+                  firstChild: const SizedBox.shrink(),
+                  secondChild: GenericSearchBar(
+                    initialQuery: state.query,
+                    onSearch: (query) {
+                      context.read<BreedingPairSearchCubit>().setSearch(query);
+                    },
                   ),
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(height: 12),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                  itemCount: searchedBreedingPairs.length,
-                  itemBuilder: (context, i) {
-                    final breedingPair = searchedBreedingPairs[i];
-
-                    return BreedingPairCard(
-                      breedingPair: breedingPair,
-                      onTap: () {
-                        context.router.push(
-                          BreedingPairDetailsRoute(
-                            breedingPairId: breedingPair.id,
-                          ),
-                        );
-                      },
-                    );
-                  },
+                  crossFadeState: state.isActive
+                      ? CrossFadeState.showSecond
+                      : CrossFadeState.showFirst,
+                  duration: const Duration(milliseconds: 300),
                 );
               },
             ),
-          ),
-        ],
+            Expanded(
+              child: BlocBuilder<BreedingPairSearchCubit, BaseSearch>(
+                builder: (context, state) {
+                  final searchedBreedingPairs =
+                      context.read<BreedingPairSearchCubit>().searchedItems;
+                  return ListView.separated(
+                    physics: const AlwaysScrollableScrollPhysics(
+                      parent: BouncingScrollPhysics(),
+                    ),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 12),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                    itemCount: searchedBreedingPairs.length,
+                    itemBuilder: (context, i) {
+                      final breedingPair = searchedBreedingPairs[i];
+
+                      return BreedingPairCard(
+                        breedingPair: breedingPair,
+                        onTap: () {
+                          context.router.push(
+                            BreedingPairDetailsRoute(
+                              breedingPairId: breedingPair.id,
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
