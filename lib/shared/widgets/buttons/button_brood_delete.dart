@@ -27,7 +27,7 @@ class ButtonBroodDelete extends StatelessWidget {
   final void Function()? onTap;
 
   Future<void> _onTap(BuildContext context) async {
-    await context.read<BirdBreederCubit>().deleteBrood(brood.id);
+    await context.read<BirdBreederCubit>().deleteBrood(brood);
     onTap?.call();
   }
 

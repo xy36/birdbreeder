@@ -48,7 +48,7 @@ enum BroodActions {
               context: context,
               title: '${context.tr.pop_up_menu.delete}?',
               onDelete: () =>
-                  context.read<BirdBreederCubit>().deleteBrood(brood.id),
+                  context.read<BirdBreederCubit>().deleteBrood(brood),
             ),
         }
     };
