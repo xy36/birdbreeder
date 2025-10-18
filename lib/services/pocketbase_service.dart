@@ -14,6 +14,9 @@ class PocketBaseService {
   RecordService get breedingPairCollection => pb.collection('breedingPair');
   RecordService get broodsCollection => pb.collection('broods');
   RecordService get eggsCollection => pb.collection('eggs');
+  RecordService get financesCategoriesCollection =>
+      pb.collection('financesCategories');
+  RecordService get financesCollection => pb.collection('finances');
   RecordService get cagesCollection => pb.collection('cages');
   RecordService get speciesCollection => pb.collection('species');
   RecordService get colorsCollection => pb.collection('colors');

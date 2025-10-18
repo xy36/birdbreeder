@@ -1,7 +1,11 @@
 import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
 import 'package:birdbreeder/features/birds/data/dtos/egg_dto.dart';
+import 'package:birdbreeder/features/birds/data/dtos/finances_categories_dto.dart';
+import 'package:birdbreeder/features/birds/data/dtos/finances_dto.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/domain/models/egg.dart';
+import 'package:birdbreeder/features/birds/domain/models/finances.dart';
+import 'package:birdbreeder/features/birds/domain/models/finances_categories.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/breeding_pair_dto.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/brood_dto.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
@@ -159,6 +163,52 @@ extension BirdBreederResovlerExtension on BirdBreederCubit {
       speciesId: eggDto.speciesId,
       birdId: eggDto.birdId,
       notes: eggDto.notes,
+    );
+  }
+
+  FinancesCategories resolveFinancesCategoriesDto(
+    FinancesCategoriesDto financesCategoriesDto,
+  ) {
+    return FinancesCategories(
+      id: financesCategoriesDto.id,
+      name: financesCategoriesDto.name,
+      color: financesCategoriesDto.color,
+      kind: financesCategoriesDto.kind,
+    );
+  }
+
+  FinancesCategoriesDto resolveFinancesCategories(
+    FinancesCategories financesCategories,
+  ) {
+    return FinancesCategoriesDto(
+      id: financesCategories.id,
+      name: financesCategories.name,
+      color: financesCategories.color,
+      kind: financesCategories.kind,
+    );
+  }
+
+  Finances resolveFinancesDto(
+    FinancesDto financesDto,
+  ) {
+    return Finances(
+      id: financesDto.id,
+      financesCategoriesId: financesDto.financesCategoriesId,
+      birdId: financesDto.birdId,
+      date: financesDto.date,
+      amount: financesDto.amount,
+    );
+  }
+
+  FinancesDto resolveFinances(
+    Finances financesDto,
+  ) {
+    return FinancesDto(
+      id: financesDto.id,
+      amount: financesDto.amount,
+      financesCategoriesId: financesDto.financesCategoriesId,
+      date: financesDto.date,
+      birdId: financesDto.birdId,
     );
   }
 }

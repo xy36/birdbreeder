@@ -24,6 +24,9 @@ mixin _$BirdBreederResources {
   List<BirdColor> get colors => throw _privateConstructorUsedError;
   List<Contact> get contacts => throw _privateConstructorUsedError;
   List<Species> get species => throw _privateConstructorUsedError;
+  List<FinancesCategories> get financesCategories =>
+      throw _privateConstructorUsedError;
+  List<Finances> get finances => throw _privateConstructorUsedError;
 
   /// Create a copy of BirdBreederResources
   /// with the given fields replaced by the non-null parameter values.
@@ -46,7 +49,9 @@ abstract class $BirdBreederResourcesCopyWith<$Res> {
       List<Cage> cages,
       List<BirdColor> colors,
       List<Contact> contacts,
-      List<Species> species});
+      List<Species> species,
+      List<FinancesCategories> financesCategories,
+      List<Finances> finances});
 }
 
 /// @nodoc
@@ -73,6 +78,8 @@ class _$BirdBreederResourcesCopyWithImpl<$Res,
     Object? colors = null,
     Object? contacts = null,
     Object? species = null,
+    Object? financesCategories = null,
+    Object? finances = null,
   }) {
     return _then(_value.copyWith(
       birds: null == birds
@@ -107,6 +114,14 @@ class _$BirdBreederResourcesCopyWithImpl<$Res,
           ? _value.species
           : species // ignore: cast_nullable_to_non_nullable
               as List<Species>,
+      financesCategories: null == financesCategories
+          ? _value.financesCategories
+          : financesCategories // ignore: cast_nullable_to_non_nullable
+              as List<FinancesCategories>,
+      finances: null == finances
+          ? _value.finances
+          : finances // ignore: cast_nullable_to_non_nullable
+              as List<Finances>,
     ) as $Val);
   }
 }
@@ -127,7 +142,9 @@ abstract class _$$BirdBreederResourcesImplCopyWith<$Res>
       List<Cage> cages,
       List<BirdColor> colors,
       List<Contact> contacts,
-      List<Species> species});
+      List<Species> species,
+      List<FinancesCategories> financesCategories,
+      List<Finances> finances});
 }
 
 /// @nodoc
@@ -151,6 +168,8 @@ class __$$BirdBreederResourcesImplCopyWithImpl<$Res>
     Object? colors = null,
     Object? contacts = null,
     Object? species = null,
+    Object? financesCategories = null,
+    Object? finances = null,
   }) {
     return _then(_$BirdBreederResourcesImpl(
       birds: null == birds
@@ -185,6 +204,14 @@ class __$$BirdBreederResourcesImplCopyWithImpl<$Res>
           ? _value._species
           : species // ignore: cast_nullable_to_non_nullable
               as List<Species>,
+      financesCategories: null == financesCategories
+          ? _value._financesCategories
+          : financesCategories // ignore: cast_nullable_to_non_nullable
+              as List<FinancesCategories>,
+      finances: null == finances
+          ? _value._finances
+          : finances // ignore: cast_nullable_to_non_nullable
+              as List<Finances>,
     ));
   }
 }
@@ -201,7 +228,9 @@ class _$BirdBreederResourcesImpl extends _BirdBreederResources
       required final List<Cage> cages,
       required final List<BirdColor> colors,
       required final List<Contact> contacts,
-      required final List<Species> species})
+      required final List<Species> species,
+      required final List<FinancesCategories> financesCategories,
+      required final List<Finances> finances})
       : _birds = birds,
         _breedingPairs = breedingPairs,
         _broods = broods,
@@ -210,6 +239,8 @@ class _$BirdBreederResourcesImpl extends _BirdBreederResources
         _colors = colors,
         _contacts = contacts,
         _species = species,
+        _financesCategories = financesCategories,
+        _finances = finances,
         super._();
 
   final List<Bird> _birds;
@@ -276,9 +307,26 @@ class _$BirdBreederResourcesImpl extends _BirdBreederResources
     return EqualUnmodifiableListView(_species);
   }
 
+  final List<FinancesCategories> _financesCategories;
+  @override
+  List<FinancesCategories> get financesCategories {
+    if (_financesCategories is EqualUnmodifiableListView)
+      return _financesCategories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_financesCategories);
+  }
+
+  final List<Finances> _finances;
+  @override
+  List<Finances> get finances {
+    if (_finances is EqualUnmodifiableListView) return _finances;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_finances);
+  }
+
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BirdBreederResources(birds: $birds, breedingPairs: $breedingPairs, broods: $broods, eggs: $eggs, cages: $cages, colors: $colors, contacts: $contacts, species: $species)';
+    return 'BirdBreederResources(birds: $birds, breedingPairs: $breedingPairs, broods: $broods, eggs: $eggs, cages: $cages, colors: $colors, contacts: $contacts, species: $species, financesCategories: $financesCategories, finances: $finances)';
   }
 
   @override
@@ -293,7 +341,9 @@ class _$BirdBreederResourcesImpl extends _BirdBreederResources
       ..add(DiagnosticsProperty('cages', cages))
       ..add(DiagnosticsProperty('colors', colors))
       ..add(DiagnosticsProperty('contacts', contacts))
-      ..add(DiagnosticsProperty('species', species));
+      ..add(DiagnosticsProperty('species', species))
+      ..add(DiagnosticsProperty('financesCategories', financesCategories))
+      ..add(DiagnosticsProperty('finances', finances));
   }
 
   @override
@@ -309,7 +359,10 @@ class _$BirdBreederResourcesImpl extends _BirdBreederResources
             const DeepCollectionEquality().equals(other._cages, _cages) &&
             const DeepCollectionEquality().equals(other._colors, _colors) &&
             const DeepCollectionEquality().equals(other._contacts, _contacts) &&
-            const DeepCollectionEquality().equals(other._species, _species));
+            const DeepCollectionEquality().equals(other._species, _species) &&
+            const DeepCollectionEquality()
+                .equals(other._financesCategories, _financesCategories) &&
+            const DeepCollectionEquality().equals(other._finances, _finances));
   }
 
   @override
@@ -322,7 +375,9 @@ class _$BirdBreederResourcesImpl extends _BirdBreederResources
       const DeepCollectionEquality().hash(_cages),
       const DeepCollectionEquality().hash(_colors),
       const DeepCollectionEquality().hash(_contacts),
-      const DeepCollectionEquality().hash(_species));
+      const DeepCollectionEquality().hash(_species),
+      const DeepCollectionEquality().hash(_financesCategories),
+      const DeepCollectionEquality().hash(_finances));
 
   /// Create a copy of BirdBreederResources
   /// with the given fields replaced by the non-null parameter values.
@@ -344,7 +399,9 @@ abstract class _BirdBreederResources extends BirdBreederResources {
       required final List<Cage> cages,
       required final List<BirdColor> colors,
       required final List<Contact> contacts,
-      required final List<Species> species}) = _$BirdBreederResourcesImpl;
+      required final List<Species> species,
+      required final List<FinancesCategories> financesCategories,
+      required final List<Finances> finances}) = _$BirdBreederResourcesImpl;
   const _BirdBreederResources._() : super._();
 
   @override
@@ -363,6 +420,10 @@ abstract class _BirdBreederResources extends BirdBreederResources {
   List<Contact> get contacts;
   @override
   List<Species> get species;
+  @override
+  List<FinancesCategories> get financesCategories;
+  @override
+  List<Finances> get finances;
 
   /// Create a copy of BirdBreederResources
   /// with the given fields replaced by the non-null parameter values.

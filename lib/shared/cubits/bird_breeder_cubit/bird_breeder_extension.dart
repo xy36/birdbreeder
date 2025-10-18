@@ -1,5 +1,7 @@
 import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
 import 'package:birdbreeder/features/birds/data/dtos/egg_dto.dart';
+import 'package:birdbreeder/features/birds/data/dtos/finances_categories_dto.dart';
+import 'package:birdbreeder/features/birds/data/dtos/finances_dto.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/breeding_pair_dto.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/brood_dto.dart';
 import 'package:birdbreeder/features/contacts/data/dtos/contact_dto.dart';
@@ -334,5 +336,84 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
 
   void unsubscribeFromEggs() {
     s1.get<PocketBaseService>().eggsCollection.unsubscribe();
+  }
+
+  void subscribeToFinancesCategories() {
+    s1.get<PocketBaseService>().financesCategoriesCollection.subscribe(
+      '*',
+      (e) {
+        if (e.record == null) return;
+        final cat = FinancesCategoriesDto.fromJson(e.record!.toJson());
+
+        switch (e.action) {
+          case 'update':
+            emitLoaded(
+              financesCategories: state.birdBreederResources.financesCategories
+                  .map((e) =>
+                      e.id == cat.id ? resolveFinancesCategoriesDto(cat) : e)
+                  .toList(),
+            );
+            break;
+          case 'create':
+            emitLoaded(
+              financesCategories: [
+                ...state.birdBreederResources.financesCategories,
+                resolveFinancesCategoriesDto(cat),
+              ],
+            );
+            break;
+          case 'delete':
+            emitLoaded(
+              financesCategories: state.birdBreederResources.financesCategories
+                  .where((e) => e.id != cat.id)
+                  .toList(),
+            );
+            break;
+        }
+      },
+    );
+  }
+
+  void unsubscribeFromFinancesCategories() {
+    s1.get<PocketBaseService>().financesCategoriesCollection.unsubscribe();
+  }
+
+  void subscribeToFinances() {
+    s1.get<PocketBaseService>().financesCollection.subscribe(
+      '*',
+      (e) {
+        if (e.record == null) return;
+        final cat = FinancesDto.fromJson(e.record!.toJson());
+
+        switch (e.action) {
+          case 'update':
+            emitLoaded(
+              finances: state.birdBreederResources.finances
+                  .map((e) => e.id == cat.id ? resolveFinancesDto(cat) : e)
+                  .toList(),
+            );
+            break;
+          case 'create':
+            emitLoaded(
+              finances: [
+                ...state.birdBreederResources.finances,
+                resolveFinancesDto(cat),
+              ],
+            );
+            break;
+          case 'delete':
+            emitLoaded(
+              finances: state.birdBreederResources.finances
+                  .where((e) => e.id != cat.id)
+                  .toList(),
+            );
+            break;
+        }
+      },
+    );
+  }
+
+  void unsubscribeFromFinances() {
+    s1.get<PocketBaseService>().financesCollection.unsubscribe();
   }
 }
