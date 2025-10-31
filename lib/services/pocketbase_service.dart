@@ -25,6 +25,22 @@ class PocketBaseService {
 
   AuthStore get authStore => pb.authStore;
 
+  Future<void> clear() async {
+    try {
+      // stop all realtime traffic first
+      await unsubscribeFromAll();
+
+      // clear auth
+      pb.authStore.clear();
+    } catch (e) {
+      // handle error
+    }
+  }
+
+  Future<void> unsubscribeFromAll() async {
+    await pb.realtime.unsubscribe();
+  }
+
   Future<void> init() async {
     final storage = s1<TokenStorageService>();
     final token = await storage.getToken();

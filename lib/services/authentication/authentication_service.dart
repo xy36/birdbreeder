@@ -29,15 +29,18 @@ class AuthenticationService implements IAuthenticationService {
       switch (authenticationStatus.value) {
         case AuthenticationStatus.authenticated:
           _loggingService.logger.i('Authentication status: Authenticated');
+          unawaited(s1.get<BirdBreederCubit>().initialLoad());
           break;
         case AuthenticationStatus.unauthenticated:
           _loggingService.logger.i('Authentication status: Unauthenticated');
+          await s1.get<BirdBreederCubit>().reset();
           if (_pocketBaseService.authStore.isValid) {
             await signOut();
           }
           break;
         case AuthenticationStatus.unknown:
           _loggingService.logger.i('Authentication status: Unknown');
+          await s1.get<BirdBreederCubit>().reset();
           break;
       }
     });
@@ -153,9 +156,7 @@ class AuthenticationService implements IAuthenticationService {
   @override
   Future<Result<void>> signOut() async {
     try {
-      await s1.get<BirdBreederCubit>().close();
-
-      _pocketBaseService.authStore.clear();
+      await _pocketBaseService.clear();
 
       if (authenticationStatus.value != AuthenticationStatus.unauthenticated) {
         authenticationStatus.value = AuthenticationStatus.unauthenticated;
@@ -166,7 +167,7 @@ class AuthenticationService implements IAuthenticationService {
     } catch (e, st) {
       _loggingService.logger.e('signOut failed', error: e, stackTrace: st);
       try {
-        _pocketBaseService.authStore.clear();
+        await _pocketBaseService.clear();
         authenticationStatus.value = AuthenticationStatus.unauthenticated;
       } catch (_) {}
       return Result.error(e);

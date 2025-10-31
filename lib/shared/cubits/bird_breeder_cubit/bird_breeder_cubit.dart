@@ -20,6 +20,8 @@ import 'package:birdbreeder/features/ressourcen_center/data/dtos/species_dto.dar
 import 'package:birdbreeder/features/ressourcen_center/domain/models/bird_color.dart';
 import 'package:birdbreeder/features/ressourcen_center/domain/models/cage.dart';
 import 'package:birdbreeder/features/ressourcen_center/domain/models/species.dart';
+import 'package:birdbreeder/services/injection.dart';
+import 'package:birdbreeder/services/pocketbase_service.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit_event.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_extension.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_resolver.dart';
@@ -55,34 +57,25 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
     this._financesRepository,
     this._financesCategoriesRepository,
   ) : super(
-          const BirdBreederState.initial(
-            birdBreederResources: BirdBreederResources(
-              birds: [],
-              breedingPairs: [],
-              broods: [],
-              cages: [],
-              colors: [],
-              contacts: [],
-              species: [],
-              eggs: [],
-              finances: [],
-              financesCategories: [],
-            ),
-          ),
+          initialState(),
         ) {
-    subscribeToBirds();
-    subscribeToCages();
-    subscribeToColors();
-    subscribeToContacts();
-    subscribeToSpecies();
-    subscribeToBreedingPairs();
-    subscribeToBroods();
-    subscribeToEggs();
-    subscribeToFinances();
-    subscribeToFinancesCategories();
-
     initialLoad();
   }
+
+  static BirdBreederState initialState() => const BirdBreederState.initial(
+        birdBreederResources: BirdBreederResources(
+          birds: [],
+          breedingPairs: [],
+          broods: [],
+          cages: [],
+          colors: [],
+          contacts: [],
+          species: [],
+          eggs: [],
+          finances: [],
+          financesCategories: [],
+        ),
+      );
 
   final RessourceRepository<BirdColorDto> _birdColorsRepository;
   final RessourceRepository<ContactDto> _contactsRepository;
@@ -113,12 +106,21 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   void presentDuplicateFailed() =>
       emitPresentation(const BirdBreederCubitEvent.duplicateFailed());
 
+  Future<void> reset() async {
+    emit(initialState());
+  }
+
   Future<void> initialLoad() async {
+    emit(initialState());
+
     emit(
       BirdBreederLoading(
         birdBreederResources: state.birdBreederResources,
       ),
     );
+
+    await s1.get<PocketBaseService>().unsubscribeFromAll();
+    await subscribeToAll();
 
     final birdsF = _fetchBirds();
     final pairsF = _fetchBreedingPairs();
@@ -204,22 +206,27 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   }
 
   @override
-  Future<void> close() {
-    unsubscribeFromCages();
-    unsubscribeFromColors();
-    unsubscribeFromContacts();
-    unsubscribeFromSpecies();
-    unsubscribeFromBreedingPairs();
-    unsubscribeFromBirds();
-    unsubscribeFromBroods();
-    unsubscribeFromEggs();
-    unsubscribeFromFinances();
-    unsubscribeFromFinancesCategories();
+  Future<void> close() async {
+    await s1.get<PocketBaseService>().unsubscribeFromAll();
 
     return super.close();
   }
 
   // --- Helpers ---
+
+  Future<void> subscribeToAll() async {
+    subscribeToBirds();
+    subscribeToCages();
+    subscribeToColors();
+    subscribeToContacts();
+    subscribeToSpecies();
+    subscribeToBreedingPairs();
+    subscribeToBroods();
+    subscribeToEggs();
+    subscribeToFinances();
+    subscribeToFinancesCategories();
+  }
+
   Future<List<Bird>> _fetchBirds() async {
     final res = await _birdsRepository.getAll();
     return res.asValue?.value.map(resolveBirdDto).toList() ?? const [];
