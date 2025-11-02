@@ -1,11 +1,11 @@
 import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
 import 'package:birdbreeder/features/birds/data/dtos/egg_dto.dart';
-import 'package:birdbreeder/features/birds/data/dtos/finances_categories_dto.dart';
-import 'package:birdbreeder/features/birds/data/dtos/finances_dto.dart';
+import 'package:birdbreeder/features/birds/data/dtos/finance_category_dto.dart';
+import 'package:birdbreeder/features/birds/data/dtos/finance_dto.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/domain/models/egg.dart';
-import 'package:birdbreeder/features/birds/domain/models/finances.dart';
-import 'package:birdbreeder/features/birds/domain/models/finances_categories.dart';
+import 'package:birdbreeder/features/birds/domain/models/finance.dart';
+import 'package:birdbreeder/features/birds/domain/models/finance_category.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/breeding_pair_dto.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/brood_dto.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
@@ -166,10 +166,10 @@ extension BirdBreederResovlerExtension on BirdBreederCubit {
     );
   }
 
-  FinancesCategories resolveFinancesCategoriesDto(
-    FinancesCategoriesDto financesCategoriesDto,
+  FinanceCategory resolveFinancesCategoriesDto(
+    FinanceCategoryDto financesCategoriesDto,
   ) {
-    return FinancesCategories(
+    return FinanceCategory(
       id: financesCategoriesDto.id,
       name: financesCategoriesDto.name,
       color: financesCategoriesDto.color,
@@ -177,10 +177,10 @@ extension BirdBreederResovlerExtension on BirdBreederCubit {
     );
   }
 
-  FinancesCategoriesDto resolveFinancesCategories(
-    FinancesCategories financesCategories,
+  FinanceCategoryDto resolveFinancesCategories(
+    FinanceCategory financesCategories,
   ) {
-    return FinancesCategoriesDto(
+    return FinanceCategoryDto(
       id: financesCategories.id,
       name: financesCategories.name,
       color: financesCategories.color,
@@ -188,27 +188,31 @@ extension BirdBreederResovlerExtension on BirdBreederCubit {
     );
   }
 
-  Finances resolveFinancesDto(
-    FinancesDto financesDto,
+  Finance resolveFinancesDto(
+    FinanceDto financesDto,
   ) {
-    return Finances(
+    return Finance(
       id: financesDto.id,
-      financesCategoriesId: financesDto.financesCategoriesId,
+      categoryId: financesDto.categoryId,
       birdId: financesDto.birdId,
       date: financesDto.date,
       amount: financesDto.amount,
+      title: financesDto.title,
+      notes: financesDto.notes,
     );
   }
 
-  FinancesDto resolveFinances(
-    Finances financesDto,
+  FinanceDto resolveFinances(
+    Finance financesDto,
   ) {
-    return FinancesDto(
+    return FinanceDto(
       id: financesDto.id,
       amount: financesDto.amount,
-      financesCategoriesId: financesDto.financesCategoriesId,
+      categoryId: financesDto.categoryId,
       date: financesDto.date,
       birdId: financesDto.birdId,
+      title: financesDto.title,
+      notes: financesDto.notes,
     );
   }
 }

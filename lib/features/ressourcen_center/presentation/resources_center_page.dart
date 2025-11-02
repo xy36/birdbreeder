@@ -31,6 +31,8 @@ class ResourcesCenterPage extends StatelessWidget {
                       context.router.push(CageDetailsRoute());
                     case ResourceTab.colors:
                       context.router.push(ColorDetailsRoute());
+                    case ResourceTab.financesCategories:
+                      context.router.push(CategoriesDetailsRoute());
                   }
                 },
               ),

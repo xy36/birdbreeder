@@ -5,6 +5,7 @@ import 'package:birdbreeder/core/extensions/breeding_pairs_extension.dart';
 import 'package:birdbreeder/core/extensions/generic_join.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
+import 'package:birdbreeder/features/breedings/domain/models/breeding_pair_status.dart';
 import 'package:birdbreeder/features/ressourcen_center/domain/models/cage.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/icons.dart';

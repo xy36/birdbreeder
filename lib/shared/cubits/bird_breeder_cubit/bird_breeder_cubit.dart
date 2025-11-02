@@ -2,12 +2,12 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/mapper_extensions.dart';
 import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
 import 'package:birdbreeder/features/birds/data/dtos/egg_dto.dart';
-import 'package:birdbreeder/features/birds/data/dtos/finances_categories_dto.dart';
-import 'package:birdbreeder/features/birds/data/dtos/finances_dto.dart';
+import 'package:birdbreeder/features/birds/data/dtos/finance_category_dto.dart';
+import 'package:birdbreeder/features/birds/data/dtos/finance_dto.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/domain/models/egg.dart';
-import 'package:birdbreeder/features/birds/domain/models/finances.dart';
-import 'package:birdbreeder/features/birds/domain/models/finances_categories.dart';
+import 'package:birdbreeder/features/birds/domain/models/finance.dart';
+import 'package:birdbreeder/features/birds/domain/models/finance_category.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/breeding_pair_dto.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/brood_dto.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
@@ -85,9 +85,8 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   final RessourceRepository<BroodDto> _broodsRepository;
   final RessourceRepository<BirdDto> _birdsRepository;
   final RessourceRepository<EggDto> _eggsRepository;
-  final RessourceRepository<FinancesDto> _financesRepository;
-  final RessourceRepository<FinancesCategoriesDto>
-      _financesCategoriesRepository;
+  final RessourceRepository<FinanceDto> _financesRepository;
+  final RessourceRepository<FinanceCategoryDto> _financesCategoriesRepository;
 
 // Public proxy so extensions can trigger state changes
   void push(BirdBreederState newState) => emit(newState);
@@ -182,8 +181,8 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
     List<Contact>? contacts,
     List<Species>? species,
     List<Egg>? eggs,
-    List<FinancesCategories>? financesCategories,
-    List<Finances>? finances,
+    List<FinanceCategory>? financesCategories,
+    List<Finance>? finances,
   }) {
     emit(
       BirdBreederLoaded(
@@ -267,13 +266,13 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
     return res.asValue?.value.map(resolveEggDto).toList() ?? const [];
   }
 
-  Future<List<FinancesCategories>> _fetchFinancesCategories() async {
+  Future<List<FinanceCategory>> _fetchFinancesCategories() async {
     final res = await _financesCategoriesRepository.getAll();
     return res.asValue?.value.map(resolveFinancesCategoriesDto).toList() ??
         const [];
   }
 
-  Future<List<Finances>> _fetchFinances() async {
+  Future<List<Finance>> _fetchFinances() async {
     final res = await _financesRepository.getAll();
     return res.asValue?.value.map(resolveFinancesDto).toList() ?? const [];
   }

@@ -2,7 +2,7 @@
 
 import 'package:birdbreeder/features/birds/data/converter/string_null_empty_converter.dart';
 import 'package:birdbreeder/features/birds/data/converter/utc_date_time_converter.dart';
-import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
+import 'package:birdbreeder/features/breedings/domain/models/breeding_pair_status.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'breeding_pair_dto.freezed.dart';

@@ -9,13 +9,13 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_mappr_annotation/auto_mappr_annotation.dart' as _i1;
 
-import '../../data/dtos/finances_categories_dto.dart' as _i3;
-import '../models/finances_categories.dart' as _i2;
+import '../../data/dtos/finance_category_dto.dart' as _i3;
+import '../models/finance_category.dart' as _i2;
 
 /// {@template package:birdbreeder/features/birds/domain/mapper/finances_categories_mapper.dart}
 /// Available mappings:
-/// - `FinancesCategories` → `FinancesCategoriesDto`.
-/// - `FinancesCategoriesDto` → `FinancesCategories`.
+/// - `FinanceCategory` → `FinanceCategoryDto`.
+/// - `FinanceCategoryDto` → `FinanceCategory`.
 /// {@endtemplate}
 class $FinancesCategoriesMapper implements _i1.AutoMapprInterface {
   const $FinancesCategoriesMapper();
@@ -30,16 +30,16 @@ class $FinancesCategoriesMapper implements _i1.AutoMapprInterface {
   bool canConvert<SOURCE, TARGET>({bool recursive = true}) {
     final sourceTypeOf = _typeOf<SOURCE>();
     final targetTypeOf = _typeOf<TARGET>();
-    if ((sourceTypeOf == _typeOf<_i2.FinancesCategories>() ||
-            sourceTypeOf == _typeOf<_i2.FinancesCategories?>()) &&
-        (targetTypeOf == _typeOf<_i3.FinancesCategoriesDto>() ||
-            targetTypeOf == _typeOf<_i3.FinancesCategoriesDto?>())) {
+    if ((sourceTypeOf == _typeOf<_i2.FinanceCategory>() ||
+            sourceTypeOf == _typeOf<_i2.FinanceCategory?>()) &&
+        (targetTypeOf == _typeOf<_i3.FinanceCategoryDto>() ||
+            targetTypeOf == _typeOf<_i3.FinanceCategoryDto?>())) {
       return true;
     }
-    if ((sourceTypeOf == _typeOf<_i3.FinancesCategoriesDto>() ||
-            sourceTypeOf == _typeOf<_i3.FinancesCategoriesDto?>()) &&
-        (targetTypeOf == _typeOf<_i2.FinancesCategories>() ||
-            targetTypeOf == _typeOf<_i2.FinancesCategories?>())) {
+    if ((sourceTypeOf == _typeOf<_i3.FinanceCategoryDto>() ||
+            sourceTypeOf == _typeOf<_i3.FinanceCategoryDto?>()) &&
+        (targetTypeOf == _typeOf<_i2.FinanceCategory>() ||
+            targetTypeOf == _typeOf<_i2.FinanceCategory?>())) {
       return true;
     }
     if (recursive) {
@@ -233,25 +233,25 @@ class $FinancesCategoriesMapper implements _i1.AutoMapprInterface {
   }) {
     final sourceTypeOf = _typeOf<SOURCE>();
     final targetTypeOf = _typeOf<TARGET>();
-    if ((sourceTypeOf == _typeOf<_i2.FinancesCategories>() ||
-            sourceTypeOf == _typeOf<_i2.FinancesCategories?>()) &&
-        (targetTypeOf == _typeOf<_i3.FinancesCategoriesDto>() ||
-            targetTypeOf == _typeOf<_i3.FinancesCategoriesDto?>())) {
+    if ((sourceTypeOf == _typeOf<_i2.FinanceCategory>() ||
+            sourceTypeOf == _typeOf<_i2.FinanceCategory?>()) &&
+        (targetTypeOf == _typeOf<_i3.FinanceCategoryDto>() ||
+            targetTypeOf == _typeOf<_i3.FinanceCategoryDto?>())) {
       if (canReturnNull && model == null) {
         return null;
       }
-      return (_map__i2$FinancesCategories_To__i3$FinancesCategoriesDto(
-          (model as _i2.FinancesCategories?)) as TARGET);
+      return (_map__i2$FinanceCategory_To__i3$FinanceCategoryDto(
+          (model as _i2.FinanceCategory?)) as TARGET);
     }
-    if ((sourceTypeOf == _typeOf<_i3.FinancesCategoriesDto>() ||
-            sourceTypeOf == _typeOf<_i3.FinancesCategoriesDto?>()) &&
-        (targetTypeOf == _typeOf<_i2.FinancesCategories>() ||
-            targetTypeOf == _typeOf<_i2.FinancesCategories?>())) {
+    if ((sourceTypeOf == _typeOf<_i3.FinanceCategoryDto>() ||
+            sourceTypeOf == _typeOf<_i3.FinanceCategoryDto?>()) &&
+        (targetTypeOf == _typeOf<_i2.FinanceCategory>() ||
+            targetTypeOf == _typeOf<_i2.FinanceCategory?>())) {
       if (canReturnNull && model == null) {
         return null;
       }
-      return (_map__i3$FinancesCategoriesDto_To__i2$FinancesCategories(
-          (model as _i3.FinancesCategoriesDto?)) as TARGET);
+      return (_map__i3$FinanceCategoryDto_To__i2$FinanceCategory(
+          (model as _i3.FinanceCategoryDto?)) as TARGET);
     }
     throw Exception('No ${model.runtimeType} -> $targetTypeOf mapping.');
   }
@@ -285,16 +285,15 @@ class $FinancesCategoriesMapper implements _i1.AutoMapprInterface {
     return false;
   }
 
-  _i3.FinancesCategoriesDto
-      _map__i2$FinancesCategories_To__i3$FinancesCategoriesDto(
-          _i2.FinancesCategories? input) {
+  _i3.FinanceCategoryDto _map__i2$FinanceCategory_To__i3$FinanceCategoryDto(
+      _i2.FinanceCategory? input) {
     final model = input;
     if (model == null) {
       throw Exception(
-          r'Mapping FinancesCategories → FinancesCategoriesDto failed because FinancesCategories was null, and no default value was provided. '
-          r'Consider setting the whenSourceIsNull parameter on the MapType<FinancesCategories, FinancesCategoriesDto> to handle null values during mapping.');
+          r'Mapping FinanceCategory → FinanceCategoryDto failed because FinanceCategory was null, and no default value was provided. '
+          r'Consider setting the whenSourceIsNull parameter on the MapType<FinanceCategory, FinanceCategoryDto> to handle null values during mapping.');
     }
-    return _i3.FinancesCategoriesDto(
+    return _i3.FinanceCategoryDto(
       id: model.id,
       name: model.name,
       color: model.color,
@@ -302,16 +301,15 @@ class $FinancesCategoriesMapper implements _i1.AutoMapprInterface {
     );
   }
 
-  _i2.FinancesCategories
-      _map__i3$FinancesCategoriesDto_To__i2$FinancesCategories(
-          _i3.FinancesCategoriesDto? input) {
+  _i2.FinanceCategory _map__i3$FinanceCategoryDto_To__i2$FinanceCategory(
+      _i3.FinanceCategoryDto? input) {
     final model = input;
     if (model == null) {
       throw Exception(
-          r'Mapping FinancesCategoriesDto → FinancesCategories failed because FinancesCategoriesDto was null, and no default value was provided. '
-          r'Consider setting the whenSourceIsNull parameter on the MapType<FinancesCategoriesDto, FinancesCategories> to handle null values during mapping.');
+          r'Mapping FinanceCategoryDto → FinanceCategory failed because FinanceCategoryDto was null, and no default value was provided. '
+          r'Consider setting the whenSourceIsNull parameter on the MapType<FinanceCategoryDto, FinanceCategory> to handle null values during mapping.');
     }
-    return _i2.FinancesCategories(
+    return _i2.FinanceCategory(
       id: model.id,
       name: model.name,
       color: model.color,

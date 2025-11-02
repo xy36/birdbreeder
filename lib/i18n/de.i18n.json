@@ -3,7 +3,32 @@
         "title": "Birdbreeder"
     },
     "finances": {
-        "title": "Finanzen"
+        "title": "Finanzen",
+        "categories": {
+            "title": "Kategorien",
+            "category": "Kategorie",
+            "add": "Kategorie hinzufügen",
+            "select": "Kategorie auswählen",
+            "delete": "Kategorie löschen?",
+            "name": "Name der Kategorie",
+            "color": "Farbe der Kategorie",
+            "description": "Beschreibung"
+        },
+        "delete": "Eintrag löschen?",
+        "add": {
+            "name": "Eintrag hinzufügen",
+            "title": "Betreff",
+            "date": "Datum",
+            "category": "Kategorie auswählen",
+            "amount": "Betrag eingeben",
+            "notes": "Beschreibung",
+            "bird": "Relevanter Vogel"
+        },
+        "kind": {
+            "name": "Art",
+            "income": "Einnahmen",
+            "expense": "Ausgaben"
+        }
     },
     "account": {
         "title": "Konto"
@@ -83,8 +108,8 @@
             "finished": "Beendet"
         },
         "start_date": "Startdatum",
-        "end_date": "Enddatum (optional)",
-        "notes": "Notizen (optional)"
+        "end_date": "Enddatum",
+        "notes": "Notizen"
     },
     "resources": {
         "title": "Ressourcen",

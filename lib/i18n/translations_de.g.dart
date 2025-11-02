@@ -86,6 +86,14 @@ class TranslationsFinancesDe {
 
   /// de: 'Finanzen'
   String get title => 'Finanzen';
+
+  late final TranslationsFinancesCategoriesDe categories = TranslationsFinancesCategoriesDe.internal(_root);
+
+  /// de: 'Eintrag löschen?'
+  String get delete => 'Eintrag löschen?';
+
+  late final TranslationsFinancesAddDe add = TranslationsFinancesAddDe.internal(_root);
+  late final TranslationsFinancesKindDe kind = TranslationsFinancesKindDe.internal(_root);
 }
 
 // Path: account
@@ -262,11 +270,11 @@ class TranslationsBreedingPairsDe {
   /// de: 'Startdatum'
   String get start_date => 'Startdatum';
 
-  /// de: 'Enddatum (optional)'
-  String get end_date => 'Enddatum (optional)';
+  /// de: 'Enddatum'
+  String get end_date => 'Enddatum';
 
-  /// de: 'Notizen (optional)'
-  String get notes => 'Notizen (optional)';
+  /// de: 'Notizen'
+  String get notes => 'Notizen';
 }
 
 // Path: resources
@@ -749,6 +757,87 @@ class TranslationsSnackbarsDe {
 
   /// de: 'Registrierung erfolgreich, Sie werden automatisch angemeldet.'
   String get sign_up_success => 'Registrierung erfolgreich, Sie werden automatisch angemeldet.';
+}
+
+// Path: finances.categories
+class TranslationsFinancesCategoriesDe {
+  TranslationsFinancesCategoriesDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Kategorien'
+  String get title => 'Kategorien';
+
+  /// de: 'Kategorie'
+  String get category => 'Kategorie';
+
+  /// de: 'Kategorie hinzufügen'
+  String get add => 'Kategorie hinzufügen';
+
+  /// de: 'Kategorie auswählen'
+  String get select => 'Kategorie auswählen';
+
+  /// de: 'Kategorie löschen?'
+  String get delete => 'Kategorie löschen?';
+
+  /// de: 'Name der Kategorie'
+  String get name => 'Name der Kategorie';
+
+  /// de: 'Farbe der Kategorie'
+  String get color => 'Farbe der Kategorie';
+
+  /// de: 'Beschreibung'
+  String get description => 'Beschreibung';
+}
+
+// Path: finances.add
+class TranslationsFinancesAddDe {
+  TranslationsFinancesAddDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Eintrag hinzufügen'
+  String get name => 'Eintrag hinzufügen';
+
+  /// de: 'Betreff'
+  String get title => 'Betreff';
+
+  /// de: 'Datum'
+  String get date => 'Datum';
+
+  /// de: 'Kategorie auswählen'
+  String get category => 'Kategorie auswählen';
+
+  /// de: 'Betrag eingeben'
+  String get amount => 'Betrag eingeben';
+
+  /// de: 'Beschreibung'
+  String get notes => 'Beschreibung';
+
+  /// de: 'Relevanter Vogel'
+  String get bird => 'Relevanter Vogel';
+}
+
+// Path: finances.kind
+class TranslationsFinancesKindDe {
+  TranslationsFinancesKindDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Art'
+  String get name => 'Art';
+
+  /// de: 'Einnahmen'
+  String get income => 'Einnahmen';
+
+  /// de: 'Ausgaben'
+  String get expense => 'Ausgaben';
 }
 
 // Path: contacts.fields

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'finances_categories.dart';
+part of 'finance_category.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -12,7 +12,7 @@ _$FinancesCategoriesImpl _$$FinancesCategoriesImplFromJson(
       id: json['id'] as String,
       name: json['name'] as String,
       color: json['color'] as String,
-      kind: $enumDecode(_$FinancesCategoriesKindEnumMap, json['kind']),
+      kind: $enumDecode(_$FinanceCategoryKindEnumMap, json['kind']),
     );
 
 Map<String, dynamic> _$$FinancesCategoriesImplToJson(
@@ -21,10 +21,10 @@ Map<String, dynamic> _$$FinancesCategoriesImplToJson(
       'id': instance.id,
       'name': instance.name,
       'color': instance.color,
-      'kind': _$FinancesCategoriesKindEnumMap[instance.kind]!,
+      'kind': _$FinanceCategoryKindEnumMap[instance.kind]!,
     };
 
-const _$FinancesCategoriesKindEnumMap = {
-  FinancesCategoriesKind.income: 'income',
-  FinancesCategoriesKind.expense: 'expense',
+const _$FinanceCategoryKindEnumMap = {
+  FinanceCategoryKind.income: 'income',
+  FinanceCategoryKind.expense: 'expense',
 };

@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'finances_categories_dto.dart';
+part of 'finance_category_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$FinancesCategoriesDtoImpl _$$FinancesCategoriesDtoImplFromJson(
+_$FinanceCategoryDtoImpl _$$FinanceCategoryDtoImplFromJson(
         Map<String, dynamic> json) =>
-    _$FinancesCategoriesDtoImpl(
+    _$FinanceCategoryDtoImpl(
       id: json['id'] as String,
       collectionId: json['collectionId'] as String?,
       collectionName: json['collectionName'] as String?,
@@ -20,11 +20,11 @@ _$FinancesCategoriesDtoImpl _$$FinancesCategoriesDtoImplFromJson(
           : DateTime.parse(json['updated'] as String),
       name: json['name'] as String,
       color: json['color'] as String,
-      kind: $enumDecode(_$FinancesCategoriesKindEnumMap, json['kind']),
+      kind: $enumDecode(_$FinanceCategoryKindEnumMap, json['kind']),
     );
 
-Map<String, dynamic> _$$FinancesCategoriesDtoImplToJson(
-        _$FinancesCategoriesDtoImpl instance) =>
+Map<String, dynamic> _$$FinanceCategoryDtoImplToJson(
+        _$FinanceCategoryDtoImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'collectionId': instance.collectionId,
@@ -33,10 +33,10 @@ Map<String, dynamic> _$$FinancesCategoriesDtoImplToJson(
       'updated': instance.updated?.toIso8601String(),
       'name': instance.name,
       'color': instance.color,
-      'kind': _$FinancesCategoriesKindEnumMap[instance.kind]!,
+      'kind': _$FinanceCategoryKindEnumMap[instance.kind]!,
     };
 
-const _$FinancesCategoriesKindEnumMap = {
-  FinancesCategoriesKind.income: 'income',
-  FinancesCategoriesKind.expense: 'expense',
+const _$FinanceCategoryKindEnumMap = {
+  FinanceCategoryKind.income: 'income',
+  FinanceCategoryKind.expense: 'expense',
 };

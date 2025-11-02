@@ -291,6 +291,72 @@ class CagesTabRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CategoriesDetailsPage]
+class CategoriesDetailsRoute extends PageRouteInfo<CategoriesDetailsRouteArgs> {
+  CategoriesDetailsRoute({
+    Key? key,
+    FinanceCategory? initialCategory,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CategoriesDetailsRoute.name,
+          args: CategoriesDetailsRouteArgs(
+            key: key,
+            initialCategory: initialCategory,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'CategoriesDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<CategoriesDetailsRouteArgs>(
+          orElse: () => const CategoriesDetailsRouteArgs());
+      return CategoriesDetailsPage(
+        key: args.key,
+        initialCategory: args.initialCategory,
+      );
+    },
+  );
+}
+
+class CategoriesDetailsRouteArgs {
+  const CategoriesDetailsRouteArgs({
+    this.key,
+    this.initialCategory,
+  });
+
+  final Key? key;
+
+  final FinanceCategory? initialCategory;
+
+  @override
+  String toString() {
+    return 'CategoriesDetailsRouteArgs{key: $key, initialCategory: $initialCategory}';
+  }
+}
+
+/// generated route for
+/// [CategoriesTab]
+class CategoriesTabRoute extends PageRouteInfo<void> {
+  const CategoriesTabRoute({List<PageRouteInfo>? children})
+      : super(
+          CategoriesTabRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CategoriesTabRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CategoriesTab();
+    },
+  );
+}
+
+/// generated route for
 /// [ColorDetailsPage]
 class ColorDetailsRoute extends PageRouteInfo<ColorDetailsRouteArgs> {
   ColorDetailsRoute({

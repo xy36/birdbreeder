@@ -21,6 +21,7 @@ enum ActionButtonType {
   broodAdd,
   broodDelete,
   eggAdd,
+  financesAdd,
   ;
 
   IconData get icon {
@@ -33,6 +34,7 @@ enum ActionButtonType {
       case ActionButtonType.breedingPairAdd:
       case ActionButtonType.broodAdd:
       case ActionButtonType.eggAdd:
+      case ActionButtonType.financesAdd:
         return Icons.add;
       case ActionButtonType.broodDelete:
       case ActionButtonType.cageDelete:
@@ -97,6 +99,8 @@ enum ActionButtonType {
         return 'Zuchtpaar löschen';
       case ActionButtonType.eggAdd:
         return 'Ei hinzufügen';
+      case ActionButtonType.financesAdd:
+        return 'Finanz-Eintrag hinzufügen';
     }
   }
 }
@@ -128,8 +132,11 @@ class AppActionButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(25),
           child: Padding(
             padding: const EdgeInsets.all(8),
-            child: Icon(actionButtonType.icon,
-                size: 24, color: Theme.of(context).colorScheme.primary),
+            child: Icon(
+              actionButtonType.icon,
+              size: 24,
+              color: Theme.of(context).colorScheme.primary,
+            ),
           ),
         );
       case ButtonType.floatingActionButton:

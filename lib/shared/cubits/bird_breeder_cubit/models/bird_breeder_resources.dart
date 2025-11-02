@@ -1,7 +1,7 @@
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/domain/models/egg.dart';
-import 'package:birdbreeder/features/birds/domain/models/finances.dart';
-import 'package:birdbreeder/features/birds/domain/models/finances_categories.dart';
+import 'package:birdbreeder/features/birds/domain/models/finance.dart';
+import 'package:birdbreeder/features/birds/domain/models/finance_category.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
 import 'package:birdbreeder/features/breedings/domain/models/brood.dart';
 import 'package:birdbreeder/features/contacts/domain/models/contact.dart';
@@ -24,8 +24,8 @@ class BirdBreederResources with _$BirdBreederResources {
     required List<BirdColor> colors,
     required List<Contact> contacts,
     required List<Species> species,
-    required List<FinancesCategories> financesCategories,
-    required List<Finances> finances,
+    required List<FinanceCategory> financesCategories,
+    required List<Finance> finances,
   }) = _BirdBreederResources;
   const BirdBreederResources._();
 

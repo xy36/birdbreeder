@@ -1,7 +1,7 @@
 import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
 import 'package:birdbreeder/features/birds/data/dtos/egg_dto.dart';
-import 'package:birdbreeder/features/birds/data/dtos/finances_categories_dto.dart';
-import 'package:birdbreeder/features/birds/data/dtos/finances_dto.dart';
+import 'package:birdbreeder/features/birds/data/dtos/finance_category_dto.dart';
+import 'package:birdbreeder/features/birds/data/dtos/finance_dto.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/breeding_pair_dto.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/brood_dto.dart';
 import 'package:birdbreeder/features/contacts/data/dtos/contact_dto.dart';
@@ -99,19 +99,19 @@ Future<void> initializeDependencyInjection() async {
         toJson: (egg) => egg.toJson(),
       ),
     )
-    ..registerLazySingleton<RessourceRepository<FinancesCategoriesDto>>(
-      () => RessourceRepository<FinancesCategoriesDto>(
+    ..registerLazySingleton<RessourceRepository<FinanceCategoryDto>>(
+      () => RessourceRepository<FinanceCategoryDto>(
         loggingService: s1(),
         recordService: s1.get<PocketBaseService>().financesCategoriesCollection,
-        fromJson: FinancesCategoriesDto.fromJson,
+        fromJson: FinanceCategoryDto.fromJson,
         toJson: (f) => f.toJson(),
       ),
     )
-    ..registerLazySingleton<RessourceRepository<FinancesDto>>(
-      () => RessourceRepository<FinancesDto>(
+    ..registerLazySingleton<RessourceRepository<FinanceDto>>(
+      () => RessourceRepository<FinanceDto>(
         loggingService: s1(),
         recordService: s1.get<PocketBaseService>().financesCollection,
-        fromJson: FinancesDto.fromJson,
+        fromJson: FinanceDto.fromJson,
         toJson: (f) => f.toJson(),
       ),
     )

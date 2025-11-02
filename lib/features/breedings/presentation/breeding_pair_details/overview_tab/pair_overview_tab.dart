@@ -2,6 +2,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/breeding_pairs_extension.dart';
 import 'package:birdbreeder/core/extensions/brood_extension.dart';
 import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
+import 'package:birdbreeder/features/breedings/domain/models/breeding_pair_status.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/broods_tab/empty_brood.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/models/pair_totals.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/overview_tab/kpi_cards.dart';
@@ -40,6 +41,9 @@ class PairOverviewTab extends StatelessWidget {
 
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+      physics: const AlwaysScrollableScrollPhysics(
+        parent: BouncingScrollPhysics(),
+      ),
       children: [
         BreedingPairHeader(
           breedingPair: pair,

@@ -1,5 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
+import 'package:birdbreeder/features/breedings/domain/models/breeding_pair_status.dart';
 
 class StatusChip extends StatelessWidget {
   const StatusChip({super.key, required this.status});

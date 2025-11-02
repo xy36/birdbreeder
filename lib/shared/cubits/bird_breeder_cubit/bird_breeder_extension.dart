@@ -1,7 +1,7 @@
 import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
 import 'package:birdbreeder/features/birds/data/dtos/egg_dto.dart';
-import 'package:birdbreeder/features/birds/data/dtos/finances_categories_dto.dart';
-import 'package:birdbreeder/features/birds/data/dtos/finances_dto.dart';
+import 'package:birdbreeder/features/birds/data/dtos/finance_category_dto.dart';
+import 'package:birdbreeder/features/birds/data/dtos/finance_dto.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/breeding_pair_dto.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/brood_dto.dart';
 import 'package:birdbreeder/features/contacts/data/dtos/contact_dto.dart';
@@ -343,14 +343,16 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
       '*',
       (e) {
         if (e.record == null) return;
-        final cat = FinancesCategoriesDto.fromJson(e.record!.toJson());
+        final cat = FinanceCategoryDto.fromJson(e.record!.toJson());
 
         switch (e.action) {
           case 'update':
             emitLoaded(
               financesCategories: state.birdBreederResources.financesCategories
-                  .map((e) =>
-                      e.id == cat.id ? resolveFinancesCategoriesDto(cat) : e)
+                  .map(
+                    (e) =>
+                        e.id == cat.id ? resolveFinancesCategoriesDto(cat) : e,
+                  )
                   .toList(),
             );
             break;
@@ -383,7 +385,7 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
       '*',
       (e) {
         if (e.record == null) return;
-        final cat = FinancesDto.fromJson(e.record!.toJson());
+        final cat = FinanceDto.fromJson(e.record!.toJson());
 
         switch (e.action) {
           case 'update':

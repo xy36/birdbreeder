@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'finances_dto.dart';
+part of 'finance_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$FinancesDtoImpl _$$FinancesDtoImplFromJson(Map<String, dynamic> json) =>
-    _$FinancesDtoImpl(
+_$FinanceDtoImpl _$$FinanceDtoImplFromJson(Map<String, dynamic> json) =>
+    _$FinanceDtoImpl(
       id: json['id'] as String,
       collectionId: json['collectionId'] as String?,
       collectionName: json['collectionName'] as String?,
@@ -17,23 +17,27 @@ _$FinancesDtoImpl _$$FinancesDtoImplFromJson(Map<String, dynamic> json) =>
       updated: json['updated'] == null
           ? null
           : DateTime.parse(json['updated'] as String),
-      financesCategoriesId: json['financesCategoriesId'] as String,
+      categoryId: json['category'] as String,
+      title: json['title'] as String,
+      notes:
+          const StringNullEmptyConverter().fromJson(json['notes'] as String?),
       birdId:
-          const StringNullEmptyConverter().fromJson(json['birdId'] as String?),
-      date:
-          json['date'] == null ? null : DateTime.parse(json['date'] as String),
+          const StringNullEmptyConverter().fromJson(json['bird'] as String?),
+      date: const UtcDateTimeConverter().fromJson(json['date'] as String?),
       amount: (json['amount'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$$FinancesDtoImplToJson(_$FinancesDtoImpl instance) =>
+Map<String, dynamic> _$$FinanceDtoImplToJson(_$FinanceDtoImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'collectionId': instance.collectionId,
       'collectionName': instance.collectionName,
       'created': instance.created?.toIso8601String(),
       'updated': instance.updated?.toIso8601String(),
-      'financesCategoriesId': instance.financesCategoriesId,
-      'birdId': const StringNullEmptyConverter().toJson(instance.birdId),
-      'date': instance.date?.toIso8601String(),
+      'category': instance.categoryId,
+      'title': instance.title,
+      'notes': const StringNullEmptyConverter().toJson(instance.notes),
+      'bird': const StringNullEmptyConverter().toJson(instance.birdId),
+      'date': const UtcDateTimeConverter().toJson(instance.date),
       'amount': instance.amount,
     };

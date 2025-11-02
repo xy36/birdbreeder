@@ -7,6 +7,7 @@ import 'package:birdbreeder/features/account/account_page.dart';
 import 'package:birdbreeder/features/authentication/presentation/auth/auth_screen.dart';
 import 'package:birdbreeder/features/authentication/presentation/initialization_page.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
+import 'package:birdbreeder/features/birds/domain/models/finance_category.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/bird_page.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/birds_overview_page.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/breeding_pair_details_page.dart';
@@ -22,9 +23,11 @@ import 'package:birdbreeder/features/ressourcen_center/domain/models/cage.dart';
 import 'package:birdbreeder/features/ressourcen_center/domain/models/species.dart';
 import 'package:birdbreeder/features/ressourcen_center/presentation/resources_center_page.dart';
 import 'package:birdbreeder/features/ressourcen_center/presentation/widgets/details_pages/cage_details_page.dart';
+import 'package:birdbreeder/features/ressourcen_center/presentation/widgets/details_pages/categories_details_page.dart';
 import 'package:birdbreeder/features/ressourcen_center/presentation/widgets/details_pages/color_details_page.dart';
 import 'package:birdbreeder/features/ressourcen_center/presentation/widgets/details_pages/species_details_page.dart';
 import 'package:birdbreeder/features/ressourcen_center/presentation/widgets/tabs/cages_tab.dart';
+import 'package:birdbreeder/features/ressourcen_center/presentation/widgets/tabs/categories_tab.dart';
 import 'package:birdbreeder/features/ressourcen_center/presentation/widgets/tabs/colors_tab.dart';
 import 'package:birdbreeder/features/ressourcen_center/presentation/widgets/tabs/contacts_tab.dart';
 import 'package:birdbreeder/features/ressourcen_center/presentation/widgets/tabs/species_tab.dart';
@@ -65,6 +68,10 @@ class AppRouter extends RootStackRouter {
             AutoRoute(page: CageDetailsRoute.page, path: 'cages/details'),
             AutoRoute(page: ColorDetailsRoute.page, path: 'colors/details'),
             AutoRoute(page: SpeciesDetailsRoute.page, path: 'species/details'),
+            AutoRoute(
+              page: CategoriesDetailsRoute.page,
+              path: 'categories/details',
+            ),
             AutoRoute(page: BreedingPairsRoute.page, path: 'breedingPairs'),
 
             AutoRoute(
@@ -85,6 +92,7 @@ class AppRouter extends RootStackRouter {
               children: [
                 AutoRoute(path: 'species', page: SpeciesTabRoute.page),
                 AutoRoute(path: 'cages', page: CagesTabRoute.page),
+                AutoRoute(path: 'categories', page: CategoriesTabRoute.page),
                 AutoRoute(path: 'colors', page: ColorsTabRoute.page),
                 AutoRoute(path: 'contacts', page: ContactsTabRoute.page),
                 RedirectRoute(path: '', redirectTo: 'species'),

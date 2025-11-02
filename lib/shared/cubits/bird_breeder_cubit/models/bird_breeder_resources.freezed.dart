@@ -24,9 +24,9 @@ mixin _$BirdBreederResources {
   List<BirdColor> get colors => throw _privateConstructorUsedError;
   List<Contact> get contacts => throw _privateConstructorUsedError;
   List<Species> get species => throw _privateConstructorUsedError;
-  List<FinancesCategories> get financesCategories =>
+  List<FinanceCategory> get financesCategories =>
       throw _privateConstructorUsedError;
-  List<Finances> get finances => throw _privateConstructorUsedError;
+  List<Finance> get finances => throw _privateConstructorUsedError;
 
   /// Create a copy of BirdBreederResources
   /// with the given fields replaced by the non-null parameter values.
@@ -50,8 +50,8 @@ abstract class $BirdBreederResourcesCopyWith<$Res> {
       List<BirdColor> colors,
       List<Contact> contacts,
       List<Species> species,
-      List<FinancesCategories> financesCategories,
-      List<Finances> finances});
+      List<FinanceCategory> financesCategories,
+      List<Finance> finances});
 }
 
 /// @nodoc
@@ -117,11 +117,11 @@ class _$BirdBreederResourcesCopyWithImpl<$Res,
       financesCategories: null == financesCategories
           ? _value.financesCategories
           : financesCategories // ignore: cast_nullable_to_non_nullable
-              as List<FinancesCategories>,
+              as List<FinanceCategory>,
       finances: null == finances
           ? _value.finances
           : finances // ignore: cast_nullable_to_non_nullable
-              as List<Finances>,
+              as List<Finance>,
     ) as $Val);
   }
 }
@@ -143,8 +143,8 @@ abstract class _$$BirdBreederResourcesImplCopyWith<$Res>
       List<BirdColor> colors,
       List<Contact> contacts,
       List<Species> species,
-      List<FinancesCategories> financesCategories,
-      List<Finances> finances});
+      List<FinanceCategory> financesCategories,
+      List<Finance> finances});
 }
 
 /// @nodoc
@@ -207,11 +207,11 @@ class __$$BirdBreederResourcesImplCopyWithImpl<$Res>
       financesCategories: null == financesCategories
           ? _value._financesCategories
           : financesCategories // ignore: cast_nullable_to_non_nullable
-              as List<FinancesCategories>,
+              as List<FinanceCategory>,
       finances: null == finances
           ? _value._finances
           : finances // ignore: cast_nullable_to_non_nullable
-              as List<Finances>,
+              as List<Finance>,
     ));
   }
 }
@@ -229,8 +229,8 @@ class _$BirdBreederResourcesImpl extends _BirdBreederResources
       required final List<BirdColor> colors,
       required final List<Contact> contacts,
       required final List<Species> species,
-      required final List<FinancesCategories> financesCategories,
-      required final List<Finances> finances})
+      required final List<FinanceCategory> financesCategories,
+      required final List<Finance> finances})
       : _birds = birds,
         _breedingPairs = breedingPairs,
         _broods = broods,
@@ -307,18 +307,18 @@ class _$BirdBreederResourcesImpl extends _BirdBreederResources
     return EqualUnmodifiableListView(_species);
   }
 
-  final List<FinancesCategories> _financesCategories;
+  final List<FinanceCategory> _financesCategories;
   @override
-  List<FinancesCategories> get financesCategories {
+  List<FinanceCategory> get financesCategories {
     if (_financesCategories is EqualUnmodifiableListView)
       return _financesCategories;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_financesCategories);
   }
 
-  final List<Finances> _finances;
+  final List<Finance> _finances;
   @override
-  List<Finances> get finances {
+  List<Finance> get finances {
     if (_finances is EqualUnmodifiableListView) return _finances;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_finances);
@@ -400,8 +400,8 @@ abstract class _BirdBreederResources extends BirdBreederResources {
       required final List<BirdColor> colors,
       required final List<Contact> contacts,
       required final List<Species> species,
-      required final List<FinancesCategories> financesCategories,
-      required final List<Finances> finances}) = _$BirdBreederResourcesImpl;
+      required final List<FinanceCategory> financesCategories,
+      required final List<Finance> finances}) = _$BirdBreederResourcesImpl;
   const _BirdBreederResources._() : super._();
 
   @override
@@ -421,9 +421,9 @@ abstract class _BirdBreederResources extends BirdBreederResources {
   @override
   List<Species> get species;
   @override
-  List<FinancesCategories> get financesCategories;
+  List<FinanceCategory> get financesCategories;
   @override
-  List<Finances> get finances;
+  List<Finance> get finances;
 
   /// Create a copy of BirdBreederResources
   /// with the given fields replaced by the non-null parameter values.

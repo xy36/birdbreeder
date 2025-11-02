@@ -140,6 +140,9 @@ class _BirdsOverviewScreenState extends State<BirdsOverviewScreen> {
                           final searchedBirds =
                               context.read<BirdSearchCubit>().searchedItems;
                           return ListView.builder(
+                            physics: const AlwaysScrollableScrollPhysics(
+                              parent: BouncingScrollPhysics(),
+                            ),
                             controller: widget.scrollController,
                             itemCount: searchedBirds.length,
                             itemBuilder: (context, i) => BirdCard(

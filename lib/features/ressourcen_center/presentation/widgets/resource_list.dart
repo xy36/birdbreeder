@@ -19,6 +19,7 @@ class ResourceList<T> extends StatefulWidget {
     required this.onCreate,
     required this.onEdit,
     required this.onDelete,
+    this.itemBuilder,
   });
 
   final String title;
@@ -26,6 +27,7 @@ class ResourceList<T> extends StatefulWidget {
   final VoidCallback onCreate;
   final void Function(T item) onEdit;
   final void Function(T item) onDelete;
+  final Widget? Function(BuildContext, T)? itemBuilder;
 
   @override
   State<ResourceList<T>> createState() => _ResourceListState<T>();
@@ -57,15 +59,19 @@ class _ResourceListState<T> extends State<ResourceList<T>> {
               indent: 12,
               endIndent: 12,
             ),
-            itemBuilder: (_, i) {
-              final item = filtered[i];
-              return ListTile(
-                title: _titleOf(item),
-                subtitle: _subtitleOf(item),
-                trailing: _trailingOf(item),
-                onTap: () => widget.onEdit(item),
-              );
-            },
+            itemBuilder: widget.itemBuilder != null
+                ? (context, i) {
+                    return widget.itemBuilder!(context, filtered[i]);
+                  }
+                : (_, i) {
+                    final item = filtered[i];
+                    return ListTile(
+                      title: _titleOf(item),
+                      subtitle: _subtitleOf(item),
+                      trailing: _trailingOf(item),
+                      onTap: () => widget.onEdit(item),
+                    );
+                  },
           ),
         ),
       ],

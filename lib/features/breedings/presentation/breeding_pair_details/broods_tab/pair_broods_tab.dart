@@ -27,6 +27,9 @@ class PairBroodsTab extends StatelessWidget {
 
     return Scaffold(
       body: ListView.separated(
+        physics: const AlwaysScrollableScrollPhysics(
+          parent: BouncingScrollPhysics(),
+        ),
         padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
         itemCount: list.length + 1,
         separatorBuilder: (_, __) => const SizedBox(height: 12),

@@ -1,8 +1,8 @@
 part of '../bird_breeder_cubit.dart';
 
 extension BirdBreederCubitFinancesX on BirdBreederCubit {
-  Future<Finances?> addFinances(
-    Finances finance,
+  Future<Finance?> addFinances(
+    Finance finance,
   ) async {
     push(loading());
     final result = await _financesRepository.create(finance.toDto());
@@ -14,8 +14,8 @@ extension BirdBreederCubitFinancesX on BirdBreederCubit {
     return result.asValue!.value.toModel();
   }
 
-  Future<Finances?> updateFinances(
-    Finances finance,
+  Future<Finance?> updateFinances(
+    Finance finance,
   ) async {
     push(loading());
     final result = await _financesRepository.update(
@@ -30,7 +30,7 @@ extension BirdBreederCubitFinancesX on BirdBreederCubit {
     return result.asValue!.value.toModel();
   }
 
-  Future<void> deleteFinances(Finances finance) async {
+  Future<void> deleteFinances(Finance finance) async {
     push(loading());
     final result = await _financesRepository.delete(finance.id);
     if (result.isError) {
@@ -40,5 +40,21 @@ extension BirdBreederCubitFinancesX on BirdBreederCubit {
     }
   }
 
-  List<Finances> get finances => state.birdBreederResources.finances;
+  Future<Finance?> duplicateFinances(Finance finance) async {
+    push(loading());
+    final newFinance = finance.copyWith(
+      id: '',
+      date: DateTime.now(),
+      title: '${finance.title} (copy)',
+    );
+    final result = await _financesRepository.create(newFinance.toDto());
+    if (result.isError) {
+      presentAddFailed();
+      push(loaded());
+      return null;
+    }
+    return result.asValue!.value.toModel();
+  }
+
+  List<Finance> get finances => state.birdBreederResources.finances;
 }

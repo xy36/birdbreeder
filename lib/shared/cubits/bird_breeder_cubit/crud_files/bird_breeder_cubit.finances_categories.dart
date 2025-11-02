@@ -1,8 +1,8 @@
 part of '../bird_breeder_cubit.dart';
 
 extension BirdBreederCubitFinancesCategoriesX on BirdBreederCubit {
-  Future<FinancesCategories?> addFinancesCategory(
-    FinancesCategories category,
+  Future<FinanceCategory?> addFinancesCategory(
+    FinanceCategory category,
   ) async {
     push(loading());
     final result = await _financesCategoriesRepository.create(category.toDto());
@@ -14,8 +14,8 @@ extension BirdBreederCubitFinancesCategoriesX on BirdBreederCubit {
     return result.asValue!.value.toModel();
   }
 
-  Future<FinancesCategories?> updateFinancesCategory(
-    FinancesCategories category,
+  Future<FinanceCategory?> updateFinancesCategory(
+    FinanceCategory category,
   ) async {
     push(loading());
     final result = await _financesCategoriesRepository.update(
@@ -30,7 +30,7 @@ extension BirdBreederCubitFinancesCategoriesX on BirdBreederCubit {
     return result.asValue!.value.toModel();
   }
 
-  Future<void> deleteFinancesCategory(FinancesCategories category) async {
+  Future<void> deleteFinancesCategory(FinanceCategory category) async {
     push(loading());
     final result = await _financesCategoriesRepository.delete(category.id);
     if (result.isError) {
@@ -40,6 +40,6 @@ extension BirdBreederCubitFinancesCategoriesX on BirdBreederCubit {
     }
   }
 
-  List<FinancesCategories> get financesCategories =>
+  List<FinanceCategory> get financesCategories =>
       state.birdBreederResources.financesCategories;
 }

@@ -9,13 +9,13 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_mappr_annotation/auto_mappr_annotation.dart' as _i1;
 
-import '../../data/dtos/finances_dto.dart' as _i3;
-import '../models/finances.dart' as _i2;
+import '../../data/dtos/finance_dto.dart' as _i3;
+import '../models/finance.dart' as _i2;
 
 /// {@template package:birdbreeder/features/birds/domain/mapper/finances_mapper.dart}
 /// Available mappings:
-/// - `Finances` → `FinancesDto`.
-/// - `FinancesDto` → `Finances`.
+/// - `Finance` → `FinanceDto`.
+/// - `FinanceDto` → `Finance`.
 /// {@endtemplate}
 class $FinancesMapper implements _i1.AutoMapprInterface {
   const $FinancesMapper();
@@ -30,16 +30,16 @@ class $FinancesMapper implements _i1.AutoMapprInterface {
   bool canConvert<SOURCE, TARGET>({bool recursive = true}) {
     final sourceTypeOf = _typeOf<SOURCE>();
     final targetTypeOf = _typeOf<TARGET>();
-    if ((sourceTypeOf == _typeOf<_i2.Finances>() ||
-            sourceTypeOf == _typeOf<_i2.Finances?>()) &&
-        (targetTypeOf == _typeOf<_i3.FinancesDto>() ||
-            targetTypeOf == _typeOf<_i3.FinancesDto?>())) {
+    if ((sourceTypeOf == _typeOf<_i2.Finance>() ||
+            sourceTypeOf == _typeOf<_i2.Finance?>()) &&
+        (targetTypeOf == _typeOf<_i3.FinanceDto>() ||
+            targetTypeOf == _typeOf<_i3.FinanceDto?>())) {
       return true;
     }
-    if ((sourceTypeOf == _typeOf<_i3.FinancesDto>() ||
-            sourceTypeOf == _typeOf<_i3.FinancesDto?>()) &&
-        (targetTypeOf == _typeOf<_i2.Finances>() ||
-            targetTypeOf == _typeOf<_i2.Finances?>())) {
+    if ((sourceTypeOf == _typeOf<_i3.FinanceDto>() ||
+            sourceTypeOf == _typeOf<_i3.FinanceDto?>()) &&
+        (targetTypeOf == _typeOf<_i2.Finance>() ||
+            targetTypeOf == _typeOf<_i2.Finance?>())) {
       return true;
     }
     if (recursive) {
@@ -233,24 +233,24 @@ class $FinancesMapper implements _i1.AutoMapprInterface {
   }) {
     final sourceTypeOf = _typeOf<SOURCE>();
     final targetTypeOf = _typeOf<TARGET>();
-    if ((sourceTypeOf == _typeOf<_i2.Finances>() ||
-            sourceTypeOf == _typeOf<_i2.Finances?>()) &&
-        (targetTypeOf == _typeOf<_i3.FinancesDto>() ||
-            targetTypeOf == _typeOf<_i3.FinancesDto?>())) {
+    if ((sourceTypeOf == _typeOf<_i2.Finance>() ||
+            sourceTypeOf == _typeOf<_i2.Finance?>()) &&
+        (targetTypeOf == _typeOf<_i3.FinanceDto>() ||
+            targetTypeOf == _typeOf<_i3.FinanceDto?>())) {
       if (canReturnNull && model == null) {
         return null;
       }
-      return (_map__i2$Finances_To__i3$FinancesDto((model as _i2.Finances?))
+      return (_map__i2$Finance_To__i3$FinanceDto((model as _i2.Finance?))
           as TARGET);
     }
-    if ((sourceTypeOf == _typeOf<_i3.FinancesDto>() ||
-            sourceTypeOf == _typeOf<_i3.FinancesDto?>()) &&
-        (targetTypeOf == _typeOf<_i2.Finances>() ||
-            targetTypeOf == _typeOf<_i2.Finances?>())) {
+    if ((sourceTypeOf == _typeOf<_i3.FinanceDto>() ||
+            sourceTypeOf == _typeOf<_i3.FinanceDto?>()) &&
+        (targetTypeOf == _typeOf<_i2.Finance>() ||
+            targetTypeOf == _typeOf<_i2.Finance?>())) {
       if (canReturnNull && model == null) {
         return null;
       }
-      return (_map__i3$FinancesDto_To__i2$Finances((model as _i3.FinancesDto?))
+      return (_map__i3$FinanceDto_To__i2$Finance((model as _i3.FinanceDto?))
           as TARGET);
     }
     throw Exception('No ${model.runtimeType} -> $targetTypeOf mapping.');
@@ -285,35 +285,39 @@ class $FinancesMapper implements _i1.AutoMapprInterface {
     return false;
   }
 
-  _i3.FinancesDto _map__i2$Finances_To__i3$FinancesDto(_i2.Finances? input) {
+  _i3.FinanceDto _map__i2$Finance_To__i3$FinanceDto(_i2.Finance? input) {
     final model = input;
     if (model == null) {
       throw Exception(
-          r'Mapping Finances → FinancesDto failed because Finances was null, and no default value was provided. '
-          r'Consider setting the whenSourceIsNull parameter on the MapType<Finances, FinancesDto> to handle null values during mapping.');
+          r'Mapping Finance → FinanceDto failed because Finance was null, and no default value was provided. '
+          r'Consider setting the whenSourceIsNull parameter on the MapType<Finance, FinanceDto> to handle null values during mapping.');
     }
-    return _i3.FinancesDto(
+    return _i3.FinanceDto(
       id: model.id,
-      financesCategoriesId: model.financesCategoriesId,
+      categoryId: model.categoryId,
+      title: model.title,
+      notes: model.notes,
       birdId: model.birdId,
       date: model.date,
       amount: model.amount,
     );
   }
 
-  _i2.Finances _map__i3$FinancesDto_To__i2$Finances(_i3.FinancesDto? input) {
+  _i2.Finance _map__i3$FinanceDto_To__i2$Finance(_i3.FinanceDto? input) {
     final model = input;
     if (model == null) {
       throw Exception(
-          r'Mapping FinancesDto → Finances failed because FinancesDto was null, and no default value was provided. '
-          r'Consider setting the whenSourceIsNull parameter on the MapType<FinancesDto, Finances> to handle null values during mapping.');
+          r'Mapping FinanceDto → Finance failed because FinanceDto was null, and no default value was provided. '
+          r'Consider setting the whenSourceIsNull parameter on the MapType<FinanceDto, Finance> to handle null values during mapping.');
     }
-    return _i2.Finances(
+    return _i2.Finance(
       id: model.id,
-      financesCategoriesId: model.financesCategoriesId,
+      categoryId: model.categoryId,
       birdId: model.birdId,
       date: model.date,
       amount: model.amount,
+      title: model.title,
+      notes: model.notes,
     );
   }
 }

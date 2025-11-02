@@ -77,6 +77,9 @@ class _ContactsPageState extends State<ContactsPage> {
                 ),
                 Expanded(
                   child: ListView.builder(
+                    physics: const AlwaysScrollableScrollPhysics(
+                      parent: BouncingScrollPhysics(),
+                    ),
                     itemCount: list.length,
                     itemBuilder: (context, i) => ContactCard(
                       contact: list[i],

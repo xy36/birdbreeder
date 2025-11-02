@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'finances_categories.dart';
+part of 'finance_category.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,48 +14,47 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-FinancesCategories _$FinancesCategoriesFromJson(Map<String, dynamic> json) {
+FinanceCategory _$FinanceCategoryFromJson(Map<String, dynamic> json) {
   return _FinancesCategories.fromJson(json);
 }
 
 /// @nodoc
-mixin _$FinancesCategories {
+mixin _$FinanceCategory {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get color => throw _privateConstructorUsedError;
-  FinancesCategoriesKind get kind => throw _privateConstructorUsedError;
+  FinanceCategoryKind get kind => throw _privateConstructorUsedError;
 
-  /// Serializes this FinancesCategories to a JSON map.
+  /// Serializes this FinanceCategory to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of FinancesCategories
+  /// Create a copy of FinanceCategory
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $FinancesCategoriesCopyWith<FinancesCategories> get copyWith =>
+  $FinanceCategoryCopyWith<FinanceCategory> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FinancesCategoriesCopyWith<$Res> {
-  factory $FinancesCategoriesCopyWith(
-          FinancesCategories value, $Res Function(FinancesCategories) then) =
-      _$FinancesCategoriesCopyWithImpl<$Res, FinancesCategories>;
+abstract class $FinanceCategoryCopyWith<$Res> {
+  factory $FinanceCategoryCopyWith(
+          FinanceCategory value, $Res Function(FinanceCategory) then) =
+      _$FinanceCategoryCopyWithImpl<$Res, FinanceCategory>;
   @useResult
-  $Res call(
-      {String id, String name, String color, FinancesCategoriesKind kind});
+  $Res call({String id, String name, String color, FinanceCategoryKind kind});
 }
 
 /// @nodoc
-class _$FinancesCategoriesCopyWithImpl<$Res, $Val extends FinancesCategories>
-    implements $FinancesCategoriesCopyWith<$Res> {
-  _$FinancesCategoriesCopyWithImpl(this._value, this._then);
+class _$FinanceCategoryCopyWithImpl<$Res, $Val extends FinanceCategory>
+    implements $FinanceCategoryCopyWith<$Res> {
+  _$FinanceCategoryCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of FinancesCategories
+  /// Create a copy of FinanceCategory
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -81,32 +80,31 @@ class _$FinancesCategoriesCopyWithImpl<$Res, $Val extends FinancesCategories>
       kind: null == kind
           ? _value.kind
           : kind // ignore: cast_nullable_to_non_nullable
-              as FinancesCategoriesKind,
+              as FinanceCategoryKind,
     ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$FinancesCategoriesImplCopyWith<$Res>
-    implements $FinancesCategoriesCopyWith<$Res> {
+    implements $FinanceCategoryCopyWith<$Res> {
   factory _$$FinancesCategoriesImplCopyWith(_$FinancesCategoriesImpl value,
           $Res Function(_$FinancesCategoriesImpl) then) =
       __$$FinancesCategoriesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String id, String name, String color, FinancesCategoriesKind kind});
+  $Res call({String id, String name, String color, FinanceCategoryKind kind});
 }
 
 /// @nodoc
 class __$$FinancesCategoriesImplCopyWithImpl<$Res>
-    extends _$FinancesCategoriesCopyWithImpl<$Res, _$FinancesCategoriesImpl>
+    extends _$FinanceCategoryCopyWithImpl<$Res, _$FinancesCategoriesImpl>
     implements _$$FinancesCategoriesImplCopyWith<$Res> {
   __$$FinancesCategoriesImplCopyWithImpl(_$FinancesCategoriesImpl _value,
       $Res Function(_$FinancesCategoriesImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FinancesCategories
+  /// Create a copy of FinanceCategory
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -132,7 +130,7 @@ class __$$FinancesCategoriesImplCopyWithImpl<$Res>
       kind: null == kind
           ? _value.kind
           : kind // ignore: cast_nullable_to_non_nullable
-              as FinancesCategoriesKind,
+              as FinanceCategoryKind,
     ));
   }
 }
@@ -156,11 +154,11 @@ class _$FinancesCategoriesImpl implements _FinancesCategories {
   @override
   final String color;
   @override
-  final FinancesCategoriesKind kind;
+  final FinanceCategoryKind kind;
 
   @override
   String toString() {
-    return 'FinancesCategories(id: $id, name: $name, color: $color, kind: $kind)';
+    return 'FinanceCategory(id: $id, name: $name, color: $color, kind: $kind)';
   }
 
   @override
@@ -178,7 +176,7 @@ class _$FinancesCategoriesImpl implements _FinancesCategories {
   @override
   int get hashCode => Object.hash(runtimeType, id, name, color, kind);
 
-  /// Create a copy of FinancesCategories
+  /// Create a copy of FinanceCategory
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -195,12 +193,12 @@ class _$FinancesCategoriesImpl implements _FinancesCategories {
   }
 }
 
-abstract class _FinancesCategories implements FinancesCategories {
+abstract class _FinancesCategories implements FinanceCategory {
   const factory _FinancesCategories(
       {required final String id,
       required final String name,
       required final String color,
-      required final FinancesCategoriesKind kind}) = _$FinancesCategoriesImpl;
+      required final FinanceCategoryKind kind}) = _$FinancesCategoriesImpl;
 
   factory _FinancesCategories.fromJson(Map<String, dynamic> json) =
       _$FinancesCategoriesImpl.fromJson;
@@ -212,9 +210,9 @@ abstract class _FinancesCategories implements FinancesCategories {
   @override
   String get color;
   @override
-  FinancesCategoriesKind get kind;
+  FinanceCategoryKind get kind;
 
-  /// Create a copy of FinancesCategories
+  /// Create a copy of FinanceCategory
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

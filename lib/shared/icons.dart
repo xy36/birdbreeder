@@ -35,6 +35,10 @@ class AppIcons {
   static const IconData birdSectionLifeStage = Icons.note_alt;
   static const IconData birdAvatar = Icons.pets_rounded;
 
+  static const IconData financesTabIncome = Icons.arrow_circle_up;
+  static const IconData financesTabExpense = Icons.arrow_circle_down;
+  static const IconData financesTabStats = Icons.bar_chart;
+
   static const IconData contactSectionPersonal = Icons.person_outline;
   static const IconData contactSectionBreederInformation = Icons.pets;
   static const IconData contactSectionContactInformation =
@@ -86,6 +90,7 @@ class AppIcons {
   static const IconData searchOff = Icons.search_off;
   static const IconData filter = Icons.filter_list;
   static const IconData notes = Icons.notes;
+  static const IconData amount = Icons.attach_money;
   static const IconData egg = Icons.egg_outlined;
   static const IconData hatched = Icons.access_alarm;
   static const IconData fledged = Icons.flight_takeoff;
@@ -98,6 +103,11 @@ class AppIcons {
   static const IconData color = Icons.color_lens_outlined;
   static const IconData species = Icons.pets_outlined;
   static const IconData separator = Icons.circle;
+  static const IconData income = Icons.call_made;
+  static const IconData expense = Icons.call_received;
+
+  static const IconData chevronRight = Icons.chevron_right;
+  static const IconData chevronLeft = Icons.chevron_left;
 
   static const IconData menu = Icons.menu;
   static const IconData menuBirds = Icons.check_circle_outline;

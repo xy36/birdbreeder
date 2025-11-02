@@ -7,7 +7,6 @@ import 'package:birdbreeder/features/contacts/presentation/cubit/contact_search_
 import 'package:birdbreeder/i18n/translations.g.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/injection.dart';
-import 'package:birdbreeder/services/snackbar_service.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -31,7 +30,7 @@ class App extends StatelessWidget {
     const useDarkTheme = false;
 
     final lightTheme = FlexThemeData.light(scheme: FlexScheme.amber);
-    final darkTheme = FlexThemeData.dark(scheme: FlexScheme.redWine);
+    final darkTheme = FlexThemeData.dark(scheme: FlexScheme.amber);
 
     var theme = useDarkTheme ? darkTheme : lightTheme;
 

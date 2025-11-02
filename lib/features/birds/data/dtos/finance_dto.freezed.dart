@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'finances_dto.dart';
+part of 'finance_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,38 +14,44 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-FinancesDto _$FinancesDtoFromJson(Map<String, dynamic> json) {
-  return _FinancesDto.fromJson(json);
+FinanceDto _$FinanceDtoFromJson(Map<String, dynamic> json) {
+  return _FinanceDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$FinancesDto {
+mixin _$FinanceDto {
   String get id => throw _privateConstructorUsedError;
   String? get collectionId => throw _privateConstructorUsedError;
   String? get collectionName => throw _privateConstructorUsedError;
   DateTime? get created => throw _privateConstructorUsedError;
   DateTime? get updated => throw _privateConstructorUsedError;
-  String get financesCategoriesId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'category')
+  String get categoryId => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  @StringNullEmptyConverter()
+  String? get notes => throw _privateConstructorUsedError;
+  @JsonKey(name: 'bird')
   @StringNullEmptyConverter()
   String? get birdId => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get date => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
 
-  /// Serializes this FinancesDto to a JSON map.
+  /// Serializes this FinanceDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of FinancesDto
+  /// Create a copy of FinanceDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $FinancesDtoCopyWith<FinancesDto> get copyWith =>
+  $FinanceDtoCopyWith<FinanceDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FinancesDtoCopyWith<$Res> {
-  factory $FinancesDtoCopyWith(
-          FinancesDto value, $Res Function(FinancesDto) then) =
-      _$FinancesDtoCopyWithImpl<$Res, FinancesDto>;
+abstract class $FinanceDtoCopyWith<$Res> {
+  factory $FinanceDtoCopyWith(
+          FinanceDto value, $Res Function(FinanceDto) then) =
+      _$FinanceDtoCopyWithImpl<$Res, FinanceDto>;
   @useResult
   $Res call(
       {String id,
@@ -53,23 +59,25 @@ abstract class $FinancesDtoCopyWith<$Res> {
       String? collectionName,
       DateTime? created,
       DateTime? updated,
-      String financesCategoriesId,
-      @StringNullEmptyConverter() String? birdId,
-      DateTime? date,
+      @JsonKey(name: 'category') String categoryId,
+      String title,
+      @StringNullEmptyConverter() String? notes,
+      @JsonKey(name: 'bird') @StringNullEmptyConverter() String? birdId,
+      @UtcDateTimeConverter() DateTime? date,
       double amount});
 }
 
 /// @nodoc
-class _$FinancesDtoCopyWithImpl<$Res, $Val extends FinancesDto>
-    implements $FinancesDtoCopyWith<$Res> {
-  _$FinancesDtoCopyWithImpl(this._value, this._then);
+class _$FinanceDtoCopyWithImpl<$Res, $Val extends FinanceDto>
+    implements $FinanceDtoCopyWith<$Res> {
+  _$FinanceDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of FinancesDto
+  /// Create a copy of FinanceDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -79,7 +87,9 @@ class _$FinancesDtoCopyWithImpl<$Res, $Val extends FinancesDto>
     Object? collectionName = freezed,
     Object? created = freezed,
     Object? updated = freezed,
-    Object? financesCategoriesId = null,
+    Object? categoryId = null,
+    Object? title = null,
+    Object? notes = freezed,
     Object? birdId = freezed,
     Object? date = freezed,
     Object? amount = null,
@@ -105,10 +115,18 @@ class _$FinancesDtoCopyWithImpl<$Res, $Val extends FinancesDto>
           ? _value.updated
           : updated // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      financesCategoriesId: null == financesCategoriesId
-          ? _value.financesCategoriesId
-          : financesCategoriesId // ignore: cast_nullable_to_non_nullable
+      categoryId: null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
               as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      notes: freezed == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
       birdId: freezed == birdId
           ? _value.birdId
           : birdId // ignore: cast_nullable_to_non_nullable
@@ -126,11 +144,11 @@ class _$FinancesDtoCopyWithImpl<$Res, $Val extends FinancesDto>
 }
 
 /// @nodoc
-abstract class _$$FinancesDtoImplCopyWith<$Res>
-    implements $FinancesDtoCopyWith<$Res> {
-  factory _$$FinancesDtoImplCopyWith(
-          _$FinancesDtoImpl value, $Res Function(_$FinancesDtoImpl) then) =
-      __$$FinancesDtoImplCopyWithImpl<$Res>;
+abstract class _$$FinanceDtoImplCopyWith<$Res>
+    implements $FinanceDtoCopyWith<$Res> {
+  factory _$$FinanceDtoImplCopyWith(
+          _$FinanceDtoImpl value, $Res Function(_$FinanceDtoImpl) then) =
+      __$$FinanceDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -139,21 +157,23 @@ abstract class _$$FinancesDtoImplCopyWith<$Res>
       String? collectionName,
       DateTime? created,
       DateTime? updated,
-      String financesCategoriesId,
-      @StringNullEmptyConverter() String? birdId,
-      DateTime? date,
+      @JsonKey(name: 'category') String categoryId,
+      String title,
+      @StringNullEmptyConverter() String? notes,
+      @JsonKey(name: 'bird') @StringNullEmptyConverter() String? birdId,
+      @UtcDateTimeConverter() DateTime? date,
       double amount});
 }
 
 /// @nodoc
-class __$$FinancesDtoImplCopyWithImpl<$Res>
-    extends _$FinancesDtoCopyWithImpl<$Res, _$FinancesDtoImpl>
-    implements _$$FinancesDtoImplCopyWith<$Res> {
-  __$$FinancesDtoImplCopyWithImpl(
-      _$FinancesDtoImpl _value, $Res Function(_$FinancesDtoImpl) _then)
+class __$$FinanceDtoImplCopyWithImpl<$Res>
+    extends _$FinanceDtoCopyWithImpl<$Res, _$FinanceDtoImpl>
+    implements _$$FinanceDtoImplCopyWith<$Res> {
+  __$$FinanceDtoImplCopyWithImpl(
+      _$FinanceDtoImpl _value, $Res Function(_$FinanceDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FinancesDto
+  /// Create a copy of FinanceDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -163,12 +183,14 @@ class __$$FinancesDtoImplCopyWithImpl<$Res>
     Object? collectionName = freezed,
     Object? created = freezed,
     Object? updated = freezed,
-    Object? financesCategoriesId = null,
+    Object? categoryId = null,
+    Object? title = null,
+    Object? notes = freezed,
     Object? birdId = freezed,
     Object? date = freezed,
     Object? amount = null,
   }) {
-    return _then(_$FinancesDtoImpl(
+    return _then(_$FinanceDtoImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -189,10 +211,18 @@ class __$$FinancesDtoImplCopyWithImpl<$Res>
           ? _value.updated
           : updated // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      financesCategoriesId: null == financesCategoriesId
-          ? _value.financesCategoriesId
-          : financesCategoriesId // ignore: cast_nullable_to_non_nullable
+      categoryId: null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
               as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      notes: freezed == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
       birdId: freezed == birdId
           ? _value.birdId
           : birdId // ignore: cast_nullable_to_non_nullable
@@ -211,20 +241,22 @@ class __$$FinancesDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$FinancesDtoImpl implements _FinancesDto {
-  const _$FinancesDtoImpl(
+class _$FinanceDtoImpl implements _FinanceDto {
+  const _$FinanceDtoImpl(
       {required this.id,
       this.collectionId,
       this.collectionName,
       this.created,
       this.updated,
-      required this.financesCategoriesId,
-      @StringNullEmptyConverter() this.birdId,
-      this.date,
+      @JsonKey(name: 'category') required this.categoryId,
+      required this.title,
+      @StringNullEmptyConverter() this.notes,
+      @JsonKey(name: 'bird') @StringNullEmptyConverter() this.birdId,
+      @UtcDateTimeConverter() this.date,
       required this.amount});
 
-  factory _$FinancesDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$FinancesDtoImplFromJson(json);
+  factory _$FinanceDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FinanceDtoImplFromJson(json);
 
   @override
   final String id;
@@ -237,25 +269,33 @@ class _$FinancesDtoImpl implements _FinancesDto {
   @override
   final DateTime? updated;
   @override
-  final String financesCategoriesId;
+  @JsonKey(name: 'category')
+  final String categoryId;
   @override
+  final String title;
+  @override
+  @StringNullEmptyConverter()
+  final String? notes;
+  @override
+  @JsonKey(name: 'bird')
   @StringNullEmptyConverter()
   final String? birdId;
   @override
+  @UtcDateTimeConverter()
   final DateTime? date;
   @override
   final double amount;
 
   @override
   String toString() {
-    return 'FinancesDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, financesCategoriesId: $financesCategoriesId, birdId: $birdId, date: $date, amount: $amount)';
+    return 'FinanceDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, categoryId: $categoryId, title: $title, notes: $notes, birdId: $birdId, date: $date, amount: $amount)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FinancesDtoImpl &&
+            other is _$FinanceDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.collectionId, collectionId) ||
                 other.collectionId == collectionId) &&
@@ -263,8 +303,10 @@ class _$FinancesDtoImpl implements _FinancesDto {
                 other.collectionName == collectionName) &&
             (identical(other.created, created) || other.created == created) &&
             (identical(other.updated, updated) || other.updated == updated) &&
-            (identical(other.financesCategoriesId, financesCategoriesId) ||
-                other.financesCategoriesId == financesCategoriesId) &&
+            (identical(other.categoryId, categoryId) ||
+                other.categoryId == categoryId) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.birdId, birdId) || other.birdId == birdId) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.amount, amount) || other.amount == amount));
@@ -273,38 +315,40 @@ class _$FinancesDtoImpl implements _FinancesDto {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, collectionId, collectionName,
-      created, updated, financesCategoriesId, birdId, date, amount);
+      created, updated, categoryId, title, notes, birdId, date, amount);
 
-  /// Create a copy of FinancesDto
+  /// Create a copy of FinanceDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FinancesDtoImplCopyWith<_$FinancesDtoImpl> get copyWith =>
-      __$$FinancesDtoImplCopyWithImpl<_$FinancesDtoImpl>(this, _$identity);
+  _$$FinanceDtoImplCopyWith<_$FinanceDtoImpl> get copyWith =>
+      __$$FinanceDtoImplCopyWithImpl<_$FinanceDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$FinancesDtoImplToJson(
+    return _$$FinanceDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _FinancesDto implements FinancesDto {
-  const factory _FinancesDto(
+abstract class _FinanceDto implements FinanceDto {
+  const factory _FinanceDto(
       {required final String id,
       final String? collectionId,
       final String? collectionName,
       final DateTime? created,
       final DateTime? updated,
-      required final String financesCategoriesId,
-      @StringNullEmptyConverter() final String? birdId,
-      final DateTime? date,
-      required final double amount}) = _$FinancesDtoImpl;
+      @JsonKey(name: 'category') required final String categoryId,
+      required final String title,
+      @StringNullEmptyConverter() final String? notes,
+      @JsonKey(name: 'bird') @StringNullEmptyConverter() final String? birdId,
+      @UtcDateTimeConverter() final DateTime? date,
+      required final double amount}) = _$FinanceDtoImpl;
 
-  factory _FinancesDto.fromJson(Map<String, dynamic> json) =
-      _$FinancesDtoImpl.fromJson;
+  factory _FinanceDto.fromJson(Map<String, dynamic> json) =
+      _$FinanceDtoImpl.fromJson;
 
   @override
   String get id;
@@ -317,19 +361,27 @@ abstract class _FinancesDto implements FinancesDto {
   @override
   DateTime? get updated;
   @override
-  String get financesCategoriesId;
+  @JsonKey(name: 'category')
+  String get categoryId;
   @override
+  String get title;
+  @override
+  @StringNullEmptyConverter()
+  String? get notes;
+  @override
+  @JsonKey(name: 'bird')
   @StringNullEmptyConverter()
   String? get birdId;
   @override
+  @UtcDateTimeConverter()
   DateTime? get date;
   @override
   double get amount;
 
-  /// Create a copy of FinancesDto
+  /// Create a copy of FinanceDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FinancesDtoImplCopyWith<_$FinancesDtoImpl> get copyWith =>
+  _$$FinanceDtoImplCopyWith<_$FinanceDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,15 +1,15 @@
 import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
 import 'package:birdbreeder/features/birds/data/dtos/egg_dto.dart';
-import 'package:birdbreeder/features/birds/data/dtos/finances_categories_dto.dart';
-import 'package:birdbreeder/features/birds/data/dtos/finances_dto.dart';
+import 'package:birdbreeder/features/birds/data/dtos/finance_category_dto.dart';
+import 'package:birdbreeder/features/birds/data/dtos/finance_dto.dart';
 import 'package:birdbreeder/features/birds/domain/mapper/bird_mapper.dart';
 import 'package:birdbreeder/features/birds/domain/mapper/egg_mapper.dart';
 import 'package:birdbreeder/features/birds/domain/mapper/finances_categories_mapper.dart';
 import 'package:birdbreeder/features/birds/domain/mapper/finances_mapper.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/domain/models/egg.dart';
-import 'package:birdbreeder/features/birds/domain/models/finances.dart';
-import 'package:birdbreeder/features/birds/domain/models/finances_categories.dart';
+import 'package:birdbreeder/features/birds/domain/models/finance.dart';
+import 'package:birdbreeder/features/birds/domain/models/finance_category.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/breeding_pair_dto.dart';
 import 'package:birdbreeder/features/breedings/data/dtos/brood_dto.dart';
 import 'package:birdbreeder/features/breedings/domain/mapper/breeding_pair_mapper.dart';
@@ -140,28 +140,28 @@ extension EggDtoMapperExtension on EggDto {
   }
 }
 
-extension FinancesCategoriesExtension on FinancesCategories {
-  FinancesCategoriesDto toDto() {
+extension FinanceCategoryExtension on FinanceCategory {
+  FinanceCategoryDto toDto() {
     return FinancesCategoriesMapper()
-        .convert<FinancesCategories, FinancesCategoriesDto>(this);
+        .convert<FinanceCategory, FinanceCategoryDto>(this);
   }
 }
 
-extension FinancesCategoriesDtoExtension on FinancesCategoriesDto {
-  FinancesCategories toModel() {
+extension FinanceCategoryDtoExtension on FinanceCategoryDto {
+  FinanceCategory toModel() {
     return FinancesCategoriesMapper()
-        .convert<FinancesCategoriesDto, FinancesCategories>(this);
+        .convert<FinanceCategoryDto, FinanceCategory>(this);
   }
 }
 
-extension FinancesExtension on Finances {
-  FinancesDto toDto() {
-    return FinancesMapper().convert<Finances, FinancesDto>(this);
+extension FinanceExtension on Finance {
+  FinanceDto toDto() {
+    return FinancesMapper().convert<Finance, FinanceDto>(this);
   }
 }
 
-extension FinancesDtoExtension on FinancesDto {
-  Finances toModel() {
-    return FinancesMapper().convert<FinancesDto, Finances>(this);
+extension FinanceDtoExtension on FinanceDto {
+  Finance toModel() {
+    return FinancesMapper().convert<FinanceDto, Finance>(this);
   }
 }
