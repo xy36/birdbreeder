@@ -5,33 +5,18 @@ import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird
 import 'package:birdbreeder/features/contacts/domain/models/contact.dart';
 import 'package:birdbreeder/features/contacts/presentation/cubit/contact_cubit.dart';
 import 'package:birdbreeder/features/contacts/presentation/cubit/contact_listener.dart';
+import 'package:birdbreeder/features/contacts/presentation/models/contact_actions.dart';
 import 'package:birdbreeder/features/contacts/presentation/widgets/contact_text_property_field.dart';
 import 'package:birdbreeder/features/contacts/presentation/widgets/section_grid.dart';
 import 'package:birdbreeder/services/screen_size.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/bird_breeder_wrapper.dart';
-import 'package:birdbreeder/shared/widgets/dialogs/delete_dialog.dart';
 import 'package:birdbreeder/shared/widgets/navigate_back_button.dart';
+import 'package:birdbreeder/shared/widgets/utils.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 final formKey = GlobalKey<FormState>();
-
-enum ContactActions {
-  delete;
-
-  PopupMenuEntry<ContactActions> getItem(BuildContext context) {
-    return switch (this) {
-      delete => PopupMenuItem(
-          value: ContactActions.delete,
-          child: Text(
-            context.tr.pop_up_menu.delete,
-            style: const TextStyle(color: Colors.red),
-          ),
-        )
-    };
-  }
-}
 
 @RoutePage()
 class ContactDetailsPage extends StatelessWidget {
@@ -81,21 +66,16 @@ class ContactDetailsPage extends StatelessWidget {
                     ),
                   ...switch (state.mode) {
                     ContactMode.edit => [
-                        PopupMenuButton<ContactActions>(
-                          icon: const Icon(AppIcons.more),
-                          onSelected: (value) async => switch (value) {
-                            ContactActions.delete => {
-                                if (context.mounted)
-                                  await DeleteDialog.show(
-                                    context: context,
-                                    title: context.tr.contacts.delete,
-                                    onDelete: () =>
-                                        context.read<ContactCubit>().delete(),
-                                  ),
-                              }
-                          },
-                          itemBuilder: (BuildContext context) =>
-                              [ContactActions.delete.getItem(context)],
+                        moreMenu(
+                          context,
+                          state.contact,
+                          ContactActions.values.map((action) {
+                            return (
+                              icon: action.icon,
+                              label: action.getLabel(context),
+                              action: action.executeAction,
+                            );
+                          }).toList(),
                         ),
                       ],
                     ContactMode.create => [],

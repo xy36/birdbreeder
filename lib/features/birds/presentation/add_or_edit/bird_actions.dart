@@ -1,22 +1,21 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
-import 'package:birdbreeder/features/breedings/domain/models/brood.dart';
-import 'package:birdbreeder/features/breedings/presentation/breeding_pairs/widgets/add_breeding_pair_sheet.dart';
+import 'package:birdbreeder/core/routing/app_router.dart';
+import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/dialogs/delete_dialog.dart';
-import 'package:birdbreeder/shared/widgets/utils.dart';
 
-enum BroodActions {
-  open,
+enum BirdActions {
   edit,
+  duplicate,
   delete;
 
   Icon get icon {
     return switch (this) {
       edit => const Icon(AppIcons.edit),
       delete => const Icon(AppIcons.delete, color: Colors.red),
-      open => const Icon(AppIcons.open),
+      duplicate => const Icon(AppIcons.duplicate),
     };
   }
 
@@ -24,30 +23,31 @@ enum BroodActions {
     return switch (this) {
       edit => context.tr.pop_up_menu.edit,
       delete => context.tr.pop_up_menu.delete,
-      open => context.tr.pop_up_menu.open,
+      duplicate => context.tr.pop_up_menu.duplicate,
     };
   }
 
   Future<void> executeAction(
     BuildContext context,
-    Brood brood,
-    BreedingPair breedingPair,
+    Bird bird,
   ) async {
     return switch (this) {
-      open => onOpenBrood(context, brood),
-      edit => await openSheet<void>(
-          context,
-          AddBreedingPairSheet(breedingPair: breedingPair),
-        ),
+      edit => context.router.push(BirdRoute(bird: bird)),
       delete => {
           if (context.mounted)
             await DeleteDialog.show(
               context: context,
-              title: '${context.tr.pop_up_menu.delete}?',
-              onDelete: () =>
-                  context.read<BirdBreederCubit>().deleteBrood(brood),
+              title: context.tr.bird.delete,
+              onDelete: () async {
+                await context.maybePop();
+
+                if (context.mounted) {
+                  await context.read<BirdBreederCubit>().deleteBird(bird);
+                }
+              },
             ),
-        }
+        },
+      duplicate => await context.read<BirdBreederCubit>().duplicateBird(bird),
     };
   }
 }

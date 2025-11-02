@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
 import 'package:birdbreeder/features/breedings/domain/models/brood.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/broods_tab/add_brood_sheet.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/broods_tab/pair_broods_tab.dart';
@@ -9,33 +8,11 @@ import 'package:birdbreeder/features/breedings/presentation/breeding_pair_detail
 import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/overview_tab/pair_overview_tab.dart';
 import 'package:birdbreeder/features/breedings/presentation/breeding_pairs/models/breeding_pair_actions.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
-import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/bird_breeder_wrapper.dart';
 import 'package:birdbreeder/shared/widgets/buttons/app_action_button.dart';
 import 'package:birdbreeder/shared/widgets/navigate_back_button.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 import 'package:collection/collection.dart';
-
-// enum BreedingPairDetailsActions {
-//   edit,
-//   delete;
-
-//   PopupMenuEntry<BreedingPairDetailsActions> getItem(BuildContext context) {
-//     return switch (this) {
-//       edit => PopupMenuItem(
-//           value: BreedingPairDetailsActions.edit,
-//           child: Text(context.tr.pop_up_menu.edit),
-//         ),
-//       delete => PopupMenuItem(
-//           value: BreedingPairDetailsActions.delete,
-//           child: Text(
-//             context.tr.pop_up_menu.delete,
-//             style: const TextStyle(color: Colors.red),
-//           ),
-//         )
-//     };
-//   }
-// }
 
 @RoutePage()
 class BreedingPairDetailsPage extends StatefulWidget {
@@ -91,7 +68,17 @@ class _BreedingPairDetailsPageState extends State<BreedingPairDetailsPage>
           discardDialogEnabled: false,
         ),
         actions: [
-          _moreMenu(context, breedingPair),
+          moreMenu(
+            context,
+            breedingPair,
+            BreedingPairActions.values.map((action) {
+              return (
+                icon: action.icon,
+                label: action.getLabel(context),
+                action: action.executeAction,
+              );
+            }).toList(),
+          ),
         ],
       ),
       body: BirdBreederWrapper(
@@ -151,16 +138,6 @@ class _BreedingPairDetailsPageState extends State<BreedingPairDetailsPage>
         },
         type: ButtonType.floatingActionButton,
       ),
-    );
-  }
-
-  Widget _moreMenu(BuildContext context, BreedingPair breedingPair) {
-    return PopupMenuButton<BreedingPairActions>(
-      onSelected: (v) => v.executeAction(context, breedingPair),
-      itemBuilder: (context) => BreedingPairActions.values
-          .map((action) => action.getItem(context))
-          .toList(),
-      icon: const Icon(AppIcons.more),
     );
   }
 }

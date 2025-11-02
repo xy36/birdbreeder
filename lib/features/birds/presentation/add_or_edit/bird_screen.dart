@@ -1,39 +1,13 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/core/routing/app_router.dart';
+import 'package:birdbreeder/features/birds/domain/models/bird.dart';
+import 'package:birdbreeder/features/birds/presentation/add_or_edit/bird_actions.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/cubit/bird_cubit.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/models/bird_mode.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_fields/bird_fields.dart';
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/bird_breeder_wrapper.dart';
-import 'package:birdbreeder/shared/widgets/dialogs/delete_dialog.dart';
 import 'package:birdbreeder/shared/widgets/navigate_back_button.dart';
-
-enum BirdActions {
-  edit,
-  duplicate,
-  delete;
-
-  PopupMenuEntry<BirdActions> getItem(BuildContext context) {
-    return switch (this) {
-      duplicate => PopupMenuItem(
-          value: BirdActions.duplicate,
-          child: Text(context.tr.pop_up_menu.duplicate),
-        ),
-      edit => PopupMenuItem(
-          value: BirdActions.edit,
-          child: Text(context.tr.pop_up_menu.edit),
-        ),
-      delete => PopupMenuItem(
-          value: BirdActions.delete,
-          child: Text(
-            context.tr.pop_up_menu.delete,
-            style: const TextStyle(color: Colors.red),
-          ),
-        )
-    };
-  }
-}
+import 'package:birdbreeder/shared/widgets/utils.dart';
 
 class BirdScreen extends StatelessWidget {
   const BirdScreen({super.key});
@@ -67,30 +41,16 @@ class BirdScreen extends StatelessWidget {
                   },
                 ),
               if (state.mode == BirdMode.edit)
-                PopupMenuButton<BirdActions>(
-                  icon: const Icon(AppIcons.more),
-                  onSelected: (value) async => switch (value) {
-                    BirdActions.duplicate =>
-                      await context.read<BirdCubit>().duplicate(),
-                    BirdActions.edit => context.router.push(
-                        BirdRoute(bird: context.read<BirdCubit>().state.bird),
-                      ),
-                    BirdActions.delete => {
-                        if (context.mounted)
-                          await DeleteDialog.show(
-                            context: context,
-                            title: context.tr.bird.delete,
-                            onDelete: () => context.read<BirdCubit>().delete(),
-                          ),
-                      }
-                  },
-                  itemBuilder: (BuildContext context) => switch (state.mode) {
-                    BirdMode.edit => [
-                        BirdActions.duplicate.getItem(context),
-                        BirdActions.delete.getItem(context),
-                      ],
-                    BirdMode.create => [],
-                  },
+                moreMenu<Bird>(
+                  context,
+                  state.bird,
+                  [BirdActions.duplicate, BirdActions.delete].map((action) {
+                    return (
+                      icon: action.icon,
+                      label: action.getLabel(context),
+                      action: action.executeAction,
+                    );
+                  }).toList(),
                 ),
             ],
           ),

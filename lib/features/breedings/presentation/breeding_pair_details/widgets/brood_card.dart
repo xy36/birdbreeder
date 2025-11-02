@@ -79,29 +79,28 @@ class BroodCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  _moreMenu(context, breedingPair, brood),
+                  moreMenu<Brood>(
+                    context,
+                    brood,
+                    BroodActions.values.map((action) {
+                      return (
+                        icon: action.icon,
+                        label: action.getLabel(context),
+                        action: (BuildContext ctx, Brood brood) =>
+                            action.executeAction(
+                              ctx,
+                              brood,
+                              breedingPair,
+                            ),
+                      );
+                    }).toList(),
+                  ),
                 ],
               ),
             ],
           ),
         ),
       ),
-    );
-  }
-
-  Widget _moreMenu(
-    BuildContext context,
-    BreedingPair breedingPair,
-    Brood brood,
-  ) {
-    return PopupMenuButton<BroodActions>(
-      onSelected: (v) => v.executeAction(context, brood, breedingPair),
-      itemBuilder: (context) => BroodActions.values
-          .map(
-            (action) => action.getItem(context),
-          )
-          .toList(),
-      icon: const Icon(AppIcons.more),
     );
   }
 

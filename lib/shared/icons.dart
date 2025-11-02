@@ -72,8 +72,11 @@ class AppIcons {
   static const IconData save = Icons.save;
   static const IconData delete = Icons.delete;
   static const IconData add = Icons.add;
+  static const IconData duplicate = Icons.copy;
+  static const IconData edit = Icons.edit;
   static const IconData unknown = Icons.question_mark;
   static const IconData close = Icons.close;
+  static const IconData open = Icons.open_in_new;
   static const IconData accept = Icons.check;
   static const IconData status = Icons.flag;
   static const IconData more = Icons.more_vert;

@@ -40,7 +40,7 @@ extension BirdBreederCubitBirdsX on BirdBreederCubit {
       bird
           .copyWith(
             id: '',
-            ringNumber: 'Copy of ${bird.ringNumber ?? ''}',
+            ringNumber: '${bird.ringNumber ?? ''} (copy)',
           )
           .toDto(),
     );

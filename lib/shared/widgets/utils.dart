@@ -12,6 +12,7 @@ import 'package:birdbreeder/features/breedings/presentation/breeding_pair_detail
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/services/screen_size.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/bottom_sheet/bottom_sheet_header.dart';
 import 'package:birdbreeder/shared/widgets/value_selector.dart';
 import 'package:flutter/services.dart';
@@ -332,6 +333,45 @@ Future<String?> promptTextValue(
         },
       ),
     ),
+  );
+}
+
+Widget moreMenu<T>(
+  BuildContext context,
+  T value,
+  List<
+          ({
+            Icon icon,
+            String label,
+            void Function(BuildContext context, T value) action
+          })>
+      actions,
+) {
+  return IconButton(
+    onPressed: () async {
+      await showModalBottomSheet<void>(
+        context: context,
+        showDragHandle: true,
+        builder: (_) => SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: actions
+                .map(
+                  (action) => ListTile(
+                    leading: action.icon,
+                    title: Text(action.label),
+                    onTap: () {
+                      Navigator.pop(context);
+                      action.action(context, value);
+                    },
+                  ),
+                )
+                .toList(),
+          ),
+        ),
+      );
+    },
+    icon: const Icon(AppIcons.more),
   );
 }
 

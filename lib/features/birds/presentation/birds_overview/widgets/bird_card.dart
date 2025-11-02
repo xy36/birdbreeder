@@ -1,13 +1,10 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/birds_extension.dart';
-import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/birds/domain/models/bird.dart';
-import 'package:birdbreeder/features/birds/presentation/add_or_edit/bird_screen.dart';
-import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:birdbreeder/features/birds/presentation/add_or_edit/bird_actions.dart';
 import 'package:birdbreeder/shared/icons.dart';
-import 'package:birdbreeder/shared/widgets/dialogs/delete_dialog.dart';
 import 'package:birdbreeder/shared/widgets/sex_badge.dart';
+import 'package:birdbreeder/shared/widgets/utils.dart';
 
 /// Reusable card widget for displaying a bird in a list/grid.
 class BirdCard extends StatelessWidget {
@@ -67,7 +64,17 @@ class BirdCard extends StatelessWidget {
                 children: [
                   ...statusChips,
                   const SizedBox(height: 6),
-                  _moreMenu(context),
+                  moreMenu<Bird>(
+                    context,
+                    bird,
+                    BirdActions.values.map((action) {
+                      return (
+                        icon: action.icon,
+                        label: action.getLabel(context),
+                        action: action.executeAction,
+                      );
+                    }).toList(),
+                  ),
                 ],
               ),
             ],
@@ -105,29 +112,6 @@ class BirdCard extends StatelessWidget {
         color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.6),
       ),
       child: Text(text, style: const TextStyle(fontSize: 12)),
-    );
-  }
-
-  /// Popup menu with common actions.
-  Widget _moreMenu(BuildContext context) {
-    final birdCubit = context.read<BirdBreederCubit>();
-
-    return PopupMenuButton<BirdActions>(
-      onSelected: (v) async => switch (v) {
-        BirdActions.duplicate => await birdCubit.duplicateBird(bird),
-        BirdActions.edit => context.router.push(BirdRoute(bird: bird)),
-        BirdActions.delete => {
-            if (context.mounted)
-              await DeleteDialog.show(
-                context: context,
-                title: context.tr.bird.delete,
-                onDelete: () => birdCubit.deleteBird(bird),
-              ),
-          }
-      },
-      itemBuilder: (context) =>
-          BirdActions.values.map((action) => action.getItem(context)).toList(),
-      icon: const Icon(AppIcons.more),
     );
   }
 }
