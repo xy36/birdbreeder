@@ -16,7 +16,7 @@ import 'package:birdbreeder/shared/widgets/picker/parent_picker_field.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 class AddBreedingPairSheet extends StatefulWidget {
-  const AddBreedingPairSheet({super.key, required this.breedingPair});
+  const AddBreedingPairSheet({required this.breedingPair, super.key});
 
   final BreedingPair? breedingPair;
 
@@ -104,127 +104,112 @@ class _AddBreedingPairSheetState extends State<AddBreedingPairSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        DraggableScrollableSheet(
-          expand: false,
-          initialChildSize: 0.6,
-          builder: (context, scrollController) => Column(
-            children: [
-              BottomSheetHeader(
-                title: context.tr.breeding_pairs.add,
-              ),
-              Form(
-                key: _formKey,
-                child: Builder(
-                  builder: (context) {
-                    return Expanded(
-                      child: ListView(
-                        padding: const EdgeInsets.all(12),
-                        controller: scrollController,
-                        children: <Widget>[
-                          ParentPickerField.father(
-                            initialValue: _male,
-                            validator: FormBuilderValidators.required(),
-                            enabled: widget.breedingPair == null,
-                            onChanged: (bird) {
-                              setState(() {
-                                _male = bird;
-                              });
-                            },
-                          ),
-                          ParentPickerField.mother(
-                            initialValue: _female,
-                            validator: FormBuilderValidators.required(),
-                            enabled: widget.breedingPair == null,
-                            onChanged: (bird) {
-                              setState(() {
-                                _female = bird;
-                              });
-                            },
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: TextFormField(
-                                  readOnly: true,
-                                  decoration: InputDecoration(
-                                    labelText:
-                                        context.tr.breeding_pairs.start_date,
-                                    prefixIcon: const Icon(AppIcons.date),
-                                  ),
-                                  controller: TextEditingController(
-                                    text: MaterialLocalizations.of(context)
-                                        .formatShortDate(_startAt),
-                                  ),
-                                  onTap: _submitting ? null : _pickDate,
-                                ),
-                              ),
-                              const SizedBox(width: 12),
-                              Expanded(
-                                child:
-                                    DropdownButtonFormField<BreedingPairStatus>(
-                                  value: _status,
-                                  decoration: InputDecoration(
-                                    labelText:
-                                        context.tr.breeding_pairs.status.name,
-                                    prefixIcon: const Icon(AppIcons.status),
-                                  ),
-                                  items: BreedingPairStatus.values
-                                      .map(
-                                        (status) => DropdownMenuItem(
-                                          value: status,
-                                          child: Text(
-                                            status.getDisplayName(context),
-                                          ),
-                                        ),
-                                      )
-                                      .toList(),
-                                  onChanged: _submitting
-                                      ? null
-                                      : (v) => setState(() => _status = v!),
-                                ),
-                              ),
-                            ],
-                          ),
-                          CagePickerField(
-                            initialValue: _cage,
-                            enabled: !_submitting,
-                            onChanged: (cage) => _cage = cage,
-                          ),
-                          TextFormField(
-                            controller: _notesCtrl,
-                            minLines: 3,
-                            maxLines: 5,
-                            decoration: InputDecoration(
-                              labelText: context.tr.breeding_pairs.notes,
-                              alignLabelWithHint: true,
-                              prefixIcon: const Icon(AppIcons.notes),
-                            ),
-                            enabled: !_submitting,
-                          ),
-                        ].genericJoin(12.heightBox),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              BottomSheetFooter(
-                onSubmit: _submit,
-              ),
-            ],
+    return DraggableScrollableSheet(
+      expand: false,
+      initialChildSize: 0.6,
+      builder: (context, scrollController) => Column(
+        children: [
+          BottomSheetHeader(
+            title: context.tr.breeding_pairs.add,
           ),
-        ),
-        // Loading Overlay
-        if (_submitting)
-          Positioned.fill(
-            child: ColoredBox(
-              color:
-                  Theme.of(context).colorScheme.surface.withValues(alpha: 0.1),
-              child: const Center(child: CircularProgressIndicator()),
+          Expanded(
+            child: Form(
+              key: _formKey,
+              child: Builder(
+                builder: (context) {
+                  return ListView(
+                    padding: const EdgeInsets.all(12),
+                    controller: scrollController,
+                    children: <Widget>[
+                      ParentPickerField.father(
+                        initialValue: _male,
+                        validator: FormBuilderValidators.required(),
+                        enabled: widget.breedingPair == null,
+                        onChanged: (bird) {
+                          setState(() {
+                            _male = bird;
+                          });
+                        },
+                      ),
+                      ParentPickerField.mother(
+                        initialValue: _female,
+                        validator: FormBuilderValidators.required(),
+                        enabled: widget.breedingPair == null,
+                        onChanged: (bird) {
+                          setState(() {
+                            _female = bird;
+                          });
+                        },
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              readOnly: true,
+                              decoration: InputDecoration(
+                                labelText: context.tr.breeding_pairs.start_date,
+                                prefixIcon: const Icon(AppIcons.date),
+                              ),
+                              controller: TextEditingController(
+                                text: MaterialLocalizations.of(context)
+                                    .formatShortDate(_startAt),
+                              ),
+                              onTap: _submitting ? null : _pickDate,
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: DropdownButtonFormField<BreedingPairStatus>(
+                              value: _status,
+                              decoration: InputDecoration(
+                                labelText:
+                                    context.tr.breeding_pairs.status.name,
+                                prefixIcon: const Icon(AppIcons.status),
+                              ),
+                              items: BreedingPairStatus.values
+                                  .map(
+                                    (status) => DropdownMenuItem(
+                                      value: status,
+                                      child: Text(
+                                        status.getDisplayName(context),
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                              onChanged: _submitting
+                                  ? null
+                                  : (v) => setState(() => _status = v!),
+                            ),
+                          ),
+                        ],
+                      ),
+                      CagePickerField(
+                        initialValue: _cage,
+                        enabled: !_submitting,
+                        onChanged: (cage) => _cage = cage,
+                      ),
+                      TextFormField(
+                        controller: _notesCtrl,
+                        minLines: 3,
+                        maxLines: 5,
+                        decoration: InputDecoration(
+                          labelText: context.tr.breeding_pairs.notes,
+                          alignLabelWithHint: true,
+                          prefixIcon: const Icon(AppIcons.notes),
+                        ),
+                        enabled: !_submitting,
+                      ),
+                    ].genericJoin(12.heightBox),
+                  );
+                },
+              ),
             ),
           ),
-      ],
+          BottomSheetFooter(
+            onSubmit: _submit,
+          ),
+        ],
+      ),
     );
   }
 }

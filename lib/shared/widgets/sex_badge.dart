@@ -2,7 +2,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/birds/domain/models/sex_enum.dart';
 
 class SexBadge extends StatelessWidget {
-  const SexBadge({super.key, required this.sex});
+  const SexBadge({required this.sex, super.key});
 
   final Sex sex;
 
@@ -12,7 +12,7 @@ class SexBadge extends StatelessWidget {
       padding: const EdgeInsets.all(2),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.65),
+        color: Theme.of(context).colorScheme.onSurface.withAlpha(200),
       ),
       child: sex.getIcon(context, size: 16),
     );

@@ -4,10 +4,10 @@ import 'package:birdbreeder/shared/icons.dart';
 
 class SectionCard extends StatefulWidget {
   const SectionCard({
-    super.key,
     required this.icon,
     required this.title,
     required this.children,
+    super.key,
     this.subtitle,
     this.trailing,
     this.footer,
@@ -60,17 +60,22 @@ class _SectionCardState extends State<SectionCard> {
           children: [
             // Header
             Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: theme.colorScheme.primary.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   padding: const EdgeInsets.all(8),
-                  child: Icon(widget.icon, color: theme.colorScheme.primary),
+                  child: CircleAvatar(
+                    backgroundColor:
+                        Theme.of(context).colorScheme.onSurface.withAlpha(30),
+                    child: Icon(
+                      widget.icon,
+                      size: 20,
+                    ),
+                  ),
                 ),
-                const SizedBox(width: 12),
+                const SizedBox(width: 4),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,12 +114,11 @@ class _SectionCardState extends State<SectionCard> {
                         ],
                       ),
                       if (widget.subtitle != null) ...[
-                        const SizedBox(height: 2),
                         Text(
                           widget.subtitle!,
-                          style: theme.textTheme.bodySmall?.copyWith(
-                            color: theme.textTheme.bodySmall?.color
-                                ?.withOpacity(0.7),
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            color: theme.textTheme.bodyMedium?.color
+                                ?.withValues(alpha: 0.7),
                           ),
                         ),
                       ],

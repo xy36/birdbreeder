@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/contacts/presentation/cubit/contact_cubit.dart';
 import 'package:birdbreeder/features/contacts/presentation/cubit/contact_cubit_event.dart';
@@ -18,19 +17,16 @@ class ContactListener
                   context.tr.contacts.deleted,
                 );
                 context.router.maybePop();
-                break;
 
               case ContactCubitEventError():
                 context.snackError(
                   context.tr.common.something_went_wrong,
                 );
-                break;
               case ContactCubitEventSaved():
                 context.snackSuccess(
                   context.tr.contacts.saved,
                 );
-                context.pop();
-                break;
+                context.maybePop();
             }
           },
         );

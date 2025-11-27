@@ -9,8 +9,8 @@ import 'package:birdbreeder/shared/widgets/utils.dart';
 /// Reusable card widget for displaying a bird in a list/grid.
 class BirdCard extends StatelessWidget {
   const BirdCard({
-    super.key,
     required this.bird,
+    super.key,
     this.compact = false,
     this.onTap,
     this.onDuplicate,
@@ -39,7 +39,6 @@ class BirdCard extends StatelessWidget {
     ];
 
     return Card(
-      elevation: 1,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       child: InkWell(
         onTap: onTap,
@@ -59,11 +58,11 @@ class BirdCard extends StatelessWidget {
               const SizedBox(width: 8),
               // Trailing actions & status
               Column(
+                spacing: 6,
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   ...statusChips,
-                  const SizedBox(height: 6),
                   moreMenu<Bird>(
                     context,
                     bird,
@@ -109,7 +108,7 @@ class BirdCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.6),
+        color: Theme.of(context).colorScheme.onSurface.withAlpha(30),
       ),
       child: Text(text, style: const TextStyle(fontSize: 12)),
     );
@@ -149,7 +148,7 @@ class _BirdMainInfo extends StatelessWidget {
           const SizedBox(height: 6),
           Wrap(
             spacing: 6,
-            runSpacing: -8,
+            runSpacing: 8,
             children: attrChips,
           ),
           const SizedBox(height: 6),
@@ -170,7 +169,7 @@ class _BirdMainInfo extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.5),
+        color: Theme.of(context).colorScheme.onSurfaceVariant.withAlpha(40),
       ),
       child: Text(text, style: const TextStyle(fontSize: 12)),
     );

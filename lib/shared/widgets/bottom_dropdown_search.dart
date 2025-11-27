@@ -4,17 +4,18 @@ import 'package:dropdown_search/dropdown_search.dart';
 
 class BottomDropdownSearch<T> extends StatefulWidget {
   const BottomDropdownSearch({
-    super.key,
     required this.items,
     required this.selectedItem,
-    this.itemAsString,
-    this.onChanged,
-    this.onAdd,
     required this.title,
     required this.searchHintText,
     required this.showSearchBox,
+    super.key,
+    this.itemAsString,
+    this.onChanged,
+    this.onAdd,
     this.hint,
     this.filterFn,
+    this.compareFn,
     this.dropdownBuilder,
     this.itemBuilder,
     this.onClear,
@@ -30,8 +31,9 @@ class BottomDropdownSearch<T> extends StatefulWidget {
   final String? hint;
   final bool showSearchBox;
   final bool Function(T, String)? filterFn;
+  final bool Function(T, T)? compareFn;
   final Widget Function(BuildContext, T?)? dropdownBuilder;
-  final Widget Function(BuildContext, T, bool)? itemBuilder;
+  final Widget Function(BuildContext, T, bool, bool)? itemBuilder;
   final void Function()? onClear;
 
   @override
@@ -50,25 +52,29 @@ class _BottomDropdownSearchState<T> extends State<BottomDropdownSearch<T>> {
   @override
   Widget build(BuildContext context) {
     return DropdownSearch<T>(
-      items: widget.items,
+      items: (_, __) => widget.items,
       itemAsString: widget.itemAsString,
       dropdownBuilder: widget.dropdownBuilder,
       selectedItem: widget.selectedItem,
+      compareFn: widget.compareFn,
       onChanged: widget.onChanged,
       filterFn: widget.filterFn,
-      dropdownDecoratorProps: DropDownDecoratorProps(
-        dropdownSearchDecoration: InputDecoration(
+      decoratorProps: DropDownDecoratorProps(
+        decoration: InputDecoration(
           hintText: widget.hint,
           contentPadding: const EdgeInsets.all(8),
         ),
       ),
-      clearButtonProps: ClearButtonProps(
-        icon: Icon(
-          Icons.clear,
-          color: Theme.of(context).colorScheme.primary,
+      suffixProps: DropdownSuffixProps(
+        clearButtonProps: ClearButtonProps(
+          icon: Icon(
+            Icons.clear,
+            color: Theme.of(context).colorScheme.primary,
+          ).onTap(
+            () => widget.onClear?.call(),
+          ),
+          isVisible: widget.onClear != null,
         ),
-        isVisible: widget.onClear != null,
-        onPressed: () => widget.onClear?.call(),
       ),
       popupProps: PopupProps.modalBottomSheet(
         title: Padding(
@@ -97,7 +103,7 @@ class _BottomDropdownSearchState<T> extends State<BottomDropdownSearch<T>> {
           physics: BouncingScrollPhysics(),
         ),
         itemBuilder: widget.itemBuilder ??
-            (context, item, isSelected) => ListTile(
+            (context, item, isSelected, _) => ListTile(
                   title: Text(
                     widget.itemAsString?.call(item) ?? item.toString(),
                     style: context.bodyLarge,

@@ -15,7 +15,7 @@ import 'package:birdbreeder/shared/widgets/picker/finances_category_picker_field
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 class AddFinancesSheet extends StatefulWidget {
-  const AddFinancesSheet({super.key, required this.finances});
+  const AddFinancesSheet({required this.finances, super.key});
 
   final Finance? finances;
 
@@ -119,12 +119,12 @@ class _AddFinancesSheetState extends State<AddFinancesSheet> {
               BottomSheetHeader(
                 title: context.tr.finances.add.name,
               ),
-              Form(
-                key: _formKey,
-                child: Builder(
-                  builder: (context) {
-                    return Expanded(
-                      child: ListView(
+              Expanded(
+                child: Form(
+                  key: _formKey,
+                  child: Builder(
+                    builder: (context) {
+                      return ListView(
                         padding: const EdgeInsets.all(12),
                         controller: scrollController,
                         children: <Widget>[
@@ -203,9 +203,9 @@ class _AddFinancesSheetState extends State<AddFinancesSheet> {
                             },
                           ),
                         ].genericJoin(12.heightBox),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ),
               BottomSheetFooter(

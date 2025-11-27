@@ -9,7 +9,7 @@ part of 'translations.g.dart';
 // Path: <root>
 typedef TranslationsDe = Translations; // ignore: unused_element
 
-class Translations implements BaseTranslations<AppLocale, Translations> {
+class Translations with BaseTranslations<AppLocale, Translations> {
   /// Returns the current translations of the given [context].
   ///
   /// Usage:

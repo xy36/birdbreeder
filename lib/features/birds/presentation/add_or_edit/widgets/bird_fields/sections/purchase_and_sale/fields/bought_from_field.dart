@@ -8,8 +8,8 @@ import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.
 
 class BoughtFromField extends StatelessWidget {
   const BoughtFromField({
-    super.key,
     required this.bird,
+    super.key,
   });
 
   final Bird bird;
@@ -31,6 +31,7 @@ class BoughtFromField extends StatelessWidget {
       apply: (b, v) => b.copyWith(boughtFromId: v?.id),
       title: context.tr.bird.select_bought_from_label,
       filterFn: filterFn,
+      compareFn: (a, b) => a.id == b.id,
       items: contacts,
       itemAsString: (item) => item.name ?? '-',
       selectedItem: bird.boughtFromResolved,

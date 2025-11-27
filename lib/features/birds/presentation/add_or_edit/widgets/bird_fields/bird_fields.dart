@@ -98,10 +98,15 @@ class _BirdFieldsState extends State<BirdFields> with TickerProviderStateMixin {
       child: Column(
         children: [
           TabBar(
+            indicatorPadding: const EdgeInsets.symmetric(vertical: 8),
             controller: controller,
             isScrollable: true,
             physics: const BouncingScrollPhysics(),
             tabAlignment: TabAlignment.center,
+            indicator: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: Theme.of(context).colorScheme.primaryContainer,
+            ),
             tabs: BirdSections.values
                 .map(
                   (tab) => Padding(

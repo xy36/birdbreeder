@@ -8,8 +8,8 @@ import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.
 
 class SoldToField extends StatelessWidget {
   const SoldToField({
-    super.key,
     required this.bird,
+    super.key,
   });
 
   final Bird bird;
@@ -34,6 +34,7 @@ class SoldToField extends StatelessWidget {
       itemAsString: (item) => item.name ?? '-',
       title: context.tr.bird.select_sold_to_label,
       filterFn: filterFn,
+      compareFn: (a, b) => a.id == b.id,
       onClear: () => context.read<BirdCubit>().changeBird(
             bird.copyWith(ownerId: null),
           ),

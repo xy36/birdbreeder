@@ -8,8 +8,8 @@ import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.
 
 class OwnerField extends StatelessWidget {
   const OwnerField({
-    super.key,
     required this.bird,
+    super.key,
   });
 
   final Bird bird;
@@ -32,6 +32,7 @@ class OwnerField extends StatelessWidget {
       apply: (b, v) => b.copyWith(ownerId: v?.id),
       title: context.tr.bird.select_owner_label,
       filterFn: filterFn,
+      compareFn: (a, b) => a.id == b.id,
       items: contacts,
       itemAsString: (item) => item.name ?? '-',
       selectedItem: bird.ownerResolved,

@@ -8,7 +8,7 @@ import 'package:birdbreeder/i18n/translations.g.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
-import 'package:flex_color_scheme/flex_color_scheme.dart';
+import 'package:birdbreeder/theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 class App extends StatelessWidget {
@@ -27,26 +27,12 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const useDarkTheme = false;
+    const useDarkTheme = true;
 
-    final lightTheme = FlexThemeData.light(scheme: FlexScheme.amber);
-    final darkTheme = FlexThemeData.dark(scheme: FlexScheme.amber);
-
-    var theme = useDarkTheme ? darkTheme : lightTheme;
-
-    theme = theme.copyWith(
-      inputDecorationTheme: theme.inputDecorationTheme.copyWith(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(
-            width: 2,
-          ),
-        ),
-      ),
+    const theme = MaterialTheme(
+      TextTheme(),
     );
+
     return MultiBlocProvider(
       providers: [
         BlocProvider.value(value: s1.get<BirdBreederCubit>()),
@@ -61,8 +47,8 @@ class App extends StatelessWidget {
           reevaluateListenable:
               s1.get<IAuthenticationService>().authenticationStatus,
         ),
-        theme: theme,
-        darkTheme: darkTheme,
+        theme: theme.light(),
+        darkTheme: theme.dark(),
         builder: (context, child) {
           return child!;
         },

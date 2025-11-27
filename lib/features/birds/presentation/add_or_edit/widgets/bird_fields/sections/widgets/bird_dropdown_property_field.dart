@@ -5,17 +5,18 @@ import 'package:birdbreeder/shared/widgets/bottom_dropdown_search.dart';
 
 class BirdDropdownPropertyField<T> extends StatelessWidget {
   const BirdDropdownPropertyField({
-    super.key,
     required this.bird,
     required this.label,
     required this.name,
-    this.hint,
     required this.select,
     required this.apply,
     required this.title,
     required this.filterFn,
+    required this.compareFn,
     required this.items,
     required this.itemAsString,
+    super.key,
+    this.hint,
     this.selectedItem,
     this.onAdd,
     this.onClear,
@@ -38,7 +39,8 @@ class BirdDropdownPropertyField<T> extends StatelessWidget {
   final T? selectedItem;
   final void Function(String)? onAdd;
   final void Function()? onClear;
-  final Widget Function(BuildContext, T, bool)? itemBuilder;
+  final bool Function(T, T)? compareFn;
+  final Widget Function(BuildContext, T, bool, bool)? itemBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +61,7 @@ class BirdDropdownPropertyField<T> extends StatelessWidget {
           searchHintText: searchHint ?? '',
           showSearchBox: true,
           filterFn: filterFn,
+          compareFn: compareFn,
           onClear: onClear,
           onAdd: onAdd,
           hint: hint ?? label,
