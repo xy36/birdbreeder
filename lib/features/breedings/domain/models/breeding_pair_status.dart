@@ -38,7 +38,7 @@ enum BreedingPairStatus {
   Widget getChip(BuildContext context) {
     return ColorChip(
       text: getDisplayName(context),
-      color: getBackgroundColor(context).withValues(alpha: 0.5),
+      bg: getBackgroundColor(context).withValues(alpha: 0.5),
       fg: getForegroundColor(context),
     );
   }

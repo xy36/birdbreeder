@@ -3,28 +3,28 @@ import 'package:birdbreeder/common_imports.dart';
 
 class ColorChip extends StatelessWidget {
   const ColorChip({
-    super.key,
     required this.text,
-    required this.color,
+    required this.bg,
     required this.fg,
+    super.key,
   });
   final String text;
-  final Color color;
+  final Color bg;
   final Color fg;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
-        color: color,
+        color: bg,
         borderRadius: BorderRadius.circular(999),
       ),
       child: Text(
         text,
-        style: context.labelSmall?.copyWith(
+        style: context.bodySmall?.copyWith(
           color: fg,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w400,
         ),
       ),
     );

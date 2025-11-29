@@ -176,9 +176,9 @@ class _CategoriesDetailsPageState extends State<CategoriesDetailsPage> {
 
 class FinancesCategoriesKindField extends StatelessWidget {
   const FinancesCategoriesKindField({
-    super.key,
     required this.kind,
     required this.onChanged,
+    super.key,
   });
 
   final FinanceCategoryKind kind;
@@ -209,11 +209,6 @@ class FinancesCategoriesKindField extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     spacing: 8,
                     children: [
-                      Icon(
-                        displayData.icon,
-                        color: e.color,
-                        size: 24,
-                      ),
                       Text(
                         displayData.label,
                         style: context.bodyLarge,

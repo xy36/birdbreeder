@@ -19,16 +19,7 @@ class CategoriesTab extends StatelessWidget {
         cat: cat,
       ),
       title: Text(cat.name),
-      subtitle: Row(
-        spacing: 8,
-        children: [
-          Icon(
-            displayData.icon,
-            color: cat.kind.color,
-          ),
-          Text(displayData.label),
-        ],
-      ),
+      subtitle: Text(displayData.label),
       trailing: const Icon(AppIcons.chevronRight),
       onTap: () =>
           context.router.push(CategoriesDetailsRoute(initialCategory: cat)),

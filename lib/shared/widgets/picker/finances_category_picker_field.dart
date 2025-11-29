@@ -39,6 +39,8 @@ class FinancesCategoryPickerField extends StatelessWidget {
       filterFn: (item, filter) =>
           item.name.toLowerCase().contains(filter.toLowerCase()),
       title: context.tr.finances.add.category,
+      selectedItemBuilder: (item) =>
+          item != null ? Text(item.name) : const SizedBox(),
       onAdd: (String name) async {
         final newCategory =
             await context.read<BirdBreederCubit>().addFinancesCategory(

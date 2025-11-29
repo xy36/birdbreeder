@@ -1,11 +1,11 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/core/extensions/finances_categories_extension.dart';
 import 'package:birdbreeder/features/birds/domain/models/finance_category.dart';
-import 'package:birdbreeder/shared/utils.dart';
 
 class CategoryAvatar extends StatelessWidget {
   const CategoryAvatar({
-    super.key,
     required this.cat,
+    super.key,
     this.size = 40,
   });
 
@@ -16,20 +16,25 @@ class CategoryAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final kd = cat.kind.getDisplayData(context);
-    final catColor = hexToColor(cat.color);
 
     return Container(
       width: size,
       height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: catColor,
+        color: cat.bgColor,
         border: Border.all(color: kd.fg, width: 2),
       ),
-      child: Icon(
-        kd.icon,
-        size: size / 2,
-        color: catColor.computeLuminance() > 0.5 ? Colors.black : Colors.white,
+      child: CircleAvatar(
+        backgroundColor: cat.bgColor,
+        child: Text(
+          cat.name.isNotEmpty ? cat.name[0].toUpperCase() : '?',
+          style: TextStyle(
+            color: cat.fgColor,
+            fontWeight: FontWeight.bold,
+            fontSize: size * 0.5,
+          ),
+        ),
       ),
     );
   }

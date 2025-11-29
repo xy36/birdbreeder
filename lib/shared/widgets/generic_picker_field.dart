@@ -4,12 +4,12 @@ import 'package:birdbreeder/shared/widgets/utils.dart';
 
 class GenericPickerField<T> extends StatelessWidget {
   const GenericPickerField({
-    super.key,
     required this.name,
     required this.title,
     required this.values,
     required this.displayStringFor,
     required this.itemBuilder,
+    super.key,
     this.initialValue,
     this.enabled = true,
     this.onChanged,
@@ -21,6 +21,7 @@ class GenericPickerField<T> extends StatelessWidget {
     this.onAdd, // if provided and using default picker, shows an "Add" flow
     this.decoration,
     this.pickerBuilder, // custom picker UI if you prefer your own
+    this.selectedItemBuilder,
   });
 
   /// Form field name
@@ -72,6 +73,8 @@ class GenericPickerField<T> extends StatelessWidget {
   /// If provided, this will be called to pick an item instead of the default bottom sheet.
   /// Signature: Future<T?> Function(BuildContext, List<T> values, T? current)
   final Future<T?> Function(BuildContext, List<T>, T?)? pickerBuilder;
+
+  final Widget Function(T? item)? selectedItemBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -131,11 +134,12 @@ class GenericPickerField<T> extends StatelessWidget {
           child: InputDecorator(
             isEmpty: !hasValue,
             decoration: deco,
-            child: Text(
-              display,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
+            child: selectedItemBuilder?.call(value) ??
+                Text(
+                  display,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
           ),
         );
       },
