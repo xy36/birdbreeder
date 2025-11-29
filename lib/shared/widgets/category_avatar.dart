@@ -1,6 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/finances_categories_extension.dart';
-import 'package:birdbreeder/features/birds/domain/models/finance_category.dart';
+import 'package:birdbreeder/models/finance/entity/finance_category.dart';
 
 class CategoryAvatar extends StatelessWidget {
   const CategoryAvatar({

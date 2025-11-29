@@ -1,13 +1,13 @@
-import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
-import 'package:birdbreeder/features/birds/data/dtos/egg_dto.dart';
-import 'package:birdbreeder/features/birds/data/dtos/finance_category_dto.dart';
-import 'package:birdbreeder/features/birds/data/dtos/finance_dto.dart';
-import 'package:birdbreeder/features/breedings/data/dtos/breeding_pair_dto.dart';
-import 'package:birdbreeder/features/breedings/data/dtos/brood_dto.dart';
-import 'package:birdbreeder/features/contacts/data/dtos/contact_dto.dart';
-import 'package:birdbreeder/features/ressourcen_center/data/dtos/bird_color_dto.dart';
-import 'package:birdbreeder/features/ressourcen_center/data/dtos/cage_dto.dart';
-import 'package:birdbreeder/features/ressourcen_center/data/dtos/species_dto.dart';
+import 'package:birdbreeder/models/bird/dtos/bird_dto.dart';
+import 'package:birdbreeder/models/breeding/dtos/breeding_pair_dto.dart';
+import 'package:birdbreeder/models/breeding/dtos/brood_dto.dart';
+import 'package:birdbreeder/models/contact/dtos/contact_dto.dart';
+import 'package:birdbreeder/models/egg/dtos/egg_dto.dart';
+import 'package:birdbreeder/models/finance/dtos/finance_category_dto.dart';
+import 'package:birdbreeder/models/finance/dtos/finance_dto.dart';
+import 'package:birdbreeder/models/ressources/dto/bird_color_dto.dart';
+import 'package:birdbreeder/models/ressources/dto/cage_dto.dart';
+import 'package:birdbreeder/models/ressources/dto/species_dto.dart';
 import 'package:birdbreeder/services/authentication/authentication_service.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/logging_service.dart';
@@ -20,7 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final s1 = GetIt.instance;
+final GetIt s1 = GetIt.instance;
 
 Future<void> initializeDependencyInjection() async {
   //TODO: rework

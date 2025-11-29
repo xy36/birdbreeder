@@ -1,6 +1,6 @@
 import 'package:async/async.dart';
+import 'package:birdbreeder/models/authentication/entity/user.dart';
 import 'package:birdbreeder/services/authentication/authentication_status.dart';
-import 'package:birdbreeder/services/authentication/models/user.dart';
 import 'package:flutter/material.dart';
 
 abstract class IAuthenticationService {

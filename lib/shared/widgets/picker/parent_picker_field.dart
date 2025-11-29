@@ -1,7 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/birds/domain/models/bird.dart';
-import 'package:birdbreeder/features/birds/domain/models/sex_enum.dart';
-import 'package:birdbreeder/features/birds/presentation/birds_overview/models/bird_filter.dart';
+import 'package:birdbreeder/models/bird/bird_filter.dart';
+import 'package:birdbreeder/models/bird/entity/bird.dart';
+import 'package:birdbreeder/models/bird/sex_enum.dart';
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 

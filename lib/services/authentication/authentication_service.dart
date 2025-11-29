@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:async/async.dart';
 import 'package:birdbreeder/core/extensions/mapper_extensions.dart';
+import 'package:birdbreeder/models/authentication/dtos/user_dto.dart';
+import 'package:birdbreeder/models/authentication/entity/user.dart';
 import 'package:birdbreeder/services/authentication/authentication_status.dart';
-import 'package:birdbreeder/services/authentication/dtos/user_dto.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
-import 'package:birdbreeder/services/authentication/models/user.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/services/logging_service.dart';
 import 'package:birdbreeder/services/pocketbase_service.dart';
@@ -30,18 +30,15 @@ class AuthenticationService implements IAuthenticationService {
         case AuthenticationStatus.authenticated:
           _loggingService.logger.i('Authentication status: Authenticated');
           unawaited(s1.get<BirdBreederCubit>().initialLoad());
-          break;
         case AuthenticationStatus.unauthenticated:
           _loggingService.logger.i('Authentication status: Unauthenticated');
           await s1.get<BirdBreederCubit>().reset();
           if (_pocketBaseService.authStore.isValid) {
             await signOut();
           }
-          break;
         case AuthenticationStatus.unknown:
           _loggingService.logger.i('Authentication status: Unknown');
           await s1.get<BirdBreederCubit>().reset();
-          break;
       }
     });
   }
@@ -88,7 +85,7 @@ class AuthenticationService implements IAuthenticationService {
         _loggingService.logger.w('AuthStore not valid after signIn');
       }
 
-      final user = UserDto.fromJson(authData.record!.toJson()).toModel();
+      final user = UserDto.fromJson(authData.record.toJson()).toModel();
       return Result.value(user);
     } on ClientException catch (e, st) {
       _loggingService.logger.w(
@@ -137,7 +134,7 @@ class AuthenticationService implements IAuthenticationService {
         _loggingService.logger.w('AuthStore not valid after signUp login');
       }
 
-      final user = UserDto.fromJson(authData.record!.toJson()).toModel();
+      final user = UserDto.fromJson(authData.record.toJson()).toModel();
       return Result.value(user);
     } on ClientException catch (e, st) {
       _loggingService.logger.w(

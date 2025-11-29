@@ -1,24 +1,24 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
-import 'package:birdbreeder/features/birds/domain/models/bird.dart';
+import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/shared/widgets/buttons/app_action_button.dart';
 
 class ButtonBirdEdit extends StatelessWidget {
   const ButtonBirdEdit.icon({
+    required this.bird,
     super.key,
     this.onTap,
-    required this.bird,
   }) : buttonType = ButtonType.icon;
   const ButtonBirdEdit.floating({
+    required this.bird,
     super.key,
     this.onTap,
-    required this.bird,
   }) : buttonType = ButtonType.floatingActionButton;
   const ButtonBirdEdit.elevated({
+    required this.bird,
     super.key,
     this.onTap,
-    required this.bird,
   }) : buttonType = ButtonType.elevated;
 
   final ButtonType buttonType;

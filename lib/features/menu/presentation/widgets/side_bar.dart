@@ -1,4 +1,4 @@
-import 'package:birdbreeder/features/menu/domain/entities/menu_pages.dart';
+import 'package:birdbreeder/models/routing/menu_pages.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/shared/icons.dart';
@@ -10,10 +10,10 @@ const defaultMenuOpenedWidth = 350.0;
 
 class SideBar extends StatelessWidget {
   const SideBar({
-    super.key,
     required this.controller,
     required this.onTap,
     required this.showToggleButton,
+    super.key,
   });
 
   /// The controller for the sidebar.

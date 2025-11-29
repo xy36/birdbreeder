@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,54 +9,45 @@ part of 'bird_cubit_event.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$BirdCubitEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() deleted,
-    required TResult Function() saved,
-    required TResult Function() duplicated,
-    required TResult Function() error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? deleted,
-    TResult? Function()? saved,
-    TResult? Function()? duplicated,
-    TResult? Function()? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? deleted,
-    TResult Function()? saved,
-    TResult Function()? duplicated,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(BirdCubitEventDeleted value) deleted,
-    required TResult Function(BirdCubitEventSaved value) saved,
-    required TResult Function(BirdCubitEventDuplicated value) duplicated,
-    required TResult Function(BirdCubitEventError value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BirdCubitEventDeleted value)? deleted,
-    TResult? Function(BirdCubitEventSaved value)? saved,
-    TResult? Function(BirdCubitEventDuplicated value)? duplicated,
-    TResult? Function(BirdCubitEventError value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is BirdCubitEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'BirdCubitEvent()';
+  }
+}
+
+/// @nodoc
+class $BirdCubitEventCopyWith<$Res> {
+  $BirdCubitEventCopyWith(BirdCubitEvent _, $Res Function(BirdCubitEvent) __);
+}
+
+/// Adds pattern-matching-related methods to [BirdCubitEvent].
+extension BirdCubitEventPatterns on BirdCubitEvent {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BirdCubitEventDeleted value)? deleted,
@@ -64,502 +55,274 @@ mixin _$BirdCubitEvent {
     TResult Function(BirdCubitEventDuplicated value)? duplicated,
     TResult Function(BirdCubitEventError value)? error,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) {
+    final _that = this;
+    switch (_that) {
+      case BirdCubitEventDeleted() when deleted != null:
+        return deleted(_that);
+      case BirdCubitEventSaved() when saved != null:
+        return saved(_that);
+      case BirdCubitEventDuplicated() when duplicated != null:
+        return duplicated(_that);
+      case BirdCubitEventError() when error != null:
+        return error(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BirdCubitEventDeleted value) deleted,
+    required TResult Function(BirdCubitEventSaved value) saved,
+    required TResult Function(BirdCubitEventDuplicated value) duplicated,
+    required TResult Function(BirdCubitEventError value) error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case BirdCubitEventDeleted():
+        return deleted(_that);
+      case BirdCubitEventSaved():
+        return saved(_that);
+      case BirdCubitEventDuplicated():
+        return duplicated(_that);
+      case BirdCubitEventError():
+        return error(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(BirdCubitEventDeleted value)? deleted,
+    TResult? Function(BirdCubitEventSaved value)? saved,
+    TResult? Function(BirdCubitEventDuplicated value)? duplicated,
+    TResult? Function(BirdCubitEventError value)? error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case BirdCubitEventDeleted() when deleted != null:
+        return deleted(_that);
+      case BirdCubitEventSaved() when saved != null:
+        return saved(_that);
+      case BirdCubitEventDuplicated() when duplicated != null:
+        return duplicated(_that);
+      case BirdCubitEventError() when error != null:
+        return error(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? deleted,
+    TResult Function()? saved,
+    TResult Function()? duplicated,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case BirdCubitEventDeleted() when deleted != null:
+        return deleted();
+      case BirdCubitEventSaved() when saved != null:
+        return saved();
+      case BirdCubitEventDuplicated() when duplicated != null:
+        return duplicated();
+      case BirdCubitEventError() when error != null:
+        return error();
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() deleted,
+    required TResult Function() saved,
+    required TResult Function() duplicated,
+    required TResult Function() error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case BirdCubitEventDeleted():
+        return deleted();
+      case BirdCubitEventSaved():
+        return saved();
+      case BirdCubitEventDuplicated():
+        return duplicated();
+      case BirdCubitEventError():
+        return error();
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? deleted,
+    TResult? Function()? saved,
+    TResult? Function()? duplicated,
+    TResult? Function()? error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case BirdCubitEventDeleted() when deleted != null:
+        return deleted();
+      case BirdCubitEventSaved() when saved != null:
+        return saved();
+      case BirdCubitEventDuplicated() when duplicated != null:
+        return duplicated();
+      case BirdCubitEventError() when error != null:
+        return error();
+      case _:
+        return null;
+    }
+  }
 }
 
 /// @nodoc
-abstract class $BirdCubitEventCopyWith<$Res> {
-  factory $BirdCubitEventCopyWith(
-          BirdCubitEvent value, $Res Function(BirdCubitEvent) then) =
-      _$BirdCubitEventCopyWithImpl<$Res, BirdCubitEvent>;
-}
 
-/// @nodoc
-class _$BirdCubitEventCopyWithImpl<$Res, $Val extends BirdCubitEvent>
-    implements $BirdCubitEventCopyWith<$Res> {
-  _$BirdCubitEventCopyWithImpl(this._value, this._then);
+class BirdCubitEventDeleted implements BirdCubitEvent {
+  const BirdCubitEventDeleted();
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is BirdCubitEventDeleted);
+  }
 
-  /// Create a copy of BirdCubitEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$BirdCubitEventDeletedImplCopyWith<$Res> {
-  factory _$$BirdCubitEventDeletedImplCopyWith(
-          _$BirdCubitEventDeletedImpl value,
-          $Res Function(_$BirdCubitEventDeletedImpl) then) =
-      __$$BirdCubitEventDeletedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$BirdCubitEventDeletedImplCopyWithImpl<$Res>
-    extends _$BirdCubitEventCopyWithImpl<$Res, _$BirdCubitEventDeletedImpl>
-    implements _$$BirdCubitEventDeletedImplCopyWith<$Res> {
-  __$$BirdCubitEventDeletedImplCopyWithImpl(_$BirdCubitEventDeletedImpl _value,
-      $Res Function(_$BirdCubitEventDeletedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of BirdCubitEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$BirdCubitEventDeletedImpl implements BirdCubitEventDeleted {
-  const _$BirdCubitEventDeletedImpl();
+  @override
+  int get hashCode => runtimeType.hashCode;
 
   @override
   String toString() {
     return 'BirdCubitEvent.deleted()';
   }
+}
+
+/// @nodoc
+
+class BirdCubitEventSaved implements BirdCubitEvent {
+  const BirdCubitEventSaved();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$BirdCubitEventDeletedImpl);
+        (other.runtimeType == runtimeType && other is BirdCubitEventSaved);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() deleted,
-    required TResult Function() saved,
-    required TResult Function() duplicated,
-    required TResult Function() error,
-  }) {
-    return deleted();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? deleted,
-    TResult? Function()? saved,
-    TResult? Function()? duplicated,
-    TResult? Function()? error,
-  }) {
-    return deleted?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? deleted,
-    TResult Function()? saved,
-    TResult Function()? duplicated,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (deleted != null) {
-      return deleted();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(BirdCubitEventDeleted value) deleted,
-    required TResult Function(BirdCubitEventSaved value) saved,
-    required TResult Function(BirdCubitEventDuplicated value) duplicated,
-    required TResult Function(BirdCubitEventError value) error,
-  }) {
-    return deleted(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BirdCubitEventDeleted value)? deleted,
-    TResult? Function(BirdCubitEventSaved value)? saved,
-    TResult? Function(BirdCubitEventDuplicated value)? duplicated,
-    TResult? Function(BirdCubitEventError value)? error,
-  }) {
-    return deleted?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(BirdCubitEventDeleted value)? deleted,
-    TResult Function(BirdCubitEventSaved value)? saved,
-    TResult Function(BirdCubitEventDuplicated value)? duplicated,
-    TResult Function(BirdCubitEventError value)? error,
-    required TResult orElse(),
-  }) {
-    if (deleted != null) {
-      return deleted(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class BirdCubitEventDeleted implements BirdCubitEvent {
-  const factory BirdCubitEventDeleted() = _$BirdCubitEventDeletedImpl;
-}
-
-/// @nodoc
-abstract class _$$BirdCubitEventSavedImplCopyWith<$Res> {
-  factory _$$BirdCubitEventSavedImplCopyWith(_$BirdCubitEventSavedImpl value,
-          $Res Function(_$BirdCubitEventSavedImpl) then) =
-      __$$BirdCubitEventSavedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$BirdCubitEventSavedImplCopyWithImpl<$Res>
-    extends _$BirdCubitEventCopyWithImpl<$Res, _$BirdCubitEventSavedImpl>
-    implements _$$BirdCubitEventSavedImplCopyWith<$Res> {
-  __$$BirdCubitEventSavedImplCopyWithImpl(_$BirdCubitEventSavedImpl _value,
-      $Res Function(_$BirdCubitEventSavedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of BirdCubitEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$BirdCubitEventSavedImpl implements BirdCubitEventSaved {
-  const _$BirdCubitEventSavedImpl();
 
   @override
   String toString() {
     return 'BirdCubitEvent.saved()';
   }
+}
+
+/// @nodoc
+
+class BirdCubitEventDuplicated implements BirdCubitEvent {
+  const BirdCubitEventDuplicated();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$BirdCubitEventSavedImpl);
+        (other.runtimeType == runtimeType && other is BirdCubitEventDuplicated);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() deleted,
-    required TResult Function() saved,
-    required TResult Function() duplicated,
-    required TResult Function() error,
-  }) {
-    return saved();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? deleted,
-    TResult? Function()? saved,
-    TResult? Function()? duplicated,
-    TResult? Function()? error,
-  }) {
-    return saved?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? deleted,
-    TResult Function()? saved,
-    TResult Function()? duplicated,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (saved != null) {
-      return saved();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(BirdCubitEventDeleted value) deleted,
-    required TResult Function(BirdCubitEventSaved value) saved,
-    required TResult Function(BirdCubitEventDuplicated value) duplicated,
-    required TResult Function(BirdCubitEventError value) error,
-  }) {
-    return saved(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BirdCubitEventDeleted value)? deleted,
-    TResult? Function(BirdCubitEventSaved value)? saved,
-    TResult? Function(BirdCubitEventDuplicated value)? duplicated,
-    TResult? Function(BirdCubitEventError value)? error,
-  }) {
-    return saved?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(BirdCubitEventDeleted value)? deleted,
-    TResult Function(BirdCubitEventSaved value)? saved,
-    TResult Function(BirdCubitEventDuplicated value)? duplicated,
-    TResult Function(BirdCubitEventError value)? error,
-    required TResult orElse(),
-  }) {
-    if (saved != null) {
-      return saved(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class BirdCubitEventSaved implements BirdCubitEvent {
-  const factory BirdCubitEventSaved() = _$BirdCubitEventSavedImpl;
-}
-
-/// @nodoc
-abstract class _$$BirdCubitEventDuplicatedImplCopyWith<$Res> {
-  factory _$$BirdCubitEventDuplicatedImplCopyWith(
-          _$BirdCubitEventDuplicatedImpl value,
-          $Res Function(_$BirdCubitEventDuplicatedImpl) then) =
-      __$$BirdCubitEventDuplicatedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$BirdCubitEventDuplicatedImplCopyWithImpl<$Res>
-    extends _$BirdCubitEventCopyWithImpl<$Res, _$BirdCubitEventDuplicatedImpl>
-    implements _$$BirdCubitEventDuplicatedImplCopyWith<$Res> {
-  __$$BirdCubitEventDuplicatedImplCopyWithImpl(
-      _$BirdCubitEventDuplicatedImpl _value,
-      $Res Function(_$BirdCubitEventDuplicatedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of BirdCubitEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$BirdCubitEventDuplicatedImpl implements BirdCubitEventDuplicated {
-  const _$BirdCubitEventDuplicatedImpl();
 
   @override
   String toString() {
     return 'BirdCubitEvent.duplicated()';
   }
+}
+
+/// @nodoc
+
+class BirdCubitEventError implements BirdCubitEvent {
+  const BirdCubitEventError();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$BirdCubitEventDuplicatedImpl);
+        (other.runtimeType == runtimeType && other is BirdCubitEventError);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() deleted,
-    required TResult Function() saved,
-    required TResult Function() duplicated,
-    required TResult Function() error,
-  }) {
-    return duplicated();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? deleted,
-    TResult? Function()? saved,
-    TResult? Function()? duplicated,
-    TResult? Function()? error,
-  }) {
-    return duplicated?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? deleted,
-    TResult Function()? saved,
-    TResult Function()? duplicated,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (duplicated != null) {
-      return duplicated();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(BirdCubitEventDeleted value) deleted,
-    required TResult Function(BirdCubitEventSaved value) saved,
-    required TResult Function(BirdCubitEventDuplicated value) duplicated,
-    required TResult Function(BirdCubitEventError value) error,
-  }) {
-    return duplicated(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BirdCubitEventDeleted value)? deleted,
-    TResult? Function(BirdCubitEventSaved value)? saved,
-    TResult? Function(BirdCubitEventDuplicated value)? duplicated,
-    TResult? Function(BirdCubitEventError value)? error,
-  }) {
-    return duplicated?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(BirdCubitEventDeleted value)? deleted,
-    TResult Function(BirdCubitEventSaved value)? saved,
-    TResult Function(BirdCubitEventDuplicated value)? duplicated,
-    TResult Function(BirdCubitEventError value)? error,
-    required TResult orElse(),
-  }) {
-    if (duplicated != null) {
-      return duplicated(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class BirdCubitEventDuplicated implements BirdCubitEvent {
-  const factory BirdCubitEventDuplicated() = _$BirdCubitEventDuplicatedImpl;
-}
-
-/// @nodoc
-abstract class _$$BirdCubitEventErrorImplCopyWith<$Res> {
-  factory _$$BirdCubitEventErrorImplCopyWith(_$BirdCubitEventErrorImpl value,
-          $Res Function(_$BirdCubitEventErrorImpl) then) =
-      __$$BirdCubitEventErrorImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$BirdCubitEventErrorImplCopyWithImpl<$Res>
-    extends _$BirdCubitEventCopyWithImpl<$Res, _$BirdCubitEventErrorImpl>
-    implements _$$BirdCubitEventErrorImplCopyWith<$Res> {
-  __$$BirdCubitEventErrorImplCopyWithImpl(_$BirdCubitEventErrorImpl _value,
-      $Res Function(_$BirdCubitEventErrorImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of BirdCubitEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$BirdCubitEventErrorImpl implements BirdCubitEventError {
-  const _$BirdCubitEventErrorImpl();
 
   @override
   String toString() {
     return 'BirdCubitEvent.error()';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$BirdCubitEventErrorImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() deleted,
-    required TResult Function() saved,
-    required TResult Function() duplicated,
-    required TResult Function() error,
-  }) {
-    return error();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? deleted,
-    TResult? Function()? saved,
-    TResult? Function()? duplicated,
-    TResult? Function()? error,
-  }) {
-    return error?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? deleted,
-    TResult Function()? saved,
-    TResult Function()? duplicated,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(BirdCubitEventDeleted value) deleted,
-    required TResult Function(BirdCubitEventSaved value) saved,
-    required TResult Function(BirdCubitEventDuplicated value) duplicated,
-    required TResult Function(BirdCubitEventError value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BirdCubitEventDeleted value)? deleted,
-    TResult? Function(BirdCubitEventSaved value)? saved,
-    TResult? Function(BirdCubitEventDuplicated value)? duplicated,
-    TResult? Function(BirdCubitEventError value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(BirdCubitEventDeleted value)? deleted,
-    TResult Function(BirdCubitEventSaved value)? saved,
-    TResult Function(BirdCubitEventDuplicated value)? duplicated,
-    TResult Function(BirdCubitEventError value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
 }
 
-abstract class BirdCubitEventError implements BirdCubitEvent {
-  const factory BirdCubitEventError() = _$BirdCubitEventErrorImpl;
-}
+// dart format on

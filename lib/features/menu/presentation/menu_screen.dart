@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:birdbreeder/features/menu/domain/entities/menu_pages.dart';
 import 'package:birdbreeder/features/menu/presentation/cubit/menu_cubit.dart';
 import 'package:birdbreeder/features/menu/presentation/utils/utils.dart';
 import 'package:birdbreeder/features/menu/presentation/widgets/side_bar.dart';
+import 'package:birdbreeder/models/routing/menu_pages.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,8 +35,8 @@ class Menu {
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({
-    super.key,
     required this.child,
+    super.key,
   });
   final Widget child;
 

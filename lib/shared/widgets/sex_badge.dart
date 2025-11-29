@@ -1,5 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/birds/domain/models/sex_enum.dart';
+import 'package:birdbreeder/models/bird/sex_enum.dart';
 
 class SexBadge extends StatelessWidget {
   const SexBadge({required this.sex, super.key});

@@ -1,16 +1,16 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/generic_join.dart';
-import 'package:birdbreeder/features/birds/domain/models/bird.dart';
-import 'package:birdbreeder/features/birds/domain/models/sex_enum.dart';
-import 'package:birdbreeder/features/birds/presentation/birds_overview/models/bird_filter.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/bird_filter_sheet/birds_overview_page.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/bird_filter_sheet/option.dart';
+import 'package:birdbreeder/models/bird/bird_filter.dart';
+import 'package:birdbreeder/models/bird/entity/bird.dart';
+import 'package:birdbreeder/models/bird/sex_enum.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/widgets/all_or_some_chips.dart';
 import 'package:birdbreeder/shared/widgets/inline_two_row_multi_chips.dart';
 
 class BirdFilterSheet extends StatefulWidget {
-  const BirdFilterSheet({super.key, required this.initial});
+  const BirdFilterSheet({required this.initial, super.key});
   final BirdFilter initial;
 
   @override

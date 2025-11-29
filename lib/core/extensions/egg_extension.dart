@@ -2,14 +2,14 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/bird_color_extension.dart';
 import 'package:birdbreeder/core/extensions/cage_extension.dart';
 import 'package:birdbreeder/core/extensions/species_extension.dart';
-import 'package:birdbreeder/features/birds/domain/models/bird.dart';
-import 'package:birdbreeder/features/birds/domain/models/egg.dart';
-import 'package:birdbreeder/features/ressourcen_center/domain/models/bird_color.dart';
-import 'package:birdbreeder/features/ressourcen_center/domain/models/cage.dart';
-import 'package:birdbreeder/features/ressourcen_center/domain/models/species.dart';
+import 'package:birdbreeder/models/bird/entity/bird.dart';
+import 'package:birdbreeder/models/bird_breeder_resources.dart';
+import 'package:birdbreeder/models/egg/entity/egg.dart';
+import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
+import 'package:birdbreeder/models/ressources/entity/cage.dart';
+import 'package:birdbreeder/models/ressources/entity/species.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
-import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/models/bird_breeder_resources.dart';
 
 extension EggListExtension on List<Egg> {
   Egg? findById(String id) {

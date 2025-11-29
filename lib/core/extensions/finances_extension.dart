@@ -1,12 +1,12 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/birds_extension.dart';
 import 'package:birdbreeder/core/extensions/finances_categories_extension.dart';
-import 'package:birdbreeder/features/birds/domain/models/bird.dart';
-import 'package:birdbreeder/features/birds/domain/models/finance.dart';
-import 'package:birdbreeder/features/birds/domain/models/finance_category.dart';
+import 'package:birdbreeder/models/bird/entity/bird.dart';
+import 'package:birdbreeder/models/bird_breeder_resources.dart';
+import 'package:birdbreeder/models/finance/entity/finance.dart';
+import 'package:birdbreeder/models/finance/entity/finance_category.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
-import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/models/bird_breeder_resources.dart';
 
 extension FinancesListExtension on List<Finance> {
   Finance? findById(String id) {

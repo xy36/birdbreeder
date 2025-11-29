@@ -1,5 +1,5 @@
 import 'package:birdbreeder/core/extensions/birds_extension.dart';
-import 'package:birdbreeder/features/birds/domain/models/bird.dart';
+import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/shared/cubits/generic_search_cubit/generic_search_cubit.dart';
 
 class BirdSearchCubit extends GenericSearchCubit<Bird> {

@@ -1,5 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/breedings/domain/models/breeding_pair_status.dart';
+import 'package:birdbreeder/models/breeding/entity/breeding_pair_status.dart';
 import 'package:birdbreeder/shared/icons.dart';
 
 extension BreedingPairStatusExtension on BreedingPairStatus {

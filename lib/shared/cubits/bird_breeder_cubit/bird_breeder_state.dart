@@ -1,7 +1,7 @@
 part of 'bird_breeder_cubit.dart';
 
 @freezed
-class BirdBreederState with _$BirdBreederState {
+abstract class BirdBreederState with _$BirdBreederState {
   const factory BirdBreederState.initial({
     required BirdBreederResources birdBreederResources,
   }) = BirdBreederInitial;

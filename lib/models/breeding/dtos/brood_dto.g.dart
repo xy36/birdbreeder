@@ -1,0 +1,42 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'brood_dto.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_BroodDto _$BroodDtoFromJson(Map<String, dynamic> json) => _BroodDto(
+      id: json['id'] as String,
+      collectionId: json['collectionId'] as String?,
+      collectionName: json['collectionName'] as String?,
+      created: json['created'] == null
+          ? null
+          : DateTime.parse(json['created'] as String),
+      updated: json['updated'] == null
+          ? null
+          : DateTime.parse(json['updated'] as String),
+      start: const UtcDateTimeConverter().fromJson(json['start'] as String?),
+      end: const UtcDateTimeConverter().fromJson(json['end'] as String?),
+      notes:
+          const StringNullEmptyConverter().fromJson(json['notes'] as String?),
+      cage: const StringNullEmptyConverter().fromJson(json['cage'] as String?),
+      breedingPair: const StringNullEmptyConverter()
+          .fromJson(json['breedingPair'] as String?),
+      user: json['user'] as String?,
+    );
+
+Map<String, dynamic> _$BroodDtoToJson(_BroodDto instance) => <String, dynamic>{
+      'id': instance.id,
+      'collectionId': instance.collectionId,
+      'collectionName': instance.collectionName,
+      'created': instance.created?.toIso8601String(),
+      'updated': instance.updated?.toIso8601String(),
+      'start': const UtcDateTimeConverter().toJson(instance.start),
+      'end': const UtcDateTimeConverter().toJson(instance.end),
+      'notes': const StringNullEmptyConverter().toJson(instance.notes),
+      'cage': const StringNullEmptyConverter().toJson(instance.cage),
+      'breedingPair':
+          const StringNullEmptyConverter().toJson(instance.breedingPair),
+      'user': instance.user,
+    };

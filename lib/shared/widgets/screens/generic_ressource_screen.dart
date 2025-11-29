@@ -1,20 +1,20 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
-import 'package:birdbreeder/features/contacts/domain/models/contact.dart';
-import 'package:birdbreeder/features/ressourcen_center/domain/models/bird_color.dart';
-import 'package:birdbreeder/features/ressourcen_center/domain/models/cage.dart';
-import 'package:birdbreeder/features/ressourcen_center/domain/models/species.dart';
+import 'package:birdbreeder/models/breeding/entity/breeding_pair.dart';
+import 'package:birdbreeder/models/contact/entity/contact.dart';
+import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
+import 'package:birdbreeder/models/ressources/entity/cage.dart';
+import 'package:birdbreeder/models/ressources/entity/species.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/widgets/search_bar_widget.dart';
 
 class RessourceScreen<T> extends StatefulWidget {
   const RessourceScreen({
-    super.key,
     required this.fn,
     required this.itemBuilder,
     required this.onAdd,
     required this.onItemTap,
     required this.title,
+    super.key,
   });
 
   final bool Function(T object, String query) fn;

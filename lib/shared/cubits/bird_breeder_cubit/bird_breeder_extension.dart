@@ -1,13 +1,13 @@
-import 'package:birdbreeder/features/birds/data/dtos/bird_dto.dart';
-import 'package:birdbreeder/features/birds/data/dtos/egg_dto.dart';
-import 'package:birdbreeder/features/birds/data/dtos/finance_category_dto.dart';
-import 'package:birdbreeder/features/birds/data/dtos/finance_dto.dart';
-import 'package:birdbreeder/features/breedings/data/dtos/breeding_pair_dto.dart';
-import 'package:birdbreeder/features/breedings/data/dtos/brood_dto.dart';
-import 'package:birdbreeder/features/contacts/data/dtos/contact_dto.dart';
-import 'package:birdbreeder/features/ressourcen_center/data/dtos/bird_color_dto.dart';
-import 'package:birdbreeder/features/ressourcen_center/data/dtos/cage_dto.dart';
-import 'package:birdbreeder/features/ressourcen_center/data/dtos/species_dto.dart';
+import 'package:birdbreeder/models/bird/dtos/bird_dto.dart';
+import 'package:birdbreeder/models/breeding/dtos/breeding_pair_dto.dart';
+import 'package:birdbreeder/models/breeding/dtos/brood_dto.dart';
+import 'package:birdbreeder/models/contact/dtos/contact_dto.dart';
+import 'package:birdbreeder/models/egg/dtos/egg_dto.dart';
+import 'package:birdbreeder/models/finance/dtos/finance_category_dto.dart';
+import 'package:birdbreeder/models/finance/dtos/finance_dto.dart';
+import 'package:birdbreeder/models/ressources/dto/bird_color_dto.dart';
+import 'package:birdbreeder/models/ressources/dto/cage_dto.dart';
+import 'package:birdbreeder/models/ressources/dto/species_dto.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/services/pocketbase_service.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
@@ -29,7 +29,6 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
                   .toList(),
             );
 
-            break;
           case 'create':
             emitLoaded(
               cages: [
@@ -37,14 +36,12 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
                 resolveCageDto(cage),
               ],
             );
-            break;
           case 'delete':
             emitLoaded(
               cages: state.birdBreederResources.cages
                   .where((e) => e.id != cage.id)
                   .toList(),
             );
-            break;
         }
       },
     );
@@ -68,7 +65,6 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
                   .map((e) => e.id == color.id ? resolveColorDto(color) : e)
                   .toList(),
             );
-            break;
           case 'create':
             emitLoaded(
               colors: [
@@ -76,14 +72,12 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
                 resolveColorDto(color),
               ],
             );
-            break;
           case 'delete':
             emitLoaded(
               colors: state.birdBreederResources.colors
                   .where((e) => e.id != color.id)
                   .toList(),
             );
-            break;
         }
       },
     );
@@ -109,7 +103,6 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
                   )
                   .toList(),
             );
-            break;
           case 'create':
             emitLoaded(
               contacts: [
@@ -117,14 +110,12 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
                 resolveContactDto(contact),
               ],
             );
-            break;
           case 'delete':
             emitLoaded(
               contacts: state.birdBreederResources.contacts
                   .where((e) => e.id != contact.id)
                   .toList(),
             );
-            break;
         }
       },
     );
@@ -151,7 +142,6 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
                   .toList(),
             );
 
-            break;
           case 'create':
             emitLoaded(
               species: [
@@ -159,14 +149,12 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
                 resolveSpeciesDto(species),
               ],
             );
-            break;
           case 'delete':
             emitLoaded(
               species: state.birdBreederResources.species
                   .where((e) => e.id != species.id)
                   .toList(),
             );
-            break;
         }
       },
     );
@@ -194,7 +182,6 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
                   )
                   .toList(),
             );
-            break;
           case 'create':
             emitLoaded(
               breedingPairs: [
@@ -202,14 +189,12 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
                 resolveBreedingPairDto(breedingPair),
               ],
             );
-            break;
           case 'delete':
             emitLoaded(
               breedingPairs: state.birdBreederResources.breedingPairs
                   .where((e) => e.id != breedingPair.id)
                   .toList(),
             );
-            break;
         }
       },
     );
@@ -233,7 +218,6 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
                   .map((e) => e.id == bird.id ? resolveBirdDto(bird) : e)
                   .toList(),
             );
-            break;
           case 'create':
             emitLoaded(
               birds: [
@@ -241,14 +225,12 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
                 resolveBirdDto(bird),
               ],
             );
-            break;
           case 'delete':
             emitLoaded(
               birds: state.birdBreederResources.birds
                   .where((e) => e.id != bird.id)
                   .toList(),
             );
-            break;
         }
       },
     );
@@ -274,7 +256,6 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
                   )
                   .toList(),
             );
-            break;
           case 'create':
             emitLoaded(
               broods: [
@@ -282,14 +263,12 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
                 resolveBroodDto(brood),
               ],
             );
-            break;
           case 'delete':
             emitLoaded(
               broods: state.birdBreederResources.broods
                   .where((e) => e.id != brood.id)
                   .toList(),
             );
-            break;
         }
       },
     );
@@ -313,7 +292,6 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
                   .map((e) => e.id == egg.id ? resolveEggDto(egg) : e)
                   .toList(),
             );
-            break;
           case 'create':
             emitLoaded(
               eggs: [
@@ -321,14 +299,12 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
                 resolveEggDto(egg),
               ],
             );
-            break;
           case 'delete':
             emitLoaded(
               eggs: state.birdBreederResources.eggs
                   .where((e) => e.id != egg.id)
                   .toList(),
             );
-            break;
         }
       },
     );
@@ -355,7 +331,6 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
                   )
                   .toList(),
             );
-            break;
           case 'create':
             emitLoaded(
               financesCategories: [
@@ -363,14 +338,12 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
                 resolveFinancesCategoriesDto(cat),
               ],
             );
-            break;
           case 'delete':
             emitLoaded(
               financesCategories: state.birdBreederResources.financesCategories
                   .where((e) => e.id != cat.id)
                   .toList(),
             );
-            break;
         }
       },
     );
@@ -394,7 +367,6 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
                   .map((e) => e.id == cat.id ? resolveFinancesDto(cat) : e)
                   .toList(),
             );
-            break;
           case 'create':
             emitLoaded(
               finances: [
@@ -402,14 +374,12 @@ extension BirdBreederSubscriptionExtension on BirdBreederCubit {
                 resolveFinancesDto(cat),
               ],
             );
-            break;
           case 'delete':
             emitLoaded(
               finances: state.birdBreederResources.finances
                   .where((e) => e.id != cat.id)
                   .toList(),
             );
-            break;
         }
       },
     );

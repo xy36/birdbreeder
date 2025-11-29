@@ -1,12 +1,12 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/cage_extension.dart';
-import 'package:birdbreeder/features/birds/domain/models/egg.dart';
-import 'package:birdbreeder/features/breedings/domain/models/brood.dart';
-import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/models/brood_status.dart';
-import 'package:birdbreeder/features/ressourcen_center/domain/models/cage.dart';
+import 'package:birdbreeder/models/bird_breeder_resources.dart';
+import 'package:birdbreeder/models/breeding/brood_status.dart';
+import 'package:birdbreeder/models/breeding/entity/brood.dart';
+import 'package:birdbreeder/models/egg/entity/egg.dart';
+import 'package:birdbreeder/models/ressources/entity/cage.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
-import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/models/bird_breeder_resources.dart';
 
 extension BroodListExtension on List<Brood> {
   Brood? findById(String id) {

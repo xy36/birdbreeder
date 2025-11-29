@@ -1,14 +1,14 @@
 import 'dart:ui';
 
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/birds/domain/models/bird.dart';
-import 'package:birdbreeder/features/birds/domain/models/egg.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/birds_overview_screen.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_filter_cubit.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_search_cubit.dart';
-import 'package:birdbreeder/features/birds/presentation/birds_overview/models/bird_filter.dart';
-import 'package:birdbreeder/features/breedings/domain/models/brood.dart';
-import 'package:birdbreeder/features/breedings/presentation/breeding_pair_details/broods_tab/egg_tile.dart';
+import 'package:birdbreeder/features/breedings/breeding_pair_details/broods_tab/egg_tile.dart';
+import 'package:birdbreeder/models/bird/bird_filter.dart';
+import 'package:birdbreeder/models/bird/entity/bird.dart';
+import 'package:birdbreeder/models/breeding/entity/brood.dart';
+import 'package:birdbreeder/models/egg/entity/egg.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/services/screen_size.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
@@ -201,11 +201,11 @@ Future<Bird?> onPickBird(BuildContext context, {BirdFilter? birdFilter}) async {
 
 Future<T?> promptValueSelector<T>(
   BuildContext context, {
-  T? initialValue,
   required List<T> values,
   required String title,
   required Widget Function(BuildContext context, T item, int index) itemBuilder,
   required bool Function(T item, String filter)? filterFn,
+  T? initialValue,
   Future<T?> Function(String value)? onAdd,
 }) async {
   FocusManager.instance.primaryFocus?.unfocus();

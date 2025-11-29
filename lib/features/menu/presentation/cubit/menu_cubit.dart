@@ -1,4 +1,4 @@
-import 'package:birdbreeder/features/menu/domain/entities/menu_pages.dart';
+import 'package:birdbreeder/models/routing/menu_pages.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

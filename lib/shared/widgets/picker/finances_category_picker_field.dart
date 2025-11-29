@@ -1,6 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/birds/domain/models/finance_category.dart';
-import 'package:birdbreeder/features/birds/domain/models/finance_category_kind.dart';
+import 'package:birdbreeder/models/finance/entity/finance_category.dart';
+import 'package:birdbreeder/models/finance/finance_category_kind.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/widgets/generic_picker_field.dart';
 

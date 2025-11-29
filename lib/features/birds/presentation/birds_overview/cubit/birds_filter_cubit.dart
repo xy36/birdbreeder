@@ -1,6 +1,6 @@
 import 'package:birdbreeder/core/extensions/birds_extension.dart';
-import 'package:birdbreeder/features/birds/domain/models/bird.dart';
-import 'package:birdbreeder/features/birds/presentation/birds_overview/models/bird_filter.dart';
+import 'package:birdbreeder/models/bird/bird_filter.dart';
+import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BirdsFilterCubit extends Cubit<BirdFilter> {
@@ -51,7 +51,6 @@ class BirdsFilterCubit extends Cubit<BirdFilter> {
           if (bd == null) return -1;
           return bd.compareTo(ad);
         });
-        break;
 
       case BirdSort.ringAsc:
         filtered.sort(
@@ -60,7 +59,6 @@ class BirdsFilterCubit extends Cubit<BirdFilter> {
             b.ringNumber ?? '',
           ),
         );
-        break;
 
       case BirdSort.updatedDesc:
         filtered.sort((a, b) {
@@ -68,7 +66,6 @@ class BirdsFilterCubit extends Cubit<BirdFilter> {
           final bu = b.updatedAt ?? DateTime.fromMillisecondsSinceEpoch(0);
           return bu.compareTo(au); // newest first
         });
-        break;
     }
 
     return filtered;

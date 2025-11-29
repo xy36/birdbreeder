@@ -1,5 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/ressourcen_center/domain/models/species.dart';
+import 'package:birdbreeder/models/ressources/entity/species.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 
@@ -27,7 +27,7 @@ enum ChipType {
 }
 
 class GenericChip extends StatelessWidget {
-  const GenericChip({super.key, required this.label, required this.type});
+  const GenericChip({required this.label, required this.type, super.key});
 
   final String label;
 

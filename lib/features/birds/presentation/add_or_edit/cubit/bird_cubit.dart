@@ -1,9 +1,9 @@
-import 'package:birdbreeder/features/birds/domain/models/bird.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/cubit/bird_cubit_event.dart';
-import 'package:birdbreeder/features/birds/presentation/add_or_edit/models/bird_mode.dart';
-import 'package:birdbreeder/features/ressourcen_center/domain/models/bird_color.dart';
-import 'package:birdbreeder/features/ressourcen_center/domain/models/cage.dart';
-import 'package:birdbreeder/features/ressourcen_center/domain/models/species.dart';
+import 'package:birdbreeder/models/bird/bird_mode.dart';
+import 'package:birdbreeder/models/bird/entity/bird.dart';
+import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
+import 'package:birdbreeder/models/ressources/entity/cage.dart';
+import 'package:birdbreeder/models/ressources/entity/species.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_presentation/bloc_presentation.dart';

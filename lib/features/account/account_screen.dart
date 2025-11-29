@@ -1,6 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/models/authentication/entity/user.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
-import 'package:birdbreeder/services/authentication/models/user.dart';
 import 'package:birdbreeder/services/injection.dart';
 
 class AccountScreen extends StatelessWidget {
@@ -32,7 +32,7 @@ class AccountScreen extends StatelessWidget {
 }
 
 class UserWidget extends StatelessWidget {
-  const UserWidget({super.key, required this.user});
+  const UserWidget({required this.user, super.key});
 
   final User? user;
 

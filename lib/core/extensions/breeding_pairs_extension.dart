@@ -1,10 +1,10 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/birds_extension.dart';
 import 'package:birdbreeder/core/extensions/cage_extension.dart';
-import 'package:birdbreeder/features/birds/domain/models/bird.dart';
-import 'package:birdbreeder/features/breedings/domain/models/breeding_pair.dart';
-import 'package:birdbreeder/features/breedings/domain/models/brood.dart';
-import 'package:birdbreeder/features/ressourcen_center/domain/models/cage.dart';
+import 'package:birdbreeder/models/bird/entity/bird.dart';
+import 'package:birdbreeder/models/breeding/entity/breeding_pair.dart';
+import 'package:birdbreeder/models/breeding/entity/brood.dart';
+import 'package:birdbreeder/models/ressources/entity/cage.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 

@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,222 +9,290 @@ part of 'menu_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$MenuState {
-  MenuPage get page => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(MenuPage page) loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(MenuPage page)? loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(MenuPage page)? loaded,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(MenuLoaded value) loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(MenuLoaded value)? loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(MenuLoaded value)? loaded,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  MenuPage get page;
 
   /// Create a copy of MenuState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $MenuStateCopyWith<MenuState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $MenuStateCopyWith<$Res> {
-  factory $MenuStateCopyWith(MenuState value, $Res Function(MenuState) then) =
-      _$MenuStateCopyWithImpl<$Res, MenuState>;
-  @useResult
-  $Res call({MenuPage page});
-}
-
-/// @nodoc
-class _$MenuStateCopyWithImpl<$Res, $Val extends MenuState>
-    implements $MenuStateCopyWith<$Res> {
-  _$MenuStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of MenuState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? page = null,
-  }) {
-    return _then(_value.copyWith(
-      page: null == page
-          ? _value.page
-          : page // ignore: cast_nullable_to_non_nullable
-              as MenuPage,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$MenuLoadedImplCopyWith<$Res>
-    implements $MenuStateCopyWith<$Res> {
-  factory _$$MenuLoadedImplCopyWith(
-          _$MenuLoadedImpl value, $Res Function(_$MenuLoadedImpl) then) =
-      __$$MenuLoadedImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({MenuPage page});
-}
-
-/// @nodoc
-class __$$MenuLoadedImplCopyWithImpl<$Res>
-    extends _$MenuStateCopyWithImpl<$Res, _$MenuLoadedImpl>
-    implements _$$MenuLoadedImplCopyWith<$Res> {
-  __$$MenuLoadedImplCopyWithImpl(
-      _$MenuLoadedImpl _value, $Res Function(_$MenuLoadedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of MenuState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? page = null,
-  }) {
-    return _then(_$MenuLoadedImpl(
-      page: null == page
-          ? _value.page
-          : page // ignore: cast_nullable_to_non_nullable
-              as MenuPage,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$MenuLoadedImpl implements MenuLoaded {
-  const _$MenuLoadedImpl({required this.page});
-
-  @override
-  final MenuPage page;
-
-  @override
-  String toString() {
-    return 'MenuState.loaded(page: $page)';
-  }
+      _$MenuStateCopyWithImpl<MenuState>(this as MenuState, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MenuLoadedImpl &&
+            other is MenuState &&
             (identical(other.page, page) || other.page == page));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, page);
 
+  @override
+  String toString() {
+    return 'MenuState(page: $page)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $MenuStateCopyWith<$Res> {
+  factory $MenuStateCopyWith(MenuState value, $Res Function(MenuState) _then) =
+      _$MenuStateCopyWithImpl;
+  @useResult
+  $Res call({MenuPage page});
+}
+
+/// @nodoc
+class _$MenuStateCopyWithImpl<$Res> implements $MenuStateCopyWith<$Res> {
+  _$MenuStateCopyWithImpl(this._self, this._then);
+
+  final MenuState _self;
+  final $Res Function(MenuState) _then;
+
   /// Create a copy of MenuState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
   @pragma('vm:prefer-inline')
-  _$$MenuLoadedImplCopyWith<_$MenuLoadedImpl> get copyWith =>
-      __$$MenuLoadedImplCopyWithImpl<_$MenuLoadedImpl>(this, _$identity);
-
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(MenuPage page) loaded,
+  $Res call({
+    Object? page = null,
   }) {
-    return loaded(page);
+    return _then(_self.copyWith(
+      page: null == page
+          ? _self.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as MenuPage,
+    ));
   }
+}
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(MenuPage page)? loaded,
-  }) {
-    return loaded?.call(page);
-  }
+/// Adds pattern-matching-related methods to [MenuState].
+extension MenuStatePatterns on MenuState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(MenuPage page)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(page);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(MenuLoaded value) loaded,
-  }) {
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(MenuLoaded value)? loaded,
-  }) {
-    return loaded?.call(this);
-  }
-
-  @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MenuLoaded value)? loaded,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    final _that = this;
+    switch (_that) {
+      case MenuLoaded() when loaded != null:
+        return loaded(_that);
+      case _:
+        return orElse();
     }
-    return orElse();
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MenuLoaded value) loaded,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case MenuLoaded():
+        return loaded(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MenuLoaded value)? loaded,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case MenuLoaded() when loaded != null:
+        return loaded(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(MenuPage page)? loaded,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case MenuLoaded() when loaded != null:
+        return loaded(_that.page);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(MenuPage page) loaded,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case MenuLoaded():
+        return loaded(_that.page);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(MenuPage page)? loaded,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case MenuLoaded() when loaded != null:
+        return loaded(_that.page);
+      case _:
+        return null;
+    }
   }
 }
 
-abstract class MenuLoaded implements MenuState {
-  const factory MenuLoaded({required final MenuPage page}) = _$MenuLoadedImpl;
+/// @nodoc
+
+class MenuLoaded implements MenuState {
+  const MenuLoaded({required this.page});
 
   @override
-  MenuPage get page;
+  final MenuPage page;
 
   /// Create a copy of MenuState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MenuLoadedImplCopyWith<_$MenuLoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $MenuLoadedCopyWith<MenuLoaded> get copyWith =>
+      _$MenuLoadedCopyWithImpl<MenuLoaded>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is MenuLoaded &&
+            (identical(other.page, page) || other.page == page));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, page);
+
+  @override
+  String toString() {
+    return 'MenuState.loaded(page: $page)';
+  }
 }
+
+/// @nodoc
+abstract mixin class $MenuLoadedCopyWith<$Res>
+    implements $MenuStateCopyWith<$Res> {
+  factory $MenuLoadedCopyWith(
+          MenuLoaded value, $Res Function(MenuLoaded) _then) =
+      _$MenuLoadedCopyWithImpl;
+  @override
+  @useResult
+  $Res call({MenuPage page});
+}
+
+/// @nodoc
+class _$MenuLoadedCopyWithImpl<$Res> implements $MenuLoadedCopyWith<$Res> {
+  _$MenuLoadedCopyWithImpl(this._self, this._then);
+
+  final MenuLoaded _self;
+  final $Res Function(MenuLoaded) _then;
+
+  /// Create a copy of MenuState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? page = null,
+  }) {
+    return _then(MenuLoaded(
+      page: null == page
+          ? _self.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as MenuPage,
+    ));
+  }
+}
+
+// dart format on

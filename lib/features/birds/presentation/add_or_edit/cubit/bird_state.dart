@@ -1,7 +1,7 @@
 part of 'bird_cubit.dart';
 
 @freezed
-class BirdState with _$BirdState {
+abstract class BirdState with _$BirdState {
   // const factory BirdState.initial({
   //   required Bird bird,
   //   required BirdMode mode,

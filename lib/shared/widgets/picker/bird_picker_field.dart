@@ -1,18 +1,18 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/birds/domain/models/bird.dart';
-import 'package:birdbreeder/features/birds/presentation/birds_overview/models/bird_filter.dart';
+import 'package:birdbreeder/models/bird/bird_filter.dart';
+import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 
 class BirdPickerField extends StatelessWidget {
   const BirdPickerField({
+    required this.label,
     super.key,
     this.initialValue,
     this.enabled = true,
     this.onChanged,
     this.validator,
     this.birdFilter = const BirdFilter(),
-    required this.label,
     this.icon,
   });
 
