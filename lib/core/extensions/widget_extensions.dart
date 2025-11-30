@@ -1,3 +1,4 @@
+import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/material.dart';
 
 extension WidgetBadgeExtension on Widget {
@@ -29,6 +30,26 @@ extension WidgetBadgeExtension on Widget {
           ),
         ),
       ],
+    );
+  }
+}
+
+extension RefresherExtension on Widget {
+  Widget withRefresher({
+    required Future<void> Function() onRefresh,
+  }) {
+    return CustomRefreshIndicator(
+      onRefresh: onRefresh,
+      builder: (context, child, controller) => Stack(
+        children: [
+          child,
+          if (controller.isLoading)
+            const Center(
+              child: CircularProgressIndicator(),
+            ),
+        ],
+      ),
+      child: this,
     );
   }
 }

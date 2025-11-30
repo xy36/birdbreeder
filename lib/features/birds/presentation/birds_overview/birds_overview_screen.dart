@@ -155,6 +155,12 @@ class _BirdsOverviewScreenState extends State<BirdsOverviewScreen> {
                               onDelete: () => delete(searchedBirds[i]),
                               onEdit: () => openBird(searchedBirds[i]),
                             ),
+                          ).withRefresher(
+                            onRefresh: () async {
+                              await context
+                                  .read<BirdBreederCubit>()
+                                  .fetchBirds();
+                            },
                           );
                         },
                       ),

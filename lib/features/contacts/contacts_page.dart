@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/core/extensions/widget_extensions.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/birds_overview_header.dart';
 import 'package:birdbreeder/features/contacts/cubit/contact_search_cubit.dart';
@@ -94,6 +95,10 @@ class _ContactsPageState extends State<ContactsPage> {
                             );
                       },
                     ),
+                  ).withRefresher(
+                    onRefresh: () async {
+                      await context.read<BirdBreederCubit>().fetchContacts();
+                    },
                   ),
                 ),
               ],

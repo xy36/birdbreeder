@@ -3,11 +3,13 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/bird_color_extension.dart';
 import 'package:birdbreeder/core/extensions/cage_extension.dart';
 import 'package:birdbreeder/core/extensions/species_extension.dart';
+import 'package:birdbreeder/core/extensions/widget_extensions.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/birds_overview_header.dart';
 import 'package:birdbreeder/models/contact/entity/contact.dart';
 import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';
 import 'package:birdbreeder/models/ressources/entity/species.dart';
+import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/icons.dart';
 
 /// Generic list for a resource type (Species/Cages/Colors).
@@ -53,6 +55,9 @@ class _ResourceListState<T> extends State<ResourceList<T>> {
         ),
         Expanded(
           child: ListView.separated(
+            physics: const AlwaysScrollableScrollPhysics(
+              parent: BouncingScrollPhysics(),
+            ),
             itemCount: filtered.length,
             separatorBuilder: (_, __) => const Divider(
               height: 1,
@@ -72,6 +77,10 @@ class _ResourceListState<T> extends State<ResourceList<T>> {
                       onTap: () => widget.onEdit(item),
                     );
                   },
+          ).withRefresher(
+            onRefresh: () async {
+              await context.read<BirdBreederCubit>().fetchAllResources();
+            },
           ),
         ),
       ],

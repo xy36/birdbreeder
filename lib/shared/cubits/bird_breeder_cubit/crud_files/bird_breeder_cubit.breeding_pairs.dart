@@ -4,9 +4,9 @@ extension BirdBreederCubitBreedingPairsX on BirdBreederCubit {
   Future<BreedingPair?> addBreedingPair(BreedingPair breedingPair) async {
     push(loading());
     final result = await _breedingsRepository.create(breedingPair.toDto());
+    push(loaded());
     if (result.isError) {
       presentAddFailed();
-      push(loaded());
       return null;
     }
     return result.asValue!.value.toModel();
@@ -18,9 +18,9 @@ extension BirdBreederCubitBreedingPairsX on BirdBreederCubit {
       breedingPair.id,
       breedingPair.toDto(),
     );
+    push(loaded());
     if (result.isError) {
       presentUpdateFailed();
-      push(loaded());
       return null;
     }
     return result.asValue!.value.toModel();
@@ -29,9 +29,9 @@ extension BirdBreederCubitBreedingPairsX on BirdBreederCubit {
   Future<void> deleteBreedingPair(BreedingPair breedingPair) async {
     push(loading());
     final result = await _breedingsRepository.delete(breedingPair.id);
+    push(loaded());
     if (result.isError) {
       presentDeleteFailed();
-      push(loaded());
       return;
     }
   }

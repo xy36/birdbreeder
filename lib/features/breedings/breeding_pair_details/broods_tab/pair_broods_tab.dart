@@ -1,9 +1,11 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/brood_extension.dart';
+import 'package:birdbreeder/core/extensions/widget_extensions.dart';
 import 'package:birdbreeder/features/breedings/breeding_pair_details/broods_tab/add_brood_tile.dart';
 import 'package:birdbreeder/features/breedings/breeding_pair_details/widgets/brood_card.dart';
 import 'package:birdbreeder/models/breeding/entity/breeding_pair.dart';
 import 'package:birdbreeder/models/breeding/entity/brood.dart';
+import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 
 class PairBroodsTab extends StatelessWidget {
   const PairBroodsTab({
@@ -42,6 +44,10 @@ class PairBroodsTab extends StatelessWidget {
             brood: brood,
             breedingPair: breedingPair,
           );
+        },
+      ).withRefresher(
+        onRefresh: () async {
+          await context.read<BirdBreederCubit>().fetchBroods();
         },
       ),
     );

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/mapper_extensions.dart';
 import 'package:birdbreeder/models/bird/dtos/bird_dto.dart';
@@ -21,10 +23,7 @@ import 'package:birdbreeder/models/ressources/dto/species_dto.dart';
 import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';
 import 'package:birdbreeder/models/ressources/entity/species.dart';
-import 'package:birdbreeder/services/injection.dart';
-import 'package:birdbreeder/services/pocketbase_service.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit_event.dart';
-import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_extension.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_resolver.dart';
 import 'package:birdbreeder/shared/repositories/ressource_repository.dart';
 import 'package:bloc_presentation/bloc_presentation.dart';
@@ -59,7 +58,7 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   ) : super(
           initialState(),
         ) {
-    initialLoad();
+    unawaited(initialLoad());
   }
 
   static BirdBreederState initialState() => const BirdBreederState.initial(
@@ -88,7 +87,6 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   final RessourceRepository<FinanceDto> _financesRepository;
   final RessourceRepository<FinanceCategoryDto> _financesCategoriesRepository;
 
-// Public proxy so extensions can trigger state changes
   void push(BirdBreederState newState) => emit(newState);
 
   BirdBreederState loading() =>
@@ -118,19 +116,16 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
       ),
     );
 
-    await s1.get<PocketBaseService>().unsubscribeFromAll();
-    await subscribeToAll();
-
-    final birdsF = _fetchBirds();
-    final pairsF = _fetchBreedingPairs();
-    final broodsF = _fetchBroods();
-    final cagesF = _fetchCages();
-    final colorsF = _fetchColors();
-    final contactsF = _fetchContacts();
-    final speciesF = _fetchSpecies();
-    final eggsF = _fetchEggs();
-    final financesCategoriesF = _fetchFinancesCategories();
-    final financesF = _fetchFinances();
+    final birdsF = fetchBirds();
+    final pairsF = fetchBreedingPairs();
+    final broodsF = fetchBroods();
+    final cagesF = fetchCages();
+    final colorsF = fetchColors();
+    final contactsF = fetchContacts();
+    final speciesF = fetchSpecies();
+    final eggsF = fetchEggs();
+    final financesCategoriesF = fetchFinancesCategories();
+    final financesF = fetchFinances();
 
     await Future.wait(
       [
@@ -204,76 +199,147 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
     );
   }
 
-  @override
-  Future<void> close() async {
-    await s1.get<PocketBaseService>().unsubscribeFromAll();
-
-    return super.close();
-  }
-
-  // --- Helpers ---
-
-  Future<void> subscribeToAll() async {
-    subscribeToBirds();
-    subscribeToCages();
-    subscribeToColors();
-    subscribeToContacts();
-    subscribeToSpecies();
-    subscribeToBreedingPairs();
-    subscribeToBroods();
-    subscribeToEggs();
-    subscribeToFinances();
-    subscribeToFinancesCategories();
-  }
-
-  Future<List<Bird>> _fetchBirds() async {
+  Future<List<Bird>> fetchBirds() async {
     final res = await _birdsRepository.getAll();
-    return res.asValue?.value.map(resolveBirdDto).toList() ?? const [];
+
+    final birds = res.asValue?.value.map(resolveBirdDto).toList() ?? const [];
+
+    emitLoaded(
+      birds: birds,
+    );
+
+    return birds;
   }
 
-  Future<List<BreedingPair>> _fetchBreedingPairs() async {
+  Future<List<BreedingPair>> fetchBreedingPairs() async {
     final res = await _breedingsRepository.getAll();
-    return res.asValue?.value.map(resolveBreedingPairDto).toList() ?? const [];
+
+    final breedingPairs =
+        res.asValue?.value.map(resolveBreedingPairDto).toList() ?? const [];
+
+    emitLoaded(
+      breedingPairs: breedingPairs,
+    );
+
+    return breedingPairs;
   }
 
-  Future<List<Brood>> _fetchBroods() async {
+  Future<List<Brood>> fetchBroods() async {
     final res = await _broodsRepository.getAll();
-    return res.asValue?.value.map(resolveBroodDto).toList() ?? const [];
+    final broods = res.asValue?.value.map(resolveBroodDto).toList() ?? const [];
+
+    emitLoaded(
+      broods: broods,
+    );
+
+    return broods;
   }
 
-  Future<List<Cage>> _fetchCages() async {
+  Future<List<Cage>> fetchCages() async {
     final res = await _cagesRepository.getAll();
-    return res.asValue?.value.map(resolveCageDto).toList() ?? const [];
+    final cages = res.asValue?.value.map(resolveCageDto).toList() ?? const [];
+
+    emitLoaded(
+      cages: cages,
+    );
+
+    return cages;
   }
 
-  Future<List<BirdColor>> _fetchColors() async {
+  Future<List<BirdColor>> fetchColors() async {
     final res = await _birdColorsRepository.getAll();
-    return res.asValue?.value.map(resolveColorDto).toList() ?? const [];
+    final colors = res.asValue?.value.map(resolveColorDto).toList() ?? const [];
+
+    emitLoaded(
+      colors: colors,
+    );
+
+    return colors;
   }
 
-  Future<List<Contact>> _fetchContacts() async {
+  Future<List<Contact>> fetchContacts() async {
     final res = await _contactsRepository.getAll();
-    return res.asValue?.value.map(resolveContactDto).toList() ?? const [];
+    final contacts =
+        res.asValue?.value.map(resolveContactDto).toList() ?? const [];
+
+    emitLoaded(
+      contacts: contacts,
+    );
+
+    return contacts;
   }
 
-  Future<List<Species>> _fetchSpecies() async {
+  Future<List<Species>> fetchAllResources() async {
+    final speciesF = fetchSpecies();
+    final cagesF = fetchCages();
+    final colorsF = fetchColors();
+
+    await Future.wait(
+      [
+        speciesF,
+        cagesF,
+        colorsF,
+      ],
+    );
+
+    final species = await speciesF;
+    final cages = await cagesF;
+    final colors = await colorsF;
+
+    emitLoaded(
+      species: species,
+      cages: cages,
+      colors: colors,
+    );
+
+    return species;
+  }
+
+  Future<List<Species>> fetchSpecies() async {
     final res = await _speciesRepository.getAll();
-    return res.asValue?.value.map(resolveSpeciesDto).toList() ?? const [];
+    final species =
+        res.asValue?.value.map(resolveSpeciesDto).toList() ?? const [];
+
+    emitLoaded(
+      species: species,
+    );
+
+    return species;
   }
 
-  Future<List<Egg>> _fetchEggs() async {
+  Future<List<Egg>> fetchEggs() async {
     final res = await _eggsRepository.getAll();
-    return res.asValue?.value.map(resolveEggDto).toList() ?? const [];
+    final eggs = res.asValue?.value.map(resolveEggDto).toList() ?? const [];
+
+    emitLoaded(
+      eggs: eggs,
+    );
+
+    return eggs;
   }
 
-  Future<List<FinanceCategory>> _fetchFinancesCategories() async {
+  Future<List<FinanceCategory>> fetchFinancesCategories() async {
     final res = await _financesCategoriesRepository.getAll();
-    return res.asValue?.value.map(resolveFinancesCategoriesDto).toList() ??
-        const [];
+    final financesCategories =
+        res.asValue?.value.map(resolveFinancesCategoriesDto).toList() ??
+            const [];
+
+    emitLoaded(
+      financesCategories: financesCategories,
+    );
+
+    return financesCategories;
   }
 
-  Future<List<Finance>> _fetchFinances() async {
+  Future<List<Finance>> fetchFinances() async {
     final res = await _financesRepository.getAll();
-    return res.asValue?.value.map(resolveFinancesDto).toList() ?? const [];
+    final finances =
+        res.asValue?.value.map(resolveFinancesDto).toList() ?? const [];
+
+    emitLoaded(
+      finances: finances,
+    );
+
+    return finances;
   }
 }

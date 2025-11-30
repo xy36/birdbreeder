@@ -6,9 +6,9 @@ extension BirdBreederCubitFinancesX on BirdBreederCubit {
   ) async {
     push(loading());
     final result = await _financesRepository.create(finance.toDto());
+    push(loaded());
     if (result.isError) {
       presentAddFailed();
-      push(loaded());
       return null;
     }
     return result.asValue!.value.toModel();
@@ -22,9 +22,9 @@ extension BirdBreederCubitFinancesX on BirdBreederCubit {
       finance.id,
       finance.toDto(),
     );
+    push(loaded());
     if (result.isError) {
       presentUpdateFailed();
-      push(loaded());
       return null;
     }
     return result.asValue!.value.toModel();
@@ -33,9 +33,9 @@ extension BirdBreederCubitFinancesX on BirdBreederCubit {
   Future<void> deleteFinances(Finance finance) async {
     push(loading());
     final result = await _financesRepository.delete(finance.id);
+    push(loaded());
     if (result.isError) {
       presentDeleteFailed();
-      push(loaded());
       return;
     }
   }
@@ -48,9 +48,9 @@ extension BirdBreederCubitFinancesX on BirdBreederCubit {
       title: '${finance.title} (copy)',
     );
     final result = await _financesRepository.create(newFinance.toDto());
+    push(loaded());
     if (result.isError) {
       presentAddFailed();
-      push(loaded());
       return null;
     }
     return result.asValue!.value.toModel();

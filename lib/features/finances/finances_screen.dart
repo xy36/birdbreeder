@@ -1,5 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/finances_extension.dart';
+import 'package:birdbreeder/core/extensions/widget_extensions.dart';
 import 'package:birdbreeder/features/finances/widgets/add_finances_sheet.dart';
 import 'package:birdbreeder/features/finances/widgets/finance_entry_card.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
@@ -45,6 +46,10 @@ class _FinancesScreenState extends State<FinancesScreen>
                   finance: entry,
                   category: entry.categoryResolved!,
                 );
+              },
+            ).withRefresher(
+              onRefresh: () async {
+                await context.read<BirdBreederCubit>().fetchFinances();
               },
             );
           },
