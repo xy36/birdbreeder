@@ -76,7 +76,7 @@ class EggTile extends StatelessWidget {
                     ],
                   ),
                 ),
-                _moreMenu(context, egg),
+                EggActions.buildMenu(context, egg),
               ],
             ),
             Row(
@@ -145,15 +145,6 @@ class EggTile extends StatelessWidget {
           style: Theme.of(context).textTheme.bodySmall?.copyWith(color: fg),
         ),
       ],
-    );
-  }
-
-  Widget _moreMenu(BuildContext context, Egg egg) {
-    return PopupMenuButton<EggActions>(
-      onSelected: (v) => v.executeAction(context, egg),
-      itemBuilder: (context) =>
-          EggActions.values.map((action) => action.getItem(context)).toList(),
-      icon: const Icon(AppIcons.more),
     );
   }
 }

@@ -79,22 +79,7 @@ class BroodCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  moreMenu<Brood>(
-                    context,
-                    brood,
-                    BroodActions.values.map((action) {
-                      return (
-                        icon: action.icon,
-                        label: action.getLabel(context),
-                        action: (BuildContext ctx, Brood brood) =>
-                            action.executeAction(
-                              ctx,
-                              brood,
-                              breedingPair,
-                            ),
-                      );
-                    }).toList(),
-                  ),
+                  BroodActions.buildMenu(context, brood, breedingPair),
                 ],
               ),
             ],

@@ -341,7 +341,7 @@ Widget moreMenu<T>(
   T value,
   List<
           ({
-            Icon icon,
+            Icon? icon,
             String label,
             void Function(BuildContext context, T value) action
           })>
@@ -353,20 +353,23 @@ Widget moreMenu<T>(
         context: context,
         showDragHandle: true,
         builder: (_) => SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: actions
-                .map(
-                  (action) => ListTile(
-                    leading: action.icon,
-                    title: Text(action.label),
-                    onTap: () {
-                      Navigator.pop(context);
-                      action.action(context, value);
-                    },
-                  ),
-                )
-                .toList(),
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: actions
+                  .map(
+                    (action) => ListTile(
+                      leading: action.icon,
+                      title: Text(action.label),
+                      onTap: () {
+                        Navigator.pop(context);
+                        action.action(context, value);
+                      },
+                    ),
+                  )
+                  .toList(),
+            ),
           ),
         ),
       );

@@ -4,7 +4,6 @@ import 'package:birdbreeder/models/bird/bird_actions.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/sex_badge.dart';
-import 'package:birdbreeder/shared/widgets/utils.dart';
 
 /// Reusable card widget for displaying a bird in a list/grid.
 class BirdCard extends StatelessWidget {
@@ -63,17 +62,7 @@ class BirdCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   ...statusChips,
-                  moreMenu<Bird>(
-                    context,
-                    bird,
-                    BirdActions.values.map((action) {
-                      return (
-                        icon: action.icon,
-                        label: action.getLabel(context),
-                        action: action.executeAction,
-                      );
-                    }).toList(),
-                  ),
+                  BirdActions.buildMenu(context, bird),
                 ],
               ),
             ],

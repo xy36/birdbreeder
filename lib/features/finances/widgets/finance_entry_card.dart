@@ -9,7 +9,6 @@ import 'package:birdbreeder/models/finance/finances_actions.dart';
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/color_chip.dart';
 import 'package:birdbreeder/shared/widgets/meta_chip.dart';
-import 'package:birdbreeder/shared/widgets/utils.dart';
 
 class FinanceEntryCard extends StatelessWidget {
   const FinanceEntryCard({
@@ -40,7 +39,7 @@ class FinanceEntryCard extends StatelessWidget {
       surfaceTintColor: Colors.transparent,
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       child: InkWell(
-        onTap: () => FinancesActions.edit.executeAction(context, finance),
+        onTap: () => FinancesActions.edit.execute(context, finance),
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Row(
@@ -136,17 +135,7 @@ class FinanceEntryCard extends StatelessWidget {
             color: category.kind.color,
           ),
         ),
-        moreMenu<Finance>(
-          context,
-          finance,
-          FinancesActions.values.map((action) {
-            return (
-              icon: action.icon,
-              label: action.getLabel(context),
-              action: action.executeAction,
-            );
-          }).toList(),
-        ),
+        FinancesActions.buildMenu(context, finance),
       ],
     );
   }

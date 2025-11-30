@@ -8,7 +8,6 @@ import 'package:birdbreeder/models/breeding/breeding_pair_actions.dart';
 import 'package:birdbreeder/models/breeding/entity/breeding_pair.dart';
 import 'package:birdbreeder/models/breeding/entity/brood.dart';
 import 'package:birdbreeder/shared/icons.dart';
-import 'package:birdbreeder/shared/widgets/utils.dart';
 
 class BreedingPairCard extends StatelessWidget {
   BreedingPairCard({
@@ -78,17 +77,7 @@ class BreedingPairCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  moreMenu<BreedingPair>(
-                    context,
-                    breedingPair,
-                    BreedingPairActions.values.map((action) {
-                      return (
-                        icon: action.icon,
-                        label: action.getLabel(context),
-                        action: action.executeAction,
-                      );
-                    }).toList(),
-                  ),
+                  BreedingPairActions.buildMenu(context, breedingPair),
                 ],
               ),
             ],

@@ -1,17 +1,42 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/breedings/breeding_pairs/widgets/add_breeding_pair_sheet.dart';
+import 'package:birdbreeder/models/breeding/breeding_pair_actions.dart';
 import 'package:birdbreeder/models/breeding/entity/breeding_pair.dart';
 import 'package:birdbreeder/models/breeding/entity/brood.dart';
+import 'package:birdbreeder/models/item_action.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/dialogs/delete_dialog.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 
-enum BroodActions {
+enum BroodActions implements ItemAction<Brood> {
   open,
   edit,
   delete;
 
+  static Widget buildMenu(
+    BuildContext context,
+    Brood brood,
+    BreedingPair breedingPar, {
+    List<BreedingPairActions>? include,
+  }) {
+    return moreMenu<Brood>(
+      context,
+      brood,
+      values
+          .map(
+            (action) => (
+              icon: null,
+              label: action.getLabel(context),
+              action: (BuildContext ctx, Brood brood) =>
+                  action.execute(ctx, brood, extra: breedingPar),
+            ),
+          )
+          .toList(),
+    );
+  }
+
+  @override
   Icon get icon {
     return switch (this) {
       edit => const Icon(AppIcons.edit),
@@ -20,6 +45,7 @@ enum BroodActions {
     };
   }
 
+  @override
   String getLabel(BuildContext context) {
     return switch (this) {
       edit => context.tr.pop_up_menu.edit,
@@ -28,16 +54,23 @@ enum BroodActions {
     };
   }
 
-  Future<void> executeAction(
+  @override
+  Future<void> execute(
     BuildContext context,
-    Brood brood,
-    BreedingPair breedingPair,
-  ) async {
+    Brood brood, {
+    dynamic extra,
+  }) async {
+    if (extra is! BreedingPair) {
+      throw ArgumentError(
+        'Expected extra to be of type BreedingPair, but got ${extra.runtimeType}',
+      );
+    }
+
     return switch (this) {
       open => onOpenBrood(context, brood),
       edit => await openSheet<void>(
           context,
-          AddBreedingPairSheet(breedingPair: breedingPair),
+          AddBreedingPairSheet(breedingPair: extra),
         ),
       delete => {
           if (context.mounted)

@@ -13,7 +13,6 @@ import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/bird_breeder_wrapper.dart';
 import 'package:birdbreeder/shared/widgets/navigate_back_button.dart';
-import 'package:birdbreeder/shared/widgets/utils.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 final formKey = GlobalKey<FormState>();
@@ -66,16 +65,9 @@ class ContactDetailsPage extends StatelessWidget {
                     ),
                   ...switch (state.mode) {
                     ContactMode.edit => [
-                        moreMenu(
+                        ContactActions.buildMenu(
                           context,
                           state.contact,
-                          ContactActions.values.map((action) {
-                            return (
-                              icon: action.icon,
-                              label: action.getLabel(context),
-                              action: action.executeAction,
-                            );
-                          }).toList(),
                         ),
                       ],
                     ContactMode.create => [],

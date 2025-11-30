@@ -68,17 +68,7 @@ class _BreedingPairDetailsPageState extends State<BreedingPairDetailsPage>
           discardDialogEnabled: false,
         ),
         actions: [
-          moreMenu(
-            context,
-            breedingPair,
-            BreedingPairActions.values.map((action) {
-              return (
-                icon: action.icon,
-                label: action.getLabel(context),
-                action: action.executeAction,
-              );
-            }).toList(),
-          ),
+          BreedingPairActions.buildMenu(context, breedingPair),
         ],
       ),
       body: BirdBreederWrapper(
