@@ -19,6 +19,7 @@ dependencies:
   bloc: ^9.1.0
   bloc_presentation: ^1.0.0
   custom_refresh_indicator: ^4.0.1
+  pocketbase_drift: ^0.3.2
   collection: ^1.17.1
   dartx: ^1.2.0
   dropdown_search: ^6.0.2
@@ -85,4 +86,5 @@ flutter:
   assets:
     - assets/themes/
     - assets/images/
+    - assets/
 

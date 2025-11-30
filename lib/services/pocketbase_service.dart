@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/services/token_storage_service.dart';
 import 'package:flutter/foundation.dart';
-import 'package:pocketbase/pocketbase.dart';
+import 'package:flutter/services.dart';
+import 'package:pocketbase_drift/pocketbase_drift.dart';
 
 late final PocketBase pb;
 
@@ -35,18 +36,20 @@ class PocketBaseService {
   }
 
   Future<void> init() async {
+    final schema = await rootBundle.loadString('assets/pb_schema.json');
+
     final storage = s1<TokenStorageService>();
     final token = await storage.getToken();
-    final customAuthStore = AsyncAuthStore(
+    final customAuthStore = $AuthStore(
       initial: token,
       save: storage.setToken,
       clear: storage.deleteToken,
     );
-    pb = PocketBase(
+    pb = $PocketBase.database(
       'https://pocketbase.birdbreeder.de/',
       //'http://$_host:8090/',
       authStore: customAuthStore,
-    );
+    )..cacheSchema(schema);
   }
 }
 
