@@ -11,6 +11,8 @@ abstract class FinanceCategory with _$FinanceCategory {
     required String name,
     required String color,
     required FinanceCategoryKind kind,
+    DateTime? created,
+    DateTime? updated,
   }) = _FinancesCategories;
 
   factory FinanceCategory.income({

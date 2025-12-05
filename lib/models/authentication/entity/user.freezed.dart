@@ -21,6 +21,8 @@ mixin _$User {
   bool? get emailVisibility;
   String? get email;
   String? get avatar;
+  DateTime? get created;
+  DateTime? get updated;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -47,17 +49,19 @@ mixin _$User {
             (identical(other.emailVisibility, emailVisibility) ||
                 other.emailVisibility == emailVisibility) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.avatar, avatar) || other.avatar == avatar));
+            (identical(other.avatar, avatar) || other.avatar == avatar) &&
+            (identical(other.created, created) || other.created == created) &&
+            (identical(other.updated, updated) || other.updated == updated));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, firstName, lastName,
-      verified, emailVisibility, email, avatar);
+      verified, emailVisibility, email, avatar, created, updated);
 
   @override
   String toString() {
-    return 'User(id: $id, firstName: $firstName, lastName: $lastName, verified: $verified, emailVisibility: $emailVisibility, email: $email, avatar: $avatar)';
+    return 'User(id: $id, firstName: $firstName, lastName: $lastName, verified: $verified, emailVisibility: $emailVisibility, email: $email, avatar: $avatar, created: $created, updated: $updated)';
   }
 }
 
@@ -73,7 +77,9 @@ abstract mixin class $UserCopyWith<$Res> {
       bool? verified,
       bool? emailVisibility,
       String? email,
-      String? avatar});
+      String? avatar,
+      DateTime? created,
+      DateTime? updated});
 }
 
 /// @nodoc
@@ -95,6 +101,8 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? emailVisibility = freezed,
     Object? email = freezed,
     Object? avatar = freezed,
+    Object? created = freezed,
+    Object? updated = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -125,6 +133,14 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _self.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
+      created: freezed == created
+          ? _self.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updated: freezed == updated
+          ? _self.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -229,15 +245,25 @@ extension UserPatterns on User {
             bool? verified,
             bool? emailVisibility,
             String? email,
-            String? avatar)?
+            String? avatar,
+            DateTime? created,
+            DateTime? updated)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _User() when $default != null:
-        return $default(_that.id, _that.firstName, _that.lastName,
-            _that.verified, _that.emailVisibility, _that.email, _that.avatar);
+        return $default(
+            _that.id,
+            _that.firstName,
+            _that.lastName,
+            _that.verified,
+            _that.emailVisibility,
+            _that.email,
+            _that.avatar,
+            _that.created,
+            _that.updated);
       case _:
         return orElse();
     }
@@ -265,14 +291,24 @@ extension UserPatterns on User {
             bool? verified,
             bool? emailVisibility,
             String? email,
-            String? avatar)
+            String? avatar,
+            DateTime? created,
+            DateTime? updated)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _User():
-        return $default(_that.id, _that.firstName, _that.lastName,
-            _that.verified, _that.emailVisibility, _that.email, _that.avatar);
+        return $default(
+            _that.id,
+            _that.firstName,
+            _that.lastName,
+            _that.verified,
+            _that.emailVisibility,
+            _that.email,
+            _that.avatar,
+            _that.created,
+            _that.updated);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -299,14 +335,24 @@ extension UserPatterns on User {
             bool? verified,
             bool? emailVisibility,
             String? email,
-            String? avatar)?
+            String? avatar,
+            DateTime? created,
+            DateTime? updated)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _User() when $default != null:
-        return $default(_that.id, _that.firstName, _that.lastName,
-            _that.verified, _that.emailVisibility, _that.email, _that.avatar);
+        return $default(
+            _that.id,
+            _that.firstName,
+            _that.lastName,
+            _that.verified,
+            _that.emailVisibility,
+            _that.email,
+            _that.avatar,
+            _that.created,
+            _that.updated);
       case _:
         return null;
     }
@@ -323,7 +369,9 @@ class _User implements User {
       this.verified,
       this.emailVisibility,
       this.email,
-      this.avatar});
+      this.avatar,
+      this.created,
+      this.updated});
   factory _User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   @override
@@ -340,6 +388,10 @@ class _User implements User {
   final String? email;
   @override
   final String? avatar;
+  @override
+  final DateTime? created;
+  @override
+  final DateTime? updated;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -371,17 +423,19 @@ class _User implements User {
             (identical(other.emailVisibility, emailVisibility) ||
                 other.emailVisibility == emailVisibility) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.avatar, avatar) || other.avatar == avatar));
+            (identical(other.avatar, avatar) || other.avatar == avatar) &&
+            (identical(other.created, created) || other.created == created) &&
+            (identical(other.updated, updated) || other.updated == updated));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, firstName, lastName,
-      verified, emailVisibility, email, avatar);
+      verified, emailVisibility, email, avatar, created, updated);
 
   @override
   String toString() {
-    return 'User(id: $id, firstName: $firstName, lastName: $lastName, verified: $verified, emailVisibility: $emailVisibility, email: $email, avatar: $avatar)';
+    return 'User(id: $id, firstName: $firstName, lastName: $lastName, verified: $verified, emailVisibility: $emailVisibility, email: $email, avatar: $avatar, created: $created, updated: $updated)';
   }
 }
 
@@ -398,7 +452,9 @@ abstract mixin class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       bool? verified,
       bool? emailVisibility,
       String? email,
-      String? avatar});
+      String? avatar,
+      DateTime? created,
+      DateTime? updated});
 }
 
 /// @nodoc
@@ -420,6 +476,8 @@ class __$UserCopyWithImpl<$Res> implements _$UserCopyWith<$Res> {
     Object? emailVisibility = freezed,
     Object? email = freezed,
     Object? avatar = freezed,
+    Object? created = freezed,
+    Object? updated = freezed,
   }) {
     return _then(_User(
       id: null == id
@@ -450,6 +508,14 @@ class __$UserCopyWithImpl<$Res> implements _$UserCopyWith<$Res> {
           ? _self.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
+      created: freezed == created
+          ? _self.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updated: freezed == updated
+          ? _self.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }

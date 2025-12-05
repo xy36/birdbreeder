@@ -110,7 +110,7 @@ class _AddBroodSheetState extends State<AddBroodSheet> {
               ),
             ),
             BottomSheetFooter(
-              onSubmit: () async {
+              onPrimaryButton: () async {
                 final formOk = _formKey.currentState?.validate() ?? false;
                 if (!formOk) return;
 

@@ -15,6 +15,12 @@ _Finance _$FinanceFromJson(Map<String, dynamic> json) => _Finance(
       date:
           json['date'] == null ? null : DateTime.parse(json['date'] as String),
       notes: json['notes'] as String?,
+      created: json['created'] == null
+          ? null
+          : DateTime.parse(json['created'] as String),
+      updated: json['updated'] == null
+          ? null
+          : DateTime.parse(json['updated'] as String),
     );
 
 Map<String, dynamic> _$FinanceToJson(_Finance instance) => <String, dynamic>{
@@ -25,4 +31,6 @@ Map<String, dynamic> _$FinanceToJson(_Finance instance) => <String, dynamic>{
       'birdId': instance.birdId,
       'date': instance.date?.toIso8601String(),
       'notes': instance.notes,
+      'created': instance.created?.toIso8601String(),
+      'updated': instance.updated?.toIso8601String(),
     };

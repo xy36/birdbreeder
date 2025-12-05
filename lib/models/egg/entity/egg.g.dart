@@ -25,6 +25,12 @@ _Egg _$EggFromJson(Map<String, dynamic> json) => _Egg(
       speciesId: json['speciesId'] as String?,
       birdId: json['birdId'] as String?,
       notes: json['notes'] as String?,
+      created: json['created'] == null
+          ? null
+          : DateTime.parse(json['created'] as String),
+      updated: json['updated'] == null
+          ? null
+          : DateTime.parse(json['updated'] as String),
     );
 
 Map<String, dynamic> _$EggToJson(_Egg instance) => <String, dynamic>{
@@ -41,6 +47,8 @@ Map<String, dynamic> _$EggToJson(_Egg instance) => <String, dynamic>{
       'speciesId': instance.speciesId,
       'birdId': instance.birdId,
       'notes': instance.notes,
+      'created': instance.created?.toIso8601String(),
+      'updated': instance.updated?.toIso8601String(),
     };
 
 const _$EggStatusEnumMap = {

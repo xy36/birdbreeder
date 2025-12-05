@@ -15,8 +15,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Bird {
   BirdId get id; // Audit
-  DateTime? get createdAt;
-  DateTime? get updatedAt; // Identity
+  DateTime? get created;
+  DateTime? get updated; // Identity
   String? get ringNumber;
   SpeciesId? get speciesId;
   ColorId? get colorId;
@@ -59,10 +59,8 @@ mixin _$Bird {
         (other.runtimeType == runtimeType &&
             other is Bird &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt) &&
+            (identical(other.created, created) || other.created == created) &&
+            (identical(other.updated, updated) || other.updated == updated) &&
             (identical(other.ringNumber, ringNumber) ||
                 other.ringNumber == ringNumber) &&
             (identical(other.speciesId, speciesId) ||
@@ -110,8 +108,8 @@ mixin _$Bird {
   int get hashCode => Object.hashAll([
         runtimeType,
         id,
-        createdAt,
-        updatedAt,
+        created,
+        updated,
         ringNumber,
         speciesId,
         colorId,
@@ -141,7 +139,7 @@ mixin _$Bird {
 
   @override
   String toString() {
-    return 'Bird(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, ringNumber: $ringNumber, speciesId: $speciesId, colorId: $colorId, ownerId: $ownerId, sex: $sex, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, broodId: $broodId, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, bornAt: $bornAt, diedAt: $diedAt, saleStatus: $saleStatus, listedAt: $listedAt, soldAt: $soldAt, askingPrice: $askingPrice, finalPrice: $finalPrice, boughtAt: $boughtAt, boughtPrice: $boughtPrice, boughtFromId: $boughtFromId, soldToId: $soldToId, unknownLifecycle: $unknownLifecycle, notes: $notes)';
+    return 'Bird(id: $id, created: $created, updated: $updated, ringNumber: $ringNumber, speciesId: $speciesId, colorId: $colorId, ownerId: $ownerId, sex: $sex, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, broodId: $broodId, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, bornAt: $bornAt, diedAt: $diedAt, saleStatus: $saleStatus, listedAt: $listedAt, soldAt: $soldAt, askingPrice: $askingPrice, finalPrice: $finalPrice, boughtAt: $boughtAt, boughtPrice: $boughtPrice, boughtFromId: $boughtFromId, soldToId: $soldToId, unknownLifecycle: $unknownLifecycle, notes: $notes)';
   }
 }
 
@@ -152,8 +150,8 @@ abstract mixin class $BirdCopyWith<$Res> {
   @useResult
   $Res call(
       {BirdId id,
-      DateTime? createdAt,
-      DateTime? updatedAt,
+      DateTime? created,
+      DateTime? updated,
       String? ringNumber,
       SpeciesId? speciesId,
       ColorId? colorId,
@@ -194,8 +192,8 @@ class _$BirdCopyWithImpl<$Res> implements $BirdCopyWith<$Res> {
   @override
   $Res call({
     Object? id = null,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
+    Object? created = freezed,
+    Object? updated = freezed,
     Object? ringNumber = freezed,
     Object? speciesId = freezed,
     Object? colorId = freezed,
@@ -227,13 +225,13 @@ class _$BirdCopyWithImpl<$Res> implements $BirdCopyWith<$Res> {
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as BirdId,
-      createdAt: freezed == createdAt
-          ? _self.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      created: freezed == created
+          ? _self.created
+          : created // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updatedAt: freezed == updatedAt
-          ? _self.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
+      updated: freezed == updated
+          ? _self.updated
+          : updated // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       ringNumber: freezed == ringNumber
           ? _self.ringNumber
@@ -434,8 +432,8 @@ extension BirdPatterns on Bird {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             BirdId id,
-            DateTime? createdAt,
-            DateTime? updatedAt,
+            DateTime? created,
+            DateTime? updated,
             String? ringNumber,
             SpeciesId? speciesId,
             ColorId? colorId,
@@ -469,8 +467,8 @@ extension BirdPatterns on Bird {
       case _Bird() when $default != null:
         return $default(
             _that.id,
-            _that.createdAt,
-            _that.updatedAt,
+            _that.created,
+            _that.updated,
             _that.ringNumber,
             _that.speciesId,
             _that.colorId,
@@ -518,8 +516,8 @@ extension BirdPatterns on Bird {
   TResult when<TResult extends Object?>(
     TResult Function(
             BirdId id,
-            DateTime? createdAt,
-            DateTime? updatedAt,
+            DateTime? created,
+            DateTime? updated,
             String? ringNumber,
             SpeciesId? speciesId,
             ColorId? colorId,
@@ -552,8 +550,8 @@ extension BirdPatterns on Bird {
       case _Bird():
         return $default(
             _that.id,
-            _that.createdAt,
-            _that.updatedAt,
+            _that.created,
+            _that.updated,
             _that.ringNumber,
             _that.speciesId,
             _that.colorId,
@@ -600,8 +598,8 @@ extension BirdPatterns on Bird {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             BirdId id,
-            DateTime? createdAt,
-            DateTime? updatedAt,
+            DateTime? created,
+            DateTime? updated,
             String? ringNumber,
             SpeciesId? speciesId,
             ColorId? colorId,
@@ -634,8 +632,8 @@ extension BirdPatterns on Bird {
       case _Bird() when $default != null:
         return $default(
             _that.id,
-            _that.createdAt,
-            _that.updatedAt,
+            _that.created,
+            _that.updated,
             _that.ringNumber,
             _that.speciesId,
             _that.colorId,
@@ -673,8 +671,8 @@ extension BirdPatterns on Bird {
 class _Bird implements Bird {
   const _Bird(
       {required this.id,
-      this.createdAt,
-      this.updatedAt,
+      this.created,
+      this.updated,
       this.ringNumber,
       this.speciesId,
       this.colorId,
@@ -706,9 +704,9 @@ class _Bird implements Bird {
   final BirdId id;
 // Audit
   @override
-  final DateTime? createdAt;
+  final DateTime? created;
   @override
-  final DateTime? updatedAt;
+  final DateTime? updated;
 // Identity
   @override
   final String? ringNumber;
@@ -790,10 +788,8 @@ class _Bird implements Bird {
         (other.runtimeType == runtimeType &&
             other is _Bird &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt) &&
+            (identical(other.created, created) || other.created == created) &&
+            (identical(other.updated, updated) || other.updated == updated) &&
             (identical(other.ringNumber, ringNumber) ||
                 other.ringNumber == ringNumber) &&
             (identical(other.speciesId, speciesId) ||
@@ -841,8 +837,8 @@ class _Bird implements Bird {
   int get hashCode => Object.hashAll([
         runtimeType,
         id,
-        createdAt,
-        updatedAt,
+        created,
+        updated,
         ringNumber,
         speciesId,
         colorId,
@@ -872,7 +868,7 @@ class _Bird implements Bird {
 
   @override
   String toString() {
-    return 'Bird(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, ringNumber: $ringNumber, speciesId: $speciesId, colorId: $colorId, ownerId: $ownerId, sex: $sex, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, broodId: $broodId, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, bornAt: $bornAt, diedAt: $diedAt, saleStatus: $saleStatus, listedAt: $listedAt, soldAt: $soldAt, askingPrice: $askingPrice, finalPrice: $finalPrice, boughtAt: $boughtAt, boughtPrice: $boughtPrice, boughtFromId: $boughtFromId, soldToId: $soldToId, unknownLifecycle: $unknownLifecycle, notes: $notes)';
+    return 'Bird(id: $id, created: $created, updated: $updated, ringNumber: $ringNumber, speciesId: $speciesId, colorId: $colorId, ownerId: $ownerId, sex: $sex, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, broodId: $broodId, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, bornAt: $bornAt, diedAt: $diedAt, saleStatus: $saleStatus, listedAt: $listedAt, soldAt: $soldAt, askingPrice: $askingPrice, finalPrice: $finalPrice, boughtAt: $boughtAt, boughtPrice: $boughtPrice, boughtFromId: $boughtFromId, soldToId: $soldToId, unknownLifecycle: $unknownLifecycle, notes: $notes)';
   }
 }
 
@@ -884,8 +880,8 @@ abstract mixin class _$BirdCopyWith<$Res> implements $BirdCopyWith<$Res> {
   @useResult
   $Res call(
       {BirdId id,
-      DateTime? createdAt,
-      DateTime? updatedAt,
+      DateTime? created,
+      DateTime? updated,
       String? ringNumber,
       SpeciesId? speciesId,
       ColorId? colorId,
@@ -926,8 +922,8 @@ class __$BirdCopyWithImpl<$Res> implements _$BirdCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? id = null,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
+    Object? created = freezed,
+    Object? updated = freezed,
     Object? ringNumber = freezed,
     Object? speciesId = freezed,
     Object? colorId = freezed,
@@ -959,13 +955,13 @@ class __$BirdCopyWithImpl<$Res> implements _$BirdCopyWith<$Res> {
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as BirdId,
-      createdAt: freezed == createdAt
-          ? _self.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      created: freezed == created
+          ? _self.created
+          : created // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updatedAt: freezed == updatedAt
-          ? _self.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
+      updated: freezed == updated
+          ? _self.updated
+          : updated // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       ringNumber: freezed == ringNumber
           ? _self.ringNumber

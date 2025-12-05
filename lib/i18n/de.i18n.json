@@ -117,7 +117,8 @@
             "zero": "In keinem Vogel verwendet",
             "one": "Verwendet in einem Vogel",
             "other": "Verwendet in {{n}} Vögel"
-        }
+        },
+        "no_search_results": "Nichts gefunden, klick auf \"Hinzufügen\" um einen neuen Eintrag zu erstellen."
     },
     "birds": {
         "title": "Vögel"

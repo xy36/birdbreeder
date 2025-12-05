@@ -13,6 +13,8 @@ abstract class Finance with _$Finance {
     String? birdId,
     DateTime? date,
     String? notes,
+    DateTime? created,
+    DateTime? updated,
   }) = _Finance;
 
   factory Finance.fromJson(Map<String, dynamic> json) =>

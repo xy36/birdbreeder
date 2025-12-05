@@ -299,6 +299,8 @@ class $FinancesCategoriesMapper implements _i1.AutoMapprInterface {
       name: model.name,
       color: model.color,
       kind: model.kind,
+      created: model.created,
+      updated: model.updated,
     );
   }
 
@@ -315,6 +317,8 @@ class $FinancesCategoriesMapper implements _i1.AutoMapprInterface {
       name: model.name,
       color: model.color,
       kind: model.kind,
+      created: model.created,
+      updated: model.updated,
     );
   }
 }

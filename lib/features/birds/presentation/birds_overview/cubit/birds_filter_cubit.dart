@@ -62,8 +62,8 @@ class BirdsFilterCubit extends Cubit<BirdFilter> {
 
       case BirdSort.updatedDesc:
         filtered.sort((a, b) {
-          final au = a.updatedAt ?? DateTime.fromMillisecondsSinceEpoch(0);
-          final bu = b.updatedAt ?? DateTime.fromMillisecondsSinceEpoch(0);
+          final au = a.updated ?? DateTime.fromMillisecondsSinceEpoch(0);
+          final bu = b.updated ?? DateTime.fromMillisecondsSinceEpoch(0);
           return bu.compareTo(au); // newest first
         });
     }

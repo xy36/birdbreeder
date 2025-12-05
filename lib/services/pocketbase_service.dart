@@ -6,30 +6,31 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:pocketbase_drift/pocketbase_drift.dart';
 
-late final PocketBase pb;
+late final $PocketBase client;
 
 class PocketBaseService {
   PocketBaseService();
 
-  RecordService get birdsCollection => pb.collection('birds');
-  RecordService get breedingPairCollection => pb.collection('breedingPair');
-  RecordService get broodsCollection => pb.collection('broods');
-  RecordService get eggsCollection => pb.collection('eggs');
-  RecordService get financesCategoriesCollection =>
-      pb.collection('financesCategories');
-  RecordService get financesCollection => pb.collection('finances');
-  RecordService get cagesCollection => pb.collection('cages');
-  RecordService get speciesCollection => pb.collection('species');
-  RecordService get colorsCollection => pb.collection('colors');
-  RecordService get contactsCollection => pb.collection('contacts');
-  RecordService get usersCollection => pb.collection('users');
+  $RecordService get birdsCollection => client.collection('birds');
+  $RecordService get breedingPairCollection =>
+      client.collection('breedingPair');
+  $RecordService get broodsCollection => client.collection('broods');
+  $RecordService get eggsCollection => client.collection('eggs');
+  $RecordService get financesCategoriesCollection =>
+      client.collection('financesCategories');
+  $RecordService get financesCollection => client.collection('finances');
+  $RecordService get cagesCollection => client.collection('cages');
+  $RecordService get speciesCollection => client.collection('species');
+  $RecordService get colorsCollection => client.collection('colors');
+  $RecordService get contactsCollection => client.collection('contacts');
+  $RecordService get usersCollection => client.collection('users');
 
-  AuthStore get authStore => pb.authStore;
+  AuthStore get authStore => client.authStore;
 
   Future<void> clear() async {
     try {
       // clear auth
-      pb.authStore.clear();
+      client.authStore.clear();
     } catch (e) {
       // handle error
     }
@@ -45,7 +46,7 @@ class PocketBaseService {
       save: storage.setToken,
       clear: storage.deleteToken,
     );
-    pb = $PocketBase.database(
+    client = $PocketBase.database(
       'https://pocketbase.birdbreeder.de/',
       //'http://$_host:8090/',
       authStore: customAuthStore,

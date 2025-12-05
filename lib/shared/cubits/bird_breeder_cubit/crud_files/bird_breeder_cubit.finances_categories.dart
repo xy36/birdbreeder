@@ -1,45 +1,106 @@
 part of '../bird_breeder_cubit.dart';
 
 extension BirdBreederCubitFinancesCategoriesX on BirdBreederCubit {
+  Future<List<FinanceCategory>> fetchFinancesCategories() async {
+    final res = await _financesCategoriesRepository.getAll();
+
+    final categories =
+        res.asValue?.value.map(resolveFinancesCategoriesDto).toList() ??
+            const [];
+
+    emitLoaded(financesCategories: categories);
+    return categories;
+  }
+
   Future<FinanceCategory?> addFinancesCategory(
     FinanceCategory category,
   ) async {
     push(loading());
+
     final result = await _financesCategoriesRepository.create(category.toDto());
+
     push(loaded());
+
     if (result.isError) {
       presentAddFailed();
       return null;
     }
-    return result.asValue!.value.toModel();
+
+    final created = result.asValue!.value.toModel();
+    _addFinanceCategoryToState(created);
+
+    return created;
   }
 
   Future<FinanceCategory?> updateFinancesCategory(
     FinanceCategory category,
   ) async {
     push(loading());
+
     final result = await _financesCategoriesRepository.update(
       category.id,
       category.toDto(),
     );
+
     push(loaded());
+
     if (result.isError) {
       presentUpdateFailed();
       return null;
     }
-    return result.asValue!.value.toModel();
+
+    final updated = result.asValue!.value.toModel();
+    _updateFinanceCategoryInState(updated);
+
+    return updated;
   }
 
   Future<void> deleteFinancesCategory(FinanceCategory category) async {
     push(loading());
+
     final result = await _financesCategoriesRepository.delete(category.id);
+
     push(loaded());
+
     if (result.isError) {
       presentDeleteFailed();
       return;
     }
+
+    _removeFinanceCategoryFromState(category.id);
   }
 
+  void _addFinanceCategoryToState(FinanceCategory category) {
+    final updated = [
+      ...state.birdBreederResources.financesCategories,
+      category
+    ];
+    _emitUpdatedFinanceCategories(updated);
+  }
+
+  void _updateFinanceCategoryInState(FinanceCategory updatedCategory) {
+    final updated = state.birdBreederResources.financesCategories
+        .map((c) => c.id == updatedCategory.id ? updatedCategory : c)
+        .toList();
+
+    _emitUpdatedFinanceCategories(updated);
+  }
+
+  void _removeFinanceCategoryFromState(String id) {
+    final updated = state.birdBreederResources.financesCategories
+        .where((c) => c.id != id)
+        .toList();
+
+    _emitUpdatedFinanceCategories(updated);
+  }
+
+  void _emitUpdatedFinanceCategories(
+    List<FinanceCategory> categories,
+  ) {
+    emitLoaded(financesCategories: categories);
+  }
+
+  // Getter
   List<FinanceCategory> get financesCategories =>
       state.birdBreederResources.financesCategories;
 }

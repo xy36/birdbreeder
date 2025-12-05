@@ -2,17 +2,17 @@ import 'package:auto_route/auto_route.dart';
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/shared/icons.dart';
-import 'package:birdbreeder/shared/widgets/bottom_sheet/bottom_sheet_header.dart';
 
 class ValueSelector<T> extends StatefulWidget {
   const ValueSelector({
-    super.key,
-    this.initialValue,
     required this.values,
     required this.title,
     required this.itemBuilder,
+    super.key,
+    this.initialValue,
     this.filterFn,
     this.onAdd,
+    this.scrollController,
   });
 
   final T? initialValue;
@@ -21,6 +21,7 @@ class ValueSelector<T> extends StatefulWidget {
   final Widget? Function(BuildContext context, T item, int index) itemBuilder;
   final bool Function(T item, String filter)? filterFn;
   final Future<void> Function(String value)? onAdd;
+  final ScrollController? scrollController;
 
   @override
   State<ValueSelector<T>> createState() => _ValueSelectorState<T>();
@@ -48,7 +49,24 @@ class _ValueSelectorState<T> extends State<ValueSelector<T>> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        BottomSheetHeader(title: widget.title),
+        Expanded(
+          child: filteredValues.isEmpty
+              ? Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Text(
+                    context.tr.resources.no_search_results,
+                  ),
+                )
+              : ListView.builder(
+                  controller: widget.scrollController,
+                  itemCount: filteredValues.length,
+                  itemBuilder: (context, index) => widget
+                      .itemBuilder(context, filteredValues[index], index)
+                      ?.onTap(
+                        () => context.router.maybePop(filteredValues[index]),
+                      ),
+                ),
+        ),
         if (widget.filterFn != null)
           Padding(
             padding: const EdgeInsets.all(8),
@@ -76,16 +94,6 @@ class _ValueSelectorState<T> extends State<ValueSelector<T>> {
               },
             ),
           ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: filteredValues.length,
-            itemBuilder: (context, index) => widget
-                .itemBuilder(context, filteredValues[index], index)
-                ?.onTap(
-                  () => context.router.maybePop(filteredValues[index]),
-                ),
-          ),
-        ),
       ],
     );
   }

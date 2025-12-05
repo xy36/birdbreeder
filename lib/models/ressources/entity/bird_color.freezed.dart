@@ -16,6 +16,8 @@ T _$identity<T>(T value) => value;
 mixin _$BirdColor {
   String get id;
   String? get name;
+  DateTime? get created;
+  DateTime? get updated;
 
   /// Create a copy of BirdColor
   /// with the given fields replaced by the non-null parameter values.
@@ -30,15 +32,17 @@ mixin _$BirdColor {
         (other.runtimeType == runtimeType &&
             other is BirdColor &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.created, created) || other.created == created) &&
+            (identical(other.updated, updated) || other.updated == updated));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name);
+  int get hashCode => Object.hash(runtimeType, id, name, created, updated);
 
   @override
   String toString() {
-    return 'BirdColor(id: $id, name: $name)';
+    return 'BirdColor(id: $id, name: $name, created: $created, updated: $updated)';
   }
 }
 
@@ -47,7 +51,7 @@ abstract mixin class $BirdColorCopyWith<$Res> {
   factory $BirdColorCopyWith(BirdColor value, $Res Function(BirdColor) _then) =
       _$BirdColorCopyWithImpl;
   @useResult
-  $Res call({String id, String? name});
+  $Res call({String id, String? name, DateTime? created, DateTime? updated});
 }
 
 /// @nodoc
@@ -64,6 +68,8 @@ class _$BirdColorCopyWithImpl<$Res> implements $BirdColorCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? name = freezed,
+    Object? created = freezed,
+    Object? updated = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -74,6 +80,14 @@ class _$BirdColorCopyWithImpl<$Res> implements $BirdColorCopyWith<$Res> {
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      created: freezed == created
+          ? _self.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updated: freezed == updated
+          ? _self.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -171,13 +185,15 @@ extension BirdColorPatterns on BirdColor {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String id, String? name)? $default, {
+    TResult Function(
+            String id, String? name, DateTime? created, DateTime? updated)?
+        $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _BirdColor() when $default != null:
-        return $default(_that.id, _that.name);
+        return $default(_that.id, _that.name, _that.created, _that.updated);
       case _:
         return orElse();
     }
@@ -198,12 +214,14 @@ extension BirdColorPatterns on BirdColor {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String id, String? name) $default,
+    TResult Function(
+            String id, String? name, DateTime? created, DateTime? updated)
+        $default,
   ) {
     final _that = this;
     switch (_that) {
       case _BirdColor():
-        return $default(_that.id, _that.name);
+        return $default(_that.id, _that.name, _that.created, _that.updated);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -223,12 +241,14 @@ extension BirdColorPatterns on BirdColor {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String id, String? name)? $default,
+    TResult? Function(
+            String id, String? name, DateTime? created, DateTime? updated)?
+        $default,
   ) {
     final _that = this;
     switch (_that) {
       case _BirdColor() when $default != null:
-        return $default(_that.id, _that.name);
+        return $default(_that.id, _that.name, _that.created, _that.updated);
       case _:
         return null;
     }
@@ -238,12 +258,17 @@ extension BirdColorPatterns on BirdColor {
 /// @nodoc
 
 class _BirdColor implements BirdColor {
-  _BirdColor({required this.id, required this.name});
+  _BirdColor(
+      {required this.id, required this.name, this.created, this.updated});
 
   @override
   final String id;
   @override
   final String? name;
+  @override
+  final DateTime? created;
+  @override
+  final DateTime? updated;
 
   /// Create a copy of BirdColor
   /// with the given fields replaced by the non-null parameter values.
@@ -259,15 +284,17 @@ class _BirdColor implements BirdColor {
         (other.runtimeType == runtimeType &&
             other is _BirdColor &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.created, created) || other.created == created) &&
+            (identical(other.updated, updated) || other.updated == updated));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name);
+  int get hashCode => Object.hash(runtimeType, id, name, created, updated);
 
   @override
   String toString() {
-    return 'BirdColor(id: $id, name: $name)';
+    return 'BirdColor(id: $id, name: $name, created: $created, updated: $updated)';
   }
 }
 
@@ -279,7 +306,7 @@ abstract mixin class _$BirdColorCopyWith<$Res>
       __$BirdColorCopyWithImpl;
   @override
   @useResult
-  $Res call({String id, String? name});
+  $Res call({String id, String? name, DateTime? created, DateTime? updated});
 }
 
 /// @nodoc
@@ -296,6 +323,8 @@ class __$BirdColorCopyWithImpl<$Res> implements _$BirdColorCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? name = freezed,
+    Object? created = freezed,
+    Object? updated = freezed,
   }) {
     return _then(_BirdColor(
       id: null == id
@@ -306,6 +335,14 @@ class __$BirdColorCopyWithImpl<$Res> implements _$BirdColorCopyWith<$Res> {
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      created: freezed == created
+          ? _self.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updated: freezed == updated
+          ? _self.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }

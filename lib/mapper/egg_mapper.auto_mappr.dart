@@ -295,6 +295,8 @@ class $EggMapper implements _i1.AutoMapprInterface {
       broodId: model.broodId,
       number: model.number,
       laidAt: model.laidAt,
+      created: model.created,
+      updated: model.updated,
       hatchedAt: model.hatchedAt,
       fledgedAt: model.fledgedAt,
       status: model.status,
@@ -328,6 +330,8 @@ class $EggMapper implements _i1.AutoMapprInterface {
       speciesId: model.speciesId,
       birdId: model.birdId,
       notes: model.notes,
+      created: model.created,
+      updated: model.updated,
     );
   }
 }

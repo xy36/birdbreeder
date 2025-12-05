@@ -19,7 +19,9 @@ class RessourceRepository<T> implements ICrudRepository<T> {
   @override
   Future<Result<T>> create(T obj) async {
     try {
-      final result = await recordService.create(body: toJson(obj));
+      final result = await recordService.create(
+        body: toJson(obj),
+      );
 
       return Result.value(fromJson(result.toJson()));
     } catch (e) {

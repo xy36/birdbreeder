@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/widget_extensions.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
@@ -15,6 +14,7 @@ import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.
 import 'package:birdbreeder/shared/cubits/generic_search_cubit/base_search.dart';
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/buttons/button_bird_add.dart';
+import 'package:birdbreeder/shared/widgets/utils.dart';
 
 enum BirdOverviewMode {
   picker,
@@ -83,13 +83,9 @@ class _BirdsOverviewScreenState extends State<BirdsOverviewScreen> {
               return IconButton(
                 icon: const Icon(AppIcons.filter),
                 onPressed: () async {
-                  final applied = await showModalBottomSheet<BirdFilter?>(
-                    context: context,
-                    constraints:
-                        BoxConstraints(maxHeight: context.height * 0.8),
-                    useSafeArea: true,
-                    isScrollControlled: true,
-                    builder: (_) => BirdFilterSheet(
+                  final applied = await openSheet<BirdFilter?>(
+                    context,
+                    BirdFilterSheet(
                       initial: filter,
                     ),
                   );

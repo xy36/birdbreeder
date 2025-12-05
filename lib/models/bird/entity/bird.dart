@@ -80,8 +80,8 @@ abstract class Bird with _$Bird {
     required BirdId id,
 
     // Audit
-    DateTime? createdAt,
-    DateTime? updatedAt,
+    DateTime? created,
+    DateTime? updated,
 
     // Identity
     String? ringNumber,
@@ -142,8 +142,8 @@ abstract class Bird with _$Bird {
   }) {
     final now = DateTime.now();
     return Bird.create().copyWith(
-      createdAt: now,
-      updatedAt: now,
+      created: now,
+      updated: now,
       ringNumber: ringNumber,
       speciesId: speciesId,
       fatherId: fatherId,

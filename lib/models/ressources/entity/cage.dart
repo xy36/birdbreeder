@@ -12,6 +12,8 @@ abstract class Cage with _$Cage {
     required int? width,
     required int? height,
     required int? depth,
+    DateTime? created,
+    DateTime? updated,
   }) = _Cage;
 
   factory Cage.create({

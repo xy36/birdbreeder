@@ -295,6 +295,9 @@ class TranslationsResourcesDe {
         one: 'Verwendet in einem Vogel',
         other: 'Verwendet in ${N} Vögel',
       );
+
+  /// de: 'Nichts gefunden, klick auf "Hinzufügen" um einen neuen Eintrag zu erstellen.'
+  String get no_search_results => 'Nichts gefunden, klick auf "Hinzufügen" um einen neuen Eintrag zu erstellen.';
 }
 
 // Path: birds

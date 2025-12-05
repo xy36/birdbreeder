@@ -21,6 +21,8 @@ mixin _$Finance {
   String? get birdId;
   DateTime? get date;
   String? get notes;
+  DateTime? get created;
+  DateTime? get updated;
 
   /// Create a copy of Finance
   /// with the given fields replaced by the non-null parameter values.
@@ -44,17 +46,19 @@ mixin _$Finance {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.birdId, birdId) || other.birdId == birdId) &&
             (identical(other.date, date) || other.date == date) &&
-            (identical(other.notes, notes) || other.notes == notes));
+            (identical(other.notes, notes) || other.notes == notes) &&
+            (identical(other.created, created) || other.created == created) &&
+            (identical(other.updated, updated) || other.updated == updated));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, categoryId, amount, title, birdId, date, notes);
+  int get hashCode => Object.hash(runtimeType, id, categoryId, amount, title,
+      birdId, date, notes, created, updated);
 
   @override
   String toString() {
-    return 'Finance(id: $id, categoryId: $categoryId, amount: $amount, title: $title, birdId: $birdId, date: $date, notes: $notes)';
+    return 'Finance(id: $id, categoryId: $categoryId, amount: $amount, title: $title, birdId: $birdId, date: $date, notes: $notes, created: $created, updated: $updated)';
   }
 }
 
@@ -70,7 +74,9 @@ abstract mixin class $FinanceCopyWith<$Res> {
       String title,
       String? birdId,
       DateTime? date,
-      String? notes});
+      String? notes,
+      DateTime? created,
+      DateTime? updated});
 }
 
 /// @nodoc
@@ -92,6 +98,8 @@ class _$FinanceCopyWithImpl<$Res> implements $FinanceCopyWith<$Res> {
     Object? birdId = freezed,
     Object? date = freezed,
     Object? notes = freezed,
+    Object? created = freezed,
+    Object? updated = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -122,6 +130,14 @@ class _$FinanceCopyWithImpl<$Res> implements $FinanceCopyWith<$Res> {
           ? _self.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
+      created: freezed == created
+          ? _self.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updated: freezed == updated
+          ? _self.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -219,16 +235,32 @@ extension FinancePatterns on Finance {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String id, String categoryId, double amount, String title,
-            String? birdId, DateTime? date, String? notes)?
+    TResult Function(
+            String id,
+            String categoryId,
+            double amount,
+            String title,
+            String? birdId,
+            DateTime? date,
+            String? notes,
+            DateTime? created,
+            DateTime? updated)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _Finance() when $default != null:
-        return $default(_that.id, _that.categoryId, _that.amount, _that.title,
-            _that.birdId, _that.date, _that.notes);
+        return $default(
+            _that.id,
+            _that.categoryId,
+            _that.amount,
+            _that.title,
+            _that.birdId,
+            _that.date,
+            _that.notes,
+            _that.created,
+            _that.updated);
       case _:
         return orElse();
     }
@@ -249,15 +281,31 @@ extension FinancePatterns on Finance {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String id, String categoryId, double amount, String title,
-            String? birdId, DateTime? date, String? notes)
+    TResult Function(
+            String id,
+            String categoryId,
+            double amount,
+            String title,
+            String? birdId,
+            DateTime? date,
+            String? notes,
+            DateTime? created,
+            DateTime? updated)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Finance():
-        return $default(_that.id, _that.categoryId, _that.amount, _that.title,
-            _that.birdId, _that.date, _that.notes);
+        return $default(
+            _that.id,
+            _that.categoryId,
+            _that.amount,
+            _that.title,
+            _that.birdId,
+            _that.date,
+            _that.notes,
+            _that.created,
+            _that.updated);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -277,15 +325,31 @@ extension FinancePatterns on Finance {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String id, String categoryId, double amount, String title,
-            String? birdId, DateTime? date, String? notes)?
+    TResult? Function(
+            String id,
+            String categoryId,
+            double amount,
+            String title,
+            String? birdId,
+            DateTime? date,
+            String? notes,
+            DateTime? created,
+            DateTime? updated)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Finance() when $default != null:
-        return $default(_that.id, _that.categoryId, _that.amount, _that.title,
-            _that.birdId, _that.date, _that.notes);
+        return $default(
+            _that.id,
+            _that.categoryId,
+            _that.amount,
+            _that.title,
+            _that.birdId,
+            _that.date,
+            _that.notes,
+            _that.created,
+            _that.updated);
       case _:
         return null;
     }
@@ -302,7 +366,9 @@ class _Finance implements Finance {
       required this.title,
       this.birdId,
       this.date,
-      this.notes});
+      this.notes,
+      this.created,
+      this.updated});
   factory _Finance.fromJson(Map<String, dynamic> json) =>
       _$FinanceFromJson(json);
 
@@ -320,6 +386,10 @@ class _Finance implements Finance {
   final DateTime? date;
   @override
   final String? notes;
+  @override
+  final DateTime? created;
+  @override
+  final DateTime? updated;
 
   /// Create a copy of Finance
   /// with the given fields replaced by the non-null parameter values.
@@ -348,17 +418,19 @@ class _Finance implements Finance {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.birdId, birdId) || other.birdId == birdId) &&
             (identical(other.date, date) || other.date == date) &&
-            (identical(other.notes, notes) || other.notes == notes));
+            (identical(other.notes, notes) || other.notes == notes) &&
+            (identical(other.created, created) || other.created == created) &&
+            (identical(other.updated, updated) || other.updated == updated));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, categoryId, amount, title, birdId, date, notes);
+  int get hashCode => Object.hash(runtimeType, id, categoryId, amount, title,
+      birdId, date, notes, created, updated);
 
   @override
   String toString() {
-    return 'Finance(id: $id, categoryId: $categoryId, amount: $amount, title: $title, birdId: $birdId, date: $date, notes: $notes)';
+    return 'Finance(id: $id, categoryId: $categoryId, amount: $amount, title: $title, birdId: $birdId, date: $date, notes: $notes, created: $created, updated: $updated)';
   }
 }
 
@@ -375,7 +447,9 @@ abstract mixin class _$FinanceCopyWith<$Res> implements $FinanceCopyWith<$Res> {
       String title,
       String? birdId,
       DateTime? date,
-      String? notes});
+      String? notes,
+      DateTime? created,
+      DateTime? updated});
 }
 
 /// @nodoc
@@ -397,6 +471,8 @@ class __$FinanceCopyWithImpl<$Res> implements _$FinanceCopyWith<$Res> {
     Object? birdId = freezed,
     Object? date = freezed,
     Object? notes = freezed,
+    Object? created = freezed,
+    Object? updated = freezed,
   }) {
     return _then(_Finance(
       id: null == id
@@ -427,6 +503,14 @@ class __$FinanceCopyWithImpl<$Res> implements _$FinanceCopyWith<$Res> {
           ? _self.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
+      created: freezed == created
+          ? _self.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updated: freezed == updated
+          ? _self.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }

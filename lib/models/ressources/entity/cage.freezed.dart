@@ -20,6 +20,8 @@ mixin _$Cage {
   int? get width;
   int? get height;
   int? get depth;
+  DateTime? get created;
+  DateTime? get updated;
 
   /// Create a copy of Cage
   /// with the given fields replaced by the non-null parameter values.
@@ -39,16 +41,18 @@ mixin _$Cage {
                 other.description == description) &&
             (identical(other.width, width) || other.width == width) &&
             (identical(other.height, height) || other.height == height) &&
-            (identical(other.depth, depth) || other.depth == depth));
+            (identical(other.depth, depth) || other.depth == depth) &&
+            (identical(other.created, created) || other.created == created) &&
+            (identical(other.updated, updated) || other.updated == updated));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, description, width, height, depth);
+  int get hashCode => Object.hash(runtimeType, id, name, description, width,
+      height, depth, created, updated);
 
   @override
   String toString() {
-    return 'Cage(id: $id, name: $name, description: $description, width: $width, height: $height, depth: $depth)';
+    return 'Cage(id: $id, name: $name, description: $description, width: $width, height: $height, depth: $depth, created: $created, updated: $updated)';
   }
 }
 
@@ -63,7 +67,9 @@ abstract mixin class $CageCopyWith<$Res> {
       String? description,
       int? width,
       int? height,
-      int? depth});
+      int? depth,
+      DateTime? created,
+      DateTime? updated});
 }
 
 /// @nodoc
@@ -84,6 +90,8 @@ class _$CageCopyWithImpl<$Res> implements $CageCopyWith<$Res> {
     Object? width = freezed,
     Object? height = freezed,
     Object? depth = freezed,
+    Object? created = freezed,
+    Object? updated = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -110,6 +118,14 @@ class _$CageCopyWithImpl<$Res> implements $CageCopyWith<$Res> {
           ? _self.depth
           : depth // ignore: cast_nullable_to_non_nullable
               as int?,
+      created: freezed == created
+          ? _self.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updated: freezed == updated
+          ? _self.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -208,7 +224,7 @@ extension CagePatterns on Cage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(CageId id, String? name, String? description, int? width,
-            int? height, int? depth)?
+            int? height, int? depth, DateTime? created, DateTime? updated)?
         $default, {
     required TResult orElse(),
   }) {
@@ -216,7 +232,7 @@ extension CagePatterns on Cage {
     switch (_that) {
       case _Cage() when $default != null:
         return $default(_that.id, _that.name, _that.description, _that.width,
-            _that.height, _that.depth);
+            _that.height, _that.depth, _that.created, _that.updated);
       case _:
         return orElse();
     }
@@ -238,14 +254,14 @@ extension CagePatterns on Cage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(CageId id, String? name, String? description, int? width,
-            int? height, int? depth)
+            int? height, int? depth, DateTime? created, DateTime? updated)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Cage():
         return $default(_that.id, _that.name, _that.description, _that.width,
-            _that.height, _that.depth);
+            _that.height, _that.depth, _that.created, _that.updated);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -266,14 +282,14 @@ extension CagePatterns on Cage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(CageId id, String? name, String? description, int? width,
-            int? height, int? depth)?
+            int? height, int? depth, DateTime? created, DateTime? updated)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Cage() when $default != null:
         return $default(_that.id, _that.name, _that.description, _that.width,
-            _that.height, _that.depth);
+            _that.height, _that.depth, _that.created, _that.updated);
       case _:
         return null;
     }
@@ -289,7 +305,9 @@ class _Cage implements Cage {
       required this.description,
       required this.width,
       required this.height,
-      required this.depth});
+      required this.depth,
+      this.created,
+      this.updated});
 
   @override
   final CageId id;
@@ -303,6 +321,10 @@ class _Cage implements Cage {
   final int? height;
   @override
   final int? depth;
+  @override
+  final DateTime? created;
+  @override
+  final DateTime? updated;
 
   /// Create a copy of Cage
   /// with the given fields replaced by the non-null parameter values.
@@ -323,16 +345,18 @@ class _Cage implements Cage {
                 other.description == description) &&
             (identical(other.width, width) || other.width == width) &&
             (identical(other.height, height) || other.height == height) &&
-            (identical(other.depth, depth) || other.depth == depth));
+            (identical(other.depth, depth) || other.depth == depth) &&
+            (identical(other.created, created) || other.created == created) &&
+            (identical(other.updated, updated) || other.updated == updated));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, description, width, height, depth);
+  int get hashCode => Object.hash(runtimeType, id, name, description, width,
+      height, depth, created, updated);
 
   @override
   String toString() {
-    return 'Cage(id: $id, name: $name, description: $description, width: $width, height: $height, depth: $depth)';
+    return 'Cage(id: $id, name: $name, description: $description, width: $width, height: $height, depth: $depth, created: $created, updated: $updated)';
   }
 }
 
@@ -348,7 +372,9 @@ abstract mixin class _$CageCopyWith<$Res> implements $CageCopyWith<$Res> {
       String? description,
       int? width,
       int? height,
-      int? depth});
+      int? depth,
+      DateTime? created,
+      DateTime? updated});
 }
 
 /// @nodoc
@@ -369,6 +395,8 @@ class __$CageCopyWithImpl<$Res> implements _$CageCopyWith<$Res> {
     Object? width = freezed,
     Object? height = freezed,
     Object? depth = freezed,
+    Object? created = freezed,
+    Object? updated = freezed,
   }) {
     return _then(_Cage(
       id: null == id
@@ -395,6 +423,14 @@ class __$CageCopyWithImpl<$Res> implements _$CageCopyWith<$Res> {
           ? _self.depth
           : depth // ignore: cast_nullable_to_non_nullable
               as int?,
+      created: freezed == created
+          ? _self.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updated: freezed == updated
+          ? _self.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }

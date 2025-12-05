@@ -14,6 +14,8 @@ abstract class BreedingPair with _$BreedingPair {
     required String? cageId,
     required BreedingPairStatus status,
     required String? notes,
+    DateTime? created,
+    DateTime? updated,
   }) = _BreedingPair;
 
   factory BreedingPair.create({

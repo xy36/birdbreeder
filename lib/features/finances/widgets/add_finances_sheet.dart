@@ -209,7 +209,7 @@ class _AddFinancesSheetState extends State<AddFinancesSheet> {
                 ),
               ),
               BottomSheetFooter(
-                onSubmit: _submit,
+                onPrimaryButton: _submit,
               ),
             ],
           ),

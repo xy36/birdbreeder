@@ -13,6 +13,8 @@ abstract class User with _$User {
     bool? emailVisibility,
     String? email,
     String? avatar,
+    DateTime? created,
+    DateTime? updated,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

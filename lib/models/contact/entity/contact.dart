@@ -16,6 +16,8 @@ abstract class Contact with _$Contact {
     required String? postalCode,
     required String? country,
     required String? website,
+    DateTime? created,
+    DateTime? updated,
   }) = _Contact;
 
   factory Contact.create() => Contact(

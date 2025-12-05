@@ -8,12 +8,12 @@ part of 'bird.dart';
 
 _Bird _$BirdFromJson(Map<String, dynamic> json) => _Bird(
       id: json['id'] as String,
-      createdAt: json['createdAt'] == null
+      created: json['created'] == null
           ? null
-          : DateTime.parse(json['createdAt'] as String),
-      updatedAt: json['updatedAt'] == null
+          : DateTime.parse(json['created'] as String),
+      updated: json['updated'] == null
           ? null
-          : DateTime.parse(json['updatedAt'] as String),
+          : DateTime.parse(json['updated'] as String),
       ringNumber: json['ringNumber'] as String?,
       speciesId: json['speciesId'] as String?,
       colorId: json['colorId'] as String?,
@@ -61,8 +61,8 @@ _Bird _$BirdFromJson(Map<String, dynamic> json) => _Bird(
 
 Map<String, dynamic> _$BirdToJson(_Bird instance) => <String, dynamic>{
       'id': instance.id,
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
+      'created': instance.created?.toIso8601String(),
+      'updated': instance.updated?.toIso8601String(),
       'ringNumber': instance.ringNumber,
       'speciesId': instance.speciesId,
       'colorId': instance.colorId,

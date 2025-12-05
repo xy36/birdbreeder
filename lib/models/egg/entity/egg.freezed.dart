@@ -27,6 +27,8 @@ mixin _$Egg {
   String? get speciesId;
   String? get birdId;
   String? get notes;
+  DateTime? get created;
+  DateTime? get updated;
 
   /// Create a copy of Egg
   /// with the given fields replaced by the non-null parameter values.
@@ -59,7 +61,9 @@ mixin _$Egg {
             (identical(other.speciesId, speciesId) ||
                 other.speciesId == speciesId) &&
             (identical(other.birdId, birdId) || other.birdId == birdId) &&
-            (identical(other.notes, notes) || other.notes == notes));
+            (identical(other.notes, notes) || other.notes == notes) &&
+            (identical(other.created, created) || other.created == created) &&
+            (identical(other.updated, updated) || other.updated == updated));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -78,11 +82,13 @@ mixin _$Egg {
       cageId,
       speciesId,
       birdId,
-      notes);
+      notes,
+      created,
+      updated);
 
   @override
   String toString() {
-    return 'Egg(id: $id, broodId: $broodId, number: $number, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, status: $status, ringnumber: $ringnumber, colorId: $colorId, cageId: $cageId, speciesId: $speciesId, birdId: $birdId, notes: $notes)';
+    return 'Egg(id: $id, broodId: $broodId, number: $number, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, status: $status, ringnumber: $ringnumber, colorId: $colorId, cageId: $cageId, speciesId: $speciesId, birdId: $birdId, notes: $notes, created: $created, updated: $updated)';
   }
 }
 
@@ -103,7 +109,9 @@ abstract mixin class $EggCopyWith<$Res> {
       String? cageId,
       String? speciesId,
       String? birdId,
-      String? notes});
+      String? notes,
+      DateTime? created,
+      DateTime? updated});
 }
 
 /// @nodoc
@@ -131,6 +139,8 @@ class _$EggCopyWithImpl<$Res> implements $EggCopyWith<$Res> {
     Object? speciesId = freezed,
     Object? birdId = freezed,
     Object? notes = freezed,
+    Object? created = freezed,
+    Object? updated = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -185,6 +195,14 @@ class _$EggCopyWithImpl<$Res> implements $EggCopyWith<$Res> {
           ? _self.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
+      created: freezed == created
+          ? _self.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updated: freezed == updated
+          ? _self.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -295,7 +313,9 @@ extension EggPatterns on Egg {
             String? cageId,
             String? speciesId,
             String? birdId,
-            String? notes)?
+            String? notes,
+            DateTime? created,
+            DateTime? updated)?
         $default, {
     required TResult orElse(),
   }) {
@@ -315,7 +335,9 @@ extension EggPatterns on Egg {
             _that.cageId,
             _that.speciesId,
             _that.birdId,
-            _that.notes);
+            _that.notes,
+            _that.created,
+            _that.updated);
       case _:
         return orElse();
     }
@@ -349,7 +371,9 @@ extension EggPatterns on Egg {
             String? cageId,
             String? speciesId,
             String? birdId,
-            String? notes)
+            String? notes,
+            DateTime? created,
+            DateTime? updated)
         $default,
   ) {
     final _that = this;
@@ -368,7 +392,9 @@ extension EggPatterns on Egg {
             _that.cageId,
             _that.speciesId,
             _that.birdId,
-            _that.notes);
+            _that.notes,
+            _that.created,
+            _that.updated);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -401,7 +427,9 @@ extension EggPatterns on Egg {
             String? cageId,
             String? speciesId,
             String? birdId,
-            String? notes)?
+            String? notes,
+            DateTime? created,
+            DateTime? updated)?
         $default,
   ) {
     final _that = this;
@@ -420,7 +448,9 @@ extension EggPatterns on Egg {
             _that.cageId,
             _that.speciesId,
             _that.birdId,
-            _that.notes);
+            _that.notes,
+            _that.created,
+            _that.updated);
       case _:
         return null;
     }
@@ -443,7 +473,9 @@ class _Egg implements Egg {
       this.cageId,
       this.speciesId,
       this.birdId,
-      this.notes});
+      this.notes,
+      this.created,
+      this.updated});
   factory _Egg.fromJson(Map<String, dynamic> json) => _$EggFromJson(json);
 
   @override
@@ -473,6 +505,10 @@ class _Egg implements Egg {
   final String? birdId;
   @override
   final String? notes;
+  @override
+  final DateTime? created;
+  @override
+  final DateTime? updated;
 
   /// Create a copy of Egg
   /// with the given fields replaced by the non-null parameter values.
@@ -510,7 +546,9 @@ class _Egg implements Egg {
             (identical(other.speciesId, speciesId) ||
                 other.speciesId == speciesId) &&
             (identical(other.birdId, birdId) || other.birdId == birdId) &&
-            (identical(other.notes, notes) || other.notes == notes));
+            (identical(other.notes, notes) || other.notes == notes) &&
+            (identical(other.created, created) || other.created == created) &&
+            (identical(other.updated, updated) || other.updated == updated));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -529,11 +567,13 @@ class _Egg implements Egg {
       cageId,
       speciesId,
       birdId,
-      notes);
+      notes,
+      created,
+      updated);
 
   @override
   String toString() {
-    return 'Egg(id: $id, broodId: $broodId, number: $number, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, status: $status, ringnumber: $ringnumber, colorId: $colorId, cageId: $cageId, speciesId: $speciesId, birdId: $birdId, notes: $notes)';
+    return 'Egg(id: $id, broodId: $broodId, number: $number, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, status: $status, ringnumber: $ringnumber, colorId: $colorId, cageId: $cageId, speciesId: $speciesId, birdId: $birdId, notes: $notes, created: $created, updated: $updated)';
   }
 }
 
@@ -556,7 +596,9 @@ abstract mixin class _$EggCopyWith<$Res> implements $EggCopyWith<$Res> {
       String? cageId,
       String? speciesId,
       String? birdId,
-      String? notes});
+      String? notes,
+      DateTime? created,
+      DateTime? updated});
 }
 
 /// @nodoc
@@ -584,6 +626,8 @@ class __$EggCopyWithImpl<$Res> implements _$EggCopyWith<$Res> {
     Object? speciesId = freezed,
     Object? birdId = freezed,
     Object? notes = freezed,
+    Object? created = freezed,
+    Object? updated = freezed,
   }) {
     return _then(_Egg(
       id: null == id
@@ -638,6 +682,14 @@ class __$EggCopyWithImpl<$Res> implements _$EggCopyWith<$Res> {
           ? _self.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
+      created: freezed == created
+          ? _self.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updated: freezed == updated
+          ? _self.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }

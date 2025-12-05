@@ -7,6 +7,8 @@ abstract class BirdColor with _$BirdColor {
   factory BirdColor({
     required String id,
     required String? name,
+    DateTime? created,
+    DateTime? updated,
   }) = _BirdColor;
 
   factory BirdColor.create({

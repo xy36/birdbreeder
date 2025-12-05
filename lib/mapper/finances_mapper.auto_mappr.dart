@@ -297,6 +297,8 @@ class $FinancesMapper implements _i1.AutoMapprInterface {
       categoryId: model.categoryId,
       title: model.title,
       amount: model.amount,
+      created: model.created,
+      updated: model.updated,
       notes: model.notes,
       birdId: model.birdId,
       date: model.date,
@@ -318,6 +320,8 @@ class $FinancesMapper implements _i1.AutoMapprInterface {
       birdId: model.birdId,
       date: model.date,
       notes: model.notes,
+      created: model.created,
+      updated: model.updated,
     );
   }
 }

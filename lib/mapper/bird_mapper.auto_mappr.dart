@@ -292,6 +292,8 @@ class $BirdMapper implements _i1.AutoMapprInterface {
     }
     return _i3.BirdDto(
       id: model.id,
+      created: model.created,
+      updated: model.updated,
       ringNumber: model.ringNumber,
       speciesId: model.speciesId,
       colorId: model.colorId,
@@ -329,6 +331,8 @@ class $BirdMapper implements _i1.AutoMapprInterface {
     }
     return _i2.Bird(
       id: model.id,
+      created: model.created,
+      updated: model.updated,
       ringNumber: model.ringNumber,
       speciesId: model.speciesId,
       colorId: model.colorId,

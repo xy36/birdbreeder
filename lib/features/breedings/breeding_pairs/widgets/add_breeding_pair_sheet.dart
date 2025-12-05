@@ -206,7 +206,7 @@ class _AddBreedingPairSheetState extends State<AddBreedingPairSheet> {
             ),
           ),
           BottomSheetFooter(
-            onSubmit: _submit,
+            onPrimaryButton: _submit,
           ),
         ],
       ),

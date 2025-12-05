@@ -81,6 +81,8 @@ abstract class Egg with _$Egg {
     String? speciesId,
     String? birdId,
     String? notes,
+    DateTime? created,
+    DateTime? updated,
   }) = _Egg;
 
   factory Egg.create({

@@ -293,6 +293,8 @@ class $BroodMapper implements _i1.AutoMapprInterface {
     }
     return _i3.BroodDto(
       id: model.id,
+      created: model.created,
+      updated: model.updated,
       start: model.start,
       end: model.end,
       notes: model.notes,
@@ -315,6 +317,8 @@ class $BroodMapper implements _i1.AutoMapprInterface {
       notes: model.notes,
       cage: model.cage,
       breedingPair: model.breedingPair,
+      created: model.created,
+      updated: model.updated,
     );
   }
 }

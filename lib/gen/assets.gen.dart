@@ -43,7 +43,11 @@ class Assets {
   const Assets._();
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const String pbSchema = 'assets/pb_schema.json';
   static const $AssetsThemesGen themes = $AssetsThemesGen();
+
+  /// List of all assets
+  static List<String> get values => [pbSchema];
 }
 
 class AssetGenImage {

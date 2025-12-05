@@ -72,10 +72,10 @@ class RandomBirdFab extends StatelessWidget {
           speciesId: randomSpecies,
           colorId: randomColor,
           cageId: randomCage,
-          createdAt: DateTime.now().subtract(
+          created: DateTime.now().subtract(
             Duration(days: Random().nextInt(365 * 10)),
           ),
-          updatedAt: updated,
+          updated: updated,
           boughtAt: bought,
           boughtPrice: Random().nextInt(1000) + 1.0,
           fledgedAt: born.add(

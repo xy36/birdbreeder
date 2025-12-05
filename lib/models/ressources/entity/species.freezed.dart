@@ -17,6 +17,8 @@ mixin _$Species {
   String get id;
   String? get name;
   String? get latName;
+  DateTime? get created;
+  DateTime? get updated;
 
   /// Create a copy of Species
   /// with the given fields replaced by the non-null parameter values.
@@ -32,15 +34,18 @@ mixin _$Species {
             other is Species &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.latName, latName) || other.latName == latName));
+            (identical(other.latName, latName) || other.latName == latName) &&
+            (identical(other.created, created) || other.created == created) &&
+            (identical(other.updated, updated) || other.updated == updated));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, latName);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, latName, created, updated);
 
   @override
   String toString() {
-    return 'Species(id: $id, name: $name, latName: $latName)';
+    return 'Species(id: $id, name: $name, latName: $latName, created: $created, updated: $updated)';
   }
 }
 
@@ -49,7 +54,12 @@ abstract mixin class $SpeciesCopyWith<$Res> {
   factory $SpeciesCopyWith(Species value, $Res Function(Species) _then) =
       _$SpeciesCopyWithImpl;
   @useResult
-  $Res call({String id, String? name, String? latName});
+  $Res call(
+      {String id,
+      String? name,
+      String? latName,
+      DateTime? created,
+      DateTime? updated});
 }
 
 /// @nodoc
@@ -67,6 +77,8 @@ class _$SpeciesCopyWithImpl<$Res> implements $SpeciesCopyWith<$Res> {
     Object? id = null,
     Object? name = freezed,
     Object? latName = freezed,
+    Object? created = freezed,
+    Object? updated = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -81,6 +93,14 @@ class _$SpeciesCopyWithImpl<$Res> implements $SpeciesCopyWith<$Res> {
           ? _self.latName
           : latName // ignore: cast_nullable_to_non_nullable
               as String?,
+      created: freezed == created
+          ? _self.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updated: freezed == updated
+          ? _self.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -178,13 +198,16 @@ extension SpeciesPatterns on Species {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String id, String? name, String? latName)? $default, {
+    TResult Function(String id, String? name, String? latName,
+            DateTime? created, DateTime? updated)?
+        $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _Species() when $default != null:
-        return $default(_that.id, _that.name, _that.latName);
+        return $default(
+            _that.id, _that.name, _that.latName, _that.created, _that.updated);
       case _:
         return orElse();
     }
@@ -205,12 +228,15 @@ extension SpeciesPatterns on Species {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String id, String? name, String? latName) $default,
+    TResult Function(String id, String? name, String? latName,
+            DateTime? created, DateTime? updated)
+        $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Species():
-        return $default(_that.id, _that.name, _that.latName);
+        return $default(
+            _that.id, _that.name, _that.latName, _that.created, _that.updated);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -230,12 +256,15 @@ extension SpeciesPatterns on Species {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String id, String? name, String? latName)? $default,
+    TResult? Function(String id, String? name, String? latName,
+            DateTime? created, DateTime? updated)?
+        $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Species() when $default != null:
-        return $default(_that.id, _that.name, _that.latName);
+        return $default(
+            _that.id, _that.name, _that.latName, _that.created, _that.updated);
       case _:
         return null;
     }
@@ -245,7 +274,12 @@ extension SpeciesPatterns on Species {
 /// @nodoc
 
 class _Species implements Species {
-  _Species({required this.id, required this.name, required this.latName});
+  _Species(
+      {required this.id,
+      required this.name,
+      required this.latName,
+      this.created,
+      this.updated});
 
   @override
   final String id;
@@ -253,6 +287,10 @@ class _Species implements Species {
   final String? name;
   @override
   final String? latName;
+  @override
+  final DateTime? created;
+  @override
+  final DateTime? updated;
 
   /// Create a copy of Species
   /// with the given fields replaced by the non-null parameter values.
@@ -269,15 +307,18 @@ class _Species implements Species {
             other is _Species &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.latName, latName) || other.latName == latName));
+            (identical(other.latName, latName) || other.latName == latName) &&
+            (identical(other.created, created) || other.created == created) &&
+            (identical(other.updated, updated) || other.updated == updated));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, latName);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, latName, created, updated);
 
   @override
   String toString() {
-    return 'Species(id: $id, name: $name, latName: $latName)';
+    return 'Species(id: $id, name: $name, latName: $latName, created: $created, updated: $updated)';
   }
 }
 
@@ -287,7 +328,12 @@ abstract mixin class _$SpeciesCopyWith<$Res> implements $SpeciesCopyWith<$Res> {
       __$SpeciesCopyWithImpl;
   @override
   @useResult
-  $Res call({String id, String? name, String? latName});
+  $Res call(
+      {String id,
+      String? name,
+      String? latName,
+      DateTime? created,
+      DateTime? updated});
 }
 
 /// @nodoc
@@ -305,6 +351,8 @@ class __$SpeciesCopyWithImpl<$Res> implements _$SpeciesCopyWith<$Res> {
     Object? id = null,
     Object? name = freezed,
     Object? latName = freezed,
+    Object? created = freezed,
+    Object? updated = freezed,
   }) {
     return _then(_Species(
       id: null == id
@@ -319,6 +367,14 @@ class __$SpeciesCopyWithImpl<$Res> implements _$SpeciesCopyWith<$Res> {
           ? _self.latName
           : latName // ignore: cast_nullable_to_non_nullable
               as String?,
+      created: freezed == created
+          ? _self.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updated: freezed == updated
+          ? _self.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }

@@ -130,8 +130,8 @@ extension BirdBreederResovlerExtension on BirdBreederCubit {
       boughtFromId: birdDto.boughtFromId,
       soldToId: birdDto.soldToId,
       ownerId: birdDto.ownerId,
-      createdAt: birdDto.created,
-      updatedAt: birdDto.updated,
+      created: birdDto.created,
+      updated: birdDto.updated,
       bornAt: birdDto.bornAt,
       unknownLifecycle: birdDto.unknownLifecycle,
     );

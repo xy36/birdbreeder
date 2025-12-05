@@ -212,19 +212,23 @@ Future<T?> promptValueSelector<T>(
 
   return openSheet<T?>(
     context,
-    ValueSelector<T>(
-      initialValue: initialValue,
-      values: values,
-      title: title,
-      itemBuilder: itemBuilder,
-      filterFn: filterFn,
-      onAdd: (String value) async {
-        final createdValue = await onAdd?.call(value);
+    DraggableScrollableSheet(
+      expand: false,
+      builder: (context, scrollController) => ValueSelector<T>(
+        initialValue: initialValue,
+        values: values,
+        title: title,
+        itemBuilder: itemBuilder,
+        filterFn: filterFn,
+        onAdd: (String value) async {
+          final createdValue = await onAdd?.call(value);
 
-        if (!context.mounted) return;
+          if (!context.mounted) return;
 
-        Navigator.pop(context, createdValue);
-      },
+          Navigator.pop(context, createdValue);
+        },
+        scrollController: scrollController,
+      ),
     ),
   );
 }

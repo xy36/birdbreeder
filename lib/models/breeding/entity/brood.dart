@@ -11,6 +11,8 @@ abstract class Brood with _$Brood {
     required String? notes,
     required String? cage,
     required String? breedingPair,
+    DateTime? created,
+    DateTime? updated,
   }) = _Brood;
 
   factory Brood.create({

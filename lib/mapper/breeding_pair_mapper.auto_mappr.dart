@@ -298,6 +298,8 @@ class $BreedingPairMapper implements _i1.AutoMapprInterface {
       fatherId: model.fatherId,
       motherId: model.motherId,
       status: model.status,
+      created: model.created,
+      updated: model.updated,
       start: model.start,
       end: model.end,
       cageId: model.cageId,
@@ -322,6 +324,8 @@ class $BreedingPairMapper implements _i1.AutoMapprInterface {
       cageId: model.cageId,
       status: model.status,
       notes: model.notes,
+      created: model.created,
+      updated: model.updated,
     );
   }
 }

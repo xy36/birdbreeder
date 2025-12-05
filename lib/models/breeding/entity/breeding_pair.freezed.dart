@@ -22,6 +22,8 @@ mixin _$BreedingPair {
   String? get cageId;
   BreedingPairStatus get status;
   String? get notes;
+  DateTime? get created;
+  DateTime? get updated;
 
   /// Create a copy of BreedingPair
   /// with the given fields replaced by the non-null parameter values.
@@ -45,16 +47,18 @@ mixin _$BreedingPair {
                 other.motherId == motherId) &&
             (identical(other.cageId, cageId) || other.cageId == cageId) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.notes, notes) || other.notes == notes));
+            (identical(other.notes, notes) || other.notes == notes) &&
+            (identical(other.created, created) || other.created == created) &&
+            (identical(other.updated, updated) || other.updated == updated));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, start, end, fatherId, motherId, cageId, status, notes);
+  int get hashCode => Object.hash(runtimeType, id, start, end, fatherId,
+      motherId, cageId, status, notes, created, updated);
 
   @override
   String toString() {
-    return 'BreedingPair(id: $id, start: $start, end: $end, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, status: $status, notes: $notes)';
+    return 'BreedingPair(id: $id, start: $start, end: $end, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, status: $status, notes: $notes, created: $created, updated: $updated)';
   }
 }
 
@@ -72,7 +76,9 @@ abstract mixin class $BreedingPairCopyWith<$Res> {
       String motherId,
       String? cageId,
       BreedingPairStatus status,
-      String? notes});
+      String? notes,
+      DateTime? created,
+      DateTime? updated});
 }
 
 /// @nodoc
@@ -95,6 +101,8 @@ class _$BreedingPairCopyWithImpl<$Res> implements $BreedingPairCopyWith<$Res> {
     Object? cageId = freezed,
     Object? status = null,
     Object? notes = freezed,
+    Object? created = freezed,
+    Object? updated = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -129,6 +137,14 @@ class _$BreedingPairCopyWithImpl<$Res> implements $BreedingPairCopyWith<$Res> {
           ? _self.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
+      created: freezed == created
+          ? _self.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updated: freezed == updated
+          ? _self.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -234,15 +250,26 @@ extension BreedingPairPatterns on BreedingPair {
             String motherId,
             String? cageId,
             BreedingPairStatus status,
-            String? notes)?
+            String? notes,
+            DateTime? created,
+            DateTime? updated)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _BreedingPair() when $default != null:
-        return $default(_that.id, _that.start, _that.end, _that.fatherId,
-            _that.motherId, _that.cageId, _that.status, _that.notes);
+        return $default(
+            _that.id,
+            _that.start,
+            _that.end,
+            _that.fatherId,
+            _that.motherId,
+            _that.cageId,
+            _that.status,
+            _that.notes,
+            _that.created,
+            _that.updated);
       case _:
         return orElse();
     }
@@ -271,14 +298,25 @@ extension BreedingPairPatterns on BreedingPair {
             String motherId,
             String? cageId,
             BreedingPairStatus status,
-            String? notes)
+            String? notes,
+            DateTime? created,
+            DateTime? updated)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _BreedingPair():
-        return $default(_that.id, _that.start, _that.end, _that.fatherId,
-            _that.motherId, _that.cageId, _that.status, _that.notes);
+        return $default(
+            _that.id,
+            _that.start,
+            _that.end,
+            _that.fatherId,
+            _that.motherId,
+            _that.cageId,
+            _that.status,
+            _that.notes,
+            _that.created,
+            _that.updated);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -306,14 +344,25 @@ extension BreedingPairPatterns on BreedingPair {
             String motherId,
             String? cageId,
             BreedingPairStatus status,
-            String? notes)?
+            String? notes,
+            DateTime? created,
+            DateTime? updated)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _BreedingPair() when $default != null:
-        return $default(_that.id, _that.start, _that.end, _that.fatherId,
-            _that.motherId, _that.cageId, _that.status, _that.notes);
+        return $default(
+            _that.id,
+            _that.start,
+            _that.end,
+            _that.fatherId,
+            _that.motherId,
+            _that.cageId,
+            _that.status,
+            _that.notes,
+            _that.created,
+            _that.updated);
       case _:
         return null;
     }
@@ -331,7 +380,9 @@ class _BreedingPair implements BreedingPair {
       required this.motherId,
       required this.cageId,
       required this.status,
-      required this.notes});
+      required this.notes,
+      this.created,
+      this.updated});
 
   @override
   final String id;
@@ -349,6 +400,10 @@ class _BreedingPair implements BreedingPair {
   final BreedingPairStatus status;
   @override
   final String? notes;
+  @override
+  final DateTime? created;
+  @override
+  final DateTime? updated;
 
   /// Create a copy of BreedingPair
   /// with the given fields replaced by the non-null parameter values.
@@ -372,16 +427,18 @@ class _BreedingPair implements BreedingPair {
                 other.motherId == motherId) &&
             (identical(other.cageId, cageId) || other.cageId == cageId) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.notes, notes) || other.notes == notes));
+            (identical(other.notes, notes) || other.notes == notes) &&
+            (identical(other.created, created) || other.created == created) &&
+            (identical(other.updated, updated) || other.updated == updated));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, start, end, fatherId, motherId, cageId, status, notes);
+  int get hashCode => Object.hash(runtimeType, id, start, end, fatherId,
+      motherId, cageId, status, notes, created, updated);
 
   @override
   String toString() {
-    return 'BreedingPair(id: $id, start: $start, end: $end, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, status: $status, notes: $notes)';
+    return 'BreedingPair(id: $id, start: $start, end: $end, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, status: $status, notes: $notes, created: $created, updated: $updated)';
   }
 }
 
@@ -401,7 +458,9 @@ abstract mixin class _$BreedingPairCopyWith<$Res>
       String motherId,
       String? cageId,
       BreedingPairStatus status,
-      String? notes});
+      String? notes,
+      DateTime? created,
+      DateTime? updated});
 }
 
 /// @nodoc
@@ -425,6 +484,8 @@ class __$BreedingPairCopyWithImpl<$Res>
     Object? cageId = freezed,
     Object? status = null,
     Object? notes = freezed,
+    Object? created = freezed,
+    Object? updated = freezed,
   }) {
     return _then(_BreedingPair(
       id: null == id
@@ -459,6 +520,14 @@ class __$BreedingPairCopyWithImpl<$Res>
           ? _self.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
+      created: freezed == created
+          ? _self.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updated: freezed == updated
+          ? _self.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
