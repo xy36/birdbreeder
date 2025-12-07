@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/xy36/birdbreeder/compare/v1.1.0...v1.2.0) (2025-12-07)
+
+
+### Features
+
+* Improved the MaterialTheme class to utilize Google Fonts for text styling. ([4457c24](https://github.com/xy36/birdbreeder/commit/4457c242da8f4d12abebdcc3a838611529b136ea))
+
 ## [1.1.0](https://github.com/xy36/birdbreeder/compare/v1.0.0...v1.1.0) (2025-12-05)
 
 
