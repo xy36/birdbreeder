@@ -4,17 +4,21 @@ extension BirdBreederCubitFinancesX on BirdBreederCubit {
   Future<List<Finance>> fetchFinances() async {
     final res = await _financesRepository.getAll();
 
-    final finances =
-        res.asValue?.value.map(resolveFinancesDto).toList() ?? const [];
+    return res.asValue?.value ?? const [];
+  }
+
+  Future<void> reloadFinances() async {
+    push(loading());
+
+    final finances = await fetchFinances();
 
     emitLoaded(finances: finances);
-    return finances;
   }
 
   Future<Finance?> addFinances(Finance finance) async {
     push(loading());
 
-    final result = await _financesRepository.create(finance.toDto());
+    final result = await _financesRepository.create(finance);
 
     push(loaded());
 
@@ -23,7 +27,7 @@ extension BirdBreederCubitFinancesX on BirdBreederCubit {
       return null;
     }
 
-    final created = result.asValue!.value.toModel();
+    final created = result.asValue!.value;
     _addFinanceToState(created);
 
     return created;
@@ -34,7 +38,7 @@ extension BirdBreederCubitFinancesX on BirdBreederCubit {
 
     final result = await _financesRepository.update(
       finance.id,
-      finance.toDto(),
+      finance,
     );
 
     push(loaded());
@@ -44,7 +48,7 @@ extension BirdBreederCubitFinancesX on BirdBreederCubit {
       return null;
     }
 
-    final updated = result.asValue!.value.toModel();
+    final updated = result.asValue!.value;
     _updateFinanceInState(updated);
 
     return updated;
@@ -74,7 +78,7 @@ extension BirdBreederCubitFinancesX on BirdBreederCubit {
       title: '${finance.title} (copy)',
     );
 
-    final result = await _financesRepository.create(newFinance.toDto());
+    final result = await _financesRepository.create(newFinance);
 
     push(loaded());
 
@@ -83,7 +87,7 @@ extension BirdBreederCubitFinancesX on BirdBreederCubit {
       return null;
     }
 
-    final duplicated = result.asValue!.value.toModel();
+    final duplicated = result.asValue!.value;
     _addFinanceToState(duplicated);
 
     return duplicated;

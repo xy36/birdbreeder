@@ -22,6 +22,7 @@ dependencies:
   pocketbase_drift: ^0.3.2
   collection: ^1.17.1
   dartx: ^1.2.0
+  google_fonts: ^6.3.3
   dropdown_search: ^6.0.2
   equatable: ^2.0.5
   url_launcher: ^6.3.2

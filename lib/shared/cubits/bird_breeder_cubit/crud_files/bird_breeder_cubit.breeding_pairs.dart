@@ -4,17 +4,21 @@ extension BirdBreederCubitBreedingPairsX on BirdBreederCubit {
   Future<List<BreedingPair>> fetchBreedingPairs() async {
     final res = await _breedingsRepository.getAll();
 
-    final pairs =
-        res.asValue?.value.map(resolveBreedingPairDto).toList() ?? const [];
+    return res.asValue?.value ?? const [];
+  }
+
+  Future<void> reloadBreedingPairs() async {
+    push(loading());
+
+    final pairs = await fetchBreedingPairs();
 
     emitLoaded(breedingPairs: pairs);
-    return pairs;
   }
 
   Future<BreedingPair?> addBreedingPair(BreedingPair pair) async {
     push(loading());
 
-    final result = await _breedingsRepository.create(pair.toDto());
+    final result = await _breedingsRepository.create(pair);
 
     push(loaded());
 
@@ -23,7 +27,7 @@ extension BirdBreederCubitBreedingPairsX on BirdBreederCubit {
       return null;
     }
 
-    final created = result.asValue!.value.toModel();
+    final created = result.asValue!.value;
     _addPairToState(created);
 
     return created;
@@ -32,7 +36,7 @@ extension BirdBreederCubitBreedingPairsX on BirdBreederCubit {
   Future<BreedingPair?> updateBreedingPair(BreedingPair pair) async {
     push(loading());
 
-    final result = await _breedingsRepository.update(pair.id, pair.toDto());
+    final result = await _breedingsRepository.update(pair.id, pair);
 
     push(loaded());
 
@@ -41,7 +45,7 @@ extension BirdBreederCubitBreedingPairsX on BirdBreederCubit {
       return null;
     }
 
-    final updated = result.asValue!.value.toModel();
+    final updated = result.asValue!.value;
     _updatePairInState(updated);
 
     return updated;

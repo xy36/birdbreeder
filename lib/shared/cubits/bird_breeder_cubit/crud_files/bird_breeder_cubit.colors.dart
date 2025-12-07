@@ -4,16 +4,21 @@ extension BirdBreederCubitColorsX on BirdBreederCubit {
   Future<List<BirdColor>> fetchColors() async {
     final res = await _birdColorsRepository.getAll();
 
-    final colors = res.asValue?.value.map(resolveColorDto).toList() ?? const [];
+    return res.asValue?.value ?? const [];
+  }
+
+  Future<void> reloadColors() async {
+    push(loading());
+
+    final colors = await fetchColors();
 
     emitLoaded(colors: colors);
-    return colors;
   }
 
   Future<BirdColor?> addColor(BirdColor color) async {
     push(loading());
 
-    final result = await _birdColorsRepository.create(color.toDto());
+    final result = await _birdColorsRepository.create(color);
 
     push(loaded());
 
@@ -22,7 +27,7 @@ extension BirdBreederCubitColorsX on BirdBreederCubit {
       return null;
     }
 
-    final created = result.asValue!.value.toModel();
+    final created = result.asValue!.value;
     _addColorToState(created);
 
     return created;
@@ -31,7 +36,7 @@ extension BirdBreederCubitColorsX on BirdBreederCubit {
   Future<BirdColor?> updateColor(BirdColor color) async {
     push(loading());
 
-    final result = await _birdColorsRepository.update(color.id, color.toDto());
+    final result = await _birdColorsRepository.update(color.id, color);
 
     push(loaded());
 
@@ -40,7 +45,7 @@ extension BirdBreederCubitColorsX on BirdBreederCubit {
       return null;
     }
 
-    final updated = result.asValue!.value.toModel();
+    final updated = result.asValue!.value;
     _updateColorInState(updated);
 
     return updated;

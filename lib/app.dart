@@ -27,11 +27,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const useDarkTheme = true;
-
-    const theme = MaterialTheme(
-      TextTheme(),
-    );
+    final brightness = View.of(context).platformDispatcher.platformBrightness;
+    const theme = MaterialTheme();
 
     return MultiBlocProvider(
       providers: [
@@ -47,12 +44,13 @@ class App extends StatelessWidget {
           reevaluateListenable:
               s1.get<IAuthenticationService>().authenticationStatus,
         ),
-        theme: theme.light(),
-        darkTheme: theme.dark(),
+        theme: brightness == Brightness.light
+            ? theme.light(context)
+            : theme.dark(context),
+        darkTheme: theme.dark(context),
         builder: (context, child) {
           return child!;
         },
-        themeMode: useDarkTheme ? ThemeMode.dark : ThemeMode.light,
         locale: TranslationProvider.of(context).flutterLocale,
         supportedLocales: AppLocaleUtils.supportedLocales,
         localizationsDelegates: GlobalMaterialLocalizations.delegates,

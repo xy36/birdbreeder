@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/core/extensions/mapper_extensions.dart';
 import 'package:birdbreeder/models/bird/dtos/bird_dto.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/bird_breeder_resources.dart';
@@ -24,8 +23,7 @@ import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';
 import 'package:birdbreeder/models/ressources/entity/species.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit_event.dart';
-import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_resolver.dart';
-import 'package:birdbreeder/shared/repositories/ressource_repository.dart';
+import 'package:birdbreeder/shared/repositories/resource_repository.dart';
 import 'package:bloc_presentation/bloc_presentation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -76,16 +74,17 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
         ),
       );
 
-  final RessourceRepository<BirdColorDto> _birdColorsRepository;
-  final RessourceRepository<ContactDto> _contactsRepository;
-  final RessourceRepository<CageDto> _cagesRepository;
-  final RessourceRepository<SpeciesDto> _speciesRepository;
-  final RessourceRepository<BreedingPairDto> _breedingsRepository;
-  final RessourceRepository<BroodDto> _broodsRepository;
-  final RessourceRepository<BirdDto> _birdsRepository;
-  final RessourceRepository<EggDto> _eggsRepository;
-  final RessourceRepository<FinanceDto> _financesRepository;
-  final RessourceRepository<FinanceCategoryDto> _financesCategoriesRepository;
+  final ResourceRepository<BirdColor, BirdColorDto> _birdColorsRepository;
+  final ResourceRepository<Contact, ContactDto> _contactsRepository;
+  final ResourceRepository<Cage, CageDto> _cagesRepository;
+  final ResourceRepository<Species, SpeciesDto> _speciesRepository;
+  final ResourceRepository<BreedingPair, BreedingPairDto> _breedingsRepository;
+  final ResourceRepository<Brood, BroodDto> _broodsRepository;
+  final ResourceRepository<Bird, BirdDto> _birdsRepository;
+  final ResourceRepository<Egg, EggDto> _eggsRepository;
+  final ResourceRepository<Finance, FinanceDto> _financesRepository;
+  final ResourceRepository<FinanceCategory, FinanceCategoryDto>
+      _financesCategoriesRepository;
 
   void push(BirdBreederState newState) => emit(newState);
 
@@ -116,42 +115,42 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
       ),
     );
 
-    final birdsF = fetchBirds();
-    final pairsF = fetchBreedingPairs();
-    final broodsF = fetchBroods();
-    final cagesF = fetchCages();
-    final colorsF = fetchColors();
-    final contactsF = fetchContacts();
-    final speciesF = fetchSpecies();
-    final eggsF = fetchEggs();
-    final financesCategoriesF = fetchFinancesCategories();
-    final financesF = fetchFinances();
-
-    await Future.wait(
-      [
-        birdsF,
-        pairsF,
-        broodsF,
-        cagesF,
-        colorsF,
-        contactsF,
-        speciesF,
-        eggsF,
-        financesCategoriesF,
-        financesF,
-      ],
+    final (
+      birds,
+      breedingPairs,
+      broods,
+      cages,
+      colors,
+      contacts,
+      species,
+      eggs,
+      financesCategories,
+      finances
+    ) = await Future.wait([
+      fetchBirds(),
+      fetchBreedingPairs(),
+      fetchBroods(),
+      fetchCages(),
+      fetchColors(),
+      fetchContacts(),
+      fetchSpecies(),
+      fetchEggs(),
+      fetchFinancesCategories(),
+      fetchFinances(),
+    ]).then(
+      (list) => (
+        list[0] as List<Bird>,
+        list[1] as List<BreedingPair>,
+        list[2] as List<Brood>,
+        list[3] as List<Cage>,
+        list[4] as List<BirdColor>,
+        list[5] as List<Contact>,
+        list[6] as List<Species>,
+        list[7] as List<Egg>,
+        list[8] as List<FinanceCategory>,
+        list[9] as List<Finance>,
+      ),
     );
-
-    final birds = await birdsF;
-    final breedingPairs = await pairsF;
-    final broods = await broodsF;
-    final cages = await cagesF;
-    final colors = await colorsF;
-    final contacts = await contactsF;
-    final species = await speciesF;
-    final eggs = await eggsF;
-    final financesCategories = await financesCategoriesF;
-    final finances = await financesF;
 
     emitLoaded(
       birds: birds,

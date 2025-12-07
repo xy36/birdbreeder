@@ -1,13 +1,24 @@
+import 'package:birdbreeder/core/extensions/mapper_extensions.dart';
 import 'package:birdbreeder/models/bird/dtos/bird_dto.dart';
+import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/breeding/dtos/breeding_pair_dto.dart';
 import 'package:birdbreeder/models/breeding/dtos/brood_dto.dart';
+import 'package:birdbreeder/models/breeding/entity/breeding_pair.dart';
+import 'package:birdbreeder/models/breeding/entity/brood.dart';
 import 'package:birdbreeder/models/contact/dtos/contact_dto.dart';
+import 'package:birdbreeder/models/contact/entity/contact.dart';
 import 'package:birdbreeder/models/egg/dtos/egg_dto.dart';
+import 'package:birdbreeder/models/egg/entity/egg.dart';
 import 'package:birdbreeder/models/finance/dtos/finance_category_dto.dart';
 import 'package:birdbreeder/models/finance/dtos/finance_dto.dart';
+import 'package:birdbreeder/models/finance/entity/finance.dart';
+import 'package:birdbreeder/models/finance/entity/finance_category.dart';
 import 'package:birdbreeder/models/ressources/dto/bird_color_dto.dart';
 import 'package:birdbreeder/models/ressources/dto/cage_dto.dart';
 import 'package:birdbreeder/models/ressources/dto/species_dto.dart';
+import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
+import 'package:birdbreeder/models/ressources/entity/cage.dart';
+import 'package:birdbreeder/models/ressources/entity/species.dart';
 import 'package:birdbreeder/services/authentication/authentication_service.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/logging_service.dart';
@@ -15,109 +26,145 @@ import 'package:birdbreeder/services/pocketbase_service.dart';
 import 'package:birdbreeder/services/snackbar_service.dart';
 import 'package:birdbreeder/services/token_storage_service.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
-import 'package:birdbreeder/shared/repositories/ressource_repository.dart';
+import 'package:birdbreeder/shared/repositories/resource_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:pocketbase/pocketbase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final GetIt s1 = GetIt.instance;
 
 Future<void> initializeDependencyInjection() async {
-  //TODO: rework
   final prefs = await SharedPreferences.getInstance();
 
   s1
-    ..registerSingleton<LoggingService>(LoggingService())
-    ..registerSingleton<TokenStorageService>(TokenStorageService(prefs, s1()))
-    ..registerSingleton<PocketBaseService>(PocketBaseService())
-    ..registerSingleton<SnackbarService>(SnackbarService())
+    ..registerSingleton(LoggingService())
+    ..registerSingleton(TokenStorageService(prefs, s1()))
+    ..registerSingleton(PocketBaseService())
+    ..registerSingleton(SnackbarService())
     ..registerLazySingleton<IAuthenticationService>(
       () => AuthenticationService(s1(), s1()),
-    )
-    // Misc
-    ..registerLazySingleton<RessourceRepository<BirdDto>>(
-      () => RessourceRepository<BirdDto>(
-        loggingService: s1(),
-        recordService: s1.get<PocketBaseService>().birdsCollection,
+    );
+
+  // -------------------------------
+  // Helper to simplify repository creation
+  // -------------------------------
+  ResourceRepository<TModel, TDto> repo<TModel, TDto>({
+    required RecordService service,
+    required TDto Function(Map<String, dynamic>) fromJson,
+    required Map<String, dynamic> Function(TDto) toJson,
+    required TModel Function(TDto) fromDto,
+    required TDto Function(TModel) toDto,
+  }) {
+    return ResourceRepository<TModel, TDto>(
+      loggingService: s1(),
+      recordService: service,
+      fromJson: fromJson,
+      toJson: toJson,
+      fromDto: fromDto,
+      toDto: toDto,
+    );
+  }
+
+  final pb = s1<PocketBaseService>();
+
+  // -------------------------------
+  // Register repositories
+  // -------------------------------
+  s1
+    ..registerLazySingleton(
+      () => repo<Bird, BirdDto>(
+        service: pb.birdsCollection,
         fromJson: BirdDto.fromJson,
-        toJson: (bird) => bird.toJson(),
+        toJson: (d) => d.toJson(),
+        fromDto: (dto) => dto.toModel(),
+        toDto: (m) => m.toDto(),
       ),
     )
-    ..registerLazySingleton<RessourceRepository<BreedingPairDto>>(
-      () => RessourceRepository<BreedingPairDto>(
-        loggingService: s1(),
-        recordService: s1.get<PocketBaseService>().breedingPairCollection,
+    ..registerLazySingleton(
+      () => repo<BreedingPair, BreedingPairDto>(
+        service: pb.breedingPairCollection,
         fromJson: BreedingPairDto.fromJson,
-        toJson: (breedingPair) => breedingPair.toJson(),
+        toJson: (d) => d.toJson(),
+        fromDto: (dto) => dto.toModel(),
+        toDto: (m) => m.toDto(),
       ),
     )
-    ..registerLazySingleton<RessourceRepository<BroodDto>>(
-      () => RessourceRepository<BroodDto>(
-        loggingService: s1(),
-        recordService: s1.get<PocketBaseService>().broodsCollection,
+    ..registerLazySingleton(
+      () => repo<Brood, BroodDto>(
+        service: pb.broodsCollection,
         fromJson: BroodDto.fromJson,
-        toJson: (brood) => brood.toJson(),
+        toJson: (d) => d.toJson(),
+        fromDto: (dto) => dto.toModel(),
+        toDto: (m) => m.toDto(),
       ),
     )
-    ..registerLazySingleton<RessourceRepository<CageDto>>(
-      () => RessourceRepository<CageDto>(
-        loggingService: s1(),
-        recordService: s1.get<PocketBaseService>().cagesCollection,
+    ..registerLazySingleton(
+      () => repo<Cage, CageDto>(
+        service: pb.cagesCollection,
         fromJson: CageDto.fromJson,
-        toJson: (cage) => cage.toJson(),
+        toJson: (d) => d.toJson(),
+        fromDto: (dto) => dto.toModel(),
+        toDto: (m) => m.toDto(),
       ),
     )
-    ..registerLazySingleton<RessourceRepository<SpeciesDto>>(
-      () => RessourceRepository<SpeciesDto>(
-        loggingService: s1(),
-        recordService: s1.get<PocketBaseService>().speciesCollection,
+    ..registerLazySingleton(
+      () => repo<Species, SpeciesDto>(
+        service: pb.speciesCollection,
         fromJson: SpeciesDto.fromJson,
-        toJson: (species) => species.toJson(),
+        toJson: (d) => d.toJson(),
+        fromDto: (dto) => dto.toModel(),
+        toDto: (m) => m.toDto(),
       ),
     )
-    ..registerLazySingleton<RessourceRepository<BirdColorDto>>(
-      () => RessourceRepository<BirdColorDto>(
-        loggingService: s1(),
-        recordService: s1.get<PocketBaseService>().colorsCollection,
+    ..registerLazySingleton(
+      () => repo<BirdColor, BirdColorDto>(
+        service: pb.colorsCollection,
         fromJson: BirdColorDto.fromJson,
-        toJson: (color) => color.toJson(),
+        toJson: (d) => d.toJson(),
+        fromDto: (dto) => dto.toModel(),
+        toDto: (m) => m.toDto(),
       ),
     )
-    ..registerLazySingleton<RessourceRepository<ContactDto>>(
-      () => RessourceRepository<ContactDto>(
-        loggingService: s1(),
-        recordService: s1.get<PocketBaseService>().contactsCollection,
+    ..registerLazySingleton(
+      () => repo<Contact, ContactDto>(
+        service: pb.contactsCollection,
         fromJson: ContactDto.fromJson,
-        toJson: (contact) => contact.toJson(),
+        toJson: (d) => d.toJson(),
+        fromDto: (dto) => dto.toModel(),
+        toDto: (m) => m.toDto(),
       ),
     )
-    ..registerLazySingleton<RessourceRepository<EggDto>>(
-      () => RessourceRepository<EggDto>(
-        loggingService: s1(),
-        recordService: s1.get<PocketBaseService>().eggsCollection,
+    ..registerLazySingleton(
+      () => repo<Egg, EggDto>(
+        service: pb.eggsCollection,
         fromJson: EggDto.fromJson,
-        toJson: (egg) => egg.toJson(),
+        toJson: (d) => d.toJson(),
+        fromDto: (dto) => dto.toModel(),
+        toDto: (m) => m.toDto(),
       ),
     )
-    ..registerLazySingleton<RessourceRepository<FinanceCategoryDto>>(
-      () => RessourceRepository<FinanceCategoryDto>(
-        loggingService: s1(),
-        recordService: s1.get<PocketBaseService>().financesCategoriesCollection,
+    ..registerLazySingleton(
+      () => repo<FinanceCategory, FinanceCategoryDto>(
+        service: pb.financesCategoriesCollection,
         fromJson: FinanceCategoryDto.fromJson,
-        toJson: (f) => f.toJson(),
+        toJson: (d) => d.toJson(),
+        fromDto: (dto) => dto.toModel(),
+        toDto: (m) => m.toDto(),
       ),
     )
-    ..registerLazySingleton<RessourceRepository<FinanceDto>>(
-      () => RessourceRepository<FinanceDto>(
-        loggingService: s1(),
-        recordService: s1.get<PocketBaseService>().financesCollection,
+    ..registerLazySingleton(
+      () => repo<Finance, FinanceDto>(
+        service: pb.financesCollection,
         fromJson: FinanceDto.fromJson,
-        toJson: (f) => f.toJson(),
+        toJson: (d) => d.toJson(),
+        fromDto: (dto) => dto.toModel(),
+        toDto: (m) => m.toDto(),
       ),
     )
 
-    // Blocs
-    ..registerLazySingleton<BirdBreederCubit>(
+    // Cubit
+    ..registerLazySingleton(
       () => BirdBreederCubit(
         s1(),
         s1(),
@@ -132,8 +179,6 @@ Future<void> initializeDependencyInjection() async {
       ),
     )
 
-    // External
-    ..registerLazySingleton<RouteObserver<ModalRoute<void>>>(
-      RouteObserver<ModalRoute<void>>.new,
-    );
+    // Navigation observer
+    ..registerLazySingleton(RouteObserver<ModalRoute<void>>.new);
 }

@@ -1,18 +1,18 @@
 import 'package:async/async.dart';
 
-abstract class ICrudRepository<T> {
+abstract class ICrudRepository<TModel, TDto> {
   /// Create new
-  Future<Result<T>> create(T obj);
+  Future<Result<TModel>> create(TModel obj);
 
-  /// Returns a [T] with the given id.
-  Future<Result<T>> getById(String id);
+  /// Returns a [TModel] with the given id.
+  Future<Result<TModel>> getById(String id);
 
   /// Returns a list of all []s.
-  Future<Result<List<T>>> getAll();
+  Future<Result<List<TModel>>> getAll();
 
-  /// Updates the [T].
-  Future<Result<T>> update(String id, T obj);
+  /// Updates the [TModel].
+  Future<Result<TModel>> update(String id, TModel obj);
 
-  /// Delete the [T] with the given id.
+  /// Delete the [TModel] with the given id.
   Future<Result<void>> delete(String id);
 }

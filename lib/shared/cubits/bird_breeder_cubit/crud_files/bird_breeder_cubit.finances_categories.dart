@@ -4,12 +4,15 @@ extension BirdBreederCubitFinancesCategoriesX on BirdBreederCubit {
   Future<List<FinanceCategory>> fetchFinancesCategories() async {
     final res = await _financesCategoriesRepository.getAll();
 
-    final categories =
-        res.asValue?.value.map(resolveFinancesCategoriesDto).toList() ??
-            const [];
+    return res.asValue?.value ?? const [];
+  }
+
+  Future<void> reloadFinancesCategories() async {
+    push(loading());
+
+    final categories = await fetchFinancesCategories();
 
     emitLoaded(financesCategories: categories);
-    return categories;
   }
 
   Future<FinanceCategory?> addFinancesCategory(
@@ -17,7 +20,7 @@ extension BirdBreederCubitFinancesCategoriesX on BirdBreederCubit {
   ) async {
     push(loading());
 
-    final result = await _financesCategoriesRepository.create(category.toDto());
+    final result = await _financesCategoriesRepository.create(category);
 
     push(loaded());
 
@@ -26,7 +29,7 @@ extension BirdBreederCubitFinancesCategoriesX on BirdBreederCubit {
       return null;
     }
 
-    final created = result.asValue!.value.toModel();
+    final created = result.asValue!.value;
     _addFinanceCategoryToState(created);
 
     return created;
@@ -39,7 +42,7 @@ extension BirdBreederCubitFinancesCategoriesX on BirdBreederCubit {
 
     final result = await _financesCategoriesRepository.update(
       category.id,
-      category.toDto(),
+      category,
     );
 
     push(loaded());
@@ -49,7 +52,7 @@ extension BirdBreederCubitFinancesCategoriesX on BirdBreederCubit {
       return null;
     }
 
-    final updated = result.asValue!.value.toModel();
+    final updated = result.asValue!.value;
     _updateFinanceCategoryInState(updated);
 
     return updated;
@@ -73,7 +76,7 @@ extension BirdBreederCubitFinancesCategoriesX on BirdBreederCubit {
   void _addFinanceCategoryToState(FinanceCategory category) {
     final updated = [
       ...state.birdBreederResources.financesCategories,
-      category
+      category,
     ];
     _emitUpdatedFinanceCategories(updated);
   }

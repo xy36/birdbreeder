@@ -4,17 +4,21 @@ extension BirdBreederCubitContactsX on BirdBreederCubit {
   Future<List<Contact>> fetchContacts() async {
     final res = await _contactsRepository.getAll();
 
-    final contacts =
-        res.asValue?.value.map(resolveContactDto).toList() ?? const [];
+    return res.asValue?.value ?? const [];
+  }
+
+  Future<void> reloadContacts() async {
+    push(loading());
+
+    final contacts = await fetchContacts();
 
     emitLoaded(contacts: contacts);
-    return contacts;
   }
 
   Future<Contact?> addContact(Contact contact) async {
     push(loading());
 
-    final result = await _contactsRepository.create(contact.toDto());
+    final result = await _contactsRepository.create(contact);
 
     push(loaded());
 
@@ -23,7 +27,7 @@ extension BirdBreederCubitContactsX on BirdBreederCubit {
       return null;
     }
 
-    final created = result.asValue!.value.toModel();
+    final created = result.asValue!.value;
     _addContactToState(created);
 
     return created;
@@ -32,8 +36,7 @@ extension BirdBreederCubitContactsX on BirdBreederCubit {
   Future<Contact?> updateContact(Contact contact) async {
     push(loading());
 
-    final result =
-        await _contactsRepository.update(contact.id, contact.toDto());
+    final result = await _contactsRepository.update(contact.id, contact);
 
     push(loaded());
 
@@ -42,7 +45,7 @@ extension BirdBreederCubitContactsX on BirdBreederCubit {
       return null;
     }
 
-    final updated = result.asValue!.value.toModel();
+    final updated = result.asValue!.value;
     _updateContactInState(updated);
 
     return updated;

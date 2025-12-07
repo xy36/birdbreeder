@@ -3,17 +3,21 @@ part of '../bird_breeder_cubit.dart';
 extension BirdBreederCubitBirdsX on BirdBreederCubit {
   Future<List<Bird>> fetchBirds() async {
     final res = await _birdsRepository.getAll();
+    return res.asValue?.value ?? const [];
+  }
 
-    final birds = res.asValue?.value.map(resolveBirdDto).toList() ?? const [];
+  Future<void> reloadBirds() async {
+    push(loading());
+
+    final birds = await fetchBirds();
 
     emitLoaded(birds: birds);
-    return birds;
   }
 
   Future<Bird?> addBird(Bird bird) async {
     push(loading());
 
-    final result = await _birdsRepository.create(bird.toDto());
+    final result = await _birdsRepository.create(bird);
 
     push(loaded());
 
@@ -22,7 +26,7 @@ extension BirdBreederCubitBirdsX on BirdBreederCubit {
       return null;
     }
 
-    final created = result.asValue!.value.toModel();
+    final created = result.asValue!.value;
 
     _addBirdToState(created);
     return created;
@@ -31,7 +35,7 @@ extension BirdBreederCubitBirdsX on BirdBreederCubit {
   Future<Bird?> updateBird(Bird bird) async {
     push(loading());
 
-    final result = await _birdsRepository.update(bird.id, bird.toDto());
+    final result = await _birdsRepository.update(bird.id, bird);
 
     push(loaded());
 
@@ -40,7 +44,7 @@ extension BirdBreederCubitBirdsX on BirdBreederCubit {
       return null;
     }
 
-    final updated = result.asValue!.value.toModel();
+    final updated = result.asValue!.value;
 
     _updateBirdInState(updated);
     return updated;
@@ -65,12 +69,10 @@ extension BirdBreederCubitBirdsX on BirdBreederCubit {
     push(loading());
 
     final result = await _birdsRepository.create(
-      bird
-          .copyWith(
-            id: '',
-            ringNumber: '${bird.ringNumber ?? ''} (copy)',
-          )
-          .toDto(),
+      bird.copyWith(
+        id: '',
+        ringNumber: '${bird.ringNumber ?? ''} (copy)',
+      ),
     );
 
     push(loaded());
@@ -80,7 +82,7 @@ extension BirdBreederCubitBirdsX on BirdBreederCubit {
       return;
     }
 
-    final created = result.asValue!.value.toModel();
+    final created = result.asValue!.value;
     _addBirdToState(created);
   }
 

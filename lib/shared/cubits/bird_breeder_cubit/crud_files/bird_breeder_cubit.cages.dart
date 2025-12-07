@@ -4,16 +4,21 @@ extension BirdBreederCubitCagesX on BirdBreederCubit {
   Future<List<Cage>> fetchCages() async {
     final res = await _cagesRepository.getAll();
 
-    final cages = res.asValue?.value.map(resolveCageDto).toList() ?? const [];
+    return res.asValue?.value ?? const [];
+  }
+
+  Future<void> reloadCages() async {
+    push(loading());
+
+    final cages = await fetchCages();
 
     emitLoaded(cages: cages);
-    return cages;
   }
 
   Future<Cage?> addCage(Cage cage) async {
     push(loading());
 
-    final result = await _cagesRepository.create(cage.toDto());
+    final result = await _cagesRepository.create(cage);
 
     push(loaded());
 
@@ -22,7 +27,7 @@ extension BirdBreederCubitCagesX on BirdBreederCubit {
       return null;
     }
 
-    final created = result.asValue!.value.toModel();
+    final created = result.asValue!.value;
     _addCageToState(created);
 
     return created;
@@ -31,7 +36,7 @@ extension BirdBreederCubitCagesX on BirdBreederCubit {
   Future<Cage?> updateCage(Cage cage) async {
     push(loading());
 
-    final result = await _cagesRepository.update(cage.id, cage.toDto());
+    final result = await _cagesRepository.update(cage.id, cage);
 
     push(loaded());
 
@@ -40,7 +45,7 @@ extension BirdBreederCubitCagesX on BirdBreederCubit {
       return null;
     }
 
-    final updated = result.asValue!.value.toModel();
+    final updated = result.asValue!.value;
     _updateCageInState(updated);
 
     return updated;
