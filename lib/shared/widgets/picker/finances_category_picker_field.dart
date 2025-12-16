@@ -1,7 +1,9 @@
+import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/models/finance/entity/finance_category.dart';
 import 'package:birdbreeder/models/finance/finance_category_kind.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:birdbreeder/shared/widgets/category_avatar.dart';
 import 'package:birdbreeder/shared/widgets/generic_picker_field.dart';
 
 class FinancesCategoryPickerField extends StatelessWidget {
@@ -34,6 +36,15 @@ class FinancesCategoryPickerField extends StatelessWidget {
       validator: validator,
       labelText: context.tr.finances.add.category,
       itemBuilder: (context, item, index) => ListTile(
+        selected: item == initialValue,
+        subtitle: Text(
+          item.kind.getDisplayData(context).label,
+          style: context.textTheme.bodySmall,
+        ),
+        leading: CategoryAvatar(
+          cat: item,
+          size: 36,
+        ),
         title: Text(item.name),
       ),
       filterFn: (item, filter) =>

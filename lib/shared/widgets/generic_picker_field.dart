@@ -123,6 +123,7 @@ class GenericPickerField<T> extends StatelessWidget {
                       filterFn: filterFn,
                       itemBuilder: itemBuilder,
                       onAdd: onAdd,
+                      initialValue: initialValue,
                     );
                   }
 
