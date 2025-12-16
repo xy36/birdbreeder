@@ -1,9 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/core/routing/app_router.dart';
+import 'package:birdbreeder/features/ressourcen_center/widgets/details_pages/cage_details_sheet.dart';
 import 'package:birdbreeder/features/ressourcen_center/widgets/resource_list.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:birdbreeder/shared/widgets/utils.dart';
 
 @RoutePage(name: 'CagesTabRoute')
 class CagesTab extends StatelessWidget {
@@ -13,9 +14,9 @@ class CagesTab extends StatelessWidget {
     return ResourceList<Cage>(
       title: 'Cages',
       items: context.watch<BirdBreederCubit>().state.birdBreederResources.cages,
-      onCreate: () => context.router.push(CageDetailsRoute()),
+      onCreate: () async => openSheet(context, const CageDetailsSheet()),
       onDelete: (cage) => context.read<BirdBreederCubit>().deleteCage(cage),
-      onEdit: (c) => context.router.push(CageDetailsRoute(initialCage: c)),
+      onEdit: (c) async => openSheet(context, CageDetailsSheet(initialCage: c)),
     );
   }
 }

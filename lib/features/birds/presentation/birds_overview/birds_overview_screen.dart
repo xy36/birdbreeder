@@ -6,14 +6,13 @@ import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/bir
 import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_search_cubit.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/bird_card.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/bird_filter_sheet/bird_filter_sheet.dart';
-import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/birds_overview_header.dart';
-import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/random_bird_fab.dart';
 import 'package:birdbreeder/models/bird/bird_filter.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/cubits/generic_search_cubit/base_search.dart';
 import 'package:birdbreeder/shared/icons.dart';
-import 'package:birdbreeder/shared/widgets/buttons/button_bird_add.dart';
+import 'package:birdbreeder/shared/widgets/bird_breeder_wrapper.dart';
+import 'package:birdbreeder/shared/widgets/bottom_search_bar.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 
 enum BirdOverviewMode {
@@ -59,23 +58,6 @@ class _BirdsOverviewScreenState extends State<BirdsOverviewScreen> {
         title: context.tr.birds.title,
         hideMenuButton: widget.mode == BirdOverviewMode.picker,
         actions: [
-          BlocBuilder<BirdSearchCubit, BaseSearch>(
-            builder: (context, state) {
-              return IconButton(
-                onPressed: () {
-                  context.read<BirdSearchCubit>().toggleActive();
-                },
-                icon: AnimatedCrossFade(
-                  firstChild: const Icon(AppIcons.search),
-                  secondChild: const Icon(AppIcons.searchOff),
-                  crossFadeState: state.isActive
-                      ? CrossFadeState.showSecond
-                      : CrossFadeState.showFirst,
-                  duration: const Duration(milliseconds: 300),
-                ),
-              );
-            },
-          ),
           BlocBuilder<BirdsFilterCubit, BirdFilter>(
             builder: (context, filter) {
               final hasActiveFilter = filter != const BirdFilter();
@@ -98,11 +80,9 @@ class _BirdsOverviewScreenState extends State<BirdsOverviewScreen> {
           ),
         ],
       ),
-      body: BlocBuilder<BirdBreederCubit, BirdBreederState>(
-        builder: (context, state) => state.map(
-          initial: (_) => const SharedLoadingWidget(),
-          loading: (_) => const SharedLoadingWidget(),
-          loaded: (state) {
+      body: BirdBreederWrapper(
+        child: BlocBuilder<BirdBreederCubit, BirdBreederState>(
+          builder: (context, state) {
             return BlocBuilder<BirdsFilterCubit, BirdFilter>(
               builder: (context, filter) {
                 final birds = state.birdBreederResources.birds;
@@ -111,70 +91,45 @@ class _BirdsOverviewScreenState extends State<BirdsOverviewScreen> {
                     context.watch<BirdsFilterCubit>().filterBirds(birds);
                 context.read<BirdSearchCubit>().setItems(list);
 
-                return Column(
-                  children: [
-                    BlocBuilder<BirdSearchCubit, BaseSearch>(
-                      builder: (context, state) {
-                        return AnimatedCrossFade(
-                          firstChild: const SizedBox.shrink(),
-                          secondChild: GenericSearchBar(
-                            initialQuery: state.query,
-                            onSearch: (query) {
-                              context.read<BirdSearchCubit>().setSearch(query);
-                            },
-                          ),
-                          crossFadeState: state.isActive
-                              ? CrossFadeState.showSecond
-                              : CrossFadeState.showFirst,
-                          duration: const Duration(milliseconds: 300),
-                        );
-                      },
-                    ),
-                    Expanded(
-                      child: BlocBuilder<BirdSearchCubit, BaseSearch>(
-                        builder: (context, state) {
-                          final searchedBirds =
-                              context.read<BirdSearchCubit>().searchedItems;
-                          return ListView.builder(
-                            physics: const AlwaysScrollableScrollPhysics(
-                              parent: BouncingScrollPhysics(),
-                            ),
-                            controller: widget.scrollController,
-                            itemCount: searchedBirds.length,
-                            itemBuilder: (context, i) => BirdCard(
-                              bird: searchedBirds[i],
-                              onTap: () =>
-                                  widget.mode == BirdOverviewMode.picker
-                                      ? pickBird(searchedBirds[i])
-                                      : openBird(searchedBirds[i]),
-                              onDuplicate: () => duplicate(searchedBirds[i]),
-                              onDelete: () => delete(searchedBirds[i]),
-                              onEdit: () => openBird(searchedBirds[i]),
-                            ),
-                          ).withRefresher(
-                            onRefresh: () async {
-                              await context
-                                  .read<BirdBreederCubit>()
-                                  .fetchBirds();
-                            },
-                          );
-                        },
+                return BlocBuilder<BirdSearchCubit, BaseSearch>(
+                  builder: (context, state) {
+                    final searchedBirds =
+                        context.read<BirdSearchCubit>().searchedItems;
+
+                    return ListView.builder(
+                      physics: const AlwaysScrollableScrollPhysics(
+                        parent: BouncingScrollPhysics(),
                       ),
-                    ),
-                  ],
+                      controller: widget.scrollController,
+                      itemCount: searchedBirds.length,
+                      itemBuilder: (context, i) => BirdCard(
+                        bird: searchedBirds[i],
+                        onTap: () => widget.mode == BirdOverviewMode.picker
+                            ? pickBird(searchedBirds[i])
+                            : openBird(searchedBirds[i]),
+                        onDuplicate: () => duplicate(searchedBirds[i]),
+                        onDelete: () => delete(searchedBirds[i]),
+                        onEdit: () => openBird(searchedBirds[i]),
+                      ),
+                    ).withRefresher(
+                      onRefresh: () async {
+                        await context.read<BirdBreederCubit>().fetchBirds();
+                      },
+                    );
+                  },
                 );
               },
             );
           },
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: const Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          RandomBirdFab(),
-          ButtonBirdAdd.floating(),
-        ],
+      floatingActionButton: BottomSearchBar(
+        onSearch: (query) {
+          context.read<BirdSearchCubit>().setSearch(query);
+        },
+        onAdd: () async {
+          await context.router.push(BirdRoute(bird: null));
+        },
       ),
     );
   }

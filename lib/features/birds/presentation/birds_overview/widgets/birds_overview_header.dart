@@ -5,8 +5,8 @@ import 'package:birdbreeder/shared/icons.dart';
 
 class GenericSearchBar extends StatefulWidget {
   const GenericSearchBar({
-    super.key,
     required this.onSearch,
+    super.key,
     this.searchHint,
     this.initialQuery,
   });
@@ -54,7 +54,6 @@ class _GenericSearchBarState extends State<GenericSearchBar> {
         padding: const WidgetStatePropertyAll(
           EdgeInsets.symmetric(horizontal: 12, vertical: 4),
         ),
-        autoFocus: true,
         onTapOutside: (_) {
           FocusScope.of(context).unfocus();
         },

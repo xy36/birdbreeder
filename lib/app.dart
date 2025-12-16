@@ -4,6 +4,7 @@ import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/bir
 import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_search_cubit.dart';
 import 'package:birdbreeder/features/breedings/cubit/breeding_pair_search_cubit.dart';
 import 'package:birdbreeder/features/contacts/cubit/contact_search_cubit.dart';
+import 'package:birdbreeder/features/finances/cubit/finances_search_cubit.dart';
 import 'package:birdbreeder/i18n/translations.g.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/injection.dart';
@@ -35,6 +36,7 @@ class App extends StatelessWidget {
         BlocProvider.value(value: s1.get<BirdBreederCubit>()),
         BlocProvider(create: (context) => ContactSearchCubit()),
         BlocProvider(create: (context) => BirdSearchCubit()),
+        BlocProvider(create: (context) => FinancesSearchCubit()),
         BlocProvider(create: (context) => BreedingPairSearchCubit()),
         BlocProvider(create: (context) => BirdsFilterCubit()),
       ],

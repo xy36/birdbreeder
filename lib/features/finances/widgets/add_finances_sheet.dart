@@ -227,3 +227,46 @@ class _AddFinancesSheetState extends State<AddFinancesSheet> {
     );
   }
 }
+
+class BaseSheet extends StatelessWidget {
+  const BaseSheet({
+    required this.title,
+    required this.children,
+    super.key,
+    this.onPrimaryButton,
+    this.onSecondaryButton,
+  });
+
+  final String title;
+  final List<Widget> children;
+
+  final VoidCallback? onSecondaryButton;
+  final VoidCallback? onPrimaryButton;
+
+  @override
+  Widget build(BuildContext context) {
+    return DraggableScrollableSheet(
+      expand: false,
+      initialChildSize: 0.6,
+      maxChildSize: 0.95,
+      shouldCloseOnMinExtent: false,
+      builder: (context, scrollController) => Column(
+        children: [
+          BottomSheetHeader(
+            title: title,
+          ),
+          Expanded(
+            child: ListView(
+              controller: scrollController,
+              children: children,
+            ),
+          ),
+          BottomSheetFooter(
+            onPrimaryButton: onPrimaryButton,
+            onSecondaryButton: onSecondaryButton,
+          ),
+        ],
+      ),
+    );
+  }
+}

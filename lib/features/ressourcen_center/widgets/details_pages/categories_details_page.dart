@@ -2,21 +2,19 @@ import 'package:auto_route/auto_route.dart';
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/screen_size_extensions.dart';
+import 'package:birdbreeder/features/finances/widgets/add_finances_sheet.dart';
 import 'package:birdbreeder/models/finance/entity/finance_category.dart';
 import 'package:birdbreeder/models/finance/finance_category_kind.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/utils.dart';
-import 'package:birdbreeder/shared/widgets/buttons/app_action_button.dart';
-import 'package:birdbreeder/shared/widgets/buttons/generic_button.dart';
 import 'package:birdbreeder/shared/widgets/category_avatar.dart';
 import 'package:birdbreeder/shared/widgets/field_with_label.dart';
-import 'package:birdbreeder/shared/widgets/navigate_back_button.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 @RoutePage()
-class CategoriesDetailsPage extends StatefulWidget {
-  const CategoriesDetailsPage({
+class CategoriesDetailsSheet extends StatefulWidget {
+  const CategoriesDetailsSheet({
     super.key,
     this.initialCategory,
   });
@@ -24,10 +22,10 @@ class CategoriesDetailsPage extends StatefulWidget {
   final FinanceCategory? initialCategory;
 
   @override
-  State<CategoriesDetailsPage> createState() => _CategoriesDetailsPageState();
+  State<CategoriesDetailsSheet> createState() => _CategoriesDetailsSheetState();
 }
 
-class _CategoriesDetailsPageState extends State<CategoriesDetailsPage> {
+class _CategoriesDetailsSheetState extends State<CategoriesDetailsSheet> {
   @override
   void initState() {
     _category = widget.initialCategory ??
@@ -54,120 +52,104 @@ class _CategoriesDetailsPageState extends State<CategoriesDetailsPage> {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<BirdBreederCubit>();
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(context.tr.finances.categories.add),
-        leading: NavigateBackButton(discardDialogEnabled: isDirty),
-        actions: [
-          IconButton(
-            onPressed: () {
-              if (isValid) {
-                isEdit
-                    ? cubit.updateFinancesCategory(_category)
-                    : cubit.addFinancesCategory(_category);
-
-                Navigator.of(context).pop();
-              }
-            },
-            icon: isDirty ? icon : const SizedBox(),
+    return Form(
+      key: formKey,
+      child: Padding(
+        padding: EdgeInsets.all(
+          context.responsiveValueMobileAndGreater<double>(
+            mobile: 8,
+            greater: 16,
           ),
-          if (widget.initialCategory != null)
-            GenericButton.icon(
-              actionButtonType: ActionButtonType.colorDelete,
-              onTap: () {
-                context
-                    .read<BirdBreederCubit>()
-                    .deleteFinancesCategory(_category);
-                Navigator.of(context).pop();
+        ),
+        child: BaseSheet(
+          onPrimaryButton: isValid
+              ? () async {
+                  if (isValid) {
+                    isEdit
+                        ? await cubit.updateFinancesCategory(_category)
+                        : cubit.addFinancesCategory(_category);
+
+                    if (!mounted) return;
+
+                    Navigator.of(context).pop();
+                  }
+                }
+              : null,
+          title: isEdit
+              ? context.tr.finances.categories.edit
+              : context.tr.finances.categories.add,
+          children: [
+            CategoryAvatar(
+              cat: _category,
+              size: 80,
+            ),
+            32.heightBox,
+            FieldWithLabel(
+              label: context.tr.finances.categories.name,
+              child: TextFormField(
+                initialValue: _category.name,
+                decoration: InputDecoration(
+                  hintText: context.tr.finances.categories.name,
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    _category = _category.copyWith(name: value);
+                  });
+                },
+                validator: (value) {
+                  if (value.isNullOrEmpty) {
+                    return context.tr.common.required;
+                  }
+                  return null;
+                },
+              ),
+            ),
+            12.heightBox,
+            FinancesCategoriesKindField(
+              kind: _category.kind,
+              onChanged: (kind) {
+                setState(() {
+                  _category = _category.copyWith(kind: kind);
+                });
               },
             ),
-        ],
-      ),
-      body: Form(
-        key: formKey,
-        child: Padding(
-          padding: EdgeInsets.all(
-            context.responsiveValueMobileAndGreater<double>(
-              mobile: 8,
-              greater: 16,
-            ),
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                CategoryAvatar(
-                  cat: _category,
-                  size: 80,
-                ),
-                32.heightBox,
-                FieldWithLabel(
-                  label: context.tr.finances.categories.name,
-                  child: TextFormField(
-                    initialValue: _category.name,
-                    decoration: InputDecoration(
-                      hintText: context.tr.finances.categories.name,
+            12.heightBox,
+            FieldWithLabel(
+              label: context.tr.finances.categories.color,
+              child: BlockPicker(
+                pickerColor: hexToColor(_category.color),
+                itemBuilder: (color, isCurrentColor, changeColor) => Stack(
+                  children: [
+                    Icon(
+                      Icons.circle,
+                      color: color,
+                      size: 50,
+                    ).onTap(
+                      () => changeColor(),
                     ),
-                    onChanged: (value) {
-                      setState(() {
-                        _category = _category.copyWith(name: value);
-                      });
-                    },
-                    validator: (value) {
-                      if (value.isNullOrEmpty) {
-                        return context.tr.common.required;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                16.heightBox,
-                FinancesCategoriesKindField(
-                  kind: _category.kind,
-                  onChanged: (kind) {
-                    setState(() {
-                      _category = _category.copyWith(kind: kind);
-                    });
-                  },
-                ),
-                16.heightBox,
-                FieldWithLabel(
-                  label: context.tr.finances.categories.color,
-                  child: BlockPicker(
-                    pickerColor: hexToColor(_category.color),
-                    itemBuilder: (color, isCurrentColor, changeColor) => Stack(
-                      children: [
-                        Icon(
-                          Icons.circle,
-                          color: color,
-                          size: 50,
-                        ).onTap(
-                          () => changeColor(),
+                    if (isCurrentColor)
+                      const Padding(
+                        padding: EdgeInsets.all(11),
+                        child: Icon(
+                          Icons.done,
+                          size: 28,
                         ),
-                        if (isCurrentColor)
-                          const Padding(
-                            padding: EdgeInsets.all(11),
-                            child: Icon(
-                              Icons.done,
-                              size: 28,
-                            ),
-                          ),
-                      ],
-                    ),
-                    layoutBuilder: (context, colors, child) => Wrap(
-                      runSpacing: 8,
-                      spacing: 8,
-                      children: colors.map((c) => child(c)).toList(),
-                    ),
-                    onColorChanged: (color) {
-                      setState(() {
-                        _category = _category.copyWith(color: color.hex);
-                      });
-                    },
-                  ),
+                      ),
+                  ],
                 ),
-              ],
+                layoutBuilder: (context, colors, child) => Wrap(
+                  runSpacing: 8,
+                  spacing: 8,
+                  children: colors.map((c) => child(c)).toList(),
+                ),
+                onColorChanged: (color) {
+                  setState(() {
+                    _category = _category.copyWith(color: color.hex);
+                  });
+                },
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

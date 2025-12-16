@@ -4,13 +4,13 @@ import 'package:birdbreeder/core/extensions/bird_color_extension.dart';
 import 'package:birdbreeder/core/extensions/cage_extension.dart';
 import 'package:birdbreeder/core/extensions/species_extension.dart';
 import 'package:birdbreeder/core/extensions/widget_extensions.dart';
-import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/birds_overview_header.dart';
 import 'package:birdbreeder/models/contact/entity/contact.dart';
 import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';
 import 'package:birdbreeder/models/ressources/entity/species.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/icons.dart';
+import 'package:birdbreeder/shared/widgets/bottom_search_bar.dart';
 
 /// Generic list for a resource type (Species/Cages/Colors).
 class ResourceList<T> extends StatefulWidget {
@@ -47,40 +47,43 @@ class _ResourceListState<T> extends State<ResourceList<T>> {
       return label.contains(q);
     }).toList();
 
-    return Column(
+    return Stack(
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4),
-          child: GenericSearchBar(onSearch: (v) => setState(() => _q = v)),
+        ListView.separated(
+          physics: const AlwaysScrollableScrollPhysics(
+            parent: BouncingScrollPhysics(),
+          ),
+          itemCount: filtered.length,
+          separatorBuilder: (_, __) => const Divider(
+            height: 1,
+            indent: 12,
+            endIndent: 12,
+          ),
+          itemBuilder: widget.itemBuilder != null
+              ? (context, i) {
+                  return widget.itemBuilder!(context, filtered[i]);
+                }
+              : (_, i) {
+                  final item = filtered[i];
+                  return ListTile(
+                    title: _titleOf(item),
+                    subtitle: _subtitleOf(item),
+                    trailing: _trailingOf(item),
+                    onTap: () => widget.onEdit(item),
+                  );
+                },
+        ).withRefresher(
+          onRefresh: () async {
+            await context.read<BirdBreederCubit>().fetchAllResources();
+          },
         ),
-        Expanded(
-          child: ListView.separated(
-            physics: const AlwaysScrollableScrollPhysics(
-              parent: BouncingScrollPhysics(),
-            ),
-            itemCount: filtered.length,
-            separatorBuilder: (_, __) => const Divider(
-              height: 1,
-              indent: 12,
-              endIndent: 12,
-            ),
-            itemBuilder: widget.itemBuilder != null
-                ? (context, i) {
-                    return widget.itemBuilder!(context, filtered[i]);
-                  }
-                : (_, i) {
-                    final item = filtered[i];
-                    return ListTile(
-                      title: _titleOf(item),
-                      subtitle: _subtitleOf(item),
-                      trailing: _trailingOf(item),
-                      onTap: () => widget.onEdit(item),
-                    );
-                  },
-          ).withRefresher(
-            onRefresh: () async {
-              await context.read<BirdBreederCubit>().fetchAllResources();
-            },
+        Positioned(
+          bottom: 12,
+          left: 0,
+          right: 16,
+          child: BottomSearchBar(
+            onSearch: (v) => setState(() => _q = v),
+            onAdd: widget.onCreate,
           ),
         ),
       ],

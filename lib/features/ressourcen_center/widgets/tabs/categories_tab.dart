@@ -1,11 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/core/routing/app_router.dart';
+import 'package:birdbreeder/features/ressourcen_center/widgets/details_pages/categories_details_page.dart';
 import 'package:birdbreeder/features/ressourcen_center/widgets/resource_list.dart';
 import 'package:birdbreeder/models/finance/entity/finance_category.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/category_avatar.dart';
+import 'package:birdbreeder/shared/widgets/utils.dart';
 
 @RoutePage(name: 'CategoriesTabRoute')
 class CategoriesTab extends StatelessWidget {
@@ -21,8 +22,8 @@ class CategoriesTab extends StatelessWidget {
       title: Text(cat.name),
       subtitle: Text(displayData.label),
       trailing: const Icon(AppIcons.chevronRight),
-      onTap: () =>
-          context.router.push(CategoriesDetailsRoute(initialCategory: cat)),
+      onTap: () async =>
+          openSheet(context, CategoriesDetailsSheet(initialCategory: cat)),
     );
   }
 
@@ -36,10 +37,10 @@ class CategoriesTab extends StatelessWidget {
           .state
           .birdBreederResources
           .financesCategories,
-      onCreate: () => context.router.push(CategoriesDetailsRoute()),
+      onCreate: () async => openSheet(context, const CategoriesDetailsSheet()),
       onDelete: (cat) =>
           context.read<BirdBreederCubit>().deleteFinancesCategory(cat),
-      onEdit: (cat) => {},
+      onEdit: (_) {},
     );
   }
 }

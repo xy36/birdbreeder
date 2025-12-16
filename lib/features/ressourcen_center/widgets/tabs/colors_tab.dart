@@ -1,9 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/core/routing/app_router.dart';
+import 'package:birdbreeder/features/ressourcen_center/widgets/details_pages/color_details_sheet.dart';
 import 'package:birdbreeder/features/ressourcen_center/widgets/resource_list.dart';
 import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:birdbreeder/shared/widgets/utils.dart';
 
 @RoutePage(name: 'ColorsTabRoute')
 class ColorsTab extends StatelessWidget {
@@ -14,9 +15,14 @@ class ColorsTab extends StatelessWidget {
       title: 'Colors',
       items:
           context.watch<BirdBreederCubit>().state.birdBreederResources.colors,
-      onCreate: () => context.router.push(ColorDetailsRoute()),
+      onCreate: () async => openSheet(context, const ColorDetailsSheet()),
+      onEdit: (c) async => openSheet(
+        context,
+        ColorDetailsSheet(
+          initialColor: c,
+        ),
+      ),
       onDelete: (color) => context.read<BirdBreederCubit>().deleteColor(color),
-      onEdit: (x) => context.router.push(ColorDetailsRoute(initialColor: x)),
     );
   }
 }

@@ -217,7 +217,7 @@ class BroodRouteArgs {
 }
 
 /// generated route for
-/// [CageDetailsPage]
+/// [CageDetailsSheet]
 class CageDetailsRoute extends PageRouteInfo<CageDetailsRouteArgs> {
   CageDetailsRoute({Key? key, Cage? initialCage, List<PageRouteInfo>? children})
       : super(
@@ -234,7 +234,7 @@ class CageDetailsRoute extends PageRouteInfo<CageDetailsRouteArgs> {
       final args = data.argsAs<CageDetailsRouteArgs>(
         orElse: () => const CageDetailsRouteArgs(),
       );
-      return CageDetailsPage(key: args.key, initialCage: args.initialCage);
+      return CageDetailsSheet(key: args.key, initialCage: args.initialCage);
     },
   );
 }
@@ -279,7 +279,7 @@ class CagesTabRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [CategoriesDetailsPage]
+/// [CategoriesDetailsSheet]
 class CategoriesDetailsRoute extends PageRouteInfo<CategoriesDetailsRouteArgs> {
   CategoriesDetailsRoute({
     Key? key,
@@ -302,7 +302,7 @@ class CategoriesDetailsRoute extends PageRouteInfo<CategoriesDetailsRouteArgs> {
       final args = data.argsAs<CategoriesDetailsRouteArgs>(
         orElse: () => const CategoriesDetailsRouteArgs(),
       );
-      return CategoriesDetailsPage(
+      return CategoriesDetailsSheet(
         key: args.key,
         initialCategory: args.initialCategory,
       );
@@ -350,7 +350,7 @@ class CategoriesTabRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [ColorDetailsPage]
+/// [ColorDetailsSheet]
 class ColorDetailsRoute extends PageRouteInfo<ColorDetailsRouteArgs> {
   ColorDetailsRoute({
     Key? key,
@@ -370,7 +370,7 @@ class ColorDetailsRoute extends PageRouteInfo<ColorDetailsRouteArgs> {
       final args = data.argsAs<ColorDetailsRouteArgs>(
         orElse: () => const ColorDetailsRouteArgs(),
       );
-      return ColorDetailsPage(key: args.key, initialColor: args.initialColor);
+      return ColorDetailsSheet(key: args.key, initialColor: args.initialColor);
     },
   );
 }
@@ -582,7 +582,7 @@ class ResourcesCenterRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [SpeciesDetailsPage]
+/// [SpeciesDetailsSheet]
 class SpeciesDetailsRoute extends PageRouteInfo<SpeciesDetailsRouteArgs> {
   SpeciesDetailsRoute({
     Key? key,
@@ -605,7 +605,7 @@ class SpeciesDetailsRoute extends PageRouteInfo<SpeciesDetailsRouteArgs> {
       final args = data.argsAs<SpeciesDetailsRouteArgs>(
         orElse: () => const SpeciesDetailsRouteArgs(),
       );
-      return SpeciesDetailsPage(
+      return SpeciesDetailsSheet(
         key: args.key,
         initialSpecies: args.initialSpecies,
       );

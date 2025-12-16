@@ -8,6 +8,7 @@
             "title": "Kategorien",
             "category": "Kategorie",
             "add": "Kategorie hinzufügen",
+            "edit": "Kategorie bearbeiten",
             "select": "Kategorie auswählen",
             "delete": "Kategorie löschen?",
             "name": "Name der Kategorie",
@@ -39,6 +40,7 @@
     "colors": {
         "title": "Farben",
         "add": "Farbe hinzufügen",
+        "edit": "Farbe bearbeiten",
         "select": "Farbe auswählen",
         "pick": "Farbe auswählen",
         "delete": "Farbe löschen?",
@@ -47,6 +49,7 @@
     "cages": {
         "title": "Volieren",
         "add": "Voliere hinzufügen",
+        "edit": "Voliere bearbeiten",
         "select": "Voliere auswählen",
         "delete": "Voliere löschen?",
         "name": "Name des Volieres",
@@ -58,6 +61,7 @@
     "species": {
         "title": "Arten",
         "add": "Art hinzufügen",
+        "edit": "Art bearbeiten",
         "select": "Art auswählen",
         "delete": "Art löschen?",
         "name": "Name der Art",
@@ -100,6 +104,7 @@
     "breeding_pairs": {
         "title": "Zuchtpaar",
         "add": "Zuchtpaar hinzufügen",
+        "edit": "Zuchtpaar bearbeiten",
         "delete": "Zuchtpaar löschen?",
         "status": {
             "name": "Status",

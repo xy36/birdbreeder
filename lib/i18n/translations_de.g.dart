@@ -134,6 +134,9 @@ class TranslationsColorsDe {
   /// de: 'Farbe hinzufügen'
   String get add => 'Farbe hinzufügen';
 
+  /// de: 'Farbe bearbeiten'
+  String get edit => 'Farbe bearbeiten';
+
   /// de: 'Farbe auswählen'
   String get select => 'Farbe auswählen';
 
@@ -160,6 +163,9 @@ class TranslationsCagesDe {
 
   /// de: 'Voliere hinzufügen'
   String get add => 'Voliere hinzufügen';
+
+  /// de: 'Voliere bearbeiten'
+  String get edit => 'Voliere bearbeiten';
 
   /// de: 'Voliere auswählen'
   String get select => 'Voliere auswählen';
@@ -196,6 +202,9 @@ class TranslationsSpeciesDe {
 
   /// de: 'Art hinzufügen'
   String get add => 'Art hinzufügen';
+
+  /// de: 'Art bearbeiten'
+  String get edit => 'Art bearbeiten';
 
   /// de: 'Art auswählen'
   String get select => 'Art auswählen';
@@ -261,6 +270,9 @@ class TranslationsBreedingPairsDe {
 
   /// de: 'Zuchtpaar hinzufügen'
   String get add => 'Zuchtpaar hinzufügen';
+
+  /// de: 'Zuchtpaar bearbeiten'
+  String get edit => 'Zuchtpaar bearbeiten';
 
   /// de: 'Zuchtpaar löschen?'
   String get delete => 'Zuchtpaar löschen?';
@@ -778,6 +790,9 @@ class TranslationsFinancesCategoriesDe {
 
   /// de: 'Kategorie hinzufügen'
   String get add => 'Kategorie hinzufügen';
+
+  /// de: 'Kategorie bearbeiten'
+  String get edit => 'Kategorie bearbeiten';
 
   /// de: 'Kategorie auswählen'
   String get select => 'Kategorie auswählen';
