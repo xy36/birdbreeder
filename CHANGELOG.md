@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.3.0](https://github.com/xy36/birdbreeder/compare/v1.2.0...v1.3.0) (2025-12-17)
+
+
+### Features
+
+* Enhance FinancesCategoryPickerField with initial value selection and improved item display ([a465e8a](https://github.com/xy36/birdbreeder/commit/a465e8ad477285971661d7038eee09a37a8f3096))
+* Refactor resource detail pages to use sheets instead of full pages and add search on footer ([1c9c5b5](https://github.com/xy36/birdbreeder/commit/1c9c5b568aec4e2de9f5d6f91e09c57e61df1037))
+* Remove unused route pages and imports for details sheets in resources center ([d1dc637](https://github.com/xy36/birdbreeder/commit/d1dc637372d44e94189d73ba3870416dbe28a75a))
+
 ## [1.2.0](https://github.com/xy36/birdbreeder/compare/v1.1.0...v1.2.0) (2025-12-07)
 
 
