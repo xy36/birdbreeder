@@ -16,10 +16,6 @@ import 'package:birdbreeder/features/contacts/contacts_page.dart';
 import 'package:birdbreeder/features/finances/finances_page.dart';
 import 'package:birdbreeder/features/menu/presentation/menu_page.dart';
 import 'package:birdbreeder/features/ressourcen_center/resources_center_page.dart';
-import 'package:birdbreeder/features/ressourcen_center/widgets/details_pages/cage_details_sheet.dart';
-import 'package:birdbreeder/features/ressourcen_center/widgets/details_pages/categories_details_page.dart';
-import 'package:birdbreeder/features/ressourcen_center/widgets/details_pages/color_details_sheet.dart';
-import 'package:birdbreeder/features/ressourcen_center/widgets/details_pages/species_details_sheet.dart';
 import 'package:birdbreeder/features/ressourcen_center/widgets/tabs/cages_tab.dart';
 import 'package:birdbreeder/features/ressourcen_center/widgets/tabs/categories_tab.dart';
 import 'package:birdbreeder/features/ressourcen_center/widgets/tabs/colors_tab.dart';
@@ -27,10 +23,6 @@ import 'package:birdbreeder/features/ressourcen_center/widgets/tabs/contacts_tab
 import 'package:birdbreeder/features/ressourcen_center/widgets/tabs/species_tab.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/contact/entity/contact.dart';
-import 'package:birdbreeder/models/finance/entity/finance_category.dart';
-import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
-import 'package:birdbreeder/models/ressources/entity/cage.dart';
-import 'package:birdbreeder/models/ressources/entity/species.dart';
 
 part 'app_router.gr.dart';
 
@@ -65,13 +57,13 @@ class AppRouter extends RootStackRouter {
             AutoRoute(page: BirdRoute.page, path: 'birds/bird'),
             AutoRoute(page: ContactsRoute.page, path: 'contacts'),
             AutoRoute(page: ContactDetailsRoute.page, path: 'contacts/details'),
-            AutoRoute(page: CageDetailsRoute.page, path: 'cages/details'),
-            AutoRoute(page: ColorDetailsRoute.page, path: 'colors/details'),
-            AutoRoute(page: SpeciesDetailsRoute.page, path: 'species/details'),
-            AutoRoute(
-              page: CategoriesDetailsRoute.page,
-              path: 'categories/details',
-            ),
+            // AutoRoute(page: CageDetailsRoute.page, path: 'cages/details'),
+            // AutoRoute(page: ColorDetailsRoute.page, path: 'colors/details'),
+            // AutoRoute(page: SpeciesDetailsRoute.page, path: 'species/details'),
+            // AutoRoute(
+            //   page: CategoriesDetailsRoute.page,
+            //   path: 'categories/details',
+            // ),
             AutoRoute(page: BreedingPairsRoute.page, path: 'breedingPairs'),
 
             AutoRoute(

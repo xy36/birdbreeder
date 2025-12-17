@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/screen_size_extensions.dart';
 import 'package:birdbreeder/features/finances/widgets/add_finances_sheet.dart';
@@ -7,7 +6,6 @@ import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/field_with_label.dart';
 
-@RoutePage()
 class ColorDetailsSheet extends StatefulWidget {
   const ColorDetailsSheet({
     super.key,

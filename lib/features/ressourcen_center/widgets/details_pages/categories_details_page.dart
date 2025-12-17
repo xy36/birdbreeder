@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/screen_size_extensions.dart';
@@ -12,7 +11,6 @@ import 'package:birdbreeder/shared/widgets/category_avatar.dart';
 import 'package:birdbreeder/shared/widgets/field_with_label.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
-@RoutePage()
 class CategoriesDetailsSheet extends StatefulWidget {
   const CategoriesDetailsSheet({
     super.key,

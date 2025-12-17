@@ -217,52 +217,6 @@ class BroodRouteArgs {
 }
 
 /// generated route for
-/// [CageDetailsSheet]
-class CageDetailsRoute extends PageRouteInfo<CageDetailsRouteArgs> {
-  CageDetailsRoute({Key? key, Cage? initialCage, List<PageRouteInfo>? children})
-      : super(
-          CageDetailsRoute.name,
-          args: CageDetailsRouteArgs(key: key, initialCage: initialCage),
-          initialChildren: children,
-        );
-
-  static const String name = 'CageDetailsRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<CageDetailsRouteArgs>(
-        orElse: () => const CageDetailsRouteArgs(),
-      );
-      return CageDetailsSheet(key: args.key, initialCage: args.initialCage);
-    },
-  );
-}
-
-class CageDetailsRouteArgs {
-  const CageDetailsRouteArgs({this.key, this.initialCage});
-
-  final Key? key;
-
-  final Cage? initialCage;
-
-  @override
-  String toString() {
-    return 'CageDetailsRouteArgs{key: $key, initialCage: $initialCage}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! CageDetailsRouteArgs) return false;
-    return key == other.key && initialCage == other.initialCage;
-  }
-
-  @override
-  int get hashCode => key.hashCode ^ initialCage.hashCode;
-}
-
-/// generated route for
 /// [CagesTab]
 class CagesTabRoute extends PageRouteInfo<void> {
   const CagesTabRoute({List<PageRouteInfo>? children})
@@ -279,61 +233,6 @@ class CagesTabRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [CategoriesDetailsSheet]
-class CategoriesDetailsRoute extends PageRouteInfo<CategoriesDetailsRouteArgs> {
-  CategoriesDetailsRoute({
-    Key? key,
-    FinanceCategory? initialCategory,
-    List<PageRouteInfo>? children,
-  }) : super(
-          CategoriesDetailsRoute.name,
-          args: CategoriesDetailsRouteArgs(
-            key: key,
-            initialCategory: initialCategory,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'CategoriesDetailsRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<CategoriesDetailsRouteArgs>(
-        orElse: () => const CategoriesDetailsRouteArgs(),
-      );
-      return CategoriesDetailsSheet(
-        key: args.key,
-        initialCategory: args.initialCategory,
-      );
-    },
-  );
-}
-
-class CategoriesDetailsRouteArgs {
-  const CategoriesDetailsRouteArgs({this.key, this.initialCategory});
-
-  final Key? key;
-
-  final FinanceCategory? initialCategory;
-
-  @override
-  String toString() {
-    return 'CategoriesDetailsRouteArgs{key: $key, initialCategory: $initialCategory}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! CategoriesDetailsRouteArgs) return false;
-    return key == other.key && initialCategory == other.initialCategory;
-  }
-
-  @override
-  int get hashCode => key.hashCode ^ initialCategory.hashCode;
-}
-
-/// generated route for
 /// [CategoriesTab]
 class CategoriesTabRoute extends PageRouteInfo<void> {
   const CategoriesTabRoute({List<PageRouteInfo>? children})
@@ -347,55 +246,6 @@ class CategoriesTabRoute extends PageRouteInfo<void> {
       return const CategoriesTab();
     },
   );
-}
-
-/// generated route for
-/// [ColorDetailsSheet]
-class ColorDetailsRoute extends PageRouteInfo<ColorDetailsRouteArgs> {
-  ColorDetailsRoute({
-    Key? key,
-    BirdColor? initialColor,
-    List<PageRouteInfo>? children,
-  }) : super(
-          ColorDetailsRoute.name,
-          args: ColorDetailsRouteArgs(key: key, initialColor: initialColor),
-          initialChildren: children,
-        );
-
-  static const String name = 'ColorDetailsRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<ColorDetailsRouteArgs>(
-        orElse: () => const ColorDetailsRouteArgs(),
-      );
-      return ColorDetailsSheet(key: args.key, initialColor: args.initialColor);
-    },
-  );
-}
-
-class ColorDetailsRouteArgs {
-  const ColorDetailsRouteArgs({this.key, this.initialColor});
-
-  final Key? key;
-
-  final BirdColor? initialColor;
-
-  @override
-  String toString() {
-    return 'ColorDetailsRouteArgs{key: $key, initialColor: $initialColor}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! ColorDetailsRouteArgs) return false;
-    return key == other.key && initialColor == other.initialColor;
-  }
-
-  @override
-  int get hashCode => key.hashCode ^ initialColor.hashCode;
 }
 
 /// generated route for
@@ -579,61 +429,6 @@ class ResourcesCenterRoute extends PageRouteInfo<void> {
       return const ResourcesCenterPage();
     },
   );
-}
-
-/// generated route for
-/// [SpeciesDetailsSheet]
-class SpeciesDetailsRoute extends PageRouteInfo<SpeciesDetailsRouteArgs> {
-  SpeciesDetailsRoute({
-    Key? key,
-    Species? initialSpecies,
-    List<PageRouteInfo>? children,
-  }) : super(
-          SpeciesDetailsRoute.name,
-          args: SpeciesDetailsRouteArgs(
-            key: key,
-            initialSpecies: initialSpecies,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'SpeciesDetailsRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<SpeciesDetailsRouteArgs>(
-        orElse: () => const SpeciesDetailsRouteArgs(),
-      );
-      return SpeciesDetailsSheet(
-        key: args.key,
-        initialSpecies: args.initialSpecies,
-      );
-    },
-  );
-}
-
-class SpeciesDetailsRouteArgs {
-  const SpeciesDetailsRouteArgs({this.key, this.initialSpecies});
-
-  final Key? key;
-
-  final Species? initialSpecies;
-
-  @override
-  String toString() {
-    return 'SpeciesDetailsRouteArgs{key: $key, initialSpecies: $initialSpecies}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! SpeciesDetailsRouteArgs) return false;
-    return key == other.key && initialSpecies == other.initialSpecies;
-  }
-
-  @override
-  int get hashCode => key.hashCode ^ initialSpecies.hashCode;
 }
 
 /// generated route for
