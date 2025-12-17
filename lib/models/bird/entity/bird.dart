@@ -1,5 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/core/extensions/birds_extension.dart';
 import 'package:birdbreeder/models/bird/sex_enum.dart';
+import 'package:birdbreeder/models/searchable.dart';
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -74,7 +76,7 @@ enum SaleStatus {
 }
 
 @freezed
-abstract class Bird with _$Bird {
+abstract class Bird with _$Bird, Searchable {
   @JsonSerializable(explicitToJson: true)
   const factory Bird({
     required BirdId id,
@@ -123,6 +125,8 @@ abstract class Bird with _$Bird {
     String? notes,
   }) = _Bird;
 
+  const Bird._();
+
   factory Bird.fromJson(Map<String, dynamic> json) => _$BirdFromJson(json);
 
   /// Factory to create a new empty bird object (id is '', created/updated are null)
@@ -152,4 +156,16 @@ abstract class Bird with _$Bird {
       laidAt: laidAt,
     );
   }
+
+  @override
+  String get searchIndex => [
+        ringNumber,
+        speciesResolved?.name,
+        colorResolved?.name,
+        cageResolved?.name,
+        notes,
+      ]
+          .where((e) => e != null && e.trim().isNotEmpty)
+          .map((e) => e!.toLowerCase())
+          .join(' ');
 }

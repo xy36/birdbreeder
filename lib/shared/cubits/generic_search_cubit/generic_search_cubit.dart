@@ -1,33 +1,28 @@
-import 'package:birdbreeder/shared/cubits/generic_search_cubit/base_search.dart';
+import 'package:birdbreeder/models/bird/entity/bird.dart';
+import 'package:birdbreeder/models/breeding/entity/breeding_pair.dart';
+import 'package:birdbreeder/models/contact/entity/contact.dart';
+import 'package:birdbreeder/models/finance/entity/finance.dart';
+import 'package:birdbreeder/models/searchable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-abstract class GenericSearchCubit<T> extends Cubit<BaseSearch> {
-  GenericSearchCubit(
-    this.fnFilter,
-  ) : super(const BaseSearch());
+typedef Query = String;
+typedef ContactSearchCubit = GenericSearchCubit<Contact>;
+typedef BirdSearchCubit = GenericSearchCubit<Bird>;
+typedef BreedingPairSearchCubit = GenericSearchCubit<BreedingPair>;
+typedef FinanceSearchCubit = GenericSearchCubit<Finance>;
+
+class GenericSearchCubit<T extends Searchable> extends Cubit<Query> {
+  GenericSearchCubit() : super('');
 
   List<T> _allItems = [];
 
-  /// The function used to filter items based on the search query.
-  final bool Function(T item, String query) fnFilter;
+  Query get query => state;
 
   /// Resets the search state.
-  void reset() => emit(const BaseSearch());
-
-  /// Toggles the active state of the search.
-  /// If search is active, it resets the query on toggle.
-  void toggleActive() {
-    if (state.isActive) {
-      // If activating search, we want to reset the query
-      reset();
-    } else {
-      emit(state.copyWith(isActive: !state.isActive));
-    }
-  }
+  void reset() => emit('');
 
   /// Sets the search query.
-  void setSearch(String? search) =>
-      emit(state.copyWith(query: (search ?? '').trim()));
+  void setSearch(String? search) => emit(search ?? '');
 
   /// Sets the items to search through.
   void setItems(List<T> items) {
@@ -35,14 +30,34 @@ abstract class GenericSearchCubit<T> extends Cubit<BaseSearch> {
     emit(state);
   }
 
-  /// Filters the items based on the search query.
-  List<T> filter() {
-    final query = state.query.trim().toLowerCase();
-    if (query.isEmpty) return _allItems;
+  /// Extract search tokens.
+  /// "peter müller" -> ['peter müller']
+  /// peter müller -> ['peter', 'müller']
+  /// "peter müller" rechnung -> ['peter müller', 'rechnung']
+  List<String> _tokenize(String query) {
+    final regex = RegExp(r'"([^"]+)"|(\S+)');
 
-    return _allItems.where((item) => fnFilter(item, query)).toList();
+    return regex
+        .allMatches(query)
+        .map((m) => (m.group(1) ?? m.group(2))!.toLowerCase())
+        .toList();
+  }
+
+  /// Performs the search and returns the matching items.
+  List<T> search() {
+    final q = query.trim().toLowerCase();
+    if (q.isEmpty) return _allItems;
+
+    final tokens = _tokenize(q);
+
+    return _allItems.where((item) {
+      final index = item.searchIndex;
+
+      // All tokens must match
+      return tokens.every(index.contains);
+    }).toList();
   }
 
   /// The list of items that match the search query.
-  List<T> get searchedItems => filter();
+  List<T> get searchedItems => search();
 }

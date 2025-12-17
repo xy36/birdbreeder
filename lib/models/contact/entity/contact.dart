@@ -1,9 +1,10 @@
+import 'package:birdbreeder/models/searchable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'contact.freezed.dart';
 
 @freezed
-abstract class Contact with _$Contact {
+abstract class Contact with _$Contact, Searchable {
   factory Contact({
     required String id,
     required String? number,
@@ -33,4 +34,23 @@ abstract class Contact with _$Contact {
         country: null,
         website: null,
       );
+
+  const Contact._();
+
+  @override
+  String get searchIndex => [
+        firstName,
+        name,
+        number,
+        phone,
+        email,
+        address,
+        city,
+        postalCode,
+        country,
+        website,
+      ]
+          .where((e) => e != null && e.trim().isNotEmpty)
+          .map((e) => e!.toLowerCase())
+          .join(' ');
 }

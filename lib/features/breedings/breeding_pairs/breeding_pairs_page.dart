@@ -4,9 +4,8 @@ import 'package:birdbreeder/core/extensions/widget_extensions.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/breedings/breeding_pairs/widgets/add_breeding_pair_sheet.dart';
 import 'package:birdbreeder/features/breedings/breeding_pairs/widgets/breeding_pair_card.dart';
-import 'package:birdbreeder/features/breedings/cubit/breeding_pair_search_cubit.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
-import 'package:birdbreeder/shared/cubits/generic_search_cubit/base_search.dart';
+import 'package:birdbreeder/shared/cubits/generic_search_cubit/generic_search_cubit.dart';
 import 'package:birdbreeder/shared/widgets/bird_breeder_wrapper.dart';
 import 'package:birdbreeder/shared/widgets/bottom_search_bar.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
@@ -34,7 +33,7 @@ class _BreedingPairsPageState extends State<BreedingPairsPage> {
             context
                 .read<BreedingPairSearchCubit>()
                 .setItems(state.birdBreederResources.breedingPairs);
-            return BlocBuilder<BreedingPairSearchCubit, BaseSearch>(
+            return BlocBuilder<BreedingPairSearchCubit, Query>(
               builder: (context, state) {
                 final searchedBreedingPairs =
                     context.read<BreedingPairSearchCubit>().searchedItems;

@@ -57,13 +57,6 @@ class AppRouter extends RootStackRouter {
             AutoRoute(page: BirdRoute.page, path: 'birds/bird'),
             AutoRoute(page: ContactsRoute.page, path: 'contacts'),
             AutoRoute(page: ContactDetailsRoute.page, path: 'contacts/details'),
-            // AutoRoute(page: CageDetailsRoute.page, path: 'cages/details'),
-            // AutoRoute(page: ColorDetailsRoute.page, path: 'colors/details'),
-            // AutoRoute(page: SpeciesDetailsRoute.page, path: 'species/details'),
-            // AutoRoute(
-            //   page: CategoriesDetailsRoute.page,
-            //   path: 'categories/details',
-            // ),
             AutoRoute(page: BreedingPairsRoute.page, path: 'breedingPairs'),
 
             AutoRoute(

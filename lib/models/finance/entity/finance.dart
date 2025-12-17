@@ -1,10 +1,12 @@
+import 'package:birdbreeder/core/extensions/finances_extension.dart';
+import 'package:birdbreeder/models/searchable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'finance.freezed.dart';
 part 'finance.g.dart';
 
 @freezed
-abstract class Finance with _$Finance {
+abstract class Finance with _$Finance, Searchable {
   const factory Finance({
     required String id,
     required String categoryId,
@@ -16,6 +18,8 @@ abstract class Finance with _$Finance {
     DateTime? created,
     DateTime? updated,
   }) = _Finance;
+
+  const Finance._();
 
   factory Finance.fromJson(Map<String, dynamic> json) =>
       _$FinanceFromJson(json);
@@ -38,4 +42,15 @@ abstract class Finance with _$Finance {
       date: date,
     );
   }
+
+  @override
+  String get searchIndex => [
+        categoryResolved?.name,
+        birdResolved?.ringNumber,
+        title,
+        notes,
+      ]
+          .where((e) => e != null && e.trim().isNotEmpty)
+          .map((e) => e!.toLowerCase())
+          .join(' ');
 }

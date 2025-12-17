@@ -371,7 +371,7 @@ extension BreedingPairPatterns on BreedingPair {
 
 /// @nodoc
 
-class _BreedingPair implements BreedingPair {
+class _BreedingPair extends BreedingPair {
   _BreedingPair(
       {required this.id,
       required this.start,
@@ -382,7 +382,8 @@ class _BreedingPair implements BreedingPair {
       required this.status,
       required this.notes,
       this.created,
-      this.updated});
+      this.updated})
+      : super._();
 
   @override
   final String id;

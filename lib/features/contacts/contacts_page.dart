@@ -2,10 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/widget_extensions.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
-import 'package:birdbreeder/features/contacts/cubit/contact_search_cubit.dart';
 import 'package:birdbreeder/features/contacts/widgets/contact_item.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
-import 'package:birdbreeder/shared/cubits/generic_search_cubit/base_search.dart';
+import 'package:birdbreeder/shared/cubits/generic_search_cubit/generic_search_cubit.dart';
 import 'package:birdbreeder/shared/widgets/bird_breeder_wrapper.dart';
 import 'package:birdbreeder/shared/widgets/bottom_search_bar.dart';
 
@@ -38,7 +37,7 @@ class _ContactsPageState extends State<ContactsPage> {
                 .watch<ContactSearchCubit>()
                 .setItems(state.birdBreederResources.contacts);
 
-            return BlocBuilder<ContactSearchCubit, BaseSearch>(
+            return BlocBuilder<ContactSearchCubit, Query>(
               builder: (context, state) {
                 final searchedContacts =
                     context.read<ContactSearchCubit>().searchedItems;

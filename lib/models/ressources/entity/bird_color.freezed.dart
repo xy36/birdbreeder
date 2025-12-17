@@ -257,9 +257,9 @@ extension BirdColorPatterns on BirdColor {
 
 /// @nodoc
 
-class _BirdColor implements BirdColor {
-  _BirdColor(
-      {required this.id, required this.name, this.created, this.updated});
+class _BirdColor extends BirdColor {
+  _BirdColor({required this.id, required this.name, this.created, this.updated})
+      : super._();
 
   @override
   final String id;

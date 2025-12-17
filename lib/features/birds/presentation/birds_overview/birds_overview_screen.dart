@@ -3,13 +3,12 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/widget_extensions.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_filter_cubit.dart';
-import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_search_cubit.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/bird_card.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/bird_filter_sheet/bird_filter_sheet.dart';
 import 'package:birdbreeder/models/bird/bird_filter.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
-import 'package:birdbreeder/shared/cubits/generic_search_cubit/base_search.dart';
+import 'package:birdbreeder/shared/cubits/generic_search_cubit/generic_search_cubit.dart';
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/bird_breeder_wrapper.dart';
 import 'package:birdbreeder/shared/widgets/bottom_search_bar.dart';
@@ -91,7 +90,7 @@ class _BirdsOverviewScreenState extends State<BirdsOverviewScreen> {
                     context.watch<BirdsFilterCubit>().filterBirds(birds);
                 context.read<BirdSearchCubit>().setItems(list);
 
-                return BlocBuilder<BirdSearchCubit, BaseSearch>(
+                return BlocBuilder<BirdSearchCubit, Query>(
                   builder: (context, state) {
                     final searchedBirds =
                         context.read<BirdSearchCubit>().searchedItems;

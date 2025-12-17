@@ -16,25 +16,6 @@ class ResourcesCenterPage extends StatelessWidget {
         return Scaffold(
           appBar: SharedAppBarWithDrawer(
             title: context.tr.resources.title,
-            // actions: [
-            //   IconButton(
-            //     icon: const Icon(AppIcons.add),
-            //     onPressed: () {
-            //       final tab = ResourceTab.values[controller.index];
-
-            //       switch (tab) {
-            //         case ResourceTab.species:
-            //           context.router.push(SpeciesDetailsRoute());
-            //         case ResourceTab.cages:
-            //           context.router.push(CageDetailsRoute());
-            //         case ResourceTab.colors:
-            //           context.router.push(ColorDetailsRoute());
-            //         case ResourceTab.financesCategories:
-            //           context.router.push(CategoriesDetailsRoute());
-            //       }
-            //     },
-            //   ),
-            // ],
           ),
           body: BirdBreederWrapper(
             child: Column(

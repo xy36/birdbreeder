@@ -424,7 +424,7 @@ extension ContactPatterns on Contact {
 
 /// @nodoc
 
-class _Contact implements Contact {
+class _Contact extends Contact {
   _Contact(
       {required this.id,
       required this.number,
@@ -438,7 +438,8 @@ class _Contact implements Contact {
       required this.country,
       required this.website,
       this.created,
-      this.updated});
+      this.updated})
+      : super._();
 
   @override
   final String id;

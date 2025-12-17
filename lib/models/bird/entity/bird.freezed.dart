@@ -668,7 +668,7 @@ extension BirdPatterns on Bird {
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _Bird implements Bird {
+class _Bird extends Bird {
   const _Bird(
       {required this.id,
       this.created,
@@ -697,7 +697,8 @@ class _Bird implements Bird {
       this.boughtFromId,
       this.soldToId,
       this.unknownLifecycle,
-      this.notes});
+      this.notes})
+      : super._();
   factory _Bird.fromJson(Map<String, dynamic> json) => _$BirdFromJson(json);
 
   @override

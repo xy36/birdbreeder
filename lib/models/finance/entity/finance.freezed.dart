@@ -358,7 +358,7 @@ extension FinancePatterns on Finance {
 
 /// @nodoc
 @JsonSerializable()
-class _Finance implements Finance {
+class _Finance extends Finance {
   const _Finance(
       {required this.id,
       required this.categoryId,
@@ -368,7 +368,8 @@ class _Finance implements Finance {
       this.date,
       this.notes,
       this.created,
-      this.updated});
+      this.updated})
+      : super._();
   factory _Finance.fromJson(Map<String, dynamic> json) =>
       _$FinanceFromJson(json);
 
