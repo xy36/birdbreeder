@@ -1,6 +1,5 @@
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/core/extensions/contact_extension.dart';
 import 'package:birdbreeder/models/contact/entity/contact.dart';
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -76,7 +75,7 @@ class ContactCard extends StatelessWidget {
                 children: [
                   _Avatar(
                     size: compact ? 36 : 44,
-                    name: contact.displayName,
+                    name: contact.fullName,
                     color: cs.primary,
                   ),
                   const SizedBox(width: 12),
@@ -89,7 +88,7 @@ class ContactCard extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Text(
-                                contact.displayName,
+                                contact.fullName,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: context.titleMedium?.copyWith(

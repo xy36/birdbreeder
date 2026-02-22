@@ -4,7 +4,6 @@ import 'package:birdbreeder/core/extensions/bird_color_extension.dart';
 import 'package:birdbreeder/core/extensions/cage_extension.dart';
 import 'package:birdbreeder/core/extensions/species_extension.dart';
 import 'package:birdbreeder/core/extensions/widget_extensions.dart';
-import 'package:birdbreeder/models/contact/entity/contact.dart';
 import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';
 import 'package:birdbreeder/models/ressources/entity/species.dart';
@@ -97,7 +96,6 @@ class _ResourceListState<T> extends State<ResourceList<T>> {
     }
     if (item is Cage) return item.name ?? '-';
     if (item is BirdColor) return item.name ?? '-';
-    if (item is Contact) return item.name ?? '-';
 
     return item.toString();
   }
@@ -122,7 +120,6 @@ class _ResourceListState<T> extends State<ResourceList<T>> {
 
     if (item is Cage) return Text(_labelOf(item));
     if (item is BirdColor) return Text(_labelOf(item));
-    if (item is Contact) return Text(_labelOf(item));
 
     return Text(item.toString());
   }

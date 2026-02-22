@@ -15,7 +15,7 @@ class SoldToField extends StatelessWidget {
   final Bird bird;
 
   bool filterFn(Contact item, String filter) {
-    return item.name?.toLowerCase().contains(filter.toLowerCase()) ?? false;
+    return item.fullName.toLowerCase().contains(filter.toLowerCase());
   }
 
   @override
@@ -31,7 +31,7 @@ class SoldToField extends StatelessWidget {
       apply: (b, v) => b.copyWith(soldToId: v?.id),
       items: contacts,
       selectedItem: bird.soldToResolved,
-      itemAsString: (item) => item.name ?? '-',
+      itemAsString: (item) => item.fullName,
       title: context.tr.bird.select_sold_to_label,
       filterFn: filterFn,
       compareFn: (a, b) => a.id == b.id,

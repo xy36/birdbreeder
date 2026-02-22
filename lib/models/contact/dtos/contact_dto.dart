@@ -1,3 +1,4 @@
+import 'package:birdbreeder/models/contact/entity/contact.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'contact_dto.freezed.dart';
@@ -9,8 +10,11 @@ abstract class ContactDto with _$ContactDto {
     required String id,
     String? number,
     String? phone,
+    @JsonKey(unknownEnumValue: ContactInitials.none)
+    @Default(ContactInitials.none)
+    ContactInitials? initials,
     String? firstName,
-    String? name,
+    String? lastName,
     String? email,
     String? address,
     String? city,

@@ -872,6 +872,8 @@ class TranslationsContactsFieldsDe {
   /// de: 'Nachname'
   String get last_name => 'Nachname';
 
+  late final TranslationsContactsFieldsInitialsDe initials = TranslationsContactsFieldsInitialsDe.internal(_root);
+
   /// de: 'E-Mail'
   String get email => 'E-Mail';
 
@@ -1324,6 +1326,27 @@ class TranslationsDialogDeleteEntryDe {
 
   /// de: 'Möchten Sie diesen Eintrag wirklich löschen?'
   String get content => 'Möchten Sie diesen Eintrag wirklich löschen?';
+}
+
+// Path: contacts.fields.initials
+class TranslationsContactsFieldsInitialsDe {
+  TranslationsContactsFieldsInitialsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Anrede'
+  String get name => 'Anrede';
+
+  /// de: 'Keine'
+  String get none => 'Keine';
+
+  /// de: 'Herr'
+  String get mr => 'Herr';
+
+  /// de: 'Frau'
+  String get ms => 'Frau';
 }
 
 // Path: bird.sections.identification

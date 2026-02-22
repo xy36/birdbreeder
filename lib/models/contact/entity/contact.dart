@@ -1,7 +1,27 @@
+import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/models/searchable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+export 'package:birdbreeder/core/extensions/contact_extension.dart';
+
 part 'contact.freezed.dart';
+
+enum ContactInitials {
+  none,
+  mr,
+  ms;
+
+  String getDisplayName(BuildContext context) {
+    switch (this) {
+      case ContactInitials.none:
+        return context.tr.contacts.fields.initials.none;
+      case ContactInitials.mr:
+        return context.tr.contacts.fields.initials.mr;
+      case ContactInitials.ms:
+        return context.tr.contacts.fields.initials.ms;
+    }
+  }
+}
 
 @freezed
 abstract class Contact with _$Contact, Searchable {
@@ -10,13 +30,14 @@ abstract class Contact with _$Contact, Searchable {
     required String? number,
     required String? phone,
     required String? firstName,
-    required String? name,
+    required String? lastName,
     required String? email,
     required String? address,
     required String? city,
     required String? postalCode,
     required String? country,
     required String? website,
+    @Default(ContactInitials.none) ContactInitials? initials,
     DateTime? created,
     DateTime? updated,
   }) = _Contact;
@@ -26,7 +47,7 @@ abstract class Contact with _$Contact, Searchable {
         number: null,
         phone: null,
         firstName: null,
-        name: null,
+        lastName: null,
         email: null,
         address: null,
         city: null,
@@ -40,7 +61,7 @@ abstract class Contact with _$Contact, Searchable {
   @override
   String get searchIndex => [
         firstName,
-        name,
+        lastName,
         number,
         phone,
         email,

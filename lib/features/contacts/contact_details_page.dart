@@ -4,6 +4,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/widgets/section_card.dart';
 import 'package:birdbreeder/features/contacts/cubit/contact_cubit.dart';
 import 'package:birdbreeder/features/contacts/cubit/contact_listener.dart';
+import 'package:birdbreeder/features/contacts/widgets/contact_property_field.dart';
 import 'package:birdbreeder/features/contacts/widgets/contact_text_property_field.dart';
 import 'package:birdbreeder/features/contacts/widgets/section_grid.dart';
 import 'package:birdbreeder/models/contact/contact_actions.dart';
@@ -13,6 +14,7 @@ import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/bird_breeder_wrapper.dart';
 import 'package:birdbreeder/shared/widgets/navigate_back_button.dart';
+import 'package:birdbreeder/shared/widgets/picker/contact_initials_picker_field.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 final formKey = GlobalKey<FormState>();
@@ -96,6 +98,23 @@ class ContactDetailsPage extends StatelessWidget {
                             children: [
                               SectionGrid(
                                 children: [
+                                  ContactPropertyField<ContactInitials>(
+                                    contact: state.contact,
+                                    label: context
+                                        .tr.contacts.fields.initials.name,
+                                    name: 'initials_field',
+                                    select: (Contact c) => c.initials,
+                                    apply: (Contact c, ContactInitials? v) =>
+                                        c.copyWith(
+                                      initials: v ?? ContactInitials.none,
+                                    ),
+                                    builder: (ctx, initialValue, onChanged) {
+                                      return ContactInitialsPickerField(
+                                        initialValue: initialValue,
+                                        onChanged: onChanged,
+                                      );
+                                    },
+                                  ),
                                   ContactTextPropertyField(
                                     contact: state.contact,
                                     apply: (Contact c, String? v) => c.copyWith(
@@ -113,11 +132,12 @@ class ContactDetailsPage extends StatelessWidget {
                                   ),
                                   ContactTextPropertyField(
                                     label: context.tr.contacts.fields.last_name,
-                                    apply: (Contact c, String? v) =>
-                                        c.copyWith(name: v?.capitalizeFirst),
+                                    apply: (Contact c, String? v) => c.copyWith(
+                                      lastName: v?.capitalizeFirst,
+                                    ),
                                     contact: state.contact,
                                     name: 'last_name_field',
-                                    select: (Contact c) => c.name,
+                                    select: (Contact c) => c.lastName,
                                     isRequired: true,
                                     suffixIcon: const Icon(AppIcons.lastname),
                                     autofillHints: const [

@@ -10,8 +10,11 @@ extension ContactListExtension on List<Contact> {
 }
 
 extension ContactExtension on Contact {
-  String get displayName {
-    return '${firstName ?? ''} ${name ?? ''}'.trim();
+  String get fullName {
+    if (firstName == null && lastName == null) return '';
+    if (firstName == null) return lastName!;
+    if (lastName == null) return firstName!;
+    return '$firstName $lastName';
   }
 
   int get birdsSoldCount {

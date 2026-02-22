@@ -76,6 +76,12 @@
         "fields": {
             "first_name": "Vorname",
             "last_name": "Nachname",
+            "initials": {
+                "name": "Anrede",
+                "none": "Keine",
+                "mr": "Herr",
+                "ms": "Frau"
+            },
             "email": "E-Mail",
             "number": "Züchternummer",
             "phone": "Telefonnummer",

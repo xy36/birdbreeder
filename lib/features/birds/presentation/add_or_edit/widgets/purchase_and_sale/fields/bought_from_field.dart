@@ -15,7 +15,7 @@ class BoughtFromField extends StatelessWidget {
   final Bird bird;
 
   bool filterFn(Contact item, String filter) {
-    return item.name?.toLowerCase().contains(filter.toLowerCase()) ?? false;
+    return item.fullName.toLowerCase().contains(filter.toLowerCase());
   }
 
   @override
@@ -33,7 +33,7 @@ class BoughtFromField extends StatelessWidget {
       filterFn: filterFn,
       compareFn: (a, b) => a.id == b.id,
       items: contacts,
-      itemAsString: (item) => item.name ?? '-',
+      itemAsString: (item) => item.fullName,
       selectedItem: bird.boughtFromResolved,
       onClear: () => context.read<BirdCubit>().changeBird(
             bird.copyWith(boughtFromId: null),

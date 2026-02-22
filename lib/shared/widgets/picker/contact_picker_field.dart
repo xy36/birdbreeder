@@ -21,16 +21,16 @@ class ContactPickerField extends StatelessWidget {
       name: 'contact_selector',
       values:
           context.watch<BirdBreederCubit>().state.birdBreederResources.contacts,
-      displayStringFor: (contact) => contact.name ?? '—',
+      displayStringFor: (contact) => contact.lastName ?? '—',
       initialValue: initialValue,
       enabled: enabled,
       onChanged: onChanged,
       labelText: context.tr.contacts.select,
       itemBuilder: (context, item, index) => ListTile(
-        title: Text(item.name ?? '-'),
+        title: Text(item.lastName ?? '-'),
       ),
       filterFn: (item, filter) =>
-          item.name?.toLowerCase().contains(filter.toLowerCase()) ?? false,
+          item.lastName?.toLowerCase().contains(filter.toLowerCase()) ?? false,
       title: context.tr.contacts.select,
       onAdd: (String name) async {
         final newContact =
