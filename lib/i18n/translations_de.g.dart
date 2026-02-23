@@ -872,7 +872,7 @@ class TranslationsContactsFieldsDe {
   /// de: 'Nachname'
   String get last_name => 'Nachname';
 
-  late final TranslationsContactsFieldsInitialsDe initials = TranslationsContactsFieldsInitialsDe.internal(_root);
+  late final TranslationsContactsFieldsTitleDe title = TranslationsContactsFieldsTitleDe.internal(_root);
 
   /// de: 'E-Mail'
   String get email => 'E-Mail';
@@ -1328,9 +1328,9 @@ class TranslationsDialogDeleteEntryDe {
   String get content => 'Möchten Sie diesen Eintrag wirklich löschen?';
 }
 
-// Path: contacts.fields.initials
-class TranslationsContactsFieldsInitialsDe {
-  TranslationsContactsFieldsInitialsDe.internal(this._root);
+// Path: contacts.fields.title
+class TranslationsContactsFieldsTitleDe {
+  TranslationsContactsFieldsTitleDe.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 

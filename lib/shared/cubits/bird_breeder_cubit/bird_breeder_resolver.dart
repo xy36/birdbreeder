@@ -70,7 +70,7 @@ extension BirdBreederResovlerExtension on BirdBreederCubit {
   Contact resolveContactDto(ContactDto contactDto) {
     return Contact(
       id: contactDto.id,
-      initials: contactDto.initials,
+      title: contactDto.title,
       phone: contactDto.phone,
       lastName: contactDto.lastName,
       email: contactDto.email,

@@ -25,7 +25,7 @@ mixin _$Contact {
   String? get postalCode;
   String? get country;
   String? get website;
-  ContactInitials? get initials;
+  ContactTitle? get title;
   DateTime? get created;
   DateTime? get updated;
 
@@ -55,8 +55,7 @@ mixin _$Contact {
                 other.postalCode == postalCode) &&
             (identical(other.country, country) || other.country == country) &&
             (identical(other.website, website) || other.website == website) &&
-            (identical(other.initials, initials) ||
-                other.initials == initials) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.created, created) || other.created == created) &&
             (identical(other.updated, updated) || other.updated == updated));
   }
@@ -75,13 +74,13 @@ mixin _$Contact {
       postalCode,
       country,
       website,
-      initials,
+      title,
       created,
       updated);
 
   @override
   String toString() {
-    return 'Contact(id: $id, number: $number, phone: $phone, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, postalCode: $postalCode, country: $country, website: $website, initials: $initials, created: $created, updated: $updated)';
+    return 'Contact(id: $id, number: $number, phone: $phone, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, postalCode: $postalCode, country: $country, website: $website, title: $title, created: $created, updated: $updated)';
   }
 }
 
@@ -102,7 +101,7 @@ abstract mixin class $ContactCopyWith<$Res> {
       String? postalCode,
       String? country,
       String? website,
-      ContactInitials? initials,
+      ContactTitle? title,
       DateTime? created,
       DateTime? updated});
 }
@@ -130,7 +129,7 @@ class _$ContactCopyWithImpl<$Res> implements $ContactCopyWith<$Res> {
     Object? postalCode = freezed,
     Object? country = freezed,
     Object? website = freezed,
-    Object? initials = freezed,
+    Object? title = freezed,
     Object? created = freezed,
     Object? updated = freezed,
   }) {
@@ -179,10 +178,10 @@ class _$ContactCopyWithImpl<$Res> implements $ContactCopyWith<$Res> {
           ? _self.website
           : website // ignore: cast_nullable_to_non_nullable
               as String?,
-      initials: freezed == initials
-          ? _self.initials
-          : initials // ignore: cast_nullable_to_non_nullable
-              as ContactInitials?,
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as ContactTitle?,
       created: freezed == created
           ? _self.created
           : created // ignore: cast_nullable_to_non_nullable
@@ -300,7 +299,7 @@ extension ContactPatterns on Contact {
             String? postalCode,
             String? country,
             String? website,
-            ContactInitials? initials,
+            ContactTitle? title,
             DateTime? created,
             DateTime? updated)?
         $default, {
@@ -321,7 +320,7 @@ extension ContactPatterns on Contact {
             _that.postalCode,
             _that.country,
             _that.website,
-            _that.initials,
+            _that.title,
             _that.created,
             _that.updated);
       case _:
@@ -356,7 +355,7 @@ extension ContactPatterns on Contact {
             String? postalCode,
             String? country,
             String? website,
-            ContactInitials? initials,
+            ContactTitle? title,
             DateTime? created,
             DateTime? updated)
         $default,
@@ -376,7 +375,7 @@ extension ContactPatterns on Contact {
             _that.postalCode,
             _that.country,
             _that.website,
-            _that.initials,
+            _that.title,
             _that.created,
             _that.updated);
       case _:
@@ -410,7 +409,7 @@ extension ContactPatterns on Contact {
             String? postalCode,
             String? country,
             String? website,
-            ContactInitials? initials,
+            ContactTitle? title,
             DateTime? created,
             DateTime? updated)?
         $default,
@@ -430,7 +429,7 @@ extension ContactPatterns on Contact {
             _that.postalCode,
             _that.country,
             _that.website,
-            _that.initials,
+            _that.title,
             _that.created,
             _that.updated);
       case _:
@@ -454,7 +453,7 @@ class _Contact extends Contact {
       required this.postalCode,
       required this.country,
       required this.website,
-      this.initials = ContactInitials.none,
+      this.title = ContactTitle.none,
       this.created,
       this.updated})
       : super._();
@@ -483,7 +482,7 @@ class _Contact extends Contact {
   final String? website;
   @override
   @JsonKey()
-  final ContactInitials? initials;
+  final ContactTitle? title;
   @override
   final DateTime? created;
   @override
@@ -516,8 +515,7 @@ class _Contact extends Contact {
                 other.postalCode == postalCode) &&
             (identical(other.country, country) || other.country == country) &&
             (identical(other.website, website) || other.website == website) &&
-            (identical(other.initials, initials) ||
-                other.initials == initials) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.created, created) || other.created == created) &&
             (identical(other.updated, updated) || other.updated == updated));
   }
@@ -536,13 +534,13 @@ class _Contact extends Contact {
       postalCode,
       country,
       website,
-      initials,
+      title,
       created,
       updated);
 
   @override
   String toString() {
-    return 'Contact(id: $id, number: $number, phone: $phone, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, postalCode: $postalCode, country: $country, website: $website, initials: $initials, created: $created, updated: $updated)';
+    return 'Contact(id: $id, number: $number, phone: $phone, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, postalCode: $postalCode, country: $country, website: $website, title: $title, created: $created, updated: $updated)';
   }
 }
 
@@ -564,7 +562,7 @@ abstract mixin class _$ContactCopyWith<$Res> implements $ContactCopyWith<$Res> {
       String? postalCode,
       String? country,
       String? website,
-      ContactInitials? initials,
+      ContactTitle? title,
       DateTime? created,
       DateTime? updated});
 }
@@ -592,7 +590,7 @@ class __$ContactCopyWithImpl<$Res> implements _$ContactCopyWith<$Res> {
     Object? postalCode = freezed,
     Object? country = freezed,
     Object? website = freezed,
-    Object? initials = freezed,
+    Object? title = freezed,
     Object? created = freezed,
     Object? updated = freezed,
   }) {
@@ -641,10 +639,10 @@ class __$ContactCopyWithImpl<$Res> implements _$ContactCopyWith<$Res> {
           ? _self.website
           : website // ignore: cast_nullable_to_non_nullable
               as String?,
-      initials: freezed == initials
-          ? _self.initials
-          : initials // ignore: cast_nullable_to_non_nullable
-              as ContactInitials?,
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as ContactTitle?,
       created: freezed == created
           ? _self.created
           : created // ignore: cast_nullable_to_non_nullable

@@ -10,9 +10,9 @@ abstract class ContactDto with _$ContactDto {
     required String id,
     String? number,
     String? phone,
-    @JsonKey(unknownEnumValue: ContactInitials.none)
-    @Default(ContactInitials.none)
-    ContactInitials? initials,
+    @JsonKey(unknownEnumValue: ContactTitle.none)
+    @Default(ContactTitle.none)
+    ContactTitle? title,
     String? firstName,
     String? lastName,
     String? email,

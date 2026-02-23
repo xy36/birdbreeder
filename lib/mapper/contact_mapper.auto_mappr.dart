@@ -296,7 +296,7 @@ class $ContactMapper implements _i1.AutoMapprInterface {
       id: model.id,
       number: model.number,
       phone: model.phone,
-      initials: model.initials,
+      title: model.title,
       firstName: model.firstName,
       lastName: model.lastName,
       email: model.email,
@@ -327,7 +327,7 @@ class $ContactMapper implements _i1.AutoMapprInterface {
       postalCode: model.postalCode,
       country: model.country,
       website: model.website,
-      initials: model.initials,
+      title: model.title,
     );
   }
 }

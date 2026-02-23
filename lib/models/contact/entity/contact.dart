@@ -6,19 +6,19 @@ export 'package:birdbreeder/core/extensions/contact_extension.dart';
 
 part 'contact.freezed.dart';
 
-enum ContactInitials {
+enum ContactTitle {
   none,
   mr,
   ms;
 
   String getDisplayName(BuildContext context) {
     switch (this) {
-      case ContactInitials.none:
-        return context.tr.contacts.fields.initials.none;
-      case ContactInitials.mr:
-        return context.tr.contacts.fields.initials.mr;
-      case ContactInitials.ms:
-        return context.tr.contacts.fields.initials.ms;
+      case ContactTitle.none:
+        return context.tr.contacts.fields.title.none;
+      case ContactTitle.mr:
+        return context.tr.contacts.fields.title.mr;
+      case ContactTitle.ms:
+        return context.tr.contacts.fields.title.ms;
     }
   }
 }
@@ -37,7 +37,7 @@ abstract class Contact with _$Contact, Searchable {
     required String? postalCode,
     required String? country,
     required String? website,
-    @Default(ContactInitials.none) ContactInitials? initials,
+    @Default(ContactTitle.none) ContactTitle? title,
     DateTime? created,
     DateTime? updated,
   }) = _Contact;

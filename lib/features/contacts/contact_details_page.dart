@@ -14,7 +14,7 @@ import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/bird_breeder_wrapper.dart';
 import 'package:birdbreeder/shared/widgets/navigate_back_button.dart';
-import 'package:birdbreeder/shared/widgets/picker/contact_initials_picker_field.dart';
+import 'package:birdbreeder/shared/widgets/picker/contact_title_picker_field.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 final formKey = GlobalKey<FormState>();
@@ -98,18 +98,18 @@ class ContactDetailsPage extends StatelessWidget {
                             children: [
                               SectionGrid(
                                 children: [
-                                  ContactPropertyField<ContactInitials>(
+                                  ContactPropertyField<ContactTitle>(
                                     contact: state.contact,
-                                    label: context
-                                        .tr.contacts.fields.initials.name,
-                                    name: 'initials_field',
-                                    select: (Contact c) => c.initials,
-                                    apply: (Contact c, ContactInitials? v) =>
+                                    label:
+                                        context.tr.contacts.fields.title.name,
+                                    name: 'title_field',
+                                    select: (Contact c) => c.title,
+                                    apply: (Contact c, ContactTitle? v) =>
                                         c.copyWith(
-                                      initials: v ?? ContactInitials.none,
+                                      title: v ?? ContactTitle.none,
                                     ),
                                     builder: (ctx, initialValue, onChanged) {
-                                      return ContactInitialsPickerField(
+                                      return ContactTitlePickerField(
                                         initialValue: initialValue,
                                         onChanged: onChanged,
                                       );

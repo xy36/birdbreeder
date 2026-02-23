@@ -76,7 +76,7 @@
         "fields": {
             "first_name": "Vorname",
             "last_name": "Nachname",
-            "initials": {
+            "title": {
                 "name": "Anrede",
                 "none": "Keine",
                 "mr": "Herr",

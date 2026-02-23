@@ -17,8 +17,8 @@ mixin _$ContactDto {
   String get id;
   String? get number;
   String? get phone;
-  @JsonKey(unknownEnumValue: ContactInitials.none)
-  ContactInitials? get initials;
+  @JsonKey(unknownEnumValue: ContactTitle.none)
+  ContactTitle? get title;
   String? get firstName;
   String? get lastName;
   String? get email;
@@ -47,8 +47,7 @@ mixin _$ContactDto {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.number, number) || other.number == number) &&
             (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.initials, initials) ||
-                other.initials == initials) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -70,7 +69,7 @@ mixin _$ContactDto {
       id,
       number,
       phone,
-      initials,
+      title,
       firstName,
       lastName,
       email,
@@ -83,7 +82,7 @@ mixin _$ContactDto {
 
   @override
   String toString() {
-    return 'ContactDto(id: $id, number: $number, phone: $phone, initials: $initials, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, country: $country, postalCode: $postalCode, website: $website, user: $user)';
+    return 'ContactDto(id: $id, number: $number, phone: $phone, title: $title, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, country: $country, postalCode: $postalCode, website: $website, user: $user)';
   }
 }
 
@@ -97,8 +96,7 @@ abstract mixin class $ContactDtoCopyWith<$Res> {
       {String id,
       String? number,
       String? phone,
-      @JsonKey(unknownEnumValue: ContactInitials.none)
-      ContactInitials? initials,
+      @JsonKey(unknownEnumValue: ContactTitle.none) ContactTitle? title,
       String? firstName,
       String? lastName,
       String? email,
@@ -125,7 +123,7 @@ class _$ContactDtoCopyWithImpl<$Res> implements $ContactDtoCopyWith<$Res> {
     Object? id = null,
     Object? number = freezed,
     Object? phone = freezed,
-    Object? initials = freezed,
+    Object? title = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? email = freezed,
@@ -149,10 +147,10 @@ class _$ContactDtoCopyWithImpl<$Res> implements $ContactDtoCopyWith<$Res> {
           ? _self.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      initials: freezed == initials
-          ? _self.initials
-          : initials // ignore: cast_nullable_to_non_nullable
-              as ContactInitials?,
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as ContactTitle?,
       firstName: freezed == firstName
           ? _self.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -290,8 +288,7 @@ extension ContactDtoPatterns on ContactDto {
             String id,
             String? number,
             String? phone,
-            @JsonKey(unknownEnumValue: ContactInitials.none)
-            ContactInitials? initials,
+            @JsonKey(unknownEnumValue: ContactTitle.none) ContactTitle? title,
             String? firstName,
             String? lastName,
             String? email,
@@ -311,7 +308,7 @@ extension ContactDtoPatterns on ContactDto {
             _that.id,
             _that.number,
             _that.phone,
-            _that.initials,
+            _that.title,
             _that.firstName,
             _that.lastName,
             _that.email,
@@ -345,8 +342,7 @@ extension ContactDtoPatterns on ContactDto {
             String id,
             String? number,
             String? phone,
-            @JsonKey(unknownEnumValue: ContactInitials.none)
-            ContactInitials? initials,
+            @JsonKey(unknownEnumValue: ContactTitle.none) ContactTitle? title,
             String? firstName,
             String? lastName,
             String? email,
@@ -365,7 +361,7 @@ extension ContactDtoPatterns on ContactDto {
             _that.id,
             _that.number,
             _that.phone,
-            _that.initials,
+            _that.title,
             _that.firstName,
             _that.lastName,
             _that.email,
@@ -398,8 +394,7 @@ extension ContactDtoPatterns on ContactDto {
             String id,
             String? number,
             String? phone,
-            @JsonKey(unknownEnumValue: ContactInitials.none)
-            ContactInitials? initials,
+            @JsonKey(unknownEnumValue: ContactTitle.none) ContactTitle? title,
             String? firstName,
             String? lastName,
             String? email,
@@ -418,7 +413,7 @@ extension ContactDtoPatterns on ContactDto {
             _that.id,
             _that.number,
             _that.phone,
-            _that.initials,
+            _that.title,
             _that.firstName,
             _that.lastName,
             _that.email,
@@ -441,8 +436,8 @@ class _ContactDto implements ContactDto {
       {required this.id,
       this.number,
       this.phone,
-      @JsonKey(unknownEnumValue: ContactInitials.none)
-      this.initials = ContactInitials.none,
+      @JsonKey(unknownEnumValue: ContactTitle.none)
+      this.title = ContactTitle.none,
       this.firstName,
       this.lastName,
       this.email,
@@ -462,8 +457,8 @@ class _ContactDto implements ContactDto {
   @override
   final String? phone;
   @override
-  @JsonKey(unknownEnumValue: ContactInitials.none)
-  final ContactInitials? initials;
+  @JsonKey(unknownEnumValue: ContactTitle.none)
+  final ContactTitle? title;
   @override
   final String? firstName;
   @override
@@ -506,8 +501,7 @@ class _ContactDto implements ContactDto {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.number, number) || other.number == number) &&
             (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.initials, initials) ||
-                other.initials == initials) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -529,7 +523,7 @@ class _ContactDto implements ContactDto {
       id,
       number,
       phone,
-      initials,
+      title,
       firstName,
       lastName,
       email,
@@ -542,7 +536,7 @@ class _ContactDto implements ContactDto {
 
   @override
   String toString() {
-    return 'ContactDto(id: $id, number: $number, phone: $phone, initials: $initials, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, country: $country, postalCode: $postalCode, website: $website, user: $user)';
+    return 'ContactDto(id: $id, number: $number, phone: $phone, title: $title, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, country: $country, postalCode: $postalCode, website: $website, user: $user)';
   }
 }
 
@@ -558,8 +552,7 @@ abstract mixin class _$ContactDtoCopyWith<$Res>
       {String id,
       String? number,
       String? phone,
-      @JsonKey(unknownEnumValue: ContactInitials.none)
-      ContactInitials? initials,
+      @JsonKey(unknownEnumValue: ContactTitle.none) ContactTitle? title,
       String? firstName,
       String? lastName,
       String? email,
@@ -586,7 +579,7 @@ class __$ContactDtoCopyWithImpl<$Res> implements _$ContactDtoCopyWith<$Res> {
     Object? id = null,
     Object? number = freezed,
     Object? phone = freezed,
-    Object? initials = freezed,
+    Object? title = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? email = freezed,
@@ -610,10 +603,10 @@ class __$ContactDtoCopyWithImpl<$Res> implements _$ContactDtoCopyWith<$Res> {
           ? _self.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      initials: freezed == initials
-          ? _self.initials
-          : initials // ignore: cast_nullable_to_non_nullable
-              as ContactInitials?,
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as ContactTitle?,
       firstName: freezed == firstName
           ? _self.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
