@@ -2,7 +2,6 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/bird_color_extension.dart';
 import 'package:birdbreeder/core/extensions/brood_extension.dart';
 import 'package:birdbreeder/core/extensions/cage_extension.dart';
-import 'package:birdbreeder/core/extensions/contact_extension.dart';
 import 'package:birdbreeder/core/extensions/species_extension.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/bird_breeder_resources.dart';
@@ -53,6 +52,10 @@ extension BirdsExtension on Bird {
   Contact? get soldToResolved => soldToId == null
       ? null
       : _birdBreederResources().contacts.findById(soldToId!);
+
+  Contact? get breederResolved => breederId == null
+      ? null
+      : _birdBreederResources().contacts.findById(breederId!);
 
   BirdColor? get colorResolved => colorId == null
       ? null

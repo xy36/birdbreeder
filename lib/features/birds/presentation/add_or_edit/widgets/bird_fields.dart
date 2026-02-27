@@ -1,5 +1,6 @@
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/breeding/breeder_section.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/breeding/children_section.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/breeding/parent_section.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/general/identification_section.dart';
@@ -60,6 +61,7 @@ enum BirdSections {
         return [
           ParentSection(bird),
           ChildrenSection(bird),
+          BreederSection(bird),
         ];
       case BirdSections.purchaseAndSale:
         return [

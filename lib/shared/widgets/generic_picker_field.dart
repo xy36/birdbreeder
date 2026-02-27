@@ -15,6 +15,7 @@ class GenericPickerField<T> extends StatelessWidget {
     this.onChanged,
     this.validator,
     this.labelText,
+    this.hintText,
     this.prefixIcon,
     this.clearable = true,
     this.filterFn,
@@ -47,6 +48,9 @@ class GenericPickerField<T> extends StatelessWidget {
 
   /// Label for the InputDecorator
   final String? labelText;
+
+  /// Hint text for the InputDecorator
+  final String? hintText;
 
   /// Optional prefix icon
   final IconData? prefixIcon;
@@ -93,6 +97,7 @@ class GenericPickerField<T> extends StatelessWidget {
               labelText: labelText ?? context.tr.common.hint.select,
               prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
               errorText: field.errorText,
+              hintText: hintText,
               enabled: enabled,
               suffixIcon: hasValue && enabled && clearable
                   ? IconButton(

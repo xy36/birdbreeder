@@ -72,6 +72,9 @@ mixin _$BirdDto {
   @JsonKey(name: 'owner')
   @StringNullEmptyConverter()
   ContactId? get ownerId;
+  @JsonKey(name: 'breeder')
+  @StringNullEmptyConverter()
+  ContactId? get breederId;
   bool? get unknownLifecycle;
   String? get user;
 
@@ -135,6 +138,8 @@ mixin _$BirdDto {
             (identical(other.soldToId, soldToId) ||
                 other.soldToId == soldToId) &&
             (identical(other.ownerId, ownerId) || other.ownerId == ownerId) &&
+            (identical(other.breederId, breederId) ||
+                other.breederId == breederId) &&
             (identical(other.unknownLifecycle, unknownLifecycle) ||
                 other.unknownLifecycle == unknownLifecycle) &&
             (identical(other.user, user) || other.user == user));
@@ -173,13 +178,14 @@ mixin _$BirdDto {
         boughtFromId,
         soldToId,
         ownerId,
+        breederId,
         unknownLifecycle,
         user
       ]);
 
   @override
   String toString() {
-    return 'BirdDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, ringNumber: $ringNumber, speciesId: $speciesId, colorId: $colorId, sex: $sex, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, broodId: $broodId, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, bornAt: $bornAt, diedAt: $diedAt, saleStatus: $saleStatus, listedAt: $listedAt, soldAt: $soldAt, askingPrice: $askingPrice, finalPrice: $finalPrice, boughtAt: $boughtAt, boughtPrice: $boughtPrice, notes: $notes, boughtFromId: $boughtFromId, soldToId: $soldToId, ownerId: $ownerId, unknownLifecycle: $unknownLifecycle, user: $user)';
+    return 'BirdDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, ringNumber: $ringNumber, speciesId: $speciesId, colorId: $colorId, sex: $sex, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, broodId: $broodId, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, bornAt: $bornAt, diedAt: $diedAt, saleStatus: $saleStatus, listedAt: $listedAt, soldAt: $soldAt, askingPrice: $askingPrice, finalPrice: $finalPrice, boughtAt: $boughtAt, boughtPrice: $boughtPrice, notes: $notes, boughtFromId: $boughtFromId, soldToId: $soldToId, ownerId: $ownerId, breederId: $breederId, unknownLifecycle: $unknownLifecycle, user: $user)';
   }
 }
 
@@ -222,6 +228,9 @@ abstract mixin class $BirdDtoCopyWith<$Res> {
       ContactId? boughtFromId,
       @JsonKey(name: 'soldTo') @StringNullEmptyConverter() ContactId? soldToId,
       @JsonKey(name: 'owner') @StringNullEmptyConverter() ContactId? ownerId,
+      @JsonKey(name: 'breeder')
+      @StringNullEmptyConverter()
+      ContactId? breederId,
       bool? unknownLifecycle,
       String? user});
 }
@@ -267,6 +276,7 @@ class _$BirdDtoCopyWithImpl<$Res> implements $BirdDtoCopyWith<$Res> {
     Object? boughtFromId = freezed,
     Object? soldToId = freezed,
     Object? ownerId = freezed,
+    Object? breederId = freezed,
     Object? unknownLifecycle = freezed,
     Object? user = freezed,
   }) {
@@ -386,6 +396,10 @@ class _$BirdDtoCopyWithImpl<$Res> implements $BirdDtoCopyWith<$Res> {
       ownerId: freezed == ownerId
           ? _self.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
+              as ContactId?,
+      breederId: freezed == breederId
+          ? _self.breederId
+          : breederId // ignore: cast_nullable_to_non_nullable
               as ContactId?,
       unknownLifecycle: freezed == unknownLifecycle
           ? _self.unknownLifecycle
@@ -536,6 +550,9 @@ extension BirdDtoPatterns on BirdDto {
             @JsonKey(name: 'owner')
             @StringNullEmptyConverter()
             ContactId? ownerId,
+            @JsonKey(name: 'breeder')
+            @StringNullEmptyConverter()
+            ContactId? breederId,
             bool? unknownLifecycle,
             String? user)?
         $default, {
@@ -574,6 +591,7 @@ extension BirdDtoPatterns on BirdDto {
             _that.boughtFromId,
             _that.soldToId,
             _that.ownerId,
+            _that.breederId,
             _that.unknownLifecycle,
             _that.user);
       case _:
@@ -640,6 +658,9 @@ extension BirdDtoPatterns on BirdDto {
             @JsonKey(name: 'owner')
             @StringNullEmptyConverter()
             ContactId? ownerId,
+            @JsonKey(name: 'breeder')
+            @StringNullEmptyConverter()
+            ContactId? breederId,
             bool? unknownLifecycle,
             String? user)
         $default,
@@ -677,6 +698,7 @@ extension BirdDtoPatterns on BirdDto {
             _that.boughtFromId,
             _that.soldToId,
             _that.ownerId,
+            _that.breederId,
             _that.unknownLifecycle,
             _that.user);
       case _:
@@ -742,6 +764,9 @@ extension BirdDtoPatterns on BirdDto {
             @JsonKey(name: 'owner')
             @StringNullEmptyConverter()
             ContactId? ownerId,
+            @JsonKey(name: 'breeder')
+            @StringNullEmptyConverter()
+            ContactId? breederId,
             bool? unknownLifecycle,
             String? user)?
         $default,
@@ -779,6 +804,7 @@ extension BirdDtoPatterns on BirdDto {
             _that.boughtFromId,
             _that.soldToId,
             _that.ownerId,
+            _that.breederId,
             _that.unknownLifecycle,
             _that.user);
       case _:
@@ -822,6 +848,7 @@ class _BirdDto implements BirdDto {
       this.boughtFromId,
       @JsonKey(name: 'soldTo') @StringNullEmptyConverter() this.soldToId,
       @JsonKey(name: 'owner') @StringNullEmptyConverter() this.ownerId,
+      @JsonKey(name: 'breeder') @StringNullEmptyConverter() this.breederId,
       this.unknownLifecycle,
       this.user});
   factory _BirdDto.fromJson(Map<String, dynamic> json) =>
@@ -917,6 +944,10 @@ class _BirdDto implements BirdDto {
   @StringNullEmptyConverter()
   final ContactId? ownerId;
   @override
+  @JsonKey(name: 'breeder')
+  @StringNullEmptyConverter()
+  final ContactId? breederId;
+  @override
   final bool? unknownLifecycle;
   @override
   final String? user;
@@ -986,6 +1017,8 @@ class _BirdDto implements BirdDto {
             (identical(other.soldToId, soldToId) ||
                 other.soldToId == soldToId) &&
             (identical(other.ownerId, ownerId) || other.ownerId == ownerId) &&
+            (identical(other.breederId, breederId) ||
+                other.breederId == breederId) &&
             (identical(other.unknownLifecycle, unknownLifecycle) ||
                 other.unknownLifecycle == unknownLifecycle) &&
             (identical(other.user, user) || other.user == user));
@@ -1024,13 +1057,14 @@ class _BirdDto implements BirdDto {
         boughtFromId,
         soldToId,
         ownerId,
+        breederId,
         unknownLifecycle,
         user
       ]);
 
   @override
   String toString() {
-    return 'BirdDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, ringNumber: $ringNumber, speciesId: $speciesId, colorId: $colorId, sex: $sex, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, broodId: $broodId, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, bornAt: $bornAt, diedAt: $diedAt, saleStatus: $saleStatus, listedAt: $listedAt, soldAt: $soldAt, askingPrice: $askingPrice, finalPrice: $finalPrice, boughtAt: $boughtAt, boughtPrice: $boughtPrice, notes: $notes, boughtFromId: $boughtFromId, soldToId: $soldToId, ownerId: $ownerId, unknownLifecycle: $unknownLifecycle, user: $user)';
+    return 'BirdDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, ringNumber: $ringNumber, speciesId: $speciesId, colorId: $colorId, sex: $sex, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, broodId: $broodId, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, bornAt: $bornAt, diedAt: $diedAt, saleStatus: $saleStatus, listedAt: $listedAt, soldAt: $soldAt, askingPrice: $askingPrice, finalPrice: $finalPrice, boughtAt: $boughtAt, boughtPrice: $boughtPrice, notes: $notes, boughtFromId: $boughtFromId, soldToId: $soldToId, ownerId: $ownerId, breederId: $breederId, unknownLifecycle: $unknownLifecycle, user: $user)';
   }
 }
 
@@ -1074,6 +1108,9 @@ abstract mixin class _$BirdDtoCopyWith<$Res> implements $BirdDtoCopyWith<$Res> {
       ContactId? boughtFromId,
       @JsonKey(name: 'soldTo') @StringNullEmptyConverter() ContactId? soldToId,
       @JsonKey(name: 'owner') @StringNullEmptyConverter() ContactId? ownerId,
+      @JsonKey(name: 'breeder')
+      @StringNullEmptyConverter()
+      ContactId? breederId,
       bool? unknownLifecycle,
       String? user});
 }
@@ -1119,6 +1156,7 @@ class __$BirdDtoCopyWithImpl<$Res> implements _$BirdDtoCopyWith<$Res> {
     Object? boughtFromId = freezed,
     Object? soldToId = freezed,
     Object? ownerId = freezed,
+    Object? breederId = freezed,
     Object? unknownLifecycle = freezed,
     Object? user = freezed,
   }) {
@@ -1238,6 +1276,10 @@ class __$BirdDtoCopyWithImpl<$Res> implements _$BirdDtoCopyWith<$Res> {
       ownerId: freezed == ownerId
           ? _self.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
+              as ContactId?,
+      breederId: freezed == breederId
+          ? _self.breederId
+          : breederId // ignore: cast_nullable_to_non_nullable
               as ContactId?,
       unknownLifecycle: freezed == unknownLifecycle
           ? _self.unknownLifecycle

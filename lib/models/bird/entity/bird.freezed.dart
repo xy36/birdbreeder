@@ -20,7 +20,8 @@ mixin _$Bird {
   String? get ringNumber;
   SpeciesId? get speciesId;
   ColorId? get colorId;
-  ContactId? get ownerId; // Sex & parents
+  ContactId? get ownerId;
+  ContactId? get breederId; // Sex & parents
   Sex get sex;
   BirdId? get fatherId;
   BirdId? get motherId; // Housing & brood
@@ -67,6 +68,8 @@ mixin _$Bird {
                 other.speciesId == speciesId) &&
             (identical(other.colorId, colorId) || other.colorId == colorId) &&
             (identical(other.ownerId, ownerId) || other.ownerId == ownerId) &&
+            (identical(other.breederId, breederId) ||
+                other.breederId == breederId) &&
             (identical(other.sex, sex) || other.sex == sex) &&
             (identical(other.fatherId, fatherId) ||
                 other.fatherId == fatherId) &&
@@ -114,6 +117,7 @@ mixin _$Bird {
         speciesId,
         colorId,
         ownerId,
+        breederId,
         sex,
         fatherId,
         motherId,
@@ -139,7 +143,7 @@ mixin _$Bird {
 
   @override
   String toString() {
-    return 'Bird(id: $id, created: $created, updated: $updated, ringNumber: $ringNumber, speciesId: $speciesId, colorId: $colorId, ownerId: $ownerId, sex: $sex, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, broodId: $broodId, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, bornAt: $bornAt, diedAt: $diedAt, saleStatus: $saleStatus, listedAt: $listedAt, soldAt: $soldAt, askingPrice: $askingPrice, finalPrice: $finalPrice, boughtAt: $boughtAt, boughtPrice: $boughtPrice, boughtFromId: $boughtFromId, soldToId: $soldToId, unknownLifecycle: $unknownLifecycle, notes: $notes)';
+    return 'Bird(id: $id, created: $created, updated: $updated, ringNumber: $ringNumber, speciesId: $speciesId, colorId: $colorId, ownerId: $ownerId, breederId: $breederId, sex: $sex, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, broodId: $broodId, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, bornAt: $bornAt, diedAt: $diedAt, saleStatus: $saleStatus, listedAt: $listedAt, soldAt: $soldAt, askingPrice: $askingPrice, finalPrice: $finalPrice, boughtAt: $boughtAt, boughtPrice: $boughtPrice, boughtFromId: $boughtFromId, soldToId: $soldToId, unknownLifecycle: $unknownLifecycle, notes: $notes)';
   }
 }
 
@@ -156,6 +160,7 @@ abstract mixin class $BirdCopyWith<$Res> {
       SpeciesId? speciesId,
       ColorId? colorId,
       ContactId? ownerId,
+      ContactId? breederId,
       Sex sex,
       BirdId? fatherId,
       BirdId? motherId,
@@ -198,6 +203,7 @@ class _$BirdCopyWithImpl<$Res> implements $BirdCopyWith<$Res> {
     Object? speciesId = freezed,
     Object? colorId = freezed,
     Object? ownerId = freezed,
+    Object? breederId = freezed,
     Object? sex = null,
     Object? fatherId = freezed,
     Object? motherId = freezed,
@@ -248,6 +254,10 @@ class _$BirdCopyWithImpl<$Res> implements $BirdCopyWith<$Res> {
       ownerId: freezed == ownerId
           ? _self.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
+              as ContactId?,
+      breederId: freezed == breederId
+          ? _self.breederId
+          : breederId // ignore: cast_nullable_to_non_nullable
               as ContactId?,
       sex: null == sex
           ? _self.sex
@@ -438,6 +448,7 @@ extension BirdPatterns on Bird {
             SpeciesId? speciesId,
             ColorId? colorId,
             ContactId? ownerId,
+            ContactId? breederId,
             Sex sex,
             BirdId? fatherId,
             BirdId? motherId,
@@ -473,6 +484,7 @@ extension BirdPatterns on Bird {
             _that.speciesId,
             _that.colorId,
             _that.ownerId,
+            _that.breederId,
             _that.sex,
             _that.fatherId,
             _that.motherId,
@@ -522,6 +534,7 @@ extension BirdPatterns on Bird {
             SpeciesId? speciesId,
             ColorId? colorId,
             ContactId? ownerId,
+            ContactId? breederId,
             Sex sex,
             BirdId? fatherId,
             BirdId? motherId,
@@ -556,6 +569,7 @@ extension BirdPatterns on Bird {
             _that.speciesId,
             _that.colorId,
             _that.ownerId,
+            _that.breederId,
             _that.sex,
             _that.fatherId,
             _that.motherId,
@@ -604,6 +618,7 @@ extension BirdPatterns on Bird {
             SpeciesId? speciesId,
             ColorId? colorId,
             ContactId? ownerId,
+            ContactId? breederId,
             Sex sex,
             BirdId? fatherId,
             BirdId? motherId,
@@ -638,6 +653,7 @@ extension BirdPatterns on Bird {
             _that.speciesId,
             _that.colorId,
             _that.ownerId,
+            _that.breederId,
             _that.sex,
             _that.fatherId,
             _that.motherId,
@@ -677,6 +693,7 @@ class _Bird extends Bird {
       this.speciesId,
       this.colorId,
       this.ownerId,
+      this.breederId,
       this.sex = Sex.unknown,
       this.fatherId,
       this.motherId,
@@ -717,6 +734,8 @@ class _Bird extends Bird {
   final ColorId? colorId;
   @override
   final ContactId? ownerId;
+  @override
+  final ContactId? breederId;
 // Sex & parents
   @override
   @JsonKey()
@@ -797,6 +816,8 @@ class _Bird extends Bird {
                 other.speciesId == speciesId) &&
             (identical(other.colorId, colorId) || other.colorId == colorId) &&
             (identical(other.ownerId, ownerId) || other.ownerId == ownerId) &&
+            (identical(other.breederId, breederId) ||
+                other.breederId == breederId) &&
             (identical(other.sex, sex) || other.sex == sex) &&
             (identical(other.fatherId, fatherId) ||
                 other.fatherId == fatherId) &&
@@ -844,6 +865,7 @@ class _Bird extends Bird {
         speciesId,
         colorId,
         ownerId,
+        breederId,
         sex,
         fatherId,
         motherId,
@@ -869,7 +891,7 @@ class _Bird extends Bird {
 
   @override
   String toString() {
-    return 'Bird(id: $id, created: $created, updated: $updated, ringNumber: $ringNumber, speciesId: $speciesId, colorId: $colorId, ownerId: $ownerId, sex: $sex, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, broodId: $broodId, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, bornAt: $bornAt, diedAt: $diedAt, saleStatus: $saleStatus, listedAt: $listedAt, soldAt: $soldAt, askingPrice: $askingPrice, finalPrice: $finalPrice, boughtAt: $boughtAt, boughtPrice: $boughtPrice, boughtFromId: $boughtFromId, soldToId: $soldToId, unknownLifecycle: $unknownLifecycle, notes: $notes)';
+    return 'Bird(id: $id, created: $created, updated: $updated, ringNumber: $ringNumber, speciesId: $speciesId, colorId: $colorId, ownerId: $ownerId, breederId: $breederId, sex: $sex, fatherId: $fatherId, motherId: $motherId, cageId: $cageId, broodId: $broodId, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, bornAt: $bornAt, diedAt: $diedAt, saleStatus: $saleStatus, listedAt: $listedAt, soldAt: $soldAt, askingPrice: $askingPrice, finalPrice: $finalPrice, boughtAt: $boughtAt, boughtPrice: $boughtPrice, boughtFromId: $boughtFromId, soldToId: $soldToId, unknownLifecycle: $unknownLifecycle, notes: $notes)';
   }
 }
 
@@ -887,6 +909,7 @@ abstract mixin class _$BirdCopyWith<$Res> implements $BirdCopyWith<$Res> {
       SpeciesId? speciesId,
       ColorId? colorId,
       ContactId? ownerId,
+      ContactId? breederId,
       Sex sex,
       BirdId? fatherId,
       BirdId? motherId,
@@ -929,6 +952,7 @@ class __$BirdCopyWithImpl<$Res> implements _$BirdCopyWith<$Res> {
     Object? speciesId = freezed,
     Object? colorId = freezed,
     Object? ownerId = freezed,
+    Object? breederId = freezed,
     Object? sex = null,
     Object? fatherId = freezed,
     Object? motherId = freezed,
@@ -979,6 +1003,10 @@ class __$BirdCopyWithImpl<$Res> implements _$BirdCopyWith<$Res> {
       ownerId: freezed == ownerId
           ? _self.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
+              as ContactId?,
+      breederId: freezed == breederId
+          ? _self.breederId
+          : breederId // ignore: cast_nullable_to_non_nullable
               as ContactId?,
       sex: null == sex
           ? _self.sex

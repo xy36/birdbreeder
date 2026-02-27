@@ -57,6 +57,8 @@ _BirdDto _$BirdDtoFromJson(Map<String, dynamic> json) => _BirdDto(
           const StringNullEmptyConverter().fromJson(json['soldTo'] as String?),
       ownerId:
           const StringNullEmptyConverter().fromJson(json['owner'] as String?),
+      breederId:
+          const StringNullEmptyConverter().fromJson(json['breeder'] as String?),
       unknownLifecycle: json['unknownLifecycle'] as bool?,
       user: json['user'] as String?,
     );
@@ -93,6 +95,7 @@ Map<String, dynamic> _$BirdDtoToJson(_BirdDto instance) => <String, dynamic>{
           const StringNullEmptyConverter().toJson(instance.boughtFromId),
       'soldTo': const StringNullEmptyConverter().toJson(instance.soldToId),
       'owner': const StringNullEmptyConverter().toJson(instance.ownerId),
+      'breeder': const StringNullEmptyConverter().toJson(instance.breederId),
       'unknownLifecycle': instance.unknownLifecycle,
       'user': instance.user,
     };

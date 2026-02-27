@@ -9,11 +9,15 @@ class ContactPickerField extends StatelessWidget {
     this.initialValue,
     this.enabled = true,
     this.onChanged,
+    this.hintText,
+    this.labelText,
   });
 
   final Contact? initialValue;
   final bool enabled;
   final void Function(Contact?)? onChanged;
+  final String? labelText;
+  final String? hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +29,8 @@ class ContactPickerField extends StatelessWidget {
       initialValue: initialValue,
       enabled: enabled,
       onChanged: onChanged,
-      labelText: context.tr.contacts.select,
+      labelText: labelText ?? context.tr.contacts.select,
+      hintText: hintText ?? context.tr.contacts.select,
       itemBuilder: (context, item, index) => ListTile(
         title: Text(item.lastName ?? '-'),
       ),

@@ -195,6 +195,10 @@
                 "title": "Eltern",
                 "subTitle": "Informationen zu den Eltern des Vogels"
             },
+            "breeder": {
+                "title": "Züchter",
+                "subTitle": "Informationen zum Züchter des Vogels"
+            },
             "children": {
                 "title": "Nachkommen",
                 "subTitle": "Informationen zu den Nachkommen des Vogels"

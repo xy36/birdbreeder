@@ -999,6 +999,7 @@ class TranslationsBirdSectionsDe {
   late final TranslationsBirdSectionsLifeDe life = TranslationsBirdSectionsLifeDe.internal(_root);
   late final TranslationsBirdSectionsNotesDe notes = TranslationsBirdSectionsNotesDe.internal(_root);
   late final TranslationsBirdSectionsParentDe parent = TranslationsBirdSectionsParentDe.internal(_root);
+  late final TranslationsBirdSectionsBreederDe breeder = TranslationsBirdSectionsBreederDe.internal(_root);
   late final TranslationsBirdSectionsChildrenDe children = TranslationsBirdSectionsChildrenDe.internal(_root);
 }
 
@@ -1492,6 +1493,21 @@ class TranslationsBirdSectionsParentDe {
 
   /// de: 'Informationen zu den Eltern des Vogels'
   String get sub_title => 'Informationen zu den Eltern des Vogels';
+}
+
+// Path: bird.sections.breeder
+class TranslationsBirdSectionsBreederDe {
+  TranslationsBirdSectionsBreederDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Züchter'
+  String get title => 'Züchter';
+
+  /// de: 'Informationen zum Züchter des Vogels'
+  String get sub_title => 'Informationen zum Züchter des Vogels';
 }
 
 // Path: bird.sections.children

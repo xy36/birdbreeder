@@ -90,6 +90,7 @@ abstract class Bird with _$Bird, Searchable {
     SpeciesId? speciesId,
     ColorId? colorId,
     ContactId? ownerId,
+    ContactId? breederId,
 
     // Sex & parents
     @Default(Sex.unknown) Sex sex,

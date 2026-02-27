@@ -318,6 +318,7 @@ class $BirdMapper implements _i1.AutoMapprInterface {
       boughtFromId: model.boughtFromId,
       soldToId: model.soldToId,
       ownerId: model.ownerId,
+      breederId: model.breederId,
       unknownLifecycle: model.unknownLifecycle,
     );
   }
@@ -337,6 +338,7 @@ class $BirdMapper implements _i1.AutoMapprInterface {
       speciesId: model.speciesId,
       colorId: model.colorId,
       ownerId: model.ownerId,
+      breederId: model.breederId,
       sex: model.sex,
       fatherId: model.fatherId,
       motherId: model.motherId,

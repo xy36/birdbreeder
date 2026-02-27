@@ -24,6 +24,7 @@ class AppIcons {
   static const IconData birdTabsStatusAndLifeCycle = Icons.timelapse;
   static const IconData birdTabsPurchaseAndSale = Icons.attach_money;
   static const IconData birdSectionParent = Icons.family_restroom;
+  static const IconData birdSectionBreeder = Icons.person_outline;
   static const IconData birdSectionChildren = Icons.child_friendly;
   static const IconData birdSectionIdentification = Icons.badge;
   static const IconData birdSectionKeeping = Icons.info_outline_rounded;
@@ -115,6 +116,7 @@ class AppIcons {
   static const IconData menuBreedings = Icons.baby_changing_station;
   static const IconData menuFinances = Icons.attach_money;
   static const IconData menuResources = Icons.folder;
+  static const IconData menuCsvImport = Icons.upload_file;
   static const IconData menuAccount = Icons.account_circle;
 
   static const IconData snackWarning = Icons.warning;

@@ -43,6 +43,7 @@ abstract class BirdDto with _$BirdDto {
     ContactId? boughtFromId,
     @JsonKey(name: 'soldTo') @StringNullEmptyConverter() ContactId? soldToId,
     @JsonKey(name: 'owner') @StringNullEmptyConverter() ContactId? ownerId,
+    @JsonKey(name: 'breeder') @StringNullEmptyConverter() ContactId? breederId,
     bool? unknownLifecycle,
     String? user,
   }) = _BirdDto;
