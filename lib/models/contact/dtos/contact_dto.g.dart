@@ -10,6 +10,7 @@ _ContactDto _$ContactDtoFromJson(Map<String, dynamic> json) => _ContactDto(
       id: json['id'] as String,
       number: json['number'] as String?,
       phone: json['phone'] as String?,
+      cellPhoneNumber: json['cellPhoneNumber'] as String?,
       title: $enumDecodeNullable(_$ContactTitleEnumMap, json['title'],
               unknownValue: ContactTitle.none) ??
           ContactTitle.none,
@@ -29,6 +30,7 @@ Map<String, dynamic> _$ContactDtoToJson(_ContactDto instance) =>
       'id': instance.id,
       'number': instance.number,
       'phone': instance.phone,
+      'cellPhoneNumber': instance.cellPhoneNumber,
       'title': _$ContactTitleEnumMap[instance.title],
       'firstName': instance.firstName,
       'lastName': instance.lastName,

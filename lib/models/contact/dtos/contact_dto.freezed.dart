@@ -17,6 +17,7 @@ mixin _$ContactDto {
   String get id;
   String? get number;
   String? get phone;
+  String? get cellPhoneNumber;
   @JsonKey(unknownEnumValue: ContactTitle.none)
   ContactTitle? get title;
   String? get firstName;
@@ -47,6 +48,8 @@ mixin _$ContactDto {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.number, number) || other.number == number) &&
             (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.cellPhoneNumber, cellPhoneNumber) ||
+                other.cellPhoneNumber == cellPhoneNumber) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
@@ -69,6 +72,7 @@ mixin _$ContactDto {
       id,
       number,
       phone,
+      cellPhoneNumber,
       title,
       firstName,
       lastName,
@@ -82,7 +86,7 @@ mixin _$ContactDto {
 
   @override
   String toString() {
-    return 'ContactDto(id: $id, number: $number, phone: $phone, title: $title, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, country: $country, postalCode: $postalCode, website: $website, user: $user)';
+    return 'ContactDto(id: $id, number: $number, phone: $phone, cellPhoneNumber: $cellPhoneNumber, title: $title, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, country: $country, postalCode: $postalCode, website: $website, user: $user)';
   }
 }
 
@@ -96,6 +100,7 @@ abstract mixin class $ContactDtoCopyWith<$Res> {
       {String id,
       String? number,
       String? phone,
+      String? cellPhoneNumber,
       @JsonKey(unknownEnumValue: ContactTitle.none) ContactTitle? title,
       String? firstName,
       String? lastName,
@@ -123,6 +128,7 @@ class _$ContactDtoCopyWithImpl<$Res> implements $ContactDtoCopyWith<$Res> {
     Object? id = null,
     Object? number = freezed,
     Object? phone = freezed,
+    Object? cellPhoneNumber = freezed,
     Object? title = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
@@ -146,6 +152,10 @@ class _$ContactDtoCopyWithImpl<$Res> implements $ContactDtoCopyWith<$Res> {
       phone: freezed == phone
           ? _self.phone
           : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cellPhoneNumber: freezed == cellPhoneNumber
+          ? _self.cellPhoneNumber
+          : cellPhoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
       title: freezed == title
           ? _self.title
@@ -288,6 +298,7 @@ extension ContactDtoPatterns on ContactDto {
             String id,
             String? number,
             String? phone,
+            String? cellPhoneNumber,
             @JsonKey(unknownEnumValue: ContactTitle.none) ContactTitle? title,
             String? firstName,
             String? lastName,
@@ -308,6 +319,7 @@ extension ContactDtoPatterns on ContactDto {
             _that.id,
             _that.number,
             _that.phone,
+            _that.cellPhoneNumber,
             _that.title,
             _that.firstName,
             _that.lastName,
@@ -342,6 +354,7 @@ extension ContactDtoPatterns on ContactDto {
             String id,
             String? number,
             String? phone,
+            String? cellPhoneNumber,
             @JsonKey(unknownEnumValue: ContactTitle.none) ContactTitle? title,
             String? firstName,
             String? lastName,
@@ -361,6 +374,7 @@ extension ContactDtoPatterns on ContactDto {
             _that.id,
             _that.number,
             _that.phone,
+            _that.cellPhoneNumber,
             _that.title,
             _that.firstName,
             _that.lastName,
@@ -394,6 +408,7 @@ extension ContactDtoPatterns on ContactDto {
             String id,
             String? number,
             String? phone,
+            String? cellPhoneNumber,
             @JsonKey(unknownEnumValue: ContactTitle.none) ContactTitle? title,
             String? firstName,
             String? lastName,
@@ -413,6 +428,7 @@ extension ContactDtoPatterns on ContactDto {
             _that.id,
             _that.number,
             _that.phone,
+            _that.cellPhoneNumber,
             _that.title,
             _that.firstName,
             _that.lastName,
@@ -436,6 +452,7 @@ class _ContactDto implements ContactDto {
       {required this.id,
       this.number,
       this.phone,
+      this.cellPhoneNumber,
       @JsonKey(unknownEnumValue: ContactTitle.none)
       this.title = ContactTitle.none,
       this.firstName,
@@ -456,6 +473,8 @@ class _ContactDto implements ContactDto {
   final String? number;
   @override
   final String? phone;
+  @override
+  final String? cellPhoneNumber;
   @override
   @JsonKey(unknownEnumValue: ContactTitle.none)
   final ContactTitle? title;
@@ -501,6 +520,8 @@ class _ContactDto implements ContactDto {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.number, number) || other.number == number) &&
             (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.cellPhoneNumber, cellPhoneNumber) ||
+                other.cellPhoneNumber == cellPhoneNumber) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
@@ -523,6 +544,7 @@ class _ContactDto implements ContactDto {
       id,
       number,
       phone,
+      cellPhoneNumber,
       title,
       firstName,
       lastName,
@@ -536,7 +558,7 @@ class _ContactDto implements ContactDto {
 
   @override
   String toString() {
-    return 'ContactDto(id: $id, number: $number, phone: $phone, title: $title, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, country: $country, postalCode: $postalCode, website: $website, user: $user)';
+    return 'ContactDto(id: $id, number: $number, phone: $phone, cellPhoneNumber: $cellPhoneNumber, title: $title, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, country: $country, postalCode: $postalCode, website: $website, user: $user)';
   }
 }
 
@@ -552,6 +574,7 @@ abstract mixin class _$ContactDtoCopyWith<$Res>
       {String id,
       String? number,
       String? phone,
+      String? cellPhoneNumber,
       @JsonKey(unknownEnumValue: ContactTitle.none) ContactTitle? title,
       String? firstName,
       String? lastName,
@@ -579,6 +602,7 @@ class __$ContactDtoCopyWithImpl<$Res> implements _$ContactDtoCopyWith<$Res> {
     Object? id = null,
     Object? number = freezed,
     Object? phone = freezed,
+    Object? cellPhoneNumber = freezed,
     Object? title = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
@@ -602,6 +626,10 @@ class __$ContactDtoCopyWithImpl<$Res> implements _$ContactDtoCopyWith<$Res> {
       phone: freezed == phone
           ? _self.phone
           : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cellPhoneNumber: freezed == cellPhoneNumber
+          ? _self.cellPhoneNumber
+          : cellPhoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
       title: freezed == title
           ? _self.title

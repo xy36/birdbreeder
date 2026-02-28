@@ -10,6 +10,7 @@ abstract class ContactDto with _$ContactDto {
     required String id,
     String? number,
     String? phone,
+    String? cellPhoneNumber,
     @JsonKey(unknownEnumValue: ContactTitle.none)
     @Default(ContactTitle.none)
     ContactTitle? title,

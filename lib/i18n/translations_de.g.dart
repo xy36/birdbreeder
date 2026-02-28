@@ -244,6 +244,15 @@ class TranslationsContactsDe {
 
   late final TranslationsContactsFieldsDe fields = TranslationsContactsFieldsDe.internal(_root);
 
+  /// de: 'Es sind noch keine Kontakte vorhanden. Du kannst Kontakte hinzufügen oder aus einer CSV-Datei importieren.'
+  String get empty_list_information => 'Es sind noch keine Kontakte vorhanden. Du kannst Kontakte hinzufügen oder aus einer CSV-Datei importieren.';
+
+  /// de: 'Kontakte importieren'
+  String get import_button_text => 'Kontakte importieren';
+
+  /// de: 'Kontakt hinzufügen'
+  String get add_contact_button_text => 'Kontakt hinzufügen';
+
   /// de: 'Kontakt löschen?'
   String get delete => 'Kontakt löschen?';
 
@@ -882,6 +891,9 @@ class TranslationsContactsFieldsDe {
 
   /// de: 'Telefonnummer'
   String get phone => 'Telefonnummer';
+
+  /// de: 'Mobilnummer'
+  String get cell_phone_number => 'Mobilnummer';
 
   /// de: 'Adresse'
   String get address => 'Adresse';

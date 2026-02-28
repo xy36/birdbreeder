@@ -128,7 +128,6 @@ class ContactDetailsPage extends StatelessWidget {
                                     autofillHints: const [
                                       AutofillHints.givenName,
                                     ],
-                                    isRequired: true,
                                   ),
                                   ContactTextPropertyField(
                                     label: context.tr.contacts.fields.last_name,
@@ -192,6 +191,18 @@ class ContactDetailsPage extends StatelessWidget {
                                     suffixIcon: const Icon(AppIcons.phone),
                                   ),
                                   ContactTextPropertyField(
+                                    label: context
+                                        .tr.contacts.fields.cell_phone_number,
+                                    contact: state.contact,
+                                    apply: (Contact c, String? v) =>
+                                        c.copyWith(cellPhoneNumber: v),
+                                    name: 'cell_phone_field',
+                                    select: (Contact c) => c.cellPhoneNumber,
+                                    hint: context
+                                        .tr.contacts.fields.cell_phone_number,
+                                    suffixIcon: const Icon(AppIcons.phone),
+                                  ),
+                                  ContactTextPropertyField(
                                     contact: state.contact,
                                     label: context.tr.contacts.fields.email,
                                     apply: (Contact c, String? v) =>
@@ -199,7 +210,9 @@ class ContactDetailsPage extends StatelessWidget {
                                     name: 'email_field',
                                     select: (Contact c) => c.email,
                                     suffixIcon: const Icon(AppIcons.email),
-                                    validator: FormBuilderValidators.email(),
+                                    validator: FormBuilderValidators.email(
+                                      checkNullOrEmpty: false,
+                                    ),
                                   ),
                                   ContactTextPropertyField(
                                     contact: state.contact,

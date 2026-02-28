@@ -3,6 +3,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/widget_extensions.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/contacts/widgets/contact_item.dart';
+import 'package:birdbreeder/features/contacts/widgets/empy_contact_list.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/cubits/generic_search_cubit/generic_search_cubit.dart';
 import 'package:birdbreeder/shared/widgets/bird_breeder_wrapper.dart';
@@ -29,6 +30,10 @@ class _ContactsPageState extends State<ContactsPage> {
       body: BirdBreederWrapper(
         child: BlocBuilder<BirdBreederCubit, BirdBreederState>(
           builder: (context, state) {
+            if (state.birdBreederResources.contacts.isEmpty) {
+              return const EmpyContactList();
+            }
+
             context
                 .read<ContactSearchCubit>()
                 .setItems(state.birdBreederResources.contacts);

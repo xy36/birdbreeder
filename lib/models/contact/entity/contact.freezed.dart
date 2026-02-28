@@ -17,6 +17,7 @@ mixin _$Contact {
   String get id;
   String? get number;
   String? get phone;
+  String? get cellPhoneNumber;
   String? get firstName;
   String? get lastName;
   String? get email;
@@ -44,6 +45,8 @@ mixin _$Contact {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.number, number) || other.number == number) &&
             (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.cellPhoneNumber, cellPhoneNumber) ||
+                other.cellPhoneNumber == cellPhoneNumber) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -66,6 +69,7 @@ mixin _$Contact {
       id,
       number,
       phone,
+      cellPhoneNumber,
       firstName,
       lastName,
       email,
@@ -80,7 +84,7 @@ mixin _$Contact {
 
   @override
   String toString() {
-    return 'Contact(id: $id, number: $number, phone: $phone, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, postalCode: $postalCode, country: $country, website: $website, title: $title, created: $created, updated: $updated)';
+    return 'Contact(id: $id, number: $number, phone: $phone, cellPhoneNumber: $cellPhoneNumber, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, postalCode: $postalCode, country: $country, website: $website, title: $title, created: $created, updated: $updated)';
   }
 }
 
@@ -93,6 +97,7 @@ abstract mixin class $ContactCopyWith<$Res> {
       {String id,
       String? number,
       String? phone,
+      String? cellPhoneNumber,
       String? firstName,
       String? lastName,
       String? email,
@@ -121,6 +126,7 @@ class _$ContactCopyWithImpl<$Res> implements $ContactCopyWith<$Res> {
     Object? id = null,
     Object? number = freezed,
     Object? phone = freezed,
+    Object? cellPhoneNumber = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? email = freezed,
@@ -145,6 +151,10 @@ class _$ContactCopyWithImpl<$Res> implements $ContactCopyWith<$Res> {
       phone: freezed == phone
           ? _self.phone
           : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cellPhoneNumber: freezed == cellPhoneNumber
+          ? _self.cellPhoneNumber
+          : cellPhoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
       firstName: freezed == firstName
           ? _self.firstName
@@ -291,6 +301,7 @@ extension ContactPatterns on Contact {
             String id,
             String? number,
             String? phone,
+            String? cellPhoneNumber,
             String? firstName,
             String? lastName,
             String? email,
@@ -312,6 +323,7 @@ extension ContactPatterns on Contact {
             _that.id,
             _that.number,
             _that.phone,
+            _that.cellPhoneNumber,
             _that.firstName,
             _that.lastName,
             _that.email,
@@ -347,6 +359,7 @@ extension ContactPatterns on Contact {
             String id,
             String? number,
             String? phone,
+            String? cellPhoneNumber,
             String? firstName,
             String? lastName,
             String? email,
@@ -367,6 +380,7 @@ extension ContactPatterns on Contact {
             _that.id,
             _that.number,
             _that.phone,
+            _that.cellPhoneNumber,
             _that.firstName,
             _that.lastName,
             _that.email,
@@ -401,6 +415,7 @@ extension ContactPatterns on Contact {
             String id,
             String? number,
             String? phone,
+            String? cellPhoneNumber,
             String? firstName,
             String? lastName,
             String? email,
@@ -421,6 +436,7 @@ extension ContactPatterns on Contact {
             _that.id,
             _that.number,
             _that.phone,
+            _that.cellPhoneNumber,
             _that.firstName,
             _that.lastName,
             _that.email,
@@ -445,6 +461,7 @@ class _Contact extends Contact {
       {required this.id,
       required this.number,
       required this.phone,
+      required this.cellPhoneNumber,
       required this.firstName,
       required this.lastName,
       required this.email,
@@ -464,6 +481,8 @@ class _Contact extends Contact {
   final String? number;
   @override
   final String? phone;
+  @override
+  final String? cellPhoneNumber;
   @override
   final String? firstName;
   @override
@@ -504,6 +523,8 @@ class _Contact extends Contact {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.number, number) || other.number == number) &&
             (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.cellPhoneNumber, cellPhoneNumber) ||
+                other.cellPhoneNumber == cellPhoneNumber) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -526,6 +547,7 @@ class _Contact extends Contact {
       id,
       number,
       phone,
+      cellPhoneNumber,
       firstName,
       lastName,
       email,
@@ -540,7 +562,7 @@ class _Contact extends Contact {
 
   @override
   String toString() {
-    return 'Contact(id: $id, number: $number, phone: $phone, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, postalCode: $postalCode, country: $country, website: $website, title: $title, created: $created, updated: $updated)';
+    return 'Contact(id: $id, number: $number, phone: $phone, cellPhoneNumber: $cellPhoneNumber, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, postalCode: $postalCode, country: $country, website: $website, title: $title, created: $created, updated: $updated)';
   }
 }
 
@@ -554,6 +576,7 @@ abstract mixin class _$ContactCopyWith<$Res> implements $ContactCopyWith<$Res> {
       {String id,
       String? number,
       String? phone,
+      String? cellPhoneNumber,
       String? firstName,
       String? lastName,
       String? email,
@@ -582,6 +605,7 @@ class __$ContactCopyWithImpl<$Res> implements _$ContactCopyWith<$Res> {
     Object? id = null,
     Object? number = freezed,
     Object? phone = freezed,
+    Object? cellPhoneNumber = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? email = freezed,
@@ -606,6 +630,10 @@ class __$ContactCopyWithImpl<$Res> implements _$ContactCopyWith<$Res> {
       phone: freezed == phone
           ? _self.phone
           : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cellPhoneNumber: freezed == cellPhoneNumber
+          ? _self.cellPhoneNumber
+          : cellPhoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
       firstName: freezed == firstName
           ? _self.firstName

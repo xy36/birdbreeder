@@ -72,6 +72,7 @@ extension BirdBreederResovlerExtension on BirdBreederCubit {
       id: contactDto.id,
       title: contactDto.title,
       phone: contactDto.phone,
+      cellPhoneNumber: contactDto.cellPhoneNumber,
       lastName: contactDto.lastName,
       email: contactDto.email,
       address: contactDto.address,

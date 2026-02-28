@@ -95,21 +95,6 @@ class _BirdFilterSheetState extends State<BirdFilterSheet> {
         }),
       ),
 
-      // LifeStage + Status
-      Section(
-        title: context.tr.bird.sections.life.title,
-        child: AllOrSomeChips<LifeStage>(
-          values: LifeStage.values,
-          isSelected: (ls) => f.lifeStages.contains(ls),
-          getLabel: (ls) => Text(ls.getDisplayName(context)),
-          onChanged: (newSelected) {
-            setState(
-              () => f = f.copyWith(lifeStages: newSelected),
-            );
-          },
-        ),
-      ),
-
       Section(
         title: context.tr.bird.sections.sale.title,
         child: AllOrSomeChips<SaleStatus>(

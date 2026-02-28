@@ -1,4 +1,3 @@
-import 'package:birdbreeder/core/extensions/birds_extension.dart';
 import 'package:birdbreeder/models/bird/bird_filter.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +15,6 @@ class BirdsFilterCubit extends Cubit<BirdFilter> {
 
     // Convert lists to sets for O(1) lookups
     final sexSet = f.sexes.isEmpty ? null : f.sexes.toSet();
-    final stageSet = f.lifeStages.isEmpty ? null : f.lifeStages.toSet();
     final saleSet = f.saleStatus.isEmpty ? null : f.saleStatus.toSet();
 
     // 1) Filter
@@ -32,7 +30,6 @@ class BirdsFilterCubit extends Cubit<BirdFilter> {
       }
 
       if (sexSet != null && !sexSet.contains(b.sex)) return false;
-      if (stageSet != null && !stageSet.contains(b.lifeStage)) return false;
       if (saleSet != null && !saleSet.contains(b.saleStatus)) return false;
 
       return true;
