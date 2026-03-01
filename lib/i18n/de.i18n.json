@@ -387,6 +387,94 @@
             "last_name": "Bitte geben Sie Ihren Nachnamen ein"
         }
     },
+    "csvImport": {
+        "title": "CSV Import",
+        "selectType": "Wähle aus, was du importieren möchtest:",
+        "back": "Zurück",
+        "selectFile": "CSV-Datei auswählen",
+        "cancel": "Abbrechen",
+        "newImport": "Neuer Import",
+        "retry": "Erneut versuchen",
+        "reading": "Lese \"{{fileName}}\"...",
+        "importing": "Importiere {{itemName}}...",
+        "progress": "{{current}} von {{total}}",
+        "completed": "Import abgeschlossen",
+        "birds": {
+            "title": "Vögel",
+            "description": "Importiere Vögel mit Art,\nFarbe und Voliere",
+            "importTitle": "Vögel aus CSV importieren",
+            "importDescription": "Wähle eine CSV-Datei mit deinen Vogeldaten aus.\nArten, Farben und Volieren werden automatisch erstellt, wenn sie noch nicht existieren. Als Trennzeichen in der CSV-Datei werden Semikolon (;) erwartet. Das Datumsformat sollte entweder yyyy-MM-dd, dd.MM.yyyy oder dd/MM/yyyy sein.",
+            "importButton": "{{count}} Vögel importieren",
+            "itemName": "Vögel"
+        },
+        "contacts": {
+            "title": "Kontakte",
+            "description": "Importiere Kontaktdaten\nwie Züchter oder Käufer",
+            "importTitle": "Kontakte aus CSV importieren",
+            "importDescription": "Wähle eine CSV-Datei mit deinen Kontaktdaten aus. Als Trennzeichen in der CSV-Datei werden Semikolon (;) erwartet.",
+            "importButton": "{{count}} Kontakte importieren",
+            "itemName": "Kontakte"
+        },
+        "columns": {
+            "title": "Unterstützte Spalten:",
+            "dateFormats": "Datumsformate: yyyy-MM-dd, dd.MM.yyyy, dd/MM/yyyy",
+            "birdColumns": "• ringnumber / ring / ringnummer - Ringnummer (Pflicht)\n• species / art / vogelart - Vogelart\n• color / farbe / colour - Farbe\n• cage / voliere / käfig - Voliere\n• sex / geschlecht - Geschlecht (male/female/männlich/weiblich)\n• born_at / geboren / geburtsdatum - Geburtsdatum\n• father / vater - Vater Ringnummer\n• mother / mutter - Mutter Ringnummer\n• notes / notizen / bemerkungen - Notizen",
+            "contactColumns": "• firstname / vorname - Vorname\n• name / nachname / lastname - Nachname (mindestens Vor- oder Nachname erforderlich)\n• number / nummer / kundennummer - Kontaktnummer\n• phone / telefon / mobil - Telefonnummer\n• email / e-mail / mail - E-Mail Adresse\n• address / adresse / strasse - Straße\n• city / stadt / ort - Stadt\n• postalcode / plz / zip - Postleitzahl\n• country / land - Land\n• website / homepage / url - Webseite"
+        },
+        "preview": {
+            "valid": "{{count}} gültig",
+            "invalid": "{{count}} ungültig"
+        },
+        "table": {
+            "row": "#",
+            "ringNumber": "Ringnummer",
+            "species": "Art",
+            "color": "Farbe",
+            "cage": "Voliere",
+            "sex": "Geschlecht",
+            "birthDate": "Geb.datum",
+            "deathDate": "Verstorben",
+            "father": "Vater",
+            "mother": "Mutter",
+            "breeder": "Züchter",
+            "owner": "Besitzer",
+            "status": "Status",
+            "number": "Nummer",
+            "firstName": "Vorname",
+            "lastName": "Nachname",
+            "phone": "Telefon",
+            "cellPhone": "Mobil",
+            "email": "E-Mail",
+            "city": "Stadt"
+        },
+        "status": {
+            "error": "Fehler",
+            "missingRingNumber": "Ringnummer fehlt",
+            "missingName": "Name fehlt",
+            "noRingNumber": "Keine Ringnummer"
+        },
+        "summary": {
+            "successful": "Erfolgreich importiert",
+            "failed": "Fehlgeschlagen",
+            "skippedDuplicates": "Übersprungen (Duplikate)",
+            "skippedInvalid": "Übersprungen (ungültig)",
+            "speciesCreated": "Neue Arten erstellt",
+            "colorsCreated": "Neue Farben erstellt",
+            "cagesCreated": "Neue Volieren erstellt",
+            "failedImports": "Fehlgeschlagene Importe",
+            "skippedEntries": "Übersprungene Einträge (Duplikate)"
+        },
+        "errors": {
+            "selectCsvFile": "Bitte wähle eine CSV-Datei aus",
+            "notCsvFile": "Die ausgewählte Datei ist keine CSV-Datei.",
+            "couldNotReadFile": "Datei konnte nicht gelesen werden",
+            "errorReadingFile": "Fehler beim Lesen der Datei",
+            "ringNumberExists": "Ringnummer bereits vorhanden",
+            "couldNotCreateBird": "Vogel konnte nicht erstellt werden",
+            "contactNumberExists": "Kontaktnummer \"{{number}}\" existiert bereits",
+            "couldNotCreateContact": "Kontakt konnte nicht erstellt werden"
+        }
+    },
     "menu": {
         "name": {
             "birds": "Vögel",
@@ -394,6 +482,7 @@
             "resources": "Ressourcen",
             "breedings": "Züchtungen",
             "finances": "Finanzen",
+            "csvImport": "CSV Import",
             "account": "Konto"
         },
         "addBird": "Vogel hinzufügen"

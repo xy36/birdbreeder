@@ -352,6 +352,22 @@ class ContactsTabRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CsvImportPage]
+class CsvImportRoute extends PageRouteInfo<void> {
+  const CsvImportRoute({List<PageRouteInfo>? children})
+      : super(CsvImportRoute.name, initialChildren: children);
+
+  static const String name = 'CsvImportRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CsvImportPage();
+    },
+  );
+}
+
+/// generated route for
 /// [EmptyRouterPage]
 class EmptyRouterRoute extends PageRouteInfo<void> {
   const EmptyRouterRoute({List<PageRouteInfo>? children})

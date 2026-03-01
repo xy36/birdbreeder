@@ -13,6 +13,7 @@ import 'package:birdbreeder/features/breedings/breeding_pairs/breeding_pairs_pag
 import 'package:birdbreeder/features/breedings/brood/brood_page.dart';
 import 'package:birdbreeder/features/contacts/contact_details_page.dart';
 import 'package:birdbreeder/features/contacts/contacts_page.dart';
+import 'package:birdbreeder/features/csv_import/csv_import_page.dart';
 import 'package:birdbreeder/features/finances/finances_page.dart';
 import 'package:birdbreeder/features/menu/presentation/menu_page.dart';
 import 'package:birdbreeder/features/ressourcen_center/resources_center_page.dart';
@@ -69,6 +70,7 @@ class AppRouter extends RootStackRouter {
             ),
             AutoRoute(page: FinancesRoute.page, path: 'finances'),
             AutoRoute(page: AccountRoute.page, path: 'account'),
+            AutoRoute(page: CsvImportRoute.page, path: 'csv-import'),
 
             // Resources center with nested "tab" routes for deep linking
             AutoRoute(

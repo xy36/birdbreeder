@@ -9,6 +9,7 @@ enum MenuPage {
   breedings(),
   finances(),
   resources(),
+  csvImport(),
   account();
 
   const MenuPage();
@@ -29,6 +30,8 @@ enum MenuPage {
         return AppIcons.menuFinances;
       case MenuPage.resources:
         return AppIcons.menuResources;
+      case MenuPage.csvImport:
+        return AppIcons.menuCsvImport;
       case MenuPage.account:
         return AppIcons.menuAccount;
     }
@@ -42,6 +45,7 @@ enum MenuPage {
       MenuPage.breedings => context.tr.menu.name.breedings,
       MenuPage.finances => context.tr.menu.name.finances,
       MenuPage.resources => context.tr.menu.name.resources,
+      MenuPage.csvImport => context.tr.menu.name.csv_import,
       MenuPage.account => context.tr.menu.name.account,
     };
   }
@@ -55,6 +59,7 @@ enum MenuPage {
       MenuPage.finances => const FinancesRoute(),
       MenuPage.account => const AccountRoute(),
       MenuPage.resources => const ResourcesCenterRoute(),
+      MenuPage.csvImport => const CsvImportRoute(),
     };
   }
 }

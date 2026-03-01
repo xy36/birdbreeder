@@ -57,6 +57,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final TranslationsEggDe egg = TranslationsEggDe.internal(_root);
   late final TranslationsCommonDe common = TranslationsCommonDe.internal(_root);
   late final TranslationsAuthDe auth = TranslationsAuthDe.internal(_root);
+  late final TranslationsCsvImportDe csv_import = TranslationsCsvImportDe.internal(_root);
   late final TranslationsMenuDe menu = TranslationsMenuDe.internal(_root);
   late final TranslationsErrorDe error = TranslationsErrorDe.internal(_root);
   late final TranslationsDialogDe dialog = TranslationsDialogDe.internal(_root);
@@ -684,6 +685,57 @@ class TranslationsAuthDe {
   late final TranslationsAuthValidatorsDe validators = TranslationsAuthValidatorsDe.internal(_root);
 }
 
+// Path: csv_import
+class TranslationsCsvImportDe {
+  TranslationsCsvImportDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'CSV Import'
+  String get title => 'CSV Import';
+
+  /// de: 'Wähle aus, was du importieren möchtest:'
+  String get select_type => 'Wähle aus, was du importieren möchtest:';
+
+  /// de: 'Zurück'
+  String get back => 'Zurück';
+
+  /// de: 'CSV-Datei auswählen'
+  String get select_file => 'CSV-Datei auswählen';
+
+  /// de: 'Abbrechen'
+  String get cancel => 'Abbrechen';
+
+  /// de: 'Neuer Import'
+  String get new_import => 'Neuer Import';
+
+  /// de: 'Erneut versuchen'
+  String get retry => 'Erneut versuchen';
+
+  /// de: 'Lese "{{fileName}}"...'
+  String reading({required Object FileName}) => 'Lese "${FileName}"...';
+
+  /// de: 'Importiere {{itemName}}...'
+  String importing({required Object ItemName}) => 'Importiere ${ItemName}...';
+
+  /// de: '{{current}} von {{total}}'
+  String progress({required Object Current, required Object Total}) => '${Current} von ${Total}';
+
+  /// de: 'Import abgeschlossen'
+  String get completed => 'Import abgeschlossen';
+
+  late final TranslationsCsvImportBirdsDe birds = TranslationsCsvImportBirdsDe.internal(_root);
+  late final TranslationsCsvImportContactsDe contacts = TranslationsCsvImportContactsDe.internal(_root);
+  late final TranslationsCsvImportColumnsDe columns = TranslationsCsvImportColumnsDe.internal(_root);
+  late final TranslationsCsvImportPreviewDe preview = TranslationsCsvImportPreviewDe.internal(_root);
+  late final TranslationsCsvImportTableDe table = TranslationsCsvImportTableDe.internal(_root);
+  late final TranslationsCsvImportStatusDe status = TranslationsCsvImportStatusDe.internal(_root);
+  late final TranslationsCsvImportSummaryDe summary = TranslationsCsvImportSummaryDe.internal(_root);
+  late final TranslationsCsvImportErrorsDe errors = TranslationsCsvImportErrorsDe.internal(_root);
+}
+
 // Path: menu
 class TranslationsMenuDe {
   TranslationsMenuDe.internal(this._root);
@@ -1287,6 +1339,259 @@ class TranslationsAuthValidatorsDe {
   String get last_name => 'Bitte geben Sie Ihren Nachnamen ein';
 }
 
+// Path: csv_import.birds
+class TranslationsCsvImportBirdsDe {
+  TranslationsCsvImportBirdsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Vögel'
+  String get title => 'Vögel';
+
+  /// de: 'Importiere Vögel mit Art, Farbe und Voliere'
+  String get description => 'Importiere Vögel mit Art,\nFarbe und Voliere';
+
+  /// de: 'Vögel aus CSV importieren'
+  String get import_title => 'Vögel aus CSV importieren';
+
+  /// de: 'Wähle eine CSV-Datei mit deinen Vogeldaten aus. Arten, Farben und Volieren werden automatisch erstellt, wenn sie noch nicht existieren. Als Trennzeichen in der CSV-Datei werden Semikolon (;) erwartet. Das Datumsformat sollte entweder yyyy-MM-dd, dd.MM.yyyy oder dd/MM/yyyy sein.'
+  String get import_description =>
+      'Wähle eine CSV-Datei mit deinen Vogeldaten aus.\nArten, Farben und Volieren werden automatisch erstellt, wenn sie noch nicht existieren. Als Trennzeichen in der CSV-Datei werden Semikolon (;) erwartet. Das Datumsformat sollte entweder yyyy-MM-dd, dd.MM.yyyy oder dd/MM/yyyy sein.';
+
+  /// de: '{{count}} Vögel importieren'
+  String import_button({required Object Count}) => '${Count} Vögel importieren';
+
+  /// de: 'Vögel'
+  String get item_name => 'Vögel';
+}
+
+// Path: csv_import.contacts
+class TranslationsCsvImportContactsDe {
+  TranslationsCsvImportContactsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Kontakte'
+  String get title => 'Kontakte';
+
+  /// de: 'Importiere Kontaktdaten wie Züchter oder Käufer'
+  String get description => 'Importiere Kontaktdaten\nwie Züchter oder Käufer';
+
+  /// de: 'Kontakte aus CSV importieren'
+  String get import_title => 'Kontakte aus CSV importieren';
+
+  /// de: 'Wähle eine CSV-Datei mit deinen Kontaktdaten aus. Als Trennzeichen in der CSV-Datei werden Semikolon (;) erwartet.'
+  String get import_description =>
+      'Wähle eine CSV-Datei mit deinen Kontaktdaten aus. Als Trennzeichen in der CSV-Datei werden Semikolon (;) erwartet.';
+
+  /// de: '{{count}} Kontakte importieren'
+  String import_button({required Object Count}) => '${Count} Kontakte importieren';
+
+  /// de: 'Kontakte'
+  String get item_name => 'Kontakte';
+}
+
+// Path: csv_import.columns
+class TranslationsCsvImportColumnsDe {
+  TranslationsCsvImportColumnsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Unterstützte Spalten:'
+  String get title => 'Unterstützte Spalten:';
+
+  /// de: 'Datumsformate: yyyy-MM-dd, dd.MM.yyyy, dd/MM/yyyy'
+  String get date_formats => 'Datumsformate: yyyy-MM-dd, dd.MM.yyyy, dd/MM/yyyy';
+
+  /// de: '• ringnumber / ring / ringnummer - Ringnummer (Pflicht) • species / art / vogelart - Vogelart • color / farbe / colour - Farbe • cage / voliere / käfig - Voliere • sex / geschlecht - Geschlecht (male/female/männlich/weiblich) • born_at / geboren / geburtsdatum - Geburtsdatum • father / vater - Vater Ringnummer • mother / mutter - Mutter Ringnummer • notes / notizen / bemerkungen - Notizen'
+  String get bird_columns =>
+      '• ringnumber / ring / ringnummer - Ringnummer (Pflicht)\n• species / art / vogelart - Vogelart\n• color / farbe / colour - Farbe\n• cage / voliere / käfig - Voliere\n• sex / geschlecht - Geschlecht (male/female/männlich/weiblich)\n• born_at / geboren / geburtsdatum - Geburtsdatum\n• father / vater - Vater Ringnummer\n• mother / mutter - Mutter Ringnummer\n• notes / notizen / bemerkungen - Notizen';
+
+  /// de: '• firstname / vorname - Vorname • name / nachname / lastname - Nachname (mindestens Vor- oder Nachname erforderlich) • number / nummer / kundennummer - Kontaktnummer • phone / telefon / mobil - Telefonnummer • email / e-mail / mail - E-Mail Adresse • address / adresse / strasse - Straße • city / stadt / ort - Stadt • postalcode / plz / zip - Postleitzahl • country / land - Land • website / homepage / url - Webseite'
+  String get contact_columns =>
+      '• firstname / vorname - Vorname\n• name / nachname / lastname - Nachname (mindestens Vor- oder Nachname erforderlich)\n• number / nummer / kundennummer - Kontaktnummer\n• phone / telefon / mobil - Telefonnummer\n• email / e-mail / mail - E-Mail Adresse\n• address / adresse / strasse - Straße\n• city / stadt / ort - Stadt\n• postalcode / plz / zip - Postleitzahl\n• country / land - Land\n• website / homepage / url - Webseite';
+}
+
+// Path: csv_import.preview
+class TranslationsCsvImportPreviewDe {
+  TranslationsCsvImportPreviewDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: '{{count}} gültig'
+  String valid({required Object Count}) => '${Count} gültig';
+
+  /// de: '{{count}} ungültig'
+  String invalid({required Object Count}) => '${Count} ungültig';
+}
+
+// Path: csv_import.table
+class TranslationsCsvImportTableDe {
+  TranslationsCsvImportTableDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: '#'
+  String get row => '#';
+
+  /// de: 'Ringnummer'
+  String get ring_number => 'Ringnummer';
+
+  /// de: 'Art'
+  String get species => 'Art';
+
+  /// de: 'Farbe'
+  String get color => 'Farbe';
+
+  /// de: 'Voliere'
+  String get cage => 'Voliere';
+
+  /// de: 'Geschlecht'
+  String get sex => 'Geschlecht';
+
+  /// de: 'Geb.datum'
+  String get birth_date => 'Geb.datum';
+
+  /// de: 'Verstorben'
+  String get death_date => 'Verstorben';
+
+  /// de: 'Vater'
+  String get father => 'Vater';
+
+  /// de: 'Mutter'
+  String get mother => 'Mutter';
+
+  /// de: 'Züchter'
+  String get breeder => 'Züchter';
+
+  /// de: 'Besitzer'
+  String get owner => 'Besitzer';
+
+  /// de: 'Status'
+  String get status => 'Status';
+
+  /// de: 'Nummer'
+  String get number => 'Nummer';
+
+  /// de: 'Vorname'
+  String get first_name => 'Vorname';
+
+  /// de: 'Nachname'
+  String get last_name => 'Nachname';
+
+  /// de: 'Telefon'
+  String get phone => 'Telefon';
+
+  /// de: 'Mobil'
+  String get cell_phone => 'Mobil';
+
+  /// de: 'E-Mail'
+  String get email => 'E-Mail';
+
+  /// de: 'Stadt'
+  String get city => 'Stadt';
+}
+
+// Path: csv_import.status
+class TranslationsCsvImportStatusDe {
+  TranslationsCsvImportStatusDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Fehler'
+  String get error => 'Fehler';
+
+  /// de: 'Ringnummer fehlt'
+  String get missing_ring_number => 'Ringnummer fehlt';
+
+  /// de: 'Name fehlt'
+  String get missing_name => 'Name fehlt';
+
+  /// de: 'Keine Ringnummer'
+  String get no_ring_number => 'Keine Ringnummer';
+}
+
+// Path: csv_import.summary
+class TranslationsCsvImportSummaryDe {
+  TranslationsCsvImportSummaryDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Erfolgreich importiert'
+  String get successful => 'Erfolgreich importiert';
+
+  /// de: 'Fehlgeschlagen'
+  String get failed => 'Fehlgeschlagen';
+
+  /// de: 'Übersprungen (Duplikate)'
+  String get skipped_duplicates => 'Übersprungen (Duplikate)';
+
+  /// de: 'Übersprungen (ungültig)'
+  String get skipped_invalid => 'Übersprungen (ungültig)';
+
+  /// de: 'Neue Arten erstellt'
+  String get species_created => 'Neue Arten erstellt';
+
+  /// de: 'Neue Farben erstellt'
+  String get colors_created => 'Neue Farben erstellt';
+
+  /// de: 'Neue Volieren erstellt'
+  String get cages_created => 'Neue Volieren erstellt';
+
+  /// de: 'Fehlgeschlagene Importe'
+  String get failed_imports => 'Fehlgeschlagene Importe';
+
+  /// de: 'Übersprungene Einträge (Duplikate)'
+  String get skipped_entries => 'Übersprungene Einträge (Duplikate)';
+}
+
+// Path: csv_import.errors
+class TranslationsCsvImportErrorsDe {
+  TranslationsCsvImportErrorsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Bitte wähle eine CSV-Datei aus'
+  String get select_csv_file => 'Bitte wähle eine CSV-Datei aus';
+
+  /// de: 'Die ausgewählte Datei ist keine CSV-Datei.'
+  String get not_csv_file => 'Die ausgewählte Datei ist keine CSV-Datei.';
+
+  /// de: 'Datei konnte nicht gelesen werden'
+  String get could_not_read_file => 'Datei konnte nicht gelesen werden';
+
+  /// de: 'Fehler beim Lesen der Datei'
+  String get error_reading_file => 'Fehler beim Lesen der Datei';
+
+  /// de: 'Ringnummer bereits vorhanden'
+  String get ring_number_exists => 'Ringnummer bereits vorhanden';
+
+  /// de: 'Vogel konnte nicht erstellt werden'
+  String get could_not_create_bird => 'Vogel konnte nicht erstellt werden';
+
+  /// de: 'Kontaktnummer "{{number}}" existiert bereits'
+  String contact_number_exists({required Object Number}) => 'Kontaktnummer "${Number}" existiert bereits';
+
+  /// de: 'Kontakt konnte nicht erstellt werden'
+  String get could_not_create_contact => 'Kontakt konnte nicht erstellt werden';
+}
+
 // Path: menu.name
 class TranslationsMenuNameDe {
   TranslationsMenuNameDe.internal(this._root);
@@ -1309,6 +1614,9 @@ class TranslationsMenuNameDe {
 
   /// de: 'Finanzen'
   String get finances => 'Finanzen';
+
+  /// de: 'CSV Import'
+  String get csv_import => 'CSV Import';
 
   /// de: 'Konto'
   String get account => 'Konto';

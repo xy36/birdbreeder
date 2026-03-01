@@ -21,6 +21,7 @@
             "name": "birdbreeder (release mode)",
             "request": "launch",
             "type": "dart",
+            "program": "lib/main_development.dart",
             "flutterMode": "release"
         }
     ]
