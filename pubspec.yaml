@@ -74,6 +74,8 @@ dev_dependencies:
   bloc_test: ^10.0.0
   build_runner: ^2.4.14
   custom_lint: ^0.8.1
+  flutter_launcher_icons: ^0.14.4
+  flutter_native_splash: ^2.4.6
   flutter_gen_runner: ^5.3.1
   flutter_test:
     sdk: flutter
@@ -90,4 +92,19 @@ flutter:
     - assets/themes/
     - assets/images/
     - assets/
+    - assets/branding/
 
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: assets/branding/launcher_icon_1024.png
+  adaptive_icon_background: "#415F91"
+  adaptive_icon_foreground: assets/branding/launcher_icon_1024.png
+  remove_alpha_ios: true
+
+flutter_native_splash:
+  color: "#F3F7FF"
+  image: assets/branding/splash_logo_1024.png
+  android_12:
+    color: "#F3F7FF"
+    image: assets/branding/splash_logo_1024.png
