@@ -163,20 +163,23 @@ abstract class CsvBirdRow with _$CsvBirdRow {
     final value = _getString(map, keys);
     if (value == null) return null;
 
-    // Try various date formats
+    // Try various date formats (allow 1 or 2 digits for day/month)
     final formats = [
-      RegExp(r'^(\d{4})-(\d{2})-(\d{2})$'), // yyyy-MM-dd
-      RegExp(r'^(\d{2})\.(\d{2})\.(\d{4})$'), // dd.MM.yyyy
-      RegExp(r'^(\d{2})/(\d{2})/(\d{4})$'), // dd/MM/yyyy
+      RegExp(r'^(\d{4})-(\d{1,2})-(\d{1,2})$'), // yyyy-M-d or yyyy-MM-dd
+      RegExp(r'^(\d{1,2})\.(\d{1,2})\.(\d{4})$'), // d.M.yyyy or dd.MM.yyyy
+      RegExp(r'^(\d{1,2})/(\d{1,2})/(\d{4})$'), // d/M/yyyy or dd/MM/yyyy
     ];
 
-    // yyyy-MM-dd
+    // yyyy-M-d or yyyy-MM-dd
     var match = formats[0].firstMatch(value);
     if (match != null) {
-      return DateTime.tryParse(value);
+      final year = int.parse(match.group(1)!);
+      final month = int.parse(match.group(2)!);
+      final day = int.parse(match.group(3)!);
+      return DateTime(year, month, day);
     }
 
-    // dd.MM.yyyy
+    // d.M.yyyy or dd.MM.yyyy
     match = formats[1].firstMatch(value);
     if (match != null) {
       final day = int.parse(match.group(1)!);
@@ -185,7 +188,7 @@ abstract class CsvBirdRow with _$CsvBirdRow {
       return DateTime(year, month, day);
     }
 
-    // dd/MM/yyyy
+    // d/M/yyyy or dd/MM/yyyy
     match = formats[2].firstMatch(value);
     if (match != null) {
       final day = int.parse(match.group(1)!);

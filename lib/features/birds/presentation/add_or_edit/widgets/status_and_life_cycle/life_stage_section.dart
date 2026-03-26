@@ -44,6 +44,7 @@ class LifeStageSection extends StatelessWidget {
               LaidAtDateField(bird: bird),
               HatchedAtDateField(bird: bird),
               FledgedAtDateField(bird: bird),
+              BornAtDateField(bird: bird),
             ],
           ),
           crossFadeState: bird.unknownLifecycle == true

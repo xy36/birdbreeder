@@ -438,7 +438,6 @@ class CsvBirdImportCubit extends Cubit<CsvBirdImportState> {
       breederId: breederId,
       ownerId: ownerId,
       notes: row.notes,
-      unknownLifecycle: row.bornAt == null && row.diedAt == null,
     );
 
     final createdBird = await birdBreederCubit.addBird(bird);

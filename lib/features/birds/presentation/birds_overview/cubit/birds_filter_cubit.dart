@@ -3,12 +3,22 @@ import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BirdsFilterCubit extends Cubit<BirdFilter> {
-  BirdsFilterCubit() : super(const BirdFilter());
+  BirdsFilterCubit({String? currentUserContactId})
+      : _defaultFilter = currentUserContactId != null
+            ? BirdFilter(ownerIds: [currentUserContactId])
+            : const BirdFilter(),
+        super(
+          currentUserContactId != null
+              ? BirdFilter(ownerIds: [currentUserContactId])
+              : const BirdFilter(),
+        );
 
-  void reset() => emit(const BirdFilter());
+  final BirdFilter _defaultFilter;
+
+  void reset() => emit(_defaultFilter);
 
   void applyFilter(BirdFilter filter) => emit(filter);
-  void resetFilter() => emit(const BirdFilter());
+  void resetFilter() => emit(_defaultFilter);
 
   List<Bird> filterBirds(List<Bird> birds) {
     final f = state;
@@ -26,6 +36,9 @@ class BirdsFilterCubit extends Cubit<BirdFilter> {
         return false;
       }
       if (f.colorIds.isNotEmpty && !f.colorIds.contains(b.colorId)) {
+        return false;
+      }
+      if (f.ownerIds.isNotEmpty && !f.ownerIds.contains(b.ownerId)) {
         return false;
       }
 

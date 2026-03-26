@@ -1,3 +1,4 @@
+import 'package:birdbreeder/core/extensions/birds_extension.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/cubit/bird_cubit_event.dart';
 import 'package:birdbreeder/models/bird/bird_mode.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
@@ -19,7 +20,7 @@ class BirdCubit extends Cubit<BirdState>
     required this.initialBird,
   }) : super(
           BirdLoaded(
-            bird: initialBird ?? Bird.create(),
+            bird: initialBird ?? Bird.create().addUserAsOwner(),
             mode: initialBird == null ? BirdMode.create : BirdMode.edit,
           ),
         ) {

@@ -15,6 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$User {
   String get id;
+  String? get contactId;
   String? get firstName;
   String? get lastName;
   bool? get verified;
@@ -40,6 +41,8 @@ mixin _$User {
         (other.runtimeType == runtimeType &&
             other is User &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.contactId, contactId) ||
+                other.contactId == contactId) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -56,12 +59,12 @@ mixin _$User {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, firstName, lastName,
-      verified, emailVisibility, email, avatar, created, updated);
+  int get hashCode => Object.hash(runtimeType, id, contactId, firstName,
+      lastName, verified, emailVisibility, email, avatar, created, updated);
 
   @override
   String toString() {
-    return 'User(id: $id, firstName: $firstName, lastName: $lastName, verified: $verified, emailVisibility: $emailVisibility, email: $email, avatar: $avatar, created: $created, updated: $updated)';
+    return 'User(id: $id, contactId: $contactId, firstName: $firstName, lastName: $lastName, verified: $verified, emailVisibility: $emailVisibility, email: $email, avatar: $avatar, created: $created, updated: $updated)';
   }
 }
 
@@ -72,6 +75,7 @@ abstract mixin class $UserCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
+      String? contactId,
       String? firstName,
       String? lastName,
       bool? verified,
@@ -95,6 +99,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
   @override
   $Res call({
     Object? id = null,
+    Object? contactId = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? verified = freezed,
@@ -109,6 +114,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      contactId: freezed == contactId
+          ? _self.contactId
+          : contactId // ignore: cast_nullable_to_non_nullable
+              as String?,
       firstName: freezed == firstName
           ? _self.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -240,6 +249,7 @@ extension UserPatterns on User {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             String id,
+            String? contactId,
             String? firstName,
             String? lastName,
             bool? verified,
@@ -256,6 +266,7 @@ extension UserPatterns on User {
       case _User() when $default != null:
         return $default(
             _that.id,
+            _that.contactId,
             _that.firstName,
             _that.lastName,
             _that.verified,
@@ -286,6 +297,7 @@ extension UserPatterns on User {
   TResult when<TResult extends Object?>(
     TResult Function(
             String id,
+            String? contactId,
             String? firstName,
             String? lastName,
             bool? verified,
@@ -301,6 +313,7 @@ extension UserPatterns on User {
       case _User():
         return $default(
             _that.id,
+            _that.contactId,
             _that.firstName,
             _that.lastName,
             _that.verified,
@@ -330,6 +343,7 @@ extension UserPatterns on User {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             String id,
+            String? contactId,
             String? firstName,
             String? lastName,
             bool? verified,
@@ -345,6 +359,7 @@ extension UserPatterns on User {
       case _User() when $default != null:
         return $default(
             _that.id,
+            _that.contactId,
             _that.firstName,
             _that.lastName,
             _that.verified,
@@ -364,6 +379,7 @@ extension UserPatterns on User {
 class _User implements User {
   _User(
       {required this.id,
+      this.contactId,
       this.firstName,
       this.lastName,
       this.verified,
@@ -376,6 +392,8 @@ class _User implements User {
 
   @override
   final String id;
+  @override
+  final String? contactId;
   @override
   final String? firstName;
   @override
@@ -414,6 +432,8 @@ class _User implements User {
         (other.runtimeType == runtimeType &&
             other is _User &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.contactId, contactId) ||
+                other.contactId == contactId) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -430,12 +450,12 @@ class _User implements User {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, firstName, lastName,
-      verified, emailVisibility, email, avatar, created, updated);
+  int get hashCode => Object.hash(runtimeType, id, contactId, firstName,
+      lastName, verified, emailVisibility, email, avatar, created, updated);
 
   @override
   String toString() {
-    return 'User(id: $id, firstName: $firstName, lastName: $lastName, verified: $verified, emailVisibility: $emailVisibility, email: $email, avatar: $avatar, created: $created, updated: $updated)';
+    return 'User(id: $id, contactId: $contactId, firstName: $firstName, lastName: $lastName, verified: $verified, emailVisibility: $emailVisibility, email: $email, avatar: $avatar, created: $created, updated: $updated)';
   }
 }
 
@@ -447,6 +467,7 @@ abstract mixin class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
+      String? contactId,
       String? firstName,
       String? lastName,
       bool? verified,
@@ -470,6 +491,7 @@ class __$UserCopyWithImpl<$Res> implements _$UserCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? id = null,
+    Object? contactId = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? verified = freezed,
@@ -484,6 +506,10 @@ class __$UserCopyWithImpl<$Res> implements _$UserCopyWith<$Res> {
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      contactId: freezed == contactId
+          ? _self.contactId
+          : contactId // ignore: cast_nullable_to_non_nullable
+              as String?,
       firstName: freezed == firstName
           ? _self.firstName
           : firstName // ignore: cast_nullable_to_non_nullable

@@ -10,6 +10,7 @@ import 'package:birdbreeder/models/contact/entity/contact.dart';
 import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';
 import 'package:birdbreeder/models/ressources/entity/species.dart';
+import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 
@@ -29,6 +30,13 @@ extension BirdsExtension on Bird {
             false;
 
     return isRingNumberMatch || isColorMatch || isSpeciesMatch || isCageMatch;
+  }
+
+  Bird addUserAsOwner() {
+    return copyWith(
+      ownerId:
+          s1<IAuthenticationService>().currentUser().asValue?.value?.contactId,
+    );
   }
 
   BirdBreederResources Function() get _birdBreederResources =>

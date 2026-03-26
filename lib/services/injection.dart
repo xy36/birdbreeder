@@ -176,7 +176,7 @@ Future<void> initializeDependencyInjection() async {
         s1(),
         s1(),
         s1(),
-      ),
+      )..initialLoad(),
     )
 
     // Navigation observer

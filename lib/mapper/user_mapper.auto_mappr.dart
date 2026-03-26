@@ -292,6 +292,7 @@ class $UserMapper implements _i1.AutoMapprInterface {
     }
     return _i3.User(
       id: model.id,
+      contactId: model.contactId,
       firstName: model.firstName,
       lastName: model.lastName,
       verified: model.verified,
@@ -310,6 +311,7 @@ class $UserMapper implements _i1.AutoMapprInterface {
     }
     return _i2.UserDto(
       id: model.id,
+      contactId: model.contactId,
       firstName: model.firstName,
       lastName: model.lastName,
       verified: model.verified,

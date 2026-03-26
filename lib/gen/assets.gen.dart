@@ -11,6 +11,34 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsBrandingGen {
+  const $AssetsBrandingGen();
+
+  /// File path: assets/branding/birdbreeder_launcher_source.svg
+  String get birdbreederLauncherSource =>
+      'assets/branding/birdbreeder_launcher_source.svg';
+
+  /// File path: assets/branding/birdbreeder_splash_source.svg
+  String get birdbreederSplashSource =>
+      'assets/branding/birdbreeder_splash_source.svg';
+
+  /// File path: assets/branding/launcher_icon_1024.png
+  AssetGenImage get launcherIcon1024 =>
+      const AssetGenImage('assets/branding/launcher_icon_1024.png');
+
+  /// File path: assets/branding/splash_logo_1024.png
+  AssetGenImage get splashLogo1024 =>
+      const AssetGenImage('assets/branding/splash_logo_1024.png');
+
+  /// List of all assets
+  List<dynamic> get values => [
+        birdbreederLauncherSource,
+        birdbreederSplashSource,
+        launcherIcon1024,
+        splashLogo1024
+      ];
+}
+
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
@@ -42,6 +70,7 @@ class $AssetsThemesGen {
 class Assets {
   const Assets._();
 
+  static const $AssetsBrandingGen branding = $AssetsBrandingGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsThemesGen themes = $AssetsThemesGen();
 }

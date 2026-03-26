@@ -55,9 +55,7 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
     this._financesCategoriesRepository,
   ) : super(
           initialState(),
-        ) {
-    unawaited(initialLoad());
-  }
+        );
 
   static BirdBreederState initialState() => const BirdBreederState.initial(
         birdBreederResources: BirdBreederResources(

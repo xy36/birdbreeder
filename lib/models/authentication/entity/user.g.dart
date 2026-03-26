@@ -8,6 +8,7 @@ part of 'user.dart';
 
 _User _$UserFromJson(Map<String, dynamic> json) => _User(
       id: json['id'] as String,
+      contactId: json['contactId'] as String?,
       firstName: json['firstName'] as String?,
       lastName: json['lastName'] as String?,
       verified: json['verified'] as bool?,
@@ -24,6 +25,7 @@ _User _$UserFromJson(Map<String, dynamic> json) => _User(
 
 Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
       'id': instance.id,
+      'contactId': instance.contactId,
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'verified': instance.verified,

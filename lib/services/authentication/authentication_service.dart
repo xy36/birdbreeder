@@ -125,7 +125,8 @@ class AuthenticationService implements IAuthenticationService {
         'User created: ${record.id} (email=$email, firstName=$firstName, lastName=$lastName)',
       );
 
-      final authData = await _pocketBaseService.usersCollection
+      // Auto-login
+      await _pocketBaseService.usersCollection
           .authWithPassword(email, password);
 
       if (_pocketBaseService.authStore.isValid) {
@@ -134,7 +135,39 @@ class AuthenticationService implements IAuthenticationService {
         _loggingService.logger.w('AuthStore not valid after signUp login');
       }
 
-      final user = UserDto.fromJson(authData.record.toJson()).toModel();
+      // Create associated Contact
+      final contactRecord = await _pocketBaseService.contactsCollection.create(
+        body: <String, dynamic>{
+          'firstName': firstName,
+          'lastName': lastName,
+          'email': email,
+          'user': record.id,
+        },
+      );
+
+      _loggingService.logger.i(
+        'Contact created for user: ${contactRecord.id}',
+      );
+
+      // Link Contact to User
+      await _pocketBaseService.usersCollection.update(
+        record.id,
+        body: <String, dynamic>{
+          'contactId': contactRecord.id,
+        },
+      );
+
+      _loggingService.logger.i(
+        'User updated with contactId: ${contactRecord.id}',
+      );
+
+      // Re-fetch user data to get updated record with contactId
+      final updatedAuthData =
+          await _pocketBaseService.usersCollection.authRefresh();
+
+      await s1.get<BirdBreederCubit>().reloadContacts();
+
+      final user = UserDto.fromJson(updatedAuthData.record.toJson()).toModel();
       return Result.value(user);
     } on ClientException catch (e, st) {
       _loggingService.logger.w(

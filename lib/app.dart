@@ -35,7 +35,16 @@ class App extends StatelessWidget {
         BlocProvider(create: (context) => BirdSearchCubit()),
         BlocProvider(create: (context) => FinanceSearchCubit()),
         BlocProvider(create: (context) => BreedingPairSearchCubit()),
-        BlocProvider(create: (context) => BirdsFilterCubit()),
+        BlocProvider(
+          create: (context) => BirdsFilterCubit(
+            currentUserContactId: s1
+                .get<IAuthenticationService>()
+                .currentUser()
+                .asValue
+                ?.value
+                ?.contactId,
+          ),
+        ),
       ],
       child: MaterialApp.router(
         scaffoldMessengerKey: s1.get<SnackbarService>().messengerKey,

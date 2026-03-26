@@ -17,6 +17,7 @@ mixin _$UserDto {
   String get id;
   String? get collectionId;
   String? get collectionName;
+  String? get contactId;
   String? get firstName;
   String? get lastName;
   bool? get verified;
@@ -44,6 +45,8 @@ mixin _$UserDto {
                 other.collectionId == collectionId) &&
             (identical(other.collectionName, collectionName) ||
                 other.collectionName == collectionName) &&
+            (identical(other.contactId, contactId) ||
+                other.contactId == contactId) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -59,11 +62,11 @@ mixin _$UserDto {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, collectionId, collectionName,
-      firstName, lastName, verified, emailVisibility, email, avatar);
+      contactId, firstName, lastName, verified, emailVisibility, email, avatar);
 
   @override
   String toString() {
-    return 'UserDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, firstName: $firstName, lastName: $lastName, verified: $verified, emailVisibility: $emailVisibility, email: $email, avatar: $avatar)';
+    return 'UserDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, contactId: $contactId, firstName: $firstName, lastName: $lastName, verified: $verified, emailVisibility: $emailVisibility, email: $email, avatar: $avatar)';
   }
 }
 
@@ -76,6 +79,7 @@ abstract mixin class $UserDtoCopyWith<$Res> {
       {String id,
       String? collectionId,
       String? collectionName,
+      String? contactId,
       String? firstName,
       String? lastName,
       bool? verified,
@@ -99,6 +103,7 @@ class _$UserDtoCopyWithImpl<$Res> implements $UserDtoCopyWith<$Res> {
     Object? id = null,
     Object? collectionId = freezed,
     Object? collectionName = freezed,
+    Object? contactId = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? verified = freezed,
@@ -118,6 +123,10 @@ class _$UserDtoCopyWithImpl<$Res> implements $UserDtoCopyWith<$Res> {
       collectionName: freezed == collectionName
           ? _self.collectionName
           : collectionName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactId: freezed == contactId
+          ? _self.contactId
+          : contactId // ignore: cast_nullable_to_non_nullable
               as String?,
       firstName: freezed == firstName
           ? _self.firstName
@@ -244,6 +253,7 @@ extension UserDtoPatterns on UserDto {
             String id,
             String? collectionId,
             String? collectionName,
+            String? contactId,
             String? firstName,
             String? lastName,
             bool? verified,
@@ -260,6 +270,7 @@ extension UserDtoPatterns on UserDto {
             _that.id,
             _that.collectionId,
             _that.collectionName,
+            _that.contactId,
             _that.firstName,
             _that.lastName,
             _that.verified,
@@ -290,6 +301,7 @@ extension UserDtoPatterns on UserDto {
             String id,
             String? collectionId,
             String? collectionName,
+            String? contactId,
             String? firstName,
             String? lastName,
             bool? verified,
@@ -305,6 +317,7 @@ extension UserDtoPatterns on UserDto {
             _that.id,
             _that.collectionId,
             _that.collectionName,
+            _that.contactId,
             _that.firstName,
             _that.lastName,
             _that.verified,
@@ -334,6 +347,7 @@ extension UserDtoPatterns on UserDto {
             String id,
             String? collectionId,
             String? collectionName,
+            String? contactId,
             String? firstName,
             String? lastName,
             bool? verified,
@@ -349,6 +363,7 @@ extension UserDtoPatterns on UserDto {
             _that.id,
             _that.collectionId,
             _that.collectionName,
+            _that.contactId,
             _that.firstName,
             _that.lastName,
             _that.verified,
@@ -368,6 +383,7 @@ class _UserDto implements UserDto {
       {required this.id,
       this.collectionId,
       this.collectionName,
+      this.contactId,
       this.firstName,
       this.lastName,
       this.verified,
@@ -383,6 +399,8 @@ class _UserDto implements UserDto {
   final String? collectionId;
   @override
   final String? collectionName;
+  @override
+  final String? contactId;
   @override
   final String? firstName;
   @override
@@ -421,6 +439,8 @@ class _UserDto implements UserDto {
                 other.collectionId == collectionId) &&
             (identical(other.collectionName, collectionName) ||
                 other.collectionName == collectionName) &&
+            (identical(other.contactId, contactId) ||
+                other.contactId == contactId) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -436,11 +456,11 @@ class _UserDto implements UserDto {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, collectionId, collectionName,
-      firstName, lastName, verified, emailVisibility, email, avatar);
+      contactId, firstName, lastName, verified, emailVisibility, email, avatar);
 
   @override
   String toString() {
-    return 'UserDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, firstName: $firstName, lastName: $lastName, verified: $verified, emailVisibility: $emailVisibility, email: $email, avatar: $avatar)';
+    return 'UserDto(id: $id, collectionId: $collectionId, collectionName: $collectionName, contactId: $contactId, firstName: $firstName, lastName: $lastName, verified: $verified, emailVisibility: $emailVisibility, email: $email, avatar: $avatar)';
   }
 }
 
@@ -454,6 +474,7 @@ abstract mixin class _$UserDtoCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
       {String id,
       String? collectionId,
       String? collectionName,
+      String? contactId,
       String? firstName,
       String? lastName,
       bool? verified,
@@ -477,6 +498,7 @@ class __$UserDtoCopyWithImpl<$Res> implements _$UserDtoCopyWith<$Res> {
     Object? id = null,
     Object? collectionId = freezed,
     Object? collectionName = freezed,
+    Object? contactId = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? verified = freezed,
@@ -496,6 +518,10 @@ class __$UserDtoCopyWithImpl<$Res> implements _$UserDtoCopyWith<$Res> {
       collectionName: freezed == collectionName
           ? _self.collectionName
           : collectionName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactId: freezed == contactId
+          ? _self.contactId
+          : contactId // ignore: cast_nullable_to_non_nullable
               as String?,
       firstName: freezed == firstName
           ? _self.firstName

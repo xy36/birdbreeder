@@ -4,6 +4,7 @@ import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/b
 import 'package:birdbreeder/models/bird/bird_filter.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/bird/sex_enum.dart';
+import 'package:birdbreeder/models/contact/entity/contact.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/widgets/all_or_some_chips.dart';
 import 'package:birdbreeder/shared/widgets/bottom_sheet/bottom_sheet_footer.dart';
@@ -91,6 +92,22 @@ class _BirdFilterSheetState extends State<BirdFilterSheet> {
           f = f.copyWith(
             colorIds: ids.toList(),
             speciesName: null,
+          );
+        }),
+      ),
+
+      // Owner
+      InlineTwoRowMultiChips(
+        title: context.tr.common.owner,
+        items: r.contacts
+            .map(
+              (c) => Option(id: c.id, label: c.fullName.isNotEmpty ? c.fullName : c.number ?? '-'),
+            )
+            .toList(),
+        selectedIds: f.ownerIds.toSet(),
+        onChanged: (ids) => setState(() {
+          f = f.copyWith(
+            ownerIds: ids.toList(),
           );
         }),
       ),

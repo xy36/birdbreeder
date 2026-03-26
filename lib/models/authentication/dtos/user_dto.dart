@@ -9,6 +9,7 @@ abstract class UserDto with _$UserDto {
     required String id,
     String? collectionId,
     String? collectionName,
+    String? contactId,
     String? firstName,
     String? lastName,
     bool? verified,

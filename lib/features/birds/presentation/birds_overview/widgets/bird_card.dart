@@ -142,8 +142,8 @@ class _BirdMainInfo extends StatelessWidget {
           ),
           const SizedBox(height: 6),
           Text(
-            bird.hatchedAt != null
-                ? 'Alter: ${_ageString(bird.hatchedAt!)}'
+            bird.bornAt != null
+                ? 'Alter: ${_ageString(bird.bornAt!)}'
                 : 'Alter: —',
             style: Theme.of(context).textTheme.bodySmall,
           ),
@@ -166,12 +166,15 @@ class _BirdMainInfo extends StatelessWidget {
 
   /// Rough age calculation (years/months).
   String _ageString(DateTime born) {
-    final now = DateTime.now();
+    final now = bird.diedAt ?? DateTime.now();
     var months = (now.year - born.year) * 12 + (now.month - born.month);
     final years = months ~/ 12;
     months = months % 12;
-    if (years > 0 && months > 0) return '$years J, $months M';
-    if (years > 0) return '$years J';
-    return '$months M';
+
+    final prefix = bird.diedAt != null ? '† ' : '';
+
+    if (years > 0 && months > 0) return '$prefix$years J, $months M';
+    if (years > 0) return '$prefix$years J';
+    return '$prefix$months M';
   }
 }
