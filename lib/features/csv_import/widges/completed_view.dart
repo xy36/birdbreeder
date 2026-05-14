@@ -3,6 +3,7 @@ import 'package:birdbreeder/features/csv_import/models/csv_import_result.dart';
 import 'package:birdbreeder/features/csv_import/widges/failed_imports_list.dart';
 import 'package:birdbreeder/features/csv_import/widges/summary_card.dart';
 import 'package:birdbreeder/i18n/strings.g.dart';
+import 'package:birdbreeder/theme/app_colors.dart';
 
 class CompletedView extends StatelessWidget {
   const CompletedView({
@@ -18,6 +19,7 @@ class CompletedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final c = context.appColors;
     final failedResults = summary.results
         .where((r) => !r.success && !r.skipped && r.errorMessage != null)
         .toList();
@@ -31,7 +33,9 @@ class CompletedView extends StatelessWidget {
             Icon(
               summary.failedImports == 0 ? Icons.check_circle : Icons.info,
               size: 80,
-              color: summary.failedImports == 0 ? Colors.green : Colors.orange,
+              color: summary.failedImports == 0
+                  ? c.statusSuccess
+                  : c.statusWarning,
             ),
             const SizedBox(height: 24),
             Text(
@@ -49,7 +53,7 @@ class CompletedView extends StatelessWidget {
                 title: t.csv_import.summary.failed_imports,
                 results: failedResults,
                 icon: Icons.error,
-                iconColor: Colors.red,
+                iconColor: c.statusError,
               ),
             ],
             if (skippedResults.isNotEmpty) ...[
@@ -58,7 +62,7 @@ class CompletedView extends StatelessWidget {
                 title: t.csv_import.summary.skipped_entries,
                 results: skippedResults,
                 icon: Icons.warning,
-                iconColor: Colors.orange,
+                iconColor: c.statusWarning,
               ),
             ],
             const SizedBox(height: 32),

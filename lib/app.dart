@@ -9,6 +9,7 @@ import 'package:birdbreeder/services/data_mode/data_mode.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/cubits/generic_search_cubit/generic_search_cubit.dart';
+import 'package:birdbreeder/shared/cubits/theme_cubit/theme_cubit.dart';
 import 'package:birdbreeder/theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -24,65 +25,79 @@ class App extends StatelessWidget {
   final bool useInheritedMediaQuery;
   final Locale? locale;
 
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => ThemeCubit(),
+      child: const _AppShell(),
+    );
+  }
+}
+
+class _AppShell extends StatefulWidget {
+  const _AppShell();
+
+  @override
+  State<_AppShell> createState() => _AppShellState();
+}
+
+class _AppShellState extends State<_AppShell> {
   final _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
-    final brightness = View.of(context).platformDispatcher.platformBrightness;
     const theme = MaterialTheme();
 
-    // DI not yet initialized — show only the mode selection screen
-    if (!s1.isRegistered<DataMode>()) {
-      return MaterialApp(
-        theme: brightness == Brightness.light
-            ? theme.light(context)
-            : theme.dark(context),
-        darkTheme: theme.dark(context),
-        locale: TranslationProvider.of(context).flutterLocale,
-        supportedLocales: AppLocaleUtils.supportedLocales,
-        localizationsDelegates: GlobalMaterialLocalizations.delegates,
-        home: const ModeSelectionPage(),
-      );
-    }
+    return BlocBuilder<ThemeCubit, ThemeMode>(
+      builder: (context, themeMode) {
+        // DI not yet initialized — show only the mode selection screen
+        if (!s1.isRegistered<DataMode>()) {
+          return MaterialApp(
+            theme: theme.light(context),
+            darkTheme: theme.dark(context),
+            themeMode: themeMode,
+            locale: TranslationProvider.of(context).flutterLocale,
+            supportedLocales: AppLocaleUtils.supportedLocales,
+            localizationsDelegates: GlobalMaterialLocalizations.delegates,
+            home: const ModeSelectionPage(),
+          );
+        }
 
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider.value(
-          value: s1.get<BirdBreederCubit>(),
-        ),
-        BlocProvider(create: (context) => ContactSearchCubit()),
-        BlocProvider(create: (context) => BirdSearchCubit()),
-        BlocProvider(create: (context) => FinanceSearchCubit()),
-        BlocProvider(create: (context) => FinancesFilterCubit()),
-        BlocProvider(create: (context) => BreedingPairSearchCubit()),
-        BlocProvider(
-          create: (context) => BirdsFilterCubit(
-            currentUserContactId: s1
-                .get<IAuthenticationService>()
-                .currentUser()
-                .asValue
-                ?.value
-                ?.contactId,
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider.value(value: s1.get<BirdBreederCubit>()),
+            BlocProvider(create: (context) => ContactSearchCubit()),
+            BlocProvider(create: (context) => BirdSearchCubit()),
+            BlocProvider(create: (context) => FinanceSearchCubit()),
+            BlocProvider(create: (context) => FinancesFilterCubit()),
+            BlocProvider(create: (context) => BreedingPairSearchCubit()),
+            BlocProvider(
+              create: (context) => BirdsFilterCubit(
+                currentUserContactId: s1
+                    .get<IAuthenticationService>()
+                    .currentUser()
+                    .asValue
+                    ?.value
+                    ?.contactId,
+              ),
+            ),
+          ],
+          child: MaterialApp.router(
+            scaffoldMessengerKey: s1.get<SnackbarService>().messengerKey,
+            routerConfig: _appRouter.config(
+              reevaluateListenable:
+                  s1.get<IAuthenticationService>().authenticationStatus,
+            ),
+            theme: theme.light(context),
+            darkTheme: theme.dark(context),
+            themeMode: themeMode,
+            builder: (context, child) => child!,
+            locale: TranslationProvider.of(context).flutterLocale,
+            supportedLocales: AppLocaleUtils.supportedLocales,
+            localizationsDelegates: GlobalMaterialLocalizations.delegates,
           ),
-        ),
-      ],
-      child: MaterialApp.router(
-        scaffoldMessengerKey: s1.get<SnackbarService>().messengerKey,
-        routerConfig: _appRouter.config(
-          reevaluateListenable:
-              s1.get<IAuthenticationService>().authenticationStatus,
-        ),
-        theme: brightness == Brightness.light
-            ? theme.light(context)
-            : theme.dark(context),
-        darkTheme: theme.dark(context),
-        builder: (context, child) {
-          return child!;
-        },
-        locale: TranslationProvider.of(context).flutterLocale,
-        supportedLocales: AppLocaleUtils.supportedLocales,
-        localizationsDelegates: GlobalMaterialLocalizations.delegates,
-      ),
+        );
+      },
     );
   }
 }

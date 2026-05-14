@@ -120,6 +120,7 @@ class TranslationsAccountDe {
 
   late final TranslationsAccountSwitchToLocalDialogDe switch_to_local_dialog = TranslationsAccountSwitchToLocalDialogDe.internal(_root);
   late final TranslationsAccountLocalModeDe local_mode = TranslationsAccountLocalModeDe.internal(_root);
+  late final TranslationsAccountAppearanceDe appearance = TranslationsAccountAppearanceDe.internal(_root);
   late final TranslationsAccountDataDe data = TranslationsAccountDataDe.internal(_root);
   late final TranslationsAccountUserDe user = TranslationsAccountUserDe.internal(_root);
   late final TranslationsAccountEventsDe events = TranslationsAccountEventsDe.internal(_root);
@@ -1065,6 +1066,27 @@ class TranslationsAccountLocalModeDe {
 
   /// de: 'Alle Daten werden lokal auf diesem Gerät gespeichert.'
   String get description => 'Alle Daten werden lokal auf diesem Gerät gespeichert.';
+}
+
+// Path: account.appearance
+class TranslationsAccountAppearanceDe {
+  TranslationsAccountAppearanceDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Erscheinungsbild'
+  String get title => 'Erscheinungsbild';
+
+  /// de: 'System'
+  String get system => 'System';
+
+  /// de: 'Hell'
+  String get light => 'Hell';
+
+  /// de: 'Dunkel'
+  String get dark => 'Dunkel';
 }
 
 // Path: account.data

@@ -1,29 +1,8 @@
+import 'package:birdbreeder/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class MaterialTheme {
   const MaterialTheme();
-
-  TextTheme createTextTheme(
-    BuildContext context,
-    String bodyFontString,
-    String displayFontString,
-  ) {
-    final baseTextTheme = Theme.of(context).textTheme;
-    final bodyTextTheme =
-        GoogleFonts.getTextTheme(bodyFontString, baseTextTheme);
-    final displayTextTheme =
-        GoogleFonts.getTextTheme(displayFontString, baseTextTheme);
-    final textTheme = displayTextTheme.copyWith(
-      bodyLarge: bodyTextTheme.bodyLarge,
-      bodyMedium: bodyTextTheme.bodyMedium,
-      bodySmall: bodyTextTheme.bodySmall,
-      labelLarge: bodyTextTheme.labelLarge,
-      labelMedium: bodyTextTheme.labelMedium,
-      labelSmall: bodyTextTheme.labelSmall,
-    );
-    return textTheme;
-  }
 
   static ColorScheme lightScheme() {
     return const ColorScheme(
@@ -79,6 +58,8 @@ class MaterialTheme {
   ThemeData light(BuildContext context) {
     return theme(context, lightScheme());
   }
+
+  ThemeData lightFromContext(BuildContext context) => light(context);
 
   static ColorScheme lightMediumContrastScheme() {
     return const ColorScheme(
@@ -355,17 +336,31 @@ class MaterialTheme {
     return theme(context, darkHighContrastScheme());
   }
 
-  ThemeData theme(BuildContext context, ColorScheme colorScheme) => ThemeData(
-        useMaterial3: true,
-        brightness: colorScheme.brightness,
-        colorScheme: colorScheme,
-        textTheme: createTextTheme(context, 'Roboto', 'Roboto').apply(
-          bodyColor: colorScheme.onSurface,
-          displayColor: colorScheme.onSurface,
-        ),
-        scaffoldBackgroundColor: colorScheme.surface,
-        canvasColor: colorScheme.surface,
-      );
+  ThemeData theme(BuildContext context, ColorScheme colorScheme) {
+    final isLight = colorScheme.brightness == Brightness.light;
+    return ThemeData(
+      useMaterial3: true,
+      brightness: colorScheme.brightness,
+      colorScheme: colorScheme,
+      scaffoldBackgroundColor: colorScheme.surface,
+      canvasColor: colorScheme.surface,
+      extensions: [
+        isLight ? AppColors.light : AppColors.dark,
+      ],
+      appBarTheme: AppBarTheme(
+        centerTitle: false,
+        scrolledUnderElevation: 0,
+        backgroundColor: colorScheme.surface,
+      ),
+      dividerTheme: DividerThemeData(
+        space: 1,
+        color: colorScheme.outlineVariant,
+      ),
+      chipTheme: const ChipThemeData(
+        side: BorderSide.none,
+      ),
+    );
+  }
 
   List<ExtendedColor> get extendedColors => [];
 }

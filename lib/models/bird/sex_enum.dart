@@ -1,5 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/shared/icons.dart';
+import 'package:birdbreeder/theme/app_colors.dart';
 
 export 'package:birdbreeder/core/extensions/sex_extensions.dart';
 
@@ -14,11 +15,14 @@ enum Sex {
         Sex.unknown => AppIcons.sexUnknown,
       };
 
-  Color get color => switch (this) {
-        Sex.male => Colors.blue,
-        Sex.female => Colors.pink,
-        Sex.unknown => Colors.grey,
-      };
+  Color colorOf(BuildContext context) {
+    final c = context.appColors;
+    return switch (this) {
+      Sex.male => c.sexMale,
+      Sex.female => c.sexFemale,
+      Sex.unknown => c.sexUnknown,
+    };
+  }
 
   String getDisplayName(BuildContext context) => switch (this) {
         Sex.male => context.tr.common.sex.male,
@@ -26,10 +30,7 @@ enum Sex {
         Sex.unknown => context.tr.common.sex.unknown,
       };
 
-  Widget getIcon(BuildContext context, {double size = 24}) => switch (this) {
-        Sex.male => Icon(AppIcons.sexMale, color: Colors.blue, size: size),
-        Sex.female => Icon(AppIcons.sexFemale, color: Colors.pink, size: size),
-        Sex.unknown =>
-          Icon(AppIcons.sexUnknown, color: Colors.grey, size: size),
-      };
+  Widget getIcon(BuildContext context, {double size = 24}) {
+    return Icon(iconData, color: colorOf(context), size: size);
+  }
 }

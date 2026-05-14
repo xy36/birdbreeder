@@ -132,7 +132,7 @@ class FinanceEntryCard extends StatelessWidget {
           amountText,
           style: theme.textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.w700,
-            color: category.kind.color,
+            color: category.kind.colorOf(context),
           ),
         ),
         FinancesActions.buildMenu(context, finance),

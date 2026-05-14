@@ -15,8 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-ThemeData? themeData;
-
 class AppBlocObserver extends BlocObserver {
   Logger get logger => s1.get<LoggingService>().logger;
 

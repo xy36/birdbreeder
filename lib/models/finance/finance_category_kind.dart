@@ -1,17 +1,17 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/theme/app_colors.dart';
 
 enum FinanceCategoryKind {
   income,
   expense;
 
-  /// separated colors for income and expense
-  Color get color {
-    switch (this) {
-      case FinanceCategoryKind.income:
-        return Colors.green;
-      case FinanceCategoryKind.expense:
-        return Colors.red;
-    }
+  /// Domain color, sourced from the active theme's [AppColors] extension.
+  Color colorOf(BuildContext context) {
+    final c = context.appColors;
+    return switch (this) {
+      FinanceCategoryKind.income => c.income,
+      FinanceCategoryKind.expense => c.expense,
+    };
   }
 
   ({Color bg, Color fg, String label}) getDisplayData(

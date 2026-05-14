@@ -1,5 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/i18n/strings.g.dart';
+import 'package:birdbreeder/theme/app_colors.dart';
 
 class PreviewHeader extends StatelessWidget {
   const PreviewHeader({
@@ -29,14 +30,14 @@ class PreviewHeader extends StatelessWidget {
           ),
           _StatChip(
             label: t.csv_import.preview.valid(Count: validRows.toString()),
-            color: Colors.green,
+            color: context.appColors.statusSuccess,
           ),
           const SizedBox(width: 8),
           if (invalidRows > 0)
             _StatChip(
               label:
                   t.csv_import.preview.invalid(Count: invalidRows.toString()),
-              color: Colors.orange,
+              color: context.appColors.statusWarning,
             ),
         ],
       ),

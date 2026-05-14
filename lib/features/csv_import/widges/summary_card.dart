@@ -2,6 +2,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/csv_import/models/csv_import_result.dart';
 import 'package:birdbreeder/features/csv_import/widges/summary_row.dart';
 import 'package:birdbreeder/i18n/strings.g.dart';
+import 'package:birdbreeder/theme/app_colors.dart';
 
 class SummaryCard extends StatelessWidget {
   const SummaryCard({
@@ -15,6 +16,7 @@ class SummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final c = context.appColors;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -24,25 +26,25 @@ class SummaryCard extends StatelessWidget {
             SummaryRow(
               label: t.csv_import.summary.successful,
               value: '${summary.successfulImports}',
-              color: Colors.green,
+              color: c.statusSuccess,
             ),
             if (summary.failedImports > 0)
               SummaryRow(
                 label: t.csv_import.summary.failed,
                 value: '${summary.failedImports}',
-                color: Colors.red,
+                color: c.statusError,
               ),
             if (summary.skippedDuplicates > 0)
               SummaryRow(
                 label: t.csv_import.summary.skipped_duplicates,
                 value: '${summary.skippedDuplicates}',
-                color: Colors.orange,
+                color: c.statusWarning,
               ),
             if (summary.skippedRows > 0)
               SummaryRow(
                 label: t.csv_import.summary.skipped_invalid,
                 value: '${summary.skippedRows}',
-                color: Colors.orange,
+                color: c.statusWarning,
               ),
             if (showResourceStats) ...[
               const Divider(),
@@ -50,19 +52,19 @@ class SummaryCard extends StatelessWidget {
                 SummaryRow(
                   label: t.csv_import.summary.species_created,
                   value: '${summary.speciesCreated}',
-                  color: Colors.blue,
+                  color: c.statusInfo,
                 ),
               if (summary.colorsCreated > 0)
                 SummaryRow(
                   label: t.csv_import.summary.colors_created,
                   value: '${summary.colorsCreated}',
-                  color: Colors.blue,
+                  color: c.statusInfo,
                 ),
               if (summary.cagesCreated > 0)
                 SummaryRow(
                   label: t.csv_import.summary.cages_created,
                   value: '${summary.cagesCreated}',
-                  color: Colors.blue,
+                  color: c.statusInfo,
                 ),
             ],
           ],

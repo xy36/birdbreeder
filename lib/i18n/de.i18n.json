@@ -60,6 +60,12 @@
             "title": "Lokal-Modus",
             "description": "Alle Daten werden lokal auf diesem Gerät gespeichert."
         },
+        "appearance": {
+            "title": "Erscheinungsbild",
+            "system": "System",
+            "light": "Hell",
+            "dark": "Dunkel"
+        },
         "data": {
             "section_title": "Daten",
             "export_json": "Daten exportieren (JSON)",

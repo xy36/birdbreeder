@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/account/cubit/account_cubit.dart';
+import 'package:birdbreeder/features/account/widgets/appearance_section.dart';
 import 'package:birdbreeder/features/account/widgets/user_widget.dart';
 import 'package:birdbreeder/features/backup/widgets/backup_section.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
@@ -71,6 +72,15 @@ class AccountScreen extends StatelessWidget {
                 const SizedBox(height: 16),
                 const BackupSection(),
               ],
+              const SizedBox(height: 32),
+              const Divider(),
+              const SizedBox(height: 16),
+              Text(
+                context.tr.account.appearance.title,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 16),
+              const AppearanceSection(),
               const SizedBox(height: 32),
               const Divider(),
               const SizedBox(height: 16),

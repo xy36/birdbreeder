@@ -2,6 +2,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/finances_extension.dart';
 import 'package:birdbreeder/models/finance/entity/finance.dart';
 import 'package:birdbreeder/models/finance/finance_category_kind.dart';
+import 'package:birdbreeder/theme/app_colors.dart';
 import 'package:intl/intl.dart';
 
 class FinanceSummaryBar extends StatelessWidget {
@@ -62,12 +63,12 @@ class FinanceSummaryBar extends StatelessWidget {
       ),
       child: Row(
         children: [
-          cell(tr.kind.income, _fmt(t.income), Colors.green.shade700),
-          cell(tr.kind.expense, _fmt(t.expense), Colors.red.shade700),
+          cell(tr.kind.income, _fmt(t.income), context.appColors.income),
+          cell(tr.kind.expense, _fmt(t.expense), context.appColors.expense),
           cell(
             tr.summary.net,
             _fmt(net),
-            net >= 0 ? Colors.green.shade700 : Colors.red.shade700,
+            net >= 0 ? context.appColors.income : context.appColors.expense,
           ),
         ],
       ),
