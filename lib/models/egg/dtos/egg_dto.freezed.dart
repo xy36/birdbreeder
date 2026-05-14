@@ -27,6 +27,8 @@ mixin _$EggDto {
   DateTime? get hatchedAt;
   @UtcDateTimeConverter()
   DateTime? get fledgedAt;
+  @UtcDateTimeConverter()
+  DateTime? get fertilizedAt;
   EggStatus get status;
   @StringNullEmptyConverter()
   String? get ringnumber;
@@ -73,6 +75,8 @@ mixin _$EggDto {
                 other.hatchedAt == hatchedAt) &&
             (identical(other.fledgedAt, fledgedAt) ||
                 other.fledgedAt == fledgedAt) &&
+            (identical(other.fertilizedAt, fertilizedAt) ||
+                other.fertilizedAt == fertilizedAt) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.ringnumber, ringnumber) ||
                 other.ringnumber == ringnumber) &&
@@ -98,6 +102,7 @@ mixin _$EggDto {
       updated,
       hatchedAt,
       fledgedAt,
+      fertilizedAt,
       status,
       ringnumber,
       colorId,
@@ -108,7 +113,7 @@ mixin _$EggDto {
 
   @override
   String toString() {
-    return 'EggDto(id: $id, broodId: $broodId, number: $number, laidAt: $laidAt, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, status: $status, ringnumber: $ringnumber, colorId: $colorId, cageId: $cageId, speciesId: $speciesId, birdId: $birdId, notes: $notes)';
+    return 'EggDto(id: $id, broodId: $broodId, number: $number, laidAt: $laidAt, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, fertilizedAt: $fertilizedAt, status: $status, ringnumber: $ringnumber, colorId: $colorId, cageId: $cageId, speciesId: $speciesId, birdId: $birdId, notes: $notes)';
   }
 }
 
@@ -128,6 +133,7 @@ abstract mixin class $EggDtoCopyWith<$Res> {
       DateTime? updated,
       @UtcDateTimeConverter() DateTime? hatchedAt,
       @UtcDateTimeConverter() DateTime? fledgedAt,
+      @UtcDateTimeConverter() DateTime? fertilizedAt,
       EggStatus status,
       @StringNullEmptyConverter() String? ringnumber,
       @StringNullEmptyConverter() @JsonKey(name: 'color') String? colorId,
@@ -159,6 +165,7 @@ class _$EggDtoCopyWithImpl<$Res> implements $EggDtoCopyWith<$Res> {
     Object? updated = freezed,
     Object? hatchedAt = freezed,
     Object? fledgedAt = freezed,
+    Object? fertilizedAt = freezed,
     Object? status = null,
     Object? ringnumber = freezed,
     Object? colorId = freezed,
@@ -207,6 +214,10 @@ class _$EggDtoCopyWithImpl<$Res> implements $EggDtoCopyWith<$Res> {
       fledgedAt: freezed == fledgedAt
           ? _self.fledgedAt
           : fledgedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      fertilizedAt: freezed == fertilizedAt
+          ? _self.fertilizedAt
+          : fertilizedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       status: null == status
           ? _self.status
@@ -344,6 +355,7 @@ extension EggDtoPatterns on EggDto {
             DateTime? updated,
             @UtcDateTimeConverter() DateTime? hatchedAt,
             @UtcDateTimeConverter() DateTime? fledgedAt,
+            @UtcDateTimeConverter() DateTime? fertilizedAt,
             EggStatus status,
             @StringNullEmptyConverter() String? ringnumber,
             @StringNullEmptyConverter() @JsonKey(name: 'color') String? colorId,
@@ -370,6 +382,7 @@ extension EggDtoPatterns on EggDto {
             _that.updated,
             _that.hatchedAt,
             _that.fledgedAt,
+            _that.fertilizedAt,
             _that.status,
             _that.ringnumber,
             _that.colorId,
@@ -408,6 +421,7 @@ extension EggDtoPatterns on EggDto {
             DateTime? updated,
             @UtcDateTimeConverter() DateTime? hatchedAt,
             @UtcDateTimeConverter() DateTime? fledgedAt,
+            @UtcDateTimeConverter() DateTime? fertilizedAt,
             EggStatus status,
             @StringNullEmptyConverter() String? ringnumber,
             @StringNullEmptyConverter() @JsonKey(name: 'color') String? colorId,
@@ -433,6 +447,7 @@ extension EggDtoPatterns on EggDto {
             _that.updated,
             _that.hatchedAt,
             _that.fledgedAt,
+            _that.fertilizedAt,
             _that.status,
             _that.ringnumber,
             _that.colorId,
@@ -470,6 +485,7 @@ extension EggDtoPatterns on EggDto {
             DateTime? updated,
             @UtcDateTimeConverter() DateTime? hatchedAt,
             @UtcDateTimeConverter() DateTime? fledgedAt,
+            @UtcDateTimeConverter() DateTime? fertilizedAt,
             EggStatus status,
             @StringNullEmptyConverter() String? ringnumber,
             @StringNullEmptyConverter() @JsonKey(name: 'color') String? colorId,
@@ -495,6 +511,7 @@ extension EggDtoPatterns on EggDto {
             _that.updated,
             _that.hatchedAt,
             _that.fledgedAt,
+            _that.fertilizedAt,
             _that.status,
             _that.ringnumber,
             _that.colorId,
@@ -522,6 +539,7 @@ class _EggDto implements EggDto {
       this.updated,
       @UtcDateTimeConverter() this.hatchedAt,
       @UtcDateTimeConverter() this.fledgedAt,
+      @UtcDateTimeConverter() this.fertilizedAt,
       this.status = EggStatus.laid,
       @StringNullEmptyConverter() this.ringnumber,
       @StringNullEmptyConverter() @JsonKey(name: 'color') this.colorId,
@@ -554,6 +572,9 @@ class _EggDto implements EggDto {
   @override
   @UtcDateTimeConverter()
   final DateTime? fledgedAt;
+  @override
+  @UtcDateTimeConverter()
+  final DateTime? fertilizedAt;
   @override
   @JsonKey()
   final EggStatus status;
@@ -613,6 +634,8 @@ class _EggDto implements EggDto {
                 other.hatchedAt == hatchedAt) &&
             (identical(other.fledgedAt, fledgedAt) ||
                 other.fledgedAt == fledgedAt) &&
+            (identical(other.fertilizedAt, fertilizedAt) ||
+                other.fertilizedAt == fertilizedAt) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.ringnumber, ringnumber) ||
                 other.ringnumber == ringnumber) &&
@@ -638,6 +661,7 @@ class _EggDto implements EggDto {
       updated,
       hatchedAt,
       fledgedAt,
+      fertilizedAt,
       status,
       ringnumber,
       colorId,
@@ -648,7 +672,7 @@ class _EggDto implements EggDto {
 
   @override
   String toString() {
-    return 'EggDto(id: $id, broodId: $broodId, number: $number, laidAt: $laidAt, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, status: $status, ringnumber: $ringnumber, colorId: $colorId, cageId: $cageId, speciesId: $speciesId, birdId: $birdId, notes: $notes)';
+    return 'EggDto(id: $id, broodId: $broodId, number: $number, laidAt: $laidAt, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, fertilizedAt: $fertilizedAt, status: $status, ringnumber: $ringnumber, colorId: $colorId, cageId: $cageId, speciesId: $speciesId, birdId: $birdId, notes: $notes)';
   }
 }
 
@@ -669,6 +693,7 @@ abstract mixin class _$EggDtoCopyWith<$Res> implements $EggDtoCopyWith<$Res> {
       DateTime? updated,
       @UtcDateTimeConverter() DateTime? hatchedAt,
       @UtcDateTimeConverter() DateTime? fledgedAt,
+      @UtcDateTimeConverter() DateTime? fertilizedAt,
       EggStatus status,
       @StringNullEmptyConverter() String? ringnumber,
       @StringNullEmptyConverter() @JsonKey(name: 'color') String? colorId,
@@ -700,6 +725,7 @@ class __$EggDtoCopyWithImpl<$Res> implements _$EggDtoCopyWith<$Res> {
     Object? updated = freezed,
     Object? hatchedAt = freezed,
     Object? fledgedAt = freezed,
+    Object? fertilizedAt = freezed,
     Object? status = null,
     Object? ringnumber = freezed,
     Object? colorId = freezed,
@@ -748,6 +774,10 @@ class __$EggDtoCopyWithImpl<$Res> implements _$EggDtoCopyWith<$Res> {
       fledgedAt: freezed == fledgedAt
           ? _self.fledgedAt
           : fledgedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      fertilizedAt: freezed == fertilizedAt
+          ? _self.fertilizedAt
+          : fertilizedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       status: null == status
           ? _self.status

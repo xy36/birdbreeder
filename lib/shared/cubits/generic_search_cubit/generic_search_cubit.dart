@@ -1,3 +1,4 @@
+import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/breeding/entity/breeding_pair.dart';
 import 'package:birdbreeder/models/contact/entity/contact.dart';

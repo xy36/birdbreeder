@@ -14,6 +14,9 @@ _Egg _$EggFromJson(Map<String, dynamic> json) => _Egg(
       hatchedAt: json['hatchedAt'] == null
           ? null
           : DateTime.parse(json['hatchedAt'] as String),
+      fertilizedAt: json['fertilizedAt'] == null
+          ? null
+          : DateTime.parse(json['fertilizedAt'] as String),
       fledgedAt: json['fledgedAt'] == null
           ? null
           : DateTime.parse(json['fledgedAt'] as String),
@@ -39,6 +42,7 @@ Map<String, dynamic> _$EggToJson(_Egg instance) => <String, dynamic>{
       'number': instance.number,
       'laidAt': instance.laidAt.toIso8601String(),
       'hatchedAt': instance.hatchedAt?.toIso8601String(),
+      'fertilizedAt': instance.fertilizedAt?.toIso8601String(),
       'fledgedAt': instance.fledgedAt?.toIso8601String(),
       'status': _$EggStatusEnumMap[instance.status]!,
       'ringnumber': instance.ringnumber,

@@ -29,6 +29,22 @@
             "name": "Art",
             "income": "Einnahmen",
             "expense": "Ausgaben"
+        },
+        "summary": {
+            "net": "Saldo"
+        },
+        "filter": {
+            "bird": "Vogel",
+            "date_range": "Zeitraum",
+            "from": "Von",
+            "to": "Bis",
+            "all_years": "Alle"
+        },
+        "sorting": {
+            "date_desc": "Datum (neu → alt)",
+            "date_asc": "Datum (alt → neu)",
+            "amount_desc": "Betrag (hoch → niedrig)",
+            "amount_asc": "Betrag (niedrig → hoch)"
         }
     },
     "account": {
@@ -416,6 +432,8 @@
             "one": "Ei",
             "other": "Eier"
         },
+        "laid_short": "gel.",
+        "fertilzed_short": "bef.",
         "hatched_short": "geschl.",
         "fledged_short": "ausgef.",
         "died_short": "gest.",

@@ -21,6 +21,7 @@ abstract class EggDto with _$EggDto {
     DateTime? updated,
     @UtcDateTimeConverter() DateTime? hatchedAt,
     @UtcDateTimeConverter() DateTime? fledgedAt,
+    @UtcDateTimeConverter() DateTime? fertilizedAt,
     @Default(EggStatus.laid) EggStatus status,
     @StringNullEmptyConverter() String? ringnumber,
     @StringNullEmptyConverter() @JsonKey(name: 'color') String? colorId,

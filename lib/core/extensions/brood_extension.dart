@@ -27,6 +27,10 @@ extension BroodListExtension on List<Brood> {
     return sumBy((b) => b.laidCount);
   }
 
+  int get fertilizedCount {
+    return sumBy((b) => b.fertilizedCount);
+  }
+
   int get hatchedCount {
     return sumBy((b) => b.hatchedCount);
   }
@@ -54,6 +58,9 @@ extension BroodExtension on Brood {
       cage == null ? null : _birdBreederResources().cages.findById(cage!);
 
   int get laidCount => childrenResolved.length;
+
+  int get fertilizedCount =>
+      childrenResolved.where((egg) => egg.fertilizedAt != null).length;
 
   int get hatchedCount =>
       childrenResolved.where((egg) => egg.hatchedAt != null).length;

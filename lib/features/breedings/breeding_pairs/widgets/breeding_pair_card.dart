@@ -23,6 +23,7 @@ class BreedingPairCard extends StatelessWidget {
 
   List<Brood> get broods => breedingPair.broodsResolved;
   int get laid => _broods.laidCount;
+  int get fertilized => _broods.fertilizedCount;
   int get hatched => _broods.hatchedCount;
   int get fledged => _broods.fledgedCount;
 
@@ -36,22 +37,10 @@ class BreedingPairCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: Column(
-            spacing: 8,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               BreedingPairHeader(breedingPair: breedingPair),
-              const Divider(),
-              if (breedingPair.cageResolved?.name != null)
-                Row(
-                  children: [
-                    const Icon(AppIcons.cage, size: 16),
-                    const SizedBox(width: 4),
-                    Text(
-                      breedingPair.cageResolved!.name!,
-                      style: context.textTheme.bodySmall,
-                    ),
-                  ],
-                ),
+              const Divider(height: 2),
               Row(
                 children: [
                   Expanded(
@@ -61,8 +50,13 @@ class BreedingPairCard extends StatelessWidget {
                       children: [
                         _Stat(
                           icon: AppIcons.egg,
-                          label: context.tr.common.eggs_short(n: laid),
+                          label: context.tr.common.laid_short,
                           value: laid,
+                        ),
+                        _Stat(
+                          icon: AppIcons.eggStatusFertilized,
+                          label: context.tr.common.fertilzed_short,
+                          value: fertilized,
                         ),
                         _Stat(
                           icon: AppIcons.hatched,
@@ -116,22 +110,37 @@ class _ParentLabel extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(4),
       child: Column(
+        spacing: 2,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            '${bird.ringNumber}',
-            style: context.textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-            overflow: TextOverflow.ellipsis,
-          ),
           Row(
             spacing: 4,
             children: [
               bird.sex.getIcon(context, size: 18),
+              Expanded(
+                child: Text(
+                  '${bird.ringNumber}',
+                  style: context.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               Text(
                 '${bird.speciesResolved?.name}',
                 style: context.textTheme.bodySmall,
+                overflow: TextOverflow.ellipsis,
+              ),
+              Text(
+                '${bird.colorResolved?.name}',
+                style: context.textTheme.bodySmall?.copyWith(
+                  color: context.bodySmall?.color?.withValues(alpha: 0.8),
+                ),
                 overflow: TextOverflow.ellipsis,
               ),
             ],
@@ -180,20 +189,13 @@ class BreedingPairHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final sub = <InlineSpan>[];
 
-    if (breedingPair.cageResolved?.name != null) {
-      sub.addAll(
-        [
-          const WidgetSpan(child: Icon(AppIcons.cage, size: 16)),
-          TextSpan(text: ' ${breedingPair.cageResolved!.name}'),
-        ],
-      );
-    }
     if (breedingPair.start != null) {
       if (sub.isNotEmpty) sub.add(const TextSpan(text: '  •  '));
       final since = MaterialLocalizations.of(context)
           .formatShortDate(breedingPair.start!);
       sub.addAll([
         const WidgetSpan(child: Icon(AppIcons.date, size: 16)),
+        const WidgetSpan(child: SizedBox(width: 4)),
         TextSpan(text: context.tr.brood.since(Date: since)),
       ]);
     }
@@ -201,22 +203,39 @@ class BreedingPairHeader extends StatelessWidget {
     return Column(
       spacing: 8,
       children: [
+        if (breedingPair.cageResolved?.name != null) ...[
+          Row(
+            children: [
+              const Icon(AppIcons.cage, size: 18),
+              const SizedBox(width: 4),
+              Text(
+                breedingPair.cageResolved!.name!,
+                style: context.textTheme.bodyMedium,
+              ),
+            ],
+          ),
+        ],
         Row(
+          spacing: 4,
           children: [
             Expanded(
               child: Row(
-                spacing: 12,
+                spacing: 4,
                 children: [
                   if (father != null)
-                    _ParentLabel(
-                      bird: father!,
+                    Expanded(
+                      child: _ParentLabel(
+                        bird: father!,
+                      ),
                     )
                   else
                     const _UnknownParentLabel(),
-                  const Icon(AppIcons.close),
+                  const Icon(AppIcons.close, size: 16),
                   if (mother != null)
-                    _ParentLabel(
-                      bird: mother!,
+                    Expanded(
+                      child: _ParentLabel(
+                        bird: mother!,
+                      ),
                     )
                   else
                     const _UnknownParentLabel(),

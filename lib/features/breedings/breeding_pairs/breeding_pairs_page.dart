@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/core/extensions/breeding_pairs_extension.dart';
 import 'package:birdbreeder/core/extensions/widget_extensions.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/breedings/breeding_pairs/widgets/add_breeding_pair_sheet.dart';
@@ -35,8 +36,10 @@ class _BreedingPairsPageState extends State<BreedingPairsPage> {
                 .setItems(state.birdBreederResources.breedingPairs);
             return BlocBuilder<BreedingPairSearchCubit, Query>(
               builder: (context, state) {
-                final searchedBreedingPairs =
-                    context.read<BreedingPairSearchCubit>().searchedItems;
+                final searchedBreedingPairs = context
+                    .read<BreedingPairSearchCubit>()
+                    .searchedItems
+                    .sortedBy((bp) => bp.cageResolved?.name ?? '');
 
                 return ListView.separated(
                   physics: const AlwaysScrollableScrollPhysics(

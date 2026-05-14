@@ -19,6 +19,7 @@ mixin _$Egg {
   int get number;
   DateTime get laidAt;
   DateTime? get hatchedAt;
+  DateTime? get fertilizedAt;
   DateTime? get fledgedAt;
   EggStatus get status;
   String? get ringnumber;
@@ -51,6 +52,8 @@ mixin _$Egg {
             (identical(other.laidAt, laidAt) || other.laidAt == laidAt) &&
             (identical(other.hatchedAt, hatchedAt) ||
                 other.hatchedAt == hatchedAt) &&
+            (identical(other.fertilizedAt, fertilizedAt) ||
+                other.fertilizedAt == fertilizedAt) &&
             (identical(other.fledgedAt, fledgedAt) ||
                 other.fledgedAt == fledgedAt) &&
             (identical(other.status, status) || other.status == status) &&
@@ -75,6 +78,7 @@ mixin _$Egg {
       number,
       laidAt,
       hatchedAt,
+      fertilizedAt,
       fledgedAt,
       status,
       ringnumber,
@@ -88,7 +92,7 @@ mixin _$Egg {
 
   @override
   String toString() {
-    return 'Egg(id: $id, broodId: $broodId, number: $number, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, status: $status, ringnumber: $ringnumber, colorId: $colorId, cageId: $cageId, speciesId: $speciesId, birdId: $birdId, notes: $notes, created: $created, updated: $updated)';
+    return 'Egg(id: $id, broodId: $broodId, number: $number, laidAt: $laidAt, hatchedAt: $hatchedAt, fertilizedAt: $fertilizedAt, fledgedAt: $fledgedAt, status: $status, ringnumber: $ringnumber, colorId: $colorId, cageId: $cageId, speciesId: $speciesId, birdId: $birdId, notes: $notes, created: $created, updated: $updated)';
   }
 }
 
@@ -102,6 +106,7 @@ abstract mixin class $EggCopyWith<$Res> {
       int number,
       DateTime laidAt,
       DateTime? hatchedAt,
+      DateTime? fertilizedAt,
       DateTime? fledgedAt,
       EggStatus status,
       String? ringnumber,
@@ -131,6 +136,7 @@ class _$EggCopyWithImpl<$Res> implements $EggCopyWith<$Res> {
     Object? number = null,
     Object? laidAt = null,
     Object? hatchedAt = freezed,
+    Object? fertilizedAt = freezed,
     Object? fledgedAt = freezed,
     Object? status = null,
     Object? ringnumber = freezed,
@@ -162,6 +168,10 @@ class _$EggCopyWithImpl<$Res> implements $EggCopyWith<$Res> {
       hatchedAt: freezed == hatchedAt
           ? _self.hatchedAt
           : hatchedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      fertilizedAt: freezed == fertilizedAt
+          ? _self.fertilizedAt
+          : fertilizedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       fledgedAt: freezed == fledgedAt
           ? _self.fledgedAt
@@ -306,6 +316,7 @@ extension EggPatterns on Egg {
             int number,
             DateTime laidAt,
             DateTime? hatchedAt,
+            DateTime? fertilizedAt,
             DateTime? fledgedAt,
             EggStatus status,
             String? ringnumber,
@@ -328,6 +339,7 @@ extension EggPatterns on Egg {
             _that.number,
             _that.laidAt,
             _that.hatchedAt,
+            _that.fertilizedAt,
             _that.fledgedAt,
             _that.status,
             _that.ringnumber,
@@ -364,6 +376,7 @@ extension EggPatterns on Egg {
             int number,
             DateTime laidAt,
             DateTime? hatchedAt,
+            DateTime? fertilizedAt,
             DateTime? fledgedAt,
             EggStatus status,
             String? ringnumber,
@@ -385,6 +398,7 @@ extension EggPatterns on Egg {
             _that.number,
             _that.laidAt,
             _that.hatchedAt,
+            _that.fertilizedAt,
             _that.fledgedAt,
             _that.status,
             _that.ringnumber,
@@ -420,6 +434,7 @@ extension EggPatterns on Egg {
             int number,
             DateTime laidAt,
             DateTime? hatchedAt,
+            DateTime? fertilizedAt,
             DateTime? fledgedAt,
             EggStatus status,
             String? ringnumber,
@@ -441,6 +456,7 @@ extension EggPatterns on Egg {
             _that.number,
             _that.laidAt,
             _that.hatchedAt,
+            _that.fertilizedAt,
             _that.fledgedAt,
             _that.status,
             _that.ringnumber,
@@ -466,6 +482,7 @@ class _Egg implements Egg {
       required this.number,
       required this.laidAt,
       this.hatchedAt,
+      this.fertilizedAt,
       this.fledgedAt,
       this.status = EggStatus.laid,
       this.ringnumber,
@@ -488,6 +505,8 @@ class _Egg implements Egg {
   final DateTime laidAt;
   @override
   final DateTime? hatchedAt;
+  @override
+  final DateTime? fertilizedAt;
   @override
   final DateTime? fledgedAt;
   @override
@@ -536,6 +555,8 @@ class _Egg implements Egg {
             (identical(other.laidAt, laidAt) || other.laidAt == laidAt) &&
             (identical(other.hatchedAt, hatchedAt) ||
                 other.hatchedAt == hatchedAt) &&
+            (identical(other.fertilizedAt, fertilizedAt) ||
+                other.fertilizedAt == fertilizedAt) &&
             (identical(other.fledgedAt, fledgedAt) ||
                 other.fledgedAt == fledgedAt) &&
             (identical(other.status, status) || other.status == status) &&
@@ -560,6 +581,7 @@ class _Egg implements Egg {
       number,
       laidAt,
       hatchedAt,
+      fertilizedAt,
       fledgedAt,
       status,
       ringnumber,
@@ -573,7 +595,7 @@ class _Egg implements Egg {
 
   @override
   String toString() {
-    return 'Egg(id: $id, broodId: $broodId, number: $number, laidAt: $laidAt, hatchedAt: $hatchedAt, fledgedAt: $fledgedAt, status: $status, ringnumber: $ringnumber, colorId: $colorId, cageId: $cageId, speciesId: $speciesId, birdId: $birdId, notes: $notes, created: $created, updated: $updated)';
+    return 'Egg(id: $id, broodId: $broodId, number: $number, laidAt: $laidAt, hatchedAt: $hatchedAt, fertilizedAt: $fertilizedAt, fledgedAt: $fledgedAt, status: $status, ringnumber: $ringnumber, colorId: $colorId, cageId: $cageId, speciesId: $speciesId, birdId: $birdId, notes: $notes, created: $created, updated: $updated)';
   }
 }
 
@@ -589,6 +611,7 @@ abstract mixin class _$EggCopyWith<$Res> implements $EggCopyWith<$Res> {
       int number,
       DateTime laidAt,
       DateTime? hatchedAt,
+      DateTime? fertilizedAt,
       DateTime? fledgedAt,
       EggStatus status,
       String? ringnumber,
@@ -618,6 +641,7 @@ class __$EggCopyWithImpl<$Res> implements _$EggCopyWith<$Res> {
     Object? number = null,
     Object? laidAt = null,
     Object? hatchedAt = freezed,
+    Object? fertilizedAt = freezed,
     Object? fledgedAt = freezed,
     Object? status = null,
     Object? ringnumber = freezed,
@@ -649,6 +673,10 @@ class __$EggCopyWithImpl<$Res> implements _$EggCopyWith<$Res> {
       hatchedAt: freezed == hatchedAt
           ? _self.hatchedAt
           : hatchedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      fertilizedAt: freezed == fertilizedAt
+          ? _self.fertilizedAt
+          : fertilizedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       fledgedAt: freezed == fledgedAt
           ? _self.fledgedAt

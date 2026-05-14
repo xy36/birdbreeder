@@ -73,6 +73,7 @@ abstract class Egg with _$Egg {
     required int number,
     required DateTime laidAt,
     DateTime? hatchedAt,
+    DateTime? fertilizedAt,
     DateTime? fledgedAt,
     @Default(EggStatus.laid) EggStatus status,
     String? ringnumber,

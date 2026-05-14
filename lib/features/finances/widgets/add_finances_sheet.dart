@@ -7,6 +7,7 @@ import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/finance/entity/finance.dart';
 import 'package:birdbreeder/models/finance/entity/finance_category.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:birdbreeder/shared/utils/formatter/formatters.dart';
 import 'package:birdbreeder/shared/widgets/bottom_sheet/bottom_sheet_footer.dart';
 import 'package:birdbreeder/shared/widgets/bottom_sheet/bottom_sheet_header.dart';
 import 'package:birdbreeder/shared/widgets/category_avatar.dart';
@@ -177,6 +178,11 @@ class _AddFinancesSheetState extends State<AddFinancesSheet> {
                               alignLabelWithHint: true,
                             ),
                             enabled: !_submitting,
+                            inputFormatters: [
+                              Formatters.thousandsFormatter(
+                                Localizations.localeOf(context).languageCode,
+                              ).formatter,
+                            ],
                             validator: FormBuilderValidators.compose([
                               FormBuilderValidators.required(),
                               FormBuilderValidators.numeric(),

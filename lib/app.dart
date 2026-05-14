@@ -1,6 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_filter_cubit.dart';
+import 'package:birdbreeder/features/finances/cubit/finances_filter_cubit.dart';
 import 'package:birdbreeder/features/mode_selection/mode_selection_page.dart';
 import 'package:birdbreeder/i18n/strings.g.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
@@ -52,6 +53,7 @@ class App extends StatelessWidget {
         BlocProvider(create: (context) => ContactSearchCubit()),
         BlocProvider(create: (context) => BirdSearchCubit()),
         BlocProvider(create: (context) => FinanceSearchCubit()),
+        BlocProvider(create: (context) => FinancesFilterCubit()),
         BlocProvider(create: (context) => BreedingPairSearchCubit()),
         BlocProvider(
           create: (context) => BirdsFilterCubit(

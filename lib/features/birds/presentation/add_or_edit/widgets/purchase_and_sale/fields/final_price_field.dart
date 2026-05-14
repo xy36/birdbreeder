@@ -1,6 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/constants.dart';
-import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/widgets/bird_text_property_field.dart';
+import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/widgets/bird_price_property_field.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 
 class FinalPriceField extends StatelessWidget {
@@ -13,7 +13,7 @@ class FinalPriceField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BirdTextPropertyField(
+    return BirdPricePropertyField(
       bird: bird,
       label: context.tr.common.sell.price.kFinal,
       name: 'final_price_field',

@@ -96,6 +96,9 @@ class TranslationsFinancesDe {
 
   late final TranslationsFinancesAddDe add = TranslationsFinancesAddDe.internal(_root);
   late final TranslationsFinancesKindDe kind = TranslationsFinancesKindDe.internal(_root);
+  late final TranslationsFinancesSummaryDe summary = TranslationsFinancesSummaryDe.internal(_root);
+  late final TranslationsFinancesFilterDe filter = TranslationsFinancesFilterDe.internal(_root);
+  late final TranslationsFinancesSortingDe sorting = TranslationsFinancesSortingDe.internal(_root);
 }
 
 // Path: account
@@ -594,6 +597,12 @@ class TranslationsCommonDe {
         other: 'Eier',
       );
 
+  /// de: 'gel.'
+  String get laid_short => 'gel.';
+
+  /// de: 'bef.'
+  String get fertilzed_short => 'bef.';
+
   /// de: 'geschl.'
   String get hatched_short => 'geschl.';
 
@@ -965,6 +974,63 @@ class TranslationsFinancesKindDe {
 
   /// de: 'Ausgaben'
   String get expense => 'Ausgaben';
+}
+
+// Path: finances.summary
+class TranslationsFinancesSummaryDe {
+  TranslationsFinancesSummaryDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Saldo'
+  String get net => 'Saldo';
+}
+
+// Path: finances.filter
+class TranslationsFinancesFilterDe {
+  TranslationsFinancesFilterDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Vogel'
+  String get bird => 'Vogel';
+
+  /// de: 'Zeitraum'
+  String get date_range => 'Zeitraum';
+
+  /// de: 'Von'
+  String get from => 'Von';
+
+  /// de: 'Bis'
+  String get to => 'Bis';
+
+  /// de: 'Alle'
+  String get all_years => 'Alle';
+}
+
+// Path: finances.sorting
+class TranslationsFinancesSortingDe {
+  TranslationsFinancesSortingDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Datum (neu → alt)'
+  String get date_desc => 'Datum (neu → alt)';
+
+  /// de: 'Datum (alt → neu)'
+  String get date_asc => 'Datum (alt → neu)';
+
+  /// de: 'Betrag (hoch → niedrig)'
+  String get amount_desc => 'Betrag (hoch → niedrig)';
+
+  /// de: 'Betrag (niedrig → hoch)'
+  String get amount_asc => 'Betrag (niedrig → hoch)';
 }
 
 // Path: account.switch_to_local_dialog

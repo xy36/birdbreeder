@@ -29,7 +29,7 @@ class BroodCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         onTap: () => onOpenBrood(context, brood),
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -44,6 +44,7 @@ class BroodCard extends StatelessWidget {
                           ?.copyWith(fontWeight: FontWeight.w700),
                     ),
                   ),
+                  BroodActions.buildMenu(context, brood, breedingPair),
                 ],
               ),
               const SizedBox(height: 6),
@@ -64,8 +65,13 @@ class BroodCard extends StatelessWidget {
                     children: [
                       _Stat(
                         icon: AppIcons.egg,
-                        label: context.tr.common.eggs_short(n: brood.laidCount),
+                        label: context.tr.common.laid_short,
                         value: brood.laidCount,
+                      ),
+                      _Stat(
+                        icon: AppIcons.eggStatusFertilized,
+                        label: context.tr.common.fertilzed_short,
+                        value: brood.fertilizedCount,
                       ),
                       _Stat(
                         icon: AppIcons.hatched,
@@ -79,7 +85,6 @@ class BroodCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  BroodActions.buildMenu(context, brood, breedingPair),
                 ],
               ),
             ],

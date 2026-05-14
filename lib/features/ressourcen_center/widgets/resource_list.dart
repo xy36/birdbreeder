@@ -107,11 +107,13 @@ class _ResourceListState<T> extends State<ResourceList<T>> {
         children: [
           Text(_labelOf(item)),
           if (item.latName != null && item.latName!.isNotEmpty)
-            Text(
-              '${item.latName}',
-              style: context.bodySmall?.copyWith(
-                fontStyle: FontStyle.italic,
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
+            Expanded(
+              child: Text(
+                '${item.latName}',
+                style: context.bodySmall?.copyWith(
+                  fontStyle: FontStyle.italic,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
               ),
             ),
         ],
