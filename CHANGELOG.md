@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.0](https://github.com/xy36/birdbreeder/compare/v1.3.0...v1.4.0) (2026-05-14)
+
+
+### Features
+
+* add fertilizedAt field to Egg model and DTOs ([000b412](https://github.com/xy36/birdbreeder/commit/000b412abee3fad55eda5003c8daaf37d5caed83))
+* add local mode (preparation for remove cloud support) ([37ded28](https://github.com/xy36/birdbreeder/commit/37ded28459cf6b9e3207d39a6bc181bc39b2e9c8))
+
 ## [1.3.0](https://github.com/xy36/birdbreeder/compare/v1.2.0...v1.3.0) (2026-03-26)
 
 
