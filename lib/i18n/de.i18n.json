@@ -32,7 +32,105 @@
         }
     },
     "account": {
-        "title": "Konto"
+        "title": "Konto",
+        "logout": "Logout",
+        "switch_to_local": "Zu Lokal-Modus wechseln",
+        "switch_to_local_dialog": {
+            "title": "Zu Lokal-Modus wechseln",
+            "content": "Alle deine Daten werden vom Server in die lokale Datenbank kopiert. Danach wird die App im Lokal-Modus neu gestartet.\n\nMöchtest du fortfahren?",
+            "confirm": "Wechseln"
+        },
+        "local_mode": {
+            "title": "Lokal-Modus",
+            "description": "Alle Daten werden lokal auf diesem Gerät gespeichert."
+        },
+        "data": {
+            "section_title": "Daten",
+            "export_json": "Daten exportieren (JSON)",
+            "import_json": "Daten importieren (JSON)",
+            "import_dialog": {
+                "title": "Daten importieren",
+                "content": "Möchtest du die vorhandenen Daten vorher löschen oder die importierten Daten hinzufügen?",
+                "add": "Hinzufügen",
+                "replace": "Ersetzen"
+            }
+        },
+        "user": {
+            "email(value)": "Email: {{value}}",
+            "first_name(value)": "Vorname: {{value}}",
+            "last_name(value)": "Nachname: {{value}}"
+        },
+        "events": {
+            "export_failed(error)": "Export fehlgeschlagen: {{error}}",
+            "export_succeeded": "Export erfolgreich",
+            "import_failed(error)": "Import fehlgeschlagen: {{error}}",
+            "imported(param=count)": {
+                "one": "1 Eintrag importiert",
+                "other": "{count} Einträge importiert"
+            },
+            "switch_failed(error)": "Wechsel fehlgeschlagen: {{error}}",
+            "switched_to_local(param=count)": {
+                "one": "1 Eintrag übertragen. Lokal-Modus aktiv.",
+                "other": "{count} Einträge übertragen. Lokal-Modus aktiv."
+            }
+        }
+    },
+    "backup": {
+        "section_title": "Backup",
+        "page_title": "Backups",
+        "empty": "Noch keine Backups vorhanden.",
+        "loading": "Wird geladen…",
+        "no_backup_yet": "Noch kein Backup vorhanden",
+        "last_backup(date)": "Letztes Backup: {{date}}",
+        "external": {
+            "never": "Noch nie extern gesichert",
+            "today": "Zuletzt extern gesichert: heute",
+            "days_ago(param=count)": {
+                "one": "Zuletzt extern gesichert: vor 1 Tag",
+                "other": "Zuletzt extern gesichert: vor {count} Tagen"
+            }
+        },
+        "actions": {
+            "share_latest": "Letztes Backup teilen",
+            "create_now": "Backup jetzt erstellen",
+            "restore": "Backup wiederherstellen…",
+            "manage": "Alle Backups verwalten…",
+            "new": "Neu"
+        },
+        "menu": {
+            "share": "Teilen",
+            "restore": "Wiederherstellen",
+            "delete": "Löschen"
+        },
+        "delete_dialog": {
+            "title": "Backup löschen?",
+            "confirm": "Löschen"
+        },
+        "restore_dialog": {
+            "title": "Backup wiederherstellen",
+            "content_picked": "Aktuelle lokale Daten werden mit dem ausgewählten Backup überschrieben. Fortfahren?",
+            "content_named(name)": "Aktuelle lokale Daten werden mit dem Backup\n\"{{name}}\" überschrieben.\n\nFortfahren?",
+            "confirm": "Wiederherstellen"
+        },
+        "reminder": {
+            "title": "Backup sichern",
+            "never": "Du hast bisher noch kein externes Backup gesichert.",
+            "age(param=count)": {
+                "one": "Dein letztes externes Backup ist 1 Tag her.",
+                "other": "Dein letztes externes Backup ist {count} Tage her."
+            },
+            "body": "Sichere es jetzt an einem sicheren Ort (iCloud, Drive, Mail), damit deine Daten bei Geräteverlust nicht verloren gehen.",
+            "snooze": "Später erinnern",
+            "already_saved": "Schon gesichert",
+            "share_now": "Jetzt teilen"
+        },
+        "events": {
+            "created": "Backup erstellt",
+            "create_failed(error)": "Backup fehlgeschlagen: {{error}}",
+            "share_failed(error)": "Teilen fehlgeschlagen: {{error}}",
+            "delete_failed(error)": "Löschen fehlgeschlagen: {{error}}",
+            "restore_failed(error)": "Wiederherstellen fehlgeschlagen: {{error}}"
+        }
     },
     "breedings": {
         "title": "Züchtungen"

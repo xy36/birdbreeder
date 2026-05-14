@@ -1,6 +1,6 @@
 import 'package:async/async.dart';
 
-abstract class ICrudRepository<TModel, TDto> {
+abstract class ICrudRepository<TModel> {
   /// Create new
   Future<Result<TModel>> create(TModel obj);
 

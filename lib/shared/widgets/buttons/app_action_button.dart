@@ -113,10 +113,10 @@ enum ButtonType {
 
 class AppActionButton extends StatelessWidget {
   const AppActionButton({
-    super.key,
     required this.onPressed,
     required this.type,
     required this.actionButtonType,
+    super.key,
   });
 
   final void Function()? onPressed;

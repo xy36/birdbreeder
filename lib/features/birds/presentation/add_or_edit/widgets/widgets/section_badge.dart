@@ -1,7 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
 
 class SectionBadge extends StatelessWidget {
-  const SectionBadge({super.key, required this.count, required this.danger});
+  const SectionBadge({required this.count, required this.danger, super.key});
   final int count;
   final bool danger;
 

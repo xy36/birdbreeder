@@ -2,7 +2,7 @@ import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
 
 class Section extends StatelessWidget {
-  const Section({super.key, required this.title, required this.child});
+  const Section({required this.title, required this.child, super.key});
   final String title;
   final Widget child;
 

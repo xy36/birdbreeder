@@ -3,19 +3,19 @@ import 'package:birdbreeder/shared/widgets/buttons/app_action_button.dart';
 
 class GenericButton extends StatelessWidget {
   const GenericButton.icon({
-    super.key,
     required this.actionButtonType,
+    super.key,
     this.onTap,
   }) : buttonType = ButtonType.icon;
   const GenericButton.floating({
-    super.key,
     required this.actionButtonType,
+    super.key,
     this.onTap,
   }) : buttonType = ButtonType.floatingActionButton;
   const GenericButton.elevated({
+    required this.actionButtonType,
     super.key,
     this.onTap,
-    required this.actionButtonType,
   }) : buttonType = ButtonType.elevated;
 
   final ButtonType buttonType;

@@ -67,7 +67,7 @@ class _CategoriesDetailsSheetState extends State<CategoriesDetailsSheet> {
                         ? await cubit.updateFinancesCategory(_category)
                         : cubit.addFinancesCategory(_category);
 
-                    if (!mounted) return;
+                    if (!context.mounted) return;
 
                     Navigator.of(context).pop();
                   }

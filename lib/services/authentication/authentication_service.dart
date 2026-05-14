@@ -60,7 +60,7 @@ class AuthenticationService implements IAuthenticationService {
       if (model == null) return Result.value(null);
       final user = UserDto.fromJson(model.toJson()).toModel();
       return Result.value(user);
-    } catch (e, st) {
+    } on Exception catch (e, st) {
       _loggingService.logger
           .e('currentUser() failed', error: e, stackTrace: st);
       return Result.error(e);
@@ -94,7 +94,7 @@ class AuthenticationService implements IAuthenticationService {
         stackTrace: st,
       );
       return Result.error(e);
-    } catch (e, st) {
+    } on Exception catch (e, st) {
       _loggingService.logger
           .e('signIn unknown error', error: e, stackTrace: st);
       return Result.error(e);
@@ -176,7 +176,7 @@ class AuthenticationService implements IAuthenticationService {
         stackTrace: st,
       );
       return Result.error(e);
-    } catch (e, st) {
+    } on Exception catch (e, st) {
       _loggingService.logger
           .e('signUp unknown error', error: e, stackTrace: st);
       return Result.error(e);
@@ -194,12 +194,12 @@ class AuthenticationService implements IAuthenticationService {
 
       _loggingService.logger.i('Signed out.');
       return Result.value(null);
-    } catch (e, st) {
+    } on Exception catch (e, st) {
       _loggingService.logger.e('signOut failed', error: e, stackTrace: st);
       try {
         await _pocketBaseService.clear();
         authenticationStatus.value = AuthenticationStatus.unauthenticated;
-      } catch (_) {}
+      } on Exception catch (_) {}
       return Result.error(e);
     }
   }

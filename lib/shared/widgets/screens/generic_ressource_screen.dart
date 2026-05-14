@@ -42,12 +42,13 @@ class _RessourceScreenState<T> extends State<RessourceScreen<T>> {
   @override
   Widget build(BuildContext context) {
     final ressource = context.watch<BirdBreederCubit>().state.maybeWhen(
+          // ignore: switch_on_type -- we want to switch on the generic type T here
           loaded: (birdBreederResources) => switch (T) {
-            Cage => birdBreederResources.cages as List<T>,
-            BirdColor => birdBreederResources.colors as List<T>,
-            Species => birdBreederResources.species as List<T>,
-            Contact => birdBreederResources.contacts as List<T>,
-            BreedingPair => birdBreederResources.breedingPairs as List<T>,
+            Cage _ => birdBreederResources.cages as List<T>,
+            BirdColor _ => birdBreederResources.colors as List<T>,
+            Species _ => birdBreederResources.species as List<T>,
+            Contact _ => birdBreederResources.contacts as List<T>,
+            BreedingPair _ => birdBreederResources.breedingPairs as List<T>,
             _ => throw Exception('Unsupported type for ressource screen'),
           },
           orElse: () => <T>[],

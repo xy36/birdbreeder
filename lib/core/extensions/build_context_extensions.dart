@@ -1,5 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/i18n/translations.g.dart';
+import 'package:birdbreeder/i18n/strings.g.dart';
 import 'package:intl/intl.dart';
 
 extension BuildContextExtension on BuildContext {

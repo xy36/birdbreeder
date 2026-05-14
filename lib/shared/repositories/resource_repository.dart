@@ -4,7 +4,7 @@ import 'package:birdbreeder/shared/repositories/i_crud_repository.dart';
 import 'package:pocketbase/pocketbase.dart';
 
 class ResourceRepository<TModel, TDto>
-    implements ICrudRepository<TModel, TDto> {
+    implements ICrudRepository<TModel> {
   ResourceRepository({
     required this.loggingService,
     required this.recordService,

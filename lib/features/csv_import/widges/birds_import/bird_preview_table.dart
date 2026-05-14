@@ -41,7 +41,9 @@ class _BirdPreviewTableState extends State<BirdPreviewTable> {
       wrapInCard: false,
       columns: [
         DataColumn2(
-            label: Text(context.tr.csv_import.table.row), fixedWidth: 50),
+          label: Text(context.tr.csv_import.table.row),
+          fixedWidth: 50,
+        ),
         DataColumn2(
           label: Text(context.tr.csv_import.table.ring_number),
           size: ColumnSize.L,
@@ -50,7 +52,9 @@ class _BirdPreviewTableState extends State<BirdPreviewTable> {
         DataColumn2(label: Text(context.tr.csv_import.table.color)),
         DataColumn2(label: Text(context.tr.csv_import.table.cage)),
         DataColumn2(
-            label: Text(context.tr.csv_import.table.sex), fixedWidth: 80),
+          label: Text(context.tr.csv_import.table.sex),
+          fixedWidth: 80,
+        ),
         DataColumn2(label: Text(context.tr.csv_import.table.birth_date)),
         DataColumn2(label: Text(context.tr.csv_import.table.death_date)),
         DataColumn2(label: Text(context.tr.csv_import.table.father)),
@@ -58,7 +62,9 @@ class _BirdPreviewTableState extends State<BirdPreviewTable> {
         DataColumn2(label: Text(context.tr.csv_import.table.breeder)),
         DataColumn2(label: Text(context.tr.csv_import.table.owner)),
         DataColumn2(
-            label: Text(context.tr.csv_import.table.status), fixedWidth: 60),
+          label: Text(context.tr.csv_import.table.status),
+          fixedWidth: 60,
+        ),
       ],
       source: _dataSource,
     );

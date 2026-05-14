@@ -1,3 +1,5 @@
+// ignore_for_file: switch_on_type will be deleted later
+
 import 'package:birdbreeder/models/bird/dtos/bird_dto.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/breeding/dtos/breeding_pair_dto.dart';
@@ -24,25 +26,26 @@ import 'package:collection/collection.dart';
 extension BirdBreederResovlerExtension on BirdBreederCubit {
   T? resolveById<T>(String id) {
     return switch (T) {
-      Bird => state.birdBreederResources.birds.firstWhereOrNull(
+      Bird _ => state.birdBreederResources.birds.firstWhereOrNull(
           (element) => element.id == id,
         ) as T?,
-      BirdColor => state.birdBreederResources.colors.firstWhereOrNull(
+      BirdColor _ => state.birdBreederResources.colors.firstWhereOrNull(
           (element) => element.id == id,
         ) as T?,
-      Brood => state.birdBreederResources.broods.firstWhereOrNull(
+      Brood _ => state.birdBreederResources.broods.firstWhereOrNull(
           (element) => element.id == id,
         ) as T?,
-      BreedingPair => state.birdBreederResources.breedingPairs.firstWhereOrNull(
+      BreedingPair _ =>
+        state.birdBreederResources.breedingPairs.firstWhereOrNull(
           (element) => element.id == id,
         ) as T?,
-      Cage => state.birdBreederResources.cages.firstWhereOrNull(
+      Cage _ => state.birdBreederResources.cages.firstWhereOrNull(
           (element) => element.id == id,
         ) as T?,
-      Contact => state.birdBreederResources.contacts.firstWhereOrNull(
+      Contact _ => state.birdBreederResources.contacts.firstWhereOrNull(
           (element) => element.id == id,
         ) as T?,
-      Species => state.birdBreederResources.species.firstWhereOrNull(
+      Species _ => state.birdBreederResources.species.firstWhereOrNull(
           (element) => element.id == id,
         ) as T?,
       _ => throw Exception('Type not supported')

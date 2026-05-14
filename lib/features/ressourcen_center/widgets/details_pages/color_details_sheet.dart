@@ -58,7 +58,7 @@ class _ColorDetailsSheetState extends State<ColorDetailsSheet> {
                         ? await cubit.updateColor(_color!)
                         : cubit.addColor(_color!);
 
-                    if (!mounted) return;
+                    if (!context.mounted) return;
 
                     Navigator.of(context).pop();
                   }

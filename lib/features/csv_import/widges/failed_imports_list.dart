@@ -1,6 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/csv_import/models/csv_import_result.dart';
-import 'package:birdbreeder/i18n/translations.g.dart';
+import 'package:birdbreeder/i18n/strings.g.dart';
 
 class FailedImportsList extends StatelessWidget {
   const FailedImportsList({

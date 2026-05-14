@@ -2,7 +2,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/screen_size_extensions.dart';
 
 class SearchBarWidget extends StatefulWidget {
-  const SearchBarWidget({super.key, required this.onChanged});
+  const SearchBarWidget({required this.onChanged, super.key});
 
   final void Function(String) onChanged;
 

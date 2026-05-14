@@ -1,5 +1,4 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/core/extensions/contact_extension.dart';
 import 'package:birdbreeder/features/contacts/cubit/contact_cubit.dart';
 import 'package:birdbreeder/models/contact/entity/contact.dart';
 import 'package:birdbreeder/shared/widgets/field_with_label.dart';

@@ -58,7 +58,7 @@ class _CageDetailsSheetState extends State<CageDetailsSheet> {
                         ? await cubit.updateCage(_cage!)
                         : cubit.addCage(_cage!);
 
-                    if (!mounted) return;
+                    if (!context.mounted) return;
 
                     Navigator.of(context).pop();
                   }

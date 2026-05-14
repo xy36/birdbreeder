@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:birdbreeder/features/csv_import/models/csv_contact_row.dart';
 import 'package:birdbreeder/features/csv_import/models/csv_import_result.dart';
-import 'package:birdbreeder/i18n/translations.g.dart';
+import 'package:birdbreeder/i18n/strings.g.dart';
 import 'package:birdbreeder/models/contact/entity/contact.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:csv/csv.dart';
@@ -77,7 +77,7 @@ class CsvContactImportCubit extends Cubit<CsvContactImportState> {
           invalidRows: invalidRows,
         ),
       );
-    } catch (e) {
+    } on Exception catch (e) {
       emit(
         CsvContactImportState.error(
           message: t.csv_import.errors.error_reading_file,
@@ -164,7 +164,7 @@ class CsvContactImportCubit extends Cubit<CsvContactImportState> {
       try {
         final importResult = await _importContact(row);
         results.add(importResult);
-      } catch (e) {
+      } on Exception catch (e) {
         results.add(
           CsvImportResult(
             rowIndex: row.rowIndex,

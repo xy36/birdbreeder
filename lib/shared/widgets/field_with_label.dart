@@ -2,9 +2,9 @@ import 'package:birdbreeder/common_imports.dart';
 
 class FieldWithLabel extends StatelessWidget {
   const FieldWithLabel({
-    super.key,
     required this.child,
     required this.label,
+    super.key,
     this.hasChangedIndicator = false,
   });
 

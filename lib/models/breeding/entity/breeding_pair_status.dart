@@ -1,5 +1,3 @@
-// ignore_for_file: invalid_annotation_target
-
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/shared/widgets/color_chip.dart';
 

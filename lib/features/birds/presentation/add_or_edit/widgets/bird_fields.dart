@@ -54,8 +54,6 @@ enum BirdSections {
       case BirdSections.statusAndLifeCycle:
         return [
           LifeStageSection(bird),
-          //TODO: comment in when implemented
-          //HealthSection(bird),
         ];
       case BirdSections.breeding:
         return [

@@ -83,7 +83,7 @@ class SnackbarService {
         type: SnackBarType.warning,
         context: context,
       );
-  Future<void> showError(String message, {BuildContext? context}) => show(
+  void showError(String message, {BuildContext? context}) => show(
         message,
         type: SnackBarType.error,
         duration: const Duration(seconds: 5),
@@ -200,11 +200,11 @@ class _SnackStyle {
 class _SnackJob {
   _SnackJob({
     required this.message,
-    this.action,
     required this.duration,
     required this.behavior,
-    this.margin,
     required this.type,
+    this.action,
+    this.margin,
     this.context,
   });
   final String message;

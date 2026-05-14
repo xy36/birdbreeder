@@ -25,7 +25,6 @@ extension ScreenSizeExtensions on BuildContext {
   /// If the current screen size is [ScreenSize.xs] the [mobile] value is returned
   /// If the current screen size is [ScreenSize.sm] the [tabletPortrait] value is returned
   /// If the current screen size is [ScreenSize.md] or [ScreenSize.lg] the [tabletLandscape] value is returned
-  /// If the current screen size is [ScreenSize.xl] the [desktop] value is returned
   T responsiveValueAll<T>({
     required T mobile,
     required T tabletPortrait,

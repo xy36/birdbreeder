@@ -77,6 +77,7 @@ enum SaleStatus {
 
 @freezed
 abstract class Bird with _$Bird, Searchable {
+  // ignore: invalid_annotation_target
   @JsonSerializable(explicitToJson: true)
   const factory Bird({
     required BirdId id,

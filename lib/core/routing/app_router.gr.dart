@@ -43,6 +43,22 @@ class AuthRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [BackupListPage]
+class BackupListRoute extends PageRouteInfo<void> {
+  const BackupListRoute({List<PageRouteInfo>? children})
+      : super(BackupListRoute.name, initialChildren: children);
+
+  static const String name = 'BackupListRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const BackupListPage();
+    },
+  );
+}
+
+/// generated route for
 /// [BirdPage]
 class BirdRoute extends PageRouteInfo<BirdRouteArgs> {
   BirdRoute({required Bird? bird, Key? key, List<PageRouteInfo>? children})
@@ -427,6 +443,22 @@ class MenuRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const MenuPage();
+    },
+  );
+}
+
+/// generated route for
+/// [ModeSelectionPage]
+class ModeSelectionRoute extends PageRouteInfo<void> {
+  const ModeSelectionRoute({List<PageRouteInfo>? children})
+      : super(ModeSelectionRoute.name, initialChildren: children);
+
+  static const String name = 'ModeSelectionRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ModeSelectionPage();
     },
   );
 }

@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_form_builder: ^10.2.0
   form_builder_validators: ^11.2.0
+  intl: ^0.20.2
   sidebarx: ^0.17.1
   json_annotation: ^4.9.0
   path: ^1.8.2
@@ -56,6 +57,10 @@ dependencies:
   slang_flutter: ^4.8.0
   file_picker: ^8.0.0+1
   csv: ^6.0.0
+  drift: ^2.20.0
+  sqlite3_flutter_libs: ^0.5.0
+  share_plus: ^10.0.0
+  archive: ^3.6.1
 
 
 
@@ -83,6 +88,7 @@ dev_dependencies:
   json_serializable: ^6.7.1
   very_good_analysis: ^10.0.0
   slang_build_runner: ^4.8.0
+  drift_dev: ^2.20.0
 
 # The following section is specific to Flutter packages.
 flutter:

@@ -9,16 +9,17 @@ class LoginGuard extends AutoRouteGuard {
       s1.get<IAuthenticationService>();
 
   @override
-  void onNavigation(NavigationResolver resolver, StackRouter router) {
+  Future<void> onNavigation(
+    NavigationResolver resolver,
+    StackRouter router,
+  ) async {
     switch (_authenticationService.authenticationStatus.value) {
       case AuthenticationStatus.unauthenticated:
       case AuthenticationStatus.unknown:
-        print('LoginGuard onNavigation unauthenticated');
         resolver.next();
       case AuthenticationStatus.authenticated:
-        print('LoginGuard onNavigation authenticated');
         resolver.next(false);
-        router.replaceAll([const MenuRoute()]);
+        await router.replaceAll([const MenuRoute()]);
     }
   }
 }

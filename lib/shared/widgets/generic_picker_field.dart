@@ -75,6 +75,7 @@ class GenericPickerField<T> extends StatelessWidget {
 
   /// Custom picker builder:
   /// If provided, this will be called to pick an item instead of the default bottom sheet.
+  // ignore: unintended_html_in_doc_comment
   /// Signature: Future<T?> Function(BuildContext, List<T> values, T? current)
   final Future<T?> Function(BuildContext, List<T>, T?)? pickerBuilder;
 

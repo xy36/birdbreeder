@@ -1,6 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/csv_import/cubit/csv_bird_import_cubit.dart';
-import 'package:birdbreeder/i18n/translations.g.dart';
+import 'package:birdbreeder/i18n/strings.g.dart';
 
 class BirdInitialView extends StatelessWidget {
   const BirdInitialView({required this.onBack, super.key});

@@ -3,8 +3,8 @@ import 'package:birdbreeder/common_imports.dart';
 /// Places children in 1 column on narrow screens and 2 columns otherwise.
 class SectionGrid extends StatelessWidget {
   const SectionGrid({
-    super.key,
     required this.children,
+    super.key,
     this.gap = 12,
     this.breakpoint = 600,
   });

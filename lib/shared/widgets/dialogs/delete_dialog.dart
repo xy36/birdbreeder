@@ -2,9 +2,9 @@ import 'package:birdbreeder/common_imports.dart';
 
 class DeleteDialog extends StatelessWidget {
   const DeleteDialog({
-    super.key,
     required this.onDelete,
     required this.title,
+    super.key,
   });
 
   final String title;

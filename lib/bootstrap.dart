@@ -1,7 +1,10 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:birdbreeder/i18n/translations.g.dart';
+import 'package:birdbreeder/i18n/strings.g.dart';
+import 'package:birdbreeder/services/backup/backup_service.dart';
+import 'package:birdbreeder/services/data_mode/data_mode.dart';
+import 'package:birdbreeder/services/data_mode/data_mode_service.dart';
 import 'package:birdbreeder/services/initialization_service.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/services/logging_service.dart';
@@ -10,6 +13,7 @@ import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 ThemeData? themeData;
 
@@ -49,33 +53,48 @@ String _short(Object? state) {
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // try {
-  //   final themeStr =
-  //       await rootBundle.loadString(Assets.themes.appainterThemeRed);
-  //   final themeJson = jsonDecode(themeStr);
-  //   themeData = ThemeDecoder.decodeThemeData(themeJson);
-  // } catch (e) {
-  //   print(e);
-  // }
-
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
-  // Initialize the Dependency Injection
-  await initializeDependencyInjection();
-
   // Initialize the application
   await InitializationService.initialize();
 
-  await s1.get<PocketBaseService>().init();
+  // Read data mode from preferences
+  final prefs = await SharedPreferences.getInstance();
+  final mode = DataModeService.getModeSync(prefs);
 
-  // Bloc.observer = TalkerBlocObserver(
-  //     //talker: s1.get<LoggingService>().logger,
-  //     //settings: TalkerBlocLoggerSettings(printStateFullData: true),
-  //     );
+  if (mode == null) {
+    // No mode chosen yet — show selection screen without DI
+    runApp(TranslationProvider(child: await builder()));
+    return;
+  }
+
+  // Initialize the Dependency Injection with selected mode
+  await initializeDependencyInjection(mode);
+
+  // Initialize PocketBase only in remote mode
+  if (mode == DataMode.remote) {
+    await s1.get<PocketBaseService>().init();
+  }
+
+  if (mode == DataMode.local) {
+    unawaited(_maybeAutoSnapshot());
+  }
 
   Bloc.observer = AppBlocObserver();
 
   runApp(TranslationProvider(child: await builder()));
+}
+
+Future<void> _maybeAutoSnapshot() async {
+  final logger = s1.get<LoggingService>().logger;
+  try {
+    if (await BackupService.shouldAutoSnapshot()) {
+      await BackupService.createSnapshot();
+      await BackupService.rotateSnapshots();
+    }
+  } on Object catch (e, st) {
+    logger.w('Auto-snapshot failed: $e', error: e, stackTrace: st);
+  }
 }

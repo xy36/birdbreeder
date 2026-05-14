@@ -7,7 +7,6 @@ import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/b
 /// - "More…" opens a checkbox list with an Apply button.
 class InlineTwoRowMultiChips extends StatefulWidget {
   const InlineTwoRowMultiChips({
-    super.key,
     required this.title,
     required this.items,
     required this.selectedIds, // current selection (empty = All)
@@ -17,6 +16,7 @@ class InlineTwoRowMultiChips extends StatefulWidget {
     this.lessLabel,
     this.allLabel,
     this.chipSpacing = 8,
+    super.key,
   });
 
   final String title;
@@ -216,8 +216,7 @@ class _InlineTwoRowMultiChipsState extends State<InlineTwoRowMultiChips> {
     return FilterChip(
       showCheckmark: false,
       label: Text(o.label),
-      selected: selected ||
-          (isAll /* optional: show them as unselected when All */ && false),
+      selected: selected || !isAll,
       onSelected: (sel) {
         final next = <String>{...widget.selectedIds};
         if (sel) {

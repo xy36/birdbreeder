@@ -59,7 +59,7 @@ class _SpeciesDetailsSheetState extends State<SpeciesDetailsSheet> {
                         ? await cubit.updateSpecies(_species!)
                         : cubit.addSpecies(_species!);
 
-                    if (!mounted) return;
+                    if (!context.mounted) return;
 
                     Navigator.of(context).pop();
                   }

@@ -179,7 +179,7 @@ class BroodPage extends StatelessWidget {
                     );
                     if (selected != null) {
                       final updatedBird = child.copyWith(colorId: selected.id);
-                      s1.get<BirdBreederCubit>().updateBird(updatedBird);
+                      await s1.get<BirdBreederCubit>().updateBird(updatedBird);
                     }
                   },
                   Text(

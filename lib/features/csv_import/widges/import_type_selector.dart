@@ -1,7 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/csv_import/csv_import_screen.dart';
 import 'package:birdbreeder/features/csv_import/widges/import_type_card.dart';
-import 'package:birdbreeder/i18n/translations.g.dart';
+import 'package:birdbreeder/i18n/strings.g.dart';
 
 /// Initial type selection widget
 class ImportTypeSelector extends StatelessWidget {

@@ -11,7 +11,7 @@ import 'package:birdbreeder/features/csv_import/widges/error_view.dart';
 import 'package:birdbreeder/features/csv_import/widges/import_type_selector.dart';
 import 'package:birdbreeder/features/csv_import/widges/importing_view.dart';
 import 'package:birdbreeder/features/csv_import/widges/loading_view.dart';
-import 'package:birdbreeder/i18n/translations.g.dart';
+import 'package:birdbreeder/i18n/strings.g.dart';
 
 /// Enum to track which import type is selected
 enum CsvImportType {

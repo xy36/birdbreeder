@@ -5,22 +5,21 @@ import 'package:birdbreeder/services/authentication/i_authentication_service.dar
 import 'package:birdbreeder/services/injection.dart';
 
 class AuthGuard extends AutoRouteGuard {
-  final _authenticationService = s1.get<IAuthenticationService>();
+  final IAuthenticationService _authenticationService =
+      s1.get<IAuthenticationService>();
 
   @override
-  void onNavigation(NavigationResolver resolver, StackRouter router) {
+  Future<void> onNavigation(
+    NavigationResolver resolver,
+    StackRouter router,
+  ) async {
     switch (_authenticationService.authenticationStatus.value) {
       case AuthenticationStatus.authenticated:
         resolver.next();
-        break;
       case AuthenticationStatus.unauthenticated:
-        resolver.next(false);
-        router.replaceAll([const AuthRoute()]);
-        break;
       case AuthenticationStatus.unknown:
         resolver.next(false);
-        router.replaceAll([const AuthRoute()]);
-        break;
+        await router.replaceAll([const AuthRoute()]);
     }
   }
 }

@@ -204,11 +204,11 @@ class _LoginTabState extends State<_LoginTab> {
     );
   }
 
-  void _submit(BuildContext context) {
+  Future<void> _submit(BuildContext context) async {
     if (!_formKey.currentState!.validate()) return;
     final email = _emailCtrl.text.trim();
     final pw = _passwordCtrl.text;
-    context.read<AuthPageCubit>().signIn(email, pw);
+    await context.read<AuthPageCubit>().signIn(email, pw);
   }
 }
 
@@ -347,14 +347,14 @@ class _SignUpTabState extends State<_SignUpTab> {
     );
   }
 
-  void _submit(BuildContext context) {
+  Future<void> _submit(BuildContext context) async {
     if (!_formKey.currentState!.validate()) return;
     final email = _emailCtrl.text.trim();
     final pw = _passwordCtrl.text;
     final firstName = _firstNameCtrl.text.trim();
     final lastName = _lastNameCtrl.text.trim();
 
-    context.read<AuthPageCubit>().signUp(
+    await context.read<AuthPageCubit>().signUp(
           email,
           pw,
           firstName,

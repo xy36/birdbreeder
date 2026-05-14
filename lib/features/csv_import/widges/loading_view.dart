@@ -1,5 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/i18n/translations.g.dart';
+import 'package:birdbreeder/i18n/strings.g.dart';
 
 class LoadingView extends StatelessWidget {
   const LoadingView({required this.fileName, super.key});

@@ -6,6 +6,7 @@ import 'package:birdbreeder/core/routing/guards/login_guard.dart';
 import 'package:birdbreeder/features/account/account_page.dart';
 import 'package:birdbreeder/features/authentication/auth_screen.dart';
 import 'package:birdbreeder/features/authentication/initialization_page.dart';
+import 'package:birdbreeder/features/backup/backup_list_page.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/bird_page.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/birds_overview_page.dart';
 import 'package:birdbreeder/features/breedings/breeding_pair_details/breeding_pair_details_page.dart';
@@ -16,6 +17,7 @@ import 'package:birdbreeder/features/contacts/contacts_page.dart';
 import 'package:birdbreeder/features/csv_import/csv_import_page.dart';
 import 'package:birdbreeder/features/finances/finances_page.dart';
 import 'package:birdbreeder/features/menu/presentation/menu_page.dart';
+import 'package:birdbreeder/features/mode_selection/mode_selection_page.dart';
 import 'package:birdbreeder/features/ressourcen_center/resources_center_page.dart';
 import 'package:birdbreeder/features/ressourcen_center/widgets/tabs/cages_tab.dart';
 import 'package:birdbreeder/features/ressourcen_center/widgets/tabs/categories_tab.dart';
@@ -31,6 +33,11 @@ part 'app_router.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
+        CustomRoute<void>(
+          page: ModeSelectionRoute.page,
+          path: '/mode-selection',
+          transitionsBuilder: TransitionsBuilders.fadeIn,
+        ),
         CustomRoute<void>(
           page: AuthRoute.page,
           path: '/auth',
@@ -70,6 +77,7 @@ class AppRouter extends RootStackRouter {
             ),
             AutoRoute(page: FinancesRoute.page, path: 'finances'),
             AutoRoute(page: AccountRoute.page, path: 'account'),
+            AutoRoute(page: BackupListRoute.page, path: 'account/backups'),
             AutoRoute(page: CsvImportRoute.page, path: 'csv-import'),
 
             // Resources center with nested "tab" routes for deep linking

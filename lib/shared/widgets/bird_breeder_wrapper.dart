@@ -2,7 +2,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 
 class BirdBreederWrapper extends StatelessWidget {
-  const BirdBreederWrapper({super.key, required this.child});
+  const BirdBreederWrapper({required this.child, super.key});
 
   final Widget child;
 

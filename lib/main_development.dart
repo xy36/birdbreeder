@@ -5,8 +5,6 @@ import 'package:birdbreeder/bootstrap.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/services/injection.dart';
 
-const blankSentryDSN = '';
-
 final appConfig = AppConfig(
   appTitle: '[DEV] Bird Breeder',
   appFlavor: AppFlavor.development,

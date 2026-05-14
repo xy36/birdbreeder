@@ -4,7 +4,7 @@
 // coverage:ignore-file
 // ignore_for_file: type=lint, unused_import
 
-part of 'translations.g.dart';
+part of 'strings.g.dart';
 
 // Path: <root>
 typedef TranslationsDe = Translations; // ignore: unused_element
@@ -44,6 +44,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final TranslationsAppDe app = TranslationsAppDe.internal(_root);
   late final TranslationsFinancesDe finances = TranslationsFinancesDe.internal(_root);
   late final TranslationsAccountDe account = TranslationsAccountDe.internal(_root);
+  late final TranslationsBackupDe backup = TranslationsBackupDe.internal(_root);
   late final TranslationsBreedingsDe breedings = TranslationsBreedingsDe.internal(_root);
   late final TranslationsColorsDe colors = TranslationsColorsDe.internal(_root);
   late final TranslationsCagesDe cages = TranslationsCagesDe.internal(_root);
@@ -107,6 +108,53 @@ class TranslationsAccountDe {
 
   /// de: 'Konto'
   String get title => 'Konto';
+
+  /// de: 'Logout'
+  String get logout => 'Logout';
+
+  /// de: 'Zu Lokal-Modus wechseln'
+  String get switch_to_local => 'Zu Lokal-Modus wechseln';
+
+  late final TranslationsAccountSwitchToLocalDialogDe switch_to_local_dialog = TranslationsAccountSwitchToLocalDialogDe.internal(_root);
+  late final TranslationsAccountLocalModeDe local_mode = TranslationsAccountLocalModeDe.internal(_root);
+  late final TranslationsAccountDataDe data = TranslationsAccountDataDe.internal(_root);
+  late final TranslationsAccountUserDe user = TranslationsAccountUserDe.internal(_root);
+  late final TranslationsAccountEventsDe events = TranslationsAccountEventsDe.internal(_root);
+}
+
+// Path: backup
+class TranslationsBackupDe {
+  TranslationsBackupDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Backup'
+  String get section_title => 'Backup';
+
+  /// de: 'Backups'
+  String get page_title => 'Backups';
+
+  /// de: 'Noch keine Backups vorhanden.'
+  String get empty => 'Noch keine Backups vorhanden.';
+
+  /// de: 'Wird geladen…'
+  String get loading => 'Wird geladen…';
+
+  /// de: 'Noch kein Backup vorhanden'
+  String get no_backup_yet => 'Noch kein Backup vorhanden';
+
+  /// de: 'Letztes Backup: {{date}}'
+  String last_backup({required Object Date}) => 'Letztes Backup: ${Date}';
+
+  late final TranslationsBackupExternalDe external = TranslationsBackupExternalDe.internal(_root);
+  late final TranslationsBackupActionsDe actions = TranslationsBackupActionsDe.internal(_root);
+  late final TranslationsBackupMenuDe menu = TranslationsBackupMenuDe.internal(_root);
+  late final TranslationsBackupDeleteDialogDe delete_dialog = TranslationsBackupDeleteDialogDe.internal(_root);
+  late final TranslationsBackupRestoreDialogDe restore_dialog = TranslationsBackupRestoreDialogDe.internal(_root);
+  late final TranslationsBackupReminderDe reminder = TranslationsBackupReminderDe.internal(_root);
+  late final TranslationsBackupEventsDe events = TranslationsBackupEventsDe.internal(_root);
 }
 
 // Path: breedings
@@ -919,6 +967,271 @@ class TranslationsFinancesKindDe {
   String get expense => 'Ausgaben';
 }
 
+// Path: account.switch_to_local_dialog
+class TranslationsAccountSwitchToLocalDialogDe {
+  TranslationsAccountSwitchToLocalDialogDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Zu Lokal-Modus wechseln'
+  String get title => 'Zu Lokal-Modus wechseln';
+
+  /// de: 'Alle deine Daten werden vom Server in die lokale Datenbank kopiert. Danach wird die App im Lokal-Modus neu gestartet. Möchtest du fortfahren?'
+  String get content =>
+      'Alle deine Daten werden vom Server in die lokale Datenbank kopiert. Danach wird die App im Lokal-Modus neu gestartet.\n\nMöchtest du fortfahren?';
+
+  /// de: 'Wechseln'
+  String get confirm => 'Wechseln';
+}
+
+// Path: account.local_mode
+class TranslationsAccountLocalModeDe {
+  TranslationsAccountLocalModeDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Lokal-Modus'
+  String get title => 'Lokal-Modus';
+
+  /// de: 'Alle Daten werden lokal auf diesem Gerät gespeichert.'
+  String get description => 'Alle Daten werden lokal auf diesem Gerät gespeichert.';
+}
+
+// Path: account.data
+class TranslationsAccountDataDe {
+  TranslationsAccountDataDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Daten'
+  String get section_title => 'Daten';
+
+  /// de: 'Daten exportieren (JSON)'
+  String get export_json => 'Daten exportieren (JSON)';
+
+  /// de: 'Daten importieren (JSON)'
+  String get import_json => 'Daten importieren (JSON)';
+
+  late final TranslationsAccountDataImportDialogDe import_dialog = TranslationsAccountDataImportDialogDe.internal(_root);
+}
+
+// Path: account.user
+class TranslationsAccountUserDe {
+  TranslationsAccountUserDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Email: {{value}}'
+  String email({required Object Value}) => 'Email: ${Value}';
+
+  /// de: 'Vorname: {{value}}'
+  String first_name({required Object Value}) => 'Vorname: ${Value}';
+
+  /// de: 'Nachname: {{value}}'
+  String last_name({required Object Value}) => 'Nachname: ${Value}';
+}
+
+// Path: account.events
+class TranslationsAccountEventsDe {
+  TranslationsAccountEventsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Export fehlgeschlagen: {{error}}'
+  String export_failed({required Object Error}) => 'Export fehlgeschlagen: ${Error}';
+
+  /// de: 'Export erfolgreich'
+  String get export_succeeded => 'Export erfolgreich';
+
+  /// de: 'Import fehlgeschlagen: {{error}}'
+  String import_failed({required Object Error}) => 'Import fehlgeschlagen: ${Error}';
+
+  /// de: '(one) {1 Eintrag importiert} (other) {{count} Einträge importiert}'
+  String imported({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(
+        count,
+        one: '1 Eintrag importiert',
+        other: '{count} Einträge importiert',
+      );
+
+  /// de: 'Wechsel fehlgeschlagen: {{error}}'
+  String switch_failed({required Object Error}) => 'Wechsel fehlgeschlagen: ${Error}';
+
+  /// de: '(one) {1 Eintrag übertragen. Lokal-Modus aktiv.} (other) {{count} Einträge übertragen. Lokal-Modus aktiv.}'
+  String switched_to_local({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(
+        count,
+        one: '1 Eintrag übertragen. Lokal-Modus aktiv.',
+        other: '{count} Einträge übertragen. Lokal-Modus aktiv.',
+      );
+}
+
+// Path: backup.external
+class TranslationsBackupExternalDe {
+  TranslationsBackupExternalDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Noch nie extern gesichert'
+  String get never => 'Noch nie extern gesichert';
+
+  /// de: 'Zuletzt extern gesichert: heute'
+  String get today => 'Zuletzt extern gesichert: heute';
+
+  /// de: '(one) {Zuletzt extern gesichert: vor 1 Tag} (other) {Zuletzt extern gesichert: vor {count} Tagen}'
+  String days_ago({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(
+        count,
+        one: 'Zuletzt extern gesichert: vor 1 Tag',
+        other: 'Zuletzt extern gesichert: vor {count} Tagen',
+      );
+}
+
+// Path: backup.actions
+class TranslationsBackupActionsDe {
+  TranslationsBackupActionsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Letztes Backup teilen'
+  String get share_latest => 'Letztes Backup teilen';
+
+  /// de: 'Backup jetzt erstellen'
+  String get create_now => 'Backup jetzt erstellen';
+
+  /// de: 'Backup wiederherstellen…'
+  String get restore => 'Backup wiederherstellen…';
+
+  /// de: 'Alle Backups verwalten…'
+  String get manage => 'Alle Backups verwalten…';
+
+  /// de: 'Neu'
+  String get kNew => 'Neu';
+}
+
+// Path: backup.menu
+class TranslationsBackupMenuDe {
+  TranslationsBackupMenuDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Teilen'
+  String get share => 'Teilen';
+
+  /// de: 'Wiederherstellen'
+  String get restore => 'Wiederherstellen';
+
+  /// de: 'Löschen'
+  String get delete => 'Löschen';
+}
+
+// Path: backup.delete_dialog
+class TranslationsBackupDeleteDialogDe {
+  TranslationsBackupDeleteDialogDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Backup löschen?'
+  String get title => 'Backup löschen?';
+
+  /// de: 'Löschen'
+  String get confirm => 'Löschen';
+}
+
+// Path: backup.restore_dialog
+class TranslationsBackupRestoreDialogDe {
+  TranslationsBackupRestoreDialogDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Backup wiederherstellen'
+  String get title => 'Backup wiederherstellen';
+
+  /// de: 'Aktuelle lokale Daten werden mit dem ausgewählten Backup überschrieben. Fortfahren?'
+  String get content_picked => 'Aktuelle lokale Daten werden mit dem ausgewählten Backup überschrieben. Fortfahren?';
+
+  /// de: 'Aktuelle lokale Daten werden mit dem Backup "{{name}}" überschrieben. Fortfahren?'
+  String content_named({required Object Name}) => 'Aktuelle lokale Daten werden mit dem Backup\n"${Name}" überschrieben.\n\nFortfahren?';
+
+  /// de: 'Wiederherstellen'
+  String get confirm => 'Wiederherstellen';
+}
+
+// Path: backup.reminder
+class TranslationsBackupReminderDe {
+  TranslationsBackupReminderDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Backup sichern'
+  String get title => 'Backup sichern';
+
+  /// de: 'Du hast bisher noch kein externes Backup gesichert.'
+  String get never => 'Du hast bisher noch kein externes Backup gesichert.';
+
+  /// de: '(one) {Dein letztes externes Backup ist 1 Tag her.} (other) {Dein letztes externes Backup ist {count} Tage her.}'
+  String age({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(
+        count,
+        one: 'Dein letztes externes Backup ist 1 Tag her.',
+        other: 'Dein letztes externes Backup ist {count} Tage her.',
+      );
+
+  /// de: 'Sichere es jetzt an einem sicheren Ort (iCloud, Drive, Mail), damit deine Daten bei Geräteverlust nicht verloren gehen.'
+  String get body => 'Sichere es jetzt an einem sicheren Ort (iCloud, Drive, Mail), damit deine Daten bei Geräteverlust nicht verloren gehen.';
+
+  /// de: 'Später erinnern'
+  String get snooze => 'Später erinnern';
+
+  /// de: 'Schon gesichert'
+  String get already_saved => 'Schon gesichert';
+
+  /// de: 'Jetzt teilen'
+  String get share_now => 'Jetzt teilen';
+}
+
+// Path: backup.events
+class TranslationsBackupEventsDe {
+  TranslationsBackupEventsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Backup erstellt'
+  String get created => 'Backup erstellt';
+
+  /// de: 'Backup fehlgeschlagen: {{error}}'
+  String create_failed({required Object Error}) => 'Backup fehlgeschlagen: ${Error}';
+
+  /// de: 'Teilen fehlgeschlagen: {{error}}'
+  String share_failed({required Object Error}) => 'Teilen fehlgeschlagen: ${Error}';
+
+  /// de: 'Löschen fehlgeschlagen: {{error}}'
+  String delete_failed({required Object Error}) => 'Löschen fehlgeschlagen: ${Error}';
+
+  /// de: 'Wiederherstellen fehlgeschlagen: {{error}}'
+  String restore_failed({required Object Error}) => 'Wiederherstellen fehlgeschlagen: ${Error}';
+}
+
 // Path: contacts.fields
 class TranslationsContactsFieldsDe {
   TranslationsContactsFieldsDe.internal(this._root);
@@ -1647,6 +1960,27 @@ class TranslationsDialogDeleteEntryDe {
 
   /// de: 'Möchten Sie diesen Eintrag wirklich löschen?'
   String get content => 'Möchten Sie diesen Eintrag wirklich löschen?';
+}
+
+// Path: account.data.import_dialog
+class TranslationsAccountDataImportDialogDe {
+  TranslationsAccountDataImportDialogDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Daten importieren'
+  String get title => 'Daten importieren';
+
+  /// de: 'Möchtest du die vorhandenen Daten vorher löschen oder die importierten Daten hinzufügen?'
+  String get content => 'Möchtest du die vorhandenen Daten vorher löschen oder die importierten Daten hinzufügen?';
+
+  /// de: 'Hinzufügen'
+  String get add => 'Hinzufügen';
+
+  /// de: 'Ersetzen'
+  String get replace => 'Ersetzen';
 }
 
 // Path: contacts.fields.title

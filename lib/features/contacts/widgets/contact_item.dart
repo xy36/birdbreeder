@@ -208,17 +208,6 @@ class ContactCard extends StatelessWidget {
         .toList();
     return p.isEmpty ? null : p.join(sep);
   }
-
-  String _formatRelative(BuildContext context, DateTime dt) {
-    final now = DateTime.now();
-    final diff = now.difference(dt);
-    if (diff.inMinutes < 1) return 'gerade eben';
-    if (diff.inMinutes < 60) return 'vor ${diff.inMinutes} min';
-    if (diff.inHours < 24) return 'vor ${diff.inHours} h';
-    if (diff.inDays < 7) return 'vor ${diff.inDays} Tagen';
-    // fallback to date
-    return '${dt.day.toString().padLeft(2, '0')}.${dt.month.toString().padLeft(2, '0')}.${dt.year}';
-  }
 }
 
 class _ActionIconButton extends StatelessWidget {

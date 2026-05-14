@@ -58,7 +58,6 @@ class FinancesCategoryPickerField extends StatelessWidget {
                   FinanceCategory.create(
                     name: name,
                     kind: FinanceCategoryKind.income,
-                    //TODO: change default color
                     color: '#ff7D20AB',
                   ),
                 );

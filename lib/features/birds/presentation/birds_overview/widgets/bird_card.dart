@@ -79,7 +79,7 @@ class BirdCard extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: compact ? 18 : 22,
-          // TODO: Replace with bird image if you have one
+          //
           child: const Icon(AppIcons.birdAvatar),
         ),
         Positioned(

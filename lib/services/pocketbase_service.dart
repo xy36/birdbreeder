@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/services/token_storage_service.dart';
-import 'package:flutter/foundation.dart';
 import 'package:pocketbase/pocketbase.dart';
 
 late final PocketBase client;
@@ -29,7 +26,7 @@ class PocketBaseService {
     try {
       // clear auth
       client.authStore.clear();
-    } catch (e) {
+    } on Exception catch (_) {
       // handle error
     }
   }
@@ -49,5 +46,3 @@ class PocketBaseService {
     );
   }
 }
-
-String get _host => (!kIsWeb && Platform.isAndroid) ? '10.0.2.2' : '127.0.0.1';

@@ -8,3 +8,13 @@ linter:
     use_if_null_to_convert_nulls_to_bools: false
     unnecessary_parenthesis: false
     sort_pub_dependencies: false
+    discarded_futures: false
+    avoid_positional_boolean_parameters: false
+    document_ignores: false
+
+analyzer:
+  exclude:
+    - '**.freezed.dart'
+    - '**.g.dart'
+    - '**.gr.dart'
+    - '**/generated_plugin_registrant.dart'

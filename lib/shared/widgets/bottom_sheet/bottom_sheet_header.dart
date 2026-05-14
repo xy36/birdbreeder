@@ -2,9 +2,9 @@ import 'package:birdbreeder/common_imports.dart';
 
 class BottomSheetHeader extends StatelessWidget {
   const BottomSheetHeader({
+    required this.title,
     super.key,
     this.onClose,
-    required this.title,
   });
 
   final void Function()? onClose;

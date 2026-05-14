@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:birdbreeder/features/csv_import/cubit/csv_bird_import_state.dart';
 import 'package:birdbreeder/features/csv_import/models/csv_bird_row.dart';
 import 'package:birdbreeder/features/csv_import/models/csv_import_result.dart';
-import 'package:birdbreeder/i18n/translations.g.dart';
+import 'package:birdbreeder/i18n/strings.g.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';

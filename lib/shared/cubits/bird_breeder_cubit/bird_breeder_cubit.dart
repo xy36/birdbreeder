@@ -1,29 +1,19 @@
 import 'dart:async';
 
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/models/bird/dtos/bird_dto.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/bird_breeder_resources.dart';
-import 'package:birdbreeder/models/breeding/dtos/breeding_pair_dto.dart';
-import 'package:birdbreeder/models/breeding/dtos/brood_dto.dart';
 import 'package:birdbreeder/models/breeding/entity/breeding_pair.dart';
 import 'package:birdbreeder/models/breeding/entity/brood.dart';
-import 'package:birdbreeder/models/contact/dtos/contact_dto.dart';
 import 'package:birdbreeder/models/contact/entity/contact.dart';
-import 'package:birdbreeder/models/egg/dtos/egg_dto.dart';
 import 'package:birdbreeder/models/egg/entity/egg.dart';
-import 'package:birdbreeder/models/finance/dtos/finance_category_dto.dart';
-import 'package:birdbreeder/models/finance/dtos/finance_dto.dart';
 import 'package:birdbreeder/models/finance/entity/finance.dart';
 import 'package:birdbreeder/models/finance/entity/finance_category.dart';
-import 'package:birdbreeder/models/ressources/dto/bird_color_dto.dart';
-import 'package:birdbreeder/models/ressources/dto/cage_dto.dart';
-import 'package:birdbreeder/models/ressources/dto/species_dto.dart';
 import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';
 import 'package:birdbreeder/models/ressources/entity/species.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit_event.dart';
-import 'package:birdbreeder/shared/repositories/resource_repository.dart';
+import 'package:birdbreeder/shared/repositories/i_crud_repository.dart';
 import 'package:bloc_presentation/bloc_presentation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -72,17 +62,16 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
         ),
       );
 
-  final ResourceRepository<BirdColor, BirdColorDto> _birdColorsRepository;
-  final ResourceRepository<Contact, ContactDto> _contactsRepository;
-  final ResourceRepository<Cage, CageDto> _cagesRepository;
-  final ResourceRepository<Species, SpeciesDto> _speciesRepository;
-  final ResourceRepository<BreedingPair, BreedingPairDto> _breedingsRepository;
-  final ResourceRepository<Brood, BroodDto> _broodsRepository;
-  final ResourceRepository<Bird, BirdDto> _birdsRepository;
-  final ResourceRepository<Egg, EggDto> _eggsRepository;
-  final ResourceRepository<Finance, FinanceDto> _financesRepository;
-  final ResourceRepository<FinanceCategory, FinanceCategoryDto>
-      _financesCategoriesRepository;
+  final ICrudRepository<BirdColor> _birdColorsRepository;
+  final ICrudRepository<Contact> _contactsRepository;
+  final ICrudRepository<Cage> _cagesRepository;
+  final ICrudRepository<Species> _speciesRepository;
+  final ICrudRepository<BreedingPair> _breedingsRepository;
+  final ICrudRepository<Brood> _broodsRepository;
+  final ICrudRepository<Bird> _birdsRepository;
+  final ICrudRepository<Egg> _eggsRepository;
+  final ICrudRepository<Finance> _financesRepository;
+  final ICrudRepository<FinanceCategory> _financesCategoriesRepository;
 
   void push(BirdBreederState newState) => emit(newState);
 

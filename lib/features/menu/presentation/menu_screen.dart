@@ -1,8 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:birdbreeder/features/backup/backup_reminder_dialog.dart';
 import 'package:birdbreeder/features/menu/presentation/cubit/menu_cubit.dart';
 import 'package:birdbreeder/features/menu/presentation/utils/utils.dart';
 import 'package:birdbreeder/features/menu/presentation/widgets/side_bar.dart';
 import 'package:birdbreeder/models/routing/menu_pages.dart';
+import 'package:birdbreeder/services/backup/backup_service.dart';
+import 'package:birdbreeder/services/data_mode/data_mode.dart';
+import 'package:birdbreeder/services/injection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,6 +51,7 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> {
   late SidebarXController sidebarController;
   late Drawer drawer;
+  bool _reminderChecked = false;
 
   @override
   void initState() {
@@ -56,6 +61,19 @@ class _MenuScreenState extends State<MenuScreen> {
     );
 
     super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted || _reminderChecked) return;
+      _reminderChecked = true;
+      if (!s1.isRegistered<DataMode>() ||
+          s1.get<DataMode>() != DataMode.local) {
+        return;
+      }
+      if (await BackupService.shouldShowReminder()) {
+        if (!mounted) return;
+        await showBackupReminderDialog(context);
+      }
+    });
   }
 
   @override

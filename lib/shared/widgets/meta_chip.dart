@@ -2,9 +2,9 @@ import 'package:birdbreeder/common_imports.dart';
 
 class MetaChip extends StatelessWidget {
   const MetaChip({
-    super.key,
     required this.icon,
     required this.text,
+    super.key,
   });
   final IconData icon;
   final String text;

@@ -1,13 +1,13 @@
 import 'dart:async';
 
+import 'package:birdbreeder/constants.dart';
+import 'package:birdbreeder/runtime_app_config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../constants.dart';
-import '../runtime_app_config.dart';
-
 class SharedPreferencesService {
-  static final _sharedPreferences = GetIt.I<SharedPreferences>();
+  static final SharedPreferences _sharedPreferences =
+      GetIt.I<SharedPreferences>();
 
   static Future<void> clearLanguagePicked() async {
     await _sharedPreferences.setBool(
