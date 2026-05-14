@@ -345,7 +345,7 @@ class MaterialTheme {
       scaffoldBackgroundColor: colorScheme.surface,
       canvasColor: colorScheme.surface,
       extensions: [
-        isLight ? AppColors.light : AppColors.dark,
+        if (isLight) AppColors.light else AppColors.dark,
       ],
       appBarTheme: AppBarTheme(
         centerTitle: false,

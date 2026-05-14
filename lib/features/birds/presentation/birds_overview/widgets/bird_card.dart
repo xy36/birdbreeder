@@ -1,3 +1,4 @@
+import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/birds_extension.dart';
 import 'package:birdbreeder/models/bird/bird_actions.dart';
@@ -10,7 +11,6 @@ class BirdCard extends StatelessWidget {
   const BirdCard({
     required this.bird,
     super.key,
-    this.compact = false,
     this.onTap,
     this.onDuplicate,
     this.onEdit,
@@ -19,8 +19,6 @@ class BirdCard extends StatelessWidget {
   });
 
   final Bird bird;
-  // If true, renders a denser layout (good for grids).
-  final bool compact;
 
   final VoidCallback? onTap;
   final VoidCallback? onDuplicate;
@@ -30,40 +28,101 @@ class BirdCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Build small status chips based on bird flags/dates.
-    final statusChips = <Widget>[
-      _chip(context, bird.saleStatus.getDisplayName(context)),
-      if (bird.lifeStage != null)
-        _chip(context, bird.lifeStage!.getDisplayName(context)),
-    ];
+    final ring = bird.ringNumber ?? '—';
+    final isForSale =
+        bird.saleStatus == SaleStatus.listed && bird.askingPrice != null;
 
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       child: InkWell(
         onTap: onTap,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
           child: Row(
             children: [
               _leadingAvatar(context),
               const SizedBox(width: 8),
               // Title + details
               Expanded(
-                child: _BirdMainInfo(
-                  bird: bird,
-                  compact: compact,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(ring, style: context.titleMedium),
+                        if (isForSale)
+                          Text(
+                            '${bird.askingPrice!}€',
+                            style: context.titleMedium?.copyWith(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                      ],
+                    ),
+                    Row(
+                      spacing: 4,
+                      children: <Widget>[
+                        Text(
+                          bird.speciesResolved!.name!,
+                          style: context.bodyMedium?.copyWith(
+                            color:
+                                Theme.of(context).colorScheme.onSurfaceVariant,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        _separator(context),
+                        Expanded(
+                          child: Text(
+                            bird.colorResolved!.name!,
+                            style: context.bodyMedium?.copyWith(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        if (isForSale)
+                          _chip(
+                            context,
+                            'Verkauf',
+                            icon:
+                                const Icon(AppIcons.birdSectionSale, size: 12),
+                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 6),
+                    Row(
+                      spacing: 4,
+                      children: [
+                        Row(
+                          spacing: 4,
+                          children: [
+                            const Icon(
+                              AppIcons.cage,
+                              size: 12,
+                            ),
+                            Text(
+                              bird.cageResolved?.name ?? '—',
+                              style: context.bodySmall,
+                            ),
+                          ],
+                        ),
+                        _separator(context),
+                        Text(
+                          bird.bornAt != null ? _ageString(bird.bornAt!) : '—',
+                          style: context.bodySmall,
+                        ),
+                        const Spacer(),
+                        BirdActions.buildMenu(context, bird),
+                      ],
+                    ),
+                  ],
                 ),
-              ),
-              const SizedBox(width: 8),
-              // Trailing actions & status
-              Column(
-                spacing: 6,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  ...statusChips,
-                  BirdActions.buildMenu(context, bird),
-                ],
               ),
             ],
           ),
@@ -77,10 +136,10 @@ class BirdCard extends StatelessWidget {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        CircleAvatar(
-          radius: compact ? 18 : 22,
+        const CircleAvatar(
+          radius: 22,
           //
-          child: const Icon(AppIcons.birdAvatar),
+          child: Icon(AppIcons.birdAvatar),
         ),
         Positioned(
           right: -2,
@@ -92,75 +151,32 @@ class BirdCard extends StatelessWidget {
   }
 
   /// Small rounded label used as neutral status display.
-  Widget _chip(BuildContext context, String text) {
+  Widget _chip(BuildContext context, String text, {Icon? icon}) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
         color: Theme.of(context).colorScheme.onSurface.withAlpha(30),
       ),
-      child: Text(text, style: const TextStyle(fontSize: 12)),
-    );
-  }
-}
-
-/// Main info block (title + chips + optional age)
-class _BirdMainInfo extends StatelessWidget {
-  const _BirdMainInfo({
-    required this.bird,
-    required this.compact,
-  });
-
-  final Bird bird;
-  final bool compact;
-
-  @override
-  Widget build(BuildContext context) {
-    final titleStyle = Theme.of(context).textTheme.titleMedium;
-    final ring = bird.ringNumber ?? '—';
-
-    // Compose attribute chips (species/color/cage)
-    final attrChips = <Widget>[
-      if (bird.speciesResolved?.name != null)
-        _attrChip(context, bird.speciesResolved!.name!),
-      if (bird.colorResolved?.name != null)
-        _attrChip(context, bird.colorResolved!.name!),
-      if (bird.cageResolved?.name != null)
-        _attrChip(context, bird.cageResolved!.name!),
-    ];
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(ring, style: titleStyle),
-        if (!compact) ...[
-          const SizedBox(height: 6),
-          Wrap(
-            spacing: 6,
-            runSpacing: 8,
-            children: attrChips,
-          ),
-          const SizedBox(height: 6),
-          Text(
-            bird.bornAt != null
-                ? 'Alter: ${_ageString(bird.bornAt!)}'
-                : 'Alter: —',
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (icon != null) icon,
+          if (icon != null) const SizedBox(width: 4),
+          Text(text, style: const TextStyle(fontSize: 12)),
         ],
-      ],
+      ),
     );
   }
 
-  /// Small neutral chip for attributes (species, color, cage).
-  Widget _attrChip(BuildContext context, String text) {
+  Widget _separator(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      width: 4,
+      height: 4,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Theme.of(context).colorScheme.onSurfaceVariant.withAlpha(40),
+        shape: BoxShape.circle,
+        color: Theme.of(context).colorScheme.onSurfaceVariant,
       ),
-      child: Text(text, style: const TextStyle(fontSize: 12)),
     );
   }
 

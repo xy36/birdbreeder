@@ -30,7 +30,7 @@ class AppIcons {
   static const IconData birdSectionKeeping = Icons.info_outline_rounded;
   static const IconData birdSectionNotes = Icons.note_alt;
   static const IconData birdSectionPurchase = Icons.sell;
-  static const IconData birdSectionSale = Icons.attach_money_sharp;
+  static const IconData birdSectionSale = Icons.sell_outlined;
   static const IconData birdSectionSaleStatus = Icons.insights;
   static const IconData birdSectionHealth = Icons.health_and_safety_rounded;
   static const IconData birdSectionLifeStage = Icons.note_alt;
