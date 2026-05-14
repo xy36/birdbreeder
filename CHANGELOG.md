@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.3.0](https://github.com/xy36/birdbreeder/compare/v1.2.0...v1.3.0) (2026-03-26)
+
+
+### Features
+
+* add breeder field to bird ([00fdbcf](https://github.com/xy36/birdbreeder/commit/00fdbcf6e35435cbe880f75091b26eabf2817038))
+* add cell phone number field to contact and update related components ([16efe51](https://github.com/xy36/birdbreeder/commit/16efe51d4a47e888485b64d616a1e81d268b94ff))
+* add csv import ([71361ff](https://github.com/xy36/birdbreeder/commit/71361ffd772393759c702d25190913c246ac7ad3))
+* add launcher and splashscreen icon ([de17c99](https://github.com/xy36/birdbreeder/commit/de17c9928052dad3faf9396bf9b9bcb98c377268))
+* Enhance bird management with user ownership and contact integration ([95c5436](https://github.com/xy36/birdbreeder/commit/95c5436d79460c0d1d326732b89e224e94c3ec48))
+* Enhance FinancesCategoryPickerField with initial value selection and improved item display ([a465e8a](https://github.com/xy36/birdbreeder/commit/a465e8ad477285971661d7038eee09a37a8f3096))
+* Refactor resource detail pages to use sheets instead of full pages and add search on footer ([1c9c5b5](https://github.com/xy36/birdbreeder/commit/1c9c5b568aec4e2de9f5d6f91e09c57e61df1037))
+* remove remains for drift pocketbase and add contact initials field ([90c1ff8](https://github.com/xy36/birdbreeder/commit/90c1ff8cf1225c2ab00005985411af4ab2640bb8))
+* Remove unused route pages and imports for details sheets in resources center ([d1dc637](https://github.com/xy36/birdbreeder/commit/d1dc637372d44e94189d73ba3870416dbe28a75a))
+
+
+### Bug Fixes
+
+* enable internet permission in  AndroidManifest.xml ([3e7a1c4](https://github.com/xy36/birdbreeder/commit/3e7a1c49e7e4815345e383dce1fee7534ccdaca8))
+
 ## [1.2.0](https://github.com/xy36/birdbreeder/compare/v1.1.0...v1.2.0) (2025-12-07)
 
 
