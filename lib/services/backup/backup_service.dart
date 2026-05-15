@@ -242,24 +242,33 @@ class BackupService {
   }
 
   /// Lets user pick a backup file. Returns the picked file or null.
-  /// Accepts both new `.bbb.zip` bundles and legacy `.sqlite`/`.db` files.
+  /// No filename check: cloud storages (Drive, iCloud) frequently rename
+  /// shared files and strip the extension. The actual format is detected
+  /// by content (magic bytes) in [overwriteDatabase].
   static Future<File?> pickRestoreFile() async {
     final result = await FilePicker.platform.pickFiles();
     if (result == null || result.files.isEmpty) return null;
     final path = result.files.single.path;
     if (path == null) return null;
-    final file = File(path);
-    final name = p.basename(file.path).toLowerCase();
-    final ok = name.endsWith(_bundleExt) ||
-        name.endsWith('.zip') ||
-        name.endsWith(_legacyExt) ||
-        name.endsWith('.db');
-    if (!ok) {
-      throw const FormatException(
-        'Bitte eine .bbb.zip, .sqlite oder .db Datei auswählen',
-      );
+    return File(path);
+  }
+
+  /// ZIP local file header: 50 4B 03 04 ("PK\x03\x04").
+  static bool _isZipBytes(List<int> b) =>
+      b.length >= 4 &&
+      b[0] == 0x50 &&
+      b[1] == 0x4B &&
+      b[2] == 0x03 &&
+      b[3] == 0x04;
+
+  /// SQLite file header: "SQLite format 3 " (16 bytes).
+  static bool _isSqliteBytes(List<int> b) {
+    const header = 'SQLite format 3';
+    if (b.length < header.length) return false;
+    for (var i = 0; i < header.length; i++) {
+      if (b[i] != header.codeUnitAt(i)) return false;
     }
-    return file;
+    return true;
   }
 
   /// Overwrites the live DB (and later images) from [source]. Caller must
@@ -280,15 +289,23 @@ class BackupService {
       }
     }
 
-    final lower = source.path.toLowerCase();
-    final isZip = lower.endsWith(_bundleExt) || lower.endsWith('.zip');
+    final bytes = await source.readAsBytes();
 
-    if (!isZip) {
-      await source.copy(dst.path);
+    // Detect format by content, not by filename. Cloud storages rename
+    // shared backups and drop the extension.
+    if (_isSqliteBytes(bytes)) {
+      // Legacy raw .sqlite/.db backup.
+      await dst.writeAsBytes(bytes, flush: true);
       return;
     }
 
-    final bytes = await source.readAsBytes();
+    if (!_isZipBytes(bytes)) {
+      throw const FormatException(
+        'Die Datei ist kein gültiges BirdBreeder-Backup '
+        '(weder ZIP-Bundle noch SQLite-Datenbank).',
+      );
+    }
+
     final archive = ZipDecoder().decodeBytes(bytes);
 
     final manifest = _readManifest(archive);
