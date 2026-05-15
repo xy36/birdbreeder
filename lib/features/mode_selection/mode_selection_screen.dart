@@ -9,24 +9,40 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ModeSelectionScreen extends StatelessWidget {
+class ModeSelectionScreen extends StatefulWidget {
   const ModeSelectionScreen({super.key});
 
+  @override
+  State<ModeSelectionScreen> createState() => _ModeSelectionScreenState();
+}
+
+class _ModeSelectionScreenState extends State<ModeSelectionScreen> {
+  bool _busy = false;
+
   Future<void> _selectMode(BuildContext context, DataMode mode) async {
-    final prefs = await SharedPreferences.getInstance();
-    await DataModeService.setMode(prefs, mode);
+    if (_busy) return;
+    final messenger = ScaffoldMessenger.of(context);
+    setState(() => _busy = true);
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await DataModeService.setMode(prefs, mode);
 
-    // Initialize DI with the selected mode
-    await initializeDependencyInjection(mode);
+      await initializeDependencyInjection(mode);
 
-    if (mode == DataMode.remote) {
-      await s1.get<PocketBaseService>().init();
+      if (mode == DataMode.remote) {
+        await s1.get<PocketBaseService>().init();
+      }
+
+      Bloc.observer = AppBlocObserver();
+
+      runApp(TranslationProvider(child: const App()));
+    } on Object catch (e) {
+      if (!mounted) return;
+      setState(() => _busy = false);
+      messenger.showSnackBar(
+        SnackBar(content: Text('Initialisierung fehlgeschlagen: $e')),
+      );
     }
-
-    Bloc.observer = AppBlocObserver();
-
-    // Rebuild the entire app with DI now available
-    runApp(TranslationProvider(child: App()));
   }
 
   @override

@@ -22,86 +22,88 @@ class AccountScreen extends StatelessWidget {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (!isLocal) ...[
-                UserWidget(
-                  user: s1
-                      .get<IAuthenticationService>()
-                      .currentUser()
-                      .asValue
-                      ?.value,
-                ),
-                const SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: () => s1.get<IAuthenticationService>().signOut(),
-                  child: Text(context.tr.account.logout),
-                ),
-                const SizedBox(height: 8),
-                OutlinedButton.icon(
-                  onPressed: () => _switchToLocal(context),
-                  icon: const Icon(Icons.phone_android),
-                  label: Text(context.tr.account.switch_to_local),
-                ),
-              ],
-              if (isLocal) ...[
-                Icon(
-                  Icons.phone_android,
-                  size: 64,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  context.tr.account.local_mode.title,
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  context.tr.account.local_mode.description,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (!isLocal) ...[
+                  UserWidget(
+                    user: s1
+                        .get<IAuthenticationService>()
+                        .currentUser()
+                        .asValue
+                        ?.value,
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () => s1.get<IAuthenticationService>().signOut(),
+                    child: Text(context.tr.account.logout),
+                  ),
+                  const SizedBox(height: 8),
+                  OutlinedButton.icon(
+                    onPressed: () => _switchToLocal(context),
+                    icon: const Icon(Icons.phone_android),
+                    label: Text(context.tr.account.switch_to_local),
+                  ),
+                ],
+                if (isLocal) ...[
+                  Icon(
+                    Icons.phone_android,
+                    size: 64,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    context.tr.account.local_mode.title,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    context.tr.account.local_mode.description,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  const SizedBox(height: 32),
+                  const Divider(),
+                  const SizedBox(height: 16),
+                  Text(
+                    context.tr.backup.section_title,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  const SizedBox(height: 16),
+                  const BackupSection(),
+                ],
                 const SizedBox(height: 32),
                 const Divider(),
                 const SizedBox(height: 16),
                 Text(
-                  context.tr.backup.section_title,
+                  context.tr.account.appearance.title,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 16),
-                const BackupSection(),
+                const AppearanceSection(),
+                const SizedBox(height: 32),
+                const Divider(),
+                const SizedBox(height: 16),
+                Text(
+                  context.tr.account.data.section_title,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: 16),
+                DataActionButton(
+                  icon: Icons.upload,
+                  label: context.tr.account.data.export_json,
+                  onPressed: () =>
+                      unawaited(context.read<AccountCubit>().exportJson()),
+                ),
+                const SizedBox(height: 8),
+                DataActionButton(
+                  icon: Icons.download,
+                  label: context.tr.account.data.import_json,
+                  onPressed: () => unawaited(_importData(context)),
+                ),
               ],
-              const SizedBox(height: 32),
-              const Divider(),
-              const SizedBox(height: 16),
-              Text(
-                context.tr.account.appearance.title,
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              const SizedBox(height: 16),
-              const AppearanceSection(),
-              const SizedBox(height: 32),
-              const Divider(),
-              const SizedBox(height: 16),
-              Text(
-                context.tr.account.data.section_title,
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              const SizedBox(height: 16),
-              DataActionButton(
-                icon: Icons.upload,
-                label: context.tr.account.data.export_json,
-                onPressed: () =>
-                    unawaited(context.read<AccountCubit>().exportJson()),
-              ),
-              const SizedBox(height: 8),
-              DataActionButton(
-                icon: Icons.download,
-                label: context.tr.account.data.import_json,
-                onPressed: () => unawaited(_importData(context)),
-              ),
-            ],
+            ),
           ),
         ),
       ),

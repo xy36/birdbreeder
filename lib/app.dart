@@ -14,7 +14,7 @@ import 'package:birdbreeder/theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 class App extends StatelessWidget {
-  App({
+  const App({
     super.key,
     this.builder,
     this.useInheritedMediaQuery = false,
@@ -29,13 +29,17 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => ThemeCubit(),
-      child: const _AppShell(),
+      child: _AppShell(),
     );
   }
 }
 
 class _AppShell extends StatefulWidget {
-  const _AppShell();
+  // Intentionally non-const: a const instance would be canonicalized and
+  // App.build would skip rebuilding this subtree after runApp, so the
+  // DI-readiness re-check (mode selection → router) would never re-run.
+  // ignore: prefer_const_constructors_in_immutables
+  _AppShell();
 
   @override
   State<_AppShell> createState() => _AppShellState();
@@ -53,6 +57,7 @@ class _AppShellState extends State<_AppShell> {
         // DI not yet initialized — show only the mode selection screen
         if (!s1.isRegistered<DataMode>()) {
           return MaterialApp(
+            key: const ValueKey('app-mode-selection'),
             theme: theme.light(context),
             darkTheme: theme.dark(context),
             themeMode: themeMode,
@@ -83,6 +88,7 @@ class _AppShellState extends State<_AppShell> {
             ),
           ],
           child: MaterialApp.router(
+            key: const ValueKey('app-router'),
             scaffoldMessengerKey: s1.get<SnackbarService>().messengerKey,
             routerConfig: _appRouter.config(
               reevaluateListenable:

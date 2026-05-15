@@ -1,5 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/csv_import/models/csv_contact_row.dart';
+import 'package:birdbreeder/theme/app_colors.dart';
 import 'package:data_table_2/data_table_2.dart';
 
 class ContactPreviewTable extends StatefulWidget {
@@ -17,14 +18,14 @@ class ContactPreviewTableState extends State<ContactPreviewTable> {
   @override
   void initState() {
     super.initState();
-    _dataSource = _ContactDataSource(widget.rows);
+    _dataSource = _ContactDataSource(widget.rows, context);
   }
 
   @override
   void didUpdateWidget(ContactPreviewTable oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.rows != widget.rows) {
-      _dataSource = _ContactDataSource(widget.rows);
+      _dataSource = _ContactDataSource(widget.rows, context);
     }
   }
 
@@ -70,9 +71,10 @@ class ContactPreviewTableState extends State<ContactPreviewTable> {
 }
 
 class _ContactDataSource extends DataTableSource {
-  _ContactDataSource(this.rows);
+  _ContactDataSource(this.rows, this.context);
 
   final List<CsvContactRow> rows;
+  final BuildContext context;
 
   @override
   DataRow? getRow(int index) {
@@ -81,8 +83,12 @@ class _ContactDataSource extends DataTableSource {
     final isValid = row.isValid;
     return DataRow2(
       color: WidgetStateProperty.resolveWith<Color?>((states) {
-        if (row.hasError) return Colors.red.withValues(alpha: 0.1);
-        if (!isValid) return Colors.orange.withValues(alpha: 0.1);
+        if (row.hasError) {
+          return context.appColors.statusError.withValues(alpha: 0.1);
+        }
+        if (!isValid) {
+          return context.appColors.statusWarning.withValues(alpha: 0.1);
+        }
         return null;
       }),
       cells: [
@@ -116,18 +122,19 @@ class _ContactStatusCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final c = context.appColors;
     if (row.hasError) {
       return Tooltip(
         message: row.errorMessage ?? context.tr.csv_import.status.error,
-        child: const Icon(Icons.error, color: Colors.red, size: 18),
+        child: Icon(Icons.error, color: c.statusError, size: 18),
       );
     }
     if (!row.isValid) {
       return Tooltip(
         message: context.tr.csv_import.status.missing_name,
-        child: const Icon(Icons.warning, color: Colors.orange, size: 18),
+        child: Icon(Icons.warning, color: c.statusWarning, size: 18),
       );
     }
-    return const Icon(Icons.check_circle, color: Colors.green, size: 18);
+    return Icon(Icons.check_circle, color: c.statusSuccess, size: 18);
   }
 }

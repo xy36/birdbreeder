@@ -59,8 +59,6 @@ class MaterialTheme {
     return theme(context, lightScheme());
   }
 
-  ThemeData lightFromContext(BuildContext context) => light(context);
-
   static ColorScheme lightMediumContrastScheme() {
     return const ColorScheme(
       brightness: Brightness.light,

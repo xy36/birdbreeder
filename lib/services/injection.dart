@@ -12,6 +12,12 @@ final GetIt s1 = GetIt.instance;
 Future<void> initializeDependencyInjection(DataMode mode) async {
   final prefs = await SharedPreferences.getInstance();
 
+  // Idempotent: a second call (double tap / rebuild) must not crash on
+  // duplicate registration. Callers that switch mode reset DI themselves.
+  if (s1.isRegistered<DataMode>()) {
+    return;
+  }
+
   s1
     ..registerSingleton(LoggingService())
     ..registerSingleton(SnackbarService())

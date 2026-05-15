@@ -1,6 +1,7 @@
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/birds_extension.dart';
+import 'package:birdbreeder/core/extensions/generic_join.dart';
 import 'package:birdbreeder/models/bird/bird_actions.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/shared/icons.dart';
@@ -29,6 +30,10 @@ class BirdCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ring = bird.ringNumber ?? '—';
+    final species = bird.speciesResolved?.name;
+    final color = bird.colorResolved?.name;
+    final cage = bird.cageResolved?.name;
+    final age = bird.bornAt != null ? _ageString(bird.bornAt!) : null;
     final isForSale =
         bird.saleStatus == SaleStatus.listed && bird.askingPrice != null;
 
@@ -51,7 +56,7 @@ class BirdCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(ring, style: context.titleMedium),
-                        if (isForSale)
+                        if (isForSale && bird.askingPrice != null)
                           Text(
                             '${bird.askingPrice!}€',
                             style: context.titleMedium?.copyWith(
@@ -64,27 +69,33 @@ class BirdCard extends StatelessWidget {
                     Row(
                       spacing: 4,
                       children: <Widget>[
-                        Text(
-                          bird.speciesResolved!.name!,
-                          style: context.bodyMedium?.copyWith(
-                            color:
-                                Theme.of(context).colorScheme.onSurfaceVariant,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        _separator(context),
-                        Expanded(
-                          child: Text(
-                            bird.colorResolved!.name!,
-                            style: context.bodyMedium?.copyWith(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSurfaceVariant,
+                        ...[
+                          if (species != null)
+                            Text(
+                              species,
+                              style: context.bodyMedium?.copyWith(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurfaceVariant,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                          if (color != null)
+                            Expanded(
+                              child: Text(
+                                color,
+                                style: context.bodyMedium?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurfaceVariant,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                        ].genericJoin(
+                          _separator(context),
                         ),
                         if (isForSale)
                           _chip(
@@ -95,27 +106,32 @@ class BirdCard extends StatelessWidget {
                           ),
                       ],
                     ),
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 2),
                     Row(
                       spacing: 4,
                       children: [
-                        Row(
-                          spacing: 4,
-                          children: [
-                            const Icon(
-                              AppIcons.cage,
-                              size: 12,
+                        ...[
+                          if (cage != null)
+                            Row(
+                              spacing: 4,
+                              children: [
+                                const Icon(
+                                  AppIcons.cage,
+                                  size: 12,
+                                ),
+                                Text(
+                                  cage,
+                                  style: context.bodySmall,
+                                ),
+                              ],
                             ),
+                          if (age != null)
                             Text(
-                              bird.cageResolved?.name ?? '—',
+                              age,
                               style: context.bodySmall,
                             ),
-                          ],
-                        ),
-                        _separator(context),
-                        Text(
-                          bird.bornAt != null ? _ageString(bird.bornAt!) : '—',
-                          style: context.bodySmall,
+                        ].genericJoin(
+                          _separator(context),
                         ),
                         const Spacer(),
                         BirdActions.buildMenu(context, bird),
