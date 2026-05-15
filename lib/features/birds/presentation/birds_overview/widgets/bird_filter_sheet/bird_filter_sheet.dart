@@ -101,7 +101,10 @@ class _BirdFilterSheetState extends State<BirdFilterSheet> {
         title: context.tr.common.owner,
         items: r.contacts
             .map(
-              (c) => Option(id: c.id, label: c.fullName.isNotEmpty ? c.fullName : c.number ?? '-'),
+              (c) => Option(
+                id: c.id,
+                label: c.fullName.isNotEmpty ? c.fullName : c.number ?? '-',
+              ),
             )
             .toList(),
         selectedIds: f.ownerIds.toSet(),

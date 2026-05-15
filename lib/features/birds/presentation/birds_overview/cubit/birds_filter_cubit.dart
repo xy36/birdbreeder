@@ -15,6 +15,12 @@ class BirdsFilterCubit extends Cubit<BirdFilter> {
 
   final BirdFilter _defaultFilter;
 
+  /// The baseline filter (current user as owner, default sale/life stages).
+  ///
+  /// Values equal to this are not "user applied" and stay hidden in the
+  /// active-filters bar.
+  BirdFilter get defaultFilter => _defaultFilter;
+
   void reset() => emit(_defaultFilter);
 
   void applyFilter(BirdFilter filter) => emit(filter);

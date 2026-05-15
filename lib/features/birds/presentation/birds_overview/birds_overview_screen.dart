@@ -3,6 +3,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/widget_extensions.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_filter_cubit.dart';
+import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/active_filters_bar.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/bird_card.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/bird_filter_sheet/bird_filter_sheet.dart';
 import 'package:birdbreeder/models/bird/bird_filter.dart';
@@ -80,46 +81,56 @@ class _BirdsOverviewScreenState extends State<BirdsOverviewScreen> {
         ],
       ),
       body: BirdBreederWrapper(
-        child: BlocBuilder<BirdBreederCubit, BirdBreederState>(
-          builder: (context, state) {
-            return BlocBuilder<BirdsFilterCubit, BirdFilter>(
-              builder: (context, filter) {
-                final birds = state.birdBreederResources.birds;
+        child: Column(
+          children: [
+            const ActiveFiltersBar(),
+            Expanded(
+              child: BlocBuilder<BirdBreederCubit, BirdBreederState>(
+                builder: (context, state) {
+                  return BlocBuilder<BirdsFilterCubit, BirdFilter>(
+                    builder: (context, filter) {
+                      final birds = state.birdBreederResources.birds;
 
-                final list =
-                    context.watch<BirdsFilterCubit>().filterBirds(birds);
-                context.read<BirdSearchCubit>().setItems(list);
+                      final list =
+                          context.watch<BirdsFilterCubit>().filterBirds(birds);
+                      context.read<BirdSearchCubit>().setItems(list);
 
-                return BlocBuilder<BirdSearchCubit, Query>(
-                  builder: (context, state) {
-                    final searchedBirds =
-                        context.read<BirdSearchCubit>().searchedItems;
+                      return BlocBuilder<BirdSearchCubit, Query>(
+                        builder: (context, state) {
+                          final searchedBirds =
+                              context.read<BirdSearchCubit>().searchedItems;
 
-                    return ListView.builder(
-                      physics: const AlwaysScrollableScrollPhysics(
-                        parent: BouncingScrollPhysics(),
-                      ),
-                      controller: widget.scrollController,
-                      itemCount: searchedBirds.length,
-                      itemBuilder: (context, i) => BirdCard(
-                        bird: searchedBirds[i],
-                        onTap: () => widget.mode == BirdOverviewMode.picker
-                            ? pickBird(searchedBirds[i])
-                            : openBird(searchedBirds[i]),
-                        onDuplicate: () => duplicate(searchedBirds[i]),
-                        onDelete: () => delete(searchedBirds[i]),
-                        onEdit: () => openBird(searchedBirds[i]),
-                      ),
-                    ).withRefresher(
-                      onRefresh: () async {
-                        await context.read<BirdBreederCubit>().fetchBirds();
-                      },
-                    );
-                  },
-                );
-              },
-            );
-          },
+                          return ListView.builder(
+                            physics: const AlwaysScrollableScrollPhysics(
+                              parent: BouncingScrollPhysics(),
+                            ),
+                            controller: widget.scrollController,
+                            itemCount: searchedBirds.length,
+                            itemBuilder: (context, i) => BirdCard(
+                              bird: searchedBirds[i],
+                              onTap: () =>
+                                  widget.mode == BirdOverviewMode.picker
+                                      ? pickBird(searchedBirds[i])
+                                      : openBird(searchedBirds[i]),
+                              onDuplicate: () => duplicate(searchedBirds[i]),
+                              onDelete: () => delete(searchedBirds[i]),
+                              onEdit: () => openBird(searchedBirds[i]),
+                            ),
+                          ).withRefresher(
+                            onRefresh: () async {
+                              await context
+                                  .read<BirdBreederCubit>()
+                                  .fetchBirds();
+                            },
+                          );
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
       floatingActionButton: BottomSearchBar(
