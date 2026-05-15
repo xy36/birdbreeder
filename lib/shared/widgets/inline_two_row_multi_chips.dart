@@ -216,7 +216,7 @@ class _InlineTwoRowMultiChipsState extends State<InlineTwoRowMultiChips> {
     return FilterChip(
       showCheckmark: false,
       label: Text(o.label),
-      selected: selected || !isAll,
+      selected: selected,
       onSelected: (sel) {
         final next = <String>{...widget.selectedIds};
         if (sel) {
