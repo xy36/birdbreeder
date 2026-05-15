@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.5.0](https://github.com/xy36/birdbreeder/compare/v1.4.0...v1.5.0) (2026-05-15)
+
+
+### Features
+
+* add ActiveFiltersBar widget and enhance BirdsFilterCubit with default filter logic ([cc7a3d3](https://github.com/xy36/birdbreeder/commit/cc7a3d3b229e621fe89e698eb50ab7a145d5b706))
+* enhance BirdCard layout and update icon for sale status ([fae6cc5](https://github.com/xy36/birdbreeder/commit/fae6cc55dcdb826dd00a6e639849c38d9b46e7d4))
+* enhance file selection for restore, detect format by content instead of filename ([4d3a33f](https://github.com/xy36/birdbreeder/commit/4d3a33f87d73e688ee29ca1be5d208634af05aba))
+* implement theme management with ThemeCubit and AppColors, add appearance section to account screen ([768753f](https://github.com/xy36/birdbreeder/commit/768753f2b7be09b098536403dabf8a1d6226b15e))
+* refactor app structure, enhance account screen layout, and improve bird card details ([d587743](https://github.com/xy36/birdbreeder/commit/d587743bd9f59387f3b50bda28d4c1d389d9858e))
+
+
+### Bug Fixes
+
+* correct selection logic in FilterChip for multi-select functionality ([5eec9c5](https://github.com/xy36/birdbreeder/commit/5eec9c56910c3079a0432508f46ea7855e8d1126))
+
 ## [1.4.0](https://github.com/xy36/birdbreeder/compare/v1.3.0...v1.4.0) (2026-05-14)
 
 
