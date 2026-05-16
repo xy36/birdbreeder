@@ -351,8 +351,9 @@ Widget moreMenu<T>(
           })>
       actions,
 ) {
-  return GestureDetector(
-    onTap: () async {
+  return IconButton(
+    icon: const Icon(AppIcons.more, size: 18),
+    onPressed: () async {
       await showModalBottomSheet<void>(
         context: context,
         showDragHandle: true,
@@ -378,10 +379,6 @@ Widget moreMenu<T>(
         ),
       );
     },
-    child: const Icon(
-      AppIcons.more,
-      size: 18,
-    ),
   );
 }
 
