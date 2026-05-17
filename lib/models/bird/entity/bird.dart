@@ -1,6 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/birds_extension.dart';
 import 'package:birdbreeder/models/bird/sex_enum.dart';
+import 'package:birdbreeder/models/egg/entity/egg.dart';
 import 'package:birdbreeder/models/searchable.dart';
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -137,25 +138,20 @@ abstract class Bird with _$Bird, Searchable {
         unknownLifecycle: true,
       );
 
-  /// Factory to create a new egg bird object
-  factory Bird.egg({
-    String? ringNumber,
-    DateTime? laidAt,
-    BirdId? fatherId,
-    BirdId? motherId,
-    String? speciesId,
-    BroodId? broodId,
+  factory Bird.fromEgg({
+    required Egg egg,
   }) {
-    final now = DateTime.now();
     return Bird.create().copyWith(
-      created: now,
-      updated: now,
-      ringNumber: ringNumber,
-      speciesId: speciesId,
-      fatherId: fatherId,
-      motherId: motherId,
-      broodId: broodId,
-      laidAt: laidAt,
+      ringNumber: egg.ringnumber,
+      cageId: egg.cageId,
+      speciesId: egg.speciesId,
+      colorId: egg.colorId,
+      broodId: egg.broodId,
+      laidAt: egg.laidAt,
+      hatchedAt: egg.hatchedAt,
+      bornAt: egg.hatchedAt,
+      notes: egg.notes,
+      fledgedAt: egg.fledgedAt,
     );
   }
 

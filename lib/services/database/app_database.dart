@@ -86,6 +86,7 @@ class Eggs extends Table {
   IntColumn get number => integer()();
   DateTimeColumn get laidAt => dateTime()();
   DateTimeColumn get hatchedAt => dateTime().nullable()();
+  DateTimeColumn get fertilizedAt => dateTime().nullable()();
   DateTimeColumn get fledgedAt => dateTime().nullable()();
   TextColumn get status => text().withDefault(const Constant('laid'))();
   TextColumn get ringnumber => text().nullable()();

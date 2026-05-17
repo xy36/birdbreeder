@@ -2342,6 +2342,12 @@ class $EggsTable extends Eggs with TableInfo<$EggsTable, Egg> {
   late final GeneratedColumn<DateTime> hatchedAt = GeneratedColumn<DateTime>(
       'hatched_at', aliasedName, true,
       type: DriftSqlType.dateTime, requiredDuringInsert: false);
+  static const VerificationMeta _fertilizedAtMeta =
+      const VerificationMeta('fertilizedAt');
+  @override
+  late final GeneratedColumn<DateTime> fertilizedAt = GeneratedColumn<DateTime>(
+      'fertilized_at', aliasedName, true,
+      type: DriftSqlType.dateTime, requiredDuringInsert: false);
   static const VerificationMeta _fledgedAtMeta =
       const VerificationMeta('fledgedAt');
   @override
@@ -2406,6 +2412,7 @@ class $EggsTable extends Eggs with TableInfo<$EggsTable, Egg> {
         number,
         laidAt,
         hatchedAt,
+        fertilizedAt,
         fledgedAt,
         status,
         ringnumber,
@@ -2453,6 +2460,12 @@ class $EggsTable extends Eggs with TableInfo<$EggsTable, Egg> {
     if (data.containsKey('hatched_at')) {
       context.handle(_hatchedAtMeta,
           hatchedAt.isAcceptableOrUnknown(data['hatched_at']!, _hatchedAtMeta));
+    }
+    if (data.containsKey('fertilized_at')) {
+      context.handle(
+          _fertilizedAtMeta,
+          fertilizedAt.isAcceptableOrUnknown(
+              data['fertilized_at']!, _fertilizedAtMeta));
     }
     if (data.containsKey('fledged_at')) {
       context.handle(_fledgedAtMeta,
@@ -2515,6 +2528,8 @@ class $EggsTable extends Eggs with TableInfo<$EggsTable, Egg> {
           .read(DriftSqlType.dateTime, data['${effectivePrefix}laid_at'])!,
       hatchedAt: attachedDatabase.typeMapping
           .read(DriftSqlType.dateTime, data['${effectivePrefix}hatched_at']),
+      fertilizedAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}fertilized_at']),
       fledgedAt: attachedDatabase.typeMapping
           .read(DriftSqlType.dateTime, data['${effectivePrefix}fledged_at']),
       status: attachedDatabase.typeMapping
@@ -2550,6 +2565,7 @@ class Egg extends DataClass implements Insertable<Egg> {
   final int number;
   final DateTime laidAt;
   final DateTime? hatchedAt;
+  final DateTime? fertilizedAt;
   final DateTime? fledgedAt;
   final String status;
   final String? ringnumber;
@@ -2566,6 +2582,7 @@ class Egg extends DataClass implements Insertable<Egg> {
       required this.number,
       required this.laidAt,
       this.hatchedAt,
+      this.fertilizedAt,
       this.fledgedAt,
       required this.status,
       this.ringnumber,
@@ -2585,6 +2602,9 @@ class Egg extends DataClass implements Insertable<Egg> {
     map['laid_at'] = Variable<DateTime>(laidAt);
     if (!nullToAbsent || hatchedAt != null) {
       map['hatched_at'] = Variable<DateTime>(hatchedAt);
+    }
+    if (!nullToAbsent || fertilizedAt != null) {
+      map['fertilized_at'] = Variable<DateTime>(fertilizedAt);
     }
     if (!nullToAbsent || fledgedAt != null) {
       map['fledged_at'] = Variable<DateTime>(fledgedAt);
@@ -2626,6 +2646,9 @@ class Egg extends DataClass implements Insertable<Egg> {
       hatchedAt: hatchedAt == null && nullToAbsent
           ? const Value.absent()
           : Value(hatchedAt),
+      fertilizedAt: fertilizedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(fertilizedAt),
       fledgedAt: fledgedAt == null && nullToAbsent
           ? const Value.absent()
           : Value(fledgedAt),
@@ -2661,6 +2684,7 @@ class Egg extends DataClass implements Insertable<Egg> {
       number: serializer.fromJson<int>(json['number']),
       laidAt: serializer.fromJson<DateTime>(json['laidAt']),
       hatchedAt: serializer.fromJson<DateTime?>(json['hatchedAt']),
+      fertilizedAt: serializer.fromJson<DateTime?>(json['fertilizedAt']),
       fledgedAt: serializer.fromJson<DateTime?>(json['fledgedAt']),
       status: serializer.fromJson<String>(json['status']),
       ringnumber: serializer.fromJson<String?>(json['ringnumber']),
@@ -2682,6 +2706,7 @@ class Egg extends DataClass implements Insertable<Egg> {
       'number': serializer.toJson<int>(number),
       'laidAt': serializer.toJson<DateTime>(laidAt),
       'hatchedAt': serializer.toJson<DateTime?>(hatchedAt),
+      'fertilizedAt': serializer.toJson<DateTime?>(fertilizedAt),
       'fledgedAt': serializer.toJson<DateTime?>(fledgedAt),
       'status': serializer.toJson<String>(status),
       'ringnumber': serializer.toJson<String?>(ringnumber),
@@ -2701,6 +2726,7 @@ class Egg extends DataClass implements Insertable<Egg> {
           int? number,
           DateTime? laidAt,
           Value<DateTime?> hatchedAt = const Value.absent(),
+          Value<DateTime?> fertilizedAt = const Value.absent(),
           Value<DateTime?> fledgedAt = const Value.absent(),
           String? status,
           Value<String?> ringnumber = const Value.absent(),
@@ -2717,6 +2743,8 @@ class Egg extends DataClass implements Insertable<Egg> {
         number: number ?? this.number,
         laidAt: laidAt ?? this.laidAt,
         hatchedAt: hatchedAt.present ? hatchedAt.value : this.hatchedAt,
+        fertilizedAt:
+            fertilizedAt.present ? fertilizedAt.value : this.fertilizedAt,
         fledgedAt: fledgedAt.present ? fledgedAt.value : this.fledgedAt,
         status: status ?? this.status,
         ringnumber: ringnumber.present ? ringnumber.value : this.ringnumber,
@@ -2735,6 +2763,9 @@ class Egg extends DataClass implements Insertable<Egg> {
       number: data.number.present ? data.number.value : this.number,
       laidAt: data.laidAt.present ? data.laidAt.value : this.laidAt,
       hatchedAt: data.hatchedAt.present ? data.hatchedAt.value : this.hatchedAt,
+      fertilizedAt: data.fertilizedAt.present
+          ? data.fertilizedAt.value
+          : this.fertilizedAt,
       fledgedAt: data.fledgedAt.present ? data.fledgedAt.value : this.fledgedAt,
       status: data.status.present ? data.status.value : this.status,
       ringnumber:
@@ -2757,6 +2788,7 @@ class Egg extends DataClass implements Insertable<Egg> {
           ..write('number: $number, ')
           ..write('laidAt: $laidAt, ')
           ..write('hatchedAt: $hatchedAt, ')
+          ..write('fertilizedAt: $fertilizedAt, ')
           ..write('fledgedAt: $fledgedAt, ')
           ..write('status: $status, ')
           ..write('ringnumber: $ringnumber, ')
@@ -2778,6 +2810,7 @@ class Egg extends DataClass implements Insertable<Egg> {
       number,
       laidAt,
       hatchedAt,
+      fertilizedAt,
       fledgedAt,
       status,
       ringnumber,
@@ -2797,6 +2830,7 @@ class Egg extends DataClass implements Insertable<Egg> {
           other.number == this.number &&
           other.laidAt == this.laidAt &&
           other.hatchedAt == this.hatchedAt &&
+          other.fertilizedAt == this.fertilizedAt &&
           other.fledgedAt == this.fledgedAt &&
           other.status == this.status &&
           other.ringnumber == this.ringnumber &&
@@ -2815,6 +2849,7 @@ class EggsCompanion extends UpdateCompanion<Egg> {
   final Value<int> number;
   final Value<DateTime> laidAt;
   final Value<DateTime?> hatchedAt;
+  final Value<DateTime?> fertilizedAt;
   final Value<DateTime?> fledgedAt;
   final Value<String> status;
   final Value<String?> ringnumber;
@@ -2832,6 +2867,7 @@ class EggsCompanion extends UpdateCompanion<Egg> {
     this.number = const Value.absent(),
     this.laidAt = const Value.absent(),
     this.hatchedAt = const Value.absent(),
+    this.fertilizedAt = const Value.absent(),
     this.fledgedAt = const Value.absent(),
     this.status = const Value.absent(),
     this.ringnumber = const Value.absent(),
@@ -2850,6 +2886,7 @@ class EggsCompanion extends UpdateCompanion<Egg> {
     required int number,
     required DateTime laidAt,
     this.hatchedAt = const Value.absent(),
+    this.fertilizedAt = const Value.absent(),
     this.fledgedAt = const Value.absent(),
     this.status = const Value.absent(),
     this.ringnumber = const Value.absent(),
@@ -2871,6 +2908,7 @@ class EggsCompanion extends UpdateCompanion<Egg> {
     Expression<int>? number,
     Expression<DateTime>? laidAt,
     Expression<DateTime>? hatchedAt,
+    Expression<DateTime>? fertilizedAt,
     Expression<DateTime>? fledgedAt,
     Expression<String>? status,
     Expression<String>? ringnumber,
@@ -2889,6 +2927,7 @@ class EggsCompanion extends UpdateCompanion<Egg> {
       if (number != null) 'number': number,
       if (laidAt != null) 'laid_at': laidAt,
       if (hatchedAt != null) 'hatched_at': hatchedAt,
+      if (fertilizedAt != null) 'fertilized_at': fertilizedAt,
       if (fledgedAt != null) 'fledged_at': fledgedAt,
       if (status != null) 'status': status,
       if (ringnumber != null) 'ringnumber': ringnumber,
@@ -2909,6 +2948,7 @@ class EggsCompanion extends UpdateCompanion<Egg> {
       Value<int>? number,
       Value<DateTime>? laidAt,
       Value<DateTime?>? hatchedAt,
+      Value<DateTime?>? fertilizedAt,
       Value<DateTime?>? fledgedAt,
       Value<String>? status,
       Value<String?>? ringnumber,
@@ -2926,6 +2966,7 @@ class EggsCompanion extends UpdateCompanion<Egg> {
       number: number ?? this.number,
       laidAt: laidAt ?? this.laidAt,
       hatchedAt: hatchedAt ?? this.hatchedAt,
+      fertilizedAt: fertilizedAt ?? this.fertilizedAt,
       fledgedAt: fledgedAt ?? this.fledgedAt,
       status: status ?? this.status,
       ringnumber: ringnumber ?? this.ringnumber,
@@ -2957,6 +2998,9 @@ class EggsCompanion extends UpdateCompanion<Egg> {
     }
     if (hatchedAt.present) {
       map['hatched_at'] = Variable<DateTime>(hatchedAt.value);
+    }
+    if (fertilizedAt.present) {
+      map['fertilized_at'] = Variable<DateTime>(fertilizedAt.value);
     }
     if (fledgedAt.present) {
       map['fledged_at'] = Variable<DateTime>(fledgedAt.value);
@@ -3002,6 +3046,7 @@ class EggsCompanion extends UpdateCompanion<Egg> {
           ..write('number: $number, ')
           ..write('laidAt: $laidAt, ')
           ..write('hatchedAt: $hatchedAt, ')
+          ..write('fertilizedAt: $fertilizedAt, ')
           ..write('fledgedAt: $fledgedAt, ')
           ..write('status: $status, ')
           ..write('ringnumber: $ringnumber, ')
@@ -6744,6 +6789,7 @@ typedef $$EggsTableCreateCompanionBuilder = EggsCompanion Function({
   required int number,
   required DateTime laidAt,
   Value<DateTime?> hatchedAt,
+  Value<DateTime?> fertilizedAt,
   Value<DateTime?> fledgedAt,
   Value<String> status,
   Value<String?> ringnumber,
@@ -6762,6 +6808,7 @@ typedef $$EggsTableUpdateCompanionBuilder = EggsCompanion Function({
   Value<int> number,
   Value<DateTime> laidAt,
   Value<DateTime?> hatchedAt,
+  Value<DateTime?> fertilizedAt,
   Value<DateTime?> fledgedAt,
   Value<String> status,
   Value<String?> ringnumber,
@@ -6797,6 +6844,9 @@ class $$EggsTableFilterComposer extends Composer<_$AppDatabase, $EggsTable> {
 
   ColumnFilters<DateTime> get hatchedAt => $composableBuilder(
       column: $table.hatchedAt, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get fertilizedAt => $composableBuilder(
+      column: $table.fertilizedAt, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<DateTime> get fledgedAt => $composableBuilder(
       column: $table.fledgedAt, builder: (column) => ColumnFilters(column));
@@ -6852,6 +6902,10 @@ class $$EggsTableOrderingComposer extends Composer<_$AppDatabase, $EggsTable> {
   ColumnOrderings<DateTime> get hatchedAt => $composableBuilder(
       column: $table.hatchedAt, builder: (column) => ColumnOrderings(column));
 
+  ColumnOrderings<DateTime> get fertilizedAt => $composableBuilder(
+      column: $table.fertilizedAt,
+      builder: (column) => ColumnOrderings(column));
+
   ColumnOrderings<DateTime> get fledgedAt => $composableBuilder(
       column: $table.fledgedAt, builder: (column) => ColumnOrderings(column));
 
@@ -6906,6 +6960,9 @@ class $$EggsTableAnnotationComposer
 
   GeneratedColumn<DateTime> get hatchedAt =>
       $composableBuilder(column: $table.hatchedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get fertilizedAt => $composableBuilder(
+      column: $table.fertilizedAt, builder: (column) => column);
 
   GeneratedColumn<DateTime> get fledgedAt =>
       $composableBuilder(column: $table.fledgedAt, builder: (column) => column);
@@ -6966,6 +7023,7 @@ class $$EggsTableTableManager extends RootTableManager<
             Value<int> number = const Value.absent(),
             Value<DateTime> laidAt = const Value.absent(),
             Value<DateTime?> hatchedAt = const Value.absent(),
+            Value<DateTime?> fertilizedAt = const Value.absent(),
             Value<DateTime?> fledgedAt = const Value.absent(),
             Value<String> status = const Value.absent(),
             Value<String?> ringnumber = const Value.absent(),
@@ -6984,6 +7042,7 @@ class $$EggsTableTableManager extends RootTableManager<
             number: number,
             laidAt: laidAt,
             hatchedAt: hatchedAt,
+            fertilizedAt: fertilizedAt,
             fledgedAt: fledgedAt,
             status: status,
             ringnumber: ringnumber,
@@ -7002,6 +7061,7 @@ class $$EggsTableTableManager extends RootTableManager<
             required int number,
             required DateTime laidAt,
             Value<DateTime?> hatchedAt = const Value.absent(),
+            Value<DateTime?> fertilizedAt = const Value.absent(),
             Value<DateTime?> fledgedAt = const Value.absent(),
             Value<String> status = const Value.absent(),
             Value<String?> ringnumber = const Value.absent(),
@@ -7020,6 +7080,7 @@ class $$EggsTableTableManager extends RootTableManager<
             number: number,
             laidAt: laidAt,
             hatchedAt: hatchedAt,
+            fertilizedAt: fertilizedAt,
             fledgedAt: fledgedAt,
             status: status,
             ringnumber: ringnumber,

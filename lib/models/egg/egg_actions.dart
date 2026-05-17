@@ -156,13 +156,14 @@ class _EggActionHelper {
 
   static Future<void> onMarkUnfertilized(BuildContext context, Egg egg) async {
     await context.read<BirdBreederCubit>().updateEgg(
-          egg.copyWith(status: EggStatus.unfertilized),
+          egg.copyWith(status: EggStatus.unfertilized, fertilizedAt: null),
         );
   }
 
   static Future<void> onMarkFertilized(BuildContext context, Egg egg) async {
     await context.read<BirdBreederCubit>().updateEgg(
-          egg.copyWith(status: EggStatus.fertilized),
+          egg.copyWith(
+              status: EggStatus.fertilized, fertilizedAt: DateTime.now()),
         );
   }
 

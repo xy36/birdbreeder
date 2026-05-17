@@ -189,50 +189,6 @@ class BreedingPairsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [BroodPage]
-class BroodRoute extends PageRouteInfo<BroodRouteArgs> {
-  BroodRoute({required String broodId, Key? key, List<PageRouteInfo>? children})
-      : super(
-          BroodRoute.name,
-          args: BroodRouteArgs(broodId: broodId, key: key),
-          initialChildren: children,
-        );
-
-  static const String name = 'BroodRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<BroodRouteArgs>();
-      return BroodPage(broodId: args.broodId, key: args.key);
-    },
-  );
-}
-
-class BroodRouteArgs {
-  const BroodRouteArgs({required this.broodId, this.key});
-
-  final String broodId;
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'BroodRouteArgs{broodId: $broodId, key: $key}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! BroodRouteArgs) return false;
-    return broodId == other.broodId && key == other.key;
-  }
-
-  @override
-  int get hashCode => broodId.hashCode ^ key.hashCode;
-}
-
-/// generated route for
 /// [CagesTab]
 class CagesTabRoute extends PageRouteInfo<void> {
   const CagesTabRoute({List<PageRouteInfo>? children})
