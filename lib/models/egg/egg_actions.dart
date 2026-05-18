@@ -1,8 +1,10 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/egg_extension.dart';
+import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/egg/entity/egg.dart';
 import 'package:birdbreeder/models/item_action.dart';
 import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
+import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 
@@ -144,12 +146,42 @@ class _EggActionHelper {
     ).then(
       (v) async {
         if (v == null) return null;
-        return cubit.updateEgg(
+        // final brood = egg.broodResolved;
+
+        // final cage = brood?.cage;
+
+        await cubit
+            .updateEgg(
           egg.copyWith(
             fledgedAt: v,
             status: EggStatus.fledged,
           ),
-        );
+        )
+            .then((updatedEgg) async {
+          if (updatedEgg == null) {
+            if (!context.mounted) return;
+
+            s1.get<SnackbarService>().showError(
+                  context.tr.error.message,
+                );
+          } else {
+            await cubit
+                .addBird(
+              Bird.fromEgg(egg: updatedEgg),
+            )
+                .then(
+              (result) {
+                if (result == null) {
+                  if (!context.mounted) return null;
+                  s1.get<SnackbarService>().showError(
+                        context.tr.error.message,
+                      );
+                }
+                return result;
+              },
+            );
+          }
+        });
       },
     );
   }
@@ -163,7 +195,9 @@ class _EggActionHelper {
   static Future<void> onMarkFertilized(BuildContext context, Egg egg) async {
     await context.read<BirdBreederCubit>().updateEgg(
           egg.copyWith(
-              status: EggStatus.fertilized, fertilizedAt: DateTime.now()),
+            status: EggStatus.fertilized,
+            fertilizedAt: DateTime.now(),
+          ),
         );
   }
 

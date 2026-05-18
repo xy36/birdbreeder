@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/core/extensions/breeding_pairs_extension.dart';
+import 'package:birdbreeder/core/extensions/brood_extension.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/birds_overview_screen.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_filter_cubit.dart';
 import 'package:birdbreeder/features/breedings/breeding_pair_details/broods_tab/egg_tile.dart';
@@ -145,6 +147,9 @@ Future<void> onOpenBrood(BuildContext context, Brood brood) async {
 
                             if (!context.mounted || laidDate == null) return;
 
+                            final species =
+                                brood.breedingPairResolved?.speciesResolved;
+
                             await context.read<BirdBreederCubit>().addEgg(
                                   Egg.create(
                                     broodId: brood.id,
@@ -156,6 +161,9 @@ Future<void> onOpenBrood(BuildContext context, Brood brood) async {
                                             .length +
                                         1,
                                     laidAt: laidDate,
+                                  ).copyWith(
+                                    cageId: brood.cage,
+                                    speciesId: species?.id,
                                   ),
                                 );
                           },

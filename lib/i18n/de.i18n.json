@@ -629,7 +629,7 @@
         "set_color": "Farbe setzen",
         "mark_hatched": "Als geschlüpft markieren",
         "mark_fledged": "Als ausgeflogen markieren",
-        "mark_died": "Als gestorben im Ei markieren",
+        "mark_died": "Als gestorben markieren",
         "mark_unfertilized": "Als unbefruchtet markieren",
         "mark_fertilized": "Als befruchtet markieren",
         "duplicate": "Duplizieren",

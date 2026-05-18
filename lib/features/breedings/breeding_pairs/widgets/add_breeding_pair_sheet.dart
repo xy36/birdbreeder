@@ -110,7 +110,9 @@ class _AddBreedingPairSheetState extends State<AddBreedingPairSheet> {
       builder: (context, scrollController) => Column(
         children: [
           BottomSheetHeader(
-            title: context.tr.breeding_pairs.add,
+            title: widget.breedingPair == null
+                ? context.tr.breeding_pairs.add
+                : context.tr.breeding_pairs.edit,
           ),
           Expanded(
             child: Form(

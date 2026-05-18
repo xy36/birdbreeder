@@ -859,8 +859,8 @@ class TranslationsPopUpMenuDe {
   /// de: 'Als ausgeflogen markieren'
   String get mark_fledged => 'Als ausgeflogen markieren';
 
-  /// de: 'Als gestorben im Ei markieren'
-  String get mark_died => 'Als gestorben im Ei markieren';
+  /// de: 'Als gestorben markieren'
+  String get mark_died => 'Als gestorben markieren';
 
   /// de: 'Als unbefruchtet markieren'
   String get mark_unfertilized => 'Als unbefruchtet markieren';

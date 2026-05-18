@@ -18,9 +18,11 @@ extension FinancesExtension on Finance {
   BirdBreederResources Function() get _birdBreederResources =>
       () => s1.get<BirdBreederCubit>().state.birdBreederResources;
 
+  /// Returns the bird resolved from the state
   FinanceCategory? get categoryResolved =>
       _birdBreederResources().financesCategories.findById(categoryId);
 
+  /// Returns the bird resolved from the state
   Bird? get birdResolved =>
       birdId != null ? _birdBreederResources().birds.findById(birdId!) : null;
 }

@@ -1,9 +1,11 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/bird_color_extension.dart';
+import 'package:birdbreeder/core/extensions/brood_extension.dart';
 import 'package:birdbreeder/core/extensions/cage_extension.dart';
 import 'package:birdbreeder/core/extensions/species_extension.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/bird_breeder_resources.dart';
+import 'package:birdbreeder/models/breeding/entity/brood.dart';
 import 'package:birdbreeder/models/egg/entity/egg.dart';
 import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';
@@ -41,21 +43,25 @@ extension EggExtension on Egg {
   List<Bird> get _birds =>
       s1.get<BirdBreederCubit>().state.birdBreederResources.birds;
 
-  /// Returns the latest brood resolved by start date
-  Bird? get birdResolved => _birds.firstOrNullWhere(
-        (e) => e.broodId == id,
-      );
+  /// Returns the bird resolved from the state
+  Bird? get birdResolved => _birds.firstOrNullWhere((b) => b.id == birdId);
 
+  /// Returns the species resolved from the state
   Cage? get cageResolved =>
       cageId == null ? null : _birdBreederResources().cages.findById(cageId!);
 
+  /// Returns the species resolved from the state
   BirdColor? get colorResolved => colorId == null
       ? null
       : _birdBreederResources().colors.findById(colorId!);
 
+  /// Returns the species resolved from the state
   Species? get speciesResolved => speciesId == null
       ? null
       : _birdBreederResources().species.findById(speciesId!);
+
+  /// Returns the brood resolved from the state
+  Brood? get broodResolved => _birdBreederResources().broods.findById(broodId);
 
   bool get isFertilized => status == EggStatus.fertilized;
   bool get isUnfertilized => status == EggStatus.unfertilized;

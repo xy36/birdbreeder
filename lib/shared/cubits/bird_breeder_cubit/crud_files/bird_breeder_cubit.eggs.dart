@@ -51,6 +51,29 @@ extension BirdBreederCubitEggsX on BirdBreederCubit {
     return updated;
   }
 
+  // Future<Egg?> createBirdFromEgg(Egg egg) async {
+  //   push(loading());
+
+  //   final Bird bird = Bird.egg(
+  //     name: egg.name,
+  //     colorId: egg.colorId,
+  //   );
+
+  //   final result = await _birdsRepository.create();
+
+  //   push(loaded());
+
+  //   if (result.isError) {
+  //     presentAddFailed();
+  //     return null;
+  //   }
+
+  //   final created = result.asValue!.value;
+  //   context.read<BirdBreederCubit>().addBird(created);
+
+  //   return created;
+  // }
+
   Future<void> deleteEgg(Egg egg) async {
     push(loading());
 

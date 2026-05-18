@@ -2,6 +2,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/cage_extension.dart';
 import 'package:birdbreeder/models/bird_breeder_resources.dart';
 import 'package:birdbreeder/models/breeding/brood_status.dart';
+import 'package:birdbreeder/models/breeding/entity/breeding_pair.dart';
 import 'package:birdbreeder/models/breeding/entity/brood.dart';
 import 'package:birdbreeder/models/egg/entity/egg.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';
@@ -47,6 +48,9 @@ extension BroodExtension on Brood {
   List<Egg> get _eggs =>
       s1.get<BirdBreederCubit>().state.birdBreederResources.eggs;
 
+  List<Cage> get _cages =>
+      s1.get<BirdBreederCubit>().state.birdBreederResources.cages;
+
   /// Returns the latest brood resolved by start date
   List<Egg> get childrenResolved => _eggs
       .where(
@@ -54,8 +58,11 @@ extension BroodExtension on Brood {
       )
       .toList();
 
-  Cage? get cageResolved =>
-      cage == null ? null : _birdBreederResources().cages.findById(cage!);
+  BreedingPair? get breedingPairResolved => _birdBreederResources()
+      .breedingPairs
+      .firstOrNullWhere((e) => e.id == breedingPair);
+
+  Cage? get cageResolved => cage == null ? null : _cages.findById(cage!);
 
   int get laidCount => childrenResolved.length;
 

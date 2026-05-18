@@ -1,5 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/breedings/breeding_pairs/widgets/add_breeding_pair_sheet.dart';
+import 'package:birdbreeder/features/breedings/breeding_pair_details/broods_tab/add_brood_sheet.dart';
 import 'package:birdbreeder/models/breeding/breeding_pair_actions.dart';
 import 'package:birdbreeder/models/breeding/entity/breeding_pair.dart';
 import 'package:birdbreeder/models/breeding/entity/brood.dart';
@@ -70,7 +70,10 @@ enum BroodActions implements ItemAction<Brood> {
       open => onOpenBrood(context, brood),
       edit => await openSheet<void>(
           context,
-          AddBreedingPairSheet(breedingPair: extra),
+          AddBroodSheet(
+            breedingPair: extra,
+            brood: brood,
+          ),
         ),
       delete => {
           if (context.mounted)

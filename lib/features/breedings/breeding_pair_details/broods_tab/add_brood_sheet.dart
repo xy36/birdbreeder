@@ -61,7 +61,11 @@ class _AddBroodSheetState extends State<AddBroodSheet> {
         return ListView(
           controller: scrollController,
           children: [
-            BottomSheetHeader(title: context.tr.brood.add),
+            BottomSheetHeader(
+              title: widget.brood == null
+                  ? context.tr.brood.add
+                  : context.tr.brood.edit,
+            ),
             Padding(
               padding: const EdgeInsets.all(12),
               child: Form(
@@ -131,6 +135,7 @@ class _AddBroodSheetState extends State<AddBroodSheet> {
                             start: _startAt.toUtc(),
                             end: _endAt?.toUtc(),
                             notes: _notesCtrl.text,
+                            cage: widget.breedingPair.cageId,
                           )),
                         );
 

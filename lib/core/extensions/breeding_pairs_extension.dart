@@ -5,6 +5,7 @@ import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/breeding/entity/breeding_pair.dart';
 import 'package:birdbreeder/models/breeding/entity/brood.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';
+import 'package:birdbreeder/models/ressources/entity/species.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 
@@ -38,6 +39,10 @@ extension BreedingPairsExtension on BreedingPair {
 
   /// Returns the mother bird resolved from the state
   Bird? get motherResolved => _birds.findById(motherId);
+
+  /// Returns the species resolved from the state, prioritizing the father's species
+  Species? get speciesResolved =>
+      fatherResolved?.speciesResolved ?? motherResolved?.speciesResolved;
 
   Cage? get cageResolved => cageId != null ? _cages.findById(cageId!) : null;
 
