@@ -802,6 +802,7 @@ class TranslationsMenuDe {
 
   // Translations
   late final TranslationsMenuNameDe name = TranslationsMenuNameDe.internal(_root);
+  late final TranslationsMenuSubtitleDe subtitle = TranslationsMenuSubtitleDe.internal(_root);
 
   /// de: 'Vogel hinzufügen'
   String get add_bird => 'Vogel hinzufügen';
@@ -2021,6 +2022,36 @@ class TranslationsMenuNameDe {
 
   /// de: 'Konto'
   String get account => 'Konto';
+}
+
+// Path: menu.subtitle
+class TranslationsMenuSubtitleDe {
+  TranslationsMenuSubtitleDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Verwalte deine Vögel'
+  String get birds => 'Verwalte deine Vögel';
+
+  /// de: 'Verwalte deine Kontakte'
+  String get contacts => 'Verwalte deine Kontakte';
+
+  /// de: 'Aktive & vergangene Zuchtpaare'
+  String get breedings => 'Aktive & vergangene Zuchtpaare';
+
+  /// de: 'Farben, Arten, Volieren'
+  String get resources => 'Farben, Arten, Volieren';
+
+  /// de: 'Einnahmen & Ausgaben'
+  String get finances => 'Einnahmen & Ausgaben';
+
+  /// de: 'Importiere Daten aus CSV'
+  String get csv_import => 'Importiere Daten aus CSV';
+
+  /// de: 'Dein Konto'
+  String get account => 'Dein Konto';
 }
 
 // Path: dialog.discard_changes

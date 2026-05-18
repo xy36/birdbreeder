@@ -50,6 +50,18 @@ enum MenuPage {
     };
   }
 
+  String getSubtitle(BuildContext context) {
+    return switch (this) {
+      MenuPage.birds => context.tr.menu.subtitle.birds,
+      MenuPage.contacts => context.tr.menu.subtitle.contacts,
+      MenuPage.breedings => context.tr.menu.subtitle.breedings,
+      MenuPage.finances => context.tr.menu.subtitle.finances,
+      MenuPage.resources => context.tr.menu.subtitle.resources,
+      MenuPage.csvImport => context.tr.menu.subtitle.csv_import,
+      MenuPage.account => context.tr.menu.subtitle.account,
+    };
+  }
+
   /// Returns the route name for the page
   PageRouteInfo get routeName {
     return switch (this) {

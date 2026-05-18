@@ -607,6 +607,15 @@
             "csvImport": "CSV Import",
             "account": "Konto"
         },
+        "subtitle": {
+            "birds": "Verwalte deine Vögel",
+            "contacts": "Verwalte deine Kontakte",
+            "breedings": "Aktive & vergangene Zuchtpaare",
+            "resources": "Farben, Arten, Volieren",
+            "finances": "Einnahmen & Ausgaben",
+            "csvImport": "Importiere Daten aus CSV",
+            "account": "Dein Konto"
+        },
         "addBird": "Vogel hinzufügen"
     },
     "error": {
