@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.6.0](https://github.com/xy36/birdbreeder/compare/v1.5.0...v1.6.0) (2026-05-18)
+
+
+### Features
+
+* enhance breeding and egg management with species resolution and UI updates ([7702f71](https://github.com/xy36/birdbreeder/commit/7702f711911ab58c5b3b97ff198f6c2756e18d84))
+* remove BroodPage and BroodCubit, update routing and database schema for egg fertilization ([2f51dbf](https://github.com/xy36/birdbreeder/commit/2f51dbfa73f775232e3592fb6a89107d3a202273))
+* replace GestureDetector with IconButton in moreMenu widget for improved interaction ([ac14c69](https://github.com/xy36/birdbreeder/commit/ac14c697b87787c9100f8991b4748659573d0482))
+
 ## [1.5.0](https://github.com/xy36/birdbreeder/compare/v1.4.0...v1.5.0) (2026-05-15)
 
 
