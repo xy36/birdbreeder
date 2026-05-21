@@ -119,6 +119,10 @@ class AppIcons {
   static const IconData menuCsvImport = Icons.upload_file;
   static const IconData menuAccount = Icons.account_circle;
 
+  static const IconData lightMode = Icons.light_mode;
+  static const IconData darkMode = Icons.dark_mode;
+  static const IconData systemMode = Icons.brightness_auto;
+
   static const IconData snackWarning = Icons.warning;
   static const IconData snackError = Icons.error_outline;
   static const IconData snackInfo = Icons.info_outline;
