@@ -28,6 +28,7 @@ mixin _$ContactDto {
   String? get country;
   String? get postalCode;
   String? get website;
+  bool get isAppUser;
   String? get user;
 
   /// Create a copy of ContactDto
@@ -62,6 +63,8 @@ mixin _$ContactDto {
             (identical(other.postalCode, postalCode) ||
                 other.postalCode == postalCode) &&
             (identical(other.website, website) || other.website == website) &&
+            (identical(other.isAppUser, isAppUser) ||
+                other.isAppUser == isAppUser) &&
             (identical(other.user, user) || other.user == user));
   }
 
@@ -82,11 +85,12 @@ mixin _$ContactDto {
       country,
       postalCode,
       website,
+      isAppUser,
       user);
 
   @override
   String toString() {
-    return 'ContactDto(id: $id, number: $number, phone: $phone, cellPhoneNumber: $cellPhoneNumber, title: $title, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, country: $country, postalCode: $postalCode, website: $website, user: $user)';
+    return 'ContactDto(id: $id, number: $number, phone: $phone, cellPhoneNumber: $cellPhoneNumber, title: $title, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, country: $country, postalCode: $postalCode, website: $website, isAppUser: $isAppUser, user: $user)';
   }
 }
 
@@ -110,6 +114,7 @@ abstract mixin class $ContactDtoCopyWith<$Res> {
       String? country,
       String? postalCode,
       String? website,
+      bool isAppUser,
       String? user});
 }
 
@@ -138,6 +143,7 @@ class _$ContactDtoCopyWithImpl<$Res> implements $ContactDtoCopyWith<$Res> {
     Object? country = freezed,
     Object? postalCode = freezed,
     Object? website = freezed,
+    Object? isAppUser = null,
     Object? user = freezed,
   }) {
     return _then(_self.copyWith(
@@ -193,6 +199,10 @@ class _$ContactDtoCopyWithImpl<$Res> implements $ContactDtoCopyWith<$Res> {
           ? _self.website
           : website // ignore: cast_nullable_to_non_nullable
               as String?,
+      isAppUser: null == isAppUser
+          ? _self.isAppUser
+          : isAppUser // ignore: cast_nullable_to_non_nullable
+              as bool,
       user: freezed == user
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -308,6 +318,7 @@ extension ContactDtoPatterns on ContactDto {
             String? country,
             String? postalCode,
             String? website,
+            bool isAppUser,
             String? user)?
         $default, {
     required TResult orElse(),
@@ -329,6 +340,7 @@ extension ContactDtoPatterns on ContactDto {
             _that.country,
             _that.postalCode,
             _that.website,
+            _that.isAppUser,
             _that.user);
       case _:
         return orElse();
@@ -364,6 +376,7 @@ extension ContactDtoPatterns on ContactDto {
             String? country,
             String? postalCode,
             String? website,
+            bool isAppUser,
             String? user)
         $default,
   ) {
@@ -384,6 +397,7 @@ extension ContactDtoPatterns on ContactDto {
             _that.country,
             _that.postalCode,
             _that.website,
+            _that.isAppUser,
             _that.user);
       case _:
         throw StateError('Unexpected subclass');
@@ -418,6 +432,7 @@ extension ContactDtoPatterns on ContactDto {
             String? country,
             String? postalCode,
             String? website,
+            bool isAppUser,
             String? user)?
         $default,
   ) {
@@ -438,6 +453,7 @@ extension ContactDtoPatterns on ContactDto {
             _that.country,
             _that.postalCode,
             _that.website,
+            _that.isAppUser,
             _that.user);
       case _:
         return null;
@@ -463,6 +479,7 @@ class _ContactDto implements ContactDto {
       this.country,
       this.postalCode,
       this.website,
+      this.isAppUser = false,
       this.user});
   factory _ContactDto.fromJson(Map<String, dynamic> json) =>
       _$ContactDtoFromJson(json);
@@ -494,6 +511,9 @@ class _ContactDto implements ContactDto {
   final String? postalCode;
   @override
   final String? website;
+  @override
+  @JsonKey()
+  final bool isAppUser;
   @override
   final String? user;
 
@@ -534,6 +554,8 @@ class _ContactDto implements ContactDto {
             (identical(other.postalCode, postalCode) ||
                 other.postalCode == postalCode) &&
             (identical(other.website, website) || other.website == website) &&
+            (identical(other.isAppUser, isAppUser) ||
+                other.isAppUser == isAppUser) &&
             (identical(other.user, user) || other.user == user));
   }
 
@@ -554,11 +576,12 @@ class _ContactDto implements ContactDto {
       country,
       postalCode,
       website,
+      isAppUser,
       user);
 
   @override
   String toString() {
-    return 'ContactDto(id: $id, number: $number, phone: $phone, cellPhoneNumber: $cellPhoneNumber, title: $title, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, country: $country, postalCode: $postalCode, website: $website, user: $user)';
+    return 'ContactDto(id: $id, number: $number, phone: $phone, cellPhoneNumber: $cellPhoneNumber, title: $title, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, country: $country, postalCode: $postalCode, website: $website, isAppUser: $isAppUser, user: $user)';
   }
 }
 
@@ -584,6 +607,7 @@ abstract mixin class _$ContactDtoCopyWith<$Res>
       String? country,
       String? postalCode,
       String? website,
+      bool isAppUser,
       String? user});
 }
 
@@ -612,6 +636,7 @@ class __$ContactDtoCopyWithImpl<$Res> implements _$ContactDtoCopyWith<$Res> {
     Object? country = freezed,
     Object? postalCode = freezed,
     Object? website = freezed,
+    Object? isAppUser = null,
     Object? user = freezed,
   }) {
     return _then(_ContactDto(
@@ -667,6 +692,10 @@ class __$ContactDtoCopyWithImpl<$Res> implements _$ContactDtoCopyWith<$Res> {
           ? _self.website
           : website // ignore: cast_nullable_to_non_nullable
               as String?,
+      isAppUser: null == isAppUser
+          ? _self.isAppUser
+          : isAppUser // ignore: cast_nullable_to_non_nullable
+              as bool,
       user: freezed == user
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable

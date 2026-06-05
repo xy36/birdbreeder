@@ -3,8 +3,10 @@ import 'package:birdbreeder/services/local_injection.dart';
 import 'package:birdbreeder/services/logging_service.dart';
 import 'package:birdbreeder/services/remote_injection.dart';
 import 'package:birdbreeder/services/snackbar_service.dart';
+import 'package:birdbreeder/services/species_image_search_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 final GetIt s1 = GetIt.instance;
@@ -21,7 +23,11 @@ Future<void> initializeDependencyInjection(DataMode mode) async {
   s1
     ..registerSingleton(LoggingService())
     ..registerSingleton(SnackbarService())
-    ..registerSingleton<DataMode>(mode);
+    ..registerSingleton<DataMode>(mode)
+    ..registerLazySingleton<http.Client>(http.Client.new)
+    ..registerLazySingleton<SpeciesImageSearchService>(
+      () => SpeciesImageSearchService(s1<http.Client>(), s1<LoggingService>()),
+    );
 
   if (mode == DataMode.remote) {
     registerRemote(prefs);

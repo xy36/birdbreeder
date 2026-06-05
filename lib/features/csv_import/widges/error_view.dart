@@ -1,5 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/i18n/strings.g.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/theme/app_colors.dart';
 
 class ErrorView extends StatelessWidget {
@@ -23,7 +24,7 @@ class ErrorView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
-              Icons.error_outline,
+              AppIcons.errorOutline,
               size: 80,
               color: context.appColors.statusError,
             ),
@@ -44,7 +45,7 @@ class ErrorView extends StatelessWidget {
             const SizedBox(height: 32),
             ElevatedButton.icon(
               onPressed: onRetry,
-              icon: const Icon(Icons.refresh),
+              icon: const Icon(AppIcons.refresh),
               label: Text(t.csv_import.retry),
             ),
           ],

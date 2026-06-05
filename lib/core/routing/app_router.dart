@@ -17,14 +17,20 @@ import 'package:birdbreeder/features/csv_import/csv_import_page.dart';
 import 'package:birdbreeder/features/finances/finances_page.dart';
 import 'package:birdbreeder/features/menu/presentation/menu_page.dart';
 import 'package:birdbreeder/features/mode_selection/mode_selection_page.dart';
-import 'package:birdbreeder/features/ressourcen_center/resources_center_page.dart';
-import 'package:birdbreeder/features/ressourcen_center/widgets/tabs/cages_tab.dart';
-import 'package:birdbreeder/features/ressourcen_center/widgets/tabs/categories_tab.dart';
-import 'package:birdbreeder/features/ressourcen_center/widgets/tabs/colors_tab.dart';
-import 'package:birdbreeder/features/ressourcen_center/widgets/tabs/contacts_tab.dart';
-import 'package:birdbreeder/features/ressourcen_center/widgets/tabs/species_tab.dart';
+import 'package:birdbreeder/features/ressourcen_center/cages/cage_detail_page.dart';
+import 'package:birdbreeder/features/ressourcen_center/cages/cages_page.dart';
+import 'package:birdbreeder/features/ressourcen_center/categories/categories_page.dart';
+import 'package:birdbreeder/features/ressourcen_center/categories/finance_category_detail_page.dart';
+import 'package:birdbreeder/features/ressourcen_center/colors/color_detail_page.dart';
+import 'package:birdbreeder/features/ressourcen_center/colors/colors_page.dart';
+import 'package:birdbreeder/features/ressourcen_center/species/species_detail_page.dart';
+import 'package:birdbreeder/features/ressourcen_center/species/species_page.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/contact/entity/contact.dart';
+import 'package:birdbreeder/models/finance/entity/finance_category.dart';
+import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
+import 'package:birdbreeder/models/ressources/entity/cage.dart';
+import 'package:birdbreeder/models/ressources/entity/species.dart';
 
 part 'app_router.gr.dart';
 
@@ -60,34 +66,40 @@ class AppRouter extends RootStackRouter {
               path: 'birds',
               initial: true,
             ),
-
             AutoRoute(page: BirdRoute.page, path: 'birds/bird'),
             AutoRoute(page: ContactsRoute.page, path: 'contacts'),
             AutoRoute(page: ContactDetailsRoute.page, path: 'contacts/details'),
             AutoRoute(page: BreedingPairsRoute.page, path: 'breedingPairs'),
-
             AutoRoute(
               page: BreedingPairDetailsRoute.page,
               path: 'breedingPairs/details',
             ),
-
             AutoRoute(page: FinancesRoute.page, path: 'finances'),
             AutoRoute(page: AccountRoute.page, path: 'account'),
             AutoRoute(page: BackupListRoute.page, path: 'account/backups'),
             AutoRoute(page: CsvImportRoute.page, path: 'csv-import'),
-
-            // Resources center with nested "tab" routes for deep linking
+            AutoRoute(page: CagesTabRoute.page, path: 'resources/cages'),
+            AutoRoute(page: ColorsTabRoute.page, path: 'resources/colors'),
+            AutoRoute(page: SpeciesTabRoute.page, path: 'resources/species'),
             AutoRoute(
-              path: 'resources',
-              page: ResourcesCenterRoute.page,
-              children: [
-                AutoRoute(path: 'species', page: SpeciesTabRoute.page),
-                AutoRoute(path: 'cages', page: CagesTabRoute.page),
-                AutoRoute(path: 'categories', page: CategoriesTabRoute.page),
-                AutoRoute(path: 'colors', page: ColorsTabRoute.page),
-                AutoRoute(path: 'contacts', page: ContactsTabRoute.page),
-                RedirectRoute(path: '', redirectTo: 'species'),
-              ],
+              page: CategoriesTabRoute.page,
+              path: 'resources/categories',
+            ),
+            AutoRoute(
+              page: CageDetailRoute.page,
+              path: 'resources/cages/detail',
+            ),
+            AutoRoute(
+              page: ColorDetailRoute.page,
+              path: 'resources/colors/detail',
+            ),
+            AutoRoute(
+              page: SpeciesDetailRoute.page,
+              path: 'resources/species/detail',
+            ),
+            AutoRoute(
+              page: CategoryDetailRoute.page,
+              path: 'resources/categories/detail',
             ),
           ],
         ),

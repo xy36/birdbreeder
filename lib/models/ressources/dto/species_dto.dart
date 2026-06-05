@@ -9,6 +9,10 @@ abstract class SpeciesDto with _$SpeciesDto {
     required String id,
     String? name,
     String? latName,
+    String? imageUrl,
+    int? incubationDays,
+    int? fledgeDays,
+    String? notes,
     String? user,
   }) = _SpeciesDto;
 

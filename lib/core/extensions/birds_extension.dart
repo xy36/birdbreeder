@@ -116,9 +116,23 @@ extension BirdsExtension on Bird {
     // einfache Equality – bei Collections ggf. DeepCollectionEquality nutzen
     return a != b;
   }
+
+  // getter for birds that are alive and owned by me
+  bool get isOwnAndAlive {
+    // only true if owner is me and bird is not sold and not deceased
+    if (!(ownerResolved?.isAppUser ?? false)) return false;
+    final isAlive = diedAt == null;
+    final isSold = soldToId != null || soldAt != null;
+    return !isSold && isAlive;
+  }
 }
 
 extension BirdsListExtension on List<Bird> {
+  // filter for birds that are alive and owned by me
+  List<Bird> get relevantBirds {
+    return where((b) => b.isOwnAndAlive).toList();
+  }
+
   List<Bird> filter(String filter) {
     return where((element) => element.filter(filter)).toList();
   }

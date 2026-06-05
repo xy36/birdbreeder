@@ -296,6 +296,9 @@ class $BirdColorMapper implements _i1.AutoMapprInterface {
     return _i3.BirdColorDto(
       id: model.id,
       name: model.name,
+      hex: model.hex,
+      inheritance: model.inheritance,
+      notes: model.notes,
     );
   }
 
@@ -310,6 +313,9 @@ class $BirdColorMapper implements _i1.AutoMapprInterface {
     return _i2.BirdColor(
       id: model.id,
       name: model.name,
+      hex: model.hex,
+      inheritance: model.inheritance,
+      notes: model.notes,
     );
   }
 }

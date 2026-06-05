@@ -3140,6 +3140,16 @@ class $ContactsTable extends Contacts with TableInfo<$ContactsTable, Contact> {
   late final GeneratedColumn<String> website = GeneratedColumn<String>(
       'website', aliasedName, true,
       type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _isAppUserMeta =
+      const VerificationMeta('isAppUser');
+  @override
+  late final GeneratedColumn<bool> isAppUser = GeneratedColumn<bool>(
+      'is_app_user', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('CHECK ("is_app_user" IN (0, 1))'),
+      defaultValue: const Constant(false));
   static const VerificationMeta _userMeta = const VerificationMeta('user');
   @override
   late final GeneratedColumn<String> user = GeneratedColumn<String>(
@@ -3172,6 +3182,7 @@ class $ContactsTable extends Contacts with TableInfo<$ContactsTable, Contact> {
         country,
         postalCode,
         website,
+        isAppUser,
         user,
         created,
         updated
@@ -3243,6 +3254,12 @@ class $ContactsTable extends Contacts with TableInfo<$ContactsTable, Contact> {
       context.handle(_websiteMeta,
           website.isAcceptableOrUnknown(data['website']!, _websiteMeta));
     }
+    if (data.containsKey('is_app_user')) {
+      context.handle(
+          _isAppUserMeta,
+          isAppUser.isAcceptableOrUnknown(
+              data['is_app_user']!, _isAppUserMeta));
+    }
     if (data.containsKey('user')) {
       context.handle(
           _userMeta, user.isAcceptableOrUnknown(data['user']!, _userMeta));
@@ -3290,6 +3307,8 @@ class $ContactsTable extends Contacts with TableInfo<$ContactsTable, Contact> {
           .read(DriftSqlType.string, data['${effectivePrefix}postal_code']),
       website: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}website']),
+      isAppUser: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}is_app_user'])!,
       user: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}user']),
       created: attachedDatabase.typeMapping
@@ -3319,6 +3338,7 @@ class Contact extends DataClass implements Insertable<Contact> {
   final String? country;
   final String? postalCode;
   final String? website;
+  final bool isAppUser;
   final String? user;
   final DateTime? created;
   final DateTime? updated;
@@ -3336,6 +3356,7 @@ class Contact extends DataClass implements Insertable<Contact> {
       this.country,
       this.postalCode,
       this.website,
+      required this.isAppUser,
       this.user,
       this.created,
       this.updated});
@@ -3379,6 +3400,7 @@ class Contact extends DataClass implements Insertable<Contact> {
     if (!nullToAbsent || website != null) {
       map['website'] = Variable<String>(website);
     }
+    map['is_app_user'] = Variable<bool>(isAppUser);
     if (!nullToAbsent || user != null) {
       map['user'] = Variable<String>(user);
     }
@@ -3424,6 +3446,7 @@ class Contact extends DataClass implements Insertable<Contact> {
       website: website == null && nullToAbsent
           ? const Value.absent()
           : Value(website),
+      isAppUser: Value(isAppUser),
       user: user == null && nullToAbsent ? const Value.absent() : Value(user),
       created: created == null && nullToAbsent
           ? const Value.absent()
@@ -3451,6 +3474,7 @@ class Contact extends DataClass implements Insertable<Contact> {
       country: serializer.fromJson<String?>(json['country']),
       postalCode: serializer.fromJson<String?>(json['postalCode']),
       website: serializer.fromJson<String?>(json['website']),
+      isAppUser: serializer.fromJson<bool>(json['isAppUser']),
       user: serializer.fromJson<String?>(json['user']),
       created: serializer.fromJson<DateTime?>(json['created']),
       updated: serializer.fromJson<DateTime?>(json['updated']),
@@ -3473,6 +3497,7 @@ class Contact extends DataClass implements Insertable<Contact> {
       'country': serializer.toJson<String?>(country),
       'postalCode': serializer.toJson<String?>(postalCode),
       'website': serializer.toJson<String?>(website),
+      'isAppUser': serializer.toJson<bool>(isAppUser),
       'user': serializer.toJson<String?>(user),
       'created': serializer.toJson<DateTime?>(created),
       'updated': serializer.toJson<DateTime?>(updated),
@@ -3493,6 +3518,7 @@ class Contact extends DataClass implements Insertable<Contact> {
           Value<String?> country = const Value.absent(),
           Value<String?> postalCode = const Value.absent(),
           Value<String?> website = const Value.absent(),
+          bool? isAppUser,
           Value<String?> user = const Value.absent(),
           Value<DateTime?> created = const Value.absent(),
           Value<DateTime?> updated = const Value.absent()}) =>
@@ -3512,6 +3538,7 @@ class Contact extends DataClass implements Insertable<Contact> {
         country: country.present ? country.value : this.country,
         postalCode: postalCode.present ? postalCode.value : this.postalCode,
         website: website.present ? website.value : this.website,
+        isAppUser: isAppUser ?? this.isAppUser,
         user: user.present ? user.value : this.user,
         created: created.present ? created.value : this.created,
         updated: updated.present ? updated.value : this.updated,
@@ -3534,6 +3561,7 @@ class Contact extends DataClass implements Insertable<Contact> {
       postalCode:
           data.postalCode.present ? data.postalCode.value : this.postalCode,
       website: data.website.present ? data.website.value : this.website,
+      isAppUser: data.isAppUser.present ? data.isAppUser.value : this.isAppUser,
       user: data.user.present ? data.user.value : this.user,
       created: data.created.present ? data.created.value : this.created,
       updated: data.updated.present ? data.updated.value : this.updated,
@@ -3556,6 +3584,7 @@ class Contact extends DataClass implements Insertable<Contact> {
           ..write('country: $country, ')
           ..write('postalCode: $postalCode, ')
           ..write('website: $website, ')
+          ..write('isAppUser: $isAppUser, ')
           ..write('user: $user, ')
           ..write('created: $created, ')
           ..write('updated: $updated')
@@ -3578,6 +3607,7 @@ class Contact extends DataClass implements Insertable<Contact> {
       country,
       postalCode,
       website,
+      isAppUser,
       user,
       created,
       updated);
@@ -3598,6 +3628,7 @@ class Contact extends DataClass implements Insertable<Contact> {
           other.country == this.country &&
           other.postalCode == this.postalCode &&
           other.website == this.website &&
+          other.isAppUser == this.isAppUser &&
           other.user == this.user &&
           other.created == this.created &&
           other.updated == this.updated);
@@ -3617,6 +3648,7 @@ class ContactsCompanion extends UpdateCompanion<Contact> {
   final Value<String?> country;
   final Value<String?> postalCode;
   final Value<String?> website;
+  final Value<bool> isAppUser;
   final Value<String?> user;
   final Value<DateTime?> created;
   final Value<DateTime?> updated;
@@ -3635,6 +3667,7 @@ class ContactsCompanion extends UpdateCompanion<Contact> {
     this.country = const Value.absent(),
     this.postalCode = const Value.absent(),
     this.website = const Value.absent(),
+    this.isAppUser = const Value.absent(),
     this.user = const Value.absent(),
     this.created = const Value.absent(),
     this.updated = const Value.absent(),
@@ -3654,6 +3687,7 @@ class ContactsCompanion extends UpdateCompanion<Contact> {
     this.country = const Value.absent(),
     this.postalCode = const Value.absent(),
     this.website = const Value.absent(),
+    this.isAppUser = const Value.absent(),
     this.user = const Value.absent(),
     this.created = const Value.absent(),
     this.updated = const Value.absent(),
@@ -3673,6 +3707,7 @@ class ContactsCompanion extends UpdateCompanion<Contact> {
     Expression<String>? country,
     Expression<String>? postalCode,
     Expression<String>? website,
+    Expression<bool>? isAppUser,
     Expression<String>? user,
     Expression<DateTime>? created,
     Expression<DateTime>? updated,
@@ -3692,6 +3727,7 @@ class ContactsCompanion extends UpdateCompanion<Contact> {
       if (country != null) 'country': country,
       if (postalCode != null) 'postal_code': postalCode,
       if (website != null) 'website': website,
+      if (isAppUser != null) 'is_app_user': isAppUser,
       if (user != null) 'user': user,
       if (created != null) 'created': created,
       if (updated != null) 'updated': updated,
@@ -3713,6 +3749,7 @@ class ContactsCompanion extends UpdateCompanion<Contact> {
       Value<String?>? country,
       Value<String?>? postalCode,
       Value<String?>? website,
+      Value<bool>? isAppUser,
       Value<String?>? user,
       Value<DateTime?>? created,
       Value<DateTime?>? updated,
@@ -3731,6 +3768,7 @@ class ContactsCompanion extends UpdateCompanion<Contact> {
       country: country ?? this.country,
       postalCode: postalCode ?? this.postalCode,
       website: website ?? this.website,
+      isAppUser: isAppUser ?? this.isAppUser,
       user: user ?? this.user,
       created: created ?? this.created,
       updated: updated ?? this.updated,
@@ -3780,6 +3818,9 @@ class ContactsCompanion extends UpdateCompanion<Contact> {
     if (website.present) {
       map['website'] = Variable<String>(website.value);
     }
+    if (isAppUser.present) {
+      map['is_app_user'] = Variable<bool>(isAppUser.value);
+    }
     if (user.present) {
       map['user'] = Variable<String>(user.value);
     }
@@ -3811,6 +3852,7 @@ class ContactsCompanion extends UpdateCompanion<Contact> {
           ..write('country: $country, ')
           ..write('postalCode: $postalCode, ')
           ..write('website: $website, ')
+          ..write('isAppUser: $isAppUser, ')
           ..write('user: $user, ')
           ..write('created: $created, ')
           ..write('updated: $updated, ')
@@ -4298,6 +4340,11 @@ class $FinanceCategoriesTable extends FinanceCategories
   late final GeneratedColumn<String> kind = GeneratedColumn<String>(
       'kind', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+      'notes', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
   static const VerificationMeta _createdMeta =
       const VerificationMeta('created');
   @override
@@ -4312,7 +4359,7 @@ class $FinanceCategoriesTable extends FinanceCategories
       type: DriftSqlType.dateTime, requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns =>
-      [id, name, color, kind, created, updated];
+      [id, name, color, kind, notes, created, updated];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -4346,6 +4393,10 @@ class $FinanceCategoriesTable extends FinanceCategories
     } else if (isInserting) {
       context.missing(_kindMeta);
     }
+    if (data.containsKey('notes')) {
+      context.handle(
+          _notesMeta, notes.isAcceptableOrUnknown(data['notes']!, _notesMeta));
+    }
     if (data.containsKey('created')) {
       context.handle(_createdMeta,
           created.isAcceptableOrUnknown(data['created']!, _createdMeta));
@@ -4371,6 +4422,8 @@ class $FinanceCategoriesTable extends FinanceCategories
           .read(DriftSqlType.string, data['${effectivePrefix}color'])!,
       kind: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}kind'])!,
+      notes: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}notes']),
       created: attachedDatabase.typeMapping
           .read(DriftSqlType.dateTime, data['${effectivePrefix}created']),
       updated: attachedDatabase.typeMapping
@@ -4389,6 +4442,7 @@ class FinanceCategory extends DataClass implements Insertable<FinanceCategory> {
   final String name;
   final String color;
   final String kind;
+  final String? notes;
   final DateTime? created;
   final DateTime? updated;
   const FinanceCategory(
@@ -4396,6 +4450,7 @@ class FinanceCategory extends DataClass implements Insertable<FinanceCategory> {
       required this.name,
       required this.color,
       required this.kind,
+      this.notes,
       this.created,
       this.updated});
   @override
@@ -4405,6 +4460,9 @@ class FinanceCategory extends DataClass implements Insertable<FinanceCategory> {
     map['name'] = Variable<String>(name);
     map['color'] = Variable<String>(color);
     map['kind'] = Variable<String>(kind);
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
     if (!nullToAbsent || created != null) {
       map['created'] = Variable<DateTime>(created);
     }
@@ -4420,6 +4478,8 @@ class FinanceCategory extends DataClass implements Insertable<FinanceCategory> {
       name: Value(name),
       color: Value(color),
       kind: Value(kind),
+      notes:
+          notes == null && nullToAbsent ? const Value.absent() : Value(notes),
       created: created == null && nullToAbsent
           ? const Value.absent()
           : Value(created),
@@ -4437,6 +4497,7 @@ class FinanceCategory extends DataClass implements Insertable<FinanceCategory> {
       name: serializer.fromJson<String>(json['name']),
       color: serializer.fromJson<String>(json['color']),
       kind: serializer.fromJson<String>(json['kind']),
+      notes: serializer.fromJson<String?>(json['notes']),
       created: serializer.fromJson<DateTime?>(json['created']),
       updated: serializer.fromJson<DateTime?>(json['updated']),
     );
@@ -4449,6 +4510,7 @@ class FinanceCategory extends DataClass implements Insertable<FinanceCategory> {
       'name': serializer.toJson<String>(name),
       'color': serializer.toJson<String>(color),
       'kind': serializer.toJson<String>(kind),
+      'notes': serializer.toJson<String?>(notes),
       'created': serializer.toJson<DateTime?>(created),
       'updated': serializer.toJson<DateTime?>(updated),
     };
@@ -4459,6 +4521,7 @@ class FinanceCategory extends DataClass implements Insertable<FinanceCategory> {
           String? name,
           String? color,
           String? kind,
+          Value<String?> notes = const Value.absent(),
           Value<DateTime?> created = const Value.absent(),
           Value<DateTime?> updated = const Value.absent()}) =>
       FinanceCategory(
@@ -4466,6 +4529,7 @@ class FinanceCategory extends DataClass implements Insertable<FinanceCategory> {
         name: name ?? this.name,
         color: color ?? this.color,
         kind: kind ?? this.kind,
+        notes: notes.present ? notes.value : this.notes,
         created: created.present ? created.value : this.created,
         updated: updated.present ? updated.value : this.updated,
       );
@@ -4475,6 +4539,7 @@ class FinanceCategory extends DataClass implements Insertable<FinanceCategory> {
       name: data.name.present ? data.name.value : this.name,
       color: data.color.present ? data.color.value : this.color,
       kind: data.kind.present ? data.kind.value : this.kind,
+      notes: data.notes.present ? data.notes.value : this.notes,
       created: data.created.present ? data.created.value : this.created,
       updated: data.updated.present ? data.updated.value : this.updated,
     );
@@ -4487,6 +4552,7 @@ class FinanceCategory extends DataClass implements Insertable<FinanceCategory> {
           ..write('name: $name, ')
           ..write('color: $color, ')
           ..write('kind: $kind, ')
+          ..write('notes: $notes, ')
           ..write('created: $created, ')
           ..write('updated: $updated')
           ..write(')'))
@@ -4494,7 +4560,8 @@ class FinanceCategory extends DataClass implements Insertable<FinanceCategory> {
   }
 
   @override
-  int get hashCode => Object.hash(id, name, color, kind, created, updated);
+  int get hashCode =>
+      Object.hash(id, name, color, kind, notes, created, updated);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -4503,6 +4570,7 @@ class FinanceCategory extends DataClass implements Insertable<FinanceCategory> {
           other.name == this.name &&
           other.color == this.color &&
           other.kind == this.kind &&
+          other.notes == this.notes &&
           other.created == this.created &&
           other.updated == this.updated);
 }
@@ -4512,6 +4580,7 @@ class FinanceCategoriesCompanion extends UpdateCompanion<FinanceCategory> {
   final Value<String> name;
   final Value<String> color;
   final Value<String> kind;
+  final Value<String?> notes;
   final Value<DateTime?> created;
   final Value<DateTime?> updated;
   final Value<int> rowid;
@@ -4520,6 +4589,7 @@ class FinanceCategoriesCompanion extends UpdateCompanion<FinanceCategory> {
     this.name = const Value.absent(),
     this.color = const Value.absent(),
     this.kind = const Value.absent(),
+    this.notes = const Value.absent(),
     this.created = const Value.absent(),
     this.updated = const Value.absent(),
     this.rowid = const Value.absent(),
@@ -4529,6 +4599,7 @@ class FinanceCategoriesCompanion extends UpdateCompanion<FinanceCategory> {
     required String name,
     required String color,
     required String kind,
+    this.notes = const Value.absent(),
     this.created = const Value.absent(),
     this.updated = const Value.absent(),
     this.rowid = const Value.absent(),
@@ -4541,6 +4612,7 @@ class FinanceCategoriesCompanion extends UpdateCompanion<FinanceCategory> {
     Expression<String>? name,
     Expression<String>? color,
     Expression<String>? kind,
+    Expression<String>? notes,
     Expression<DateTime>? created,
     Expression<DateTime>? updated,
     Expression<int>? rowid,
@@ -4550,6 +4622,7 @@ class FinanceCategoriesCompanion extends UpdateCompanion<FinanceCategory> {
       if (name != null) 'name': name,
       if (color != null) 'color': color,
       if (kind != null) 'kind': kind,
+      if (notes != null) 'notes': notes,
       if (created != null) 'created': created,
       if (updated != null) 'updated': updated,
       if (rowid != null) 'rowid': rowid,
@@ -4561,6 +4634,7 @@ class FinanceCategoriesCompanion extends UpdateCompanion<FinanceCategory> {
       Value<String>? name,
       Value<String>? color,
       Value<String>? kind,
+      Value<String?>? notes,
       Value<DateTime?>? created,
       Value<DateTime?>? updated,
       Value<int>? rowid}) {
@@ -4569,6 +4643,7 @@ class FinanceCategoriesCompanion extends UpdateCompanion<FinanceCategory> {
       name: name ?? this.name,
       color: color ?? this.color,
       kind: kind ?? this.kind,
+      notes: notes ?? this.notes,
       created: created ?? this.created,
       updated: updated ?? this.updated,
       rowid: rowid ?? this.rowid,
@@ -4590,6 +4665,9 @@ class FinanceCategoriesCompanion extends UpdateCompanion<FinanceCategory> {
     if (kind.present) {
       map['kind'] = Variable<String>(kind.value);
     }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
     if (created.present) {
       map['created'] = Variable<DateTime>(created.value);
     }
@@ -4609,6 +4687,7 @@ class FinanceCategoriesCompanion extends UpdateCompanion<FinanceCategory> {
           ..write('name: $name, ')
           ..write('color: $color, ')
           ..write('kind: $kind, ')
+          ..write('notes: $notes, ')
           ..write('created: $created, ')
           ..write('updated: $updated, ')
           ..write('rowid: $rowid')
@@ -4639,6 +4718,29 @@ class $SpeciesTableTable extends SpeciesTable
   late final GeneratedColumn<String> latName = GeneratedColumn<String>(
       'lat_name', aliasedName, true,
       type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _imageUrlMeta =
+      const VerificationMeta('imageUrl');
+  @override
+  late final GeneratedColumn<String> imageUrl = GeneratedColumn<String>(
+      'image_url', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _incubationDaysMeta =
+      const VerificationMeta('incubationDays');
+  @override
+  late final GeneratedColumn<int> incubationDays = GeneratedColumn<int>(
+      'incubation_days', aliasedName, true,
+      type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _fledgeDaysMeta =
+      const VerificationMeta('fledgeDays');
+  @override
+  late final GeneratedColumn<int> fledgeDays = GeneratedColumn<int>(
+      'fledge_days', aliasedName, true,
+      type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+      'notes', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
   static const VerificationMeta _userMeta = const VerificationMeta('user');
   @override
   late final GeneratedColumn<String> user = GeneratedColumn<String>(
@@ -4657,8 +4759,18 @@ class $SpeciesTableTable extends SpeciesTable
       'updated', aliasedName, true,
       type: DriftSqlType.dateTime, requiredDuringInsert: false);
   @override
-  List<GeneratedColumn> get $columns =>
-      [id, name, latName, user, created, updated];
+  List<GeneratedColumn> get $columns => [
+        id,
+        name,
+        latName,
+        imageUrl,
+        incubationDays,
+        fledgeDays,
+        notes,
+        user,
+        created,
+        updated
+      ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -4681,6 +4793,26 @@ class $SpeciesTableTable extends SpeciesTable
     if (data.containsKey('lat_name')) {
       context.handle(_latNameMeta,
           latName.isAcceptableOrUnknown(data['lat_name']!, _latNameMeta));
+    }
+    if (data.containsKey('image_url')) {
+      context.handle(_imageUrlMeta,
+          imageUrl.isAcceptableOrUnknown(data['image_url']!, _imageUrlMeta));
+    }
+    if (data.containsKey('incubation_days')) {
+      context.handle(
+          _incubationDaysMeta,
+          incubationDays.isAcceptableOrUnknown(
+              data['incubation_days']!, _incubationDaysMeta));
+    }
+    if (data.containsKey('fledge_days')) {
+      context.handle(
+          _fledgeDaysMeta,
+          fledgeDays.isAcceptableOrUnknown(
+              data['fledge_days']!, _fledgeDaysMeta));
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+          _notesMeta, notes.isAcceptableOrUnknown(data['notes']!, _notesMeta));
     }
     if (data.containsKey('user')) {
       context.handle(
@@ -4709,6 +4841,14 @@ class $SpeciesTableTable extends SpeciesTable
           .read(DriftSqlType.string, data['${effectivePrefix}name']),
       latName: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}lat_name']),
+      imageUrl: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}image_url']),
+      incubationDays: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}incubation_days']),
+      fledgeDays: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}fledge_days']),
+      notes: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}notes']),
       user: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}user']),
       created: attachedDatabase.typeMapping
@@ -4729,6 +4869,10 @@ class SpeciesTableData extends DataClass
   final String id;
   final String? name;
   final String? latName;
+  final String? imageUrl;
+  final int? incubationDays;
+  final int? fledgeDays;
+  final String? notes;
   final String? user;
   final DateTime? created;
   final DateTime? updated;
@@ -4736,6 +4880,10 @@ class SpeciesTableData extends DataClass
       {required this.id,
       this.name,
       this.latName,
+      this.imageUrl,
+      this.incubationDays,
+      this.fledgeDays,
+      this.notes,
       this.user,
       this.created,
       this.updated});
@@ -4748,6 +4896,18 @@ class SpeciesTableData extends DataClass
     }
     if (!nullToAbsent || latName != null) {
       map['lat_name'] = Variable<String>(latName);
+    }
+    if (!nullToAbsent || imageUrl != null) {
+      map['image_url'] = Variable<String>(imageUrl);
+    }
+    if (!nullToAbsent || incubationDays != null) {
+      map['incubation_days'] = Variable<int>(incubationDays);
+    }
+    if (!nullToAbsent || fledgeDays != null) {
+      map['fledge_days'] = Variable<int>(fledgeDays);
+    }
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
     }
     if (!nullToAbsent || user != null) {
       map['user'] = Variable<String>(user);
@@ -4768,6 +4928,17 @@ class SpeciesTableData extends DataClass
       latName: latName == null && nullToAbsent
           ? const Value.absent()
           : Value(latName),
+      imageUrl: imageUrl == null && nullToAbsent
+          ? const Value.absent()
+          : Value(imageUrl),
+      incubationDays: incubationDays == null && nullToAbsent
+          ? const Value.absent()
+          : Value(incubationDays),
+      fledgeDays: fledgeDays == null && nullToAbsent
+          ? const Value.absent()
+          : Value(fledgeDays),
+      notes:
+          notes == null && nullToAbsent ? const Value.absent() : Value(notes),
       user: user == null && nullToAbsent ? const Value.absent() : Value(user),
       created: created == null && nullToAbsent
           ? const Value.absent()
@@ -4785,6 +4956,10 @@ class SpeciesTableData extends DataClass
       id: serializer.fromJson<String>(json['id']),
       name: serializer.fromJson<String?>(json['name']),
       latName: serializer.fromJson<String?>(json['latName']),
+      imageUrl: serializer.fromJson<String?>(json['imageUrl']),
+      incubationDays: serializer.fromJson<int?>(json['incubationDays']),
+      fledgeDays: serializer.fromJson<int?>(json['fledgeDays']),
+      notes: serializer.fromJson<String?>(json['notes']),
       user: serializer.fromJson<String?>(json['user']),
       created: serializer.fromJson<DateTime?>(json['created']),
       updated: serializer.fromJson<DateTime?>(json['updated']),
@@ -4797,6 +4972,10 @@ class SpeciesTableData extends DataClass
       'id': serializer.toJson<String>(id),
       'name': serializer.toJson<String?>(name),
       'latName': serializer.toJson<String?>(latName),
+      'imageUrl': serializer.toJson<String?>(imageUrl),
+      'incubationDays': serializer.toJson<int?>(incubationDays),
+      'fledgeDays': serializer.toJson<int?>(fledgeDays),
+      'notes': serializer.toJson<String?>(notes),
       'user': serializer.toJson<String?>(user),
       'created': serializer.toJson<DateTime?>(created),
       'updated': serializer.toJson<DateTime?>(updated),
@@ -4807,6 +4986,10 @@ class SpeciesTableData extends DataClass
           {String? id,
           Value<String?> name = const Value.absent(),
           Value<String?> latName = const Value.absent(),
+          Value<String?> imageUrl = const Value.absent(),
+          Value<int?> incubationDays = const Value.absent(),
+          Value<int?> fledgeDays = const Value.absent(),
+          Value<String?> notes = const Value.absent(),
           Value<String?> user = const Value.absent(),
           Value<DateTime?> created = const Value.absent(),
           Value<DateTime?> updated = const Value.absent()}) =>
@@ -4814,6 +4997,11 @@ class SpeciesTableData extends DataClass
         id: id ?? this.id,
         name: name.present ? name.value : this.name,
         latName: latName.present ? latName.value : this.latName,
+        imageUrl: imageUrl.present ? imageUrl.value : this.imageUrl,
+        incubationDays:
+            incubationDays.present ? incubationDays.value : this.incubationDays,
+        fledgeDays: fledgeDays.present ? fledgeDays.value : this.fledgeDays,
+        notes: notes.present ? notes.value : this.notes,
         user: user.present ? user.value : this.user,
         created: created.present ? created.value : this.created,
         updated: updated.present ? updated.value : this.updated,
@@ -4823,6 +5011,13 @@ class SpeciesTableData extends DataClass
       id: data.id.present ? data.id.value : this.id,
       name: data.name.present ? data.name.value : this.name,
       latName: data.latName.present ? data.latName.value : this.latName,
+      imageUrl: data.imageUrl.present ? data.imageUrl.value : this.imageUrl,
+      incubationDays: data.incubationDays.present
+          ? data.incubationDays.value
+          : this.incubationDays,
+      fledgeDays:
+          data.fledgeDays.present ? data.fledgeDays.value : this.fledgeDays,
+      notes: data.notes.present ? data.notes.value : this.notes,
       user: data.user.present ? data.user.value : this.user,
       created: data.created.present ? data.created.value : this.created,
       updated: data.updated.present ? data.updated.value : this.updated,
@@ -4835,6 +5030,10 @@ class SpeciesTableData extends DataClass
           ..write('id: $id, ')
           ..write('name: $name, ')
           ..write('latName: $latName, ')
+          ..write('imageUrl: $imageUrl, ')
+          ..write('incubationDays: $incubationDays, ')
+          ..write('fledgeDays: $fledgeDays, ')
+          ..write('notes: $notes, ')
           ..write('user: $user, ')
           ..write('created: $created, ')
           ..write('updated: $updated')
@@ -4843,7 +5042,8 @@ class SpeciesTableData extends DataClass
   }
 
   @override
-  int get hashCode => Object.hash(id, name, latName, user, created, updated);
+  int get hashCode => Object.hash(id, name, latName, imageUrl, incubationDays,
+      fledgeDays, notes, user, created, updated);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -4851,6 +5051,10 @@ class SpeciesTableData extends DataClass
           other.id == this.id &&
           other.name == this.name &&
           other.latName == this.latName &&
+          other.imageUrl == this.imageUrl &&
+          other.incubationDays == this.incubationDays &&
+          other.fledgeDays == this.fledgeDays &&
+          other.notes == this.notes &&
           other.user == this.user &&
           other.created == this.created &&
           other.updated == this.updated);
@@ -4860,6 +5064,10 @@ class SpeciesTableCompanion extends UpdateCompanion<SpeciesTableData> {
   final Value<String> id;
   final Value<String?> name;
   final Value<String?> latName;
+  final Value<String?> imageUrl;
+  final Value<int?> incubationDays;
+  final Value<int?> fledgeDays;
+  final Value<String?> notes;
   final Value<String?> user;
   final Value<DateTime?> created;
   final Value<DateTime?> updated;
@@ -4868,6 +5076,10 @@ class SpeciesTableCompanion extends UpdateCompanion<SpeciesTableData> {
     this.id = const Value.absent(),
     this.name = const Value.absent(),
     this.latName = const Value.absent(),
+    this.imageUrl = const Value.absent(),
+    this.incubationDays = const Value.absent(),
+    this.fledgeDays = const Value.absent(),
+    this.notes = const Value.absent(),
     this.user = const Value.absent(),
     this.created = const Value.absent(),
     this.updated = const Value.absent(),
@@ -4877,6 +5089,10 @@ class SpeciesTableCompanion extends UpdateCompanion<SpeciesTableData> {
     required String id,
     this.name = const Value.absent(),
     this.latName = const Value.absent(),
+    this.imageUrl = const Value.absent(),
+    this.incubationDays = const Value.absent(),
+    this.fledgeDays = const Value.absent(),
+    this.notes = const Value.absent(),
     this.user = const Value.absent(),
     this.created = const Value.absent(),
     this.updated = const Value.absent(),
@@ -4886,6 +5102,10 @@ class SpeciesTableCompanion extends UpdateCompanion<SpeciesTableData> {
     Expression<String>? id,
     Expression<String>? name,
     Expression<String>? latName,
+    Expression<String>? imageUrl,
+    Expression<int>? incubationDays,
+    Expression<int>? fledgeDays,
+    Expression<String>? notes,
     Expression<String>? user,
     Expression<DateTime>? created,
     Expression<DateTime>? updated,
@@ -4895,6 +5115,10 @@ class SpeciesTableCompanion extends UpdateCompanion<SpeciesTableData> {
       if (id != null) 'id': id,
       if (name != null) 'name': name,
       if (latName != null) 'lat_name': latName,
+      if (imageUrl != null) 'image_url': imageUrl,
+      if (incubationDays != null) 'incubation_days': incubationDays,
+      if (fledgeDays != null) 'fledge_days': fledgeDays,
+      if (notes != null) 'notes': notes,
       if (user != null) 'user': user,
       if (created != null) 'created': created,
       if (updated != null) 'updated': updated,
@@ -4906,6 +5130,10 @@ class SpeciesTableCompanion extends UpdateCompanion<SpeciesTableData> {
       {Value<String>? id,
       Value<String?>? name,
       Value<String?>? latName,
+      Value<String?>? imageUrl,
+      Value<int?>? incubationDays,
+      Value<int?>? fledgeDays,
+      Value<String?>? notes,
       Value<String?>? user,
       Value<DateTime?>? created,
       Value<DateTime?>? updated,
@@ -4914,6 +5142,10 @@ class SpeciesTableCompanion extends UpdateCompanion<SpeciesTableData> {
       id: id ?? this.id,
       name: name ?? this.name,
       latName: latName ?? this.latName,
+      imageUrl: imageUrl ?? this.imageUrl,
+      incubationDays: incubationDays ?? this.incubationDays,
+      fledgeDays: fledgeDays ?? this.fledgeDays,
+      notes: notes ?? this.notes,
       user: user ?? this.user,
       created: created ?? this.created,
       updated: updated ?? this.updated,
@@ -4932,6 +5164,18 @@ class SpeciesTableCompanion extends UpdateCompanion<SpeciesTableData> {
     }
     if (latName.present) {
       map['lat_name'] = Variable<String>(latName.value);
+    }
+    if (imageUrl.present) {
+      map['image_url'] = Variable<String>(imageUrl.value);
+    }
+    if (incubationDays.present) {
+      map['incubation_days'] = Variable<int>(incubationDays.value);
+    }
+    if (fledgeDays.present) {
+      map['fledge_days'] = Variable<int>(fledgeDays.value);
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
     }
     if (user.present) {
       map['user'] = Variable<String>(user.value);
@@ -4954,6 +5198,10 @@ class SpeciesTableCompanion extends UpdateCompanion<SpeciesTableData> {
           ..write('id: $id, ')
           ..write('name: $name, ')
           ..write('latName: $latName, ')
+          ..write('imageUrl: $imageUrl, ')
+          ..write('incubationDays: $incubationDays, ')
+          ..write('fledgeDays: $fledgeDays, ')
+          ..write('notes: $notes, ')
           ..write('user: $user, ')
           ..write('created: $created, ')
           ..write('updated: $updated, ')
@@ -4999,6 +5247,28 @@ class $CagesTable extends Cages with TableInfo<$CagesTable, Cage> {
   late final GeneratedColumn<int> depth = GeneratedColumn<int>(
       'depth', aliasedName, true,
       type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _typeMeta = const VerificationMeta('type');
+  @override
+  late final GeneratedColumn<String> type = GeneratedColumn<String>(
+      'type', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _locationMeta =
+      const VerificationMeta('location');
+  @override
+  late final GeneratedColumn<String> location = GeneratedColumn<String>(
+      'location', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _capacityMeta =
+      const VerificationMeta('capacity');
+  @override
+  late final GeneratedColumn<int> capacity = GeneratedColumn<int>(
+      'capacity', aliasedName, true,
+      type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+      'notes', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
   static const VerificationMeta _userMeta = const VerificationMeta('user');
   @override
   late final GeneratedColumn<String> user = GeneratedColumn<String>(
@@ -5017,8 +5287,21 @@ class $CagesTable extends Cages with TableInfo<$CagesTable, Cage> {
       'updated', aliasedName, true,
       type: DriftSqlType.dateTime, requiredDuringInsert: false);
   @override
-  List<GeneratedColumn> get $columns =>
-      [id, name, description, width, height, depth, user, created, updated];
+  List<GeneratedColumn> get $columns => [
+        id,
+        name,
+        description,
+        width,
+        height,
+        depth,
+        type,
+        location,
+        capacity,
+        notes,
+        user,
+        created,
+        updated
+      ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -5056,6 +5339,22 @@ class $CagesTable extends Cages with TableInfo<$CagesTable, Cage> {
       context.handle(
           _depthMeta, depth.isAcceptableOrUnknown(data['depth']!, _depthMeta));
     }
+    if (data.containsKey('type')) {
+      context.handle(
+          _typeMeta, type.isAcceptableOrUnknown(data['type']!, _typeMeta));
+    }
+    if (data.containsKey('location')) {
+      context.handle(_locationMeta,
+          location.isAcceptableOrUnknown(data['location']!, _locationMeta));
+    }
+    if (data.containsKey('capacity')) {
+      context.handle(_capacityMeta,
+          capacity.isAcceptableOrUnknown(data['capacity']!, _capacityMeta));
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+          _notesMeta, notes.isAcceptableOrUnknown(data['notes']!, _notesMeta));
+    }
     if (data.containsKey('user')) {
       context.handle(
           _userMeta, user.isAcceptableOrUnknown(data['user']!, _userMeta));
@@ -5089,6 +5388,14 @@ class $CagesTable extends Cages with TableInfo<$CagesTable, Cage> {
           .read(DriftSqlType.int, data['${effectivePrefix}height']),
       depth: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}depth']),
+      type: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}type']),
+      location: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}location']),
+      capacity: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}capacity']),
+      notes: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}notes']),
       user: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}user']),
       created: attachedDatabase.typeMapping
@@ -5111,6 +5418,10 @@ class Cage extends DataClass implements Insertable<Cage> {
   final int? width;
   final int? height;
   final int? depth;
+  final String? type;
+  final String? location;
+  final int? capacity;
+  final String? notes;
   final String? user;
   final DateTime? created;
   final DateTime? updated;
@@ -5121,6 +5432,10 @@ class Cage extends DataClass implements Insertable<Cage> {
       this.width,
       this.height,
       this.depth,
+      this.type,
+      this.location,
+      this.capacity,
+      this.notes,
       this.user,
       this.created,
       this.updated});
@@ -5142,6 +5457,18 @@ class Cage extends DataClass implements Insertable<Cage> {
     }
     if (!nullToAbsent || depth != null) {
       map['depth'] = Variable<int>(depth);
+    }
+    if (!nullToAbsent || type != null) {
+      map['type'] = Variable<String>(type);
+    }
+    if (!nullToAbsent || location != null) {
+      map['location'] = Variable<String>(location);
+    }
+    if (!nullToAbsent || capacity != null) {
+      map['capacity'] = Variable<int>(capacity);
+    }
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
     }
     if (!nullToAbsent || user != null) {
       map['user'] = Variable<String>(user);
@@ -5168,6 +5495,15 @@ class Cage extends DataClass implements Insertable<Cage> {
           height == null && nullToAbsent ? const Value.absent() : Value(height),
       depth:
           depth == null && nullToAbsent ? const Value.absent() : Value(depth),
+      type: type == null && nullToAbsent ? const Value.absent() : Value(type),
+      location: location == null && nullToAbsent
+          ? const Value.absent()
+          : Value(location),
+      capacity: capacity == null && nullToAbsent
+          ? const Value.absent()
+          : Value(capacity),
+      notes:
+          notes == null && nullToAbsent ? const Value.absent() : Value(notes),
       user: user == null && nullToAbsent ? const Value.absent() : Value(user),
       created: created == null && nullToAbsent
           ? const Value.absent()
@@ -5188,6 +5524,10 @@ class Cage extends DataClass implements Insertable<Cage> {
       width: serializer.fromJson<int?>(json['width']),
       height: serializer.fromJson<int?>(json['height']),
       depth: serializer.fromJson<int?>(json['depth']),
+      type: serializer.fromJson<String?>(json['type']),
+      location: serializer.fromJson<String?>(json['location']),
+      capacity: serializer.fromJson<int?>(json['capacity']),
+      notes: serializer.fromJson<String?>(json['notes']),
       user: serializer.fromJson<String?>(json['user']),
       created: serializer.fromJson<DateTime?>(json['created']),
       updated: serializer.fromJson<DateTime?>(json['updated']),
@@ -5203,6 +5543,10 @@ class Cage extends DataClass implements Insertable<Cage> {
       'width': serializer.toJson<int?>(width),
       'height': serializer.toJson<int?>(height),
       'depth': serializer.toJson<int?>(depth),
+      'type': serializer.toJson<String?>(type),
+      'location': serializer.toJson<String?>(location),
+      'capacity': serializer.toJson<int?>(capacity),
+      'notes': serializer.toJson<String?>(notes),
       'user': serializer.toJson<String?>(user),
       'created': serializer.toJson<DateTime?>(created),
       'updated': serializer.toJson<DateTime?>(updated),
@@ -5216,6 +5560,10 @@ class Cage extends DataClass implements Insertable<Cage> {
           Value<int?> width = const Value.absent(),
           Value<int?> height = const Value.absent(),
           Value<int?> depth = const Value.absent(),
+          Value<String?> type = const Value.absent(),
+          Value<String?> location = const Value.absent(),
+          Value<int?> capacity = const Value.absent(),
+          Value<String?> notes = const Value.absent(),
           Value<String?> user = const Value.absent(),
           Value<DateTime?> created = const Value.absent(),
           Value<DateTime?> updated = const Value.absent()}) =>
@@ -5226,6 +5574,10 @@ class Cage extends DataClass implements Insertable<Cage> {
         width: width.present ? width.value : this.width,
         height: height.present ? height.value : this.height,
         depth: depth.present ? depth.value : this.depth,
+        type: type.present ? type.value : this.type,
+        location: location.present ? location.value : this.location,
+        capacity: capacity.present ? capacity.value : this.capacity,
+        notes: notes.present ? notes.value : this.notes,
         user: user.present ? user.value : this.user,
         created: created.present ? created.value : this.created,
         updated: updated.present ? updated.value : this.updated,
@@ -5239,6 +5591,10 @@ class Cage extends DataClass implements Insertable<Cage> {
       width: data.width.present ? data.width.value : this.width,
       height: data.height.present ? data.height.value : this.height,
       depth: data.depth.present ? data.depth.value : this.depth,
+      type: data.type.present ? data.type.value : this.type,
+      location: data.location.present ? data.location.value : this.location,
+      capacity: data.capacity.present ? data.capacity.value : this.capacity,
+      notes: data.notes.present ? data.notes.value : this.notes,
       user: data.user.present ? data.user.value : this.user,
       created: data.created.present ? data.created.value : this.created,
       updated: data.updated.present ? data.updated.value : this.updated,
@@ -5254,6 +5610,10 @@ class Cage extends DataClass implements Insertable<Cage> {
           ..write('width: $width, ')
           ..write('height: $height, ')
           ..write('depth: $depth, ')
+          ..write('type: $type, ')
+          ..write('location: $location, ')
+          ..write('capacity: $capacity, ')
+          ..write('notes: $notes, ')
           ..write('user: $user, ')
           ..write('created: $created, ')
           ..write('updated: $updated')
@@ -5262,8 +5622,8 @@ class Cage extends DataClass implements Insertable<Cage> {
   }
 
   @override
-  int get hashCode => Object.hash(
-      id, name, description, width, height, depth, user, created, updated);
+  int get hashCode => Object.hash(id, name, description, width, height, depth,
+      type, location, capacity, notes, user, created, updated);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -5274,6 +5634,10 @@ class Cage extends DataClass implements Insertable<Cage> {
           other.width == this.width &&
           other.height == this.height &&
           other.depth == this.depth &&
+          other.type == this.type &&
+          other.location == this.location &&
+          other.capacity == this.capacity &&
+          other.notes == this.notes &&
           other.user == this.user &&
           other.created == this.created &&
           other.updated == this.updated);
@@ -5286,6 +5650,10 @@ class CagesCompanion extends UpdateCompanion<Cage> {
   final Value<int?> width;
   final Value<int?> height;
   final Value<int?> depth;
+  final Value<String?> type;
+  final Value<String?> location;
+  final Value<int?> capacity;
+  final Value<String?> notes;
   final Value<String?> user;
   final Value<DateTime?> created;
   final Value<DateTime?> updated;
@@ -5297,6 +5665,10 @@ class CagesCompanion extends UpdateCompanion<Cage> {
     this.width = const Value.absent(),
     this.height = const Value.absent(),
     this.depth = const Value.absent(),
+    this.type = const Value.absent(),
+    this.location = const Value.absent(),
+    this.capacity = const Value.absent(),
+    this.notes = const Value.absent(),
     this.user = const Value.absent(),
     this.created = const Value.absent(),
     this.updated = const Value.absent(),
@@ -5309,6 +5681,10 @@ class CagesCompanion extends UpdateCompanion<Cage> {
     this.width = const Value.absent(),
     this.height = const Value.absent(),
     this.depth = const Value.absent(),
+    this.type = const Value.absent(),
+    this.location = const Value.absent(),
+    this.capacity = const Value.absent(),
+    this.notes = const Value.absent(),
     this.user = const Value.absent(),
     this.created = const Value.absent(),
     this.updated = const Value.absent(),
@@ -5321,6 +5697,10 @@ class CagesCompanion extends UpdateCompanion<Cage> {
     Expression<int>? width,
     Expression<int>? height,
     Expression<int>? depth,
+    Expression<String>? type,
+    Expression<String>? location,
+    Expression<int>? capacity,
+    Expression<String>? notes,
     Expression<String>? user,
     Expression<DateTime>? created,
     Expression<DateTime>? updated,
@@ -5333,6 +5713,10 @@ class CagesCompanion extends UpdateCompanion<Cage> {
       if (width != null) 'width': width,
       if (height != null) 'height': height,
       if (depth != null) 'depth': depth,
+      if (type != null) 'type': type,
+      if (location != null) 'location': location,
+      if (capacity != null) 'capacity': capacity,
+      if (notes != null) 'notes': notes,
       if (user != null) 'user': user,
       if (created != null) 'created': created,
       if (updated != null) 'updated': updated,
@@ -5347,6 +5731,10 @@ class CagesCompanion extends UpdateCompanion<Cage> {
       Value<int?>? width,
       Value<int?>? height,
       Value<int?>? depth,
+      Value<String?>? type,
+      Value<String?>? location,
+      Value<int?>? capacity,
+      Value<String?>? notes,
       Value<String?>? user,
       Value<DateTime?>? created,
       Value<DateTime?>? updated,
@@ -5358,6 +5746,10 @@ class CagesCompanion extends UpdateCompanion<Cage> {
       width: width ?? this.width,
       height: height ?? this.height,
       depth: depth ?? this.depth,
+      type: type ?? this.type,
+      location: location ?? this.location,
+      capacity: capacity ?? this.capacity,
+      notes: notes ?? this.notes,
       user: user ?? this.user,
       created: created ?? this.created,
       updated: updated ?? this.updated,
@@ -5386,6 +5778,18 @@ class CagesCompanion extends UpdateCompanion<Cage> {
     if (depth.present) {
       map['depth'] = Variable<int>(depth.value);
     }
+    if (type.present) {
+      map['type'] = Variable<String>(type.value);
+    }
+    if (location.present) {
+      map['location'] = Variable<String>(location.value);
+    }
+    if (capacity.present) {
+      map['capacity'] = Variable<int>(capacity.value);
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
     if (user.present) {
       map['user'] = Variable<String>(user.value);
     }
@@ -5410,6 +5814,10 @@ class CagesCompanion extends UpdateCompanion<Cage> {
           ..write('width: $width, ')
           ..write('height: $height, ')
           ..write('depth: $depth, ')
+          ..write('type: $type, ')
+          ..write('location: $location, ')
+          ..write('capacity: $capacity, ')
+          ..write('notes: $notes, ')
           ..write('user: $user, ')
           ..write('created: $created, ')
           ..write('updated: $updated, ')
@@ -5435,6 +5843,22 @@ class $BirdColorsTable extends BirdColors
   late final GeneratedColumn<String> name = GeneratedColumn<String>(
       'name', aliasedName, true,
       type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _hexMeta = const VerificationMeta('hex');
+  @override
+  late final GeneratedColumn<String> hex = GeneratedColumn<String>(
+      'hex', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _inheritanceMeta =
+      const VerificationMeta('inheritance');
+  @override
+  late final GeneratedColumn<String> inheritance = GeneratedColumn<String>(
+      'inheritance', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+      'notes', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
   static const VerificationMeta _userMeta = const VerificationMeta('user');
   @override
   late final GeneratedColumn<String> user = GeneratedColumn<String>(
@@ -5453,7 +5877,8 @@ class $BirdColorsTable extends BirdColors
       'updated', aliasedName, true,
       type: DriftSqlType.dateTime, requiredDuringInsert: false);
   @override
-  List<GeneratedColumn> get $columns => [id, name, user, created, updated];
+  List<GeneratedColumn> get $columns =>
+      [id, name, hex, inheritance, notes, user, created, updated];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -5472,6 +5897,20 @@ class $BirdColorsTable extends BirdColors
     if (data.containsKey('name')) {
       context.handle(
           _nameMeta, name.isAcceptableOrUnknown(data['name']!, _nameMeta));
+    }
+    if (data.containsKey('hex')) {
+      context.handle(
+          _hexMeta, hex.isAcceptableOrUnknown(data['hex']!, _hexMeta));
+    }
+    if (data.containsKey('inheritance')) {
+      context.handle(
+          _inheritanceMeta,
+          inheritance.isAcceptableOrUnknown(
+              data['inheritance']!, _inheritanceMeta));
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+          _notesMeta, notes.isAcceptableOrUnknown(data['notes']!, _notesMeta));
     }
     if (data.containsKey('user')) {
       context.handle(
@@ -5498,6 +5937,12 @@ class $BirdColorsTable extends BirdColors
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       name: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}name']),
+      hex: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}hex']),
+      inheritance: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}inheritance']),
+      notes: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}notes']),
       user: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}user']),
       created: attachedDatabase.typeMapping
@@ -5516,17 +5961,36 @@ class $BirdColorsTable extends BirdColors
 class BirdColor extends DataClass implements Insertable<BirdColor> {
   final String id;
   final String? name;
+  final String? hex;
+  final String? inheritance;
+  final String? notes;
   final String? user;
   final DateTime? created;
   final DateTime? updated;
   const BirdColor(
-      {required this.id, this.name, this.user, this.created, this.updated});
+      {required this.id,
+      this.name,
+      this.hex,
+      this.inheritance,
+      this.notes,
+      this.user,
+      this.created,
+      this.updated});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<String>(id);
     if (!nullToAbsent || name != null) {
       map['name'] = Variable<String>(name);
+    }
+    if (!nullToAbsent || hex != null) {
+      map['hex'] = Variable<String>(hex);
+    }
+    if (!nullToAbsent || inheritance != null) {
+      map['inheritance'] = Variable<String>(inheritance);
+    }
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
     }
     if (!nullToAbsent || user != null) {
       map['user'] = Variable<String>(user);
@@ -5544,6 +6008,12 @@ class BirdColor extends DataClass implements Insertable<BirdColor> {
     return BirdColorsCompanion(
       id: Value(id),
       name: name == null && nullToAbsent ? const Value.absent() : Value(name),
+      hex: hex == null && nullToAbsent ? const Value.absent() : Value(hex),
+      inheritance: inheritance == null && nullToAbsent
+          ? const Value.absent()
+          : Value(inheritance),
+      notes:
+          notes == null && nullToAbsent ? const Value.absent() : Value(notes),
       user: user == null && nullToAbsent ? const Value.absent() : Value(user),
       created: created == null && nullToAbsent
           ? const Value.absent()
@@ -5560,6 +6030,9 @@ class BirdColor extends DataClass implements Insertable<BirdColor> {
     return BirdColor(
       id: serializer.fromJson<String>(json['id']),
       name: serializer.fromJson<String?>(json['name']),
+      hex: serializer.fromJson<String?>(json['hex']),
+      inheritance: serializer.fromJson<String?>(json['inheritance']),
+      notes: serializer.fromJson<String?>(json['notes']),
       user: serializer.fromJson<String?>(json['user']),
       created: serializer.fromJson<DateTime?>(json['created']),
       updated: serializer.fromJson<DateTime?>(json['updated']),
@@ -5571,6 +6044,9 @@ class BirdColor extends DataClass implements Insertable<BirdColor> {
     return <String, dynamic>{
       'id': serializer.toJson<String>(id),
       'name': serializer.toJson<String?>(name),
+      'hex': serializer.toJson<String?>(hex),
+      'inheritance': serializer.toJson<String?>(inheritance),
+      'notes': serializer.toJson<String?>(notes),
       'user': serializer.toJson<String?>(user),
       'created': serializer.toJson<DateTime?>(created),
       'updated': serializer.toJson<DateTime?>(updated),
@@ -5580,12 +6056,18 @@ class BirdColor extends DataClass implements Insertable<BirdColor> {
   BirdColor copyWith(
           {String? id,
           Value<String?> name = const Value.absent(),
+          Value<String?> hex = const Value.absent(),
+          Value<String?> inheritance = const Value.absent(),
+          Value<String?> notes = const Value.absent(),
           Value<String?> user = const Value.absent(),
           Value<DateTime?> created = const Value.absent(),
           Value<DateTime?> updated = const Value.absent()}) =>
       BirdColor(
         id: id ?? this.id,
         name: name.present ? name.value : this.name,
+        hex: hex.present ? hex.value : this.hex,
+        inheritance: inheritance.present ? inheritance.value : this.inheritance,
+        notes: notes.present ? notes.value : this.notes,
         user: user.present ? user.value : this.user,
         created: created.present ? created.value : this.created,
         updated: updated.present ? updated.value : this.updated,
@@ -5594,6 +6076,10 @@ class BirdColor extends DataClass implements Insertable<BirdColor> {
     return BirdColor(
       id: data.id.present ? data.id.value : this.id,
       name: data.name.present ? data.name.value : this.name,
+      hex: data.hex.present ? data.hex.value : this.hex,
+      inheritance:
+          data.inheritance.present ? data.inheritance.value : this.inheritance,
+      notes: data.notes.present ? data.notes.value : this.notes,
       user: data.user.present ? data.user.value : this.user,
       created: data.created.present ? data.created.value : this.created,
       updated: data.updated.present ? data.updated.value : this.updated,
@@ -5605,6 +6091,9 @@ class BirdColor extends DataClass implements Insertable<BirdColor> {
     return (StringBuffer('BirdColor(')
           ..write('id: $id, ')
           ..write('name: $name, ')
+          ..write('hex: $hex, ')
+          ..write('inheritance: $inheritance, ')
+          ..write('notes: $notes, ')
           ..write('user: $user, ')
           ..write('created: $created, ')
           ..write('updated: $updated')
@@ -5613,13 +6102,17 @@ class BirdColor extends DataClass implements Insertable<BirdColor> {
   }
 
   @override
-  int get hashCode => Object.hash(id, name, user, created, updated);
+  int get hashCode =>
+      Object.hash(id, name, hex, inheritance, notes, user, created, updated);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is BirdColor &&
           other.id == this.id &&
           other.name == this.name &&
+          other.hex == this.hex &&
+          other.inheritance == this.inheritance &&
+          other.notes == this.notes &&
           other.user == this.user &&
           other.created == this.created &&
           other.updated == this.updated);
@@ -5628,6 +6121,9 @@ class BirdColor extends DataClass implements Insertable<BirdColor> {
 class BirdColorsCompanion extends UpdateCompanion<BirdColor> {
   final Value<String> id;
   final Value<String?> name;
+  final Value<String?> hex;
+  final Value<String?> inheritance;
+  final Value<String?> notes;
   final Value<String?> user;
   final Value<DateTime?> created;
   final Value<DateTime?> updated;
@@ -5635,6 +6131,9 @@ class BirdColorsCompanion extends UpdateCompanion<BirdColor> {
   const BirdColorsCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
+    this.hex = const Value.absent(),
+    this.inheritance = const Value.absent(),
+    this.notes = const Value.absent(),
     this.user = const Value.absent(),
     this.created = const Value.absent(),
     this.updated = const Value.absent(),
@@ -5643,6 +6142,9 @@ class BirdColorsCompanion extends UpdateCompanion<BirdColor> {
   BirdColorsCompanion.insert({
     required String id,
     this.name = const Value.absent(),
+    this.hex = const Value.absent(),
+    this.inheritance = const Value.absent(),
+    this.notes = const Value.absent(),
     this.user = const Value.absent(),
     this.created = const Value.absent(),
     this.updated = const Value.absent(),
@@ -5651,6 +6153,9 @@ class BirdColorsCompanion extends UpdateCompanion<BirdColor> {
   static Insertable<BirdColor> custom({
     Expression<String>? id,
     Expression<String>? name,
+    Expression<String>? hex,
+    Expression<String>? inheritance,
+    Expression<String>? notes,
     Expression<String>? user,
     Expression<DateTime>? created,
     Expression<DateTime>? updated,
@@ -5659,6 +6164,9 @@ class BirdColorsCompanion extends UpdateCompanion<BirdColor> {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (name != null) 'name': name,
+      if (hex != null) 'hex': hex,
+      if (inheritance != null) 'inheritance': inheritance,
+      if (notes != null) 'notes': notes,
       if (user != null) 'user': user,
       if (created != null) 'created': created,
       if (updated != null) 'updated': updated,
@@ -5669,6 +6177,9 @@ class BirdColorsCompanion extends UpdateCompanion<BirdColor> {
   BirdColorsCompanion copyWith(
       {Value<String>? id,
       Value<String?>? name,
+      Value<String?>? hex,
+      Value<String?>? inheritance,
+      Value<String?>? notes,
       Value<String?>? user,
       Value<DateTime?>? created,
       Value<DateTime?>? updated,
@@ -5676,6 +6187,9 @@ class BirdColorsCompanion extends UpdateCompanion<BirdColor> {
     return BirdColorsCompanion(
       id: id ?? this.id,
       name: name ?? this.name,
+      hex: hex ?? this.hex,
+      inheritance: inheritance ?? this.inheritance,
+      notes: notes ?? this.notes,
       user: user ?? this.user,
       created: created ?? this.created,
       updated: updated ?? this.updated,
@@ -5691,6 +6205,15 @@ class BirdColorsCompanion extends UpdateCompanion<BirdColor> {
     }
     if (name.present) {
       map['name'] = Variable<String>(name.value);
+    }
+    if (hex.present) {
+      map['hex'] = Variable<String>(hex.value);
+    }
+    if (inheritance.present) {
+      map['inheritance'] = Variable<String>(inheritance.value);
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
     }
     if (user.present) {
       map['user'] = Variable<String>(user.value);
@@ -5712,6 +6235,9 @@ class BirdColorsCompanion extends UpdateCompanion<BirdColor> {
     return (StringBuffer('BirdColorsCompanion(')
           ..write('id: $id, ')
           ..write('name: $name, ')
+          ..write('hex: $hex, ')
+          ..write('inheritance: $inheritance, ')
+          ..write('notes: $notes, ')
           ..write('user: $user, ')
           ..write('created: $created, ')
           ..write('updated: $updated, ')
@@ -7126,6 +7652,7 @@ typedef $$ContactsTableCreateCompanionBuilder = ContactsCompanion Function({
   Value<String?> country,
   Value<String?> postalCode,
   Value<String?> website,
+  Value<bool> isAppUser,
   Value<String?> user,
   Value<DateTime?> created,
   Value<DateTime?> updated,
@@ -7145,6 +7672,7 @@ typedef $$ContactsTableUpdateCompanionBuilder = ContactsCompanion Function({
   Value<String?> country,
   Value<String?> postalCode,
   Value<String?> website,
+  Value<bool> isAppUser,
   Value<String?> user,
   Value<DateTime?> created,
   Value<DateTime?> updated,
@@ -7199,6 +7727,9 @@ class $$ContactsTableFilterComposer
 
   ColumnFilters<String> get website => $composableBuilder(
       column: $table.website, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get isAppUser => $composableBuilder(
+      column: $table.isAppUser, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get user => $composableBuilder(
       column: $table.user, builder: (column) => ColumnFilters(column));
@@ -7259,6 +7790,9 @@ class $$ContactsTableOrderingComposer
   ColumnOrderings<String> get website => $composableBuilder(
       column: $table.website, builder: (column) => ColumnOrderings(column));
 
+  ColumnOrderings<bool> get isAppUser => $composableBuilder(
+      column: $table.isAppUser, builder: (column) => ColumnOrderings(column));
+
   ColumnOrderings<String> get user => $composableBuilder(
       column: $table.user, builder: (column) => ColumnOrderings(column));
 
@@ -7317,6 +7851,9 @@ class $$ContactsTableAnnotationComposer
   GeneratedColumn<String> get website =>
       $composableBuilder(column: $table.website, builder: (column) => column);
 
+  GeneratedColumn<bool> get isAppUser =>
+      $composableBuilder(column: $table.isAppUser, builder: (column) => column);
+
   GeneratedColumn<String> get user =>
       $composableBuilder(column: $table.user, builder: (column) => column);
 
@@ -7363,6 +7900,7 @@ class $$ContactsTableTableManager extends RootTableManager<
             Value<String?> country = const Value.absent(),
             Value<String?> postalCode = const Value.absent(),
             Value<String?> website = const Value.absent(),
+            Value<bool> isAppUser = const Value.absent(),
             Value<String?> user = const Value.absent(),
             Value<DateTime?> created = const Value.absent(),
             Value<DateTime?> updated = const Value.absent(),
@@ -7382,6 +7920,7 @@ class $$ContactsTableTableManager extends RootTableManager<
             country: country,
             postalCode: postalCode,
             website: website,
+            isAppUser: isAppUser,
             user: user,
             created: created,
             updated: updated,
@@ -7401,6 +7940,7 @@ class $$ContactsTableTableManager extends RootTableManager<
             Value<String?> country = const Value.absent(),
             Value<String?> postalCode = const Value.absent(),
             Value<String?> website = const Value.absent(),
+            Value<bool> isAppUser = const Value.absent(),
             Value<String?> user = const Value.absent(),
             Value<DateTime?> created = const Value.absent(),
             Value<DateTime?> updated = const Value.absent(),
@@ -7420,6 +7960,7 @@ class $$ContactsTableTableManager extends RootTableManager<
             country: country,
             postalCode: postalCode,
             website: website,
+            isAppUser: isAppUser,
             user: user,
             created: created,
             updated: updated,
@@ -7675,6 +8216,7 @@ typedef $$FinanceCategoriesTableCreateCompanionBuilder
   required String name,
   required String color,
   required String kind,
+  Value<String?> notes,
   Value<DateTime?> created,
   Value<DateTime?> updated,
   Value<int> rowid,
@@ -7685,6 +8227,7 @@ typedef $$FinanceCategoriesTableUpdateCompanionBuilder
   Value<String> name,
   Value<String> color,
   Value<String> kind,
+  Value<String?> notes,
   Value<DateTime?> created,
   Value<DateTime?> updated,
   Value<int> rowid,
@@ -7710,6 +8253,9 @@ class $$FinanceCategoriesTableFilterComposer
 
   ColumnFilters<String> get kind => $composableBuilder(
       column: $table.kind, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get notes => $composableBuilder(
+      column: $table.notes, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<DateTime> get created => $composableBuilder(
       column: $table.created, builder: (column) => ColumnFilters(column));
@@ -7739,6 +8285,9 @@ class $$FinanceCategoriesTableOrderingComposer
   ColumnOrderings<String> get kind => $composableBuilder(
       column: $table.kind, builder: (column) => ColumnOrderings(column));
 
+  ColumnOrderings<String> get notes => $composableBuilder(
+      column: $table.notes, builder: (column) => ColumnOrderings(column));
+
   ColumnOrderings<DateTime> get created => $composableBuilder(
       column: $table.created, builder: (column) => ColumnOrderings(column));
 
@@ -7766,6 +8315,9 @@ class $$FinanceCategoriesTableAnnotationComposer
 
   GeneratedColumn<String> get kind =>
       $composableBuilder(column: $table.kind, builder: (column) => column);
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
 
   GeneratedColumn<DateTime> get created =>
       $composableBuilder(column: $table.created, builder: (column) => column);
@@ -7806,6 +8358,7 @@ class $$FinanceCategoriesTableTableManager extends RootTableManager<
             Value<String> name = const Value.absent(),
             Value<String> color = const Value.absent(),
             Value<String> kind = const Value.absent(),
+            Value<String?> notes = const Value.absent(),
             Value<DateTime?> created = const Value.absent(),
             Value<DateTime?> updated = const Value.absent(),
             Value<int> rowid = const Value.absent(),
@@ -7815,6 +8368,7 @@ class $$FinanceCategoriesTableTableManager extends RootTableManager<
             name: name,
             color: color,
             kind: kind,
+            notes: notes,
             created: created,
             updated: updated,
             rowid: rowid,
@@ -7824,6 +8378,7 @@ class $$FinanceCategoriesTableTableManager extends RootTableManager<
             required String name,
             required String color,
             required String kind,
+            Value<String?> notes = const Value.absent(),
             Value<DateTime?> created = const Value.absent(),
             Value<DateTime?> updated = const Value.absent(),
             Value<int> rowid = const Value.absent(),
@@ -7833,6 +8388,7 @@ class $$FinanceCategoriesTableTableManager extends RootTableManager<
             name: name,
             color: color,
             kind: kind,
+            notes: notes,
             created: created,
             updated: updated,
             rowid: rowid,
@@ -7864,6 +8420,10 @@ typedef $$SpeciesTableTableCreateCompanionBuilder = SpeciesTableCompanion
   required String id,
   Value<String?> name,
   Value<String?> latName,
+  Value<String?> imageUrl,
+  Value<int?> incubationDays,
+  Value<int?> fledgeDays,
+  Value<String?> notes,
   Value<String?> user,
   Value<DateTime?> created,
   Value<DateTime?> updated,
@@ -7874,6 +8434,10 @@ typedef $$SpeciesTableTableUpdateCompanionBuilder = SpeciesTableCompanion
   Value<String> id,
   Value<String?> name,
   Value<String?> latName,
+  Value<String?> imageUrl,
+  Value<int?> incubationDays,
+  Value<int?> fledgeDays,
+  Value<String?> notes,
   Value<String?> user,
   Value<DateTime?> created,
   Value<DateTime?> updated,
@@ -7897,6 +8461,19 @@ class $$SpeciesTableTableFilterComposer
 
   ColumnFilters<String> get latName => $composableBuilder(
       column: $table.latName, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get imageUrl => $composableBuilder(
+      column: $table.imageUrl, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get incubationDays => $composableBuilder(
+      column: $table.incubationDays,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get fledgeDays => $composableBuilder(
+      column: $table.fledgeDays, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get notes => $composableBuilder(
+      column: $table.notes, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get user => $composableBuilder(
       column: $table.user, builder: (column) => ColumnFilters(column));
@@ -7926,6 +8503,19 @@ class $$SpeciesTableTableOrderingComposer
   ColumnOrderings<String> get latName => $composableBuilder(
       column: $table.latName, builder: (column) => ColumnOrderings(column));
 
+  ColumnOrderings<String> get imageUrl => $composableBuilder(
+      column: $table.imageUrl, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get incubationDays => $composableBuilder(
+      column: $table.incubationDays,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get fledgeDays => $composableBuilder(
+      column: $table.fledgeDays, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+      column: $table.notes, builder: (column) => ColumnOrderings(column));
+
   ColumnOrderings<String> get user => $composableBuilder(
       column: $table.user, builder: (column) => ColumnOrderings(column));
 
@@ -7953,6 +8543,18 @@ class $$SpeciesTableTableAnnotationComposer
 
   GeneratedColumn<String> get latName =>
       $composableBuilder(column: $table.latName, builder: (column) => column);
+
+  GeneratedColumn<String> get imageUrl =>
+      $composableBuilder(column: $table.imageUrl, builder: (column) => column);
+
+  GeneratedColumn<int> get incubationDays => $composableBuilder(
+      column: $table.incubationDays, builder: (column) => column);
+
+  GeneratedColumn<int> get fledgeDays => $composableBuilder(
+      column: $table.fledgeDays, builder: (column) => column);
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
 
   GeneratedColumn<String> get user =>
       $composableBuilder(column: $table.user, builder: (column) => column);
@@ -7993,6 +8595,10 @@ class $$SpeciesTableTableTableManager extends RootTableManager<
             Value<String> id = const Value.absent(),
             Value<String?> name = const Value.absent(),
             Value<String?> latName = const Value.absent(),
+            Value<String?> imageUrl = const Value.absent(),
+            Value<int?> incubationDays = const Value.absent(),
+            Value<int?> fledgeDays = const Value.absent(),
+            Value<String?> notes = const Value.absent(),
             Value<String?> user = const Value.absent(),
             Value<DateTime?> created = const Value.absent(),
             Value<DateTime?> updated = const Value.absent(),
@@ -8002,6 +8608,10 @@ class $$SpeciesTableTableTableManager extends RootTableManager<
             id: id,
             name: name,
             latName: latName,
+            imageUrl: imageUrl,
+            incubationDays: incubationDays,
+            fledgeDays: fledgeDays,
+            notes: notes,
             user: user,
             created: created,
             updated: updated,
@@ -8011,6 +8621,10 @@ class $$SpeciesTableTableTableManager extends RootTableManager<
             required String id,
             Value<String?> name = const Value.absent(),
             Value<String?> latName = const Value.absent(),
+            Value<String?> imageUrl = const Value.absent(),
+            Value<int?> incubationDays = const Value.absent(),
+            Value<int?> fledgeDays = const Value.absent(),
+            Value<String?> notes = const Value.absent(),
             Value<String?> user = const Value.absent(),
             Value<DateTime?> created = const Value.absent(),
             Value<DateTime?> updated = const Value.absent(),
@@ -8020,6 +8634,10 @@ class $$SpeciesTableTableTableManager extends RootTableManager<
             id: id,
             name: name,
             latName: latName,
+            imageUrl: imageUrl,
+            incubationDays: incubationDays,
+            fledgeDays: fledgeDays,
+            notes: notes,
             user: user,
             created: created,
             updated: updated,
@@ -8054,6 +8672,10 @@ typedef $$CagesTableCreateCompanionBuilder = CagesCompanion Function({
   Value<int?> width,
   Value<int?> height,
   Value<int?> depth,
+  Value<String?> type,
+  Value<String?> location,
+  Value<int?> capacity,
+  Value<String?> notes,
   Value<String?> user,
   Value<DateTime?> created,
   Value<DateTime?> updated,
@@ -8066,6 +8688,10 @@ typedef $$CagesTableUpdateCompanionBuilder = CagesCompanion Function({
   Value<int?> width,
   Value<int?> height,
   Value<int?> depth,
+  Value<String?> type,
+  Value<String?> location,
+  Value<int?> capacity,
+  Value<String?> notes,
   Value<String?> user,
   Value<DateTime?> created,
   Value<DateTime?> updated,
@@ -8097,6 +8723,18 @@ class $$CagesTableFilterComposer extends Composer<_$AppDatabase, $CagesTable> {
 
   ColumnFilters<int> get depth => $composableBuilder(
       column: $table.depth, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get type => $composableBuilder(
+      column: $table.type, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get location => $composableBuilder(
+      column: $table.location, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get capacity => $composableBuilder(
+      column: $table.capacity, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get notes => $composableBuilder(
+      column: $table.notes, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get user => $composableBuilder(
       column: $table.user, builder: (column) => ColumnFilters(column));
@@ -8135,6 +8773,18 @@ class $$CagesTableOrderingComposer
   ColumnOrderings<int> get depth => $composableBuilder(
       column: $table.depth, builder: (column) => ColumnOrderings(column));
 
+  ColumnOrderings<String> get type => $composableBuilder(
+      column: $table.type, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get location => $composableBuilder(
+      column: $table.location, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get capacity => $composableBuilder(
+      column: $table.capacity, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+      column: $table.notes, builder: (column) => ColumnOrderings(column));
+
   ColumnOrderings<String> get user => $composableBuilder(
       column: $table.user, builder: (column) => ColumnOrderings(column));
 
@@ -8171,6 +8821,18 @@ class $$CagesTableAnnotationComposer
 
   GeneratedColumn<int> get depth =>
       $composableBuilder(column: $table.depth, builder: (column) => column);
+
+  GeneratedColumn<String> get type =>
+      $composableBuilder(column: $table.type, builder: (column) => column);
+
+  GeneratedColumn<String> get location =>
+      $composableBuilder(column: $table.location, builder: (column) => column);
+
+  GeneratedColumn<int> get capacity =>
+      $composableBuilder(column: $table.capacity, builder: (column) => column);
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
 
   GeneratedColumn<String> get user =>
       $composableBuilder(column: $table.user, builder: (column) => column);
@@ -8211,6 +8873,10 @@ class $$CagesTableTableManager extends RootTableManager<
             Value<int?> width = const Value.absent(),
             Value<int?> height = const Value.absent(),
             Value<int?> depth = const Value.absent(),
+            Value<String?> type = const Value.absent(),
+            Value<String?> location = const Value.absent(),
+            Value<int?> capacity = const Value.absent(),
+            Value<String?> notes = const Value.absent(),
             Value<String?> user = const Value.absent(),
             Value<DateTime?> created = const Value.absent(),
             Value<DateTime?> updated = const Value.absent(),
@@ -8223,6 +8889,10 @@ class $$CagesTableTableManager extends RootTableManager<
             width: width,
             height: height,
             depth: depth,
+            type: type,
+            location: location,
+            capacity: capacity,
+            notes: notes,
             user: user,
             created: created,
             updated: updated,
@@ -8235,6 +8905,10 @@ class $$CagesTableTableManager extends RootTableManager<
             Value<int?> width = const Value.absent(),
             Value<int?> height = const Value.absent(),
             Value<int?> depth = const Value.absent(),
+            Value<String?> type = const Value.absent(),
+            Value<String?> location = const Value.absent(),
+            Value<int?> capacity = const Value.absent(),
+            Value<String?> notes = const Value.absent(),
             Value<String?> user = const Value.absent(),
             Value<DateTime?> created = const Value.absent(),
             Value<DateTime?> updated = const Value.absent(),
@@ -8247,6 +8921,10 @@ class $$CagesTableTableManager extends RootTableManager<
             width: width,
             height: height,
             depth: depth,
+            type: type,
+            location: location,
+            capacity: capacity,
+            notes: notes,
             user: user,
             created: created,
             updated: updated,
@@ -8274,6 +8952,9 @@ typedef $$CagesTableProcessedTableManager = ProcessedTableManager<
 typedef $$BirdColorsTableCreateCompanionBuilder = BirdColorsCompanion Function({
   required String id,
   Value<String?> name,
+  Value<String?> hex,
+  Value<String?> inheritance,
+  Value<String?> notes,
   Value<String?> user,
   Value<DateTime?> created,
   Value<DateTime?> updated,
@@ -8282,6 +8963,9 @@ typedef $$BirdColorsTableCreateCompanionBuilder = BirdColorsCompanion Function({
 typedef $$BirdColorsTableUpdateCompanionBuilder = BirdColorsCompanion Function({
   Value<String> id,
   Value<String?> name,
+  Value<String?> hex,
+  Value<String?> inheritance,
+  Value<String?> notes,
   Value<String?> user,
   Value<DateTime?> created,
   Value<DateTime?> updated,
@@ -8302,6 +8986,15 @@ class $$BirdColorsTableFilterComposer
 
   ColumnFilters<String> get name => $composableBuilder(
       column: $table.name, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get hex => $composableBuilder(
+      column: $table.hex, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get inheritance => $composableBuilder(
+      column: $table.inheritance, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get notes => $composableBuilder(
+      column: $table.notes, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get user => $composableBuilder(
       column: $table.user, builder: (column) => ColumnFilters(column));
@@ -8328,6 +9021,15 @@ class $$BirdColorsTableOrderingComposer
   ColumnOrderings<String> get name => $composableBuilder(
       column: $table.name, builder: (column) => ColumnOrderings(column));
 
+  ColumnOrderings<String> get hex => $composableBuilder(
+      column: $table.hex, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get inheritance => $composableBuilder(
+      column: $table.inheritance, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+      column: $table.notes, builder: (column) => ColumnOrderings(column));
+
   ColumnOrderings<String> get user => $composableBuilder(
       column: $table.user, builder: (column) => ColumnOrderings(column));
 
@@ -8352,6 +9054,15 @@ class $$BirdColorsTableAnnotationComposer
 
   GeneratedColumn<String> get name =>
       $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<String> get hex =>
+      $composableBuilder(column: $table.hex, builder: (column) => column);
+
+  GeneratedColumn<String> get inheritance => $composableBuilder(
+      column: $table.inheritance, builder: (column) => column);
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
 
   GeneratedColumn<String> get user =>
       $composableBuilder(column: $table.user, builder: (column) => column);
@@ -8388,6 +9099,9 @@ class $$BirdColorsTableTableManager extends RootTableManager<
           updateCompanionCallback: ({
             Value<String> id = const Value.absent(),
             Value<String?> name = const Value.absent(),
+            Value<String?> hex = const Value.absent(),
+            Value<String?> inheritance = const Value.absent(),
+            Value<String?> notes = const Value.absent(),
             Value<String?> user = const Value.absent(),
             Value<DateTime?> created = const Value.absent(),
             Value<DateTime?> updated = const Value.absent(),
@@ -8396,6 +9110,9 @@ class $$BirdColorsTableTableManager extends RootTableManager<
               BirdColorsCompanion(
             id: id,
             name: name,
+            hex: hex,
+            inheritance: inheritance,
+            notes: notes,
             user: user,
             created: created,
             updated: updated,
@@ -8404,6 +9121,9 @@ class $$BirdColorsTableTableManager extends RootTableManager<
           createCompanionCallback: ({
             required String id,
             Value<String?> name = const Value.absent(),
+            Value<String?> hex = const Value.absent(),
+            Value<String?> inheritance = const Value.absent(),
+            Value<String?> notes = const Value.absent(),
             Value<String?> user = const Value.absent(),
             Value<DateTime?> created = const Value.absent(),
             Value<DateTime?> updated = const Value.absent(),
@@ -8412,6 +9132,9 @@ class $$BirdColorsTableTableManager extends RootTableManager<
               BirdColorsCompanion.insert(
             id: id,
             name: name,
+            hex: hex,
+            inheritance: inheritance,
+            notes: notes,
             user: user,
             created: created,
             updated: updated,

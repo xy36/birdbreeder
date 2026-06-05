@@ -27,6 +27,7 @@ mixin _$Contact {
   String? get country;
   String? get website;
   ContactTitle? get title;
+  bool get isAppUser;
   DateTime? get created;
   DateTime? get updated;
 
@@ -59,6 +60,8 @@ mixin _$Contact {
             (identical(other.country, country) || other.country == country) &&
             (identical(other.website, website) || other.website == website) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.isAppUser, isAppUser) ||
+                other.isAppUser == isAppUser) &&
             (identical(other.created, created) || other.created == created) &&
             (identical(other.updated, updated) || other.updated == updated));
   }
@@ -79,12 +82,13 @@ mixin _$Contact {
       country,
       website,
       title,
+      isAppUser,
       created,
       updated);
 
   @override
   String toString() {
-    return 'Contact(id: $id, number: $number, phone: $phone, cellPhoneNumber: $cellPhoneNumber, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, postalCode: $postalCode, country: $country, website: $website, title: $title, created: $created, updated: $updated)';
+    return 'Contact(id: $id, number: $number, phone: $phone, cellPhoneNumber: $cellPhoneNumber, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, postalCode: $postalCode, country: $country, website: $website, title: $title, isAppUser: $isAppUser, created: $created, updated: $updated)';
   }
 }
 
@@ -107,6 +111,7 @@ abstract mixin class $ContactCopyWith<$Res> {
       String? country,
       String? website,
       ContactTitle? title,
+      bool isAppUser,
       DateTime? created,
       DateTime? updated});
 }
@@ -136,6 +141,7 @@ class _$ContactCopyWithImpl<$Res> implements $ContactCopyWith<$Res> {
     Object? country = freezed,
     Object? website = freezed,
     Object? title = freezed,
+    Object? isAppUser = null,
     Object? created = freezed,
     Object? updated = freezed,
   }) {
@@ -192,6 +198,10 @@ class _$ContactCopyWithImpl<$Res> implements $ContactCopyWith<$Res> {
           ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
               as ContactTitle?,
+      isAppUser: null == isAppUser
+          ? _self.isAppUser
+          : isAppUser // ignore: cast_nullable_to_non_nullable
+              as bool,
       created: freezed == created
           ? _self.created
           : created // ignore: cast_nullable_to_non_nullable
@@ -311,6 +321,7 @@ extension ContactPatterns on Contact {
             String? country,
             String? website,
             ContactTitle? title,
+            bool isAppUser,
             DateTime? created,
             DateTime? updated)?
         $default, {
@@ -333,6 +344,7 @@ extension ContactPatterns on Contact {
             _that.country,
             _that.website,
             _that.title,
+            _that.isAppUser,
             _that.created,
             _that.updated);
       case _:
@@ -369,6 +381,7 @@ extension ContactPatterns on Contact {
             String? country,
             String? website,
             ContactTitle? title,
+            bool isAppUser,
             DateTime? created,
             DateTime? updated)
         $default,
@@ -390,6 +403,7 @@ extension ContactPatterns on Contact {
             _that.country,
             _that.website,
             _that.title,
+            _that.isAppUser,
             _that.created,
             _that.updated);
       case _:
@@ -425,6 +439,7 @@ extension ContactPatterns on Contact {
             String? country,
             String? website,
             ContactTitle? title,
+            bool isAppUser,
             DateTime? created,
             DateTime? updated)?
         $default,
@@ -446,6 +461,7 @@ extension ContactPatterns on Contact {
             _that.country,
             _that.website,
             _that.title,
+            _that.isAppUser,
             _that.created,
             _that.updated);
       case _:
@@ -471,6 +487,7 @@ class _Contact extends Contact {
       required this.country,
       required this.website,
       this.title = ContactTitle.none,
+      this.isAppUser = false,
       this.created,
       this.updated})
       : super._();
@@ -502,6 +519,9 @@ class _Contact extends Contact {
   @override
   @JsonKey()
   final ContactTitle? title;
+  @override
+  @JsonKey()
+  final bool isAppUser;
   @override
   final DateTime? created;
   @override
@@ -537,6 +557,8 @@ class _Contact extends Contact {
             (identical(other.country, country) || other.country == country) &&
             (identical(other.website, website) || other.website == website) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.isAppUser, isAppUser) ||
+                other.isAppUser == isAppUser) &&
             (identical(other.created, created) || other.created == created) &&
             (identical(other.updated, updated) || other.updated == updated));
   }
@@ -557,12 +579,13 @@ class _Contact extends Contact {
       country,
       website,
       title,
+      isAppUser,
       created,
       updated);
 
   @override
   String toString() {
-    return 'Contact(id: $id, number: $number, phone: $phone, cellPhoneNumber: $cellPhoneNumber, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, postalCode: $postalCode, country: $country, website: $website, title: $title, created: $created, updated: $updated)';
+    return 'Contact(id: $id, number: $number, phone: $phone, cellPhoneNumber: $cellPhoneNumber, firstName: $firstName, lastName: $lastName, email: $email, address: $address, city: $city, postalCode: $postalCode, country: $country, website: $website, title: $title, isAppUser: $isAppUser, created: $created, updated: $updated)';
   }
 }
 
@@ -586,6 +609,7 @@ abstract mixin class _$ContactCopyWith<$Res> implements $ContactCopyWith<$Res> {
       String? country,
       String? website,
       ContactTitle? title,
+      bool isAppUser,
       DateTime? created,
       DateTime? updated});
 }
@@ -615,6 +639,7 @@ class __$ContactCopyWithImpl<$Res> implements _$ContactCopyWith<$Res> {
     Object? country = freezed,
     Object? website = freezed,
     Object? title = freezed,
+    Object? isAppUser = null,
     Object? created = freezed,
     Object? updated = freezed,
   }) {
@@ -671,6 +696,10 @@ class __$ContactCopyWithImpl<$Res> implements _$ContactCopyWith<$Res> {
           ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
               as ContactTitle?,
+      isAppUser: null == isAppUser
+          ? _self.isAppUser
+          : isAppUser // ignore: cast_nullable_to_non_nullable
+              as bool,
       created: freezed == created
           ? _self.created
           : created // ignore: cast_nullable_to_non_nullable

@@ -1,6 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/menu/presentation/menu_screen.dart';
 import 'package:birdbreeder/features/menu/presentation/utils/utils.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class SharedAppBarWithDrawer extends StatelessWidget
     implements PreferredSizeWidget {
@@ -33,7 +34,7 @@ class SharedAppBarWithDrawer extends StatelessWidget
             leading: hideMenuButton
                 ? null
                 : IconButton(
-                    icon: const Icon(Icons.menu),
+                    icon: const Icon(AppIcons.menu),
                     onPressed: () async {
                       Menu.toggleMenuDrawer();
                     },

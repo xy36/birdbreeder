@@ -20,6 +20,10 @@ mixin _$Cage {
   int? get width;
   int? get height;
   int? get depth;
+  CageType? get type;
+  String? get location;
+  int? get capacity;
+  String? get notes;
   DateTime? get created;
   DateTime? get updated;
 
@@ -42,17 +46,23 @@ mixin _$Cage {
             (identical(other.width, width) || other.width == width) &&
             (identical(other.height, height) || other.height == height) &&
             (identical(other.depth, depth) || other.depth == depth) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.capacity, capacity) ||
+                other.capacity == capacity) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.created, created) || other.created == created) &&
             (identical(other.updated, updated) || other.updated == updated));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, id, name, description, width,
-      height, depth, created, updated);
+      height, depth, type, location, capacity, notes, created, updated);
 
   @override
   String toString() {
-    return 'Cage(id: $id, name: $name, description: $description, width: $width, height: $height, depth: $depth, created: $created, updated: $updated)';
+    return 'Cage(id: $id, name: $name, description: $description, width: $width, height: $height, depth: $depth, type: $type, location: $location, capacity: $capacity, notes: $notes, created: $created, updated: $updated)';
   }
 }
 
@@ -68,6 +78,10 @@ abstract mixin class $CageCopyWith<$Res> {
       int? width,
       int? height,
       int? depth,
+      CageType? type,
+      String? location,
+      int? capacity,
+      String? notes,
       DateTime? created,
       DateTime? updated});
 }
@@ -90,6 +104,10 @@ class _$CageCopyWithImpl<$Res> implements $CageCopyWith<$Res> {
     Object? width = freezed,
     Object? height = freezed,
     Object? depth = freezed,
+    Object? type = freezed,
+    Object? location = freezed,
+    Object? capacity = freezed,
+    Object? notes = freezed,
     Object? created = freezed,
     Object? updated = freezed,
   }) {
@@ -118,6 +136,22 @@ class _$CageCopyWithImpl<$Res> implements $CageCopyWith<$Res> {
           ? _self.depth
           : depth // ignore: cast_nullable_to_non_nullable
               as int?,
+      type: freezed == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as CageType?,
+      location: freezed == location
+          ? _self.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String?,
+      capacity: freezed == capacity
+          ? _self.capacity
+          : capacity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      notes: freezed == notes
+          ? _self.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
       created: freezed == created
           ? _self.created
           : created // ignore: cast_nullable_to_non_nullable
@@ -223,16 +257,38 @@ extension CagePatterns on Cage {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(CageId id, String? name, String? description, int? width,
-            int? height, int? depth, DateTime? created, DateTime? updated)?
+    TResult Function(
+            CageId id,
+            String? name,
+            String? description,
+            int? width,
+            int? height,
+            int? depth,
+            CageType? type,
+            String? location,
+            int? capacity,
+            String? notes,
+            DateTime? created,
+            DateTime? updated)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _Cage() when $default != null:
-        return $default(_that.id, _that.name, _that.description, _that.width,
-            _that.height, _that.depth, _that.created, _that.updated);
+        return $default(
+            _that.id,
+            _that.name,
+            _that.description,
+            _that.width,
+            _that.height,
+            _that.depth,
+            _that.type,
+            _that.location,
+            _that.capacity,
+            _that.notes,
+            _that.created,
+            _that.updated);
       case _:
         return orElse();
     }
@@ -253,15 +309,37 @@ extension CagePatterns on Cage {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(CageId id, String? name, String? description, int? width,
-            int? height, int? depth, DateTime? created, DateTime? updated)
+    TResult Function(
+            CageId id,
+            String? name,
+            String? description,
+            int? width,
+            int? height,
+            int? depth,
+            CageType? type,
+            String? location,
+            int? capacity,
+            String? notes,
+            DateTime? created,
+            DateTime? updated)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Cage():
-        return $default(_that.id, _that.name, _that.description, _that.width,
-            _that.height, _that.depth, _that.created, _that.updated);
+        return $default(
+            _that.id,
+            _that.name,
+            _that.description,
+            _that.width,
+            _that.height,
+            _that.depth,
+            _that.type,
+            _that.location,
+            _that.capacity,
+            _that.notes,
+            _that.created,
+            _that.updated);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -281,15 +359,37 @@ extension CagePatterns on Cage {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(CageId id, String? name, String? description, int? width,
-            int? height, int? depth, DateTime? created, DateTime? updated)?
+    TResult? Function(
+            CageId id,
+            String? name,
+            String? description,
+            int? width,
+            int? height,
+            int? depth,
+            CageType? type,
+            String? location,
+            int? capacity,
+            String? notes,
+            DateTime? created,
+            DateTime? updated)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Cage() when $default != null:
-        return $default(_that.id, _that.name, _that.description, _that.width,
-            _that.height, _that.depth, _that.created, _that.updated);
+        return $default(
+            _that.id,
+            _that.name,
+            _that.description,
+            _that.width,
+            _that.height,
+            _that.depth,
+            _that.type,
+            _that.location,
+            _that.capacity,
+            _that.notes,
+            _that.created,
+            _that.updated);
       case _:
         return null;
     }
@@ -306,6 +406,10 @@ class _Cage implements Cage {
       required this.width,
       required this.height,
       required this.depth,
+      this.type,
+      this.location,
+      this.capacity,
+      this.notes,
       this.created,
       this.updated});
 
@@ -321,6 +425,14 @@ class _Cage implements Cage {
   final int? height;
   @override
   final int? depth;
+  @override
+  final CageType? type;
+  @override
+  final String? location;
+  @override
+  final int? capacity;
+  @override
+  final String? notes;
   @override
   final DateTime? created;
   @override
@@ -346,17 +458,23 @@ class _Cage implements Cage {
             (identical(other.width, width) || other.width == width) &&
             (identical(other.height, height) || other.height == height) &&
             (identical(other.depth, depth) || other.depth == depth) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.capacity, capacity) ||
+                other.capacity == capacity) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.created, created) || other.created == created) &&
             (identical(other.updated, updated) || other.updated == updated));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, id, name, description, width,
-      height, depth, created, updated);
+      height, depth, type, location, capacity, notes, created, updated);
 
   @override
   String toString() {
-    return 'Cage(id: $id, name: $name, description: $description, width: $width, height: $height, depth: $depth, created: $created, updated: $updated)';
+    return 'Cage(id: $id, name: $name, description: $description, width: $width, height: $height, depth: $depth, type: $type, location: $location, capacity: $capacity, notes: $notes, created: $created, updated: $updated)';
   }
 }
 
@@ -373,6 +491,10 @@ abstract mixin class _$CageCopyWith<$Res> implements $CageCopyWith<$Res> {
       int? width,
       int? height,
       int? depth,
+      CageType? type,
+      String? location,
+      int? capacity,
+      String? notes,
       DateTime? created,
       DateTime? updated});
 }
@@ -395,6 +517,10 @@ class __$CageCopyWithImpl<$Res> implements _$CageCopyWith<$Res> {
     Object? width = freezed,
     Object? height = freezed,
     Object? depth = freezed,
+    Object? type = freezed,
+    Object? location = freezed,
+    Object? capacity = freezed,
+    Object? notes = freezed,
     Object? created = freezed,
     Object? updated = freezed,
   }) {
@@ -423,6 +549,22 @@ class __$CageCopyWithImpl<$Res> implements _$CageCopyWith<$Res> {
           ? _self.depth
           : depth // ignore: cast_nullable_to_non_nullable
               as int?,
+      type: freezed == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as CageType?,
+      location: freezed == location
+          ? _self.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String?,
+      capacity: freezed == capacity
+          ? _self.capacity
+          : capacity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      notes: freezed == notes
+          ? _self.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
       created: freezed == created
           ? _self.created
           : created // ignore: cast_nullable_to_non_nullable

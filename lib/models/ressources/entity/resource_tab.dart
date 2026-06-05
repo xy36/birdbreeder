@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
-import 'package:birdbreeder/features/ressourcen_center/widgets/tabs/cages_tab.dart';
-import 'package:birdbreeder/features/ressourcen_center/widgets/tabs/categories_tab.dart';
-import 'package:birdbreeder/features/ressourcen_center/widgets/tabs/colors_tab.dart';
-import 'package:birdbreeder/features/ressourcen_center/widgets/tabs/species_tab.dart';
+import 'package:birdbreeder/features/ressourcen_center/cages/cages_page.dart';
+import 'package:birdbreeder/features/ressourcen_center/categories/categories_page.dart';
+import 'package:birdbreeder/features/ressourcen_center/colors/colors_page.dart';
+import 'package:birdbreeder/features/ressourcen_center/species/species_page.dart';
 
 enum ResourceTab {
   species,
@@ -33,9 +33,9 @@ enum ResourceTab {
       };
 
   Widget get child => switch (this) {
-        ResourceTab.species => const SpeciesTab(),
-        ResourceTab.cages => const CagesTab(),
-        ResourceTab.colors => const ColorsTab(),
-        ResourceTab.financesCategories => const CategoriesTab(),
+        ResourceTab.species => const SpeciesPage(),
+        ResourceTab.cages => const CagesPage(),
+        ResourceTab.colors => const ColorsPage(),
+        ResourceTab.financesCategories => const CategoriesPage(),
       };
 }

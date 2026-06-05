@@ -1,5 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/shared/cubits/theme_cubit/theme_cubit.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class AppearanceSection extends StatelessWidget {
   const AppearanceSection({super.key});
@@ -15,17 +16,17 @@ class AppearanceSection extends StatelessWidget {
             ButtonSegment(
               value: ThemeMode.system,
               label: Text(tr.system),
-              icon: const Icon(Icons.brightness_auto),
+              icon: const Icon(AppIcons.systemMode),
             ),
             ButtonSegment(
               value: ThemeMode.light,
               label: Text(tr.light),
-              icon: const Icon(Icons.light_mode),
+              icon: const Icon(AppIcons.lightMode),
             ),
             ButtonSegment(
               value: ThemeMode.dark,
               label: Text(tr.dark),
-              icon: const Icon(Icons.dark_mode),
+              icon: const Icon(AppIcons.darkMode),
             ),
           ],
           selected: {mode},

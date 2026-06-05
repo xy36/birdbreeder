@@ -1,4 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/dialogs/discard_changes_dialog.dart';
 
 class NavigateBackButton extends StatelessWidget {
@@ -12,7 +13,7 @@ class NavigateBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: const Icon(Icons.arrow_back),
+      icon: const Icon(AppIcons.arrowBack),
       onPressed: () async {
         if (discardDialogEnabled) {
           final result = await showDialog<bool>(

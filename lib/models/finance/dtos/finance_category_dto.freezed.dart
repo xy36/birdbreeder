@@ -18,6 +18,7 @@ mixin _$FinanceCategoryDto {
   String get name;
   String get color;
   FinanceCategoryKind get kind;
+  String? get notes;
   String? get collectionId;
   String? get collectionName;
   DateTime? get created;
@@ -43,6 +44,7 @@ mixin _$FinanceCategoryDto {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.color, color) || other.color == color) &&
             (identical(other.kind, kind) || other.kind == kind) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.collectionId, collectionId) ||
                 other.collectionId == collectionId) &&
             (identical(other.collectionName, collectionName) ||
@@ -53,12 +55,12 @@ mixin _$FinanceCategoryDto {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, color, kind,
+  int get hashCode => Object.hash(runtimeType, id, name, color, kind, notes,
       collectionId, collectionName, created, updated);
 
   @override
   String toString() {
-    return 'FinanceCategoryDto(id: $id, name: $name, color: $color, kind: $kind, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated)';
+    return 'FinanceCategoryDto(id: $id, name: $name, color: $color, kind: $kind, notes: $notes, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated)';
   }
 }
 
@@ -73,6 +75,7 @@ abstract mixin class $FinanceCategoryDtoCopyWith<$Res> {
       String name,
       String color,
       FinanceCategoryKind kind,
+      String? notes,
       String? collectionId,
       String? collectionName,
       DateTime? created,
@@ -96,6 +99,7 @@ class _$FinanceCategoryDtoCopyWithImpl<$Res>
     Object? name = null,
     Object? color = null,
     Object? kind = null,
+    Object? notes = freezed,
     Object? collectionId = freezed,
     Object? collectionName = freezed,
     Object? created = freezed,
@@ -118,6 +122,10 @@ class _$FinanceCategoryDtoCopyWithImpl<$Res>
           ? _self.kind
           : kind // ignore: cast_nullable_to_non_nullable
               as FinanceCategoryKind,
+      notes: freezed == notes
+          ? _self.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
       collectionId: freezed == collectionId
           ? _self.collectionId
           : collectionId // ignore: cast_nullable_to_non_nullable
@@ -236,6 +244,7 @@ extension FinanceCategoryDtoPatterns on FinanceCategoryDto {
             String name,
             String color,
             FinanceCategoryKind kind,
+            String? notes,
             String? collectionId,
             String? collectionName,
             DateTime? created,
@@ -251,6 +260,7 @@ extension FinanceCategoryDtoPatterns on FinanceCategoryDto {
             _that.name,
             _that.color,
             _that.kind,
+            _that.notes,
             _that.collectionId,
             _that.collectionName,
             _that.created,
@@ -280,6 +290,7 @@ extension FinanceCategoryDtoPatterns on FinanceCategoryDto {
             String name,
             String color,
             FinanceCategoryKind kind,
+            String? notes,
             String? collectionId,
             String? collectionName,
             DateTime? created,
@@ -294,6 +305,7 @@ extension FinanceCategoryDtoPatterns on FinanceCategoryDto {
             _that.name,
             _that.color,
             _that.kind,
+            _that.notes,
             _that.collectionId,
             _that.collectionName,
             _that.created,
@@ -322,6 +334,7 @@ extension FinanceCategoryDtoPatterns on FinanceCategoryDto {
             String name,
             String color,
             FinanceCategoryKind kind,
+            String? notes,
             String? collectionId,
             String? collectionName,
             DateTime? created,
@@ -336,6 +349,7 @@ extension FinanceCategoryDtoPatterns on FinanceCategoryDto {
             _that.name,
             _that.color,
             _that.kind,
+            _that.notes,
             _that.collectionId,
             _that.collectionName,
             _that.created,
@@ -354,6 +368,7 @@ class _FinanceCategoryDto implements FinanceCategoryDto {
       required this.name,
       required this.color,
       required this.kind,
+      this.notes,
       this.collectionId,
       this.collectionName,
       this.created,
@@ -369,6 +384,8 @@ class _FinanceCategoryDto implements FinanceCategoryDto {
   final String color;
   @override
   final FinanceCategoryKind kind;
+  @override
+  final String? notes;
   @override
   final String? collectionId;
   @override
@@ -402,6 +419,7 @@ class _FinanceCategoryDto implements FinanceCategoryDto {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.color, color) || other.color == color) &&
             (identical(other.kind, kind) || other.kind == kind) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.collectionId, collectionId) ||
                 other.collectionId == collectionId) &&
             (identical(other.collectionName, collectionName) ||
@@ -412,12 +430,12 @@ class _FinanceCategoryDto implements FinanceCategoryDto {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, color, kind,
+  int get hashCode => Object.hash(runtimeType, id, name, color, kind, notes,
       collectionId, collectionName, created, updated);
 
   @override
   String toString() {
-    return 'FinanceCategoryDto(id: $id, name: $name, color: $color, kind: $kind, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated)';
+    return 'FinanceCategoryDto(id: $id, name: $name, color: $color, kind: $kind, notes: $notes, collectionId: $collectionId, collectionName: $collectionName, created: $created, updated: $updated)';
   }
 }
 
@@ -434,6 +452,7 @@ abstract mixin class _$FinanceCategoryDtoCopyWith<$Res>
       String name,
       String color,
       FinanceCategoryKind kind,
+      String? notes,
       String? collectionId,
       String? collectionName,
       DateTime? created,
@@ -457,6 +476,7 @@ class __$FinanceCategoryDtoCopyWithImpl<$Res>
     Object? name = null,
     Object? color = null,
     Object? kind = null,
+    Object? notes = freezed,
     Object? collectionId = freezed,
     Object? collectionName = freezed,
     Object? created = freezed,
@@ -479,6 +499,10 @@ class __$FinanceCategoryDtoCopyWithImpl<$Res>
           ? _self.kind
           : kind // ignore: cast_nullable_to_non_nullable
               as FinanceCategoryKind,
+      notes: freezed == notes
+          ? _self.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
       collectionId: freezed == collectionId
           ? _self.collectionId
           : collectionId // ignore: cast_nullable_to_non_nullable

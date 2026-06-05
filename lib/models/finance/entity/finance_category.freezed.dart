@@ -21,6 +21,7 @@ mixin _$FinanceCategory {
   String get name;
   String get color;
   FinanceCategoryKind get kind;
+  String? get notes;
   DateTime? get created;
   DateTime? get updated;
 
@@ -44,6 +45,7 @@ mixin _$FinanceCategory {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.color, color) || other.color == color) &&
             (identical(other.kind, kind) || other.kind == kind) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.created, created) || other.created == created) &&
             (identical(other.updated, updated) || other.updated == updated));
   }
@@ -51,11 +53,11 @@ mixin _$FinanceCategory {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, color, kind, created, updated);
+      Object.hash(runtimeType, id, name, color, kind, notes, created, updated);
 
   @override
   String toString() {
-    return 'FinanceCategory(id: $id, name: $name, color: $color, kind: $kind, created: $created, updated: $updated)';
+    return 'FinanceCategory(id: $id, name: $name, color: $color, kind: $kind, notes: $notes, created: $created, updated: $updated)';
   }
 }
 
@@ -70,6 +72,7 @@ abstract mixin class $FinanceCategoryCopyWith<$Res> {
       String name,
       String color,
       FinanceCategoryKind kind,
+      String? notes,
       DateTime? created,
       DateTime? updated});
 }
@@ -91,6 +94,7 @@ class _$FinanceCategoryCopyWithImpl<$Res>
     Object? name = null,
     Object? color = null,
     Object? kind = null,
+    Object? notes = freezed,
     Object? created = freezed,
     Object? updated = freezed,
   }) {
@@ -111,6 +115,10 @@ class _$FinanceCategoryCopyWithImpl<$Res>
           ? _self.kind
           : kind // ignore: cast_nullable_to_non_nullable
               as FinanceCategoryKind,
+      notes: freezed == notes
+          ? _self.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
       created: freezed == created
           ? _self.created
           : created // ignore: cast_nullable_to_non_nullable
@@ -216,8 +224,14 @@ extension FinanceCategoryPatterns on FinanceCategory {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String id, String name, String color,
-            FinanceCategoryKind kind, DateTime? created, DateTime? updated)?
+    TResult Function(
+            String id,
+            String name,
+            String color,
+            FinanceCategoryKind kind,
+            String? notes,
+            DateTime? created,
+            DateTime? updated)?
         $default, {
     required TResult orElse(),
   }) {
@@ -225,7 +239,7 @@ extension FinanceCategoryPatterns on FinanceCategory {
     switch (_that) {
       case _FinancesCategories() when $default != null:
         return $default(_that.id, _that.name, _that.color, _that.kind,
-            _that.created, _that.updated);
+            _that.notes, _that.created, _that.updated);
       case _:
         return orElse();
     }
@@ -246,15 +260,21 @@ extension FinanceCategoryPatterns on FinanceCategory {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String id, String name, String color,
-            FinanceCategoryKind kind, DateTime? created, DateTime? updated)
+    TResult Function(
+            String id,
+            String name,
+            String color,
+            FinanceCategoryKind kind,
+            String? notes,
+            DateTime? created,
+            DateTime? updated)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _FinancesCategories():
         return $default(_that.id, _that.name, _that.color, _that.kind,
-            _that.created, _that.updated);
+            _that.notes, _that.created, _that.updated);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -274,15 +294,21 @@ extension FinanceCategoryPatterns on FinanceCategory {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String id, String name, String color,
-            FinanceCategoryKind kind, DateTime? created, DateTime? updated)?
+    TResult? Function(
+            String id,
+            String name,
+            String color,
+            FinanceCategoryKind kind,
+            String? notes,
+            DateTime? created,
+            DateTime? updated)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _FinancesCategories() when $default != null:
         return $default(_that.id, _that.name, _that.color, _that.kind,
-            _that.created, _that.updated);
+            _that.notes, _that.created, _that.updated);
       case _:
         return null;
     }
@@ -297,6 +323,7 @@ class _FinancesCategories implements FinanceCategory {
       required this.name,
       required this.color,
       required this.kind,
+      this.notes,
       this.created,
       this.updated});
   factory _FinancesCategories.fromJson(Map<String, dynamic> json) =>
@@ -310,6 +337,8 @@ class _FinancesCategories implements FinanceCategory {
   final String color;
   @override
   final FinanceCategoryKind kind;
+  @override
+  final String? notes;
   @override
   final DateTime? created;
   @override
@@ -339,6 +368,7 @@ class _FinancesCategories implements FinanceCategory {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.color, color) || other.color == color) &&
             (identical(other.kind, kind) || other.kind == kind) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.created, created) || other.created == created) &&
             (identical(other.updated, updated) || other.updated == updated));
   }
@@ -346,11 +376,11 @@ class _FinancesCategories implements FinanceCategory {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, color, kind, created, updated);
+      Object.hash(runtimeType, id, name, color, kind, notes, created, updated);
 
   @override
   String toString() {
-    return 'FinanceCategory(id: $id, name: $name, color: $color, kind: $kind, created: $created, updated: $updated)';
+    return 'FinanceCategory(id: $id, name: $name, color: $color, kind: $kind, notes: $notes, created: $created, updated: $updated)';
   }
 }
 
@@ -367,6 +397,7 @@ abstract mixin class _$FinancesCategoriesCopyWith<$Res>
       String name,
       String color,
       FinanceCategoryKind kind,
+      String? notes,
       DateTime? created,
       DateTime? updated});
 }
@@ -388,6 +419,7 @@ class __$FinancesCategoriesCopyWithImpl<$Res>
     Object? name = null,
     Object? color = null,
     Object? kind = null,
+    Object? notes = freezed,
     Object? created = freezed,
     Object? updated = freezed,
   }) {
@@ -408,6 +440,10 @@ class __$FinancesCategoriesCopyWithImpl<$Res>
           ? _self.kind
           : kind // ignore: cast_nullable_to_non_nullable
               as FinanceCategoryKind,
+      notes: freezed == notes
+          ? _self.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
       created: freezed == created
           ? _self.created
           : created // ignore: cast_nullable_to_non_nullable

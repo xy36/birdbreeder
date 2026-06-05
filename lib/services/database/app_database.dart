@@ -116,6 +116,7 @@ class Contacts extends Table {
   TextColumn get country => text().nullable()();
   TextColumn get postalCode => text().nullable()();
   TextColumn get website => text().nullable()();
+  BoolColumn get isAppUser => boolean().withDefault(const Constant(false))();
   TextColumn get user => text().nullable()();
   DateTimeColumn get created => dateTime().nullable()();
   DateTimeColumn get updated => dateTime().nullable()();
@@ -144,6 +145,7 @@ class FinanceCategories extends Table {
   TextColumn get name => text()();
   TextColumn get color => text()();
   TextColumn get kind => text()();
+  TextColumn get notes => text().nullable()();
   DateTimeColumn get created => dateTime().nullable()();
   DateTimeColumn get updated => dateTime().nullable()();
 
@@ -158,6 +160,10 @@ class SpeciesTable extends Table {
   TextColumn get id => text()();
   TextColumn get name => text().nullable()();
   TextColumn get latName => text().nullable()();
+  TextColumn get imageUrl => text().nullable()();
+  IntColumn get incubationDays => integer().nullable()();
+  IntColumn get fledgeDays => integer().nullable()();
+  TextColumn get notes => text().nullable()();
   TextColumn get user => text().nullable()();
   DateTimeColumn get created => dateTime().nullable()();
   DateTimeColumn get updated => dateTime().nullable()();
@@ -173,6 +179,10 @@ class Cages extends Table {
   IntColumn get width => integer().nullable()();
   IntColumn get height => integer().nullable()();
   IntColumn get depth => integer().nullable()();
+  TextColumn get type => text().nullable()();
+  TextColumn get location => text().nullable()();
+  IntColumn get capacity => integer().nullable()();
+  TextColumn get notes => text().nullable()();
   TextColumn get user => text().nullable()();
   DateTimeColumn get created => dateTime().nullable()();
   DateTimeColumn get updated => dateTime().nullable()();
@@ -184,6 +194,9 @@ class Cages extends Table {
 class BirdColors extends Table {
   TextColumn get id => text()();
   TextColumn get name => text().nullable()();
+  TextColumn get hex => text().nullable()();
+  TextColumn get inheritance => text().nullable()();
+  TextColumn get notes => text().nullable()();
   TextColumn get user => text().nullable()();
   DateTimeColumn get created => dateTime().nullable()();
   DateTimeColumn get updated => dateTime().nullable()();
@@ -214,7 +227,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 6;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(

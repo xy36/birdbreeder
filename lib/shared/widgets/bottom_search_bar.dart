@@ -1,5 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/birds_overview_header.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class BottomSearchBar extends StatelessWidget {
   const BottomSearchBar({
@@ -24,7 +25,7 @@ class BottomSearchBar extends StatelessWidget {
         ),
         FloatingActionButton(
           onPressed: onAdd,
-          child: const Icon(Icons.add),
+          child: const Icon(AppIcons.add),
         ),
       ],
     );

@@ -306,6 +306,7 @@ class $ContactMapper implements _i1.AutoMapprInterface {
       country: model.country,
       postalCode: model.postalCode,
       website: model.website,
+      isAppUser: model.isAppUser,
     );
   }
 
@@ -330,6 +331,7 @@ class $ContactMapper implements _i1.AutoMapprInterface {
       country: model.country,
       website: model.website,
       title: model.title,
+      isAppUser: model.isAppUser,
     );
   }
 }

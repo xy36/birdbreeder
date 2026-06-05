@@ -99,7 +99,7 @@ class FinanceEntryCard extends StatelessWidget {
               bg: category.bgColor,
               fg: category.fgColor,
             ),
-            MetaChip(icon: Icons.today, text: dateText),
+            MetaChip(icon: AppIcons.today, text: dateText),
             if (birdLabel?.isNotEmpty == true)
               MetaChip(icon: AppIcons.birdAvatar, text: birdLabel!),
           ],

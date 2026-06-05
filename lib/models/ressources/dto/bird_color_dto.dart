@@ -8,6 +8,9 @@ abstract class BirdColorDto with _$BirdColorDto {
   factory BirdColorDto({
     required String id,
     String? name,
+    String? hex,
+    String? inheritance,
+    String? notes,
     String? user,
   }) = _BirdColorDto;
 

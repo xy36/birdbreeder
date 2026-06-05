@@ -39,6 +39,7 @@ abstract class Contact with _$Contact, Searchable {
     required String? country,
     required String? website,
     @Default(ContactTitle.none) ContactTitle? title,
+    @Default(false) bool isAppUser,
     DateTime? created,
     DateTime? updated,
   }) = _Contact;

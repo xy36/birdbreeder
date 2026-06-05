@@ -33,7 +33,7 @@ mobile platforms.
   `StatelessWidget`) should be immutable.
 * **State Management:** Separate ephemeral state and app state. Use BLoC as state
   management package. Prefer using Cubits and get use of the BlocPresentation package
-  for listeners.
+  for listeners. State classes should be created with freezed.
 * **Widgets are for UI:** Everything in Flutter's UI is a widget. Compose
   complex UIs from smaller, reusable widgets.
 * **Navigation:** Use a modern routing package like `auto_route`.
@@ -483,6 +483,33 @@ final ButtonStyle myButtonStyle = ButtonStyle(
   what a function expects, what it returns, and what errors it might throw.
 * **Place doc comments before annotations:** Documentation should come before
   any metadata annotations.
+
+## Localization (i18n)
+
+* **No hardcoded UI strings:** Every user-visible text MUST come from a
+  translation key via `context.tr.*`. Never inline German/English literals in
+  widgets, dialogs, snackbars, tooltips, error messages, or any other UI surface.
+* **Adding new keys:** Add the German source string to
+  [lib/i18n/de.i18n.json](lib/i18n/de.i18n.json) under the appropriate feature
+  namespace (e.g. `cages.*`, `birds.*`, `resources.*`). Use snake_case keys.
+* **Regenerate:** Run `dart run slang` after adding keys to update the generated
+  `context.tr.*` accessors.
+* **Parameters:** Use `{{name}}` interpolation in JSON; slang capitalizes the
+  param name in the Dart API (e.g. `{{occupied}}` becomes `Occupied:`).
+* **Exempt:** Log messages, debug strings, exception messages thrown internally,
+  and code-only identifiers — those stay literal.
+
+## Icons
+
+* **Single source of truth:** All icons MUST be accessed via `AppIcons` in
+  [lib/shared/icons.dart](lib/shared/icons.dart). Never use `Icons.*` directly
+  in feature/widget code.
+* **Adding new icons:** When a new icon is needed, add a `static const IconData`
+  entry to `AppIcons` (use a semantic name like `cageBreedingBox` when possible;
+  fall back to camelCase of the Material name like `warningAmber` for generic
+  passthroughs). Then reference it as `AppIcons.<name>`.
+* **Rationale:** Centralizing icons enables theming/swapping, makes search/audit
+  trivial, and prevents drift across the codebase.
 
 ## Accessibility (A11Y)
 Implement accessibility features to empower all users, assuming a wide variety

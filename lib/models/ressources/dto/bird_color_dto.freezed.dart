@@ -16,6 +16,9 @@ T _$identity<T>(T value) => value;
 mixin _$BirdColorDto {
   String get id;
   String? get name;
+  String? get hex;
+  String? get inheritance;
+  String? get notes;
   String? get user;
 
   /// Create a copy of BirdColorDto
@@ -36,16 +39,21 @@ mixin _$BirdColorDto {
             other is BirdColorDto &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.hex, hex) || other.hex == hex) &&
+            (identical(other.inheritance, inheritance) ||
+                other.inheritance == inheritance) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, user);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, hex, inheritance, notes, user);
 
   @override
   String toString() {
-    return 'BirdColorDto(id: $id, name: $name, user: $user)';
+    return 'BirdColorDto(id: $id, name: $name, hex: $hex, inheritance: $inheritance, notes: $notes, user: $user)';
   }
 }
 
@@ -55,7 +63,13 @@ abstract mixin class $BirdColorDtoCopyWith<$Res> {
           BirdColorDto value, $Res Function(BirdColorDto) _then) =
       _$BirdColorDtoCopyWithImpl;
   @useResult
-  $Res call({String id, String? name, String? user});
+  $Res call(
+      {String id,
+      String? name,
+      String? hex,
+      String? inheritance,
+      String? notes,
+      String? user});
 }
 
 /// @nodoc
@@ -72,6 +86,9 @@ class _$BirdColorDtoCopyWithImpl<$Res> implements $BirdColorDtoCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? name = freezed,
+    Object? hex = freezed,
+    Object? inheritance = freezed,
+    Object? notes = freezed,
     Object? user = freezed,
   }) {
     return _then(_self.copyWith(
@@ -82,6 +99,18 @@ class _$BirdColorDtoCopyWithImpl<$Res> implements $BirdColorDtoCopyWith<$Res> {
       name: freezed == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hex: freezed == hex
+          ? _self.hex
+          : hex // ignore: cast_nullable_to_non_nullable
+              as String?,
+      inheritance: freezed == inheritance
+          ? _self.inheritance
+          : inheritance // ignore: cast_nullable_to_non_nullable
+              as String?,
+      notes: freezed == notes
+          ? _self.notes
+          : notes // ignore: cast_nullable_to_non_nullable
               as String?,
       user: freezed == user
           ? _self.user
@@ -184,13 +213,16 @@ extension BirdColorDtoPatterns on BirdColorDto {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String id, String? name, String? user)? $default, {
+    TResult Function(String id, String? name, String? hex, String? inheritance,
+            String? notes, String? user)?
+        $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _BirdColorDto() when $default != null:
-        return $default(_that.id, _that.name, _that.user);
+        return $default(_that.id, _that.name, _that.hex, _that.inheritance,
+            _that.notes, _that.user);
       case _:
         return orElse();
     }
@@ -211,12 +243,15 @@ extension BirdColorDtoPatterns on BirdColorDto {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String id, String? name, String? user) $default,
+    TResult Function(String id, String? name, String? hex, String? inheritance,
+            String? notes, String? user)
+        $default,
   ) {
     final _that = this;
     switch (_that) {
       case _BirdColorDto():
-        return $default(_that.id, _that.name, _that.user);
+        return $default(_that.id, _that.name, _that.hex, _that.inheritance,
+            _that.notes, _that.user);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -236,12 +271,15 @@ extension BirdColorDtoPatterns on BirdColorDto {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String id, String? name, String? user)? $default,
+    TResult? Function(String id, String? name, String? hex, String? inheritance,
+            String? notes, String? user)?
+        $default,
   ) {
     final _that = this;
     switch (_that) {
       case _BirdColorDto() when $default != null:
-        return $default(_that.id, _that.name, _that.user);
+        return $default(_that.id, _that.name, _that.hex, _that.inheritance,
+            _that.notes, _that.user);
       case _:
         return null;
     }
@@ -251,7 +289,13 @@ extension BirdColorDtoPatterns on BirdColorDto {
 /// @nodoc
 @JsonSerializable()
 class _BirdColorDto implements BirdColorDto {
-  _BirdColorDto({required this.id, this.name, this.user});
+  _BirdColorDto(
+      {required this.id,
+      this.name,
+      this.hex,
+      this.inheritance,
+      this.notes,
+      this.user});
   factory _BirdColorDto.fromJson(Map<String, dynamic> json) =>
       _$BirdColorDtoFromJson(json);
 
@@ -259,6 +303,12 @@ class _BirdColorDto implements BirdColorDto {
   final String id;
   @override
   final String? name;
+  @override
+  final String? hex;
+  @override
+  final String? inheritance;
+  @override
+  final String? notes;
   @override
   final String? user;
 
@@ -284,16 +334,21 @@ class _BirdColorDto implements BirdColorDto {
             other is _BirdColorDto &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.hex, hex) || other.hex == hex) &&
+            (identical(other.inheritance, inheritance) ||
+                other.inheritance == inheritance) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, user);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, hex, inheritance, notes, user);
 
   @override
   String toString() {
-    return 'BirdColorDto(id: $id, name: $name, user: $user)';
+    return 'BirdColorDto(id: $id, name: $name, hex: $hex, inheritance: $inheritance, notes: $notes, user: $user)';
   }
 }
 
@@ -305,7 +360,13 @@ abstract mixin class _$BirdColorDtoCopyWith<$Res>
       __$BirdColorDtoCopyWithImpl;
   @override
   @useResult
-  $Res call({String id, String? name, String? user});
+  $Res call(
+      {String id,
+      String? name,
+      String? hex,
+      String? inheritance,
+      String? notes,
+      String? user});
 }
 
 /// @nodoc
@@ -323,6 +384,9 @@ class __$BirdColorDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = freezed,
+    Object? hex = freezed,
+    Object? inheritance = freezed,
+    Object? notes = freezed,
     Object? user = freezed,
   }) {
     return _then(_BirdColorDto(
@@ -333,6 +397,18 @@ class __$BirdColorDtoCopyWithImpl<$Res>
       name: freezed == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hex: freezed == hex
+          ? _self.hex
+          : hex // ignore: cast_nullable_to_non_nullable
+              as String?,
+      inheritance: freezed == inheritance
+          ? _self.inheritance
+          : inheritance // ignore: cast_nullable_to_non_nullable
+              as String?,
+      notes: freezed == notes
+          ? _self.notes
+          : notes // ignore: cast_nullable_to_non_nullable
               as String?,
       user: freezed == user
           ? _self.user

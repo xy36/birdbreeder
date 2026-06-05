@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/backup/cubit/backup_cubit.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/buttons/data_action_button.dart';
 
 class BackupSection extends StatelessWidget {
@@ -89,7 +90,7 @@ class BackupSection extends StatelessWidget {
             ],
             const SizedBox(height: 12),
             DataActionButton(
-              icon: Icons.ios_share,
+              icon: AppIcons.iosShare,
               label: tr.actions.share_latest,
               onPressed: latest == null
                   ? null
@@ -99,20 +100,20 @@ class BackupSection extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             DataActionButton(
-              icon: Icons.backup,
+              icon: AppIcons.backup,
               label: tr.actions.create_now,
               onPressed: () =>
                   unawaited(context.read<BackupCubit>().createBackup()),
             ),
             const SizedBox(height: 8),
             DataActionButton(
-              icon: Icons.restore,
+              icon: AppIcons.restore,
               label: tr.actions.restore,
               onPressed: () => unawaited(_confirmAndRestore(context)),
             ),
             const SizedBox(height: 8),
             DataActionButton(
-              icon: Icons.list,
+              icon: AppIcons.list,
               label: tr.actions.manage,
               onPressed: () => _openList(context),
             ),

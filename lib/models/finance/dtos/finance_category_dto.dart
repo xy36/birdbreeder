@@ -11,6 +11,7 @@ abstract class FinanceCategoryDto with _$FinanceCategoryDto {
     required String name,
     required String color,
     required FinanceCategoryKind kind,
+    String? notes,
     String? collectionId,
     String? collectionName,
     DateTime? created,

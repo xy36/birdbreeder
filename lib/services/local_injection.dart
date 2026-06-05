@@ -130,6 +130,7 @@ void registerLocal() {
             LocalContactMapper().convert<local_db.Contact, Contact>(dto),
         toDto: (m) =>
             LocalContactMapper().convert<Contact, local_db.Contact>(m),
+        boolColumns: {'is_app_user'},
       ),
     )
     ..registerLazySingleton<ICrudRepository<Egg>>(

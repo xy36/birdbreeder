@@ -1,4 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class BottomSheetHeader extends StatelessWidget {
   const BottomSheetHeader({
@@ -25,7 +26,7 @@ class BottomSheetHeader extends StatelessWidget {
           ),
           const Spacer(),
           IconButton(
-            icon: const Icon(Icons.close),
+            icon: const Icon(AppIcons.close),
             onPressed: onClose != null
                 ? () {
                     onClose!();

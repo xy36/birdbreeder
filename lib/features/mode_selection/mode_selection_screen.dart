@@ -5,6 +5,7 @@ import 'package:birdbreeder/services/data_mode/data_mode.dart';
 import 'package:birdbreeder/services/data_mode/data_mode_service.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/services/pocketbase_service.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -57,7 +58,7 @@ class _ModeSelectionScreenState extends State<ModeSelectionScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                Icons.flutter_dash,
+                AppIcons.flutterDash,
                 size: 80,
                 color: theme.colorScheme.primary,
               ),
@@ -75,7 +76,7 @@ class _ModeSelectionScreenState extends State<ModeSelectionScreen> {
               ),
               const SizedBox(height: 48),
               _ModeCard(
-                icon: Icons.cloud,
+                icon: AppIcons.cloud,
                 title: 'Cloud-Modus',
                 description: 'Daten werden auf einem Server gespeichert. '
                     'Zugriff von mehreren Ger\u00e4ten m\u00f6glich. '
@@ -84,7 +85,7 @@ class _ModeSelectionScreenState extends State<ModeSelectionScreen> {
               ),
               const SizedBox(height: 16),
               _ModeCard(
-                icon: Icons.phone_android,
+                icon: AppIcons.phoneAndroid,
                 title: 'Lokal-Modus',
                 description: 'Alle Daten bleiben auf diesem Ger\u00e4t. '
                     'Kein Internet oder Login n\u00f6tig. '
@@ -145,7 +146,7 @@ class _ModeCard extends StatelessWidget {
                 ),
               ),
               Icon(
-                Icons.chevron_right,
+                AppIcons.chevronRight,
                 color: theme.colorScheme.onSurfaceVariant,
               ),
             ],

@@ -300,6 +300,7 @@ class $LocalFinancesCategoryMapper implements _i1.AutoMapprInterface {
       name: model.name,
       color: model.color,
       kind: _i4.LocalFinancesCategoryMapper.mapKind(model),
+      notes: model.notes,
       created: model.created,
       updated: model.updated,
     );
@@ -318,6 +319,7 @@ class $LocalFinancesCategoryMapper implements _i1.AutoMapprInterface {
       name: model.name,
       color: model.color,
       kind: _i4.LocalFinancesCategoryMapper.mapKindFromName(model),
+      notes: model.notes,
       created: model.created,
       updated: model.updated,
     );

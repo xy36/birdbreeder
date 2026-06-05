@@ -7,9 +7,15 @@ extension ContactListExtension on List<Contact> {
   Contact? findById(String id) {
     return firstOrNullWhere((element) => element.id == id);
   }
+
+  Contact? get appUser => firstOrNullWhere((c) => c.isAppUser);
 }
 
 extension ContactExtension on Contact {
+  bool isAppUser() =>
+      this ==
+      s1.get<BirdBreederCubit>().state.birdBreederResources.contacts.appUser;
+
   String get fullName {
     if (firstName == null && lastName == null) return '';
     if (firstName == null) return lastName!;

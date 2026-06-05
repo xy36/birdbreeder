@@ -1,5 +1,6 @@
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 
 class BottomDropdownSearch<T> extends StatefulWidget {
@@ -68,7 +69,7 @@ class _BottomDropdownSearchState<T> extends State<BottomDropdownSearch<T>> {
       suffixProps: DropdownSuffixProps(
         clearButtonProps: ClearButtonProps(
           icon: Icon(
-            Icons.clear,
+            AppIcons.clear,
             color: Theme.of(context).colorScheme.primary,
           ).onTap(
             () => widget.onClear?.call(),
@@ -156,7 +157,7 @@ class _BottomDropdownSearchState<T> extends State<BottomDropdownSearch<T>> {
                   )
                 : null,
             hintText: widget.searchHintText,
-            prefixIcon: const Icon(Icons.search),
+            prefixIcon: const Icon(AppIcons.search),
           ),
         ),
       ),

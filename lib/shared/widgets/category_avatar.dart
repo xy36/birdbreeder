@@ -13,6 +13,18 @@ class CategoryAvatar extends StatelessWidget {
 
   final double size;
 
+  /// Builds a 1–2 letter abbreviation from the category name.
+  static String initialsFor(String name) {
+    final parts =
+        name.trim().split(RegExp(r'\s+')).where((s) => s.isNotEmpty).toList();
+    if (parts.isEmpty) return '?';
+    if (parts.length == 1) {
+      final p = parts.first;
+      return (p.length >= 2 ? p.substring(0, 2) : p).toUpperCase();
+    }
+    return (parts.first[0] + parts[1][0]).toUpperCase();
+  }
+
   @override
   Widget build(BuildContext context) {
     final kd = cat.kind.getDisplayData(context);
@@ -25,15 +37,13 @@ class CategoryAvatar extends StatelessWidget {
         color: cat.bgColor,
         border: Border.all(color: kd.fg, width: 2),
       ),
-      child: CircleAvatar(
-        backgroundColor: cat.bgColor,
-        child: Text(
-          cat.name.isNotEmpty ? cat.name[0].toUpperCase() : '?',
-          style: TextStyle(
-            color: cat.fgColor,
-            fontWeight: FontWeight.bold,
-            fontSize: size * 0.5,
-          ),
+      alignment: Alignment.center,
+      child: Text(
+        initialsFor(cat.name),
+        style: TextStyle(
+          color: cat.fgColor,
+          fontWeight: FontWeight.bold,
+          fontSize: size * 0.4,
         ),
       ),
     );

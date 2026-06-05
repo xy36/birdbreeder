@@ -1,6 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/csv_import/cubit/csv_contact_import_cubit.dart';
 import 'package:birdbreeder/i18n/strings.g.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class ContactPreviewActions extends StatelessWidget {
   const ContactPreviewActions({
@@ -30,7 +31,7 @@ class ContactPreviewActions extends StatelessWidget {
                     context.read<CsvContactImportCubit>().startImport();
                   }
                 : null,
-            icon: const Icon(Icons.import_export),
+            icon: const Icon(AppIcons.importExport),
             label: Text(
               t.csv_import.contacts.import_button(Count: validRows.toString()),
             ),

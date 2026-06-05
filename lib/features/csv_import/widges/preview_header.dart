@@ -1,5 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/i18n/strings.g.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/theme/app_colors.dart';
 
 class PreviewHeader extends StatelessWidget {
@@ -20,7 +21,7 @@ class PreviewHeader extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Row(
         children: [
-          const Icon(Icons.description),
+          const Icon(AppIcons.description),
           const SizedBox(width: 8),
           Expanded(
             child: Text(

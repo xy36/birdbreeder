@@ -9,6 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_mappr_annotation/auto_mappr_annotation.dart' as _i1;
+import 'package:birdbreeder/mapper/local/local_cage_mapper.dart' as _i4;
 import 'package:birdbreeder/models/ressources/entity/cage.dart' as _i2;
 import 'package:birdbreeder/services/database/app_database.dart' as _i3;
 
@@ -297,6 +298,10 @@ class $LocalCageMapper implements _i1.AutoMapprInterface {
       width: model.width,
       height: model.height,
       depth: model.depth,
+      type: _i4.LocalCageMapper.typeToString(model),
+      location: model.location,
+      capacity: model.capacity,
+      notes: model.notes,
       created: model.created,
       updated: model.updated,
     );
@@ -316,6 +321,10 @@ class $LocalCageMapper implements _i1.AutoMapprInterface {
       width: model.width,
       height: model.height,
       depth: model.depth,
+      type: _i4.LocalCageMapper.typeFromString(model),
+      location: model.location,
+      capacity: model.capacity,
+      notes: model.notes,
       created: model.created,
       updated: model.updated,
     );

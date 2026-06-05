@@ -95,7 +95,7 @@ class AppIcons {
   static const IconData egg = Icons.egg_outlined;
   static const IconData hatched = Icons.access_alarm;
   static const IconData fledged = Icons.flight_takeoff;
-  static const IconData cage = Icons.home_work_outlined;
+  static const IconData cage = Icons.home;
   static const IconData sell = Icons.sell;
   static const IconData buy = Icons.shopping_bag;
 
@@ -118,6 +118,10 @@ class AppIcons {
   static const IconData menuResources = Icons.folder;
   static const IconData menuCsvImport = Icons.upload_file;
   static const IconData menuAccount = Icons.account_circle;
+  static const IconData menuCages = Icons.home_work_outlined;
+  static const IconData menuColors = Icons.color_lens_outlined;
+  static const IconData menuSpecies = Icons.pets_outlined;
+  static const IconData menuCategories = Icons.category_outlined;
 
   static const IconData lightMode = Icons.light_mode;
   static const IconData darkMode = Icons.dark_mode;
@@ -127,4 +131,75 @@ class AppIcons {
   static const IconData snackError = Icons.error_outline;
   static const IconData snackInfo = Icons.info_outline;
   static const IconData snackSuccess = Icons.check_circle_outline;
+
+  // Material passthroughs
+  static const IconData accountBalanceWalletOutlined =
+      Icons.account_balance_wallet_outlined;
+  static const IconData accountCircleOutlined = Icons.account_circle_outlined;
+  static const IconData arrowBack = Icons.arrow_back;
+  static const IconData backup = Icons.backup;
+  static const IconData brokenImageOutlined = Icons.broken_image_outlined;
+  static const IconData check = Icons.check;
+  static const IconData checkCircle = Icons.check_circle;
+  static const IconData circle = Icons.circle;
+  static const IconData cleaningServicesOutlined =
+      Icons.cleaning_services_outlined;
+  static const IconData cloud = Icons.cloud;
+  static const IconData colorize = Icons.colorize;
+  static const IconData contacts = Icons.contacts;
+  static const IconData cageBreedingBox = Icons.cottage_outlined;
+  static const IconData deleteOutline = Icons.delete_outline;
+  static const IconData description = Icons.description;
+  static const IconData diversity3Outlined = Icons.diversity_3_outlined;
+  static const IconData download = Icons.download;
+  static const IconData errorIcon = Icons.error;
+  static const IconData errorOutline = Icons.error_outline;
+  static const IconData eventOutlined = Icons.event_outlined;
+  static const IconData fileOpen = Icons.file_open;
+  static const IconData filterAltOff = Icons.filter_alt_off;
+  static const IconData fingerprint = Icons.fingerprint;
+  static const IconData flutterDash = Icons.flutter_dash;
+  static const IconData cageAviary = Icons.grid_view;
+  static const IconData groupsOutlined = Icons.groups_outlined;
+  static const IconData hubOutlined = Icons.hub_outlined;
+  static const IconData imageOutlined = Icons.image_outlined;
+  static const IconData importExport = Icons.import_export;
+  static const IconData info = Icons.info;
+  static const IconData infoOutline = Icons.info_outline;
+  static const IconData iosShare = Icons.ios_share;
+  static const IconData labelOutline = Icons.label_outline;
+  static const IconData lightbulbOutline = Icons.lightbulb_outline;
+  static const IconData list = Icons.list;
+  static const IconData localShippingOutlined = Icons.local_shipping_outlined;
+  static const IconData locationOnOutlined = Icons.location_on_outlined;
+  static const IconData cageQuarantine = Icons.medical_services_outlined;
+  static const IconData paletteOutlined = Icons.palette_outlined;
+  static const IconData peopleOutline = Icons.people_outline;
+  static const IconData pets = Icons.pets;
+  static const IconData phoneAndroid = Icons.phone_android;
+  static const IconData receiptLongOutlined = Icons.receipt_long_outlined;
+  static const IconData redeemOutlined = Icons.redeem_outlined;
+  static const IconData refresh = Icons.refresh;
+  static const IconData removeIcon = Icons.remove;
+  static const IconData restaurantOutlined = Icons.restaurant_outlined;
+  static const IconData restore = Icons.restore;
+  static const IconData scheduleOutlined = Icons.schedule_outlined;
+  static const IconData scienceOutlined = Icons.science_outlined;
+  static const IconData sellOutlined = Icons.sell_outlined;
+  static const IconData shelves = Icons.shelves;
+  static const IconData showChart = Icons.show_chart;
+  static const IconData storage = Icons.storage;
+  static const IconData storefrontOutlined = Icons.storefront_outlined;
+  static const IconData tag = Icons.tag;
+  static const IconData today = Icons.today;
+  static const IconData trendingDown = Icons.trending_down;
+  static const IconData trendingUp = Icons.trending_up;
+  static const IconData upload = Icons.upload;
+  static const IconData uploadFile = Icons.upload_file;
+  static const IconData warning = Icons.warning_amber_rounded;
+  static const IconData workspacePremiumOutlined =
+      Icons.workspace_premium_outlined;
+  static const IconData arrowUp = Icons.arrow_upward;
+  static const IconData arrowDown = Icons.arrow_downward;
+  static const IconData sort = Icons.sort;
 }

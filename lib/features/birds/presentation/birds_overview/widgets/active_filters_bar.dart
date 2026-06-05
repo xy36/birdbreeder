@@ -3,6 +3,7 @@ import 'package:birdbreeder/core/extensions/contact_extension.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_filter_cubit.dart';
 import 'package:birdbreeder/models/bird/bird_filter.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 /// A single removable active-filter entry.
 class _Token {
@@ -169,7 +170,7 @@ class ActiveFiltersBar extends StatelessWidget {
                   side: BorderSide(color: cs.outlineVariant),
                   onDeleted: () =>
                       context.read<BirdsFilterCubit>().applyFilter(t.next),
-                  deleteIcon: const Icon(Icons.close, size: 18),
+                  deleteIcon: const Icon(AppIcons.close, size: 18),
                   deleteIconColor: cs.onSecondaryContainer,
                 ),
               ),
@@ -177,7 +178,7 @@ class ActiveFiltersBar extends StatelessWidget {
           Center(
             child: ActionChip(
               avatar: Icon(
-                Icons.filter_alt_off,
+                AppIcons.filterAltOff,
                 size: 18,
                 color: cs.onErrorContainer,
               ),

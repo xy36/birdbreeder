@@ -38,7 +38,7 @@ class AccountCubit extends Cubit<AccountState>
     try {
       final count = await DataTransferService.switchToLocal();
       emitPresentation(AccountCubitEvent.switchedToLocal(count));
-      runApp(TranslationProvider(child: App()));
+      runApp(TranslationProvider(child: const App()));
     } on Exception catch (e) {
       emitPresentation(AccountCubitEvent.switchToLocalFailed(e.toString()));
     }

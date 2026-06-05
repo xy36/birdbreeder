@@ -3,6 +3,7 @@ import 'package:birdbreeder/features/csv_import/models/csv_import_result.dart';
 import 'package:birdbreeder/features/csv_import/widges/failed_imports_list.dart';
 import 'package:birdbreeder/features/csv_import/widges/summary_card.dart';
 import 'package:birdbreeder/i18n/strings.g.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/theme/app_colors.dart';
 
 class CompletedView extends StatelessWidget {
@@ -31,7 +32,7 @@ class CompletedView extends StatelessWidget {
         child: Column(
           children: [
             Icon(
-              summary.failedImports == 0 ? Icons.check_circle : Icons.info,
+              summary.failedImports == 0 ? AppIcons.checkCircle : AppIcons.info,
               size: 80,
               color: summary.failedImports == 0
                   ? c.statusSuccess
@@ -52,7 +53,7 @@ class CompletedView extends StatelessWidget {
               FailedImportsList(
                 title: t.csv_import.summary.failed_imports,
                 results: failedResults,
-                icon: Icons.error,
+                icon: AppIcons.errorIcon,
                 iconColor: c.statusError,
               ),
             ],
@@ -61,14 +62,14 @@ class CompletedView extends StatelessWidget {
               FailedImportsList(
                 title: t.csv_import.summary.skipped_entries,
                 results: skippedResults,
-                icon: Icons.warning,
+                icon: AppIcons.warning,
                 iconColor: c.statusWarning,
               ),
             ],
             const SizedBox(height: 32),
             ElevatedButton.icon(
               onPressed: onReset,
-              icon: const Icon(Icons.refresh),
+              icon: const Icon(AppIcons.refresh),
               label: Text(t.csv_import.new_import),
             ),
           ],

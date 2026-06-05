@@ -11,6 +11,7 @@ abstract class FinanceCategory with _$FinanceCategory {
     required String name,
     required String color,
     required FinanceCategoryKind kind,
+    String? notes,
     DateTime? created,
     DateTime? updated,
   }) = _FinancesCategories;
@@ -41,12 +42,14 @@ abstract class FinanceCategory with _$FinanceCategory {
     required String name,
     required String color,
     required FinanceCategoryKind kind,
+    String? notes,
   }) {
     return FinanceCategory(
       id: '',
       name: name,
       color: color,
       kind: kind,
+      notes: notes,
     );
   }
 

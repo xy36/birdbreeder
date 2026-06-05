@@ -10,9 +10,12 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MenuCubit(),
-      child: const MenuScreen(child: AutoRouter()),
+    return PopScope(
+      canPop: false,
+      child: BlocProvider(
+        create: (context) => MenuCubit(),
+        child: const MenuScreen(child: AutoRouter()),
+      ),
     );
   }
 }

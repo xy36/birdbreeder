@@ -1,5 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/screen_size_extensions.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class SearchBarWidget extends StatefulWidget {
   const SearchBarWidget({required this.onChanged, super.key});
@@ -56,7 +57,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                 if (controller.text.isNotEmpty)
                   IconButton(
                     onPressed: controller.clear,
-                    icon: const Icon(Icons.close),
+                    icon: const Icon(AppIcons.close),
                   ),
               ],
             ),
@@ -72,7 +73,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
               }
             });
           },
-          icon: Icon(showSearch ? Icons.search_off : Icons.search),
+          icon: Icon(showSearch ? AppIcons.searchOff : AppIcons.search),
         ),
       ],
     );

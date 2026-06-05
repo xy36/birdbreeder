@@ -1,4 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class FieldWithLabel extends StatelessWidget {
   const FieldWithLabel({
@@ -24,7 +25,7 @@ class FieldWithLabel extends StatelessWidget {
             Text(label),
             if (hasChangedIndicator)
               Icon(
-                Icons.circle,
+                AppIcons.circle,
                 size: 12,
                 color: Theme.of(context).colorScheme.primary,
               ),

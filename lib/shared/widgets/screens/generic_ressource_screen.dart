@@ -5,6 +5,7 @@ import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';
 import 'package:birdbreeder/models/ressources/entity/species.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/search_bar_widget.dart';
 
 class RessourceScreen<T> extends StatefulWidget {
@@ -71,7 +72,7 @@ class _RessourceScreenState<T> extends State<RessourceScreen<T>> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => widget.onAdd(context),
-        child: const Icon(Icons.add),
+        child: const Icon(AppIcons.add),
       ),
       body: ListView.builder(
         itemCount: filteredRessource.length,

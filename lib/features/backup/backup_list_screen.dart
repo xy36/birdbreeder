@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/backup/cubit/backup_list_cubit.dart';
 import 'package:birdbreeder/features/backup/extensions/file_extensions.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class BackupListScreen extends StatelessWidget {
   const BackupListScreen({super.key});
@@ -80,7 +81,7 @@ class BackupListScreen extends StatelessWidget {
               itemBuilder: (context, i) {
                 final f = snapshots[i];
                 return ListTile(
-                  leading: const Icon(Icons.storage),
+                  leading: const Icon(AppIcons.storage),
                   title: Text(f.displayName),
                   subtitle: Text(f.sizeString),
                   trailing: PopupMenuButton<String>(
@@ -98,21 +99,21 @@ class BackupListScreen extends StatelessWidget {
                       PopupMenuItem(
                         value: 'share',
                         child: ListTile(
-                          leading: const Icon(Icons.ios_share),
+                          leading: const Icon(AppIcons.iosShare),
                           title: Text(tr.menu.share),
                         ),
                       ),
                       PopupMenuItem(
                         value: 'restore',
                         child: ListTile(
-                          leading: const Icon(Icons.restore),
+                          leading: const Icon(AppIcons.restore),
                           title: Text(tr.menu.restore),
                         ),
                       ),
                       PopupMenuItem(
                         value: 'delete',
                         child: ListTile(
-                          leading: const Icon(Icons.delete_outline),
+                          leading: const Icon(AppIcons.deleteOutline),
                           title: Text(tr.menu.delete),
                         ),
                       ),
@@ -125,7 +126,7 @@ class BackupListScreen extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
-        icon: const Icon(Icons.add),
+        icon: const Icon(AppIcons.add),
         label: Text(tr.actions.kNew),
         onPressed: () =>
             unawaited(context.read<BackupListCubit>().createSnapshot()),

@@ -4,6 +4,7 @@ import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/b
 import 'package:birdbreeder/models/finance/finance_category_kind.dart';
 import 'package:birdbreeder/models/finance/finance_filter.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/all_or_some_chips.dart';
 import 'package:birdbreeder/shared/widgets/bottom_sheet/bottom_sheet_footer.dart';
 import 'package:birdbreeder/shared/widgets/inline_two_row_multi_chips.dart';
@@ -117,7 +118,7 @@ class _FinanceFilterSheetState extends State<FinanceFilterSheet> {
             ),
             if (f.fromDate != null || f.toDate != null)
               IconButton(
-                icon: const Icon(Icons.clear),
+                icon: const Icon(AppIcons.clear),
                 onPressed: () => setState(
                   () => f = f.copyWith(fromDate: null, toDate: null),
                 ),

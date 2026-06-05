@@ -8,6 +8,9 @@ abstract class BirdColor with _$BirdColor, Searchable {
   factory BirdColor({
     required String id,
     required String? name,
+    String? hex,
+    String? inheritance,
+    String? notes,
     DateTime? created,
     DateTime? updated,
   }) = _BirdColor;
@@ -16,10 +19,16 @@ abstract class BirdColor with _$BirdColor, Searchable {
 
   factory BirdColor.create({
     String? name,
+    String? hex,
+    String? inheritance,
+    String? notes,
   }) =>
       BirdColor(
         id: '',
         name: name,
+        hex: hex,
+        inheritance: inheritance,
+        notes: notes,
       );
 
   @override

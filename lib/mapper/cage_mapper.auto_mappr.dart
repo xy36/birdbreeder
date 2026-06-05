@@ -297,6 +297,10 @@ class $CageMapper implements _i1.AutoMapprInterface {
       width: model.width,
       height: model.height,
       depth: model.depth,
+      type: model.type,
+      location: model.location,
+      capacity: model.capacity,
+      notes: model.notes,
     );
   }
 
@@ -314,6 +318,10 @@ class $CageMapper implements _i1.AutoMapprInterface {
       width: model.width,
       height: model.height,
       depth: model.depth,
+      type: model.type,
+      location: model.location,
+      capacity: model.capacity,
+      notes: model.notes,
     );
   }
 }

@@ -307,6 +307,7 @@ class $LocalContactMapper implements _i1.AutoMapprInterface {
       country: model.country,
       postalCode: model.postalCode,
       website: model.website,
+      isAppUser: model.isAppUser,
       created: model.created,
       updated: model.updated,
     );
@@ -333,6 +334,7 @@ class $LocalContactMapper implements _i1.AutoMapprInterface {
       country: model.country,
       website: model.website,
       title: _i4.LocalContactMapper.mapTitleFromName(model),
+      isAppUser: model.isAppUser,
       created: model.created,
       updated: model.updated,
     );

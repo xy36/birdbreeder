@@ -12,6 +12,7 @@ _FinancesCategories _$FinancesCategoriesFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       color: json['color'] as String,
       kind: $enumDecode(_$FinanceCategoryKindEnumMap, json['kind']),
+      notes: json['notes'] as String?,
       created: json['created'] == null
           ? null
           : DateTime.parse(json['created'] as String),
@@ -26,6 +27,7 @@ Map<String, dynamic> _$FinancesCategoriesToJson(_FinancesCategories instance) =>
       'name': instance.name,
       'color': instance.color,
       'kind': _$FinanceCategoryKindEnumMap[instance.kind]!,
+      'notes': instance.notes,
       'created': instance.created?.toIso8601String(),
       'updated': instance.updated?.toIso8601String(),
     };

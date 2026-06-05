@@ -2,6 +2,7 @@ import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/csv_import/csv_import_screen.dart';
 import 'package:birdbreeder/features/csv_import/widges/import_type_card.dart';
 import 'package:birdbreeder/i18n/strings.g.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 /// Initial type selection widget
 class ImportTypeSelector extends StatelessWidget {
@@ -19,7 +20,7 @@ class ImportTypeSelector extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                Icons.upload_file,
+                AppIcons.uploadFile,
                 size: 80,
                 color: Theme.of(context).primaryColor,
               ),
@@ -40,13 +41,13 @@ class ImportTypeSelector extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ImportTypeCard(
-                    icon: Icons.flutter_dash,
+                    icon: AppIcons.flutterDash,
                     title: t.csv_import.birds.title,
                     description: t.csv_import.birds.description,
                     onTap: () => onSelect(CsvImportType.birds),
                   ),
                   ImportTypeCard(
-                    icon: Icons.contacts,
+                    icon: AppIcons.contacts,
                     title: t.csv_import.contacts.title,
                     description: t.csv_import.contacts.description,
                     onTap: () => onSelect(CsvImportType.contacts),

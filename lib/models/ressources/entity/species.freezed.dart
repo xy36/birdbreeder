@@ -17,6 +17,10 @@ mixin _$Species {
   String get id;
   String? get name;
   String? get latName;
+  String? get imageUrl;
+  int? get incubationDays;
+  int? get fledgeDays;
+  String? get notes;
   DateTime? get created;
   DateTime? get updated;
 
@@ -35,17 +39,24 @@ mixin _$Species {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.latName, latName) || other.latName == latName) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
+            (identical(other.incubationDays, incubationDays) ||
+                other.incubationDays == incubationDays) &&
+            (identical(other.fledgeDays, fledgeDays) ||
+                other.fledgeDays == fledgeDays) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.created, created) || other.created == created) &&
             (identical(other.updated, updated) || other.updated == updated));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, latName, created, updated);
+  int get hashCode => Object.hash(runtimeType, id, name, latName, imageUrl,
+      incubationDays, fledgeDays, notes, created, updated);
 
   @override
   String toString() {
-    return 'Species(id: $id, name: $name, latName: $latName, created: $created, updated: $updated)';
+    return 'Species(id: $id, name: $name, latName: $latName, imageUrl: $imageUrl, incubationDays: $incubationDays, fledgeDays: $fledgeDays, notes: $notes, created: $created, updated: $updated)';
   }
 }
 
@@ -58,6 +69,10 @@ abstract mixin class $SpeciesCopyWith<$Res> {
       {String id,
       String? name,
       String? latName,
+      String? imageUrl,
+      int? incubationDays,
+      int? fledgeDays,
+      String? notes,
       DateTime? created,
       DateTime? updated});
 }
@@ -77,6 +92,10 @@ class _$SpeciesCopyWithImpl<$Res> implements $SpeciesCopyWith<$Res> {
     Object? id = null,
     Object? name = freezed,
     Object? latName = freezed,
+    Object? imageUrl = freezed,
+    Object? incubationDays = freezed,
+    Object? fledgeDays = freezed,
+    Object? notes = freezed,
     Object? created = freezed,
     Object? updated = freezed,
   }) {
@@ -92,6 +111,22 @@ class _$SpeciesCopyWithImpl<$Res> implements $SpeciesCopyWith<$Res> {
       latName: freezed == latName
           ? _self.latName
           : latName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: freezed == imageUrl
+          ? _self.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      incubationDays: freezed == incubationDays
+          ? _self.incubationDays
+          : incubationDays // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fledgeDays: freezed == fledgeDays
+          ? _self.fledgeDays
+          : fledgeDays // ignore: cast_nullable_to_non_nullable
+              as int?,
+      notes: freezed == notes
+          ? _self.notes
+          : notes // ignore: cast_nullable_to_non_nullable
               as String?,
       created: freezed == created
           ? _self.created
@@ -198,8 +233,16 @@ extension SpeciesPatterns on Species {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String id, String? name, String? latName,
-            DateTime? created, DateTime? updated)?
+    TResult Function(
+            String id,
+            String? name,
+            String? latName,
+            String? imageUrl,
+            int? incubationDays,
+            int? fledgeDays,
+            String? notes,
+            DateTime? created,
+            DateTime? updated)?
         $default, {
     required TResult orElse(),
   }) {
@@ -207,7 +250,15 @@ extension SpeciesPatterns on Species {
     switch (_that) {
       case _Species() when $default != null:
         return $default(
-            _that.id, _that.name, _that.latName, _that.created, _that.updated);
+            _that.id,
+            _that.name,
+            _that.latName,
+            _that.imageUrl,
+            _that.incubationDays,
+            _that.fledgeDays,
+            _that.notes,
+            _that.created,
+            _that.updated);
       case _:
         return orElse();
     }
@@ -228,15 +279,31 @@ extension SpeciesPatterns on Species {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String id, String? name, String? latName,
-            DateTime? created, DateTime? updated)
+    TResult Function(
+            String id,
+            String? name,
+            String? latName,
+            String? imageUrl,
+            int? incubationDays,
+            int? fledgeDays,
+            String? notes,
+            DateTime? created,
+            DateTime? updated)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Species():
         return $default(
-            _that.id, _that.name, _that.latName, _that.created, _that.updated);
+            _that.id,
+            _that.name,
+            _that.latName,
+            _that.imageUrl,
+            _that.incubationDays,
+            _that.fledgeDays,
+            _that.notes,
+            _that.created,
+            _that.updated);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -256,15 +323,31 @@ extension SpeciesPatterns on Species {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String id, String? name, String? latName,
-            DateTime? created, DateTime? updated)?
+    TResult? Function(
+            String id,
+            String? name,
+            String? latName,
+            String? imageUrl,
+            int? incubationDays,
+            int? fledgeDays,
+            String? notes,
+            DateTime? created,
+            DateTime? updated)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Species() when $default != null:
         return $default(
-            _that.id, _that.name, _that.latName, _that.created, _that.updated);
+            _that.id,
+            _that.name,
+            _that.latName,
+            _that.imageUrl,
+            _that.incubationDays,
+            _that.fledgeDays,
+            _that.notes,
+            _that.created,
+            _that.updated);
       case _:
         return null;
     }
@@ -278,6 +361,10 @@ class _Species implements Species {
       {required this.id,
       required this.name,
       required this.latName,
+      this.imageUrl,
+      this.incubationDays,
+      this.fledgeDays,
+      this.notes,
       this.created,
       this.updated});
 
@@ -287,6 +374,14 @@ class _Species implements Species {
   final String? name;
   @override
   final String? latName;
+  @override
+  final String? imageUrl;
+  @override
+  final int? incubationDays;
+  @override
+  final int? fledgeDays;
+  @override
+  final String? notes;
   @override
   final DateTime? created;
   @override
@@ -308,17 +403,24 @@ class _Species implements Species {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.latName, latName) || other.latName == latName) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
+            (identical(other.incubationDays, incubationDays) ||
+                other.incubationDays == incubationDays) &&
+            (identical(other.fledgeDays, fledgeDays) ||
+                other.fledgeDays == fledgeDays) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.created, created) || other.created == created) &&
             (identical(other.updated, updated) || other.updated == updated));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, latName, created, updated);
+  int get hashCode => Object.hash(runtimeType, id, name, latName, imageUrl,
+      incubationDays, fledgeDays, notes, created, updated);
 
   @override
   String toString() {
-    return 'Species(id: $id, name: $name, latName: $latName, created: $created, updated: $updated)';
+    return 'Species(id: $id, name: $name, latName: $latName, imageUrl: $imageUrl, incubationDays: $incubationDays, fledgeDays: $fledgeDays, notes: $notes, created: $created, updated: $updated)';
   }
 }
 
@@ -332,6 +434,10 @@ abstract mixin class _$SpeciesCopyWith<$Res> implements $SpeciesCopyWith<$Res> {
       {String id,
       String? name,
       String? latName,
+      String? imageUrl,
+      int? incubationDays,
+      int? fledgeDays,
+      String? notes,
       DateTime? created,
       DateTime? updated});
 }
@@ -351,6 +457,10 @@ class __$SpeciesCopyWithImpl<$Res> implements _$SpeciesCopyWith<$Res> {
     Object? id = null,
     Object? name = freezed,
     Object? latName = freezed,
+    Object? imageUrl = freezed,
+    Object? incubationDays = freezed,
+    Object? fledgeDays = freezed,
+    Object? notes = freezed,
     Object? created = freezed,
     Object? updated = freezed,
   }) {
@@ -366,6 +476,22 @@ class __$SpeciesCopyWithImpl<$Res> implements _$SpeciesCopyWith<$Res> {
       latName: freezed == latName
           ? _self.latName
           : latName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: freezed == imageUrl
+          ? _self.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      incubationDays: freezed == incubationDays
+          ? _self.incubationDays
+          : incubationDays // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fledgeDays: freezed == fledgeDays
+          ? _self.fledgeDays
+          : fledgeDays // ignore: cast_nullable_to_non_nullable
+              as int?,
+      notes: freezed == notes
+          ? _self.notes
+          : notes // ignore: cast_nullable_to_non_nullable
               as String?,
       created: freezed == created
           ? _self.created

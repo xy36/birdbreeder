@@ -1,6 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/csv_import/cubit/csv_contact_import_cubit.dart';
 import 'package:birdbreeder/i18n/strings.g.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class ContactInitialView extends StatelessWidget {
   const ContactInitialView({required this.onBack, super.key});
@@ -17,7 +18,7 @@ class ContactInitialView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                Icons.contacts,
+                AppIcons.contacts,
                 size: 80,
                 color: Theme.of(context).primaryColor,
               ),
@@ -41,7 +42,7 @@ class ContactInitialView extends StatelessWidget {
                 children: [
                   OutlinedButton.icon(
                     onPressed: onBack,
-                    icon: const Icon(Icons.arrow_back),
+                    icon: const Icon(AppIcons.arrowBack),
                     label: Text(t.csv_import.back),
                   ),
                   const SizedBox(width: 16),
@@ -49,7 +50,7 @@ class ContactInitialView extends StatelessWidget {
                     onPressed: () {
                       context.read<CsvContactImportCubit>().pickAndParseFile();
                     },
-                    icon: const Icon(Icons.file_open),
+                    icon: const Icon(AppIcons.fileOpen),
                     label: Text(t.csv_import.select_file),
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(

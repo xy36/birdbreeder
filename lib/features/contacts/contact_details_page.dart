@@ -89,6 +89,29 @@ class ContactDetailsPage extends StatelessWidget {
                       ),
                       child: Column(
                         children: <Widget>[
+                          // APP USER
+                          SectionCard(
+                            icon: AppIcons.accountCircleOutlined,
+                            title: context.tr.contacts.sections.app_user,
+                            collapsible: true,
+                            children: [
+                              SwitchListTile(
+                                title: Text(
+                                  context.tr.contacts.fields.app_user.title,
+                                ),
+                                subtitle: Text(
+                                  context.tr.contacts.fields.app_user.sub_title,
+                                ),
+                                value: state.contact.isAppUser,
+                                onChanged: (v) {
+                                  context.read<ContactCubit>().changeContact(
+                                        state.contact.copyWith(isAppUser: v),
+                                      );
+                                },
+                              ),
+                            ],
+                          ),
+
                           // PERSONAL
                           SectionCard(
                             icon: AppIcons.contactSectionPersonal,

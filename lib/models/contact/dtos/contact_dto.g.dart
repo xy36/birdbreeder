@@ -22,6 +22,7 @@ _ContactDto _$ContactDtoFromJson(Map<String, dynamic> json) => _ContactDto(
       country: json['country'] as String?,
       postalCode: json['postalCode'] as String?,
       website: json['website'] as String?,
+      isAppUser: json['isAppUser'] as bool? ?? false,
       user: json['user'] as String?,
     );
 
@@ -40,6 +41,7 @@ Map<String, dynamic> _$ContactDtoToJson(_ContactDto instance) =>
       'country': instance.country,
       'postalCode': instance.postalCode,
       'website': instance.website,
+      'isAppUser': instance.isAppUser,
       'user': instance.user,
     };
 

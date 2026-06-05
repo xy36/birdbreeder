@@ -201,6 +201,35 @@ class TranslationsColorsDe {
 
   /// de: 'Farbe'
   String get color => 'Farbe';
+
+  /// de: 'Farbschläge'
+  String get list_title => 'Farbschläge';
+
+  /// de: 'Farbwert'
+  String get value_label => 'Farbwert';
+
+  /// de: 'Genetik (optional)'
+  String get genetics_section => 'Genetik (optional)';
+
+  /// de: 'Erbgang'
+  String get inheritance_label => 'Erbgang';
+
+  /// de: 'z.B. Autosomal dominant'
+  String get inheritance_hint => 'z.B. Autosomal dominant';
+
+  /// de: 'Vögel mit dieser Farbe'
+  String get birds_with_color => 'Vögel mit dieser Farbe';
+
+  /// de: 'Keine Vögel mit dieser Farbe'
+  String get no_birds_with_color => 'Keine Vögel mit dieser Farbe';
+
+  /// de: 'Keine Farben'
+  String get empty => 'Keine Farben';
+
+  /// de: 'Farbe'
+  String get detail_title => 'Farbe';
+
+  late final TranslationsColorsStatsDe stats = TranslationsColorsStatsDe.internal(_root);
 }
 
 // Path: cages
@@ -240,6 +269,46 @@ class TranslationsCagesDe {
 
   /// de: 'Tiefe'
   String get depth => 'Tiefe';
+
+  /// de: 'Käfige'
+  String get list_title => 'Käfige';
+
+  /// de: 'Voliere'
+  String get detail_title => 'Voliere';
+
+  late final TranslationsCagesSectionDe section = TranslationsCagesSectionDe.internal(_root);
+  late final TranslationsCagesFieldDe field = TranslationsCagesFieldDe.internal(_root);
+  late final TranslationsCagesUnitsDe units = TranslationsCagesUnitsDe.internal(_root);
+
+  /// de: 'Belegung'
+  String get occupancy => 'Belegung';
+
+  /// de: 'Belegt'
+  String get occupied_label => 'Belegt';
+
+  /// de: 'Frei'
+  String get free_label => 'Frei';
+
+  /// de: 'Vögel'
+  String get birds_count_label => 'Vögel';
+
+  /// de: 'Aktuell belegt: {{occupied}}. Reduzierung unter {{occupied}} nicht möglich.'
+  String capacity_hint({required Object Occupied}) => 'Aktuell belegt: ${Occupied}. Reduzierung unter ${Occupied} nicht möglich.';
+
+  /// de: 'Kapazität nicht gesetzt — bitte Wert hinterlegen'
+  String get capacity_missing_hint => 'Kapazität nicht gesetzt — bitte Wert hinterlegen';
+
+  /// de: 'LEER'
+  String get empty_badge => 'LEER';
+
+  /// de: '{{occupied}}/{{capacity}} Plätze belegt'
+  String places_occupied({required Object Occupied, required Object Capacity}) => '${Occupied}/${Capacity} Plätze belegt';
+
+  /// de: 'Keine Käfige für diesen Filter'
+  String get empty_filter => 'Keine Käfige für diesen Filter';
+
+  late final TranslationsCagesFiltersDe filters = TranslationsCagesFiltersDe.internal(_root);
+  late final TranslationsCagesTypesDe types = TranslationsCagesTypesDe.internal(_root);
 }
 
 // Path: species
@@ -270,6 +339,60 @@ class TranslationsSpeciesDe {
 
   /// de: 'Lateinischer Name'
   String get latin_name => 'Lateinischer Name';
+
+  /// de: 'Art'
+  String get detail_title => 'Art';
+
+  late final TranslationsSpeciesSectionDe section = TranslationsSpeciesSectionDe.internal(_root);
+
+  /// de: 'Bebrütung'
+  String get incubation => 'Bebrütung';
+
+  /// de: 'Ausflug'
+  String get fledge => 'Ausflug';
+
+  /// de: 'Tg'
+  String get days_short => 'Tg';
+
+  /// de: '{{days}}T gesamt'
+  String lifecycle_total({required Object Days}) => '${Days}T gesamt';
+
+  /// de: 'Wird automatisch für Schlupf- und Ausflugs-Prognosen verwendet.'
+  String get lifecycle_hint => 'Wird automatisch für Schlupf- und Ausflugs-Prognosen verwendet.';
+
+  late final TranslationsSpeciesImageDe image = TranslationsSpeciesImageDe.internal(_root);
+
+  /// de: '{{total}} TAGE GESAMT'
+  String lifecycle_label_total({required Object Total}) => '${Total} TAGE GESAMT';
+
+  /// de: 'Küken bis Ausflug'
+  String get chick_until_fledge => 'Küken bis Ausflug';
+
+  /// de: 'Schlupf · T{{day}}'
+  String hatch_label({required Object Day}) => 'Schlupf · T${Day}';
+
+  /// de: 'Ausflug · T{{day}}'
+  String fledge_label({required Object Day}) => 'Ausflug · T${Day}';
+
+  /// de: 'z.B. Melopsittacus undulatus'
+  String get latin_hint_example => 'z.B. Melopsittacus undulatus';
+
+  /// de: 'Lateinischer Artname für genaue Identifikation.'
+  String get latin_hint => 'Lateinischer Artname für genaue Identifikation.';
+
+  /// de: 'Wissenschaftlicher Name'
+  String get scientific_name => 'Wissenschaftlicher Name';
+
+  /// de: 'Keine Arten'
+  String get empty => 'Keine Arten';
+
+  /// de: 'Vögel im Bestand'
+  String get birds_in_stock => 'Vögel im Bestand';
+
+  /// de: 'Keine Vögel'
+  String get no_birds => 'Keine Vögel';
+
+  late final TranslationsSpeciesStatsDe stats = TranslationsSpeciesStatsDe.internal(_root);
 }
 
 // Path: contacts
@@ -372,6 +495,13 @@ class TranslationsResourcesDe {
 
   /// de: 'Nichts gefunden, klick auf "Hinzufügen" um einen neuen Eintrag zu erstellen.'
   String get no_search_results => 'Nichts gefunden, klick auf "Hinzufügen" um einen neuen Eintrag zu erstellen.';
+
+  late final TranslationsResourcesSectionDe section = TranslationsResourcesSectionDe.internal(_root);
+  late final TranslationsResourcesActionsDe actions = TranslationsResourcesActionsDe.internal(_root);
+  late final TranslationsResourcesColorPickerDe color_picker = TranslationsResourcesColorPickerDe.internal(_root);
+  late final TranslationsResourcesFieldDe field = TranslationsResourcesFieldDe.internal(_root);
+  late final TranslationsResourcesDeleteDe delete = TranslationsResourcesDeleteDe.internal(_root);
+  late final TranslationsResourcesSortDe sort = TranslationsResourcesSortDe.internal(_root);
 }
 
 // Path: birds
@@ -801,8 +931,18 @@ class TranslationsMenuDe {
   final Translations _root; // ignore: unused_field
 
   // Translations
-  late final TranslationsMenuNameDe name = TranslationsMenuNameDe.internal(_root);
-  late final TranslationsMenuSubtitleDe subtitle = TranslationsMenuSubtitleDe.internal(_root);
+  late final TranslationsMenuSectionsDe sections = TranslationsMenuSectionsDe.internal(_root);
+  late final TranslationsMenuBirdsDe birds = TranslationsMenuBirdsDe.internal(_root);
+  late final TranslationsMenuContactsDe contacts = TranslationsMenuContactsDe.internal(_root);
+  late final TranslationsMenuBreedingsDe breedings = TranslationsMenuBreedingsDe.internal(_root);
+  late final TranslationsMenuResourcesDe resources = TranslationsMenuResourcesDe.internal(_root);
+  late final TranslationsMenuFinancesDe finances = TranslationsMenuFinancesDe.internal(_root);
+  late final TranslationsMenuCsvImportDe csv_import = TranslationsMenuCsvImportDe.internal(_root);
+  late final TranslationsMenuAccountDe account = TranslationsMenuAccountDe.internal(_root);
+  late final TranslationsMenuSpeciesDe species = TranslationsMenuSpeciesDe.internal(_root);
+  late final TranslationsMenuCagesDe cages = TranslationsMenuCagesDe.internal(_root);
+  late final TranslationsMenuColorsDe colors = TranslationsMenuColorsDe.internal(_root);
+  late final TranslationsMenuFinanceCategoriesDe finance_categories = TranslationsMenuFinanceCategoriesDe.internal(_root);
 
   /// de: 'Vogel hinzufügen'
   String get add_bird => 'Vogel hinzufügen';
@@ -928,6 +1068,35 @@ class TranslationsFinancesCategoriesDe {
 
   /// de: 'Beschreibung'
   String get description => 'Beschreibung';
+
+  /// de: 'Kategorien'
+  String get list_title => 'Kategorien';
+
+  /// de: 'Bezeichnung'
+  String get designation => 'Bezeichnung';
+
+  /// de: 'Buchungen'
+  String get bookings => 'Buchungen';
+
+  late final TranslationsFinancesCategoriesFiltersDe filters = TranslationsFinancesCategoriesFiltersDe.internal(_root);
+  late final TranslationsFinancesCategoriesGroupsDe groups = TranslationsFinancesCategoriesGroupsDe.internal(_root);
+  late final TranslationsFinancesCategoriesKindSingularDe kind_singular = TranslationsFinancesCategoriesKindSingularDe.internal(_root);
+  late final TranslationsFinancesCategoriesPillDe pill = TranslationsFinancesCategoriesPillDe.internal(_root);
+
+  /// de: 'Keine Kategorien'
+  String get empty => 'Keine Kategorien';
+
+  /// de: 'Typ kann nach Anlegen nicht mehr geändert werden — {{usage}} Buchungen verknüpft.'
+  String type_lock_hint({required Object Usage}) => 'Typ kann nach Anlegen nicht mehr geändert werden — ${Usage} Buchungen verknüpft.';
+
+  /// de: 'Wählt Berechnungs-Vorzeichen für Buchungen.'
+  String get type_lock_default => 'Wählt Berechnungs-Vorzeichen für Buchungen.';
+
+  /// de: 'Finanzkategorie'
+  String get detail_title => 'Finanzkategorie';
+
+  late final TranslationsFinancesCategoriesDetailDe detail = TranslationsFinancesCategoriesDetailDe.internal(_root);
+  late final TranslationsFinancesCategoriesMonthsShortDe months_short = TranslationsFinancesCategoriesMonthsShortDe.internal(_root);
 }
 
 // Path: finances.add
@@ -1321,6 +1490,183 @@ class TranslationsBackupEventsDe {
   String restore_failed({required Object Error}) => 'Wiederherstellen fehlgeschlagen: ${Error}';
 }
 
+// Path: colors.stats
+class TranslationsColorsStatsDe {
+  TranslationsColorsStatsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Vögel'
+  String get birds => 'Vögel';
+
+  /// de: 'Hähne'
+  String get male_roosters => 'Hähne';
+
+  /// de: 'Hennen'
+  String get female_hens => 'Hennen';
+}
+
+// Path: cages.section
+class TranslationsCagesSectionDe {
+  TranslationsCagesSectionDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Grunddaten'
+  String get basics => 'Grunddaten';
+
+  /// de: 'Kapazität & Belegung'
+  String get capacity => 'Kapazität & Belegung';
+}
+
+// Path: cages.field
+class TranslationsCagesFieldDe {
+  TranslationsCagesFieldDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Typ'
+  String get type => 'Typ';
+
+  /// de: 'Standort'
+  String get location => 'Standort';
+
+  /// de: 'Maximale Plätze'
+  String get max_capacity => 'Maximale Plätze';
+}
+
+// Path: cages.units
+class TranslationsCagesUnitsDe {
+  TranslationsCagesUnitsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Vögel'
+  String get birds => 'Vögel';
+}
+
+// Path: cages.filters
+class TranslationsCagesFiltersDe {
+  TranslationsCagesFiltersDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Alle'
+  String get all => 'Alle';
+
+  /// de: 'Volieren'
+  String get aviaries => 'Volieren';
+
+  /// de: 'Zuchtboxen'
+  String get breeding_boxes => 'Zuchtboxen';
+
+  /// de: 'Quarantäne'
+  String get quarantine => 'Quarantäne';
+
+  /// de: 'Leere'
+  String get empty => 'Leere';
+}
+
+// Path: cages.types
+class TranslationsCagesTypesDe {
+  TranslationsCagesTypesDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Voliere'
+  String get aviary => 'Voliere';
+
+  /// de: 'Zuchtbox'
+  String get breeding_box => 'Zuchtbox';
+
+  /// de: 'Quarantäne'
+  String get quarantine => 'Quarantäne';
+}
+
+// Path: species.section
+class TranslationsSpeciesSectionDe {
+  TranslationsSpeciesSectionDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Identität'
+  String get identity => 'Identität';
+
+  /// de: 'Lebenszyklus'
+  String get lifecycle => 'Lebenszyklus';
+
+  /// de: 'Icon'
+  String get icon => 'Icon';
+
+  /// de: 'Notizen'
+  String get notes => 'Notizen';
+}
+
+// Path: species.image
+class TranslationsSpeciesImageDe {
+  TranslationsSpeciesImageDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Bild'
+  String get section => 'Bild';
+
+  /// de: 'Bild suchen'
+  String get search => 'Bild suchen';
+
+  /// de: 'Anderes Bild suchen'
+  String get search_another => 'Anderes Bild suchen';
+
+  /// de: 'Entfernen'
+  String get remove => 'Entfernen';
+
+  /// de: 'Keine Bilder gefunden'
+  String get no_results => 'Keine Bilder gefunden';
+
+  /// de: 'Bilder werden gesucht…'
+  String get loading => 'Bilder werden gesucht…';
+
+  /// de: 'Bild auswählen'
+  String get picker_title => 'Bild auswählen';
+
+  /// de: 'Erst Name eingeben'
+  String get name_required_hint => 'Erst Name eingeben';
+}
+
+// Path: species.stats
+class TranslationsSpeciesStatsDe {
+  TranslationsSpeciesStatsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Im Bestand'
+  String get stock => 'Im Bestand';
+
+  /// de: 'Hähne'
+  String get male_roosters => 'Hähne';
+
+  /// de: 'Hennen'
+  String get female_hens => 'Hennen';
+}
+
 // Path: contacts.fields
 class TranslationsContactsFieldsDe {
   TranslationsContactsFieldsDe.internal(this._root);
@@ -1336,6 +1682,7 @@ class TranslationsContactsFieldsDe {
   String get last_name => 'Nachname';
 
   late final TranslationsContactsFieldsTitleDe title = TranslationsContactsFieldsTitleDe.internal(_root);
+  late final TranslationsContactsFieldsAppUserDe app_user = TranslationsContactsFieldsAppUserDe.internal(_root);
 
   /// de: 'E-Mail'
   String get email => 'E-Mail';
@@ -1375,6 +1722,9 @@ class TranslationsContactsSectionsDe {
 
   /// de: 'Persönliche Informationen'
   String get personal => 'Persönliche Informationen';
+
+  /// de: 'App-Benutzer'
+  String get app_user => 'App-Benutzer';
 
   /// de: 'Züchterinformationen'
   String get breeder => 'Züchterinformationen';
@@ -1426,6 +1776,104 @@ class TranslationsBreedingPairsStatusDe {
 
   /// de: 'Beendet'
   String get finished => 'Beendet';
+}
+
+// Path: resources.section
+class TranslationsResourcesSectionDe {
+  TranslationsResourcesSectionDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Identität'
+  String get identity => 'Identität';
+
+  /// de: 'Grunddaten'
+  String get basics => 'Grunddaten';
+
+  /// de: 'Lebenszyklus'
+  String get lifecycle => 'Lebenszyklus';
+
+  /// de: 'Icon'
+  String get icon => 'Icon';
+
+  /// de: 'Notizen'
+  String get notes => 'Notizen';
+
+  /// de: 'Farbe'
+  String get color => 'Farbe';
+}
+
+// Path: resources.actions
+class TranslationsResourcesActionsDe {
+  TranslationsResourcesActionsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Bearbeiten'
+  String get edit => 'Bearbeiten';
+}
+
+// Path: resources.color_picker
+class TranslationsResourcesColorPickerDe {
+  TranslationsResourcesColorPickerDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Farbe wählen'
+  String get title => 'Farbe wählen';
+}
+
+// Path: resources.field
+class TranslationsResourcesFieldDe {
+  TranslationsResourcesFieldDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Name'
+  String get name => 'Name';
+
+  /// de: 'Pflichtfeld'
+  String get required => 'Pflichtfeld';
+}
+
+// Path: resources.delete
+class TranslationsResourcesDeleteDe {
+  TranslationsResourcesDeleteDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: '{{usage}} Verknüpfungen werden gelöst. Sicher fortfahren?'
+  String with_usage({required Object Usage}) => '${Usage} Verknüpfungen werden gelöst. Sicher fortfahren?';
+}
+
+// Path: resources.sort
+class TranslationsResourcesSortDe {
+  TranslationsResourcesSortDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Sortieren'
+  String get label => 'Sortieren';
+
+  late final TranslationsResourcesSortByDe by = TranslationsResourcesSortByDe.internal(_root);
+
+  /// de: 'Aufsteigend'
+  String get asc => 'Aufsteigend';
+
+  /// de: 'Absteigend'
+  String get desc => 'Absteigend';
 }
 
 // Path: bird.tabs
@@ -1994,64 +2442,187 @@ class TranslationsCsvImportErrorsDe {
   String get could_not_create_contact => 'Kontakt konnte nicht erstellt werden';
 }
 
-// Path: menu.name
-class TranslationsMenuNameDe {
-  TranslationsMenuNameDe.internal(this._root);
+// Path: menu.sections
+class TranslationsMenuSectionsDe {
+  TranslationsMenuSectionsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Hauptbereiche'
+  String get main => 'Hauptbereiche';
+
+  /// de: 'Stammdaten'
+  String get data => 'Stammdaten';
+
+  /// de: 'Einstellungen'
+  String get settings => 'Einstellungen';
+}
+
+// Path: menu.birds
+class TranslationsMenuBirdsDe {
+  TranslationsMenuBirdsDe.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
   // Translations
 
   /// de: 'Vögel'
-  String get birds => 'Vögel';
+  String get title => 'Vögel';
 
-  /// de: 'Kontakte'
-  String get contacts => 'Kontakte';
-
-  /// de: 'Ressourcen'
-  String get resources => 'Ressourcen';
-
-  /// de: 'Züchtungen'
-  String get breedings => 'Züchtungen';
-
-  /// de: 'Finanzen'
-  String get finances => 'Finanzen';
-
-  /// de: 'CSV Import'
-  String get csv_import => 'CSV Import';
-
-  /// de: 'Konto'
-  String get account => 'Konto';
+  /// de: 'Verwalte deine Vögel'
+  String get description => 'Verwalte deine Vögel';
 }
 
-// Path: menu.subtitle
-class TranslationsMenuSubtitleDe {
-  TranslationsMenuSubtitleDe.internal(this._root);
+// Path: menu.contacts
+class TranslationsMenuContactsDe {
+  TranslationsMenuContactsDe.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
   // Translations
 
-  /// de: 'Verwalte deine Vögel'
-  String get birds => 'Verwalte deine Vögel';
+  /// de: 'Kontakte'
+  String get title => 'Kontakte';
 
   /// de: 'Verwalte deine Kontakte'
-  String get contacts => 'Verwalte deine Kontakte';
+  String get description => 'Verwalte deine Kontakte';
+}
+
+// Path: menu.breedings
+class TranslationsMenuBreedingsDe {
+  TranslationsMenuBreedingsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Züchtungen'
+  String get title => 'Züchtungen';
 
   /// de: 'Aktive & vergangene Zuchtpaare'
-  String get breedings => 'Aktive & vergangene Zuchtpaare';
+  String get description => 'Aktive & vergangene Zuchtpaare';
+}
+
+// Path: menu.resources
+class TranslationsMenuResourcesDe {
+  TranslationsMenuResourcesDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Ressourcen'
+  String get title => 'Ressourcen';
 
   /// de: 'Farben, Arten, Volieren'
-  String get resources => 'Farben, Arten, Volieren';
+  String get description => 'Farben, Arten, Volieren';
+}
 
-  /// de: 'Einnahmen & Ausgaben'
-  String get finances => 'Einnahmen & Ausgaben';
+// Path: menu.finances
+class TranslationsMenuFinancesDe {
+  TranslationsMenuFinancesDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Finanzen'
+  String get title => 'Finanzen';
+
+  /// de: 'Kassenbuch'
+  String get description => 'Kassenbuch';
+}
+
+// Path: menu.csv_import
+class TranslationsMenuCsvImportDe {
+  TranslationsMenuCsvImportDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'CSV Import'
+  String get title => 'CSV Import';
 
   /// de: 'Importiere Daten aus CSV'
-  String get csv_import => 'Importiere Daten aus CSV';
+  String get description => 'Importiere Daten aus CSV';
+}
+
+// Path: menu.account
+class TranslationsMenuAccountDe {
+  TranslationsMenuAccountDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Konto'
+  String get title => 'Konto';
 
   /// de: 'Dein Konto'
-  String get account => 'Dein Konto';
+  String get description => 'Dein Konto';
+}
+
+// Path: menu.species
+class TranslationsMenuSpeciesDe {
+  TranslationsMenuSpeciesDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Arten'
+  String get title => 'Arten';
+
+  /// de: 'Vogelarten verwalten'
+  String get description => 'Vogelarten verwalten';
+}
+
+// Path: menu.cages
+class TranslationsMenuCagesDe {
+  TranslationsMenuCagesDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Volieren'
+  String get title => 'Volieren';
+
+  /// de: 'Volieren & Käfige'
+  String get description => 'Volieren & Käfige';
+}
+
+// Path: menu.colors
+class TranslationsMenuColorsDe {
+  TranslationsMenuColorsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Farben'
+  String get title => 'Farben';
+
+  /// de: 'Farbschläge'
+  String get description => 'Farbschläge';
+}
+
+// Path: menu.finance_categories
+class TranslationsMenuFinanceCategoriesDe {
+  TranslationsMenuFinanceCategoriesDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Finanzkategorien'
+  String get title => 'Finanzkategorien';
+
+  /// de: 'Einnahme- und Ausgabe-Kategorien'
+  String get description => 'Einnahme- und Ausgabe-Kategorien';
 }
 
 // Path: dialog.discard_changes
@@ -2079,6 +2650,126 @@ class TranslationsDialogDeleteEntryDe {
 
   /// de: 'Möchten Sie diesen Eintrag wirklich löschen?'
   String get content => 'Möchten Sie diesen Eintrag wirklich löschen?';
+}
+
+// Path: finances.categories.filters
+class TranslationsFinancesCategoriesFiltersDe {
+  TranslationsFinancesCategoriesFiltersDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Alle'
+  String get all => 'Alle';
+
+  /// de: 'Einnahmen'
+  String get income => 'Einnahmen';
+
+  /// de: 'Ausgaben'
+  String get expense => 'Ausgaben';
+}
+
+// Path: finances.categories.groups
+class TranslationsFinancesCategoriesGroupsDe {
+  TranslationsFinancesCategoriesGroupsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Einnahmen'
+  String get income => 'Einnahmen';
+
+  /// de: 'Ausgaben'
+  String get expense => 'Ausgaben';
+}
+
+// Path: finances.categories.kind_singular
+class TranslationsFinancesCategoriesKindSingularDe {
+  TranslationsFinancesCategoriesKindSingularDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Einnahme'
+  String get income => 'Einnahme';
+
+  /// de: 'Ausgabe'
+  String get expense => 'Ausgabe';
+}
+
+// Path: finances.categories.pill
+class TranslationsFinancesCategoriesPillDe {
+  TranslationsFinancesCategoriesPillDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: '↑ EINNAHME'
+  String get income => '↑ EINNAHME';
+
+  /// de: '↓ AUSGABE'
+  String get expense => '↓ AUSGABE';
+}
+
+// Path: finances.categories.detail
+class TranslationsFinancesCategoriesDetailDe {
+  TranslationsFinancesCategoriesDetailDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Buchungen'
+  String get bookings_label => 'Buchungen';
+
+  /// de: '6 Monate'
+  String get six_months => '6 Monate';
+
+  /// de: 'Ø pro Monat'
+  String get avg_per_month => 'Ø pro Monat';
+
+  /// de: 'Letzte Buchungen'
+  String get recent_bookings => 'Letzte Buchungen';
+
+  /// de: 'Keine Buchungen'
+  String get no_bookings => 'Keine Buchungen';
+
+  /// de: 'letzte 6 Monate'
+  String get last_six_months_label => 'letzte 6 Monate';
+
+  /// de: 'Verlauf · 6 Monate'
+  String get course_six_months => 'Verlauf · 6 Monate';
+}
+
+// Path: finances.categories.months_short
+class TranslationsFinancesCategoriesMonthsShortDe {
+  TranslationsFinancesCategoriesMonthsShortDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Dez'
+  String get dec => 'Dez';
+
+  /// de: 'Jan'
+  String get jan => 'Jan';
+
+  /// de: 'Feb'
+  String get feb => 'Feb';
+
+  /// de: 'Mär'
+  String get mar => 'Mär';
+
+  /// de: 'Apr'
+  String get apr => 'Apr';
+
+  /// de: 'Mai'
+  String get may => 'Mai';
 }
 
 // Path: account.data.import_dialog
@@ -2121,6 +2812,48 @@ class TranslationsContactsFieldsTitleDe {
 
   /// de: 'Frau'
   String get ms => 'Frau';
+}
+
+// Path: contacts.fields.app_user
+class TranslationsContactsFieldsAppUserDe {
+  TranslationsContactsFieldsAppUserDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Dieser Kontakt bin ich'
+  String get title => 'Dieser Kontakt bin ich';
+
+  /// de: 'Markiert den Kontakt als App-Nutzer.'
+  String get sub_title => 'Markiert den Kontakt als App-Nutzer.';
+}
+
+// Path: resources.sort.by
+class TranslationsResourcesSortByDe {
+  TranslationsResourcesSortByDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Name'
+  String get name => 'Name';
+
+  /// de: 'Erstellt'
+  String get created => 'Erstellt';
+
+  /// de: 'Kapazität'
+  String get capacity => 'Kapazität';
+
+  /// de: 'Typ'
+  String get kind => 'Typ';
+
+  /// de: 'Lat. Name'
+  String get lat_name => 'Lat. Name';
+
+  /// de: 'Farbcode'
+  String get hex => 'Farbcode';
 }
 
 // Path: bird.sections.identification

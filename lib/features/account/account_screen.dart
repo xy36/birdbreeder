@@ -8,6 +8,7 @@ import 'package:birdbreeder/features/backup/widgets/backup_section.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/data_mode/data_mode.dart';
 import 'package:birdbreeder/services/injection.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/buttons/data_action_button.dart';
 
 class AccountScreen extends StatelessWidget {
@@ -42,13 +43,13 @@ class AccountScreen extends StatelessWidget {
                   const SizedBox(height: 8),
                   OutlinedButton.icon(
                     onPressed: () => _switchToLocal(context),
-                    icon: const Icon(Icons.phone_android),
+                    icon: const Icon(AppIcons.phoneAndroid),
                     label: Text(context.tr.account.switch_to_local),
                   ),
                 ],
                 if (isLocal) ...[
                   Icon(
-                    Icons.phone_android,
+                    AppIcons.phoneAndroid,
                     size: 64,
                     color: Theme.of(context).colorScheme.primary,
                   ),
@@ -91,14 +92,14 @@ class AccountScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 DataActionButton(
-                  icon: Icons.upload,
+                  icon: AppIcons.upload,
                   label: context.tr.account.data.export_json,
                   onPressed: () =>
                       unawaited(context.read<AccountCubit>().exportJson()),
                 ),
                 const SizedBox(height: 8),
                 DataActionButton(
-                  icon: Icons.download,
+                  icon: AppIcons.download,
                   label: context.tr.account.data.import_json,
                   onPressed: () => unawaited(_importData(context)),
                 ),

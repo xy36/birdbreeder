@@ -1,4 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 enum ActionButtonType {
   cageAdd,
@@ -35,21 +36,21 @@ enum ActionButtonType {
       case ActionButtonType.broodAdd:
       case ActionButtonType.eggAdd:
       case ActionButtonType.financesAdd:
-        return Icons.add;
+        return AppIcons.add;
       case ActionButtonType.broodDelete:
       case ActionButtonType.cageDelete:
       case ActionButtonType.speciesDelete:
       case ActionButtonType.colorDelete:
       case ActionButtonType.contactDelete:
       case ActionButtonType.breedingPairDelete:
-        return Icons.delete;
+        return AppIcons.delete;
       case ActionButtonType.cageEdit:
       case ActionButtonType.colorEdit:
       case ActionButtonType.speciesEdit:
       case ActionButtonType.contactEdit:
       case ActionButtonType.birdEdit:
       case ActionButtonType.breedingPairEdit:
-        return Icons.edit;
+        return AppIcons.edit;
     }
   }
 

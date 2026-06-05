@@ -17,6 +17,10 @@ mixin _$SpeciesDto {
   String get id;
   String? get name;
   String? get latName;
+  String? get imageUrl;
+  int? get incubationDays;
+  int? get fledgeDays;
+  String? get notes;
   String? get user;
 
   /// Create a copy of SpeciesDto
@@ -37,16 +41,24 @@ mixin _$SpeciesDto {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.latName, latName) || other.latName == latName) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
+            (identical(other.incubationDays, incubationDays) ||
+                other.incubationDays == incubationDays) &&
+            (identical(other.fledgeDays, fledgeDays) ||
+                other.fledgeDays == fledgeDays) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, latName, user);
+  int get hashCode => Object.hash(runtimeType, id, name, latName, imageUrl,
+      incubationDays, fledgeDays, notes, user);
 
   @override
   String toString() {
-    return 'SpeciesDto(id: $id, name: $name, latName: $latName, user: $user)';
+    return 'SpeciesDto(id: $id, name: $name, latName: $latName, imageUrl: $imageUrl, incubationDays: $incubationDays, fledgeDays: $fledgeDays, notes: $notes, user: $user)';
   }
 }
 
@@ -56,7 +68,15 @@ abstract mixin class $SpeciesDtoCopyWith<$Res> {
           SpeciesDto value, $Res Function(SpeciesDto) _then) =
       _$SpeciesDtoCopyWithImpl;
   @useResult
-  $Res call({String id, String? name, String? latName, String? user});
+  $Res call(
+      {String id,
+      String? name,
+      String? latName,
+      String? imageUrl,
+      int? incubationDays,
+      int? fledgeDays,
+      String? notes,
+      String? user});
 }
 
 /// @nodoc
@@ -74,6 +94,10 @@ class _$SpeciesDtoCopyWithImpl<$Res> implements $SpeciesDtoCopyWith<$Res> {
     Object? id = null,
     Object? name = freezed,
     Object? latName = freezed,
+    Object? imageUrl = freezed,
+    Object? incubationDays = freezed,
+    Object? fledgeDays = freezed,
+    Object? notes = freezed,
     Object? user = freezed,
   }) {
     return _then(_self.copyWith(
@@ -88,6 +112,22 @@ class _$SpeciesDtoCopyWithImpl<$Res> implements $SpeciesDtoCopyWith<$Res> {
       latName: freezed == latName
           ? _self.latName
           : latName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: freezed == imageUrl
+          ? _self.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      incubationDays: freezed == incubationDays
+          ? _self.incubationDays
+          : incubationDays // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fledgeDays: freezed == fledgeDays
+          ? _self.fledgeDays
+          : fledgeDays // ignore: cast_nullable_to_non_nullable
+              as int?,
+      notes: freezed == notes
+          ? _self.notes
+          : notes // ignore: cast_nullable_to_non_nullable
               as String?,
       user: freezed == user
           ? _self.user
@@ -190,14 +230,16 @@ extension SpeciesDtoPatterns on SpeciesDto {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String id, String? name, String? latName, String? user)?
+    TResult Function(String id, String? name, String? latName, String? imageUrl,
+            int? incubationDays, int? fledgeDays, String? notes, String? user)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _SpeciesDto() when $default != null:
-        return $default(_that.id, _that.name, _that.latName, _that.user);
+        return $default(_that.id, _that.name, _that.latName, _that.imageUrl,
+            _that.incubationDays, _that.fledgeDays, _that.notes, _that.user);
       case _:
         return orElse();
     }
@@ -218,13 +260,15 @@ extension SpeciesDtoPatterns on SpeciesDto {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String id, String? name, String? latName, String? user)
+    TResult Function(String id, String? name, String? latName, String? imageUrl,
+            int? incubationDays, int? fledgeDays, String? notes, String? user)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _SpeciesDto():
-        return $default(_that.id, _that.name, _that.latName, _that.user);
+        return $default(_that.id, _that.name, _that.latName, _that.imageUrl,
+            _that.incubationDays, _that.fledgeDays, _that.notes, _that.user);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -244,13 +288,22 @@ extension SpeciesDtoPatterns on SpeciesDto {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String id, String? name, String? latName, String? user)?
+    TResult? Function(
+            String id,
+            String? name,
+            String? latName,
+            String? imageUrl,
+            int? incubationDays,
+            int? fledgeDays,
+            String? notes,
+            String? user)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _SpeciesDto() when $default != null:
-        return $default(_that.id, _that.name, _that.latName, _that.user);
+        return $default(_that.id, _that.name, _that.latName, _that.imageUrl,
+            _that.incubationDays, _that.fledgeDays, _that.notes, _that.user);
       case _:
         return null;
     }
@@ -260,7 +313,15 @@ extension SpeciesDtoPatterns on SpeciesDto {
 /// @nodoc
 @JsonSerializable()
 class _SpeciesDto implements SpeciesDto {
-  _SpeciesDto({required this.id, this.name, this.latName, this.user});
+  _SpeciesDto(
+      {required this.id,
+      this.name,
+      this.latName,
+      this.imageUrl,
+      this.incubationDays,
+      this.fledgeDays,
+      this.notes,
+      this.user});
   factory _SpeciesDto.fromJson(Map<String, dynamic> json) =>
       _$SpeciesDtoFromJson(json);
 
@@ -270,6 +331,14 @@ class _SpeciesDto implements SpeciesDto {
   final String? name;
   @override
   final String? latName;
+  @override
+  final String? imageUrl;
+  @override
+  final int? incubationDays;
+  @override
+  final int? fledgeDays;
+  @override
+  final String? notes;
   @override
   final String? user;
 
@@ -296,16 +365,24 @@ class _SpeciesDto implements SpeciesDto {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.latName, latName) || other.latName == latName) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
+            (identical(other.incubationDays, incubationDays) ||
+                other.incubationDays == incubationDays) &&
+            (identical(other.fledgeDays, fledgeDays) ||
+                other.fledgeDays == fledgeDays) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, latName, user);
+  int get hashCode => Object.hash(runtimeType, id, name, latName, imageUrl,
+      incubationDays, fledgeDays, notes, user);
 
   @override
   String toString() {
-    return 'SpeciesDto(id: $id, name: $name, latName: $latName, user: $user)';
+    return 'SpeciesDto(id: $id, name: $name, latName: $latName, imageUrl: $imageUrl, incubationDays: $incubationDays, fledgeDays: $fledgeDays, notes: $notes, user: $user)';
   }
 }
 
@@ -317,7 +394,15 @@ abstract mixin class _$SpeciesDtoCopyWith<$Res>
       __$SpeciesDtoCopyWithImpl;
   @override
   @useResult
-  $Res call({String id, String? name, String? latName, String? user});
+  $Res call(
+      {String id,
+      String? name,
+      String? latName,
+      String? imageUrl,
+      int? incubationDays,
+      int? fledgeDays,
+      String? notes,
+      String? user});
 }
 
 /// @nodoc
@@ -335,6 +420,10 @@ class __$SpeciesDtoCopyWithImpl<$Res> implements _$SpeciesDtoCopyWith<$Res> {
     Object? id = null,
     Object? name = freezed,
     Object? latName = freezed,
+    Object? imageUrl = freezed,
+    Object? incubationDays = freezed,
+    Object? fledgeDays = freezed,
+    Object? notes = freezed,
     Object? user = freezed,
   }) {
     return _then(_SpeciesDto(
@@ -349,6 +438,22 @@ class __$SpeciesDtoCopyWithImpl<$Res> implements _$SpeciesDtoCopyWith<$Res> {
       latName: freezed == latName
           ? _self.latName
           : latName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: freezed == imageUrl
+          ? _self.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      incubationDays: freezed == incubationDays
+          ? _self.incubationDays
+          : incubationDays // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fledgeDays: freezed == fledgeDays
+          ? _self.fledgeDays
+          : fledgeDays // ignore: cast_nullable_to_non_nullable
+              as int?,
+      notes: freezed == notes
+          ? _self.notes
+          : notes // ignore: cast_nullable_to_non_nullable
               as String?,
       user: freezed == user
           ? _self.user

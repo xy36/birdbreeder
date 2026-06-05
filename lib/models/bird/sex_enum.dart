@@ -15,6 +15,13 @@ enum Sex {
         Sex.unknown => AppIcons.sexUnknown,
       };
 
+  /// Unicode glyph used in compact UI badges.
+  String get symbol => switch (this) {
+        Sex.male => '♂',
+        Sex.female => '♀',
+        Sex.unknown => '?',
+      };
+
   Color colorOf(BuildContext context) {
     final c = context.appColors;
     return switch (this) {

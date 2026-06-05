@@ -1,4 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 class BottomSheetFooter extends StatelessWidget {
   const BottomSheetFooter({
@@ -42,7 +43,7 @@ class BottomSheetFooter extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: FilledButton.icon(
-                  icon: const Icon(Icons.check),
+                  icon: const Icon(AppIcons.check),
                   onPressed: onPrimaryButton != null
                       ? () {
                           onPrimaryButton!();

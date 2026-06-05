@@ -63,7 +63,7 @@ class BackupListCubit extends Cubit<BackupListState>
       await s1.reset();
       await BackupService.overwriteDatabase(f);
       await initializeDependencyInjection(DataMode.local);
-      runApp(TranslationProvider(child: App()));
+      runApp(TranslationProvider(child: const App()));
     } on Exception catch (e) {
       emitPresentation(BackupListCubitEvent.restoreFailed(e.toString()));
     }

@@ -138,7 +138,7 @@ Future<void> onOpenBrood(BuildContext context, Brood brood) async {
                     children: [
                       Expanded(
                         child: FilledButton.icon(
-                          icon: const Icon(Icons.check),
+                          icon: const Icon(AppIcons.check),
                           onPressed: () async {
                             final laidDate = await promptDateValue(
                               context,
@@ -304,7 +304,7 @@ Future<String?> promptTextValue(
                   ),
                   const Spacer(),
                   IconButton(
-                    icon: const Icon(Icons.close),
+                    icon: const Icon(AppIcons.close),
                     onPressed: () => Navigator.pop(ctx),
                   ),
                 ],
@@ -333,7 +333,7 @@ Future<String?> promptTextValue(
                   const SizedBox(width: 12),
                   Expanded(
                     child: FilledButton.icon(
-                      icon: const Icon(Icons.check),
+                      icon: const Icon(AppIcons.check),
                       label: const Text('Speichern'),
                       onPressed: trySubmit,
                     ),
@@ -404,7 +404,7 @@ class EmptyEgg extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.egg_outlined, size: 40),
+            const Icon(AppIcons.egg, size: 40),
             const SizedBox(height: 12),
             Text('Noch kein Ei gelegt', style: t.titleMedium),
           ],

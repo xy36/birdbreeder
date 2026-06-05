@@ -1,5 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/bird_filter_sheet/option.dart';
+import 'package:birdbreeder/shared/icons.dart';
 
 /// Two-row multi-select chips with an inline searchable list.
 /// - Empty selection means "All".
@@ -177,7 +178,7 @@ class _InlineTwoRowMultiChipsState extends State<InlineTwoRowMultiChips> {
                   children: [
                     TextField(
                       decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.search),
+                        prefixIcon: const Icon(AppIcons.search),
                         hintText: _searchHint,
                         isDense: true,
                         border: const OutlineInputBorder(),

@@ -12,6 +12,7 @@ _FinanceCategoryDto _$FinanceCategoryDtoFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       color: json['color'] as String,
       kind: $enumDecode(_$FinanceCategoryKindEnumMap, json['kind']),
+      notes: json['notes'] as String?,
       collectionId: json['collectionId'] as String?,
       collectionName: json['collectionName'] as String?,
       created: json['created'] == null
@@ -28,6 +29,7 @@ Map<String, dynamic> _$FinanceCategoryDtoToJson(_FinanceCategoryDto instance) =>
       'name': instance.name,
       'color': instance.color,
       'kind': _$FinanceCategoryKindEnumMap[instance.kind]!,
+      'notes': instance.notes,
       'collectionId': instance.collectionId,
       'collectionName': instance.collectionName,
       'created': instance.created?.toIso8601String(),

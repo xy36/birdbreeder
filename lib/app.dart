@@ -97,7 +97,10 @@ class _AppShellState extends State<_AppShell> {
             theme: theme.light(context),
             darkTheme: theme.dark(context),
             themeMode: themeMode,
-            builder: (context, child) => child!,
+            builder: (context, child) => PopScope(
+              canPop: false,
+              child: child!,
+            ),
             locale: TranslationProvider.of(context).flutterLocale,
             supportedLocales: AppLocaleUtils.supportedLocales,
             localizationsDelegates: GlobalMaterialLocalizations.delegates,

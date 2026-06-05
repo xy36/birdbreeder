@@ -1,5 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/csv_import/models/csv_contact_row.dart';
+import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/theme/app_colors.dart';
 import 'package:data_table_2/data_table_2.dart';
 
@@ -126,15 +127,15 @@ class _ContactStatusCell extends StatelessWidget {
     if (row.hasError) {
       return Tooltip(
         message: row.errorMessage ?? context.tr.csv_import.status.error,
-        child: Icon(Icons.error, color: c.statusError, size: 18),
+        child: Icon(AppIcons.errorIcon, color: c.statusError, size: 18),
       );
     }
     if (!row.isValid) {
       return Tooltip(
         message: context.tr.csv_import.status.missing_name,
-        child: Icon(Icons.warning, color: c.statusWarning, size: 18),
+        child: Icon(AppIcons.warning, color: c.statusWarning, size: 18),
       );
     }
-    return Icon(Icons.check_circle, color: c.statusSuccess, size: 18);
+    return Icon(AppIcons.checkCircle, color: c.statusSuccess, size: 18);
   }
 }

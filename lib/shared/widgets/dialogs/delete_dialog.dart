@@ -5,21 +5,25 @@ class DeleteDialog extends StatelessWidget {
     required this.onDelete,
     required this.title,
     super.key,
+    this.content,
   });
 
   final String title;
+  final String? content;
   final void Function() onDelete;
 
   static Future<void> show({
     required BuildContext context,
     required String title,
     required void Function() onDelete,
+    String? content,
   }) async {
     await showDialog<String>(
       context: context,
       builder: (context) => DeleteDialog(
         title: title,
         onDelete: onDelete,
+        content: content,
       ),
     );
 
@@ -30,7 +34,7 @@ class DeleteDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(title),
-      content: Text(context.tr.dialog.delete_entry.content),
+      content: Text(content ?? context.tr.dialog.delete_entry.content),
       actions: [
         TextButton(
           onPressed: () {

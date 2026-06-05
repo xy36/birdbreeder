@@ -13,7 +13,48 @@
             "delete": "Kategorie löschen?",
             "name": "Name der Kategorie",
             "color": "Farbe der Kategorie",
-            "description": "Beschreibung"
+            "description": "Beschreibung",
+            "list_title": "Kategorien",
+            "designation": "Bezeichnung",
+            "bookings": "Buchungen",
+            "filters": {
+                "all": "Alle",
+                "income": "Einnahmen",
+                "expense": "Ausgaben"
+            },
+            "groups": {
+                "income": "Einnahmen",
+                "expense": "Ausgaben"
+            },
+            "kind_singular": {
+                "income": "Einnahme",
+                "expense": "Ausgabe"
+            },
+            "pill": {
+                "income": "↑ EINNAHME",
+                "expense": "↓ AUSGABE"
+            },
+            "empty": "Keine Kategorien",
+            "type_lock_hint": "Typ kann nach Anlegen nicht mehr geändert werden — {{usage}} Buchungen verknüpft.",
+            "type_lock_default": "Wählt Berechnungs-Vorzeichen für Buchungen.",
+            "detail_title": "Finanzkategorie",
+            "detail": {
+                "bookings_label": "Buchungen",
+                "six_months": "6 Monate",
+                "avg_per_month": "Ø pro Monat",
+                "recent_bookings": "Letzte Buchungen",
+                "no_bookings": "Keine Buchungen",
+                "last_six_months_label": "letzte 6 Monate",
+                "course_six_months": "Verlauf · 6 Monate"
+            },
+            "months_short": {
+                "dec": "Dez",
+                "jan": "Jan",
+                "feb": "Feb",
+                "mar": "Mär",
+                "apr": "Apr",
+                "may": "Mai"
+            }
         },
         "delete": "Eintrag löschen?",
         "add": {
@@ -164,7 +205,21 @@
         "select": "Farbe auswählen",
         "pick": "Farbe auswählen",
         "delete": "Farbe löschen?",
-        "color": "Farbe"
+        "color": "Farbe",
+        "list_title": "Farbschläge",
+        "value_label": "Farbwert",
+        "genetics_section": "Genetik (optional)",
+        "inheritance_label": "Erbgang",
+        "inheritance_hint": "z.B. Autosomal dominant",
+        "birds_with_color": "Vögel mit dieser Farbe",
+        "no_birds_with_color": "Keine Vögel mit dieser Farbe",
+        "empty": "Keine Farben",
+        "detail_title": "Farbe",
+        "stats": {
+            "birds": "Vögel",
+            "male_roosters": "Hähne",
+            "female_hens": "Hennen"
+        }
     },
     "cages": {
         "title": "Volieren",
@@ -176,7 +231,42 @@
         "description": "Beschreibung",
         "height": "Höhe",
         "width": "Breite",
-        "depth": "Tiefe"
+        "depth": "Tiefe",
+        "list_title": "Käfige",
+        "detail_title": "Voliere",
+        "section": {
+            "basics": "Grunddaten",
+            "capacity": "Kapazität & Belegung"
+        },
+        "field": {
+            "type": "Typ",
+            "location": "Standort",
+            "max_capacity": "Maximale Plätze"
+        },
+        "units": {
+            "birds": "Vögel"
+        },
+        "occupancy": "Belegung",
+        "occupied_label": "Belegt",
+        "free_label": "Frei",
+        "birds_count_label": "Vögel",
+        "capacity_hint": "Aktuell belegt: {{occupied}}. Reduzierung unter {{occupied}} nicht möglich.",
+        "capacity_missing_hint": "Kapazität nicht gesetzt — bitte Wert hinterlegen",
+        "empty_badge": "LEER",
+        "places_occupied": "{{occupied}}/{{capacity}} Plätze belegt",
+        "empty_filter": "Keine Käfige für diesen Filter",
+        "filters": {
+            "all": "Alle",
+            "aviaries": "Volieren",
+            "breeding_boxes": "Zuchtboxen",
+            "quarantine": "Quarantäne",
+            "empty": "Leere"
+        },
+        "types": {
+            "aviary": "Voliere",
+            "breeding_box": "Zuchtbox",
+            "quarantine": "Quarantäne"
+        }
     },
     "species": {
         "title": "Arten",
@@ -185,7 +275,44 @@
         "select": "Art auswählen",
         "delete": "Art löschen?",
         "name": "Name der Art",
-        "latin_name": "Lateinischer Name"
+        "latin_name": "Lateinischer Name",
+        "detail_title": "Art",
+        "section": {
+            "identity": "Identität",
+            "lifecycle": "Lebenszyklus",
+            "icon": "Icon",
+            "notes": "Notizen"
+        },
+        "incubation": "Bebrütung",
+        "fledge": "Ausflug",
+        "days_short": "Tg",
+        "lifecycle_total": "{{days}}T gesamt",
+        "lifecycle_hint": "Wird automatisch für Schlupf- und Ausflugs-Prognosen verwendet.",
+        "image": {
+            "section": "Bild",
+            "search": "Bild suchen",
+            "search_another": "Anderes Bild suchen",
+            "remove": "Entfernen",
+            "no_results": "Keine Bilder gefunden",
+            "loading": "Bilder werden gesucht…",
+            "picker_title": "Bild auswählen",
+            "name_required_hint": "Erst Name eingeben"
+        },
+        "lifecycle_label_total": "{{total}} TAGE GESAMT",
+        "chick_until_fledge": "Küken bis Ausflug",
+        "hatch_label": "Schlupf · T{{day}}",
+        "fledge_label": "Ausflug · T{{day}}",
+        "latin_hint_example": "z.B. Melopsittacus undulatus",
+        "latin_hint": "Lateinischer Artname für genaue Identifikation.",
+        "scientific_name": "Wissenschaftlicher Name",
+        "empty": "Keine Arten",
+        "birds_in_stock": "Vögel im Bestand",
+        "no_birds": "Keine Vögel",
+        "stats": {
+            "stock": "Im Bestand",
+            "male_roosters": "Hähne",
+            "female_hens": "Hennen"
+        }
     },
     "contacts": {
         "title(count)": "Kontakte ({{count}})",
@@ -202,10 +329,14 @@
                 "mr": "Herr",
                 "ms": "Frau"
             },
+            "app_user": {
+                "title": "Dieser Kontakt bin ich",
+                "sub_title": "Markiert den Kontakt als App-Nutzer."
+            },
             "email": "E-Mail",
             "number": "Züchternummer",
             "phone": "Telefonnummer",
-            "cellPhoneNumber": "Mobilnummer",
+            "cell_phone_number": "Mobilnummer",
             "address": "Adresse",
             "city": "Stadt",
             "country": "Land",
@@ -220,6 +351,7 @@
         "select": "Kontakt auswählen",
         "sections": {
             "personal": "Persönliche Informationen",
+            "app_user": "App-Benutzer",
             "breeder": "Züchterinformationen",
             "contact": "Kontaktinformationen",
             "address": "Adresse",
@@ -253,7 +385,41 @@
             "one": "Verwendet in einem Vogel",
             "other": "Verwendet in {{n}} Vögel"
         },
-        "no_search_results": "Nichts gefunden, klick auf \"Hinzufügen\" um einen neuen Eintrag zu erstellen."
+        "no_search_results": "Nichts gefunden, klick auf \"Hinzufügen\" um einen neuen Eintrag zu erstellen.",
+        "section": {
+            "identity": "Identität",
+            "basics": "Grunddaten",
+            "lifecycle": "Lebenszyklus",
+            "icon": "Icon",
+            "notes": "Notizen",
+            "color": "Farbe"
+        },
+        "actions": {
+            "edit": "Bearbeiten"
+        },
+        "color_picker": {
+            "title": "Farbe wählen"
+        },
+        "field": {
+            "name": "Name",
+            "required": "Pflichtfeld"
+        },
+        "delete": {
+            "with_usage(usage)": "{{usage}} Verknüpfungen werden gelöst. Sicher fortfahren?"
+        },
+        "sort": {
+            "label": "Sortieren",
+            "by": {
+                "name": "Name",
+                "created": "Erstellt",
+                "capacity": "Kapazität",
+                "kind": "Typ",
+                "lat_name": "Lat. Name",
+                "hex": "Farbcode"
+            },
+            "asc": "Aufsteigend",
+            "desc": "Absteigend"
+        }
     },
     "birds": {
         "title": "Vögel"
@@ -598,23 +764,54 @@
         }
     },
     "menu": {
-        "name": {
-            "birds": "Vögel",
-            "contacts": "Kontakte",
-            "resources": "Ressourcen",
-            "breedings": "Züchtungen",
-            "finances": "Finanzen",
-            "csvImport": "CSV Import",
-            "account": "Konto"
+        "sections": {
+            "main": "Hauptbereiche",
+            "data": "Stammdaten",
+            "settings": "Einstellungen"
         },
-        "subtitle": {
-            "birds": "Verwalte deine Vögel",
-            "contacts": "Verwalte deine Kontakte",
-            "breedings": "Aktive & vergangene Zuchtpaare",
-            "resources": "Farben, Arten, Volieren",
-            "finances": "Einnahmen & Ausgaben",
-            "csvImport": "Importiere Daten aus CSV",
-            "account": "Dein Konto"
+        "birds": {
+            "title": "Vögel",
+            "description": "Verwalte deine Vögel"
+        },
+        "contacts": {
+            "title": "Kontakte",
+            "description": "Verwalte deine Kontakte"
+        },
+        "breedings": {
+            "title": "Züchtungen",
+            "description": "Aktive & vergangene Zuchtpaare"
+        },
+        "resources": {
+            "title": "Ressourcen",
+            "description": "Farben, Arten, Volieren"
+        },
+        "finances": {
+            "title": "Finanzen",
+            "description": "Kassenbuch"
+        },
+        "csv_import": {
+            "title": "CSV Import",
+            "description": "Importiere Daten aus CSV"
+        },
+        "account": {
+            "title": "Konto",
+            "description": "Dein Konto"
+        },
+        "species": {
+            "title": "Arten",
+            "description": "Vogelarten verwalten"
+        },
+        "cages": {
+            "title": "Volieren",
+            "description": "Volieren & Käfige"
+        },
+        "colors": {
+            "title": "Farben",
+            "description": "Farbschläge"
+        },
+        "finance_categories": {
+            "title": "Finanzkategorien",
+            "description": "Einnahme- und Ausgabe-Kategorien"
         },
         "addBird": "Vogel hinzufügen"
     },

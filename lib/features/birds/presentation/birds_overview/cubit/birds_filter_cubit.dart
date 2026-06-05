@@ -1,5 +1,6 @@
 import 'package:birdbreeder/models/bird/bird_filter.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
+import 'package:birdbreeder/shared/utils/natural_compare.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BirdsFilterCubit extends Cubit<BirdFilter> {
@@ -70,7 +71,7 @@ class BirdsFilterCubit extends Cubit<BirdFilter> {
 
       case BirdSort.ringAsc:
         filtered.sort(
-          (a, b) => _naturalCompare(
+          (a, b) => naturalCompare(
             a.ringNumber ?? '',
             b.ringNumber ?? '',
           ),
@@ -91,30 +92,4 @@ class BirdsFilterCubit extends Cubit<BirdFilter> {
   DateTime? _effectiveBirthDate(Bird b) =>
       b.hatchedAt ?? b.laidAt ?? b.fledgedAt;
 
-  /// Natural sort for strings with numbers: "A2" < "A10".
-  int _naturalCompare(String a, String b) {
-    final ra = _tokenize(a);
-    final rb = _tokenize(b);
-    final len = ra.length < rb.length ? ra.length : rb.length;
-
-    for (var i = 0; i < len; i++) {
-      final ta = ra[i];
-      final tb = rb[i];
-      final na = int.tryParse(ta);
-      final nb = int.tryParse(tb);
-      if (na != null && nb != null) {
-        if (na != nb) return na.compareTo(nb);
-      } else {
-        final cmp = ta.compareTo(tb);
-        if (cmp != 0) return cmp;
-      }
-    }
-    return ra.length.compareTo(rb.length);
-  }
-
-  /// Splits into alpha/num chunks: "AB-12C3" -> ["AB-", "12", "C", "3"]
-  List<String> _tokenize(String s) {
-    final re = RegExp(r'(\d+|\D+)');
-    return re.allMatches(s).map((m) => m.group(0)!).toList();
-  }
 }

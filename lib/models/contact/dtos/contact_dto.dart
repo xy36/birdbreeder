@@ -24,6 +24,7 @@ abstract class ContactDto with _$ContactDto {
     String? country,
     String? postalCode,
     String? website,
+    @Default(false) bool isAppUser,
     String? user,
   }) = _ContactDto;
 

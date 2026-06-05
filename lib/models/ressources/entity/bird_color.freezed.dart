@@ -16,6 +16,9 @@ T _$identity<T>(T value) => value;
 mixin _$BirdColor {
   String get id;
   String? get name;
+  String? get hex;
+  String? get inheritance;
+  String? get notes;
   DateTime? get created;
   DateTime? get updated;
 
@@ -33,16 +36,21 @@ mixin _$BirdColor {
             other is BirdColor &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.hex, hex) || other.hex == hex) &&
+            (identical(other.inheritance, inheritance) ||
+                other.inheritance == inheritance) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.created, created) || other.created == created) &&
             (identical(other.updated, updated) || other.updated == updated));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, created, updated);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, hex, inheritance, notes, created, updated);
 
   @override
   String toString() {
-    return 'BirdColor(id: $id, name: $name, created: $created, updated: $updated)';
+    return 'BirdColor(id: $id, name: $name, hex: $hex, inheritance: $inheritance, notes: $notes, created: $created, updated: $updated)';
   }
 }
 
@@ -51,7 +59,14 @@ abstract mixin class $BirdColorCopyWith<$Res> {
   factory $BirdColorCopyWith(BirdColor value, $Res Function(BirdColor) _then) =
       _$BirdColorCopyWithImpl;
   @useResult
-  $Res call({String id, String? name, DateTime? created, DateTime? updated});
+  $Res call(
+      {String id,
+      String? name,
+      String? hex,
+      String? inheritance,
+      String? notes,
+      DateTime? created,
+      DateTime? updated});
 }
 
 /// @nodoc
@@ -68,6 +83,9 @@ class _$BirdColorCopyWithImpl<$Res> implements $BirdColorCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? name = freezed,
+    Object? hex = freezed,
+    Object? inheritance = freezed,
+    Object? notes = freezed,
     Object? created = freezed,
     Object? updated = freezed,
   }) {
@@ -79,6 +97,18 @@ class _$BirdColorCopyWithImpl<$Res> implements $BirdColorCopyWith<$Res> {
       name: freezed == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hex: freezed == hex
+          ? _self.hex
+          : hex // ignore: cast_nullable_to_non_nullable
+              as String?,
+      inheritance: freezed == inheritance
+          ? _self.inheritance
+          : inheritance // ignore: cast_nullable_to_non_nullable
+              as String?,
+      notes: freezed == notes
+          ? _self.notes
+          : notes // ignore: cast_nullable_to_non_nullable
               as String?,
       created: freezed == created
           ? _self.created
@@ -185,15 +215,16 @@ extension BirdColorPatterns on BirdColor {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            String id, String? name, DateTime? created, DateTime? updated)?
+    TResult Function(String id, String? name, String? hex, String? inheritance,
+            String? notes, DateTime? created, DateTime? updated)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _BirdColor() when $default != null:
-        return $default(_that.id, _that.name, _that.created, _that.updated);
+        return $default(_that.id, _that.name, _that.hex, _that.inheritance,
+            _that.notes, _that.created, _that.updated);
       case _:
         return orElse();
     }
@@ -214,14 +245,15 @@ extension BirdColorPatterns on BirdColor {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(
-            String id, String? name, DateTime? created, DateTime? updated)
+    TResult Function(String id, String? name, String? hex, String? inheritance,
+            String? notes, DateTime? created, DateTime? updated)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _BirdColor():
-        return $default(_that.id, _that.name, _that.created, _that.updated);
+        return $default(_that.id, _that.name, _that.hex, _that.inheritance,
+            _that.notes, _that.created, _that.updated);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -241,14 +273,15 @@ extension BirdColorPatterns on BirdColor {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            String id, String? name, DateTime? created, DateTime? updated)?
+    TResult? Function(String id, String? name, String? hex, String? inheritance,
+            String? notes, DateTime? created, DateTime? updated)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _BirdColor() when $default != null:
-        return $default(_that.id, _that.name, _that.created, _that.updated);
+        return $default(_that.id, _that.name, _that.hex, _that.inheritance,
+            _that.notes, _that.created, _that.updated);
       case _:
         return null;
     }
@@ -258,13 +291,26 @@ extension BirdColorPatterns on BirdColor {
 /// @nodoc
 
 class _BirdColor extends BirdColor {
-  _BirdColor({required this.id, required this.name, this.created, this.updated})
+  _BirdColor(
+      {required this.id,
+      required this.name,
+      this.hex,
+      this.inheritance,
+      this.notes,
+      this.created,
+      this.updated})
       : super._();
 
   @override
   final String id;
   @override
   final String? name;
+  @override
+  final String? hex;
+  @override
+  final String? inheritance;
+  @override
+  final String? notes;
   @override
   final DateTime? created;
   @override
@@ -285,16 +331,21 @@ class _BirdColor extends BirdColor {
             other is _BirdColor &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.hex, hex) || other.hex == hex) &&
+            (identical(other.inheritance, inheritance) ||
+                other.inheritance == inheritance) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.created, created) || other.created == created) &&
             (identical(other.updated, updated) || other.updated == updated));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, created, updated);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, hex, inheritance, notes, created, updated);
 
   @override
   String toString() {
-    return 'BirdColor(id: $id, name: $name, created: $created, updated: $updated)';
+    return 'BirdColor(id: $id, name: $name, hex: $hex, inheritance: $inheritance, notes: $notes, created: $created, updated: $updated)';
   }
 }
 
@@ -306,7 +357,14 @@ abstract mixin class _$BirdColorCopyWith<$Res>
       __$BirdColorCopyWithImpl;
   @override
   @useResult
-  $Res call({String id, String? name, DateTime? created, DateTime? updated});
+  $Res call(
+      {String id,
+      String? name,
+      String? hex,
+      String? inheritance,
+      String? notes,
+      DateTime? created,
+      DateTime? updated});
 }
 
 /// @nodoc
@@ -323,6 +381,9 @@ class __$BirdColorCopyWithImpl<$Res> implements _$BirdColorCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? name = freezed,
+    Object? hex = freezed,
+    Object? inheritance = freezed,
+    Object? notes = freezed,
     Object? created = freezed,
     Object? updated = freezed,
   }) {
@@ -334,6 +395,18 @@ class __$BirdColorCopyWithImpl<$Res> implements _$BirdColorCopyWith<$Res> {
       name: freezed == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hex: freezed == hex
+          ? _self.hex
+          : hex // ignore: cast_nullable_to_non_nullable
+              as String?,
+      inheritance: freezed == inheritance
+          ? _self.inheritance
+          : inheritance // ignore: cast_nullable_to_non_nullable
+              as String?,
+      notes: freezed == notes
+          ? _self.notes
+          : notes // ignore: cast_nullable_to_non_nullable
               as String?,
       created: freezed == created
           ? _self.created

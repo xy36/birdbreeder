@@ -296,6 +296,10 @@ class $SpeciesMapper implements _i1.AutoMapprInterface {
       id: model.id,
       name: model.name,
       latName: model.latName,
+      imageUrl: model.imageUrl,
+      incubationDays: model.incubationDays,
+      fledgeDays: model.fledgeDays,
+      notes: model.notes,
     );
   }
 
@@ -310,6 +314,10 @@ class $SpeciesMapper implements _i1.AutoMapprInterface {
       id: model.id,
       name: model.name,
       latName: model.latName,
+      imageUrl: model.imageUrl,
+      incubationDays: model.incubationDays,
+      fledgeDays: model.fledgeDays,
+      notes: model.notes,
     );
   }
 }

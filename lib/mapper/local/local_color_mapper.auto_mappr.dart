@@ -295,6 +295,9 @@ class $LocalColorMapper implements _i1.AutoMapprInterface {
     return _i3.BirdColor(
       id: model.id,
       name: model.name,
+      hex: model.hex,
+      inheritance: model.inheritance,
+      notes: model.notes,
       created: model.created,
       updated: model.updated,
     );
@@ -310,6 +313,9 @@ class $LocalColorMapper implements _i1.AutoMapprInterface {
     return _i2.BirdColor(
       id: model.id,
       name: model.name,
+      hex: model.hex,
+      inheritance: model.inheritance,
+      notes: model.notes,
       created: model.created,
       updated: model.updated,
     );
