@@ -472,6 +472,55 @@ class TranslationsBreedingPairsDe {
 
   /// de: 'Notizen'
   String get notes => 'Notizen';
+
+  late final TranslationsBreedingPairsYearFilterDe year_filter = TranslationsBreedingPairsYearFilterDe.internal(_root);
+
+  /// de: 'Paar'
+  String get pair_one => 'Paar';
+
+  /// de: 'Paare'
+  String get pair_other => 'Paare';
+
+  /// de: '{{count}} Käfige'
+  String cages_count({required Object Count}) => '${Count} Käfige';
+
+  /// de: '{{count}} aktive Brut'
+  String active_broods_one({required Object Count}) => '${Count} aktive Brut';
+
+  /// de: '{{count}} aktive Bruten'
+  String active_broods_other({required Object Count}) => '${Count} aktive Bruten';
+
+  /// de: '{{count}} Brut'
+  String broods_total_one({required Object Count}) => '${Count} Brut';
+
+  /// de: '{{count}} Bruten'
+  String broods_total_other({required Object Count}) => '${Count} Bruten';
+
+  late final TranslationsBreedingPairsBroodStatusDe brood_status = TranslationsBreedingPairsBroodStatusDe.internal(_root);
+
+  /// de: 'BEENDET'
+  String get finished_tag => 'BEENDET';
+
+  /// de: 'Ohne Käfig'
+  String get no_cage => 'Ohne Käfig';
+
+  /// de: 'seit {{date}}'
+  String since({required Object Date}) => 'seit ${Date}';
+
+  /// de: 'bis {{date}}'
+  String until({required Object Date}) => 'bis ${Date}';
+
+  /// de: 'Keine Zuchtpaare in {{year}}.'
+  String empty_for_year({required Object Year}) => 'Keine Zuchtpaare in ${Year}.';
+
+  /// de: 'Keine Zuchtpaare.'
+  String get empty => 'Keine Zuchtpaare.';
+
+  /// de: 'Suche Ring, Käfig …'
+  String get search_hint => 'Suche Ring, Käfig …';
+
+  late final TranslationsBreedingPairsSortByDe sort_by = TranslationsBreedingPairsSortByDe.internal(_root);
+  late final TranslationsBreedingPairsStatsDe stats = TranslationsBreedingPairsStatsDe.internal(_root);
 }
 
 // Path: resources
@@ -1778,6 +1827,69 @@ class TranslationsBreedingPairsStatusDe {
   String get finished => 'Beendet';
 }
 
+// Path: breeding_pairs.year_filter
+class TranslationsBreedingPairsYearFilterDe {
+  TranslationsBreedingPairsYearFilterDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'JAHR'
+  String get label => 'JAHR';
+
+  /// de: 'Alle'
+  String get all => 'Alle';
+}
+
+// Path: breeding_pairs.brood_status
+class TranslationsBreedingPairsBroodStatusDe {
+  TranslationsBreedingPairsBroodStatusDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'aktiv'
+  String get active => 'aktiv';
+
+  /// de: 'pausiert'
+  String get inactive => 'pausiert';
+
+  /// de: 'beendet'
+  String get completed => 'beendet';
+}
+
+// Path: breeding_pairs.sort_by
+class TranslationsBreedingPairsSortByDe {
+  TranslationsBreedingPairsSortByDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Voliere'
+  String get cage => 'Voliere';
+
+  /// de: 'Zuletzt geändert'
+  String get updated => 'Zuletzt geändert';
+
+  /// de: 'Erstellt'
+  String get created => 'Erstellt';
+}
+
+// Path: breeding_pairs.stats
+class TranslationsBreedingPairsStatsDe {
+  TranslationsBreedingPairsStatsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+  late final TranslationsBreedingPairsStatsAbbrDe abbr = TranslationsBreedingPairsStatsAbbrDe.internal(_root);
+  late final TranslationsBreedingPairsStatsLabelDe label = TranslationsBreedingPairsStatsLabelDe.internal(_root);
+  late final TranslationsBreedingPairsStatsLegendDe legend = TranslationsBreedingPairsStatsLegendDe.internal(_root);
+}
+
 // Path: resources.section
 class TranslationsResourcesSectionDe {
   TranslationsResourcesSectionDe.internal(this._root);
@@ -2827,6 +2939,60 @@ class TranslationsContactsFieldsAppUserDe {
 
   /// de: 'Markiert den Kontakt als App-Nutzer.'
   String get sub_title => 'Markiert den Kontakt als App-Nutzer.';
+}
+
+// Path: breeding_pairs.stats.abbr
+class TranslationsBreedingPairsStatsAbbrDe {
+  TranslationsBreedingPairsStatsAbbrDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'LG'
+  String get laid => 'LG';
+
+  /// de: 'BF'
+  String get fertilized => 'BF';
+
+  /// de: 'GS'
+  String get hatched => 'GS';
+
+  /// de: 'AF'
+  String get fledged => 'AF';
+}
+
+// Path: breeding_pairs.stats.label
+class TranslationsBreedingPairsStatsLabelDe {
+  TranslationsBreedingPairsStatsLabelDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Eier gelegt'
+  String get laid => 'Eier gelegt';
+
+  /// de: 'Befruchtet'
+  String get fertilized => 'Befruchtet';
+
+  /// de: 'Geschlüpft'
+  String get hatched => 'Geschlüpft';
+
+  /// de: 'Ausgeflogen'
+  String get fledged => 'Ausgeflogen';
+}
+
+// Path: breeding_pairs.stats.legend
+class TranslationsBreedingPairsStatsLegendDe {
+  TranslationsBreedingPairsStatsLegendDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Legende'
+  String get title => 'Legende';
 }
 
 // Path: resources.sort.by

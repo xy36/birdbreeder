@@ -376,7 +376,52 @@
         },
         "start_date": "Startdatum",
         "end_date": "Enddatum",
-        "notes": "Notizen"
+        "notes": "Notizen",
+        "year_filter": {
+            "label": "JAHR",
+            "all": "Alle"
+        },
+        "pair_one": "Paar",
+        "pair_other": "Paare",
+        "cages_count(count)": "{{count}} Käfige",
+        "active_broods_one(count)": "{{count}} aktive Brut",
+        "active_broods_other(count)": "{{count}} aktive Bruten",
+        "broods_total_one(count)": "{{count}} Brut",
+        "broods_total_other(count)": "{{count}} Bruten",
+        "brood_status": {
+            "active": "aktiv",
+            "inactive": "pausiert",
+            "completed": "beendet"
+        },
+        "finished_tag": "BEENDET",
+        "no_cage": "Ohne Käfig",
+        "since(date)": "seit {{date}}",
+        "until(date)": "bis {{date}}",
+        "empty_for_year(year)": "Keine Zuchtpaare in {{year}}.",
+        "empty": "Keine Zuchtpaare.",
+        "search_hint": "Suche Ring, Käfig …",
+        "sort_by": {
+            "cage": "Voliere",
+            "updated": "Zuletzt geändert",
+            "created": "Erstellt"
+        },
+        "stats": {
+            "abbr": {
+                "laid": "LG",
+                "fertilized": "BF",
+                "hatched": "GS",
+                "fledged": "AF"
+            },
+            "label": {
+                "laid": "Eier gelegt",
+                "fertilized": "Befruchtet",
+                "hatched": "Geschlüpft",
+                "fledged": "Ausgeflogen"
+            },
+            "legend": {
+                "title": "Legende"
+            }
+        }
     },
     "resources": {
         "title": "Ressourcen",

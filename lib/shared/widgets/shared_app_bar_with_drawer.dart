@@ -1,7 +1,11 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/menu/presentation/menu_screen.dart';
 import 'package:birdbreeder/features/menu/presentation/utils/utils.dart';
+import 'package:birdbreeder/features/menu/presentation/widgets/drawer_widget.dart';
 import 'package:birdbreeder/shared/icons.dart';
+
+Drawer? sharedMenuDrawer(BuildContext context) =>
+    showMenuAsDrawer(context) ? const Drawer(child: DrawerWidget()) : null;
 
 class SharedAppBarWithDrawer extends StatelessWidget
     implements PreferredSizeWidget {

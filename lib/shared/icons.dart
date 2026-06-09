@@ -202,4 +202,6 @@ class AppIcons {
   static const IconData arrowUp = Icons.arrow_upward;
   static const IconData arrowDown = Icons.arrow_downward;
   static const IconData sort = Icons.sort;
+  static const IconData history = Icons.history;
+  static const IconData calendarToday = Icons.calendar_today;
 }
