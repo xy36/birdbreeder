@@ -26,7 +26,7 @@ enum BroodActions implements ItemAction<Brood> {
       values
           .map(
             (action) => (
-              icon: null,
+              icon: action.icon,
               label: action.getLabel(context),
               action: (BuildContext ctx, Brood brood) =>
                   action.execute(ctx, brood, extra: breedingPar),

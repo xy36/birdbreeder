@@ -540,6 +540,26 @@
             }
         }
     },
+    "pair_detail": {
+        "father_label": "♂ VATER",
+        "mother_label": "♀ MUTTER",
+        "current_brood": "Aktuelle Brut",
+        "history": "Verlauf",
+        "history_count_one(count)": "{{count}} Brut",
+        "history_count_other(count)": "{{count}} Bruten",
+        "brood_short": "BRUT",
+        "day(day)": "Tag {{day}}",
+        "start_label(date)": "Start: {{date}}",
+        "no_current_brood": "Keine aktive Brut",
+        "kpi": {
+            "broods": "Bruten",
+            "eggs": "Eier",
+            "hatched": "Geschlüpft",
+            "fledged": "Ausgefl."
+        },
+        "new_brood": "Neue Brut",
+        "since(date)": "seit {{date}}"
+    },
     "brood": {
         "name": "Gelege",
         "overview": "Brutübersicht",

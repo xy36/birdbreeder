@@ -1,21 +1,17 @@
 import 'dart:ui';
 
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/core/extensions/breeding_pairs_extension.dart';
-import 'package:birdbreeder/core/extensions/brood_extension.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/birds_overview_screen.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_filter_cubit.dart';
-import 'package:birdbreeder/features/breedings/breeding_pair_details/broods_tab/egg_tile.dart';
+import 'package:birdbreeder/features/breedings/breeding_pair_details/brood_sheet.dart';
 import 'package:birdbreeder/models/bird/bird_filter.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/breeding/entity/brood.dart';
-import 'package:birdbreeder/models/egg/entity/egg.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/services/screen_size.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/cubits/generic_search_cubit/generic_search_cubit.dart';
 import 'package:birdbreeder/shared/icons.dart';
-import 'package:birdbreeder/shared/widgets/bottom_sheet/bottom_sheet_header.dart';
 import 'package:birdbreeder/shared/widgets/value_selector.dart';
 import 'package:flutter/services.dart';
 
@@ -103,80 +99,12 @@ Future<void> onOpenBrood(BuildContext context, Brood brood) async {
   await openSheet<Brood>(
     context,
     DraggableScrollableSheet(
+      initialChildSize: 0.85,
+      maxChildSize: 0.95,
       expand: false,
-      builder: (context, scrollController) =>
-          BlocBuilder<BirdBreederCubit, BirdBreederState>(
-        builder: (context, state) {
-          final eggs = state.birdBreederResources.eggs
-              .where((egg) => egg.broodId == brood.id)
-              .sortedBy(
-                (egg) => egg.laidAt,
-              );
-
-          return Column(
-            children: [
-              BottomSheetHeader(title: 'Eier im Gelege (${eggs.length})'),
-              Expanded(
-                child: eggs.isNotEmpty
-                    ? ListView.builder(
-                        itemCount: eggs.length,
-                        itemBuilder: (context, index) {
-                          final egg = eggs.elementAt(index);
-                          return EggTile(
-                            egg: egg,
-                          );
-                        },
-                        controller: scrollController,
-                      )
-                    : const EmptyEgg(),
-              ),
-              SafeArea(
-                top: false,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: FilledButton.icon(
-                          icon: const Icon(AppIcons.check),
-                          onPressed: () async {
-                            final laidDate = await promptDateValue(
-                              context,
-                              title: context.tr.egg.pick_laid_date,
-                            );
-
-                            if (!context.mounted || laidDate == null) return;
-
-                            final species =
-                                brood.breedingPairResolved?.speciesResolved;
-
-                            await context.read<BirdBreederCubit>().addEgg(
-                                  Egg.create(
-                                    broodId: brood.id,
-                                    number: context
-                                            .read<BirdBreederCubit>()
-                                            .state
-                                            .birdBreederResources
-                                            .eggs
-                                            .length +
-                                        1,
-                                    laidAt: laidDate,
-                                  ).copyWith(
-                                    cageId: brood.cage,
-                                    speciesId: species?.id,
-                                  ),
-                                );
-                          },
-                          label: Text(context.tr.egg.add),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          );
-        },
+      builder: (context, scrollController) => BroodSheetContent(
+        brood: brood,
+        scrollController: scrollController,
       ),
     ),
   );

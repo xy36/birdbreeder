@@ -5,6 +5,7 @@ import 'package:birdbreeder/core/extensions/breeding_pairs_extension.dart';
 import 'package:birdbreeder/core/extensions/brood_extension.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/breedings/breeding_pairs/widgets/add_breeding_pair_sheet.dart';
+import 'package:birdbreeder/features/breedings/shared/mini_stats.dart';
 import 'package:birdbreeder/features/ressourcen_center/widgets/sort_chip.dart';
 import 'package:birdbreeder/models/bird/sex_enum.dart';
 import 'package:birdbreeder/models/breeding/brood_status.dart';
@@ -421,7 +422,7 @@ class _SummaryHeader extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  _MiniStats(
+                  MiniStats(
                     laid: roster.laid,
                     fertilized: roster.fertilized,
                     hatched: roster.hatched,
@@ -816,7 +817,7 @@ class _GroupCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    _MiniStats(
+                    MiniStats(
                       laid: group.laid,
                       fertilized: group.fertilized,
                       hatched: group.hatched,
@@ -1078,7 +1079,7 @@ class _PairCard extends StatelessWidget {
               color: mother?.colorResolved,
             ),
             const SizedBox(height: 10),
-            _MiniStats(
+            MiniStats(
               laid: laid,
               fertilized: fertilized,
               hatched: hatched,
@@ -1226,88 +1227,3 @@ class _ParentLine extends StatelessWidget {
   }
 }
 
-class _MiniStats extends StatelessWidget {
-  const _MiniStats({
-    required this.laid,
-    required this.fertilized,
-    required this.hatched,
-    required this.fledged,
-    this.expanded = false,
-  });
-
-  final int laid;
-  final int fertilized;
-  final int hatched;
-  final int fledged;
-  final bool expanded;
-
-  @override
-  Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
-    final abbr = context.tr.breeding_pairs.stats.abbr;
-    final stats = [
-      _MiniStat(
-        label: abbr.laid,
-        value: laid,
-        color: context.appColors.sexFemale,
-      ),
-      _MiniStat(label: abbr.fertilized, value: fertilized, color: cs.tertiary),
-      _MiniStat(label: abbr.hatched, value: hatched, color: cs.primary),
-      _MiniStat(label: abbr.fledged, value: fledged, color: cs.secondary),
-    ];
-    return Row(
-      mainAxisSize: expanded ? MainAxisSize.max : MainAxisSize.min,
-      spacing: 4,
-      children: expanded ? [for (final s in stats) Expanded(child: s)] : stats,
-    );
-  }
-}
-
-class _MiniStat extends StatelessWidget {
-  const _MiniStat({
-    required this.label,
-    required this.value,
-    required this.color,
-  });
-
-  final String label;
-  final int value;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
-    final isZero = value == 0;
-    return Container(
-      constraints: const BoxConstraints(minWidth: 30),
-      padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
-      decoration: BoxDecoration(
-        color: cs.surfaceContainer,
-        borderRadius: BorderRadius.circular(6),
-      ),
-      child: Column(
-        children: [
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 8,
-              fontWeight: FontWeight.w700,
-              color: cs.onSurfaceVariant,
-              letterSpacing: 0.5,
-            ),
-          ),
-          Text(
-            '$value',
-            style: TextStyle(
-              fontFamily: 'monospace',
-              fontSize: 12,
-              fontWeight: FontWeight.w700,
-              color: isZero ? cs.onSurfaceVariant : color,
-              letterSpacing: 0.3,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}

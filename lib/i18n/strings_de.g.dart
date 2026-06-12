@@ -54,6 +54,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final TranslationsResourcesDe resources = TranslationsResourcesDe.internal(_root);
   late final TranslationsBirdsDe birds = TranslationsBirdsDe.internal(_root);
   late final TranslationsBirdDe bird = TranslationsBirdDe.internal(_root);
+  late final TranslationsPairDetailDe pair_detail = TranslationsPairDetailDe.internal(_root);
   late final TranslationsBroodDe brood = TranslationsBroodDe.internal(_root);
   late final TranslationsEggDe egg = TranslationsEggDe.internal(_root);
   late final TranslationsCommonDe common = TranslationsCommonDe.internal(_root);
@@ -617,6 +618,53 @@ class TranslationsBirdDe {
 
   late final TranslationsBirdTabsDe tabs = TranslationsBirdTabsDe.internal(_root);
   late final TranslationsBirdSectionsDe sections = TranslationsBirdSectionsDe.internal(_root);
+}
+
+// Path: pair_detail
+class TranslationsPairDetailDe {
+  TranslationsPairDetailDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: '♂ VATER'
+  String get father_label => '♂ VATER';
+
+  /// de: '♀ MUTTER'
+  String get mother_label => '♀ MUTTER';
+
+  /// de: 'Aktuelle Brut'
+  String get current_brood => 'Aktuelle Brut';
+
+  /// de: 'Verlauf'
+  String get history => 'Verlauf';
+
+  /// de: '{{count}} Brut'
+  String history_count_one({required Object Count}) => '${Count} Brut';
+
+  /// de: '{{count}} Bruten'
+  String history_count_other({required Object Count}) => '${Count} Bruten';
+
+  /// de: 'BRUT'
+  String get brood_short => 'BRUT';
+
+  /// de: 'Tag {{day}}'
+  String day({required Object Day}) => 'Tag ${Day}';
+
+  /// de: 'Start: {{date}}'
+  String start_label({required Object Date}) => 'Start: ${Date}';
+
+  /// de: 'Keine aktive Brut'
+  String get no_current_brood => 'Keine aktive Brut';
+
+  late final TranslationsPairDetailKpiDe kpi = TranslationsPairDetailKpiDe.internal(_root);
+
+  /// de: 'Neue Brut'
+  String get new_brood => 'Neue Brut';
+
+  /// de: 'seit {{date}}'
+  String since({required Object Date}) => 'seit ${Date}';
 }
 
 // Path: brood
@@ -2027,6 +2075,27 @@ class TranslationsBirdSectionsDe {
   late final TranslationsBirdSectionsParentDe parent = TranslationsBirdSectionsParentDe.internal(_root);
   late final TranslationsBirdSectionsBreederDe breeder = TranslationsBirdSectionsBreederDe.internal(_root);
   late final TranslationsBirdSectionsChildrenDe children = TranslationsBirdSectionsChildrenDe.internal(_root);
+}
+
+// Path: pair_detail.kpi
+class TranslationsPairDetailKpiDe {
+  TranslationsPairDetailKpiDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Bruten'
+  String get broods => 'Bruten';
+
+  /// de: 'Eier'
+  String get eggs => 'Eier';
+
+  /// de: 'Geschlüpft'
+  String get hatched => 'Geschlüpft';
+
+  /// de: 'Ausgefl.'
+  String get fledged => 'Ausgefl.';
 }
 
 // Path: brood.kpi

@@ -88,7 +88,7 @@ extension BirdsExtension on Bird {
         .toList();
   }
 
-  DateTime? get effectiveBornAt => hatchedAt ?? laidAt ?? fledgedAt;
+  DateTime? get effectiveBornAt => hatchedAt ?? laidAt ?? fledgedAt ?? bornAt;
 
   LifeStage? get lifeStage {
     if (diedAt == null &&
