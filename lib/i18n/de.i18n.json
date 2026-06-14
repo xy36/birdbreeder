@@ -72,7 +72,35 @@
             "expense": "Ausgaben"
         },
         "summary": {
-            "net": "Saldo"
+            "net": "Saldo",
+            "net_label": "NETTO",
+            "today": "HEUTE",
+            "income_label": "EINNAHMEN",
+            "expense_label": "AUSGABEN"
+        },
+        "view": {
+            "all": "Alle",
+            "today": "Heute",
+            "yesterday": "Gestern",
+            "search_hint": "Suche Buchung …",
+            "empty": "Keine Buchungen im Zeitraum",
+            "categories_filter_title": "Nach Kategorie filtern",
+            "all_categories": "Alle Kategorien",
+            "filter_button": "Filter",
+            "filter_sheet_title": "Kategorien filtern",
+            "filter_clear_all": "Alle abwählen",
+            "filter_apply": "Übernehmen",
+            "filter_search_hint": "Kategorie suchen …"
+        },
+        "scope": {
+            "month": "Monat",
+            "year": "Jahr",
+            "all": "Alle",
+            "custom": "Zeitraum",
+            "current_year": "DIESES JAHR",
+            "from_short": "Von",
+            "to_short": "Bis",
+            "pick_date": "Datum wählen"
         },
         "filter": {
             "bird": "Vogel",

@@ -98,6 +98,8 @@ class TranslationsFinancesDe {
   late final TranslationsFinancesAddDe add = TranslationsFinancesAddDe.internal(_root);
   late final TranslationsFinancesKindDe kind = TranslationsFinancesKindDe.internal(_root);
   late final TranslationsFinancesSummaryDe summary = TranslationsFinancesSummaryDe.internal(_root);
+  late final TranslationsFinancesViewDe view = TranslationsFinancesViewDe.internal(_root);
+  late final TranslationsFinancesScopeDe scope = TranslationsFinancesScopeDe.internal(_root);
   late final TranslationsFinancesFilterDe filter = TranslationsFinancesFilterDe.internal(_root);
   late final TranslationsFinancesSortingDe sorting = TranslationsFinancesSortingDe.internal(_root);
 }
@@ -1254,6 +1256,96 @@ class TranslationsFinancesSummaryDe {
 
   /// de: 'Saldo'
   String get net => 'Saldo';
+
+  /// de: 'NETTO'
+  String get net_label => 'NETTO';
+
+  /// de: 'HEUTE'
+  String get today => 'HEUTE';
+
+  /// de: 'EINNAHMEN'
+  String get income_label => 'EINNAHMEN';
+
+  /// de: 'AUSGABEN'
+  String get expense_label => 'AUSGABEN';
+}
+
+// Path: finances.view
+class TranslationsFinancesViewDe {
+  TranslationsFinancesViewDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Alle'
+  String get all => 'Alle';
+
+  /// de: 'Heute'
+  String get today => 'Heute';
+
+  /// de: 'Gestern'
+  String get yesterday => 'Gestern';
+
+  /// de: 'Suche Buchung …'
+  String get search_hint => 'Suche Buchung …';
+
+  /// de: 'Keine Buchungen im Zeitraum'
+  String get empty => 'Keine Buchungen im Zeitraum';
+
+  /// de: 'Nach Kategorie filtern'
+  String get categories_filter_title => 'Nach Kategorie filtern';
+
+  /// de: 'Alle Kategorien'
+  String get all_categories => 'Alle Kategorien';
+
+  /// de: 'Filter'
+  String get filter_button => 'Filter';
+
+  /// de: 'Kategorien filtern'
+  String get filter_sheet_title => 'Kategorien filtern';
+
+  /// de: 'Alle abwählen'
+  String get filter_clear_all => 'Alle abwählen';
+
+  /// de: 'Übernehmen'
+  String get filter_apply => 'Übernehmen';
+
+  /// de: 'Kategorie suchen …'
+  String get filter_search_hint => 'Kategorie suchen …';
+}
+
+// Path: finances.scope
+class TranslationsFinancesScopeDe {
+  TranslationsFinancesScopeDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Monat'
+  String get month => 'Monat';
+
+  /// de: 'Jahr'
+  String get year => 'Jahr';
+
+  /// de: 'Alle'
+  String get all => 'Alle';
+
+  /// de: 'Zeitraum'
+  String get custom => 'Zeitraum';
+
+  /// de: 'DIESES JAHR'
+  String get current_year => 'DIESES JAHR';
+
+  /// de: 'Von'
+  String get from_short => 'Von';
+
+  /// de: 'Bis'
+  String get to_short => 'Bis';
+
+  /// de: 'Datum wählen'
+  String get pick_date => 'Datum wählen';
 }
 
 // Path: finances.filter
