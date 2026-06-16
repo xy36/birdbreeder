@@ -14,7 +14,7 @@ class BirdsFilterCubit extends Cubit<BirdFilter> {
               : const BirdFilter(),
         );
 
-  final BirdFilter _defaultFilter;
+  BirdFilter _defaultFilter;
 
   /// The baseline filter (current user as owner, default sale/life stages).
   ///
@@ -27,9 +27,30 @@ class BirdsFilterCubit extends Cubit<BirdFilter> {
   void applyFilter(BirdFilter filter) => emit(filter);
   void resetFilter() => emit(_defaultFilter);
 
-  List<Bird> filterBirds(List<Bird> birds) {
-    final f = state;
+  /// Seeds the default owner to the app-user contact once it is known.
+  ///
+  /// The cubit is created before the bird resources finish loading, so the
+  /// app-user contact id may be unavailable at construction. This is called
+  /// when resources are loaded; it re-applies the default while the user has
+  /// not diverged from it, so the overview opens showing only the user's birds.
+  void initOwnerDefault(String appUserContactId) {
+    final alreadySeeded = _defaultFilter.ownerIds.length == 1 &&
+        _defaultFilter.ownerIds.first == appUserContactId;
+    if (alreadySeeded) return;
 
+    final wasAtDefault = state == _defaultFilter;
+    _defaultFilter = BirdFilter(ownerIds: [appUserContactId]);
+    if (wasAtDefault) emit(_defaultFilter);
+  }
+
+  void setSort(BirdSort sort, bool ascending) =>
+      emit(state.copyWith(sort: sort, sortAscending: ascending));
+
+  List<Bird> filterBirds(List<Bird> birds) => filterBirdsWith(state, birds);
+
+  /// Filters and sorts [birds] against an arbitrary [f] without touching the
+  /// cubit state. Used to preview result counts while a filter is being edited.
+  List<Bird> filterBirdsWith(BirdFilter f, List<Bird> birds) {
     // Convert lists to sets for O(1) lookups
     final sexSet = f.sexes.isEmpty ? null : f.sexes.toSet();
     final saleSet = f.saleStatus.isEmpty ? null : f.saleStatus.toSet();
@@ -52,44 +73,44 @@ class BirdsFilterCubit extends Cubit<BirdFilter> {
       if (sexSet != null && !sexSet.contains(b.sex)) return false;
       if (saleSet != null && !saleSet.contains(b.saleStatus)) return false;
 
+      if (!f.showDeceased && b.diedAt != null) return false;
+
       return true;
     }).toList();
 
-    // 2) Sort
-    switch (f.sort ?? BirdSort.updatedDesc) {
-      case BirdSort.ageAsc:
-        // "young → old": newer birth date first (descending by effective birth)
-        filtered.sort((a, b) {
-          final ad = _effectiveBirthDate(a);
-          final bd = _effectiveBirthDate(b);
-          // Descending: nulls last
-          if (ad == null && bd == null) return 0;
-          if (ad == null) return 1;
-          if (bd == null) return -1;
-          return bd.compareTo(ad);
-        });
+    // 2) Sort. Each field has a base ascending comparator; the descending
+    // order just negates it (nulls always sort last regardless of direction).
+    final asc = f.sortAscending;
+    switch (f.sort ?? BirdSort.updated) {
+      case BirdSort.updated:
+        filtered.sort((a, b) => _dirDate(a.updated, b.updated, asc));
 
-      case BirdSort.ringAsc:
+      case BirdSort.age:
         filtered.sort(
-          (a, b) => naturalCompare(
-            a.ringNumber ?? '',
-            b.ringNumber ?? '',
-          ),
+          (a, b) =>
+              _dirDate(_effectiveBirthDate(a), _effectiveBirthDate(b), asc),
         );
 
-      case BirdSort.updatedDesc:
+      case BirdSort.ring:
         filtered.sort((a, b) {
-          final au = a.updated ?? DateTime.fromMillisecondsSinceEpoch(0);
-          final bu = b.updated ?? DateTime.fromMillisecondsSinceEpoch(0);
-          return bu.compareTo(au); // newest first
+          final c = naturalCompare(a.ringNumber ?? '', b.ringNumber ?? '');
+          return asc ? c : -c;
         });
     }
 
     return filtered;
   }
 
+  /// Compares two nullable dates in [ascending] order, keeping nulls last.
+  int _dirDate(DateTime? a, DateTime? b, bool ascending) {
+    if (a == null && b == null) return 0;
+    if (a == null) return 1;
+    if (b == null) return -1;
+    final c = a.compareTo(b);
+    return ascending ? c : -c;
+  }
+
   /// Picks the best available date to represent the "birth" moment for sorting/filtering age.
   DateTime? _effectiveBirthDate(Bird b) =>
       b.hatchedAt ?? b.laidAt ?? b.fledgedAt;
-
 }

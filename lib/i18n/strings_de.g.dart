@@ -566,6 +566,9 @@ class TranslationsBirdsDe {
 
   /// de: 'Vögel'
   String get title => 'Vögel';
+
+  late final TranslationsBirdsOverviewDe overview = TranslationsBirdsOverviewDe.internal(_root);
+  late final TranslationsBirdsFilterDe filter = TranslationsBirdsFilterDe.internal(_root);
 }
 
 // Path: bird
@@ -2128,6 +2131,69 @@ class TranslationsResourcesSortDe {
   String get desc => 'Absteigend';
 }
 
+// Path: birds.overview
+class TranslationsBirdsOverviewDe {
+  TranslationsBirdsOverviewDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: '{{birds}} Vögel · {{cages}} Käfige'
+  String subtitle({required Object Birds, required Object Cages}) => '${Birds} Vögel · ${Cages} Käfige';
+
+  /// de: '{{count}} Verkauf'
+  String for_sale({required Object Count}) => '${Count} Verkauf';
+
+  /// de: 'Gruppieren: Käfig'
+  String get group_by_cage => 'Gruppieren: Käfig';
+
+  /// de: 'Ohne Käfig'
+  String get no_cage => 'Ohne Käfig';
+
+  /// de: 'Vögel'
+  String get birds_label => 'Vögel';
+
+  /// de: '{{count}} Küken'
+  String chicks({required Object Count}) => '${Count} Küken';
+
+  /// de: 'KÜKEN'
+  String get chick_badge => 'KÜKEN';
+
+  /// de: 'Verkauf'
+  String get sale_badge => 'Verkauf';
+
+  /// de: 'Keine Vögel gefunden'
+  String get empty => 'Keine Vögel gefunden';
+
+  /// de: 'Nach Voliere gruppieren'
+  String get view_grouped => 'Nach Voliere gruppieren';
+
+  /// de: 'Als Liste anzeigen'
+  String get view_list => 'Als Liste anzeigen';
+}
+
+// Path: birds.filter
+class TranslationsBirdsFilterDe {
+  TranslationsBirdsFilterDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: '{{count}} Vögel anzeigen'
+  String show_results({required Object Count}) => '${Count} Vögel anzeigen';
+
+  /// de: 'Sortieren'
+  String get sort_title => 'Sortieren';
+
+  /// de: 'Weitere'
+  String get more_title => 'Weitere';
+
+  /// de: 'Verstorbene anzeigen'
+  String get show_deceased => 'Verstorbene anzeigen';
+}
+
 // Path: bird.tabs
 class TranslationsBirdTabsDe {
   TranslationsBirdTabsDe.internal(this._root);
@@ -2377,14 +2443,14 @@ class TranslationsCommonSortingDe {
   /// de: 'Sortierung'
   String get name => 'Sortierung';
 
-  /// de: 'Zuletzt aktualisiert (neu → alt)'
-  String get updated => 'Zuletzt aktualisiert (neu → alt)';
+  /// de: 'Zuletzt aktualisiert'
+  String get updated => 'Zuletzt aktualisiert';
 
-  /// de: 'Alter (jung → alt)'
-  String get age => 'Alter (jung → alt)';
+  /// de: 'Alter'
+  String get age => 'Alter';
 
-  /// de: 'Ringnummer (A → Z)'
-  String get ringnumber => 'Ringnummer (A → Z)';
+  /// de: 'Ringnummer'
+  String get ringnumber => 'Ringnummer';
 }
 
 // Path: common.sold

@@ -7,10 +7,10 @@ import 'package:birdbreeder/features/ressourcen_center/colors/cubit/colors_filte
 import 'package:birdbreeder/features/ressourcen_center/colors/cubit/colors_filter_state.dart';
 import 'package:birdbreeder/features/ressourcen_center/colors/widgets/color_row.dart';
 import 'package:birdbreeder/features/ressourcen_center/widgets/resource_overview_ui.dart';
-import 'package:birdbreeder/features/ressourcen_center/widgets/sort_chip.dart';
 import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/utils.dart';
+import 'package:birdbreeder/shared/widgets/sort_chip.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 
 @RoutePage(name: 'ColorsTabRoute')

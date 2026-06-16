@@ -6,17 +6,17 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'bird_filter.freezed.dart';
 
 enum BirdSort {
-  updatedDesc,
-  ageAsc,
-  ringAsc;
+  updated,
+  age,
+  ring;
 
   String getDisplayName(BuildContext context) {
     switch (this) {
-      case BirdSort.updatedDesc:
+      case BirdSort.updated:
         return context.tr.common.sorting.updated;
-      case BirdSort.ageAsc:
+      case BirdSort.age:
         return context.tr.common.sorting.age;
-      case BirdSort.ringAsc:
+      case BirdSort.ring:
         return context.tr.common.sorting.ringnumber;
     }
   }
@@ -36,6 +36,8 @@ abstract class BirdFilter with _$BirdFilter {
     @Default([]) List<Sex> sexes,
     @Default([SaleStatus.notForSale, SaleStatus.listed, SaleStatus.reserved])
     List<SaleStatus> saleStatus,
-    @Default(BirdSort.updatedDesc) BirdSort? sort,
+    @Default(false) bool showDeceased,
+    @Default(BirdSort.updated) BirdSort? sort,
+    @Default(false) bool sortAscending,
   }) = _BirdFilter;
 }

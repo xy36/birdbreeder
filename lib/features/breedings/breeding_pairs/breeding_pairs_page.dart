@@ -6,7 +6,6 @@ import 'package:birdbreeder/core/extensions/brood_extension.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/breedings/breeding_pairs/widgets/add_breeding_pair_sheet.dart';
 import 'package:birdbreeder/features/breedings/shared/mini_stats.dart';
-import 'package:birdbreeder/features/ressourcen_center/widgets/sort_chip.dart';
 import 'package:birdbreeder/models/bird/sex_enum.dart';
 import 'package:birdbreeder/models/breeding/brood_status.dart';
 import 'package:birdbreeder/models/breeding/entity/breeding_pair.dart';
@@ -19,6 +18,7 @@ import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/utils.dart';
 import 'package:birdbreeder/shared/utils/natural_compare.dart';
 import 'package:birdbreeder/shared/widgets/bottom_search_bar.dart';
+import 'package:birdbreeder/shared/widgets/sort_chip.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 import 'package:birdbreeder/theme/app_colors.dart';
 
@@ -1226,4 +1226,3 @@ class _ParentLine extends StatelessWidget {
     );
   }
 }
-

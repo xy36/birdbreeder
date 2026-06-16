@@ -7,8 +7,8 @@ import 'package:birdbreeder/features/ressourcen_center/species/cubit/species_fil
 import 'package:birdbreeder/features/ressourcen_center/species/species_details_sheet.dart';
 import 'package:birdbreeder/features/ressourcen_center/species/widgets/species_card.dart';
 import 'package:birdbreeder/features/ressourcen_center/widgets/resource_overview_ui.dart';
-import 'package:birdbreeder/features/ressourcen_center/widgets/sort_chip.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:birdbreeder/shared/widgets/sort_chip.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 
 @RoutePage(name: 'SpeciesTabRoute')

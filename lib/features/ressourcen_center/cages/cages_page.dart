@@ -7,10 +7,10 @@ import 'package:birdbreeder/features/ressourcen_center/cages/cubit/cages_filter_
 import 'package:birdbreeder/features/ressourcen_center/cages/cubit/cages_filter_state.dart';
 import 'package:birdbreeder/features/ressourcen_center/cages/widgets/cage_row.dart';
 import 'package:birdbreeder/features/ressourcen_center/widgets/resource_overview_ui.dart';
-import 'package:birdbreeder/features/ressourcen_center/widgets/sort_chip.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/icons.dart';
+import 'package:birdbreeder/shared/widgets/sort_chip.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 
 @RoutePage(name: 'CagesTabRoute')

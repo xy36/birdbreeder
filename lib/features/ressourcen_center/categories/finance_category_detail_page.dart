@@ -91,8 +91,8 @@ class CategoryDetailPage extends StatelessWidget {
                 children: [
                   SectionLabel(
                     icon: AppIcons.showChart,
-                    label: context
-                        .tr.finances.categories.detail.course_six_months,
+                    label:
+                        context.tr.finances.categories.detail.course_six_months,
                   ),
                   _SparkCard(
                     spark: spark,

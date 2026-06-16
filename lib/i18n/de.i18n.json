@@ -495,7 +495,26 @@
         }
     },
     "birds": {
-        "title": "Vögel"
+        "title": "Vögel",
+        "overview": {
+            "subtitle(birds, cages)": "{{birds}} Vögel · {{cages}} Käfige",
+            "for_sale(count)": "{{count}} Verkauf",
+            "group_by_cage": "Gruppieren: Käfig",
+            "no_cage": "Ohne Käfig",
+            "birds_label": "Vögel",
+            "chicks(count)": "{{count}} Küken",
+            "chick_badge": "KÜKEN",
+            "sale_badge": "Verkauf",
+            "empty": "Keine Vögel gefunden",
+            "view_grouped": "Nach Voliere gruppieren",
+            "view_list": "Als Liste anzeigen"
+        },
+        "filter": {
+            "show_results(count)": "{{count}} Vögel anzeigen",
+            "sort_title": "Sortieren",
+            "more_title": "Weitere",
+            "show_deceased": "Verstorbene anzeigen"
+        }
     },
     "bird": {
         "title": "Vogel",
@@ -704,9 +723,9 @@
         "died_short": "gest.",
         "sorting": {
             "name": "Sortierung",
-            "updated": "Zuletzt aktualisiert (neu → alt)",
-            "age": "Alter (jung → alt)",
-            "ringnumber": "Ringnummer (A → Z)"
+            "updated": "Zuletzt aktualisiert",
+            "age": "Alter",
+            "ringnumber": "Ringnummer"
         },
         "something_went_wrong": "Hoppla, etwas ist schiefgelaufen.",
         "save": "Speichern",

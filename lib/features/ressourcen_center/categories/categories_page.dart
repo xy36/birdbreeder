@@ -6,10 +6,10 @@ import 'package:birdbreeder/features/ressourcen_center/categories/cubit/categori
 import 'package:birdbreeder/features/ressourcen_center/categories/cubit/categories_filter_state.dart';
 import 'package:birdbreeder/features/ressourcen_center/categories/widgets/finance_category_row.dart';
 import 'package:birdbreeder/features/ressourcen_center/widgets/resource_overview_ui.dart';
-import 'package:birdbreeder/features/ressourcen_center/widgets/sort_chip.dart';
 import 'package:birdbreeder/models/finance/finance_category_kind.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/icons.dart';
+import 'package:birdbreeder/shared/widgets/sort_chip.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 import 'package:birdbreeder/theme/app_colors.dart';
 

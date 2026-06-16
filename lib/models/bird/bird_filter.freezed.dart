@@ -24,7 +24,9 @@ mixin _$BirdFilter {
   List<LifeStage> get lifeStages;
   List<Sex> get sexes;
   List<SaleStatus> get saleStatus;
+  bool get showDeceased;
   BirdSort? get sort;
+  bool get sortAscending;
 
   /// Create a copy of BirdFilter
   /// with the given fields replaced by the non-null parameter values.
@@ -54,7 +56,11 @@ mixin _$BirdFilter {
             const DeepCollectionEquality().equals(other.sexes, sexes) &&
             const DeepCollectionEquality()
                 .equals(other.saleStatus, saleStatus) &&
-            (identical(other.sort, sort) || other.sort == sort));
+            (identical(other.showDeceased, showDeceased) ||
+                other.showDeceased == showDeceased) &&
+            (identical(other.sort, sort) || other.sort == sort) &&
+            (identical(other.sortAscending, sortAscending) ||
+                other.sortAscending == sortAscending));
   }
 
   @override
@@ -70,11 +76,13 @@ mixin _$BirdFilter {
       const DeepCollectionEquality().hash(lifeStages),
       const DeepCollectionEquality().hash(sexes),
       const DeepCollectionEquality().hash(saleStatus),
-      sort);
+      showDeceased,
+      sort,
+      sortAscending);
 
   @override
   String toString() {
-    return 'BirdFilter(speciesIds: $speciesIds, speciesName: $speciesName, cageIds: $cageIds, cageName: $cageName, colorIds: $colorIds, colorName: $colorName, ownerIds: $ownerIds, lifeStages: $lifeStages, sexes: $sexes, saleStatus: $saleStatus, sort: $sort)';
+    return 'BirdFilter(speciesIds: $speciesIds, speciesName: $speciesName, cageIds: $cageIds, cageName: $cageName, colorIds: $colorIds, colorName: $colorName, ownerIds: $ownerIds, lifeStages: $lifeStages, sexes: $sexes, saleStatus: $saleStatus, showDeceased: $showDeceased, sort: $sort, sortAscending: $sortAscending)';
   }
 }
 
@@ -95,7 +103,9 @@ abstract mixin class $BirdFilterCopyWith<$Res> {
       List<LifeStage> lifeStages,
       List<Sex> sexes,
       List<SaleStatus> saleStatus,
-      BirdSort? sort});
+      bool showDeceased,
+      BirdSort? sort,
+      bool sortAscending});
 }
 
 /// @nodoc
@@ -120,7 +130,9 @@ class _$BirdFilterCopyWithImpl<$Res> implements $BirdFilterCopyWith<$Res> {
     Object? lifeStages = null,
     Object? sexes = null,
     Object? saleStatus = null,
+    Object? showDeceased = null,
     Object? sort = freezed,
+    Object? sortAscending = null,
   }) {
     return _then(_self.copyWith(
       speciesIds: null == speciesIds
@@ -163,10 +175,18 @@ class _$BirdFilterCopyWithImpl<$Res> implements $BirdFilterCopyWith<$Res> {
           ? _self.saleStatus
           : saleStatus // ignore: cast_nullable_to_non_nullable
               as List<SaleStatus>,
+      showDeceased: null == showDeceased
+          ? _self.showDeceased
+          : showDeceased // ignore: cast_nullable_to_non_nullable
+              as bool,
       sort: freezed == sort
           ? _self.sort
           : sort // ignore: cast_nullable_to_non_nullable
               as BirdSort?,
+      sortAscending: null == sortAscending
+          ? _self.sortAscending
+          : sortAscending // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -275,7 +295,9 @@ extension BirdFilterPatterns on BirdFilter {
             List<LifeStage> lifeStages,
             List<Sex> sexes,
             List<SaleStatus> saleStatus,
-            BirdSort? sort)?
+            bool showDeceased,
+            BirdSort? sort,
+            bool sortAscending)?
         $default, {
     required TResult orElse(),
   }) {
@@ -293,7 +315,9 @@ extension BirdFilterPatterns on BirdFilter {
             _that.lifeStages,
             _that.sexes,
             _that.saleStatus,
-            _that.sort);
+            _that.showDeceased,
+            _that.sort,
+            _that.sortAscending);
       case _:
         return orElse();
     }
@@ -325,7 +349,9 @@ extension BirdFilterPatterns on BirdFilter {
             List<LifeStage> lifeStages,
             List<Sex> sexes,
             List<SaleStatus> saleStatus,
-            BirdSort? sort)
+            bool showDeceased,
+            BirdSort? sort,
+            bool sortAscending)
         $default,
   ) {
     final _that = this;
@@ -342,7 +368,9 @@ extension BirdFilterPatterns on BirdFilter {
             _that.lifeStages,
             _that.sexes,
             _that.saleStatus,
-            _that.sort);
+            _that.showDeceased,
+            _that.sort,
+            _that.sortAscending);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -373,7 +401,9 @@ extension BirdFilterPatterns on BirdFilter {
             List<LifeStage> lifeStages,
             List<Sex> sexes,
             List<SaleStatus> saleStatus,
-            BirdSort? sort)?
+            bool showDeceased,
+            BirdSort? sort,
+            bool sortAscending)?
         $default,
   ) {
     final _that = this;
@@ -390,7 +420,9 @@ extension BirdFilterPatterns on BirdFilter {
             _that.lifeStages,
             _that.sexes,
             _that.saleStatus,
-            _that.sort);
+            _that.showDeceased,
+            _that.sort,
+            _that.sortAscending);
       case _:
         return null;
     }
@@ -415,7 +447,9 @@ class _BirdFilter implements BirdFilter {
         SaleStatus.listed,
         SaleStatus.reserved
       ],
-      this.sort = BirdSort.updatedDesc})
+      this.showDeceased = false,
+      this.sort = BirdSort.updated,
+      this.sortAscending = false})
       : _speciesIds = speciesIds,
         _cageIds = cageIds,
         _colorIds = colorIds,
@@ -495,7 +529,13 @@ class _BirdFilter implements BirdFilter {
 
   @override
   @JsonKey()
+  final bool showDeceased;
+  @override
+  @JsonKey()
   final BirdSort? sort;
+  @override
+  @JsonKey()
+  final bool sortAscending;
 
   /// Create a copy of BirdFilter
   /// with the given fields replaced by the non-null parameter values.
@@ -526,7 +566,11 @@ class _BirdFilter implements BirdFilter {
             const DeepCollectionEquality().equals(other._sexes, _sexes) &&
             const DeepCollectionEquality()
                 .equals(other._saleStatus, _saleStatus) &&
-            (identical(other.sort, sort) || other.sort == sort));
+            (identical(other.showDeceased, showDeceased) ||
+                other.showDeceased == showDeceased) &&
+            (identical(other.sort, sort) || other.sort == sort) &&
+            (identical(other.sortAscending, sortAscending) ||
+                other.sortAscending == sortAscending));
   }
 
   @override
@@ -542,11 +586,13 @@ class _BirdFilter implements BirdFilter {
       const DeepCollectionEquality().hash(_lifeStages),
       const DeepCollectionEquality().hash(_sexes),
       const DeepCollectionEquality().hash(_saleStatus),
-      sort);
+      showDeceased,
+      sort,
+      sortAscending);
 
   @override
   String toString() {
-    return 'BirdFilter(speciesIds: $speciesIds, speciesName: $speciesName, cageIds: $cageIds, cageName: $cageName, colorIds: $colorIds, colorName: $colorName, ownerIds: $ownerIds, lifeStages: $lifeStages, sexes: $sexes, saleStatus: $saleStatus, sort: $sort)';
+    return 'BirdFilter(speciesIds: $speciesIds, speciesName: $speciesName, cageIds: $cageIds, cageName: $cageName, colorIds: $colorIds, colorName: $colorName, ownerIds: $ownerIds, lifeStages: $lifeStages, sexes: $sexes, saleStatus: $saleStatus, showDeceased: $showDeceased, sort: $sort, sortAscending: $sortAscending)';
   }
 }
 
@@ -569,7 +615,9 @@ abstract mixin class _$BirdFilterCopyWith<$Res>
       List<LifeStage> lifeStages,
       List<Sex> sexes,
       List<SaleStatus> saleStatus,
-      BirdSort? sort});
+      bool showDeceased,
+      BirdSort? sort,
+      bool sortAscending});
 }
 
 /// @nodoc
@@ -594,7 +642,9 @@ class __$BirdFilterCopyWithImpl<$Res> implements _$BirdFilterCopyWith<$Res> {
     Object? lifeStages = null,
     Object? sexes = null,
     Object? saleStatus = null,
+    Object? showDeceased = null,
     Object? sort = freezed,
+    Object? sortAscending = null,
   }) {
     return _then(_BirdFilter(
       speciesIds: null == speciesIds
@@ -637,10 +687,18 @@ class __$BirdFilterCopyWithImpl<$Res> implements _$BirdFilterCopyWith<$Res> {
           ? _self._saleStatus
           : saleStatus // ignore: cast_nullable_to_non_nullable
               as List<SaleStatus>,
+      showDeceased: null == showDeceased
+          ? _self.showDeceased
+          : showDeceased // ignore: cast_nullable_to_non_nullable
+              as bool,
       sort: freezed == sort
           ? _self.sort
           : sort // ignore: cast_nullable_to_non_nullable
               as BirdSort?,
+      sortAscending: null == sortAscending
+          ? _self.sortAscending
+          : sortAscending // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
