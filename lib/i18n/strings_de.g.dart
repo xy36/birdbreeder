@@ -772,7 +772,6 @@ class TranslationsCommonDe {
 
   // Translations
   late final TranslationsCommonBottomSheetDe bottom_sheet = TranslationsCommonBottomSheetDe.internal(_root);
-  late final TranslationsCommonLifeStageDe life_stage = TranslationsCommonLifeStageDe.internal(_root);
   late final TranslationsCommonSaleStatusDe sale_status = TranslationsCommonSaleStatusDe.internal(_root);
 
   /// de: 'Alle'
@@ -2154,12 +2153,6 @@ class TranslationsBirdsOverviewDe {
   /// de: 'Vögel'
   String get birds_label => 'Vögel';
 
-  /// de: '{{count}} Küken'
-  String chicks({required Object Count}) => '${Count} Küken';
-
-  /// de: 'KÜKEN'
-  String get chick_badge => 'KÜKEN';
-
   /// de: 'Verkauf'
   String get sale_badge => 'Verkauf';
 
@@ -2326,27 +2319,6 @@ class TranslationsCommonBottomSheetDe {
 
   /// de: 'Die Suche nach {{text}} hat leider nichts ergeben.'
   String search_empty_builder_text({required Object Text}) => 'Die Suche nach ${Text} hat leider nichts ergeben.';
-}
-
-// Path: common.life_stage
-class TranslationsCommonLifeStageDe {
-  TranslationsCommonLifeStageDe.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// de: 'Ei'
-  String get egg => 'Ei';
-
-  /// de: 'Küken'
-  String get chick => 'Küken';
-
-  /// de: 'Erwachsen'
-  String get adult => 'Erwachsen';
-
-  /// de: 'Verstorben'
-  String get deceased => 'Verstorben';
 }
 
 // Path: common.sale_status

@@ -21,7 +21,6 @@ mixin _$BirdFilter {
   List<String> get colorIds;
   String? get colorName;
   List<String> get ownerIds;
-  List<LifeStage> get lifeStages;
   List<Sex> get sexes;
   List<SaleStatus> get saleStatus;
   bool get showDeceased;
@@ -51,8 +50,6 @@ mixin _$BirdFilter {
             (identical(other.colorName, colorName) ||
                 other.colorName == colorName) &&
             const DeepCollectionEquality().equals(other.ownerIds, ownerIds) &&
-            const DeepCollectionEquality()
-                .equals(other.lifeStages, lifeStages) &&
             const DeepCollectionEquality().equals(other.sexes, sexes) &&
             const DeepCollectionEquality()
                 .equals(other.saleStatus, saleStatus) &&
@@ -73,7 +70,6 @@ mixin _$BirdFilter {
       const DeepCollectionEquality().hash(colorIds),
       colorName,
       const DeepCollectionEquality().hash(ownerIds),
-      const DeepCollectionEquality().hash(lifeStages),
       const DeepCollectionEquality().hash(sexes),
       const DeepCollectionEquality().hash(saleStatus),
       showDeceased,
@@ -82,7 +78,7 @@ mixin _$BirdFilter {
 
   @override
   String toString() {
-    return 'BirdFilter(speciesIds: $speciesIds, speciesName: $speciesName, cageIds: $cageIds, cageName: $cageName, colorIds: $colorIds, colorName: $colorName, ownerIds: $ownerIds, lifeStages: $lifeStages, sexes: $sexes, saleStatus: $saleStatus, showDeceased: $showDeceased, sort: $sort, sortAscending: $sortAscending)';
+    return 'BirdFilter(speciesIds: $speciesIds, speciesName: $speciesName, cageIds: $cageIds, cageName: $cageName, colorIds: $colorIds, colorName: $colorName, ownerIds: $ownerIds, sexes: $sexes, saleStatus: $saleStatus, showDeceased: $showDeceased, sort: $sort, sortAscending: $sortAscending)';
   }
 }
 
@@ -100,7 +96,6 @@ abstract mixin class $BirdFilterCopyWith<$Res> {
       List<String> colorIds,
       String? colorName,
       List<String> ownerIds,
-      List<LifeStage> lifeStages,
       List<Sex> sexes,
       List<SaleStatus> saleStatus,
       bool showDeceased,
@@ -127,7 +122,6 @@ class _$BirdFilterCopyWithImpl<$Res> implements $BirdFilterCopyWith<$Res> {
     Object? colorIds = null,
     Object? colorName = freezed,
     Object? ownerIds = null,
-    Object? lifeStages = null,
     Object? sexes = null,
     Object? saleStatus = null,
     Object? showDeceased = null,
@@ -163,10 +157,6 @@ class _$BirdFilterCopyWithImpl<$Res> implements $BirdFilterCopyWith<$Res> {
           ? _self.ownerIds
           : ownerIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      lifeStages: null == lifeStages
-          ? _self.lifeStages
-          : lifeStages // ignore: cast_nullable_to_non_nullable
-              as List<LifeStage>,
       sexes: null == sexes
           ? _self.sexes
           : sexes // ignore: cast_nullable_to_non_nullable
@@ -292,7 +282,6 @@ extension BirdFilterPatterns on BirdFilter {
             List<String> colorIds,
             String? colorName,
             List<String> ownerIds,
-            List<LifeStage> lifeStages,
             List<Sex> sexes,
             List<SaleStatus> saleStatus,
             bool showDeceased,
@@ -312,7 +301,6 @@ extension BirdFilterPatterns on BirdFilter {
             _that.colorIds,
             _that.colorName,
             _that.ownerIds,
-            _that.lifeStages,
             _that.sexes,
             _that.saleStatus,
             _that.showDeceased,
@@ -346,7 +334,6 @@ extension BirdFilterPatterns on BirdFilter {
             List<String> colorIds,
             String? colorName,
             List<String> ownerIds,
-            List<LifeStage> lifeStages,
             List<Sex> sexes,
             List<SaleStatus> saleStatus,
             bool showDeceased,
@@ -365,7 +352,6 @@ extension BirdFilterPatterns on BirdFilter {
             _that.colorIds,
             _that.colorName,
             _that.ownerIds,
-            _that.lifeStages,
             _that.sexes,
             _that.saleStatus,
             _that.showDeceased,
@@ -398,7 +384,6 @@ extension BirdFilterPatterns on BirdFilter {
             List<String> colorIds,
             String? colorName,
             List<String> ownerIds,
-            List<LifeStage> lifeStages,
             List<Sex> sexes,
             List<SaleStatus> saleStatus,
             bool showDeceased,
@@ -417,7 +402,6 @@ extension BirdFilterPatterns on BirdFilter {
             _that.colorIds,
             _that.colorName,
             _that.ownerIds,
-            _that.lifeStages,
             _that.sexes,
             _that.saleStatus,
             _that.showDeceased,
@@ -440,7 +424,6 @@ class _BirdFilter implements BirdFilter {
       final List<String> colorIds = const [],
       this.colorName,
       final List<String> ownerIds = const [],
-      final List<LifeStage> lifeStages = const [LifeStage.adult],
       final List<Sex> sexes = const [],
       final List<SaleStatus> saleStatus = const [
         SaleStatus.notForSale,
@@ -454,7 +437,6 @@ class _BirdFilter implements BirdFilter {
         _cageIds = cageIds,
         _colorIds = colorIds,
         _ownerIds = ownerIds,
-        _lifeStages = lifeStages,
         _sexes = sexes,
         _saleStatus = saleStatus;
 
@@ -498,15 +480,6 @@ class _BirdFilter implements BirdFilter {
     if (_ownerIds is EqualUnmodifiableListView) return _ownerIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_ownerIds);
-  }
-
-  final List<LifeStage> _lifeStages;
-  @override
-  @JsonKey()
-  List<LifeStage> get lifeStages {
-    if (_lifeStages is EqualUnmodifiableListView) return _lifeStages;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_lifeStages);
   }
 
   final List<Sex> _sexes;
@@ -561,8 +534,6 @@ class _BirdFilter implements BirdFilter {
             (identical(other.colorName, colorName) ||
                 other.colorName == colorName) &&
             const DeepCollectionEquality().equals(other._ownerIds, _ownerIds) &&
-            const DeepCollectionEquality()
-                .equals(other._lifeStages, _lifeStages) &&
             const DeepCollectionEquality().equals(other._sexes, _sexes) &&
             const DeepCollectionEquality()
                 .equals(other._saleStatus, _saleStatus) &&
@@ -583,7 +554,6 @@ class _BirdFilter implements BirdFilter {
       const DeepCollectionEquality().hash(_colorIds),
       colorName,
       const DeepCollectionEquality().hash(_ownerIds),
-      const DeepCollectionEquality().hash(_lifeStages),
       const DeepCollectionEquality().hash(_sexes),
       const DeepCollectionEquality().hash(_saleStatus),
       showDeceased,
@@ -592,7 +562,7 @@ class _BirdFilter implements BirdFilter {
 
   @override
   String toString() {
-    return 'BirdFilter(speciesIds: $speciesIds, speciesName: $speciesName, cageIds: $cageIds, cageName: $cageName, colorIds: $colorIds, colorName: $colorName, ownerIds: $ownerIds, lifeStages: $lifeStages, sexes: $sexes, saleStatus: $saleStatus, showDeceased: $showDeceased, sort: $sort, sortAscending: $sortAscending)';
+    return 'BirdFilter(speciesIds: $speciesIds, speciesName: $speciesName, cageIds: $cageIds, cageName: $cageName, colorIds: $colorIds, colorName: $colorName, ownerIds: $ownerIds, sexes: $sexes, saleStatus: $saleStatus, showDeceased: $showDeceased, sort: $sort, sortAscending: $sortAscending)';
   }
 }
 
@@ -612,7 +582,6 @@ abstract mixin class _$BirdFilterCopyWith<$Res>
       List<String> colorIds,
       String? colorName,
       List<String> ownerIds,
-      List<LifeStage> lifeStages,
       List<Sex> sexes,
       List<SaleStatus> saleStatus,
       bool showDeceased,
@@ -639,7 +608,6 @@ class __$BirdFilterCopyWithImpl<$Res> implements _$BirdFilterCopyWith<$Res> {
     Object? colorIds = null,
     Object? colorName = freezed,
     Object? ownerIds = null,
-    Object? lifeStages = null,
     Object? sexes = null,
     Object? saleStatus = null,
     Object? showDeceased = null,
@@ -675,10 +643,6 @@ class __$BirdFilterCopyWithImpl<$Res> implements _$BirdFilterCopyWith<$Res> {
           ? _self._ownerIds
           : ownerIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      lifeStages: null == lifeStages
-          ? _self._lifeStages
-          : lifeStages // ignore: cast_nullable_to_non_nullable
-              as List<LifeStage>,
       sexes: null == sexes
           ? _self._sexes
           : sexes // ignore: cast_nullable_to_non_nullable

@@ -39,7 +39,7 @@ class ChildrenSection extends StatelessWidget {
                   ),
                 ],
               ),
-              leading: Icon(b.lifeStage?.icon ?? AppIcons.unknown),
+              leading: Icon(b.sex.iconData, color: b.sex.colorOf(context)),
               subtitle: Row(
                 spacing: 8,
                 children: [

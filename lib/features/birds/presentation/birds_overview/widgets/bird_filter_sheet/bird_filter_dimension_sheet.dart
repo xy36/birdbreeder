@@ -205,7 +205,8 @@ class _BirdFilterDimensionSheetState extends State<BirdFilterDimensionSheet> {
           _FilterRow(
             label: context.tr.birds.filter.show_deceased,
             selected: f.showDeceased,
-            secondary: Icon(LifeStage.deceased.icon, size: 20, color: cs.error),
+            secondary:
+                Icon(AppIcons.lifeStageDeceased, size: 20, color: cs.error),
             onChanged: (v) => f = f.copyWith(showDeceased: v),
           ),
         ];

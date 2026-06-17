@@ -32,8 +32,7 @@ class BirdRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final stage = bird.lifeStage;
-    final isDeceased = stage == LifeStage.deceased;
+    final isDeceased = bird.diedAt != null;
     final isForSale =
         bird.saleStatus == SaleStatus.listed && bird.askingPrice != null;
 
@@ -196,31 +195,6 @@ class _Swatch extends StatelessWidget {
         color: _parseHex(hex),
         borderRadius: BorderRadius.circular(4),
         border: Border.all(color: Theme.of(context).colorScheme.outline),
-      ),
-    );
-  }
-}
-
-class _ChickBadge extends StatelessWidget {
-  const _ChickBadge();
-
-  @override
-  Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
-      decoration: BoxDecoration(
-        color: cs.primaryContainer,
-        borderRadius: BorderRadius.circular(4),
-      ),
-      child: Text(
-        context.tr.birds.overview.chick_badge,
-        style: TextStyle(
-          fontSize: 9,
-          fontWeight: FontWeight.w700,
-          letterSpacing: 0.6,
-          color: cs.onPrimaryContainer,
-        ),
       ),
     );
   }

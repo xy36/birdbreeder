@@ -1,12 +1,10 @@
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/core/extensions/birds_extension.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/status_and_life_cycle/fields/born_at_date_field.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/status_and_life_cycle/fields/died_at_date_field.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/status_and_life_cycle/fields/fledged_at_date_field.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/status_and_life_cycle/fields/hatched_at_date_field.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/status_and_life_cycle/fields/laid_at_date_field.dart';
-import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/status_and_life_cycle/fields/life_stage_field.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/status_and_life_cycle/fields/unknown_lifecycle_field.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/widgets/section_card.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
@@ -40,7 +38,6 @@ class LifeStageSection extends StatelessWidget {
           secondChild: Column(
             spacing: 12,
             children: [
-              if (bird.lifeStage != null) LifeStageField(bird: bird),
               LaidAtDateField(bird: bird),
               HatchedAtDateField(bird: bird),
               FledgedAtDateField(bird: bird),

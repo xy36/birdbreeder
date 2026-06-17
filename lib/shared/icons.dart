@@ -46,9 +46,6 @@ class AppIcons {
       Icons.alternate_email;
   static const IconData contactSectionAddress = Icons.location_on_outlined;
 
-  static const IconData lifeStageEgg = Icons.egg;
-  static const IconData lifeStageChick = Icons.child_care;
-  static const IconData lifeStageAdult = Icons.emoji_nature;
   static const IconData lifeStageDeceased = Icons.health_and_safety;
 
   static const IconData sexMale = Icons.male;

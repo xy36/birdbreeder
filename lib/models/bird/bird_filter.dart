@@ -32,7 +32,6 @@ abstract class BirdFilter with _$BirdFilter {
     @Default([]) List<String> colorIds,
     String? colorName,
     @Default([]) List<String> ownerIds,
-    @Default([LifeStage.adult]) List<LifeStage> lifeStages,
     @Default([]) List<Sex> sexes,
     @Default([SaleStatus.notForSale, SaleStatus.listed, SaleStatus.reserved])
     List<SaleStatus> saleStatus,

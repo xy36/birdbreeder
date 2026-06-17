@@ -3,7 +3,6 @@ import 'package:birdbreeder/core/extensions/birds_extension.dart';
 import 'package:birdbreeder/models/bird/sex_enum.dart';
 import 'package:birdbreeder/models/egg/entity/egg.dart';
 import 'package:birdbreeder/models/searchable.dart';
-import 'package:birdbreeder/shared/icons.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'bird.freezed.dart';
@@ -15,33 +14,6 @@ typedef SpeciesId = String;
 typedef ColorId = String;
 typedef BroodId = String;
 typedef ContactId = String;
-
-enum LifeStage {
-  egg,
-  chick,
-  adult,
-  deceased;
-
-  String getDisplayName(BuildContext context) {
-    switch (this) {
-      case LifeStage.egg:
-        return context.tr.common.life_stage.egg;
-      case LifeStage.chick:
-        return context.tr.common.life_stage.chick;
-      case LifeStage.adult:
-        return context.tr.common.life_stage.adult;
-      case LifeStage.deceased:
-        return context.tr.common.life_stage.deceased;
-    }
-  }
-
-  IconData get icon => switch (this) {
-        LifeStage.egg => AppIcons.lifeStageEgg,
-        LifeStage.chick => AppIcons.lifeStageChick,
-        LifeStage.adult => AppIcons.lifeStageAdult,
-        LifeStage.deceased => AppIcons.lifeStageDeceased,
-      };
-}
 
 enum SaleStatus {
   notForSale,

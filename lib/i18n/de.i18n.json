@@ -502,8 +502,6 @@
             "group_by_cage": "Gruppieren: Käfig",
             "no_cage": "Ohne Käfig",
             "birds_label": "Vögel",
-            "chicks(count)": "{{count}} Küken",
-            "chick_badge": "KÜKEN",
             "sale_badge": "Verkauf",
             "empty": "Keine Vögel gefunden",
             "view_grouped": "Nach Voliere gruppieren",
@@ -661,12 +659,6 @@
     "common": {
         "bottom_sheet": {
             "search_empty_builder_text(text)": "Die Suche nach {{text}} hat leider nichts ergeben."
-        },
-        "life_stage": {
-            "egg": "Ei",
-            "chick": "Küken",
-            "adult": "Erwachsen",
-            "deceased": "Verstorben"
         },
         "sale_status": {
             "name": "Kauf/Verkaufsstatus",

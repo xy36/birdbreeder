@@ -1,5 +1,4 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/core/extensions/birds_extension.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/bird_row.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';
@@ -27,9 +26,7 @@ class BirdCageGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final chicks = birds.where((b) => b.lifeStage == LifeStage.chick).length;
-    final deceased =
-        birds.where((b) => b.lifeStage == LifeStage.deceased).length;
+    final deceased = birds.where((b) => b.diedAt != null).length;
     final forSale = birds
         .where(
           (b) => b.saleStatus == SaleStatus.listed && b.askingPrice != null,
@@ -49,7 +46,6 @@ class BirdCageGroup extends StatelessWidget {
             cage: cage,
             cageName: cageName,
             count: birds.length,
-            chicks: chicks,
             deceased: deceased,
             forSale: forSale,
           ),
@@ -70,7 +66,6 @@ class _Header extends StatelessWidget {
     required this.cage,
     required this.cageName,
     required this.count,
-    required this.chicks,
     required this.deceased,
     required this.forSale,
   });
@@ -78,7 +73,6 @@ class _Header extends StatelessWidget {
   final Cage? cage;
   final String cageName;
   final int count;
-  final int chicks;
   final int deceased;
   final int forSale;
 
@@ -159,12 +153,6 @@ class _Header extends StatelessWidget {
         ),
         const SizedBox(width: 4),
         Text(overview.birds_label, style: style),
-        if (chicks > 0) ...[
-          _Dot(color: cs.outline),
-          Icon(AppIcons.lifeStageChick, size: 12, color: cs.onSurfaceVariant),
-          const SizedBox(width: 3),
-          Text(overview.chicks(Count: chicks), style: style),
-        ],
         if (deceased > 0) ...[
           _Dot(color: cs.outline),
           Text('† $deceased', style: style.copyWith(color: cs.error)),

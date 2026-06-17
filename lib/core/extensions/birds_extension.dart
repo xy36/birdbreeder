@@ -90,25 +90,6 @@ extension BirdsExtension on Bird {
 
   DateTime? get effectiveBornAt => hatchedAt ?? laidAt ?? fledgedAt ?? bornAt;
 
-  LifeStage? get lifeStage {
-    if (diedAt == null &&
-        fledgedAt == null &&
-        hatchedAt == null &&
-        laidAt == null) {
-      return null;
-    }
-
-    if (diedAt != null) {
-      return LifeStage.deceased;
-    } else if (fledgedAt != null) {
-      return LifeStage.adult;
-    } else if (hatchedAt != null) {
-      return LifeStage.chick;
-    } else {
-      return LifeStage.egg;
-    }
-  }
-
   bool changed<T>(Bird? initial, T? Function(Bird) pick) {
     if (initial == null) return false;
     final a = pick(this);
