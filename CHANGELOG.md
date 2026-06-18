@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.6.0](https://github.com/xy36/birdbreeder/compare/v1.5.0...v1.6.0) (2026-06-18)
+
+
+### Features
+
+* add light, dark, and system mode icons to AppIcons ([f427cf1](https://github.com/xy36/birdbreeder/commit/f427cf1667e4b3deddeafc8ca3f6a577b7080377))
+* add SpeciesImageSearchService for fetching species images from Wikipedia ([f58b75e](https://github.com/xy36/birdbreeder/commit/f58b75e66bc776095912dc2c07a646bef9f551a5))
+* **breeding_pairs:** implement breeding pairs filter functionality and UI components ([d6239fc](https://github.com/xy36/birdbreeder/commit/d6239fc739fb438e043c5be5076ca251037ea61c))
+* **database:** implement initial schema and migration strategy ([a4ba325](https://github.com/xy36/birdbreeder/commit/a4ba325a853e682ec4ecb2a618cf920aff7e96c6))
+* enhance breeding and egg management with species resolution and UI updates ([7702f71](https://github.com/xy36/birdbreeder/commit/7702f711911ab58c5b3b97ff198f6c2756e18d84))
+* **finances:** introduce CategoryFilterSheet and remove deprecated FinanceFilterSheet and YearChips ([7b2313e](https://github.com/xy36/birdbreeder/commit/7b2313e1264e46afc95417ca90b737c0b8609340))
+* **i18n:** enhance breeding overview page ([c9e836a](https://github.com/xy36/birdbreeder/commit/c9e836acb43351f534157b7eb1e4046acded7ef7))
+* **icons:** add new icons for history and calendar ([c9e836a](https://github.com/xy36/birdbreeder/commit/c9e836acb43351f534157b7eb1e4046acded7ef7))
+* Refactor breeding pairs page and add mini stats component ([5de317e](https://github.com/xy36/birdbreeder/commit/5de317e7999706026c9c921820bc7bd262372973))
+* refactor menu navigation by replacing Sidebar with Drawer and adding subtitles for menu items ([9cba199](https://github.com/xy36/birdbreeder/commit/9cba199fc937a15fd6b91dc3948a026e5c784183))
+* remove BroodPage and BroodCubit, update routing and database schema for egg fertilization ([2f51dbf](https://github.com/xy36/birdbreeder/commit/2f51dbfa73f775232e3592fb6a89107d3a202273))
+* remove LifeStage enum and related components; update references to use direct properties ([3977cda](https://github.com/xy36/birdbreeder/commit/3977cda219ae6ccd398f1217cd4011aae97d9f63))
+* replace GestureDetector with IconButton in moreMenu widget for improved interaction ([ac14c69](https://github.com/xy36/birdbreeder/commit/ac14c697b87787c9100f8991b4748659573d0482))
+* **sale:** enhance sale status handling and UI representation for sold birds ([3778484](https://github.com/xy36/birdbreeder/commit/37784845bb24b50e807216ea4274d4cc1a91f5a8))
+
+
+### Bug Fixes
+
+* **app_bar:** integrate drawer widget into shared app bar ([c9e836a](https://github.com/xy36/birdbreeder/commit/c9e836acb43351f534157b7eb1e4046acded7ef7))
+
 ## [1.5.0](https://github.com/xy36/birdbreeder/compare/v1.4.0...v1.5.0) (2026-05-15)
 
 
