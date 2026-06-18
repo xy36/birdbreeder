@@ -1,4 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/core/extensions/birds_extension.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/purchase_and_sale/fields/asking_price_field.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/purchase_and_sale/fields/final_price_field.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/purchase_and_sale/fields/sold_at_field.dart';
@@ -21,9 +22,11 @@ class SaleSection extends StatelessWidget {
       subtitle: context.tr.bird.sections.sale.sub_title,
       children: [
         AskingPriceField(bird: bird),
-        FinalPriceField(bird: bird),
-        SoldAtField(bird: bird),
-        SoldToField(bird: bird),
+        if (bird.isSold) ...[
+          FinalPriceField(bird: bird),
+          SoldAtField(bird: bird),
+          SoldToField(bird: bird),
+        ],
       ],
     );
   }

@@ -35,11 +35,19 @@ class SaleStatusField extends StatelessWidget {
         ],
         orientation: OptionsOrientation.vertical,
         onChanged: (status) {
-          if (status != null) {
-            context.read<BirdCubit>().changeBird(
-                  bird.copyWith(saleStatus: status),
-                );
-          }
+          if (status == null) return;
+          final isSold = status == SaleStatus.sold;
+          context.read<BirdCubit>().changeBird(
+                bird.copyWith(
+                  saleStatus: status,
+                  // Sold details only exist while sold. Auto-stamp soldAt when
+                  // entering the sold state; clear all sale details when leaving
+                  // it so no hidden stale values linger.
+                  soldAt: isSold ? (bird.soldAt ?? DateTime.now()) : null,
+                  soldToId: isSold ? bird.soldToId : null,
+                  finalPrice: isSold ? bird.finalPrice : null,
+                ),
+              );
         },
       ),
     );

@@ -54,7 +54,10 @@ class BirdRow extends StatelessWidget {
               _SexGlyph(sex: bird.sex),
               const SizedBox(width: 10),
               Expanded(child: _main(context)),
-              if (isForSale) ...[
+              if (bird.isSold) ...[
+                const SizedBox(width: 8),
+                _SoldTag(price: bird.finalPrice),
+              ] else if (isForSale) ...[
                 const SizedBox(width: 8),
                 _PriceTag(price: bird.askingPrice!),
               ],
@@ -223,6 +226,46 @@ class _PriceTag extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+/// Muted "sold" marker shown in the row for birds with `saleStatus == sold`.
+///
+/// Mirrors [_PriceTag] but reads as a completed/past state (muted colours)
+/// rather than the active green "for sale" tag. Shows the final price when set.
+class _SoldTag extends StatelessWidget {
+  const _SoldTag({this.price});
+
+  final double? price;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    final sold = context.tr.common.sale_status.sold;
+    final label = price != null ? '$sold · ${price!.toStringAsFixed(0)}€' : sold;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      decoration: BoxDecoration(
+        color: cs.surfaceContainerHighest,
+        borderRadius: BorderRadius.circular(100),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(AppIcons.sold, size: 11, color: cs.onSurfaceVariant),
+          const SizedBox(width: 3),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w700,
+              color: cs.onSurfaceVariant,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

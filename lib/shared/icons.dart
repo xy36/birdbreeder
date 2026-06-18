@@ -94,6 +94,7 @@ class AppIcons {
   static const IconData fledged = Icons.flight_takeoff;
   static const IconData cage = Icons.home;
   static const IconData sell = Icons.sell;
+  static const IconData sold = Icons.check_circle;
   static const IconData buy = Icons.shopping_bag;
 
   static const IconData date = Icons.calendar_month;
