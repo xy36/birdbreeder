@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:birdbreeder/services/database/schema_versions.dart';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:path/path.dart' as p;
@@ -226,21 +227,39 @@ class BirdColors extends Table {
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 
+  /// Connects to an explicit executor. Used by migration tests.
+  AppDatabase.forTesting(super.e);
+
   @override
-  int get schemaVersion => 6;
+  int get schemaVersion => 1;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
-        onUpgrade: (migrator, from, to) async {
-          // Recreate all tables when upgrading from v1.
-          // This drops existing data – fine during development.
-          for (final table in allTables) {
-            await migrator.deleteTable(table.actualTableName);
-          }
-          await migrator.createAll();
-        },
+        onCreate: (m) => m.createAll(),
+        onUpgrade: stepByStep(),
       );
 }
+
+// ──────────────────────────────────────────
+// Schema-Migration: Workflow for DB Column Changes
+// ──────────────────────────────────────────
+//
+// Only real Drift-`Table` columns need a migration. In-memory fields
+// (e.g. `BirdFilter`, computed getters) are irrelevant. Workflow when
+// changing one of the tables above:
+//
+//   1. Change column in the Table class (e.g. new `TextColumn`).
+//   2. Increment `schemaVersion` by 1.
+//   3. fvm dart run build_runner build --delete-conflicting-outputs
+//   4. fvm dart run drift_dev schema dump \
+//        lib/services/database/app_database.dart drift_schemas/
+//   5. fvm dart run drift_dev schema steps \
+//        drift_schemas/ lib/services/database/schema_versions.dart
+//   6. In the newly generated `stepByStep(...)` fill the fromNToM callback,
+//      e.g. `await m.addColumn(schema.birds, schema.birds.newField);`.
+//   7. fvm dart run drift_dev schema generate \
+//        drift_schemas/ test/migrations/generated/
+//   8. Add migrations test for N→M, fvm flutter test test/migrations.
 
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
