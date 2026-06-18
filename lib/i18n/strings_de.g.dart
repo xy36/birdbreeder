@@ -477,6 +477,7 @@ class TranslationsBreedingPairsDe {
   String get notes => 'Notizen';
 
   late final TranslationsBreedingPairsYearFilterDe year_filter = TranslationsBreedingPairsYearFilterDe.internal(_root);
+  late final TranslationsBreedingPairsFilterDe filter = TranslationsBreedingPairsFilterDe.internal(_root);
 
   /// de: 'Paar'
   String get pair_one => 'Paar';
@@ -1982,6 +1983,18 @@ class TranslationsBreedingPairsYearFilterDe {
 
   /// de: 'Alle'
   String get all => 'Alle';
+}
+
+// Path: breeding_pairs.filter
+class TranslationsBreedingPairsFilterDe {
+  TranslationsBreedingPairsFilterDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: '{{count}} Zuchtpaare anzeigen'
+  String show_results({required Object Count}) => '${Count} Zuchtpaare anzeigen';
 }
 
 // Path: breeding_pairs.brood_status

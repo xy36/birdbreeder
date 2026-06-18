@@ -4,7 +4,9 @@ import 'package:birdbreeder/core/extensions/birds_extension.dart';
 import 'package:birdbreeder/core/extensions/breeding_pairs_extension.dart';
 import 'package:birdbreeder/core/extensions/brood_extension.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
+import 'package:birdbreeder/features/breedings/breeding_pairs/cubit/breeding_pairs_filter_cubit.dart';
 import 'package:birdbreeder/features/breedings/breeding_pairs/widgets/add_breeding_pair_sheet.dart';
+import 'package:birdbreeder/features/breedings/breeding_pairs/widgets/breeding_pair_filter_bar.dart';
 import 'package:birdbreeder/features/breedings/shared/mini_stats.dart';
 import 'package:birdbreeder/models/bird/sex_enum.dart';
 import 'package:birdbreeder/models/breeding/brood_status.dart';
@@ -55,8 +57,12 @@ class _BreedingPairsPageState extends State<BreedingPairsPage> {
             builder: (context, _) {
               final searched =
                   context.read<BreedingPairSearchCubit>().searchedItems;
+              final byFilter =
+                  context.watch<BreedingPairsFilterCubit>().filterPairs(
+                        searched,
+                      );
               final years = _availableYears(allPairs);
-              final filtered = _filterByYear(searched, _selectedYear);
+              final filtered = _filterByYear(byFilter, _selectedYear);
               final groups = _groupByCage(
                 context,
                 filtered,
@@ -388,6 +394,7 @@ class _SummaryHeader extends StatelessWidget {
             ],
           ),
         ),
+        const BreedingPairFilterBar(),
         Container(height: 1, color: cs.outlineVariant),
         Padding(
           padding: const EdgeInsets.fromLTRB(14, 10, 14, 12),

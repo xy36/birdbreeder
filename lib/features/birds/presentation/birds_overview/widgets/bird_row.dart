@@ -243,7 +243,8 @@ class _SoldTag extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final sold = context.tr.common.sale_status.sold;
-    final label = price != null ? '$sold · ${price!.toStringAsFixed(0)}€' : sold;
+    final label =
+        price != null ? '$sold · ${price!.toStringAsFixed(0)}€' : sold;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),

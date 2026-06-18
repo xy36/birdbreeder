@@ -409,6 +409,9 @@
             "label": "JAHR",
             "all": "Alle"
         },
+        "filter": {
+            "show_results(count)": "{{count}} Zuchtpaare anzeigen"
+        },
         "pair_one": "Paar",
         "pair_other": "Paare",
         "cages_count(count)": "{{count}} Käfige",

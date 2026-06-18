@@ -1,6 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_filter_cubit.dart';
+import 'package:birdbreeder/features/breedings/breeding_pairs/cubit/breeding_pairs_filter_cubit.dart';
 import 'package:birdbreeder/features/finances/cubit/finances_filter_cubit.dart';
 import 'package:birdbreeder/features/mode_selection/mode_selection_page.dart';
 import 'package:birdbreeder/i18n/strings.g.dart';
@@ -76,6 +77,7 @@ class _AppShellState extends State<_AppShell> {
             BlocProvider(create: (context) => FinanceSearchCubit()),
             BlocProvider(create: (context) => FinancesFilterCubit()),
             BlocProvider(create: (context) => BreedingPairSearchCubit()),
+            BlocProvider(create: (context) => BreedingPairsFilterCubit()),
             BlocProvider(
               create: (context) => BirdsFilterCubit(
                 currentUserContactId: s1
