@@ -63,6 +63,16 @@ extension BirdBreederCubitBirdsX on BirdBreederCubit {
     }
 
     _removeBirdFromState(bird.id);
+    await _clearBirdIdFromEggs(bird.id);
+  }
+
+  Future<void> _clearBirdIdFromEggs(String birdId) async {
+    final affected = state.birdBreederResources.eggs
+        .where((e) => e.birdId == birdId)
+        .toList();
+    for (final egg in affected) {
+      await updateEgg(egg.copyWith(birdId: null));
+    }
   }
 
   Future<void> duplicateBird(Bird bird) async {

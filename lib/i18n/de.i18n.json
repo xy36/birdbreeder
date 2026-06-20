@@ -651,6 +651,7 @@
             "hatched": "Geschlüpft",
             "dead": "Gestorben",
             "fledged": "Ausgeflogen",
+            "in_stock": "Im Bestand",
             "unknown": "Unbekannt"
         },
         "action": {
@@ -658,7 +659,8 @@
         },
         "pick_laid_date": "Lege-Datum auswählen",
         "pick_fledged_date": "Ausgeflogen-Datum auswählen",
-        "pick_hatched_date": "Geschlüpft-Datum auswählen"
+        "pick_hatched_date": "Geschlüpft-Datum auswählen",
+        "in_stock": "Im Bestand"
     },
     "common": {
         "bottom_sheet": {
@@ -943,6 +945,7 @@
         "set_color": "Farbe setzen",
         "mark_hatched": "Als geschlüpft markieren",
         "mark_fledged": "Als ausgeflogen markieren",
+        "add_to_stock": "In Bestand aufnehmen",
         "mark_died": "Als gestorben markieren",
         "mark_unfertilized": "Als unbefruchtet markieren",
         "mark_fertilized": "Als befruchtet markieren",

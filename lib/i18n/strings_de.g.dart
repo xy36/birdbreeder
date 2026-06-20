@@ -763,6 +763,9 @@ class TranslationsEggDe {
 
   /// de: 'Geschlüpft-Datum auswählen'
   String get pick_hatched_date => 'Geschlüpft-Datum auswählen';
+
+  /// de: 'Im Bestand'
+  String get in_stock => 'Im Bestand';
 }
 
 // Path: common
@@ -1101,6 +1104,9 @@ class TranslationsPopUpMenuDe {
 
   /// de: 'Als ausgeflogen markieren'
   String get mark_fledged => 'Als ausgeflogen markieren';
+
+  /// de: 'In Bestand aufnehmen'
+  String get add_to_stock => 'In Bestand aufnehmen';
 
   /// de: 'Als gestorben markieren'
   String get mark_died => 'Als gestorben markieren';
@@ -2308,6 +2314,9 @@ class TranslationsEggStatusDe {
 
   /// de: 'Ausgeflogen'
   String get fledged => 'Ausgeflogen';
+
+  /// de: 'Im Bestand'
+  String get in_stock => 'Im Bestand';
 
   /// de: 'Unbekannt'
   String get unknown => 'Unbekannt';

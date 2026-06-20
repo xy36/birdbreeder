@@ -70,6 +70,7 @@ const _$EggStatusEnumMap = {
   EggStatus.unfertilized: 'unfertilized',
   EggStatus.hatched: 'hatched',
   EggStatus.fledged: 'fledged',
+  EggStatus.inStock: 'inStock',
   EggStatus.dead: 'dead',
   EggStatus.unknown: 'unknown',
 };

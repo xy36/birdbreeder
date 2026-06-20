@@ -17,6 +17,7 @@ class AppIcons {
   static const IconData eggStatusDead = Icons.close;
   static const IconData eggStatusHatched = Icons.egg_outlined;
   static const IconData eggStatusFledged = Icons.egg_outlined;
+  static const IconData eggStatusInStock = Icons.inventory_2_outlined;
   static const IconData eggStatusUnknown = Icons.help_outline;
 
   static const IconData birdTabsGeneral = Icons.info_outline;

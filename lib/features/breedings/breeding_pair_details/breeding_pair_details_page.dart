@@ -603,6 +603,9 @@ class _CurrentBroodHero extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
+    final fertilized = eggs.where((e) => e.fertilizedAt != null).length;
+    final hatched = eggs.where((e) => e.hatchedAt != null).length;
+    final fledged = eggs.where((e) => e.fledgedAt != null).length;
     final tr = context.tr;
     final start = brood.start;
     final day =
@@ -622,47 +625,58 @@ class _CurrentBroodHero extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
               color: cs.tertiaryContainer,
-              child: Row(
+              child: Column(
                 children: [
-                  Icon(
-                    AppIcons.egg,
-                    size: 16,
-                    color: cs.onTertiaryContainer,
-                  ),
-                  const SizedBox(width: 6),
-                  Text(
-                    tr.pair_detail.brood_short,
-                    style: TextStyle(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 0.6,
-                      color: cs.onTertiaryContainer,
-                    ),
-                  ),
-                  const SizedBox(width: 6),
-                  Expanded(
-                    child: Text(
-                      '#${broodIndex(brood) ?? '?'}',
-                      style: TextStyle(
-                        fontFamily: 'monospace',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 0.3,
+                  Row(
+                    children: [
+                      Icon(
+                        AppIcons.egg,
+                        size: 16,
                         color: cs.onTertiaryContainer,
                       ),
-                    ),
-                  ),
-                  if (day != null)
-                    Text(
-                      tr.pair_detail.day(Day: day),
-                      style: TextStyle(
-                        fontFamily: 'monospace',
-                        fontSize: 13,
-                        fontWeight: FontWeight.w700,
-                        color: cs.onTertiaryContainer,
+                      const SizedBox(width: 6),
+                      Text(
+                        tr.pair_detail.brood_short,
+                        style: TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 0.6,
+                          color: cs.onTertiaryContainer,
+                        ),
                       ),
-                    ),
-                  BroodActions.buildMenu(context, brood, pair),
+                      const SizedBox(width: 6),
+                      Expanded(
+                        child: Text(
+                          '#${broodIndex(brood) ?? '?'}',
+                          style: TextStyle(
+                            fontFamily: 'monospace',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: 0.3,
+                            color: cs.onTertiaryContainer,
+                          ),
+                        ),
+                      ),
+                      if (day != null)
+                        Text(
+                          tr.pair_detail.day(Day: day),
+                          style: TextStyle(
+                            fontFamily: 'monospace',
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            color: cs.onTertiaryContainer,
+                          ),
+                        ),
+                      BroodActions.buildMenu(context, brood, pair),
+                    ],
+                  ),
+                  MiniStats(
+                    laid: eggs.length,
+                    fertilized: fertilized,
+                    hatched: hatched,
+                    fledged: fledged,
+                    expanded: true,
+                  ),
                 ],
               ),
             ),
@@ -790,6 +804,23 @@ class _EggMiniTile extends StatelessWidget {
                   ),
                 ),
               ),
+              if (egg.birdResolved != null) ...[
+                const SizedBox(width: 4),
+                InkWell(
+                  onTap: () => context.router.push(
+                    BirdRoute(bird: egg.birdResolved),
+                  ),
+                  borderRadius: BorderRadius.circular(100),
+                  child: Tooltip(
+                    message: context.tr.egg.in_stock,
+                    child: Icon(
+                      AppIcons.birdAvatar,
+                      size: 16,
+                      color: cs.primary,
+                    ),
+                  ),
+                ),
+              ],
             ],
           ),
           const SizedBox(height: 4),
@@ -934,7 +965,14 @@ class _HistoryBroodCard extends StatelessWidget {
                 BroodActions.buildMenu(context, brood, pair),
               ],
             ),
-            const SizedBox(height: 4),
+            MiniStats(
+              laid: eggs.length,
+              fertilized: fertilized,
+              hatched: hatched,
+              fledged: fledged,
+              expanded: true,
+            ),
+            const SizedBox(height: 8),
             Text(
               dates,
               style: TextStyle(
@@ -942,14 +980,6 @@ class _HistoryBroodCard extends StatelessWidget {
                 fontSize: 11,
                 color: cs.onSurfaceVariant,
               ),
-            ),
-            const SizedBox(height: 8),
-            MiniStats(
-              laid: eggs.length,
-              fertilized: fertilized,
-              hatched: hatched,
-              fledged: fledged,
-              expanded: true,
             ),
           ],
         ),

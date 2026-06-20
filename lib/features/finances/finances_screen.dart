@@ -140,21 +140,26 @@ class _FinancesScreenState extends State<FinancesScreen> {
                 final kindFiltered = switch (_kindFilter) {
                   _KindFilter.all => inMonth,
                   _KindFilter.income => inMonth
-                      .where((f) =>
-                          f.categoryResolved?.kind ==
-                          FinanceCategoryKind.income)
+                      .where(
+                        (f) =>
+                            f.categoryResolved?.kind ==
+                            FinanceCategoryKind.income,
+                      )
                       .toList(),
                   _KindFilter.expense => inMonth
-                      .where((f) =>
-                          f.categoryResolved?.kind ==
-                          FinanceCategoryKind.expense)
+                      .where(
+                        (f) =>
+                            f.categoryResolved?.kind ==
+                            FinanceCategoryKind.expense,
+                      )
                       .toList(),
                 };
                 final visible = _selectedCategories.isEmpty
                     ? kindFiltered
                     : kindFiltered
-                        .where((f) =>
-                            _selectedCategories.contains(f.categoryId))
+                        .where(
+                          (f) => _selectedCategories.contains(f.categoryId),
+                        )
                         .toList();
 
                 context.read<FinanceSearchCubit>().setItems(visible);
@@ -163,14 +168,18 @@ class _FinancesScreenState extends State<FinancesScreen> {
                     final searched =
                         context.read<FinanceSearchCubit>().searchedItems;
                     final income = searched
-                        .where((f) =>
-                            f.categoryResolved?.kind ==
-                            FinanceCategoryKind.income)
+                        .where(
+                          (f) =>
+                              f.categoryResolved?.kind ==
+                              FinanceCategoryKind.income,
+                        )
                         .fold<double>(0, (a, b) => a + b.amount);
                     final expense = searched
-                        .where((f) =>
-                            f.categoryResolved?.kind ==
-                            FinanceCategoryKind.expense)
+                        .where(
+                          (f) =>
+                              f.categoryResolved?.kind ==
+                              FinanceCategoryKind.expense,
+                        )
                         .fold<double>(0, (a, b) => a + b.amount);
                     final net = income - expense;
                     final grouped = _buildGroups(searched);
@@ -261,9 +270,8 @@ class _FinancesScreenState extends State<FinancesScreen> {
                           ),
                         ),
                         BottomSearchBar(
-                          onSearch: (q) => context
-                              .read<FinanceSearchCubit>()
-                              .setSearch(q),
+                          onSearch: (q) =>
+                              context.read<FinanceSearchCubit>().setSearch(q),
                           onAdd: () async {
                             await openSheet<void>(
                               context,
@@ -319,8 +327,7 @@ class _FinancesScreenState extends State<FinancesScreen> {
         0,
         (a, b) {
           final ck = b.categoryResolved?.kind;
-          return a +
-              (ck == FinanceCategoryKind.income ? b.amount : -b.amount);
+          return a + (ck == FinanceCategoryKind.income ? b.amount : -b.amount);
         },
       );
       return _DayGroupData(date: k, items: items, total: total, kind: kind);
@@ -445,7 +452,7 @@ class _MonthHeader extends StatelessWidget {
               selected: {scope},
               onSelectionChanged: (s) => onScopeChange(s.first),
               showSelectedIcon: false,
-              style: ButtonStyle(
+              style: const ButtonStyle(
                 visualDensity: VisualDensity.compact,
                 textStyle: WidgetStatePropertyAll(
                   TextStyle(
@@ -489,53 +496,53 @@ class _MonthHeader extends StatelessWidget {
               ),
             ),
           if (scope != _ScopeMode.all && scope != _ScopeMode.custom)
-          Padding(
-            padding: const EdgeInsets.fromLTRB(4, 4, 4, 8),
-            child: Row(
-              children: [
-                IconButton(
-                  onPressed: onPrev,
-                  icon: const Icon(AppIcons.chevronLeft),
-                ),
-                Expanded(
-                  child: Text(
-                    navLabel,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 0.2,
-                      color: cs.onSurface,
-                    ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(4, 4, 4, 8),
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: onPrev,
+                    icon: const Icon(AppIcons.chevronLeft),
                   ),
-                ),
-                if (showCurrentPill)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 9,
-                      vertical: 3,
-                    ),
-                    decoration: BoxDecoration(
-                      color: cs.tertiaryContainer,
-                      borderRadius: BorderRadius.circular(100),
-                    ),
+                  Expanded(
                     child: Text(
-                      currentLabel,
+                      navLabel,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 10,
+                        fontSize: 15,
                         fontWeight: FontWeight.w700,
-                        letterSpacing: 0.5,
-                        color: cs.onTertiaryContainer,
+                        letterSpacing: 0.2,
+                        color: cs.onSurface,
                       ),
                     ),
                   ),
-                IconButton(
-                  onPressed: onNext,
-                  icon: const Icon(AppIcons.chevronRight),
-                ),
-              ],
+                  if (showCurrentPill)
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 9,
+                        vertical: 3,
+                      ),
+                      decoration: BoxDecoration(
+                        color: cs.tertiaryContainer,
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      child: Text(
+                        currentLabel,
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 0.5,
+                          color: cs.onTertiaryContainer,
+                        ),
+                      ),
+                    ),
+                  IconButton(
+                    onPressed: onNext,
+                    icon: const Icon(AppIcons.chevronRight),
+                  ),
+                ],
+              ),
             ),
-          ),
           Padding(
             padding: const EdgeInsets.fromLTRB(14, 0, 14, 4),
             child: Row(
@@ -619,9 +626,11 @@ class _MonthHeader extends StatelessWidget {
                   active: kindFilter == _KindFilter.income,
                   color: context.appColors.income,
                   count: inMonth
-                      .where((f) =>
-                          f.categoryResolved?.kind ==
-                          FinanceCategoryKind.income)
+                      .where(
+                        (f) =>
+                            f.categoryResolved?.kind ==
+                            FinanceCategoryKind.income,
+                      )
                       .length,
                   onTap: () => onKindFilter(_KindFilter.income),
                 ),
@@ -631,9 +640,11 @@ class _MonthHeader extends StatelessWidget {
                   active: kindFilter == _KindFilter.expense,
                   color: context.appColors.expense,
                   count: inMonth
-                      .where((f) =>
-                          f.categoryResolved?.kind ==
-                          FinanceCategoryKind.expense)
+                      .where(
+                        (f) =>
+                            f.categoryResolved?.kind ==
+                            FinanceCategoryKind.expense,
+                      )
                       .length,
                   onTap: () => onKindFilter(_KindFilter.expense),
                 ),
@@ -903,9 +914,8 @@ class _DayGroup extends StatelessWidget {
                 Text(
                   _headerLabel(context, group),
                   style: TextStyle(
-                    fontFamily: group.kind == _GroupKind.day
-                        ? 'monospace'
-                        : null,
+                    fontFamily:
+                        group.kind == _GroupKind.day ? 'monospace' : null,
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
                     color: cs.onSurface,
@@ -1034,13 +1044,12 @@ class _TxRow extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
     final cat = finance.categoryResolved;
     final isIncome = cat?.kind == FinanceCategoryKind.income;
-    final accent = isIncome
-        ? context.appColors.income
-        : context.appColors.expense;
+    final accent =
+        isIncome ? context.appColors.income : context.appColors.expense;
     final amountText =
         '${isIncome ? '+' : '−'}${finance.amount.abs().toStringAsFixed(2)}€';
-    final label = (finance.title?.isNotEmpty ?? false)
-        ? finance.title!
+    final label = (finance.title.isNotEmpty ?? false)
+        ? finance.title
         : (cat?.name ?? '—');
     return InkWell(
       onTap: () => FinancesActions.edit.execute(context, finance),

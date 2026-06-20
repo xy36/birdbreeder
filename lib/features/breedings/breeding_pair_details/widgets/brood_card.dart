@@ -1,9 +1,9 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/brood_extension.dart';
+import 'package:birdbreeder/features/breedings/shared/mini_stats.dart';
 import 'package:birdbreeder/models/breeding/brood_actions.dart';
 import 'package:birdbreeder/models/breeding/entity/breeding_pair.dart';
 import 'package:birdbreeder/models/breeding/entity/brood.dart';
-import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 
 class BroodCard extends StatelessWidget {
@@ -56,36 +56,11 @@ class BroodCard extends StatelessWidget {
                   ),
                 ),
               const SizedBox(height: 12),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Wrap(
-                    spacing: 16,
-                    runSpacing: 8,
-                    children: [
-                      _Stat(
-                        icon: AppIcons.egg,
-                        label: context.tr.common.laid_short,
-                        value: brood.laidCount,
-                      ),
-                      _Stat(
-                        icon: AppIcons.eggStatusFertilized,
-                        label: context.tr.common.fertilzed_short,
-                        value: brood.fertilizedCount,
-                      ),
-                      _Stat(
-                        icon: AppIcons.hatched,
-                        label: context.tr.common.hatched_short,
-                        value: brood.hatchedCount,
-                      ),
-                      _Stat(
-                        icon: AppIcons.fledged,
-                        label: context.tr.common.fledged_short,
-                        value: brood.fledgedCount,
-                      ),
-                    ],
-                  ),
-                ],
+              MiniStats(
+                laid: brood.laidCount,
+                fertilized: brood.fertilizedCount,
+                hatched: brood.hatchedCount,
+                fledged: brood.fledgedCount,
               ),
             ],
           ),
@@ -100,24 +75,5 @@ class BroodCard extends StatelessWidget {
     final s = start != null ? l.formatShortDate(start) : '—';
     final e = end != null ? l.formatShortDate(end) : '?';
     return '$s – $e';
-  }
-}
-
-class _Stat extends StatelessWidget {
-  const _Stat({required this.icon, required this.label, required this.value});
-  final IconData icon;
-  final String label;
-  final int value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(icon, size: 16),
-        const SizedBox(width: 4),
-        Text('$value $label', style: Theme.of(context).textTheme.bodySmall),
-      ],
-    );
   }
 }

@@ -12,6 +12,7 @@ enum EggStatus {
   unfertilized,
   hatched,
   fledged,
+  inStock,
   dead,
   unknown;
 
@@ -54,6 +55,12 @@ enum EggStatus {
           scheme.onPrimaryFixed,
           AppIcons.eggStatusFledged,
           context.tr.egg.status.fledged
+        ),
+      EggStatus.inStock => (
+          scheme.secondaryContainer,
+          scheme.onSecondaryContainer,
+          AppIcons.eggStatusInStock,
+          context.tr.egg.status.in_stock
         ),
       EggStatus.unknown => (
           scheme.surfaceContainerLow,

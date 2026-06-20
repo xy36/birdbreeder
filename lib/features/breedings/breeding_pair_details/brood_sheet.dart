@@ -1,8 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/breeding_pairs_extension.dart';
 import 'package:birdbreeder/core/extensions/brood_extension.dart';
 import 'package:birdbreeder/core/extensions/egg_extension.dart';
+import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/breedings/shared/mini_stats.dart';
+import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/breeding/entity/brood.dart';
 import 'package:birdbreeder/models/egg/egg_actions.dart';
 import 'package:birdbreeder/models/egg/entity/egg.dart';
@@ -357,7 +360,65 @@ class _EggCard extends StatelessWidget {
               ],
             ),
           ),
+          if (egg.birdResolved != null) ...[
+            const SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.only(right: 12),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: _StockLink(bird: egg.birdResolved!),
+              ),
+            ),
+          ],
         ],
+      ),
+    );
+  }
+}
+
+/// Tappable marker shown when an egg has been turned into a stock bird.
+///
+/// Surfaces the linked [bird] (via `egg.birdId`) and navigates to its detail
+/// page on tap.
+class _StockLink extends StatelessWidget {
+  const _StockLink({required this.bird});
+
+  final Bird bird;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    final ring = bird.ringNumber;
+    final label = ring != null && ring.isNotEmpty
+        ? '${context.tr.egg.in_stock} · $ring'
+        : context.tr.egg.in_stock;
+
+    return InkWell(
+      onTap: () => context.router.push(BirdRoute(bird: bird)),
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+        decoration: BoxDecoration(
+          color: cs.primaryContainer,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(AppIcons.birdAvatar, size: 14, color: cs.onPrimaryContainer),
+            const SizedBox(width: 6),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: cs.onPrimaryContainer,
+              ),
+            ),
+            const SizedBox(width: 2),
+            Icon(AppIcons.chevronRight, size: 16, color: cs.onPrimaryContainer),
+          ],
+        ),
       ),
     );
   }
