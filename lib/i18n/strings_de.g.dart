@@ -1224,6 +1224,9 @@ class TranslationsFinancesAddDe {
   /// de: 'Betrag eingeben'
   String get amount => 'Betrag eingeben';
 
+  /// de: 'Bitte einen gültigen Betrag eingeben'
+  String get amount_invalid => 'Bitte einen gültigen Betrag eingeben';
+
   /// de: 'Beschreibung'
   String get notes => 'Beschreibung';
 

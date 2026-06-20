@@ -17,8 +17,8 @@ class BoughtPriceField extends StatelessWidget {
       bird: bird,
       label: context.tr.common.bought.price,
       name: 'bought_price_field',
-      apply: (b, v) => b.copyWith(boughtPrice: double.tryParse(v!)),
-      select: (b) => b.boughtPrice?.toString(),
+      apply: (b, v) => b.copyWith(boughtPrice: v),
+      select: (b) => b.boughtPrice,
       suffixText: currencySymbol,
     );
   }

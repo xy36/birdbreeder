@@ -17,8 +17,8 @@ class FinalPriceField extends StatelessWidget {
       bird: bird,
       label: context.tr.common.sell.price.kFinal,
       name: 'final_price_field',
-      apply: (b, v) => b.copyWith(finalPrice: double.tryParse(v!)),
-      select: (b) => b.finalPrice?.toString(),
+      apply: (b, v) => b.copyWith(finalPrice: v),
+      select: (b) => b.finalPrice,
       suffixText: currencySymbol,
     );
   }

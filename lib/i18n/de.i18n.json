@@ -63,6 +63,7 @@
             "date": "Datum",
             "category": "Kategorie auswählen",
             "amount": "Betrag eingeben",
+            "amount_invalid": "Bitte einen gültigen Betrag eingeben",
             "notes": "Beschreibung",
             "bird": "Relevanter Vogel"
         },

@@ -1,7 +1,7 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/widgets/bird_property_field.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
-import 'package:birdbreeder/shared/utils/formatter/formatters.dart';
+import 'package:birdbreeder/shared/utils/formatter/price_formatter.dart';
 
 class BirdPricePropertyField extends StatelessWidget {
   const BirdPricePropertyField({
@@ -27,18 +27,24 @@ class BirdPricePropertyField extends StatelessWidget {
   final Widget? suffixIcon;
   final String? suffixText;
 
-  final String? Function(Bird) select;
-  final Bird Function(Bird, String?) apply;
+  final double? Function(Bird) select;
+  final Bird Function(Bird, double?) apply;
 
   @override
   Widget build(BuildContext context) {
+    final priceFormatter =
+        PriceFormatter(Localizations.localeOf(context).languageCode);
+
     return BirdPropertyField<String>(
       bird: bird,
       label: label,
       name: name,
       hint: hint,
-      select: select,
-      apply: apply,
+      select: (b) {
+        final value = select(b);
+        return value == null ? null : priceFormatter.format(value);
+      },
+      apply: (b, text) => apply(b, priceFormatter.parse(text)),
       builder: (ctx, initialValue, onChanged) {
         return FormBuilderTextField(
           name: name,
@@ -49,11 +55,7 @@ class BirdPricePropertyField extends StatelessWidget {
           onTapOutside: (event) {
             FocusManager.instance.primaryFocus?.unfocus();
           },
-          inputFormatters: [
-            Formatters.thousandsFormatter(
-              Localizations.localeOf(context).languageCode,
-            ).formatter,
-          ],
+          inputFormatters: [priceFormatter.inputFormatter],
           decoration: InputDecoration(
             hintText: hint ?? label,
             contentPadding: const EdgeInsets.all(8),

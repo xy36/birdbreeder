@@ -7,7 +7,7 @@ import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/finance/entity/finance.dart';
 import 'package:birdbreeder/models/finance/entity/finance_category.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
-import 'package:birdbreeder/shared/utils/formatter/formatters.dart';
+import 'package:birdbreeder/shared/utils/formatter/price_formatter.dart';
 import 'package:birdbreeder/shared/widgets/bottom_sheet/bottom_sheet_footer.dart';
 import 'package:birdbreeder/shared/widgets/bottom_sheet/bottom_sheet_header.dart';
 import 'package:birdbreeder/shared/widgets/category_avatar.dart';
@@ -34,17 +34,31 @@ class _AddFinancesSheetState extends State<AddFinancesSheet> {
     _bird = widget.finances?.birdResolved;
     _date = widget.finances?.date ?? DateTime.now();
     _notesCtrl = TextEditingController(text: widget.finances?.notes);
-    _amountCtrl =
-        TextEditingController(text: widget.finances?.amount.toString());
+    _amountCtrl = TextEditingController();
 
     _titleCtrl = TextEditingController(text: widget.finances?.title);
   }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_amountInitialized) return;
+    _amountInitialized = true;
+    _priceFormatter =
+        PriceFormatter(Localizations.localeOf(context).languageCode);
+    final amount = widget.finances?.amount;
+    if (amount != null) {
+      _amountCtrl.text = _priceFormatter.format(amount);
+    }
+  }
+
   FinanceCategory? _category;
-  double? get _amount =>
-      _amountCtrl.text.isNotEmpty ? double.tryParse(_amountCtrl.text) : null;
+  double? get _amount => _priceFormatter.parse(_amountCtrl.text);
   Bird? _bird;
   DateTime _date = DateTime.now();
+
+  late PriceFormatter _priceFormatter;
+  bool _amountInitialized = false;
 
   late TextEditingController _notesCtrl;
   late TextEditingController _titleCtrl;
@@ -178,16 +192,14 @@ class _AddFinancesSheetState extends State<AddFinancesSheet> {
                               alignLabelWithHint: true,
                             ),
                             enabled: !_submitting,
-                            inputFormatters: [
-                              Formatters.thousandsFormatter(
-                                Localizations.localeOf(context).languageCode,
-                              ).formatter,
-                            ],
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.required(),
-                              FormBuilderValidators.numeric(),
-                              FormBuilderValidators.notEqual(0),
-                            ]),
+                            inputFormatters: [_priceFormatter.inputFormatter],
+                            validator: (value) {
+                              final amount = _priceFormatter.parse(value);
+                              if (amount == null || amount == 0) {
+                                return context.tr.finances.add.amount_invalid;
+                              }
+                              return null;
+                            },
                           ),
                           TextFormField(
                             controller: _notesCtrl,
