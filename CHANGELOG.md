@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.7.0](https://github.com/xy36/birdbreeder/compare/v1.6.0...v1.7.0) (2026-06-20)
+
+
+### Features
+
+* **eggs:** implement 'add to stock' functionality and update egg status handling ([f423b6a](https://github.com/xy36/birdbreeder/commit/f423b6a562ebd4f9c69ceb1746844de21859833c))
+* **finances:** add action menu to transaction row for enhanced user interaction (delete, duplicate, edit) ([31fbc02](https://github.com/xy36/birdbreeder/commit/31fbc0244b057d2d61e36c64e4f4994c49cadf67))
+* **formatters:** replace thousands formatter with a new price formatter; update related fields and localization ([36c93b1](https://github.com/xy36/birdbreeder/commit/36c93b1d2e802ca5f1925809c9bb67cff76448e5))
+
 ## [1.6.0](https://github.com/xy36/birdbreeder/compare/v1.5.0...v1.6.0) (2026-06-18)
 
 
