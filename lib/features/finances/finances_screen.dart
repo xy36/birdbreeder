@@ -1118,6 +1118,8 @@ class _TxRow extends StatelessWidget {
                 letterSpacing: 0.3,
               ),
             ),
+            const SizedBox(width: 4),
+            FinancesActions.buildMenu(context, finance),
           ],
         ),
       ),
