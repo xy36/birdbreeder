@@ -12,9 +12,4 @@ class AccountCubitEvent with _$AccountCubitEvent {
       AccountImportFailed;
   const factory AccountCubitEvent.importSucceeded(int count) =
       AccountImportSucceeded;
-
-  const factory AccountCubitEvent.switchToLocalFailed(String message) =
-      AccountSwitchToLocalFailed;
-  const factory AccountCubitEvent.switchedToLocal(int count) =
-      AccountSwitchedToLocal;
 }

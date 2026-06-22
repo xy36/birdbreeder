@@ -4,8 +4,6 @@ import 'package:birdbreeder/features/menu/presentation/cubit/menu_cubit.dart';
 import 'package:birdbreeder/features/menu/presentation/utils/utils.dart';
 import 'package:birdbreeder/features/menu/presentation/widgets/drawer_widget.dart';
 import 'package:birdbreeder/services/backup/backup_service.dart';
-import 'package:birdbreeder/services/data_mode/data_mode.dart';
-import 'package:birdbreeder/services/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -56,10 +54,6 @@ class _MenuScreenState extends State<MenuScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted || _reminderChecked) return;
       _reminderChecked = true;
-      if (!s1.isRegistered<DataMode>() ||
-          s1.get<DataMode>() != DataMode.local) {
-        return;
-      }
       if (await BackupService.shouldShowReminder()) {
         if (!mounted) return;
         await showBackupReminderDialog(context);

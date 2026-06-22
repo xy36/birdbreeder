@@ -3,10 +3,8 @@ import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_filter_cubit.dart';
 import 'package:birdbreeder/features/breedings/breeding_pairs/cubit/breeding_pairs_filter_cubit.dart';
 import 'package:birdbreeder/features/finances/cubit/finances_filter_cubit.dart';
-import 'package:birdbreeder/features/mode_selection/mode_selection_page.dart';
 import 'package:birdbreeder/i18n/strings.g.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
-import 'package:birdbreeder/services/data_mode/data_mode.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/cubits/generic_search_cubit/generic_search_cubit.dart';
@@ -37,8 +35,8 @@ class App extends StatelessWidget {
 
 class _AppShell extends StatefulWidget {
   // Intentionally non-const: a const instance would be canonicalized and
-  // App.build would skip rebuilding this subtree after runApp, so the
-  // DI-readiness re-check (mode selection → router) would never re-run.
+  // App.build would skip rebuilding this subtree after runApp, so a fresh
+  // router (e.g. after a backup restore resets DI) would never be picked up.
   // ignore: prefer_const_constructors_in_immutables
   _AppShell();
 
@@ -55,20 +53,6 @@ class _AppShellState extends State<_AppShell> {
 
     return BlocBuilder<ThemeCubit, ThemeMode>(
       builder: (context, themeMode) {
-        // DI not yet initialized — show only the mode selection screen
-        if (!s1.isRegistered<DataMode>()) {
-          return MaterialApp(
-            key: const ValueKey('app-mode-selection'),
-            theme: theme.light(context),
-            darkTheme: theme.dark(context),
-            themeMode: themeMode,
-            locale: TranslationProvider.of(context).flutterLocale,
-            supportedLocales: AppLocaleUtils.supportedLocales,
-            localizationsDelegates: GlobalMaterialLocalizations.delegates,
-            home: const ModeSelectionPage(),
-          );
-        }
-
         return MultiBlocProvider(
           providers: [
             BlocProvider.value(value: s1.get<BirdBreederCubit>()),

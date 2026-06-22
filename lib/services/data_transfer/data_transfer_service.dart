@@ -22,8 +22,6 @@ import 'package:birdbreeder/models/ressources/dto/species_dto.dart';
 import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';
 import 'package:birdbreeder/models/ressources/entity/species.dart';
-import 'package:birdbreeder/services/data_mode/data_mode.dart';
-import 'package:birdbreeder/services/data_mode/data_mode_service.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/repositories/i_crud_repository.dart';
@@ -31,7 +29,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class DataTransferService {
   static const _schemaVersion = 1;
@@ -171,92 +168,6 @@ class DataTransferService {
 
     // Reload all data in cubit
     await s1.get<BirdBreederCubit>().initialLoad();
-
-    return count;
-  }
-
-  /// Switches from remote (PocketBase) to local (Drift) mode.
-  /// Copies all current data into the local database and updates the mode.
-  static Future<int> switchToLocal() async {
-    final cubit = s1.get<BirdBreederCubit>();
-    final resources = cubit.state.birdBreederResources;
-
-    // Serialize current PocketBase data to JSON via DTOs
-    final data = <String, dynamic>{
-      'birds': resources.birds.map((e) => e.toDto().toJson()).toList(),
-      'breedingPairs':
-          resources.breedingPairs.map((e) => e.toDto().toJson()).toList(),
-      'broods': resources.broods.map((e) => e.toDto().toJson()).toList(),
-      'eggs': resources.eggs.map((e) => e.toDto().toJson()).toList(),
-      'contacts': resources.contacts.map((e) => e.toDto().toJson()).toList(),
-      'finances': resources.finances.map((e) => e.toDto().toJson()).toList(),
-      'financeCategories':
-          resources.financesCategories.map((e) => e.toDto().toJson()).toList(),
-      'species': resources.species.map((e) => e.toDto().toJson()).toList(),
-      'cages': resources.cages.map((e) => e.toDto().toJson()).toList(),
-      'birdColors': resources.colors.map((e) => e.toDto().toJson()).toList(),
-    };
-
-    // Reset DI and re-register with local mode
-    await s1.reset();
-    await initializeDependencyInjection(DataMode.local);
-
-    // Import all data into the local database
-    var count = 0;
-    count += await _importCollection<Species, SpeciesDto>(
-      data['species'] as List<dynamic>,
-      SpeciesDto.fromJson,
-      (dto) => dto.toModel(),
-    );
-    count += await _importCollection<BirdColor, BirdColorDto>(
-      data['birdColors'] as List<dynamic>,
-      BirdColorDto.fromJson,
-      (dto) => dto.toModel(),
-    );
-    count += await _importCollection<Cage, CageDto>(
-      data['cages'] as List<dynamic>,
-      CageDto.fromJson,
-      (dto) => dto.toModel(),
-    );
-    count += await _importCollection<Contact, ContactDto>(
-      data['contacts'] as List<dynamic>,
-      ContactDto.fromJson,
-      (dto) => dto.toModel(),
-    );
-    count += await _importCollection<FinanceCategory, FinanceCategoryDto>(
-      data['financeCategories'] as List<dynamic>,
-      FinanceCategoryDto.fromJson,
-      (dto) => dto.toModel(),
-    );
-    count += await _importCollection<BreedingPair, BreedingPairDto>(
-      data['breedingPairs'] as List<dynamic>,
-      BreedingPairDto.fromJson,
-      (dto) => dto.toModel(),
-    );
-    count += await _importCollection<Brood, BroodDto>(
-      data['broods'] as List<dynamic>,
-      BroodDto.fromJson,
-      (dto) => dto.toModel(),
-    );
-    count += await _importCollection<Bird, BirdDto>(
-      data['birds'] as List<dynamic>,
-      BirdDto.fromJson,
-      (dto) => dto.toModel(),
-    );
-    count += await _importCollection<Egg, EggDto>(
-      data['eggs'] as List<dynamic>,
-      EggDto.fromJson,
-      (dto) => dto.toModel(),
-    );
-    count += await _importCollection<Finance, FinanceDto>(
-      data['finances'] as List<dynamic>,
-      FinanceDto.fromJson,
-      (dto) => dto.toModel(),
-    );
-
-    // Persist the mode switch
-    final prefs = await SharedPreferences.getInstance();
-    await DataModeService.setMode(prefs, DataMode.local);
 
     return count;
   }

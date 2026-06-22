@@ -1,11 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/routing/empty_router_page.dart';
-import 'package:birdbreeder/core/routing/guards/auth_guard.dart';
-import 'package:birdbreeder/core/routing/guards/login_guard.dart';
 import 'package:birdbreeder/features/account/account_page.dart';
-import 'package:birdbreeder/features/authentication/auth_screen.dart';
-import 'package:birdbreeder/features/authentication/initialization_page.dart';
 import 'package:birdbreeder/features/backup/backup_list_page.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/bird_page.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/birds_overview_page.dart';
@@ -16,7 +12,6 @@ import 'package:birdbreeder/features/contacts/contacts_page.dart';
 import 'package:birdbreeder/features/csv_import/csv_import_page.dart';
 import 'package:birdbreeder/features/finances/finances_page.dart';
 import 'package:birdbreeder/features/menu/presentation/menu_page.dart';
-import 'package:birdbreeder/features/mode_selection/mode_selection_page.dart';
 import 'package:birdbreeder/features/ressourcen_center/cages/cage_detail_page.dart';
 import 'package:birdbreeder/features/ressourcen_center/cages/cages_page.dart';
 import 'package:birdbreeder/features/ressourcen_center/categories/categories_page.dart';
@@ -39,26 +34,9 @@ class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         CustomRoute<void>(
-          page: ModeSelectionRoute.page,
-          path: '/mode-selection',
-          transitionsBuilder: TransitionsBuilders.fadeIn,
-        ),
-        CustomRoute<void>(
-          page: AuthRoute.page,
-          path: '/auth',
-          guards: [LoginGuard()],
-          transitionsBuilder: TransitionsBuilders.fadeIn,
-        ),
-        CustomRoute<void>(
-          page: InitializationRoute.page,
-          path: '/initialization',
-          transitionsBuilder: TransitionsBuilders.fadeIn,
-        ),
-        CustomRoute<void>(
           page: MenuRoute.page,
           path: '/',
           initial: true,
-          guards: [AuthGuard()],
           transitionsBuilder: TransitionsBuilders.slideLeft,
           children: [
             AutoRoute(

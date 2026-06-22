@@ -27,22 +27,6 @@ class AccountRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [AuthScreen]
-class AuthRoute extends PageRouteInfo<void> {
-  const AuthRoute({List<PageRouteInfo>? children})
-      : super(AuthRoute.name, initialChildren: children);
-
-  static const String name = 'AuthRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const AuthScreen();
-    },
-  );
-}
-
-/// generated route for
 /// [BackupListPage]
 class BackupListRoute extends PageRouteInfo<void> {
   const BackupListRoute({List<PageRouteInfo>? children})
@@ -494,22 +478,6 @@ class FinancesRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [InitializationPage]
-class InitializationRoute extends PageRouteInfo<void> {
-  const InitializationRoute({List<PageRouteInfo>? children})
-      : super(InitializationRoute.name, initialChildren: children);
-
-  static const String name = 'InitializationRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const InitializationPage();
-    },
-  );
-}
-
-/// generated route for
 /// [MenuPage]
 class MenuRoute extends PageRouteInfo<void> {
   const MenuRoute({List<PageRouteInfo>? children})
@@ -521,22 +489,6 @@ class MenuRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const MenuPage();
-    },
-  );
-}
-
-/// generated route for
-/// [ModeSelectionPage]
-class ModeSelectionRoute extends PageRouteInfo<void> {
-  const ModeSelectionRoute({List<PageRouteInfo>? children})
-      : super(ModeSelectionRoute.name, initialChildren: children);
-
-  static const String name = 'ModeSelectionRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const ModeSelectionPage();
     },
   );
 }

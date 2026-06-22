@@ -65,7 +65,7 @@ class LocalResourceRepository<TModel, TDto>
   }
 
   Map<String, dynamic> _cleanJson(Map<String, dynamic> json) {
-    // Remove PocketBase-specific fields and convert keys to snake_case
+    // Strip legacy backend-only fields and convert keys to snake_case
     final cleaned = <String, dynamic>{};
     for (final entry in json.entries) {
       if (entry.key == 'collectionId' || entry.key == 'collectionName') {

@@ -5,7 +5,6 @@ import 'package:birdbreeder/app.dart';
 import 'package:birdbreeder/features/backup/cubit/backup_cubit_event.dart';
 import 'package:birdbreeder/i18n/strings.g.dart';
 import 'package:birdbreeder/services/backup/backup_service.dart';
-import 'package:birdbreeder/services/data_mode/data_mode.dart';
 import 'package:birdbreeder/services/database/app_database.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:bloc/bloc.dart';
@@ -74,7 +73,7 @@ class BackupCubit extends Cubit<BackupState>
       }
       await s1.reset();
       await BackupService.overwriteDatabase(file);
-      await initializeDependencyInjection(DataMode.local);
+      await initializeDependencyInjection();
       runApp(TranslationProvider(child: const App()));
     } on Exception catch (e) {
       emitPresentation(BackupCubitEvent.restoreFailed(e.toString()));

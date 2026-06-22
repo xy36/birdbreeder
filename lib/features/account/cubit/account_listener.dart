@@ -19,11 +19,6 @@ class AccountListener
                 context.snackError(tr.import_failed(Error: message));
               case AccountImportSucceeded(:final count):
                 context.snackSuccess(tr.imported(count: count));
-
-              case AccountSwitchToLocalFailed(:final message):
-                context.snackError(tr.switch_failed(Error: message));
-              case AccountSwitchedToLocal(:final count):
-                context.snackSuccess(tr.switched_to_local(count: count));
             }
           },
         );

@@ -55,8 +55,6 @@ extension AccountCubitEventPatterns on AccountCubitEvent {
     TResult Function(AccountExportSucceeded value)? exportSucceeded,
     TResult Function(AccountImportFailed value)? importFailed,
     TResult Function(AccountImportSucceeded value)? importSucceeded,
-    TResult Function(AccountSwitchToLocalFailed value)? switchToLocalFailed,
-    TResult Function(AccountSwitchedToLocal value)? switchedToLocal,
     required TResult orElse(),
   }) {
     final _that = this;
@@ -69,10 +67,6 @@ extension AccountCubitEventPatterns on AccountCubitEvent {
         return importFailed(_that);
       case AccountImportSucceeded() when importSucceeded != null:
         return importSucceeded(_that);
-      case AccountSwitchToLocalFailed() when switchToLocalFailed != null:
-        return switchToLocalFailed(_that);
-      case AccountSwitchedToLocal() when switchedToLocal != null:
-        return switchedToLocal(_that);
       case _:
         return orElse();
     }
@@ -97,9 +91,6 @@ extension AccountCubitEventPatterns on AccountCubitEvent {
     required TResult Function(AccountExportSucceeded value) exportSucceeded,
     required TResult Function(AccountImportFailed value) importFailed,
     required TResult Function(AccountImportSucceeded value) importSucceeded,
-    required TResult Function(AccountSwitchToLocalFailed value)
-        switchToLocalFailed,
-    required TResult Function(AccountSwitchedToLocal value) switchedToLocal,
   }) {
     final _that = this;
     switch (_that) {
@@ -111,10 +102,6 @@ extension AccountCubitEventPatterns on AccountCubitEvent {
         return importFailed(_that);
       case AccountImportSucceeded():
         return importSucceeded(_that);
-      case AccountSwitchToLocalFailed():
-        return switchToLocalFailed(_that);
-      case AccountSwitchedToLocal():
-        return switchedToLocal(_that);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -138,8 +125,6 @@ extension AccountCubitEventPatterns on AccountCubitEvent {
     TResult? Function(AccountExportSucceeded value)? exportSucceeded,
     TResult? Function(AccountImportFailed value)? importFailed,
     TResult? Function(AccountImportSucceeded value)? importSucceeded,
-    TResult? Function(AccountSwitchToLocalFailed value)? switchToLocalFailed,
-    TResult? Function(AccountSwitchedToLocal value)? switchedToLocal,
   }) {
     final _that = this;
     switch (_that) {
@@ -151,10 +136,6 @@ extension AccountCubitEventPatterns on AccountCubitEvent {
         return importFailed(_that);
       case AccountImportSucceeded() when importSucceeded != null:
         return importSucceeded(_that);
-      case AccountSwitchToLocalFailed() when switchToLocalFailed != null:
-        return switchToLocalFailed(_that);
-      case AccountSwitchedToLocal() when switchedToLocal != null:
-        return switchedToLocal(_that);
       case _:
         return null;
     }
@@ -178,8 +159,6 @@ extension AccountCubitEventPatterns on AccountCubitEvent {
     TResult Function()? exportSucceeded,
     TResult Function(String message)? importFailed,
     TResult Function(int count)? importSucceeded,
-    TResult Function(String message)? switchToLocalFailed,
-    TResult Function(int count)? switchedToLocal,
     required TResult orElse(),
   }) {
     final _that = this;
@@ -192,10 +171,6 @@ extension AccountCubitEventPatterns on AccountCubitEvent {
         return importFailed(_that.message);
       case AccountImportSucceeded() when importSucceeded != null:
         return importSucceeded(_that.count);
-      case AccountSwitchToLocalFailed() when switchToLocalFailed != null:
-        return switchToLocalFailed(_that.message);
-      case AccountSwitchedToLocal() when switchedToLocal != null:
-        return switchedToLocal(_that.count);
       case _:
         return orElse();
     }
@@ -220,8 +195,6 @@ extension AccountCubitEventPatterns on AccountCubitEvent {
     required TResult Function() exportSucceeded,
     required TResult Function(String message) importFailed,
     required TResult Function(int count) importSucceeded,
-    required TResult Function(String message) switchToLocalFailed,
-    required TResult Function(int count) switchedToLocal,
   }) {
     final _that = this;
     switch (_that) {
@@ -233,10 +206,6 @@ extension AccountCubitEventPatterns on AccountCubitEvent {
         return importFailed(_that.message);
       case AccountImportSucceeded():
         return importSucceeded(_that.count);
-      case AccountSwitchToLocalFailed():
-        return switchToLocalFailed(_that.message);
-      case AccountSwitchedToLocal():
-        return switchedToLocal(_that.count);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -260,8 +229,6 @@ extension AccountCubitEventPatterns on AccountCubitEvent {
     TResult? Function()? exportSucceeded,
     TResult? Function(String message)? importFailed,
     TResult? Function(int count)? importSucceeded,
-    TResult? Function(String message)? switchToLocalFailed,
-    TResult? Function(int count)? switchedToLocal,
   }) {
     final _that = this;
     switch (_that) {
@@ -273,10 +240,6 @@ extension AccountCubitEventPatterns on AccountCubitEvent {
         return importFailed(_that.message);
       case AccountImportSucceeded() when importSucceeded != null:
         return importSucceeded(_that.count);
-      case AccountSwitchToLocalFailed() when switchToLocalFailed != null:
-        return switchToLocalFailed(_that.message);
-      case AccountSwitchedToLocal() when switchedToLocal != null:
-        return switchedToLocal(_that.count);
       case _:
         return null;
     }
@@ -488,137 +451,6 @@ class _$AccountImportSucceededCopyWithImpl<$Res>
     Object? count = null,
   }) {
     return _then(AccountImportSucceeded(
-      null == count
-          ? _self.count
-          : count // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class AccountSwitchToLocalFailed implements AccountCubitEvent {
-  const AccountSwitchToLocalFailed(this.message);
-
-  final String message;
-
-  /// Create a copy of AccountCubitEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $AccountSwitchToLocalFailedCopyWith<AccountSwitchToLocalFailed>
-      get copyWith =>
-          _$AccountSwitchToLocalFailedCopyWithImpl<AccountSwitchToLocalFailed>(
-              this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is AccountSwitchToLocalFailed &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, message);
-
-  @override
-  String toString() {
-    return 'AccountCubitEvent.switchToLocalFailed(message: $message)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $AccountSwitchToLocalFailedCopyWith<$Res>
-    implements $AccountCubitEventCopyWith<$Res> {
-  factory $AccountSwitchToLocalFailedCopyWith(AccountSwitchToLocalFailed value,
-          $Res Function(AccountSwitchToLocalFailed) _then) =
-      _$AccountSwitchToLocalFailedCopyWithImpl;
-  @useResult
-  $Res call({String message});
-}
-
-/// @nodoc
-class _$AccountSwitchToLocalFailedCopyWithImpl<$Res>
-    implements $AccountSwitchToLocalFailedCopyWith<$Res> {
-  _$AccountSwitchToLocalFailedCopyWithImpl(this._self, this._then);
-
-  final AccountSwitchToLocalFailed _self;
-  final $Res Function(AccountSwitchToLocalFailed) _then;
-
-  /// Create a copy of AccountCubitEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? message = null,
-  }) {
-    return _then(AccountSwitchToLocalFailed(
-      null == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class AccountSwitchedToLocal implements AccountCubitEvent {
-  const AccountSwitchedToLocal(this.count);
-
-  final int count;
-
-  /// Create a copy of AccountCubitEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $AccountSwitchedToLocalCopyWith<AccountSwitchedToLocal> get copyWith =>
-      _$AccountSwitchedToLocalCopyWithImpl<AccountSwitchedToLocal>(
-          this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is AccountSwitchedToLocal &&
-            (identical(other.count, count) || other.count == count));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, count);
-
-  @override
-  String toString() {
-    return 'AccountCubitEvent.switchedToLocal(count: $count)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $AccountSwitchedToLocalCopyWith<$Res>
-    implements $AccountCubitEventCopyWith<$Res> {
-  factory $AccountSwitchedToLocalCopyWith(AccountSwitchedToLocal value,
-          $Res Function(AccountSwitchedToLocal) _then) =
-      _$AccountSwitchedToLocalCopyWithImpl;
-  @useResult
-  $Res call({int count});
-}
-
-/// @nodoc
-class _$AccountSwitchedToLocalCopyWithImpl<$Res>
-    implements $AccountSwitchedToLocalCopyWith<$Res> {
-  _$AccountSwitchedToLocalCopyWithImpl(this._self, this._then);
-
-  final AccountSwitchedToLocal _self;
-  final $Res Function(AccountSwitchedToLocal) _then;
-
-  /// Create a copy of AccountCubitEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? count = null,
-  }) {
-    return _then(AccountSwitchedToLocal(
       null == count
           ? _self.count
           : count // ignore: cast_nullable_to_non_nullable

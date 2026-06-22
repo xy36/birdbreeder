@@ -1,1 +1,0 @@
-enum DataMode { remote, local }
