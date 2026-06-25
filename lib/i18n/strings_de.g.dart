@@ -42,6 +42,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 
   // Translations
   late final TranslationsAppDe app = TranslationsAppDe.internal(_root);
+  late final TranslationsOnboardingDe onboarding = TranslationsOnboardingDe.internal(_root);
   late final TranslationsFinancesDe finances = TranslationsFinancesDe.internal(_root);
   late final TranslationsAccountDe account = TranslationsAccountDe.internal(_root);
   late final TranslationsBackupDe backup = TranslationsBackupDe.internal(_root);
@@ -77,6 +78,45 @@ class TranslationsAppDe {
 
   /// de: 'Birdbreeder'
   String get title => 'Birdbreeder';
+}
+
+// Path: onboarding
+class TranslationsOnboardingDe {
+  TranslationsOnboardingDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Profil einrichten'
+  String get title => 'Profil einrichten';
+
+  /// de: 'Lege dein eigenes Profil an. Es wird als App-Nutzer verwendet, z. B. um deine eigenen Vögel zu kennzeichnen.'
+  String get subtitle => 'Lege dein eigenes Profil an. Es wird als App-Nutzer verwendet, z. B. um deine eigenen Vögel zu kennzeichnen.';
+
+  /// de: 'Vorname'
+  String get first_name => 'Vorname';
+
+  /// de: 'Nachname'
+  String get last_name => 'Nachname';
+
+  /// de: 'Bitte gib einen Nachnamen ein.'
+  String get last_name_required => 'Bitte gib einen Nachnamen ein.';
+
+  /// de: 'Züchternummer'
+  String get breeder_number => 'Züchternummer';
+
+  /// de: 'Bitte gib eine Züchternummer ein.'
+  String get breeder_number_required => 'Bitte gib eine Züchternummer ein.';
+
+  /// de: 'Profil speichern'
+  String get save => 'Profil speichern';
+
+  /// de: 'oder'
+  String get or => 'oder';
+
+  /// de: 'Backup einspielen'
+  String get restore_backup => 'Backup einspielen';
 }
 
 // Path: finances

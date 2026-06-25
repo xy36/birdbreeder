@@ -30,6 +30,10 @@ extension BirdBreederCubitContactsX on BirdBreederCubit {
     final created = result.asValue!.value;
     _addContactToState(created);
 
+    if (created.isAppUser) {
+      await _demoteOtherAppUsers(created.id);
+    }
+
     return created;
   }
 
@@ -48,7 +52,29 @@ extension BirdBreederCubitContactsX on BirdBreederCubit {
     final updated = result.asValue!.value;
     _updateContactInState(updated);
 
+    if (updated.isAppUser) {
+      await _demoteOtherAppUsers(updated.id);
+    }
+
     return updated;
+  }
+
+  /// Ensures only one contact is flagged as the app user.
+  ///
+  /// Clears `isAppUser` on every contact except [keepId], persisting each change
+  /// and updating the in-memory state.
+  Future<void> _demoteOtherAppUsers(String keepId) async {
+    final others = state.birdBreederResources.contacts
+        .where((c) => c.isAppUser && c.id != keepId)
+        .toList();
+
+    for (final contact in others) {
+      final demoted = contact.copyWith(isAppUser: false);
+      final result = await _contactsRepository.update(contact.id, demoted);
+      if (result.isValue) {
+        _updateContactInState(result.asValue!.value);
+      }
+    }
   }
 
   Future<void> deleteContact(Contact contact) async {

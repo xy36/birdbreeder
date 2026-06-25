@@ -2,6 +2,18 @@
     "app": {
         "title": "Birdbreeder"
     },
+    "onboarding": {
+        "title": "Profil einrichten",
+        "subtitle": "Lege dein eigenes Profil an. Es wird als App-Nutzer verwendet, z. B. um deine eigenen Vögel zu kennzeichnen.",
+        "first_name": "Vorname",
+        "last_name": "Nachname",
+        "last_name_required": "Bitte gib einen Nachnamen ein.",
+        "breeder_number": "Züchternummer",
+        "breeder_number_required": "Bitte gib eine Züchternummer ein.",
+        "save": "Profil speichern",
+        "or": "oder",
+        "restore_backup": "Backup einspielen"
+    },
     "finances": {
         "title": "Finanzen",
         "categories": {
