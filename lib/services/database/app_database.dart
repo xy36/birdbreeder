@@ -88,7 +88,9 @@ class Eggs extends Table {
   DateTimeColumn get laidAt => dateTime()();
   DateTimeColumn get hatchedAt => dateTime().nullable()();
   DateTimeColumn get fertilizedAt => dateTime().nullable()();
+  DateTimeColumn get unfertilizedAt => dateTime().nullable()();
   DateTimeColumn get fledgedAt => dateTime().nullable()();
+  DateTimeColumn get diedAt => dateTime().nullable()();
   TextColumn get status => text().withDefault(const Constant('laid'))();
   TextColumn get ringnumber => text().nullable()();
   TextColumn get color => text().nullable()();
@@ -231,12 +233,19 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.forTesting(super.e);
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
         onCreate: (m) => m.createAll(),
-        onUpgrade: stepByStep(),
+        onUpgrade: stepByStep(
+          from1To2: (m, schema) async {
+            await m.addColumn(schema.eggs, schema.eggs.unfertilizedAt);
+          },
+          from2To3: (m, schema) async {
+            await m.addColumn(schema.eggs, schema.eggs.diedAt);
+          },
+        ),
       );
 }
 

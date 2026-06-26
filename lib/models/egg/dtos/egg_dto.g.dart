@@ -25,6 +25,9 @@ _EggDto _$EggDtoFromJson(Map<String, dynamic> json) => _EggDto(
           const UtcDateTimeConverter().fromJson(json['fledgedAt'] as String?),
       fertilizedAt: const UtcDateTimeConverter()
           .fromJson(json['fertilizedAt'] as String?),
+      unfertilizedAt: const UtcDateTimeConverter()
+          .fromJson(json['unfertilizedAt'] as String?),
+      diedAt: const UtcDateTimeConverter().fromJson(json['diedAt'] as String?),
       status: $enumDecodeNullable(_$EggStatusEnumMap, json['status']) ??
           EggStatus.laid,
       ringnumber: const StringNullEmptyConverter()
@@ -54,6 +57,9 @@ Map<String, dynamic> _$EggDtoToJson(_EggDto instance) => <String, dynamic>{
       'fledgedAt': const UtcDateTimeConverter().toJson(instance.fledgedAt),
       'fertilizedAt':
           const UtcDateTimeConverter().toJson(instance.fertilizedAt),
+      'unfertilizedAt':
+          const UtcDateTimeConverter().toJson(instance.unfertilizedAt),
+      'diedAt': const UtcDateTimeConverter().toJson(instance.diedAt),
       'status': _$EggStatusEnumMap[instance.status]!,
       'ringnumber':
           const StringNullEmptyConverter().toJson(instance.ringnumber),

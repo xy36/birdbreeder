@@ -49,6 +49,13 @@ class _AppShell extends StatefulWidget {
 class _AppShellState extends State<_AppShell> {
   final _appRouter = AppRouter();
 
+  // Tracks whether the first load has ever completed. After that, transient
+  // [BirdBreederLoading] states emitted by CRUD operations must NOT swap the
+  // app back to the splash: doing so tears down [MaterialApp.router] and resets
+  // the navigation stack to the initial route. Loading states preserve the
+  // existing resources, so the router stays mounted and keeps its stack.
+  bool _initialLoadComplete = false;
+
   @override
   Widget build(BuildContext context) {
     const theme = MaterialTheme();
@@ -57,11 +64,16 @@ class _AppShellState extends State<_AppShell> {
       value: s1.get<BirdBreederCubit>(),
       child: BlocBuilder<ThemeCubit, ThemeMode>(
         builder: (context, themeMode) {
-          return BlocBuilder<BirdBreederCubit, BirdBreederState>(
+          return BlocConsumer<BirdBreederCubit, BirdBreederState>(
+            listener: (context, state) {
+              if (state is BirdBreederLoaded && !_initialLoadComplete) {
+                setState(() => _initialLoadComplete = true);
+              }
+            },
             builder: (context, state) {
               // Until the first load completes we can't tell whether an app-user
               // contact exists; show a splash to avoid flashing the onboarding.
-              if (state is! BirdBreederLoaded) {
+              if (!_initialLoadComplete && state is! BirdBreederLoaded) {
                 return _LoadingApp(theme: theme, themeMode: themeMode);
               }
 

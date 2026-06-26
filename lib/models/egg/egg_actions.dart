@@ -5,63 +5,36 @@ import 'package:birdbreeder/core/extensions/contact_extension.dart';
 import 'package:birdbreeder/core/extensions/egg_extension.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/egg/entity/egg.dart';
-import 'package:birdbreeder/models/item_action.dart';
 import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 
-enum EggActions implements ItemAction<Egg> {
+/// Egg mutations triggered from the lifecycle editor sheet.
+///
+/// Each value maps to a single mutation; presentation (labels, icons,
+/// visibility) lives in the sheet, not here.
+enum EggActions {
+  setLaid,
   markFertilized,
   markHatched,
-  setRingnumber,
-  setColor,
   markFledged,
-  addToStock,
   markUnfertilized,
   markDied,
+  resetFertilized,
+  resetUnfertilized,
+  resetHatched,
+  resetFledged,
+  resetDied,
+  setRingnumber,
+  setColor,
+  addToStock,
   delete;
 
-  static Widget buildMenu(
-    BuildContext context,
-    Egg egg, [
-    List<EggActions>? include,
-  ]) {
-    final actions =
-        (include ?? values).where((a) => a._isVisibleFor(egg)).toList();
-    return moreMenu<Egg>(
-      context,
-      egg,
-      actions
-          .map(
-            (action) => (
-              icon: null,
-              label: action.getLabel(context),
-              action: action.execute,
-            ),
-          )
-          .toList(),
-    );
-  }
-
-  bool _isVisibleFor(Egg egg) => switch (this) {
-        addToStock => egg.hatchedAt != null && egg.birdId == null,
-        _ => true,
-      };
-
-  PopupMenuEntry<EggActions> getItem(BuildContext context) => PopupMenuItem(
-        value: this,
-        child: Text(getLabel(context)),
-      );
-
-  @override
-  Future<void> execute(
-    BuildContext context,
-    Egg egg, {
-    dynamic extra,
-  }) async {
+  Future<void> execute(BuildContext context, Egg egg) async {
     return switch (this) {
+      EggActions.setLaid => _EggActionHelper.onSetLaid(context, egg),
       EggActions.markHatched => _EggActionHelper.onMarkHatched(context, egg),
       EggActions.setRingnumber =>
         _EggActionHelper.onSetRingnumber(context, egg),
@@ -73,28 +46,24 @@ enum EggActions implements ItemAction<Egg> {
       EggActions.markUnfertilized =>
         _EggActionHelper.onMarkUnfertilized(context, egg),
       EggActions.markDied => _EggActionHelper.onMarkDied(context, egg),
+      EggActions.resetFertilized =>
+        _EggActionHelper.onResetFertilized(context, egg),
+      EggActions.resetUnfertilized =>
+        _EggActionHelper.onResetUnfertilized(context, egg),
+      EggActions.resetHatched => _EggActionHelper.onResetHatched(context, egg),
+      EggActions.resetFledged => _EggActionHelper.onResetFledged(context, egg),
+      EggActions.resetDied => _EggActionHelper.onResetDied(context, egg),
       EggActions.delete => _EggActionHelper.onDelete(context, egg),
     };
   }
-
-  @override
-  String getLabel(BuildContext context) => switch (this) {
-        setRingnumber => context.tr.pop_up_menu.set_ringnumber,
-        setColor => context.tr.pop_up_menu.set_color,
-        markHatched => context.tr.pop_up_menu.mark_hatched,
-        markFledged => context.tr.pop_up_menu.mark_fledged,
-        addToStock => context.tr.pop_up_menu.add_to_stock,
-        markUnfertilized => context.tr.pop_up_menu.mark_unfertilized,
-        markFertilized => context.tr.pop_up_menu.mark_fertilized,
-        markDied => context.tr.pop_up_menu.mark_died,
-        delete => context.tr.pop_up_menu.delete,
-      };
-
-  @override
-  Icon get icon => throw UnimplementedError();
 }
 
 class _EggActionHelper {
+  /// Persists [updated] and keeps the stored [Egg.status] in sync with the
+  /// status derived from the milestone dates.
+  static Future<void> _save(BirdBreederCubit cubit, Egg updated) =>
+      cubit.updateEgg(updated.copyWith(status: updated.effectiveStatus));
+
   static Future<void> onSetRingnumber(BuildContext context, Egg egg) async {
     final cubit = context.read<BirdBreederCubit>();
     await promptTextValue(
@@ -134,22 +103,24 @@ class _EggActionHelper {
     });
   }
 
+  static Future<void> onSetLaid(BuildContext context, Egg egg) async {
+    final cubit = context.read<BirdBreederCubit>();
+    final date = await promptDateValue(
+      context,
+      title: context.tr.egg.pick_laid_date,
+    );
+    if (date == null) return;
+    await _save(cubit, egg.copyWith(laidAt: date));
+  }
+
   static Future<void> onMarkHatched(BuildContext context, Egg egg) async {
     final cubit = context.read<BirdBreederCubit>();
-    await promptDateValue(
+    final date = await promptDateValue(
       context,
       title: context.tr.egg.pick_hatched_date,
-    ).then(
-      (v) async {
-        if (v == null) return null;
-        return cubit.updateEgg(
-          egg.copyWith(
-            hatchedAt: v,
-            status: EggStatus.hatched,
-          ),
-        );
-      },
     );
+    if (date == null) return;
+    await _save(cubit, egg.copyWith(hatchedAt: date));
   }
 
   static Future<void> onMarkFledged(BuildContext context, Egg egg) async {
@@ -159,9 +130,7 @@ class _EggActionHelper {
       title: context.tr.egg.pick_fledged_date,
     );
     if (date == null) return;
-    await cubit.updateEgg(
-      egg.copyWith(fledgedAt: date, status: EggStatus.fledged),
-    );
+    await _save(cubit, egg.copyWith(fledgedAt: date));
   }
 
   static Future<void> onAddToStock(BuildContext context, Egg egg) async {
@@ -179,6 +148,9 @@ class _EggActionHelper {
       cageId: cageId,
       speciesId: speciesId,
       ownerId: ownerId,
+      fatherId: pair?.fatherId,
+      motherId: pair?.motherId,
+      unknownLifecycle: false,
     );
     final created = await cubit.addBird(bird);
     if (created == null) {
@@ -186,32 +158,75 @@ class _EggActionHelper {
       s1.get<SnackbarService>().showError(context.tr.error.message);
       return;
     }
-    await cubit.updateEgg(
-      egg.copyWith(birdId: created.id, status: EggStatus.inStock),
-    );
+    await _save(cubit, egg.copyWith(birdId: created.id));
   }
 
   static Future<void> onMarkUnfertilized(BuildContext context, Egg egg) async {
-    await context.read<BirdBreederCubit>().updateEgg(
-          egg.copyWith(status: EggStatus.unfertilized, fertilizedAt: null),
-        );
+    final cubit = context.read<BirdBreederCubit>();
+    final date = await promptDateValue(
+      context,
+      title: context.tr.egg.pick_unfertilized_date,
+    );
+    if (date == null) return;
+    await _save(
+      cubit,
+      egg.copyWith(unfertilizedAt: date, fertilizedAt: null),
+    );
   }
 
   static Future<void> onMarkFertilized(BuildContext context, Egg egg) async {
-    await context.read<BirdBreederCubit>().updateEgg(
-          egg.copyWith(
-            status: EggStatus.fertilized,
-            fertilizedAt: DateTime.now(),
-          ),
-        );
+    final cubit = context.read<BirdBreederCubit>();
+    final date = await promptDateValue(
+      context,
+      title: context.tr.egg.pick_fertilized_date,
+    );
+    if (date == null) return;
+    await _save(
+      cubit,
+      egg.copyWith(fertilizedAt: date, unfertilizedAt: null),
+    );
   }
 
   static Future<void> onMarkDied(BuildContext context, Egg egg) async {
-    await context.read<BirdBreederCubit>().updateEgg(
-          egg.copyWith(
-            status: EggStatus.dead,
-          ),
-        );
+    final cubit = context.read<BirdBreederCubit>();
+    final date = await promptDateValue(
+      context,
+      title: context.tr.egg.pick_died_date,
+    );
+    if (date == null) return;
+    await _save(cubit, egg.copyWith(diedAt: date));
+  }
+
+  static Future<void> onResetFertilized(BuildContext context, Egg egg) async {
+    await _save(
+      context.read<BirdBreederCubit>(),
+      egg.copyWith(fertilizedAt: null),
+    );
+  }
+
+  static Future<void> onResetUnfertilized(BuildContext context, Egg egg) async {
+    await _save(
+      context.read<BirdBreederCubit>(),
+      egg.copyWith(unfertilizedAt: null),
+    );
+  }
+
+  static Future<void> onResetHatched(BuildContext context, Egg egg) async {
+    await _save(
+      context.read<BirdBreederCubit>(),
+      egg.copyWith(hatchedAt: null),
+    );
+  }
+
+  static Future<void> onResetFledged(BuildContext context, Egg egg) async {
+    await _save(
+      context.read<BirdBreederCubit>(),
+      egg.copyWith(fledgedAt: null),
+    );
+  }
+
+  static Future<void> onResetDied(BuildContext context, Egg egg) async {
+    await _save(context.read<BirdBreederCubit>(), egg.copyWith(diedAt: null));
   }
 
   static Future<void> onDelete(BuildContext context, Egg egg) async {

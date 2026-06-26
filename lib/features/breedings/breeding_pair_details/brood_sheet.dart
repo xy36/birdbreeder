@@ -4,16 +4,15 @@ import 'package:birdbreeder/core/extensions/breeding_pairs_extension.dart';
 import 'package:birdbreeder/core/extensions/brood_extension.dart';
 import 'package:birdbreeder/core/extensions/egg_extension.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
+import 'package:birdbreeder/features/breedings/breeding_pair_details/egg_lifecycle_sheet.dart';
+import 'package:birdbreeder/features/breedings/shared/egg_date_stats.dart';
 import 'package:birdbreeder/features/breedings/shared/mini_stats.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/breeding/entity/brood.dart';
-import 'package:birdbreeder/models/egg/egg_actions.dart';
 import 'package:birdbreeder/models/egg/entity/egg.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/icons.dart';
-import 'package:birdbreeder/shared/utils.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
-import 'package:birdbreeder/shared/widgets/value_selector.dart';
 
 class BroodSheetContent extends StatelessWidget {
   const BroodSheetContent({
@@ -40,9 +39,8 @@ class BroodSheetContent extends StatelessWidget {
         final fledged = eggs.where((e) => e.fledgedAt != null).length;
         final start = brood.start;
         final end = brood.end;
-        final day = start == null
-            ? null
-            : DateTime.now().difference(start).inDays + 1;
+        final day =
+            start == null ? null : DateTime.now().difference(start).inDays + 1;
         final number = _broodIndex(brood);
         return Column(
           children: [
@@ -177,9 +175,9 @@ class BroodSheetContent extends StatelessWidget {
                           await context.read<BirdBreederCubit>().addEgg(
                                 Egg.create(
                                   broodId: brood.id,
-                                  number: state
-                                          .birdBreederResources.eggs.length +
-                                      1,
+                                  number:
+                                      state.birdBreederResources.eggs.length +
+                                          1,
                                   laidAt: laidDate,
                                 ).copyWith(
                                   cageId: brood.cage,
@@ -221,156 +219,105 @@ class _EggCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final (bg, fg, icon, label) = egg.status.getDisplayData(context);
+    final (bg, fg, icon, label) = egg.effectiveStatus.getDisplayData(context);
     final statusColor = fg;
-    return Container(
-      decoration: BoxDecoration(
-        color: cs.surface,
-        borderRadius: BorderRadius.circular(10),
-        border: Border(left: BorderSide(color: statusColor, width: 4)),
-      ),
-      padding: const EdgeInsets.fromLTRB(12, 10, 4, 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Text(
-                '#${egg.number}',
-                style: TextStyle(
-                  fontFamily: 'monospace',
-                  fontSize: 12,
-                  fontWeight: FontWeight.w700,
-                  color: cs.onSurfaceVariant,
-                ),
-              ),
-              const SizedBox(width: 8),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                decoration: BoxDecoration(
-                  color: bg,
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                child: Text(
-                  label.toUpperCase(),
+    return InkWell(
+      onTap: () => showEggLifecycleSheet(context, egg),
+      borderRadius: BorderRadius.circular(10),
+      child: Container(
+        decoration: BoxDecoration(
+          color: cs.surface,
+          borderRadius: BorderRadius.circular(10),
+          border: Border(left: BorderSide(color: statusColor, width: 4)),
+        ),
+        padding: const EdgeInsets.fromLTRB(12, 10, 4, 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text(
+                  '#${egg.number}',
                   style: TextStyle(
-                    fontSize: 10,
+                    fontFamily: 'monospace',
+                    fontSize: 12,
                     fontWeight: FontWeight.w700,
-                    letterSpacing: 0.5,
-                    color: fg,
+                    color: cs.onSurfaceVariant,
                   ),
                 ),
+                const SizedBox(width: 8),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                  decoration: BoxDecoration(
+                    color: bg,
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: Text(
+                    label.toUpperCase(),
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 0.5,
+                      color: fg,
+                    ),
+                  ),
+                ),
+                const Spacer(),
+                const Padding(
+                  padding: EdgeInsets.only(right: 8),
+                  child: Icon(AppIcons.chevronRight, size: 18),
+                ),
+              ],
+            ),
+            if (egg.ringnumber != null || egg.colorResolved != null) ...[
+              const SizedBox(height: 6),
+              Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: Wrap(
+                  spacing: 10,
+                  runSpacing: 4,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    if (egg.ringnumber != null)
+                      Text(
+                        egg.ringnumber!,
+                        style: TextStyle(
+                          fontFamily: 'monospace',
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                          color: cs.onSurface,
+                        ),
+                      ),
+                    if (egg.colorResolved != null)
+                      Text(
+                        egg.colorResolved?.name ?? '—',
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: cs.onSurfaceVariant,
+                        ),
+                      ),
+                  ],
+                ),
               ),
-              const Spacer(),
-              EggActions.buildMenu(context, egg),
             ],
-          ),
-          if (egg.ringnumber != null || egg.colorResolved != null) ...[
             const SizedBox(height: 6),
             Padding(
               padding: const EdgeInsets.only(right: 12),
-              child: Wrap(
-                spacing: 10,
-                runSpacing: 4,
-                crossAxisAlignment: WrapCrossAlignment.center,
-                children: [
-                  if (egg.ringnumber != null)
-                    Text(
-                      egg.ringnumber!,
-                      style: TextStyle(
-                        fontFamily: 'monospace',
-                        fontSize: 12,
-                        fontWeight: FontWeight.w700,
-                        color: cs.onSurface,
-                      ),
-                    ),
-                  if (egg.colorResolved != null)
-                    Text(
-                      egg.colorResolved?.name ?? '—',
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: cs.onSurfaceVariant,
-                      ),
-                    ),
-                ],
-              ),
+              child: EggDateStats(egg: egg),
             ),
-          ],
-          const SizedBox(height: 6),
-          Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: Row(
-              children: [
-                _DateChip(
-                  date: egg.laidAt,
-                  label: context.tr.breeding_pairs.stats.abbr.laid,
+            if (egg.birdResolved != null) ...[
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: _StockLink(bird: egg.birdResolved!),
                 ),
-                if (egg.fertilizedAt != null) ...[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
-                    child: Text(
-                      '→',
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: cs.outline,
-                      ),
-                    ),
-                  ),
-                  _DateChip(
-                    date: egg.fertilizedAt!,
-                    label: context.tr.breeding_pairs.stats.abbr.fertilized,
-                    color: cs.tertiary,
-                  ),
-                ],
-                if (egg.hatchedAt != null) ...[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
-                    child: Text(
-                      '→',
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: cs.outline,
-                      ),
-                    ),
-                  ),
-                  _DateChip(
-                    date: egg.hatchedAt!,
-                    label: context.tr.breeding_pairs.stats.abbr.hatched,
-                    color: cs.primary,
-                  ),
-                ],
-                if (egg.fledgedAt != null) ...[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
-                    child: Text(
-                      '→',
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: cs.outline,
-                      ),
-                    ),
-                  ),
-                  _DateChip(
-                    date: egg.fledgedAt!,
-                    label: context.tr.breeding_pairs.stats.abbr.fledged,
-                    color: cs.secondary,
-                  ),
-                ],
-              ],
-            ),
-          ),
-          if (egg.birdResolved != null) ...[
-            const SizedBox(height: 8),
-            Padding(
-              padding: const EdgeInsets.only(right: 12),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: _StockLink(bird: egg.birdResolved!),
               ),
-            ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }
@@ -420,41 +367,6 @@ class _StockLink extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _DateChip extends StatelessWidget {
-  const _DateChip({required this.date, required this.label, this.color});
-  final DateTime date;
-  final String label;
-  final Color? color;
-  @override
-  Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
-    final fg = color ?? cs.onSurfaceVariant;
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 9,
-            fontWeight: FontWeight.w700,
-            letterSpacing: 0.5,
-            color: fg,
-          ),
-        ),
-        const SizedBox(width: 3),
-        Text(
-          '${date.day.toString().padLeft(2, '0')}.${date.month.toString().padLeft(2, '0')}.',
-          style: TextStyle(
-            fontFamily: 'monospace',
-            fontSize: 11,
-            color: cs.onSurfaceVariant,
-          ),
-        ),
-      ],
     );
   }
 }

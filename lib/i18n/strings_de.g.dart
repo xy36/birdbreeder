@@ -804,8 +804,19 @@ class TranslationsEggDe {
   /// de: 'Geschlüpft-Datum auswählen'
   String get pick_hatched_date => 'Geschlüpft-Datum auswählen';
 
+  /// de: 'Befruchtet-Datum auswählen'
+  String get pick_fertilized_date => 'Befruchtet-Datum auswählen';
+
+  /// de: 'Unbefruchtet-Datum auswählen'
+  String get pick_unfertilized_date => 'Unbefruchtet-Datum auswählen';
+
+  /// de: 'Sterbedatum auswählen'
+  String get pick_died_date => 'Sterbedatum auswählen';
+
   /// de: 'Im Bestand'
   String get in_stock => 'Im Bestand';
+
+  late final TranslationsEggLifecycleDe lifecycle = TranslationsEggLifecycleDe.internal(_root);
 }
 
 // Path: common
@@ -1139,23 +1150,8 @@ class TranslationsPopUpMenuDe {
   /// de: 'Farbe setzen'
   String get set_color => 'Farbe setzen';
 
-  /// de: 'Als geschlüpft markieren'
-  String get mark_hatched => 'Als geschlüpft markieren';
-
-  /// de: 'Als ausgeflogen markieren'
-  String get mark_fledged => 'Als ausgeflogen markieren';
-
   /// de: 'In Bestand aufnehmen'
   String get add_to_stock => 'In Bestand aufnehmen';
-
-  /// de: 'Als gestorben markieren'
-  String get mark_died => 'Als gestorben markieren';
-
-  /// de: 'Als unbefruchtet markieren'
-  String get mark_unfertilized => 'Als unbefruchtet markieren';
-
-  /// de: 'Als befruchtet markieren'
-  String get mark_fertilized => 'Als befruchtet markieren';
 
   /// de: 'Duplizieren'
   String get duplicate => 'Duplizieren';
@@ -2372,6 +2368,30 @@ class TranslationsEggActionDe {
 
   /// de: 'Neue Ringnummer eintragen'
   String get set_ringnumber => 'Neue Ringnummer eintragen';
+}
+
+// Path: egg.lifecycle
+class TranslationsEggLifecycleDe {
+  TranslationsEggLifecycleDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Ei {{number}}'
+  String title({required Object Number}) => 'Ei ${Number}';
+
+  /// de: 'Lebenszyklus'
+  String get section_cycle => 'Lebenszyklus';
+
+  /// de: 'Details'
+  String get section_details => 'Details';
+
+  /// de: 'Datum setzen'
+  String get set_date => 'Datum setzen';
+
+  /// de: 'Ei löschen?'
+  String get confirm_delete => 'Ei löschen?';
 }
 
 // Path: common.bottom_sheet

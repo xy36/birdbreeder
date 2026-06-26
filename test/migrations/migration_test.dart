@@ -24,4 +24,20 @@ void main() {
 
     await verifier.migrateAndValidate(db, 1);
   });
+
+  test('migrating from v1 to v2 yields the expected schema', () async {
+    final connection = await verifier.startAt(1);
+    final db = AppDatabase.forTesting(connection);
+    addTearDown(db.close);
+
+    await verifier.migrateAndValidate(db, 2);
+  });
+
+  test('migrating from v2 to v3 yields the expected schema', () async {
+    final connection = await verifier.startAt(2);
+    final db = AppDatabase.forTesting(connection);
+    addTearDown(db.close);
+
+    await verifier.migrateAndValidate(db, 3);
+  });
 }

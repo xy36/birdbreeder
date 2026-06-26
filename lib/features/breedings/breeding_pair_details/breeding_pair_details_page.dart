@@ -752,7 +752,7 @@ class _EggMiniTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final (bg, fg, icon, label) = egg.status.getDisplayData(context);
+    final (bg, fg, icon, label) = egg.effectiveStatus.getDisplayData(context);
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(

@@ -17,9 +17,15 @@ _Egg _$EggFromJson(Map<String, dynamic> json) => _Egg(
       fertilizedAt: json['fertilizedAt'] == null
           ? null
           : DateTime.parse(json['fertilizedAt'] as String),
+      unfertilizedAt: json['unfertilizedAt'] == null
+          ? null
+          : DateTime.parse(json['unfertilizedAt'] as String),
       fledgedAt: json['fledgedAt'] == null
           ? null
           : DateTime.parse(json['fledgedAt'] as String),
+      diedAt: json['diedAt'] == null
+          ? null
+          : DateTime.parse(json['diedAt'] as String),
       status: $enumDecodeNullable(_$EggStatusEnumMap, json['status']) ??
           EggStatus.laid,
       ringnumber: json['ringnumber'] as String?,
@@ -43,7 +49,9 @@ Map<String, dynamic> _$EggToJson(_Egg instance) => <String, dynamic>{
       'laidAt': instance.laidAt.toIso8601String(),
       'hatchedAt': instance.hatchedAt?.toIso8601String(),
       'fertilizedAt': instance.fertilizedAt?.toIso8601String(),
+      'unfertilizedAt': instance.unfertilizedAt?.toIso8601String(),
       'fledgedAt': instance.fledgedAt?.toIso8601String(),
+      'diedAt': instance.diedAt?.toIso8601String(),
       'status': _$EggStatusEnumMap[instance.status]!,
       'ringnumber': instance.ringnumber,
       'colorId': instance.colorId,

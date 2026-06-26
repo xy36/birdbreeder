@@ -63,9 +63,24 @@ extension EggExtension on Egg {
   /// Returns the brood resolved from the state
   Brood? get broodResolved => _birdBreederResources().broods.findById(broodId);
 
-  bool get isFertilized => status == EggStatus.fertilized;
-  bool get isUnfertilized => status == EggStatus.unfertilized;
-  bool get isHatched => status == EggStatus.hatched;
-  bool get isDead => status == EggStatus.dead;
-  bool get isFledged => status == EggStatus.fledged;
+  bool get isFertilized => fertilizedAt != null;
+  bool get isUnfertilized => unfertilizedAt != null;
+  bool get isHatched => hatchedAt != null;
+  bool get isDead => diedAt != null;
+  bool get isFledged => fledgedAt != null;
+
+  /// Display status derived from the milestone dates.
+  ///
+  /// The stored [Egg.status] only mirrors this value; the dates are the source
+  /// of truth. Terminal states (died, unfertilized) take precedence so a later
+  /// milestone date can never make a dead/infertile egg appear "progressed".
+  EggStatus get effectiveStatus {
+    if (diedAt != null) return EggStatus.dead;
+    if (unfertilizedAt != null) return EggStatus.unfertilized;
+    if (birdId != null) return EggStatus.inStock;
+    if (fledgedAt != null) return EggStatus.fledged;
+    if (hatchedAt != null) return EggStatus.hatched;
+    if (fertilizedAt != null) return EggStatus.fertilized;
+    return EggStatus.laid;
+  }
 }
