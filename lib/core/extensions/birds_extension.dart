@@ -104,10 +104,13 @@ extension BirdsExtension on Bird {
   /// metadata captured alongside a sale, not the truth flag.
   bool get isSold => saleStatus == SaleStatus.sold;
 
+  /// Canonical indicator that a bird is owned by the current user.
+  bool get isOwn => ownerResolved?.isAppUser ?? false;
+
   // getter for birds that are alive and owned by me
   bool get isOwnAndAlive {
     // only true if owner is me and bird is not sold and not deceased
-    if (!(ownerResolved?.isAppUser ?? false)) return false;
+    if (!isOwn) return false;
     final isAlive = diedAt == null;
     return !isSold && isAlive;
   }

@@ -494,6 +494,50 @@ class MenuRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PedigreePage]
+class PedigreeRoute extends PageRouteInfo<PedigreeRouteArgs> {
+  PedigreeRoute({required Bird bird, Key? key, List<PageRouteInfo>? children})
+      : super(
+          PedigreeRoute.name,
+          args: PedigreeRouteArgs(bird: bird, key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'PedigreeRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<PedigreeRouteArgs>();
+      return PedigreePage(bird: args.bird, key: args.key);
+    },
+  );
+}
+
+class PedigreeRouteArgs {
+  const PedigreeRouteArgs({required this.bird, this.key});
+
+  final Bird bird;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'PedigreeRouteArgs{bird: $bird, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PedigreeRouteArgs) return false;
+    return bird == other.bird && key == other.key;
+  }
+
+  @override
+  int get hashCode => bird.hashCode ^ key.hashCode;
+}
+
+/// generated route for
 /// [SpeciesDetailPage]
 class SpeciesDetailRoute extends PageRouteInfo<SpeciesDetailRouteArgs> {
   SpeciesDetailRoute({

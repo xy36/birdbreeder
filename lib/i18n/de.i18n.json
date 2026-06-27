@@ -530,6 +530,39 @@
             "show_deceased": "Verstorbene anzeigen"
         }
     },
+    "pedigree": {
+        "title": "Stammbaum",
+        "subtitle": "Ahnentafel",
+        "col_bird": "Vogel",
+        "col_parents": "Eltern",
+        "col_grandparents": "Großeltern",
+        "col_greatgrandparents": "Urgroßeltern",
+        "col_ancestors": "Ahnen",
+        "section_ancestors": "Vorfahren",
+        "section_descendants": "Nachkommen",
+        "no_descendants": "Keine Nachkommen erfasst",
+        "unknown": "Unbekannt",
+        "assign_parent": "Elternteil zuweisen",
+        "common_ancestor": "Gemeinsamer Vorfahre (Inzucht)",
+        "sold": "Verkauft",
+        "not_own": "Nicht im Besitz",
+        "deceased": "Verstorben",
+        "share": "Teilen",
+        "share_filename": "stammbaum_{{ring}}",
+        "depth": "Tiefe",
+        "depth_all": "Alle",
+        "inbreeding_explainer": "Diese Vögel sind sowohl über die väterliche als auch die mütterliche Linie verwandt.",
+        "via_father": "über Vater",
+        "via_mother": "über Mutter",
+        "stats": {
+            "generations": "Generationen",
+            "ancestors": "Vorfahren",
+            "descendants": "Nachkommen",
+            "inbreeding": "Inzucht",
+            "no_inbreeding": "Keine Inzucht"
+        },
+        "swipe_hint": "Wischen für mehr Übersicht"
+    },
     "bird": {
         "title": "Vogel",
         "edit": "Vogel bearbeiten",
@@ -963,6 +996,7 @@
         "open": "Öffnen",
         "edit": "Bearbeiten",
         "show": "Anzeigen",
+        "pedigree": "Stammbaum",
         "set_ringnumber": "Ringnummer setzen",
         "set_color": "Farbe setzen",
         "add_to_stock": "In Bestand aufnehmen",

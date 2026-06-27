@@ -54,6 +54,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final TranslationsBreedingPairsDe breeding_pairs = TranslationsBreedingPairsDe.internal(_root);
   late final TranslationsResourcesDe resources = TranslationsResourcesDe.internal(_root);
   late final TranslationsBirdsDe birds = TranslationsBirdsDe.internal(_root);
+  late final TranslationsPedigreeDe pedigree = TranslationsPedigreeDe.internal(_root);
   late final TranslationsBirdDe bird = TranslationsBirdDe.internal(_root);
   late final TranslationsPairDetailDe pair_detail = TranslationsPairDetailDe.internal(_root);
   late final TranslationsBroodDe brood = TranslationsBroodDe.internal(_root);
@@ -612,6 +613,89 @@ class TranslationsBirdsDe {
   late final TranslationsBirdsFilterDe filter = TranslationsBirdsFilterDe.internal(_root);
 }
 
+// Path: pedigree
+class TranslationsPedigreeDe {
+  TranslationsPedigreeDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Stammbaum'
+  String get title => 'Stammbaum';
+
+  /// de: 'Ahnentafel'
+  String get subtitle => 'Ahnentafel';
+
+  /// de: 'Vogel'
+  String get col_bird => 'Vogel';
+
+  /// de: 'Eltern'
+  String get col_parents => 'Eltern';
+
+  /// de: 'Großeltern'
+  String get col_grandparents => 'Großeltern';
+
+  /// de: 'Urgroßeltern'
+  String get col_greatgrandparents => 'Urgroßeltern';
+
+  /// de: 'Ahnen'
+  String get col_ancestors => 'Ahnen';
+
+  /// de: 'Vorfahren'
+  String get section_ancestors => 'Vorfahren';
+
+  /// de: 'Nachkommen'
+  String get section_descendants => 'Nachkommen';
+
+  /// de: 'Keine Nachkommen erfasst'
+  String get no_descendants => 'Keine Nachkommen erfasst';
+
+  /// de: 'Unbekannt'
+  String get unknown => 'Unbekannt';
+
+  /// de: 'Elternteil zuweisen'
+  String get assign_parent => 'Elternteil zuweisen';
+
+  /// de: 'Gemeinsamer Vorfahre (Inzucht)'
+  String get common_ancestor => 'Gemeinsamer Vorfahre (Inzucht)';
+
+  /// de: 'Verkauft'
+  String get sold => 'Verkauft';
+
+  /// de: 'Nicht im Besitz'
+  String get not_own => 'Nicht im Besitz';
+
+  /// de: 'Verstorben'
+  String get deceased => 'Verstorben';
+
+  /// de: 'Teilen'
+  String get share => 'Teilen';
+
+  /// de: 'stammbaum_{{ring}}'
+  String share_filename({required Object Ring}) => 'stammbaum_${Ring}';
+
+  /// de: 'Tiefe'
+  String get depth => 'Tiefe';
+
+  /// de: 'Alle'
+  String get depth_all => 'Alle';
+
+  /// de: 'Diese Vögel sind sowohl über die väterliche als auch die mütterliche Linie verwandt.'
+  String get inbreeding_explainer => 'Diese Vögel sind sowohl über die väterliche als auch die mütterliche Linie verwandt.';
+
+  /// de: 'über Vater'
+  String get via_father => 'über Vater';
+
+  /// de: 'über Mutter'
+  String get via_mother => 'über Mutter';
+
+  late final TranslationsPedigreeStatsDe stats = TranslationsPedigreeStatsDe.internal(_root);
+
+  /// de: 'Wischen für mehr Übersicht'
+  String get swipe_hint => 'Wischen für mehr Übersicht';
+}
+
 // Path: bird
 class TranslationsBirdDe {
   TranslationsBirdDe.internal(this._root);
@@ -1143,6 +1227,9 @@ class TranslationsPopUpMenuDe {
 
   /// de: 'Anzeigen'
   String get show => 'Anzeigen';
+
+  /// de: 'Stammbaum'
+  String get pedigree => 'Stammbaum';
 
   /// de: 'Ringnummer setzen'
   String get set_ringnumber => 'Ringnummer setzen';
@@ -2243,6 +2330,30 @@ class TranslationsBirdsFilterDe {
 
   /// de: 'Verstorbene anzeigen'
   String get show_deceased => 'Verstorbene anzeigen';
+}
+
+// Path: pedigree.stats
+class TranslationsPedigreeStatsDe {
+  TranslationsPedigreeStatsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Generationen'
+  String get generations => 'Generationen';
+
+  /// de: 'Vorfahren'
+  String get ancestors => 'Vorfahren';
+
+  /// de: 'Nachkommen'
+  String get descendants => 'Nachkommen';
+
+  /// de: 'Inzucht'
+  String get inbreeding => 'Inzucht';
+
+  /// de: 'Keine Inzucht'
+  String get no_inbreeding => 'Keine Inzucht';
 }
 
 // Path: bird.tabs

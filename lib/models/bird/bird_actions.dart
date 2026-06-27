@@ -10,6 +10,7 @@ import 'package:birdbreeder/shared/widgets/utils.dart';
 
 enum BirdActions implements ItemAction<Bird> {
   edit,
+  pedigree,
   duplicate,
   delete;
 
@@ -37,6 +38,7 @@ enum BirdActions implements ItemAction<Bird> {
   Icon get icon {
     return switch (this) {
       edit => const Icon(AppIcons.edit),
+      pedigree => const Icon(AppIcons.pedigree),
       delete => const Icon(AppIcons.delete, color: Colors.red),
       duplicate => const Icon(AppIcons.duplicate),
     };
@@ -46,6 +48,7 @@ enum BirdActions implements ItemAction<Bird> {
   String getLabel(BuildContext context) {
     return switch (this) {
       edit => context.tr.pop_up_menu.edit,
+      pedigree => context.tr.pop_up_menu.pedigree,
       delete => context.tr.pop_up_menu.delete,
       duplicate => context.tr.pop_up_menu.duplicate,
     };
@@ -60,6 +63,8 @@ enum BirdActions implements ItemAction<Bird> {
     switch (this) {
       case edit:
         await context.router.push(BirdRoute(bird: bird));
+      case pedigree:
+        await context.router.push(PedigreeRoute(bird: bird));
       case delete:
         if (context.mounted) {
           await DeleteDialog.show(

@@ -137,6 +137,10 @@ class AppIcons {
   static const IconData accountCircleOutlined = Icons.account_circle_outlined;
   static const IconData arrowBack = Icons.arrow_back;
   static const IconData backup = Icons.backup;
+  static const IconData pedigree = Icons.account_tree_outlined;
+  static const IconData depth = Icons.layers_outlined;
+  static const IconData notOwned = Icons.person_off_outlined;
+  static const IconData swipe = Icons.swipe;
   static const IconData brokenImageOutlined = Icons.broken_image_outlined;
   static const IconData check = Icons.check;
   static const IconData checkCircle = Icons.check_circle;

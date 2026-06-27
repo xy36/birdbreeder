@@ -17,4 +17,14 @@ extension BirdColorExtension on BirdColor {
       .birds
       .where((c) => c.colorId == id)
       .length;
+
+  /// The color's swatch parsed from its [hex] string, or null when unset or
+  /// malformed.
+  Color? get swatch {
+    final value = hex?.replaceAll('#', '').trim();
+    if (value == null || value.isEmpty) return null;
+    final normalized = value.length == 6 ? 'FF$value' : value;
+    final parsed = int.tryParse(normalized, radix: 16);
+    return parsed == null ? null : Color(parsed);
+  }
 }
