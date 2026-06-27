@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.8.0](https://github.com/xy36/birdbreeder/compare/v1.7.0...v1.8.0) (2026-06-27)
+
+
+### Features
+
+* Add pedigree feature (first version) ([c9cc57c](https://github.com/xy36/birdbreeder/commit/c9cc57cb9244aaefb8a596cf3acd15d3be06897e))
+* **onboarding:** implement onboarding screen and related translations ([8e3f854](https://github.com/xy36/birdbreeder/commit/8e3f854b0d73d902af70c55f24ffdaa3ae83de8a))
+* Rework egg card and egg actions ([2cf87b2](https://github.com/xy36/birdbreeder/commit/2cf87b2f798e6abe0a3e79b1d0e966a0c33209ec))
+
 ## [1.7.0](https://github.com/xy36/birdbreeder/compare/v1.6.0...v1.7.0) (2026-06-20)
 
 
