@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.9.0](https://github.com/xy36/birdbreeder/compare/v1.8.0...v1.9.0) (2026-06-27)
+
+
+### Features
+
+* Add release signing configuration and update dependencies in pu… ([c7525c3](https://github.com/xy36/birdbreeder/commit/c7525c34fe411f7fccbb149ac2f5c86d5e7b5e17))
+* Add release signing configuration and update dependencies in pubspec.lock ([eb27cd2](https://github.com/xy36/birdbreeder/commit/eb27cd27ecc165fa43edd0454c2d4c6001267600))
+
+
+### Bug Fixes
+
+* Add keystore properties loading and enable minification for release build ([9684e90](https://github.com/xy36/birdbreeder/commit/9684e90dfe631f3e67fd6b052e586acfdc44cf6c))
+
 ## [1.8.0](https://github.com/xy36/birdbreeder/compare/v1.7.0...v1.8.0) (2026-06-27)
 
 
