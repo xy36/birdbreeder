@@ -657,6 +657,12 @@ class TranslationsPedigreeDe {
   /// de: 'Elternteil zuweisen'
   String get assign_parent => 'Elternteil zuweisen';
 
+  /// de: 'Vater hinzufügen'
+  String get add_father => 'Vater hinzufügen';
+
+  /// de: 'Mutter hinzufügen'
+  String get add_mother => 'Mutter hinzufügen';
+
   /// de: 'Gemeinsamer Vorfahre (Inzucht)'
   String get common_ancestor => 'Gemeinsamer Vorfahre (Inzucht)';
 

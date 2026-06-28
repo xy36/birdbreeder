@@ -543,6 +543,8 @@
         "no_descendants": "Keine Nachkommen erfasst",
         "unknown": "Unbekannt",
         "assign_parent": "Elternteil zuweisen",
+        "add_father": "Vater hinzufügen",
+        "add_mother": "Mutter hinzufügen",
         "common_ancestor": "Gemeinsamer Vorfahre (Inzucht)",
         "sold": "Verkauft",
         "not_own": "Nicht im Besitz",

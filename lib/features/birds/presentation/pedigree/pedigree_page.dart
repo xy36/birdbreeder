@@ -18,10 +18,11 @@ import 'package:flutter/rendering.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
-/// Full ancestor pedigree ("Stammbaum") of a focal bird.
+/// Ancestor pedigree ("Stammbaum") of a focal bird.
 ///
-/// Every known generation is shown at once as columns (focal left, ancestors
-/// to the right) connected by bracket lines. Tapping a bird opens its detail.
+/// The focal bird sits on the left; each bird branches into its father and
+/// mother to the right. Known parents recurse; a missing parent ends the branch
+/// with an "add parent" card. Tapping a bird opens its detail.
 @RoutePage()
 class PedigreePage extends StatefulWidget {
   const PedigreePage({required this.bird, super.key});
@@ -52,7 +53,6 @@ class _PedigreePageState extends State<PedigreePage> {
                 .firstOrNullWhere((b) => b.id == widget.bird.id) ??
             widget.bird;
         final cap = _depthLimit;
-        final depth = math.min(_ancestorDepth(focal, cap), cap);
         final stats = _PedigreeStats.of(
           focal,
           generationCap: _allCap,
@@ -129,7 +129,7 @@ class _PedigreePageState extends State<PedigreePage> {
                     children: [
                       _AncestorTree(
                         focal: focal,
-                        depth: depth,
+                        maxDepth: cap,
                         commonAncestorIds: stats.commonAncestorIds,
                         repaintKey: ancestorKey,
                       ),
@@ -182,16 +182,6 @@ class _TreeViewport extends StatelessWidget {
       ),
     );
   }
-}
-
-/// Resolves the ancestor reached by following [path] (0 = father, 1 = mother).
-Bird? _ancestorAt(Bird focal, List<int> path) {
-  Bird? current = focal;
-  for (final step in path) {
-    if (current == null) return null;
-    current = step == 0 ? current.fatherResolved : current.motherResolved;
-  }
-  return current;
 }
 
 /// Compact birth/death line for a node, e.g. "* 12.03.24  † 28.05.25".
@@ -595,25 +585,29 @@ const double _connectorWidth = 28;
 const double _columnStride = _columnWidth + _connectorWidth;
 const double _rowSlot = 76;
 
+/// Ancestor tree of the focal bird. Every known bird sends out two branches
+/// (father on top, mother below). A known parent recurses one generation up; a
+/// missing parent shows an "add parent" leaf card that ends that branch.
 class _AncestorTree extends StatelessWidget {
   const _AncestorTree({
     required this.focal,
-    required this.depth,
+    required this.maxDepth,
     required this.commonAncestorIds,
     required this.repaintKey,
   });
 
   final Bird focal;
-  final int depth;
+  final int maxDepth;
   final Set<String> commonAncestorIds;
   final GlobalKey repaintKey;
 
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final leafCount = 1 << depth;
-    final gridHeight = math.max(220, leafCount * _rowSlot).toDouble();
-    final contentWidth = (depth + 1) * _columnStride - _connectorWidth;
+    final layout = _AncestorLayout(focal, maxDepth, commonAncestorIds);
+    final contentWidth =
+        (layout.maxDepth + 1) * _columnStride - _connectorWidth;
+    final gridHeight = math.max(_rowSlot, layout.totalLeaves * _rowSlot);
 
     return _TreeViewport(
       width: contentWidth,
@@ -621,7 +615,7 @@ class _AncestorTree extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _HeaderRow(depth: depth),
+          _HeaderRow(depth: layout.maxDepth),
           const SizedBox(height: 6),
           SizedBox(
             height: gridHeight,
@@ -629,26 +623,18 @@ class _AncestorTree extends StatelessWidget {
               children: [
                 Positioned.fill(
                   child: CustomPaint(
-                    painter: _ConnectorPainter(
-                      depth: depth,
-                      gridHeight: gridHeight,
-                      color: cs.outline,
-                    ),
+                    painter:
+                        _EdgePainter(edges: layout.edges, color: cs.outline),
                   ),
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    for (var g = 0; g <= depth; g++)
-                      _GenerationColumn(
-                        focal: focal,
-                        generation: g,
-                        gridHeight: gridHeight,
-                        isLast: g == depth,
-                        commonAncestorIds: commonAncestorIds,
-                      ),
-                  ],
-                ),
+                for (final node in layout.nodes)
+                  Positioned(
+                    left: node.depth * _columnStride,
+                    top: node.center * _rowSlot - _rowSlot / 2,
+                    width: _columnWidth,
+                    height: _rowSlot,
+                    child: Center(child: _ancestorNode(context, node)),
+                  ),
               ],
             ),
           ),
@@ -656,131 +642,119 @@ class _AncestorTree extends StatelessWidget {
       ),
     );
   }
-}
 
-class _GenerationColumn extends StatelessWidget {
-  const _GenerationColumn({
-    required this.focal,
-    required this.generation,
-    required this.gridHeight,
-    required this.isLast,
-    required this.commonAncestorIds,
-  });
-
-  final Bird focal;
-  final int generation;
-  final double gridHeight;
-  final bool isLast;
-  final Set<String> commonAncestorIds;
-
-  @override
-  Widget build(BuildContext context) {
-    final count = 1 << generation;
-    return SizedBox(
-      width: isLast ? _columnWidth : _columnStride,
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: SizedBox(
-          width: _columnWidth,
-          child: Column(
-            children: [
-              for (var i = 0; i < count; i++)
-                SizedBox(
-                  height: gridHeight / count,
-                  child: Center(child: _slotFor(i)),
-                ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _slotFor(int index) {
-    final path = _pathFor(generation, index);
-    final bird = _ancestorAt(focal, path);
+  Widget _ancestorNode(BuildContext context, _AncestorPlaced node) {
+    final bird = node.bird;
     if (bird != null) {
-      return _Slot(
+      return _PedigreeNode(
         bird: bird,
-        focal: generation == 0,
-        highlightCommon: commonAncestorIds.contains(bird.id),
+        focal: node.focal,
+        highlightCommon: node.highlightCommon,
+        onTap: () => context.router.push(BirdRoute(bird: bird)),
       );
     }
-    // Empty slot: assignable only when its child (the bird one step closer to
-    // the focal) is known, since we set that child's father/mother id.
-    final child = _ancestorAt(focal, path.sublist(0, path.length - 1));
     return _UnknownNode(
-      assignChild: child,
-      assignSide: path.last,
+      assignChild: node.assignChild,
+      assignSide: node.assignSide,
     );
   }
-
-  /// Position [index] in [generation] as a father/mother bit path.
-  List<int> _pathFor(int generation, int index) => [
-        for (var bit = generation - 1; bit >= 0; bit--) (index >> bit) & 1,
-      ];
 }
 
-class _ConnectorPainter extends CustomPainter {
-  const _ConnectorPainter({
+/// A node placed by [_AncestorLayout]. Either a real [bird] or, when [bird] is
+/// null, an "add parent" leaf that assigns [assignSide] (0 = father, 1 = mother)
+/// of [assignChild].
+class _AncestorPlaced {
+  const _AncestorPlaced({
     required this.depth,
-    required this.gridHeight,
-    required this.color,
+    required this.center,
+    this.bird,
+    this.focal = false,
+    this.highlightCommon = false,
+    this.assignChild,
+    this.assignSide,
   });
 
   final int depth;
-  final double gridHeight;
-  final Color color;
+  final double center;
+  final Bird? bird;
+  final bool focal;
+  final bool highlightCommon;
+  final Bird? assignChild;
+  final int? assignSide;
+}
 
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = color
-      ..strokeWidth = 1.5
-      ..style = PaintingStyle.stroke;
-
-    double centerY(int generation, int index) =>
-        (index + 0.5) * gridHeight / (1 << generation);
-
-    for (var g = 0; g < depth; g++) {
-      final parentX = g * _columnStride + _columnWidth;
-      final childX = (g + 1) * _columnStride;
-      final midX = (parentX + childX) / 2;
-      for (var i = 0; i < (1 << g); i++) {
-        final py = centerY(g, i);
-        for (final child in [2 * i, 2 * i + 1]) {
-          final cy = centerY(g + 1, child);
-          final path = Path()
-            ..moveTo(parentX, py)
-            ..lineTo(midX, py)
-            ..lineTo(midX, cy)
-            ..lineTo(childX, cy);
-          canvas.drawPath(path, paint);
-        }
-      }
-    }
+/// Tidy layout for the ragged ancestor tree: each bird is centered over its two
+/// parent branches and leaves get sequential vertical slots. Mirrors
+/// [_DescendantLayout] but branches are the two parents and missing parents
+/// become "add parent" leaves that terminate the branch.
+class _AncestorLayout {
+  _AncestorLayout(Bird focal, this._maxDepth, this._commonAncestorIds) {
+    _place(focal, 0, const {}, focal: true);
   }
 
-  @override
-  bool shouldRepaint(_ConnectorPainter oldDelegate) =>
-      oldDelegate.depth != depth ||
-      oldDelegate.gridHeight != gridHeight ||
-      oldDelegate.color != color;
+  final int _maxDepth;
+  final Set<String> _commonAncestorIds;
+  final List<_AncestorPlaced> nodes = [];
+  final List<_TreeEdge> edges = [];
+  int maxDepth = 0;
+  double totalLeaves = 0;
+
+  double _place(Bird bird, int depth, Set<String> seen, {bool focal = false}) {
+    maxDepth = math.max(maxDepth, depth);
+    final branchCenters = <double>[];
+    // Expand parents unless the depth cap is hit or the bird already appears on
+    // this line (cycle guard). At the cap the bird is a plain leaf.
+    if (depth < _maxDepth && !seen.contains(bird.id)) {
+      final next = {...seen, bird.id};
+      for (var side = 0; side < 2; side++) {
+        final parent = side == 0 ? bird.fatherResolved : bird.motherResolved;
+        branchCenters.add(
+          parent != null && !seen.contains(parent.id)
+              ? _place(parent, depth + 1, next)
+              : _placeLeaf(bird, side, depth + 1),
+        );
+      }
+    }
+
+    final double center;
+    if (branchCenters.isEmpty) {
+      center = totalLeaves + 0.5;
+      totalLeaves += 1;
+    } else {
+      center = (branchCenters.first + branchCenters.last) / 2;
+      for (final cy in branchCenters) {
+        edges.add(_TreeEdge(depth, center, depth + 1, cy));
+      }
+    }
+    nodes.add(
+      _AncestorPlaced(
+        depth: depth,
+        center: center,
+        bird: bird,
+        focal: focal,
+        highlightCommon: _commonAncestorIds.contains(bird.id),
+      ),
+    );
+    return center;
+  }
+
+  double _placeLeaf(Bird child, int side, int depth) {
+    maxDepth = math.max(maxDepth, depth);
+    final center = totalLeaves + 0.5;
+    totalLeaves += 1;
+    nodes.add(
+      _AncestorPlaced(
+        depth: depth,
+        center: center,
+        assignChild: child,
+        assignSide: side,
+      ),
+    );
+    return center;
+  }
 }
 
-/// Column/generation label for [generation] (0 = focal, 1 = parents, …),
-/// reused by the header row and the inbreeding sheet.
-String _generationLabel(BuildContext context, int generation) {
-  final p = context.tr.pedigree;
-  final labels = [
-    p.col_bird,
-    p.col_parents,
-    p.col_grandparents,
-    p.col_greatgrandparents,
-  ];
-  return generation < labels.length ? labels[generation] : p.col_ancestors;
-}
-
+/// Generation labels above the ancestor columns (Vogel, Eltern, Großeltern, …).
 class _HeaderRow extends StatelessWidget {
   const _HeaderRow({required this.depth});
 
@@ -791,18 +765,15 @@ class _HeaderRow extends StatelessWidget {
     return Row(
       children: [
         for (var g = 0; g <= depth; g++)
-          Expanded(
-            // width: _columnStride,
-            child: SizedBox(
-              width: _columnWidth,
-              child: Text(
-                _generationLabel(context, g).toUpperCase(),
-                style: TextStyle(
-                  fontSize: 9,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 1,
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
+          SizedBox(
+            width: g == depth ? _columnWidth : _columnStride,
+            child: Text(
+              _generationLabel(context, g).toUpperCase(),
+              style: TextStyle(
+                fontSize: 9,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 1,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
               ),
             ),
           ),
@@ -811,26 +782,17 @@ class _HeaderRow extends StatelessWidget {
   }
 }
 
-class _Slot extends StatelessWidget {
-  const _Slot({
-    required this.bird,
-    required this.focal,
-    required this.highlightCommon,
-  });
-
-  final Bird bird;
-  final bool focal;
-  final bool highlightCommon;
-
-  @override
-  Widget build(BuildContext context) {
-    return _PedigreeNode(
-      bird: bird,
-      focal: focal,
-      highlightCommon: highlightCommon,
-      onTap: () => context.router.push(BirdRoute(bird: bird)),
-    );
-  }
+/// Column/generation label for [generation] (0 = focal, 1 = parents, …),
+/// used by the header row and the inbreeding sheet.
+String _generationLabel(BuildContext context, int generation) {
+  final p = context.tr.pedigree;
+  final labels = [
+    p.col_bird,
+    p.col_parents,
+    p.col_grandparents,
+    p.col_greatgrandparents,
+  ];
+  return generation < labels.length ? labels[generation] : p.col_ancestors;
 }
 
 /// Recursive descendant tree below the focal bird. Birds may have any number
@@ -1155,10 +1117,10 @@ class _UnknownNode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
+    final p = context.tr.pedigree;
     final canAssign = assignChild != null;
-    final label = canAssign
-        ? context.tr.pedigree.assign_parent
-        : context.tr.pedigree.unknown;
+    final label =
+        canAssign ? (assignSide == 0 ? p.add_father : p.add_mother) : p.unknown;
 
     return InkWell(
       onTap: canAssign ? () => _assign(context) : null,
