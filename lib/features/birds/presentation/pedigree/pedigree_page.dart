@@ -1149,7 +1149,12 @@ class _UnknownNode extends StatelessWidget {
     final parentSex = side == 0 ? Sex.male : Sex.female;
     final picked = await onPickBird(
       context,
-      birdFilter: BirdFilter(sexes: [parentSex, Sex.unknown]),
+      birdFilter: BirdFilter(
+        sexes: [parentSex, Sex.unknown],
+        speciesIds: child.speciesId == null ? const [] : [child.speciesId!],
+        saleStatus: SaleStatus.values,
+        showDeceased: true,
+      ),
     );
     if (picked == null) return;
     await cubit.updateBird(

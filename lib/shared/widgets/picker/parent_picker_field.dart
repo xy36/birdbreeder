@@ -14,6 +14,7 @@ class ParentPickerField extends StatelessWidget {
     this.enabled = true,
     this.onChanged,
     this.validator,
+    this.speciesId,
   }) : parentType = ParentType.father;
 
   const ParentPickerField.mother({
@@ -22,6 +23,7 @@ class ParentPickerField extends StatelessWidget {
     this.enabled = true,
     this.onChanged,
     this.validator,
+    this.speciesId,
   }) : parentType = ParentType.mother;
 
   final ParentType parentType;
@@ -29,6 +31,10 @@ class ParentPickerField extends StatelessWidget {
   final bool enabled;
   final void Function(Bird?)? onChanged;
   final String? Function(Bird?)? validator;
+
+  /// When set, pre-filters the picker to this species (still changeable in the
+  /// picker's filter sheet, e.g. for hybrid pairings).
+  final String? speciesId;
 
   String _label(BuildContext c) => switch (parentType) {
         ParentType.father => c.tr.common.father,
@@ -68,6 +74,7 @@ class ParentPickerField extends StatelessWidget {
                           Sex.female,
                         Sex.unknown,
                       ],
+                      speciesIds: speciesId == null ? const [] : [speciesId!],
                     ),
                   );
                   if (picked != null) {

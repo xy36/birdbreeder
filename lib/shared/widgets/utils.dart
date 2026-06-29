@@ -117,13 +117,17 @@ Future<Bird?> onPickBird(BuildContext context, {BirdFilter? birdFilter}) async {
       initialChildSize: 1,
       expand: false,
       builder: (context, scrollController) {
-        context.read<BirdSearchCubit>().reset();
-        context.read<BirdsFilterCubit>().applyFilter(
-              birdFilter ?? const BirdFilter(),
-            );
-
-        return BlocProvider.value(
-          value: s1.get<BirdBreederCubit>(),
+        // Scope fresh filter/search cubits to the picker so it never mutates the
+        // app-wide instances the main overview watches.
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider.value(value: s1.get<BirdBreederCubit>()),
+            BlocProvider(create: (_) => BirdSearchCubit()),
+            BlocProvider(
+              create: (_) => BirdsFilterCubit()
+                ..applyFilter(birdFilter ?? const BirdFilter()),
+            ),
+          ],
           child: BirdsOverviewScreen(
             mode: BirdOverviewMode.picker,
             scrollController: scrollController,

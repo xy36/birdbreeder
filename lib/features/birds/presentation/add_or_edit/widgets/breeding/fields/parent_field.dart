@@ -35,10 +35,12 @@ class ParentField extends StatelessWidget {
     return switch (parentType) {
       ParentType.father => ParentPickerField.father(
           initialValue: parentBird,
+          speciesId: initialBird.speciesId,
           onChanged: onChanged,
         ),
       ParentType.mother => ParentPickerField.mother(
           initialValue: parentBird,
+          speciesId: initialBird.speciesId,
           onChanged: onChanged,
         ),
     };

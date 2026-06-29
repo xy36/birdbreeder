@@ -173,6 +173,7 @@ class _AddBreedingPairSheetState extends State<AddBreedingPairSheet> {
                         InbreedingBanner(result: inbreeding),
                       ParentPickerField.father(
                         initialValue: _male,
+                        speciesId: _female?.speciesId,
                         validator: FormBuilderValidators.required(),
                         enabled: widget.breedingPair == null,
                         onChanged: (bird) {
@@ -183,6 +184,7 @@ class _AddBreedingPairSheetState extends State<AddBreedingPairSheet> {
                       ),
                       ParentPickerField.mother(
                         initialValue: _female,
+                        speciesId: _male?.speciesId,
                         validator: FormBuilderValidators.required(),
                         enabled: widget.breedingPair == null,
                         onChanged: (bird) {
