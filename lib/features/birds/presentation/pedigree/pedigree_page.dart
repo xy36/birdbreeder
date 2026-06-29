@@ -14,6 +14,7 @@ import 'package:birdbreeder/models/bird/sex_enum.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/inbreeding_presentation.dart';
+import 'package:birdbreeder/shared/widgets/bottom_sheet/bottom_sheet_header.dart';
 import 'package:birdbreeder/shared/widgets/inbreeding_banner.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 import 'package:birdbreeder/theme/app_colors.dart';
@@ -47,6 +48,22 @@ class _PedigreePageState extends State<PedigreePage> {
   /// Current ancestor/descendant depth cap.
   int _depthLimit = 4;
 
+  /// Selected section: 0 = ancestors, 1 = descendants.
+  int _tab = 0;
+
+  /// Opens a sheet to choose the displayed pedigree depth.
+  Future<void> _pickDepth() async {
+    final picked = await openSheet<int>(
+      context,
+      _DepthSheet(
+        options: _options,
+        allCap: _allCap,
+        selected: _depthLimit,
+      ),
+    );
+    if (picked != null) setState(() => _depthLimit = picked);
+  }
+
   @override
   Widget build(BuildContext context) {
     final tr = context.tr;
@@ -64,91 +81,125 @@ class _PedigreePageState extends State<PedigreePage> {
         final ancestorKey = GlobalKey();
         final descendantKey = GlobalKey();
 
-        return DefaultTabController(
-          length: 2,
-          child: Scaffold(
-            appBar: AppBar(
-              leading: const AutoLeadingButton(),
-              titleSpacing: 0,
-              title: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(tr.pedigree.title),
-                  Text(
-                    focal.ringNumber ?? '',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          fontFamily: 'monospace',
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        ),
-                  ),
-                ],
-              ),
-              actions: [
-                PopupMenuButton<int>(
-                  icon: const Icon(AppIcons.depth),
-                  tooltip: tr.pedigree.depth,
-                  initialValue: _depthLimit,
-                  onSelected: (value) => setState(() => _depthLimit = value),
-                  itemBuilder: (_) => [
-                    for (final option in _options)
-                      CheckedPopupMenuItem<int>(
-                        value: option,
-                        checked: _depthLimit == option,
-                        child: Text(
-                          option == _allCap ? tr.pedigree.depth_all : '$option',
-                        ),
+        return Scaffold(
+          appBar: AppBar(
+            leading: const AutoLeadingButton(),
+            titleSpacing: 0,
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(tr.pedigree.title),
+                Text(
+                  focal.ringNumber ?? '',
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        fontFamily: 'monospace',
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
+                ),
+              ],
+            ),
+            actions: [
+              IconButton(
+                tooltip: tr.pedigree.depth,
+                icon: Badge(
+                  label: Text(
+                    _depthLimit == _allCap ? '∞' : '$_depthLimit',
+                  ),
+                  child: const Icon(AppIcons.depth),
+                ),
+                onPressed: _pickDepth,
+              ),
+              IconButton(
+                icon: const Icon(AppIcons.iosShare),
+                tooltip: tr.pedigree.share,
+                onPressed: () => _shareTree(
+                  context,
+                  _tab == 0 ? ancestorKey : descendantKey,
+                  tr.pedigree.share_filename(
+                    Ring: focal.ringNumber ?? 'vogel',
+                  ),
+                ),
+              ),
+            ],
+          ),
+          body: Column(
+            children: [
+              _StatsStrip(stats: stats),
+              Expanded(
+                child: IndexedStack(
+                  index: _tab,
+                  children: [
+                    _AncestorTree(
+                      focal: focal,
+                      maxDepth: cap,
+                      commonAncestorIds: stats.commonAncestorIds,
+                      repaintKey: ancestorKey,
+                    ),
+                    _DescendantTree(
+                      focal: focal,
+                      maxDepth: cap,
+                      repaintKey: descendantKey,
+                    ),
                   ],
                 ),
-                Builder(
-                  builder: (ctx) => IconButton(
-                    icon: const Icon(AppIcons.iosShare),
-                    tooltip: tr.pedigree.share,
-                    onPressed: () => _shareTree(
-                      ctx,
-                      DefaultTabController.of(ctx).index == 0
-                          ? ancestorKey
-                          : descendantKey,
-                      tr.pedigree
-                          .share_filename(Ring: focal.ringNumber ?? 'vogel'),
-                    ),
-                  ),
-                ),
-              ],
-              bottom: TabBar(
-                tabs: [
-                  Tab(text: tr.pedigree.section_ancestors),
-                  Tab(text: tr.pedigree.section_descendants),
-                ],
               ),
-            ),
-            body: Column(
-              children: [
-                _StatsStrip(stats: stats),
-                Expanded(
-                  child: TabBarView(
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: [
-                      _AncestorTree(
-                        focal: focal,
-                        maxDepth: cap,
-                        commonAncestorIds: stats.commonAncestorIds,
-                        repaintKey: ancestorKey,
-                      ),
-                      _DescendantTree(
-                        focal: focal,
-                        maxDepth: cap,
-                        repaintKey: descendantKey,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+            ],
+          ),
+          bottomNavigationBar: NavigationBar(
+            selectedIndex: _tab,
+            onDestinationSelected: (index) => setState(() => _tab = index),
+            destinations: [
+              NavigationDestination(
+                icon: const Icon(AppIcons.arrowUp),
+                label: tr.pedigree.section_ancestors,
+              ),
+              NavigationDestination(
+                icon: const Icon(AppIcons.arrowDown),
+                label: tr.pedigree.section_descendants,
+              ),
+            ],
           ),
         );
       },
+    );
+  }
+}
+
+/// Bottom sheet to pick how many generations of the pedigree are shown.
+class _DepthSheet extends StatelessWidget {
+  const _DepthSheet({
+    required this.options,
+    required this.allCap,
+    required this.selected,
+  });
+
+  final List<int> options;
+  final int allCap;
+  final int selected;
+
+  @override
+  Widget build(BuildContext context) {
+    final tr = context.tr.pedigree;
+    return SafeArea(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          BottomSheetHeader(title: tr.depth),
+          for (final option in options)
+            ListTile(
+              title: Text(option == allCap ? tr.depth_all : '$option'),
+              trailing: option == selected
+                  ? Icon(
+                      AppIcons.check,
+                      color: Theme.of(context).colorScheme.primary,
+                    )
+                  : null,
+              onTap: () => Navigator.of(context).pop(option),
+            ),
+          const SizedBox(height: 8),
+        ],
+      ),
     );
   }
 }
