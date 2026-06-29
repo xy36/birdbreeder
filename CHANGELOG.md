@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.0](https://github.com/xy36/birdbreeder/compare/v1.10.0...v1.11.0) (2026-06-29)
+
+
+### Features
+
+* Add speciesId parameter to ParentPickerField and update related components for better filtering ([573e117](https://github.com/xy36/birdbreeder/commit/573e1173851ecc9446b638203cb69c45f661e9b7))
+
 ## [1.10.0](https://github.com/xy36/birdbreeder/compare/v1.9.0...v1.10.0) (2026-06-29)
 
 
