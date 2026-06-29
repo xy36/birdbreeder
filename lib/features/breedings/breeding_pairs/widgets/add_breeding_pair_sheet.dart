@@ -1,16 +1,20 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/core/extensions/birds_extension.dart';
 import 'package:birdbreeder/core/extensions/breeding_pairs_extension.dart';
 import 'package:birdbreeder/core/extensions/generic_join.dart';
+import 'package:birdbreeder/core/genetics/inbreeding_calculator.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/breeding/entity/breeding_pair.dart';
 import 'package:birdbreeder/models/breeding/entity/breeding_pair_status.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/icons.dart';
+import 'package:birdbreeder/shared/inbreeding_presentation.dart';
 import 'package:birdbreeder/shared/widgets/bottom_sheet/bottom_sheet_footer.dart';
 import 'package:birdbreeder/shared/widgets/bottom_sheet/bottom_sheet_header.dart';
+import 'package:birdbreeder/shared/widgets/inbreeding_banner.dart';
 import 'package:birdbreeder/shared/widgets/picker/cage_picker_field.dart';
 import 'package:birdbreeder/shared/widgets/picker/parent_picker_field.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -64,9 +68,49 @@ class _AddBreedingPairSheetState extends State<AddBreedingPairSheet> {
     if (picked != null) setState(() => _startAt = picked);
   }
 
+  /// Inbreeding coefficient of the selected pair, or null while a bird is
+  /// missing.
+  InbreedingResult? get _inbreedingResult => (_male != null && _female != null)
+      ? inbreedingForPair(_male!, _female!)
+      : null;
+
+  /// Asks the user to confirm creating a pair with elevated inbreeding risk.
+  Future<bool> _confirmInbreeding(InbreedingResult result) async {
+    final tr = context.tr.inbreeding;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(tr.pair_warning_title),
+        content: Text(
+          tr.pair_warning_body(
+            Percent: formatInbreedingPercent(result.percent),
+            Severity: result.severity.label(dialogContext),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: Text(context.tr.common.cancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: Text(tr.proceed_anyway),
+          ),
+        ],
+      ),
+    );
+    return confirmed ?? false;
+  }
+
   Future<void> _submit() async {
     final formOk = _formKey.currentState?.validate() ?? false;
     if (!formOk) return;
+
+    final inbreeding = _inbreedingResult;
+    if (inbreeding != null && inbreeding.severity != InbreedingSeverity.none) {
+      final proceed = await _confirmInbreeding(inbreeding);
+      if (!proceed) return;
+    }
 
     setState(() => _submitting = true);
 
@@ -119,10 +163,14 @@ class _AddBreedingPairSheetState extends State<AddBreedingPairSheet> {
               key: _formKey,
               child: Builder(
                 builder: (context) {
+                  final inbreeding = _inbreedingResult;
                   return ListView(
                     padding: const EdgeInsets.all(12),
                     controller: scrollController,
                     children: <Widget>[
+                      if (inbreeding != null &&
+                          inbreeding.severity != InbreedingSeverity.none)
+                        InbreedingBanner(result: inbreeding),
                       ParentPickerField.father(
                         initialValue: _male,
                         validator: FormBuilderValidators.required(),

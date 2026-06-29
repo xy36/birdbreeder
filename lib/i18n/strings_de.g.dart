@@ -55,6 +55,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final TranslationsResourcesDe resources = TranslationsResourcesDe.internal(_root);
   late final TranslationsBirdsDe birds = TranslationsBirdsDe.internal(_root);
   late final TranslationsPedigreeDe pedigree = TranslationsPedigreeDe.internal(_root);
+  late final TranslationsInbreedingDe inbreeding = TranslationsInbreedingDe.internal(_root);
   late final TranslationsBirdDe bird = TranslationsBirdDe.internal(_root);
   late final TranslationsPairDetailDe pair_detail = TranslationsPairDetailDe.internal(_root);
   late final TranslationsBroodDe brood = TranslationsBroodDe.internal(_root);
@@ -700,6 +701,55 @@ class TranslationsPedigreeDe {
 
   /// de: 'Wischen für mehr Übersicht'
   String get swipe_hint => 'Wischen für mehr Übersicht';
+}
+
+// Path: inbreeding
+class TranslationsInbreedingDe {
+  TranslationsInbreedingDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Inzuchtkoeffizient'
+  String get coefficient => 'Inzuchtkoeffizient';
+
+  /// de: 'F'
+  String get coefficient_short => 'F';
+
+  /// de: 'Keine Inzucht'
+  String get severity_none => 'Keine Inzucht';
+
+  /// de: 'Gering'
+  String get severity_low => 'Gering';
+
+  /// de: 'Erhöht'
+  String get severity_elevated => 'Erhöht';
+
+  /// de: 'Hoch'
+  String get severity_high => 'Hoch';
+
+  /// de: '1 gemeinsamer Vorfahre'
+  String get common_ancestors_one => '1 gemeinsamer Vorfahre';
+
+  /// de: '{{count}} gemeinsame Vorfahren'
+  String common_ancestors_other({required Object Count}) => '${Count} gemeinsame Vorfahren';
+
+  /// de: 'Beitrag'
+  String get path_contribution => 'Beitrag';
+
+  /// de: 'Inzuchtkoeffizient: {{percent}}'
+  String banner_label({required Object Percent}) => 'Inzuchtkoeffizient: ${Percent}';
+
+  /// de: 'Inzucht-Warnung'
+  String get pair_warning_title => 'Inzucht-Warnung';
+
+  /// de: 'Die Verpaarung dieser Vögel ergibt einen Inzuchtkoeffizienten von {{percent}} ({{severity}}). Trotzdem anlegen?'
+  String pair_warning_body({required Object Percent, required Object Severity}) =>
+      'Die Verpaarung dieser Vögel ergibt einen Inzuchtkoeffizienten von ${Percent} (${Severity}). Trotzdem anlegen?';
+
+  /// de: 'Trotzdem anlegen'
+  String get proceed_anyway => 'Trotzdem anlegen';
 }
 
 // Path: bird

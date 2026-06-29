@@ -20,6 +20,7 @@ import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/utils.dart';
+import 'package:birdbreeder/shared/widgets/inbreeding_banner.dart';
 import 'package:birdbreeder/shared/widgets/navigate_back_button.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 import 'package:birdbreeder/theme/app_colors.dart';
@@ -67,6 +68,12 @@ class BreedingPairDetailsPage extends StatelessWidget {
         );
         final history = broods.where((b) => b != currentBrood).toList();
 
+        final father = pair.fatherResolved;
+        final mother = pair.motherResolved;
+        final inbreeding = (father != null && mother != null)
+            ? inbreedingForPair(father, mother)
+            : null;
+
         return Scaffold(
           appBar: AppBar(
             title: Text(tr.breeding_pairs.title),
@@ -96,6 +103,10 @@ class BreedingPairDetailsPage extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(12, 16, 12, 110),
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
+                    if (inbreeding != null && inbreeding.hasInbreeding) ...[
+                      InbreedingBanner(result: inbreeding),
+                      const SizedBox(height: 14),
+                    ],
                     if (currentBrood != null) ...[
                       _SectionLabel(
                         icon: Icons.local_fire_department,

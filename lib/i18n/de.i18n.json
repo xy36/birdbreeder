@@ -565,6 +565,21 @@
         },
         "swipe_hint": "Wischen für mehr Übersicht"
     },
+    "inbreeding": {
+        "coefficient": "Inzuchtkoeffizient",
+        "coefficient_short": "F",
+        "severity_none": "Keine Inzucht",
+        "severity_low": "Gering",
+        "severity_elevated": "Erhöht",
+        "severity_high": "Hoch",
+        "common_ancestors_one": "1 gemeinsamer Vorfahre",
+        "common_ancestors_other": "{{count}} gemeinsame Vorfahren",
+        "path_contribution": "Beitrag",
+        "banner_label": "Inzuchtkoeffizient: {{percent}}",
+        "pair_warning_title": "Inzucht-Warnung",
+        "pair_warning_body": "Die Verpaarung dieser Vögel ergibt einen Inzuchtkoeffizienten von {{percent}} ({{severity}}). Trotzdem anlegen?",
+        "proceed_anyway": "Trotzdem anlegen"
+    },
     "bird": {
         "title": "Vogel",
         "edit": "Vogel bearbeiten",

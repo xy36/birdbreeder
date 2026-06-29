@@ -3,6 +3,7 @@ import 'package:birdbreeder/core/extensions/bird_color_extension.dart';
 import 'package:birdbreeder/core/extensions/brood_extension.dart';
 import 'package:birdbreeder/core/extensions/cage_extension.dart';
 import 'package:birdbreeder/core/extensions/species_extension.dart';
+import 'package:birdbreeder/core/genetics/inbreeding_calculator.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/bird_breeder_resources.dart';
 import 'package:birdbreeder/models/breeding/entity/brood.dart';
@@ -88,6 +89,14 @@ extension BirdsExtension on Bird {
         .toList();
   }
 
+  InbreedingCalculator get _inbreedingCalculator => InbreedingCalculator(
+        resolve: (id) =>
+            id == null ? null : _birdBreederResources().birds.findById(id),
+      );
+
+  /// Wright inbreeding coefficient of this bird (coancestry of its parents).
+  InbreedingResult get inbreedingResult => _inbreedingCalculator.forBird(this);
+
   DateTime? get effectiveBornAt => hatchedAt ?? laidAt ?? fledgedAt ?? bornAt;
 
   bool changed<T>(Bird? initial, T? Function(Bird) pick) {
@@ -129,4 +138,13 @@ extension BirdsListExtension on List<Bird> {
   Bird? findById(String id) {
     return firstOrNullWhere((element) => element.id == id);
   }
+}
+
+/// Wright inbreeding coefficient of a hypothetical offspring of [sire] and
+/// [dam], resolved against the current bird resources.
+InbreedingResult inbreedingForPair(Bird sire, Bird dam) {
+  final birds = s1.get<BirdBreederCubit>().state.birdBreederResources.birds;
+  return InbreedingCalculator(
+    resolve: (id) => id == null ? null : birds.findById(id),
+  ).forOffspring(sire, dam);
 }

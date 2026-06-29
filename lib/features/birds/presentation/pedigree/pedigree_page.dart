@@ -6,12 +6,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/bird_color_extension.dart';
 import 'package:birdbreeder/core/extensions/birds_extension.dart';
+import 'package:birdbreeder/core/genetics/inbreeding_calculator.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/models/bird/bird_filter.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/bird/sex_enum.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:birdbreeder/shared/icons.dart';
+import 'package:birdbreeder/shared/inbreeding_presentation.dart';
+import 'package:birdbreeder/shared/widgets/inbreeding_banner.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
 import 'package:birdbreeder/theme/app_colors.dart';
 import 'package:flutter/rendering.dart';
@@ -73,7 +76,7 @@ class _PedigreePageState extends State<PedigreePage> {
                 children: [
                   Text(tr.pedigree.title),
                   Text(
-                    '${focal.ringNumber ?? '—'} · ${tr.pedigree.subtitle}',
+                    focal.ringNumber ?? '',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           fontFamily: 'monospace',
                           color: Theme.of(context).colorScheme.onSurfaceVariant,
@@ -211,28 +214,13 @@ int _ancestorDepth(Bird bird, int limit) {
   return 1 + math.max(fatherDepth, motherDepth);
 }
 
-/// A bird shared between the focal's paternal and maternal lines, with the
-/// generation (depth) at which it appears on each side.
-class _InbreedingLoop {
-  const _InbreedingLoop({
-    required this.ancestor,
-    required this.fatherDepth,
-    required this.motherDepth,
-  });
-
-  final Bird ancestor;
-  final int fatherDepth;
-  final int motherDepth;
-}
-
-/// Aggregate pedigree metrics for the header strip and inbreeding detection.
+/// Aggregate pedigree metrics for the header strip and inbreeding display.
 class _PedigreeStats {
   const _PedigreeStats({
     required this.generations,
     required this.ancestorsKnown,
     required this.descendants,
-    required this.commonAncestorIds,
-    required this.inbreedingLoops,
+    required this.inbreeding,
   });
 
   factory _PedigreeStats.of(
@@ -240,54 +228,22 @@ class _PedigreeStats {
     int generationCap = 4,
     int descendantCap = 5,
   }) {
-    final birdsById = <String, Bird>{};
+    final ancestorIds = <String>{};
 
-    /// Shortest generation (parent = 1) at which each ancestor of [root]
-    /// appears, capped by [generationCap].
-    Map<String, int> lineDepths(Bird? root) {
-      final depths = <String, int>{};
-      void walk(Bird? bird, int depth) {
-        if (bird == null || depth > generationCap) return;
-        final existing = depths[bird.id];
-        if (existing != null && existing <= depth) return;
-        depths[bird.id] = depth;
-        birdsById[bird.id] = bird;
-        walk(bird.fatherResolved, depth + 1);
-        walk(bird.motherResolved, depth + 1);
+    /// Collects ancestor ids of [root] up to [generationCap].
+    void walkUp(Bird? bird, int depth) {
+      if (bird == null ||
+          depth > generationCap ||
+          ancestorIds.contains(bird.id)) {
+        return;
       }
-
-      walk(root, 1);
-      return depths;
+      ancestorIds.add(bird.id);
+      walkUp(bird.fatherResolved, depth + 1);
+      walkUp(bird.motherResolved, depth + 1);
     }
 
-    final fatherDepths = lineDepths(focal.fatherResolved);
-    final motherDepths = lineDepths(focal.motherResolved);
-    final commonIds = fatherDepths.keys.where(motherDepths.containsKey).toSet();
-
-    // Most-recent common ancestors: drop any common ancestor that is the parent
-    // of another common ancestor (its descendant-side bird is the real loop).
-    final notMostRecent = <String>{};
-    for (final id in commonIds) {
-      final bird = birdsById[id]!;
-      for (final parentId in [bird.fatherId, bird.motherId]) {
-        if (parentId != null && commonIds.contains(parentId)) {
-          notMostRecent.add(parentId);
-        }
-      }
-    }
-    final mrcaIds = commonIds.difference(notMostRecent);
-
-    final loops = [
-      for (final id in mrcaIds)
-        _InbreedingLoop(
-          ancestor: birdsById[id]!,
-          fatherDepth: fatherDepths[id]!,
-          motherDepth: motherDepths[id]!,
-        ),
-    ]..sort(
-        (a, b) => (a.fatherDepth + a.motherDepth)
-            .compareTo(b.fatherDepth + b.motherDepth),
-      );
+    walkUp(focal.fatherResolved, 1);
+    walkUp(focal.motherResolved, 1);
 
     final descendantIds = <String>{};
     void walkDown(Bird bird, int depth, Set<String> path) {
@@ -303,10 +259,9 @@ class _PedigreeStats {
 
     return _PedigreeStats(
       generations: _ancestorDepth(focal, generationCap),
-      ancestorsKnown: {...fatherDepths.keys, ...motherDepths.keys}.length,
+      ancestorsKnown: ancestorIds.length,
       descendants: descendantIds.length,
-      commonAncestorIds: mrcaIds,
-      inbreedingLoops: loops,
+      inbreeding: focal.inbreedingResult,
     );
   }
 
@@ -314,13 +269,13 @@ class _PedigreeStats {
   final int ancestorsKnown;
   final int descendants;
 
-  /// Most-recent common ancestors (loop entry points), used to mark nodes.
-  final Set<String> commonAncestorIds;
+  /// Wright inbreeding coefficient of the focal bird and its contributing loops.
+  final InbreedingResult inbreeding;
 
-  /// Detailed shared ancestors with their position on each parental line.
-  final List<_InbreedingLoop> inbreedingLoops;
+  /// Common ancestors contributing to the coefficient, used to mark nodes.
+  Set<String> get commonAncestorIds => inbreeding.commonAncestorIds;
 
-  bool get hasInbreeding => inbreedingLoops.isNotEmpty;
+  bool get hasInbreeding => inbreeding.hasInbreeding;
 }
 
 /// Captures the tree behind [repaintKey] as a PNG and opens the share sheet.
@@ -350,7 +305,7 @@ class _StatsStrip extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final p = context.tr.pedigree;
-    final warn = context.appColors.statusWarning;
+    final result = stats.inbreeding;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
@@ -358,30 +313,37 @@ class _StatsStrip extends StatelessWidget {
         color: cs.surfaceContainerLow,
         border: Border(bottom: BorderSide(color: cs.outlineVariant)),
       ),
-      child: Wrap(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 8,
-        runSpacing: 6,
         children: [
-          _StatChip(label: p.stats.generations, value: '${stats.generations}'),
-          _StatChip(label: p.stats.ancestors, value: '${stats.ancestorsKnown}'),
-          _StatChip(label: p.stats.descendants, value: '${stats.descendants}'),
-          _StatChip(
-            label: stats.hasInbreeding
-                ? p.stats.inbreeding
-                : p.stats.no_inbreeding,
-            value:
-                stats.hasInbreeding ? '${stats.inbreedingLoops.length}' : '✓',
-            icon: stats.hasInbreeding ? AppIcons.warning : null,
-            color: stats.hasInbreeding ? warn : null,
-            onTap: stats.hasInbreeding
-                ? () => showModalBottomSheet<void>(
-                      context: context,
-                      showDragHandle: true,
-                      builder: (_) =>
-                          _InbreedingSheet(loops: stats.inbreedingLoops),
-                    )
-                : null,
+          Wrap(
+            spacing: 8,
+            runSpacing: 6,
+            children: [
+              _StatChip(
+                label: p.stats.generations,
+                value: '${stats.generations}',
+              ),
+              _StatChip(
+                label: p.stats.ancestors,
+                value: '${stats.ancestorsKnown}',
+              ),
+              _StatChip(
+                label: p.stats.descendants,
+                value: '${stats.descendants}',
+              ),
+            ],
           ),
+          if (stats.hasInbreeding)
+            InbreedingBanner(
+              result: result,
+              onTap: () => showModalBottomSheet<void>(
+                context: context,
+                showDragHandle: true,
+                builder: (_) => _InbreedingSheet(result: result),
+              ),
+            ),
         ],
       ),
     );
@@ -392,77 +354,62 @@ class _StatChip extends StatelessWidget {
   const _StatChip({
     required this.label,
     required this.value,
-    this.icon,
-    this.color,
-    this.onTap,
   });
 
   final String label;
   final String value;
-  final IconData? icon;
-  final Color? color;
-  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final accent = color ?? cs.onSurfaceVariant;
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(8),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        decoration: BoxDecoration(
-          color: cs.surface,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(
-            color: color?.withValues(alpha: 0.5) ?? cs.outlineVariant,
+    final accent = cs.onSurfaceVariant;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      decoration: BoxDecoration(
+        color: cs.surface,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: cs.outlineVariant),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            value,
+            style: TextStyle(
+              fontFamily: 'monospace',
+              fontSize: 13,
+              fontWeight: FontWeight.w700,
+              color: accent,
+            ),
           ),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (icon != null) ...[
-              Icon(icon, size: 13, color: accent),
-              const SizedBox(width: 4),
-            ],
-            Text(
-              value,
-              style: TextStyle(
-                fontFamily: 'monospace',
-                fontSize: 13,
-                fontWeight: FontWeight.w700,
-                color: accent,
-              ),
+          const SizedBox(width: 5),
+          Text(
+            label.toUpperCase(),
+            style: TextStyle(
+              fontSize: 9,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0.5,
+              color: cs.onSurfaceVariant,
             ),
-            const SizedBox(width: 5),
-            Text(
-              label.toUpperCase(),
-              style: TextStyle(
-                fontSize: 9,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 0.5,
-                color: cs.onSurfaceVariant,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
 
-/// Explains which ancestors are shared between both parental lines.
+/// Shows the inbreeding coefficient and the shared ancestors that produce it.
 class _InbreedingSheet extends StatelessWidget {
-  const _InbreedingSheet({required this.loops});
+  const _InbreedingSheet({required this.result});
 
-  final List<_InbreedingLoop> loops;
+  final InbreedingResult result;
 
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final p = context.tr.pedigree;
-    final warn = context.appColors.statusWarning;
+    final tr = context.tr.inbreeding;
+    final severityColor = result.severity.colorOf(context);
     return SafeArea(
       child: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
@@ -472,11 +419,21 @@ class _InbreedingSheet extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(AppIcons.warning, size: 18, color: warn),
+                Icon(AppIcons.warning, size: 18, color: severityColor),
                 const SizedBox(width: 8),
                 Text(
-                  p.stats.inbreeding,
+                  '${tr.coefficient}: '
+                  '${formatInbreedingPercent(result.percent)}',
                   style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  result.severity.label(context),
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    color: severityColor,
+                  ),
                 ),
               ],
             ),
@@ -486,7 +443,12 @@ class _InbreedingSheet extends StatelessWidget {
               style: TextStyle(fontSize: 12, color: cs.onSurfaceVariant),
             ),
             const SizedBox(height: 12),
-            for (final loop in loops) _InbreedingRow(loop: loop),
+            Column(
+              spacing: 4,
+              children: [
+                for (final path in result.paths) _InbreedingRow(path: path),
+              ],
+            ),
           ],
         ),
       ),
@@ -495,23 +457,29 @@ class _InbreedingSheet extends StatelessWidget {
 }
 
 class _InbreedingRow extends StatelessWidget {
-  const _InbreedingRow({required this.loop});
+  const _InbreedingRow({required this.path});
 
-  final _InbreedingLoop loop;
+  final InbreedingPath path;
 
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final p = context.tr.pedigree;
-    final bird = loop.ancestor;
+    final tr = context.tr.inbreeding;
+    final bird = path.ancestor;
     final sexColor = bird.sex.colorOf(context);
     final color = bird.colorResolved;
+    final contributionPercent =
+        formatInbreedingPercent(path.contribution * 100);
 
     return InkWell(
       onTap: () => context.router.push(BirdRoute(bird: bird)),
       borderRadius: BorderRadius.circular(10),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
+        padding: const EdgeInsets.symmetric(
+          vertical: 8,
+          horizontal: 4,
+        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -562,17 +530,36 @@ class _InbreedingRow extends StatelessWidget {
                   ),
                   const SizedBox(height: 3),
                   Text(
-                    '${p.via_father}: ${_generationLabel(context, loop.fatherDepth)}',
+                    '${p.via_father}: '
+                    '${_generationLabel(context, path.sireGenerations + 1)}',
                     style: TextStyle(fontSize: 11, color: cs.onSurfaceVariant),
                   ),
                   Text(
-                    '${p.via_mother}: ${_generationLabel(context, loop.motherDepth)}',
+                    '${p.via_mother}: '
+                    '${_generationLabel(context, path.damGenerations + 1)}',
                     style: TextStyle(fontSize: 11, color: cs.onSurfaceVariant),
                   ),
                 ],
               ),
             ),
-            Icon(AppIcons.chevronRight, size: 18, color: cs.onSurfaceVariant),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  contributionPercent,
+                  style: TextStyle(
+                    fontFamily: 'monospace',
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    color: cs.onSurface,
+                  ),
+                ),
+                Text(
+                  tr.path_contribution,
+                  style: TextStyle(fontSize: 9, color: cs.onSurfaceVariant),
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -583,7 +570,7 @@ class _InbreedingRow extends StatelessWidget {
 const double _columnWidth = 180;
 const double _connectorWidth = 28;
 const double _columnStride = _columnWidth + _connectorWidth;
-const double _rowSlot = 76;
+const double _rowSlot = 86;
 
 /// Ancestor tree of the focal bird. Every known bird sends out two branches
 /// (father on top, mother below). A known parent recurses one generation up; a
@@ -961,6 +948,7 @@ class _PedigreeNode extends StatelessWidget {
     final danger = context.appColors.statusError;
     final sexColor = bird.sex.colorOf(context);
     final color = bird.colorResolved;
+    final species = bird.speciesResolved;
     final isOwn = bird.isOwn;
     final deceased = bird.diedAt != null;
     final fg = focal ? cs.onPrimaryContainer : cs.onSurface;
@@ -1046,6 +1034,12 @@ class _PedigreeNode extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 3),
+            Text(
+              species?.name ?? '—',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontSize: 9, color: mutedFg),
+            ),
             Row(
               children: [
                 Container(
