@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.10.0](https://github.com/xy36/birdbreeder/compare/v1.9.0...v1.10.0) (2026-06-29)
+
+
+### Features
+
+* Enhance pedigree page and localization with new parent addition labels ([3d4cf75](https://github.com/xy36/birdbreeder/commit/3d4cf751d3cfab957cd221f69921bfe630e8d4d8))
+* Implement inbreeding calculator and integrate into breeding pair details and pedigree ([7fe2eff](https://github.com/xy36/birdbreeder/commit/7fe2effaa6a47cec1f5da5aa8d6c3081aba268c0))
+* Use sheet for depth selection feature and move tab view to bottom ([a0470a8](https://github.com/xy36/birdbreeder/commit/a0470a830b19f8831ed516f00be4af924e374804))
+
 ## [1.9.0](https://github.com/xy36/birdbreeder/compare/v1.8.0...v1.9.0) (2026-06-27)
 
 
