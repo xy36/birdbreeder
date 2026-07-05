@@ -148,16 +148,10 @@
             "light": "Hell",
             "dark": "Dunkel"
         },
-        "data": {
-            "section_title": "Daten",
-            "export_json": "Daten exportieren (JSON)",
-            "import_json": "Daten importieren (JSON)",
-            "import_dialog": {
-                "title": "Daten importieren",
-                "content": "Möchtest du die vorhandenen Daten vorher löschen oder die importierten Daten hinzufügen?",
-                "add": "Hinzufügen",
-                "replace": "Ersetzen"
-            }
+        "profile": {
+            "breeder_number(value)": "Züchternummer {{value}}",
+            "no_contact": "Kein Profil-Kontakt hinterlegt",
+            "edit": "Profil bearbeiten"
         },
         "user": {
             "email(value)": "Email: {{value}}",
@@ -165,13 +159,6 @@
             "last_name(value)": "Nachname: {{value}}"
         },
         "events": {
-            "export_failed(error)": "Export fehlgeschlagen: {{error}}",
-            "export_succeeded": "Export erfolgreich",
-            "import_failed(error)": "Import fehlgeschlagen: {{error}}",
-            "imported(param=count)": {
-                "one": "1 Eintrag importiert",
-                "other": "{count} Einträge importiert"
-            },
             "switch_failed(error)": "Wechsel fehlgeschlagen: {{error}}",
             "switched_to_local(param=count)": {
                 "one": "1 Eintrag übertragen. Lokal-Modus aktiv.",
@@ -197,9 +184,30 @@
         "actions": {
             "share_latest": "Letztes Backup teilen",
             "create_now": "Backup jetzt erstellen",
-            "restore": "Backup wiederherstellen…",
+            "create_and_save": "Backup erstellen & speichern",
+            "restore": "Backup wiederherstellen",
             "manage": "Alle Backups verwalten…",
             "new": "Neu"
+        },
+        "manual_section": "Manuelles Backup",
+        "last_backup_label": "Letztes Backup",
+        "no_backup_size": "Noch kein Backup",
+        "create_hint": "Öffnet den Teilen-Dialog – wähle Drive, Dateien, E-Mail o.ä.",
+        "restore_hint": "Z.B. nach Gerätewechsel – spielt einen älteren Stand zurück.",
+        "restore_sheet": {
+            "title": "Backup auswählen",
+            "available": "Verfügbare Sicherungen",
+            "kind_cloud": "CLOUD",
+            "kind_manual": "MANUELL",
+            "pick_file_title": "Datei vom Gerät wählen",
+            "pick_file_sub": ".zip-Backup manuell auswählen",
+            "empty": "Keine Backups gefunden",
+            "choose_folder_first": "Erst Cloud-Ordner wählen",
+            "confirm_title": "Backup wiederherstellen?",
+            "warning(name)": "Deine aktuellen Daten auf diesem Gerät werden durch diesen Stand ersetzt. Neuere Änderungen als „{{name}}“ gehen verloren.",
+            "confirm_button": "Ja, ersetzen und wiederherstellen",
+            "restoring": "Wird wiederhergestellt …",
+            "back": "Zurück"
         },
         "menu": {
             "share": "Teilen",
@@ -234,6 +242,54 @@
             "share_failed(error)": "Teilen fehlgeschlagen: {{error}}",
             "delete_failed(error)": "Löschen fehlgeschlagen: {{error}}",
             "restore_failed(error)": "Wiederherstellen fehlgeschlagen: {{error}}"
+        },
+        "cloud": {
+            "section_title": "Cloud-Backup",
+            "enable": "Automatisch in Cloud sichern",
+            "choose_location": "Cloud-Ordner wählen…",
+            "location_none": "Kein Cloud-Ordner gewählt",
+            "location_set(name)": "Ziel: {{name}}",
+            "sync_now": "Jetzt synchronisieren",
+            "auto_title": "Automatisches Cloud-Backup",
+            "auto_on": "Aktiv · sichert deine Daten automatisch",
+            "auto_off": "Deaktiviert",
+            "folder_label": "Cloud-Ordner",
+            "change": "Ändern",
+            "choose_folder_dialog": {
+                "title": "Cloud-Ordner wählen?",
+                "content": "Damit automatische Backups gesichert werden können, wähle jetzt einen Ordner in deiner Cloud (z.B. Google Drive).",
+                "confirm": "Ordner wählen"
+            },
+            "last_sync_label": "Letzte Synchronisierung",
+            "syncing": "Wird synchronisiert …",
+            "settings": "Sync-Einstellungen",
+            "interval": {
+                "label": "Auto-Backup-Intervall",
+                "sub": "Wie oft beim App-Start automatisch gesichert wird",
+                "sheet_title": "Intervall wählen",
+                "every_launch": "Bei jedem Start",
+                "daily": "Täglich",
+                "weekly": "Wöchentlich",
+                "off": "Manuell"
+            },
+            "status": {
+                "synced_today": "Zuletzt synchronisiert: heute",
+                "synced_days_ago(param=count)": {
+                    "one": "Zuletzt synchronisiert: vor 1 Tag",
+                    "other": "Zuletzt synchronisiert: vor {count} Tagen"
+                },
+                "never": "Noch nicht synchronisiert",
+                "unavailable_icloud": "Nicht bei iCloud angemeldet",
+                "unavailable_folder": "Kein Zugriff auf den Ordner – bitte neu wählen"
+            },
+            "events": {
+                "location_chosen(name)": "Cloud-Ordner gesetzt: {{name}}",
+                "location_failed": "Kein Ordner gewählt",
+                "sync_succeeded": "In Cloud gesichert",
+                "sync_failed(error)": "Cloud-Sync fehlgeschlagen: {{error}}",
+                "unavailable_icloud": "Nicht bei iCloud angemeldet",
+                "unavailable_folder": "Kein Zugriff auf den Cloud-Ordner. Bitte neu wählen."
+            }
         }
     },
     "breedings": {

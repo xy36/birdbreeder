@@ -1,112 +1,54 @@
-import 'dart:async';
-
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/account/cubit/account_cubit.dart';
+import 'package:birdbreeder/features/account/widgets/account_ui.dart';
 import 'package:birdbreeder/features/account/widgets/appearance_section.dart';
-import 'package:birdbreeder/features/backup/widgets/backup_section.dart';
+import 'package:birdbreeder/features/account/widgets/cloud_backup_card.dart';
+import 'package:birdbreeder/features/account/widgets/manual_backup_card.dart';
+import 'package:birdbreeder/features/account/widgets/profile_hero_card.dart';
+import 'package:birdbreeder/services/backup/cloud/cloud_backup_manager.dart';
 import 'package:birdbreeder/shared/icons.dart';
-import 'package:birdbreeder/shared/widgets/buttons/data_action_button.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final tr = context.tr;
     return Scaffold(
-      appBar: SharedAppBarWithDrawer(title: context.tr.account.title),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  AppIcons.phoneAndroid,
-                  size: 64,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  context.tr.account.local_mode.title,
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  context.tr.account.local_mode.description,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                const SizedBox(height: 32),
-                const Divider(),
-                const SizedBox(height: 16),
-                Text(
-                  context.tr.backup.section_title,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(height: 16),
-                const BackupSection(),
-                const SizedBox(height: 32),
-                const Divider(),
-                const SizedBox(height: 16),
-                Text(
-                  context.tr.account.appearance.title,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(height: 16),
-                const AppearanceSection(),
-                const SizedBox(height: 32),
-                const Divider(),
-                const SizedBox(height: 16),
-                Text(
-                  context.tr.account.data.section_title,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(height: 16),
-                DataActionButton(
-                  icon: AppIcons.upload,
-                  label: context.tr.account.data.export_json,
-                  onPressed: () =>
-                      unawaited(context.read<AccountCubit>().exportJson()),
-                ),
-                const SizedBox(height: 8),
-                DataActionButton(
-                  icon: AppIcons.download,
-                  label: context.tr.account.data.import_json,
-                  onPressed: () => unawaited(_importData(context)),
-                ),
-              ],
+      appBar: SharedAppBarWithDrawer(title: tr.account.title),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(12, 8, 12, 40),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const ProfileHeroCard(),
+            const SizedBox(height: 16),
+            AccountSectionLabel(
+              icon: AppIcons.paletteOutlined,
+              label: tr.account.appearance.title,
             ),
-          ),
+            const AccountCard(
+              child: Padding(
+                padding: EdgeInsets.all(14),
+                child: AppearanceSection(),
+              ),
+            ),
+            const SizedBox(height: 16),
+            AccountSectionLabel(
+              icon: AppIcons.save,
+              label: tr.backup.manual_section,
+            ),
+            const ManualBackupCard(),
+            if (CloudBackupManager.isSupported) ...[
+              const SizedBox(height: 16),
+              AccountSectionLabel(
+                icon: AppIcons.cloud,
+                label: tr.backup.cloud.section_title,
+              ),
+              const CloudBackupCard(),
+            ],
+          ],
         ),
       ),
     );
-  }
-
-  Future<void> _importData(BuildContext context) async {
-    final tr = context.tr;
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(tr.account.data.import_dialog.title),
-        content: Text(tr.account.data.import_dialog.content),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(),
-            child: Text(tr.common.cancel),
-          ),
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(false),
-            child: Text(tr.account.data.import_dialog.add),
-          ),
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(true),
-            child: Text(tr.account.data.import_dialog.replace),
-          ),
-        ],
-      ),
-    );
-    if (confirmed == null || !context.mounted) return;
-    await context.read<AccountCubit>().importJson(clearExisting: confirmed);
   }
 }

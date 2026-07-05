@@ -148,6 +148,15 @@ class AppIcons {
   static const IconData cleaningServicesOutlined =
       Icons.cleaning_services_outlined;
   static const IconData cloud = Icons.cloud;
+  static const IconData cloudDone = Icons.cloud_done;
+  static const IconData cloudOff = Icons.cloud_off;
+  static const IconData cloudSync = Icons.cloud_sync;
+  static const IconData folder = Icons.folder;
+  static const IconData folderOpen = Icons.folder_open;
+  static const IconData help = Icons.help_outline;
+  static const IconData expandMore = Icons.expand_more;
+  static const IconData radioChecked = Icons.radio_button_checked;
+  static const IconData radioUnchecked = Icons.radio_button_unchecked;
   static const IconData colorize = Icons.colorize;
   static const IconData contacts = Icons.contacts;
   static const IconData cageBreedingBox = Icons.cottage_outlined;

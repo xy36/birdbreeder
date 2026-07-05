@@ -36,9 +36,6 @@ class SaveBar extends StatelessWidget {
             onPressed: onCancel,
             style: TextButton.styleFrom(
               foregroundColor: cs.onSurfaceVariant,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22),
-              ),
               padding: const EdgeInsets.symmetric(horizontal: 18),
               minimumSize: const Size(0, 44),
             ),
@@ -48,9 +45,6 @@ class SaveBar extends StatelessWidget {
             child: FilledButton.icon(
               onPressed: saveEnabled ? onSave : null,
               style: FilledButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(22),
-                ),
                 minimumSize: const Size(0, 44),
               ),
               icon: const Icon(AppIcons.accept, size: 18),

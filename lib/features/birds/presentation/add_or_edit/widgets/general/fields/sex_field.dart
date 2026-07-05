@@ -1,4 +1,3 @@
-import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/cubit/bird_cubit.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
@@ -15,59 +14,88 @@ class SexField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+
     return FieldWithLabel(
       label: context.tr.common.sex.name,
       hasChangedIndicator:
           bird.sex != context.read<BirdCubit>().initialBird?.sex,
-      child: Row(
-        children: [
-          Expanded(
-            child: SegmentedButton(
-              style: SegmentedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          color: scheme.surfaceContainerHighest,
+          borderRadius: BorderRadius.circular(14),
+        ),
+        child: Row(
+          children: [
+            for (final sex in Sex.values)
+              Expanded(
+                child: _SexSegment(
+                  sex: sex,
+                  selected: sex == bird.sex,
+                  onTap: () => context.read<BirdCubit>().changeBird(
+                        bird.copyWith(sex: sex),
+                      ),
                 ),
               ),
-              showSelectedIcon: false,
-              segments: <ButtonSegment<Sex>>[
-                ...Sex.values.map(
-                  (e) => ButtonSegment<Sex>(
-                    value: e,
-                    label: Padding(
-                      padding: const EdgeInsets.all(4),
-                      child: Column(
-                        spacing: 8,
-                        children: [
-                          CircleAvatar(
-                            radius: 20,
-                            backgroundColor: Theme.of(context)
-                                .colorScheme
-                                .onSurface
-                                .withAlpha(35),
-                            child: Icon(
-                              e.iconData,
-                              color: Theme.of(context).colorScheme.onSurface,
-                            ),
-                          ),
-                          Text(
-                            e.getDisplayName(context),
-                            style: context.bodyLarge,
-                          ),
-                        ],
-                      ),
-                    ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// A single stacked-icon card within [SexField].
+class _SexSegment extends StatelessWidget {
+  const _SexSegment({
+    required this.sex,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final Sex sex;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final labelColor = selected ? scheme.onSurface : scheme.onSurfaceVariant;
+
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(10),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        decoration: BoxDecoration(
+          color: selected ? scheme.primaryContainer : Colors.transparent,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: selected
+              ? [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.10),
+                    blurRadius: 6,
+                    offset: const Offset(0, 2),
                   ),
-                ),
-              ],
-              selected: <Sex>{bird.sex},
-              onSelectionChanged: (sex) {
-                context.read<BirdCubit>().changeBird(
-                      bird.copyWith(sex: sex.first),
-                    );
-              },
+                ]
+              : null,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(sex.iconData, size: 22, color: sex.colorOf(context)),
+            const SizedBox(height: 6),
+            Text(
+              sex.getDisplayName(context),
+              style: TextStyle(
+                fontSize: 12.5,
+                fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
+                color: labelColor,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

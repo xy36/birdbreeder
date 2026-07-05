@@ -7,9 +7,8 @@ Future<void> showBackupReminderDialog(BuildContext context) async {
   final days = await BackupService.daysSinceLastExternal();
   if (!context.mounted) return;
 
-  final ageText = days == null
-      ? tr.reminder.never
-      : tr.reminder.age(count: days);
+  final ageText =
+      days == null ? tr.reminder.never : tr.reminder.age(count: days);
 
   await showDialog<void>(
     context: context,

@@ -3,6 +3,9 @@ import 'dart:developer';
 
 import 'package:birdbreeder/i18n/strings.g.dart';
 import 'package:birdbreeder/services/backup/backup_service.dart';
+import 'package:birdbreeder/services/backup/cloud/cloud_backup_manager.dart';
+import 'package:birdbreeder/services/images/image_reference_resolver.dart';
+import 'package:birdbreeder/services/images/image_store.dart';
 import 'package:birdbreeder/services/initialization_service.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/services/logging_service.dart';
@@ -68,8 +71,14 @@ Future<void> _maybeAutoSnapshot() async {
   final logger = s1.get<LoggingService>().logger;
   try {
     if (await BackupService.shouldAutoSnapshot()) {
-      await BackupService.createSnapshot();
+      final snapshot = await BackupService.createSnapshot();
       await BackupService.rotateSnapshots();
+      if (await CloudBackupManager.isEnabled()) {
+        await CloudBackupManager.syncSnapshot(snapshot);
+      }
+      // Safe point to reclaim orphaned image blobs (post-rotation, never
+      // during restore). No-op until an image producer exists.
+      await ImageStore.gc(await ImageReferenceResolver.referencedHashes());
     }
   } on Object catch (e, st) {
     logger.w('Auto-snapshot failed: $e', error: e, stackTrace: st);

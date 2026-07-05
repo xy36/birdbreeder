@@ -5,6 +5,7 @@ import 'package:birdbreeder/app.dart';
 import 'package:birdbreeder/features/backup/cubit/backup_cubit_event.dart';
 import 'package:birdbreeder/i18n/strings.g.dart';
 import 'package:birdbreeder/services/backup/backup_service.dart';
+import 'package:birdbreeder/services/backup/cloud/cloud_backup_manager.dart';
 import 'package:birdbreeder/services/database/app_database.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:bloc/bloc.dart';
@@ -34,9 +35,15 @@ class BackupCubit extends Cubit<BackupState>
 
   Future<void> createBackup() async {
     try {
-      await BackupService.createSnapshot();
+      final snapshot = await BackupService.createSnapshot();
       await BackupService.rotateSnapshots();
       emitPresentation(const BackupCubitEvent.created());
+      // Best-effort mirror to the cloud folder if the user enabled it; the
+      // local snapshot already succeeded, so cloud failure stays silent here
+      // (the dedicated cloud section surfaces its own status).
+      if (await CloudBackupManager.isEnabled()) {
+        unawaited(CloudBackupManager.syncSnapshot(snapshot));
+      }
       await refresh();
     } on Exception catch (e) {
       emitPresentation(BackupCubitEvent.createFailed(e.toString()));

@@ -166,7 +166,7 @@ class TranslationsAccountDe {
   late final TranslationsAccountSwitchToLocalDialogDe switch_to_local_dialog = TranslationsAccountSwitchToLocalDialogDe.internal(_root);
   late final TranslationsAccountLocalModeDe local_mode = TranslationsAccountLocalModeDe.internal(_root);
   late final TranslationsAccountAppearanceDe appearance = TranslationsAccountAppearanceDe.internal(_root);
-  late final TranslationsAccountDataDe data = TranslationsAccountDataDe.internal(_root);
+  late final TranslationsAccountProfileDe profile = TranslationsAccountProfileDe.internal(_root);
   late final TranslationsAccountUserDe user = TranslationsAccountUserDe.internal(_root);
   late final TranslationsAccountEventsDe events = TranslationsAccountEventsDe.internal(_root);
 }
@@ -199,11 +199,29 @@ class TranslationsBackupDe {
 
   late final TranslationsBackupExternalDe external = TranslationsBackupExternalDe.internal(_root);
   late final TranslationsBackupActionsDe actions = TranslationsBackupActionsDe.internal(_root);
+
+  /// de: 'Manuelles Backup'
+  String get manual_section => 'Manuelles Backup';
+
+  /// de: 'Letztes Backup'
+  String get last_backup_label => 'Letztes Backup';
+
+  /// de: 'Noch kein Backup'
+  String get no_backup_size => 'Noch kein Backup';
+
+  /// de: 'Öffnet den Teilen-Dialog – wähle Drive, Dateien, E-Mail o.ä.'
+  String get create_hint => 'Öffnet den Teilen-Dialog – wähle Drive, Dateien, E-Mail o.ä.';
+
+  /// de: 'Z.B. nach Gerätewechsel – spielt einen älteren Stand zurück.'
+  String get restore_hint => 'Z.B. nach Gerätewechsel – spielt einen älteren Stand zurück.';
+
+  late final TranslationsBackupRestoreSheetDe restore_sheet = TranslationsBackupRestoreSheetDe.internal(_root);
   late final TranslationsBackupMenuDe menu = TranslationsBackupMenuDe.internal(_root);
   late final TranslationsBackupDeleteDialogDe delete_dialog = TranslationsBackupDeleteDialogDe.internal(_root);
   late final TranslationsBackupRestoreDialogDe restore_dialog = TranslationsBackupRestoreDialogDe.internal(_root);
   late final TranslationsBackupReminderDe reminder = TranslationsBackupReminderDe.internal(_root);
   late final TranslationsBackupEventsDe events = TranslationsBackupEventsDe.internal(_root);
+  late final TranslationsBackupCloudDe cloud = TranslationsBackupCloudDe.internal(_root);
 }
 
 // Path: breedings
@@ -1639,24 +1657,22 @@ class TranslationsAccountAppearanceDe {
   String get dark => 'Dunkel';
 }
 
-// Path: account.data
-class TranslationsAccountDataDe {
-  TranslationsAccountDataDe.internal(this._root);
+// Path: account.profile
+class TranslationsAccountProfileDe {
+  TranslationsAccountProfileDe.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
   // Translations
 
-  /// de: 'Daten'
-  String get section_title => 'Daten';
+  /// de: 'Züchternummer {{value}}'
+  String breeder_number({required Object Value}) => 'Züchternummer ${Value}';
 
-  /// de: 'Daten exportieren (JSON)'
-  String get export_json => 'Daten exportieren (JSON)';
+  /// de: 'Kein Profil-Kontakt hinterlegt'
+  String get no_contact => 'Kein Profil-Kontakt hinterlegt';
 
-  /// de: 'Daten importieren (JSON)'
-  String get import_json => 'Daten importieren (JSON)';
-
-  late final TranslationsAccountDataImportDialogDe import_dialog = TranslationsAccountDataImportDialogDe.internal(_root);
+  /// de: 'Profil bearbeiten'
+  String get edit => 'Profil bearbeiten';
 }
 
 // Path: account.user
@@ -1684,22 +1700,6 @@ class TranslationsAccountEventsDe {
   final Translations _root; // ignore: unused_field
 
   // Translations
-
-  /// de: 'Export fehlgeschlagen: {{error}}'
-  String export_failed({required Object Error}) => 'Export fehlgeschlagen: ${Error}';
-
-  /// de: 'Export erfolgreich'
-  String get export_succeeded => 'Export erfolgreich';
-
-  /// de: 'Import fehlgeschlagen: {{error}}'
-  String import_failed({required Object Error}) => 'Import fehlgeschlagen: ${Error}';
-
-  /// de: '(one) {1 Eintrag importiert} (other) {{count} Einträge importiert}'
-  String imported({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(
-        count,
-        one: '1 Eintrag importiert',
-        other: '{count} Einträge importiert',
-      );
 
   /// de: 'Wechsel fehlgeschlagen: {{error}}'
   String switch_failed({required Object Error}) => 'Wechsel fehlgeschlagen: ${Error}';
@@ -1748,14 +1748,66 @@ class TranslationsBackupActionsDe {
   /// de: 'Backup jetzt erstellen'
   String get create_now => 'Backup jetzt erstellen';
 
-  /// de: 'Backup wiederherstellen…'
-  String get restore => 'Backup wiederherstellen…';
+  /// de: 'Backup erstellen & speichern'
+  String get create_and_save => 'Backup erstellen & speichern';
+
+  /// de: 'Backup wiederherstellen'
+  String get restore => 'Backup wiederherstellen';
 
   /// de: 'Alle Backups verwalten…'
   String get manage => 'Alle Backups verwalten…';
 
   /// de: 'Neu'
   String get kNew => 'Neu';
+}
+
+// Path: backup.restore_sheet
+class TranslationsBackupRestoreSheetDe {
+  TranslationsBackupRestoreSheetDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Backup auswählen'
+  String get title => 'Backup auswählen';
+
+  /// de: 'Verfügbare Sicherungen'
+  String get available => 'Verfügbare Sicherungen';
+
+  /// de: 'CLOUD'
+  String get kind_cloud => 'CLOUD';
+
+  /// de: 'MANUELL'
+  String get kind_manual => 'MANUELL';
+
+  /// de: 'Datei vom Gerät wählen'
+  String get pick_file_title => 'Datei vom Gerät wählen';
+
+  /// de: '.zip-Backup manuell auswählen'
+  String get pick_file_sub => '.zip-Backup manuell auswählen';
+
+  /// de: 'Keine Backups gefunden'
+  String get empty => 'Keine Backups gefunden';
+
+  /// de: 'Erst Cloud-Ordner wählen'
+  String get choose_folder_first => 'Erst Cloud-Ordner wählen';
+
+  /// de: 'Backup wiederherstellen?'
+  String get confirm_title => 'Backup wiederherstellen?';
+
+  /// de: 'Deine aktuellen Daten auf diesem Gerät werden durch diesen Stand ersetzt. Neuere Änderungen als „{{name}}“ gehen verloren.'
+  String warning({required Object Name}) =>
+      'Deine aktuellen Daten auf diesem Gerät werden durch diesen Stand ersetzt. Neuere Änderungen als „${Name}“ gehen verloren.';
+
+  /// de: 'Ja, ersetzen und wiederherstellen'
+  String get confirm_button => 'Ja, ersetzen und wiederherstellen';
+
+  /// de: 'Wird wiederhergestellt …'
+  String get restoring => 'Wird wiederhergestellt …';
+
+  /// de: 'Zurück'
+  String get back => 'Zurück';
 }
 
 // Path: backup.menu
@@ -1868,6 +1920,63 @@ class TranslationsBackupEventsDe {
 
   /// de: 'Wiederherstellen fehlgeschlagen: {{error}}'
   String restore_failed({required Object Error}) => 'Wiederherstellen fehlgeschlagen: ${Error}';
+}
+
+// Path: backup.cloud
+class TranslationsBackupCloudDe {
+  TranslationsBackupCloudDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Cloud-Backup'
+  String get section_title => 'Cloud-Backup';
+
+  /// de: 'Automatisch in Cloud sichern'
+  String get enable => 'Automatisch in Cloud sichern';
+
+  /// de: 'Cloud-Ordner wählen…'
+  String get choose_location => 'Cloud-Ordner wählen…';
+
+  /// de: 'Kein Cloud-Ordner gewählt'
+  String get location_none => 'Kein Cloud-Ordner gewählt';
+
+  /// de: 'Ziel: {{name}}'
+  String location_set({required Object Name}) => 'Ziel: ${Name}';
+
+  /// de: 'Jetzt synchronisieren'
+  String get sync_now => 'Jetzt synchronisieren';
+
+  /// de: 'Automatisches Cloud-Backup'
+  String get auto_title => 'Automatisches Cloud-Backup';
+
+  /// de: 'Aktiv · sichert deine Daten automatisch'
+  String get auto_on => 'Aktiv · sichert deine Daten automatisch';
+
+  /// de: 'Deaktiviert'
+  String get auto_off => 'Deaktiviert';
+
+  /// de: 'Cloud-Ordner'
+  String get folder_label => 'Cloud-Ordner';
+
+  /// de: 'Ändern'
+  String get change => 'Ändern';
+
+  late final TranslationsBackupCloudChooseFolderDialogDe choose_folder_dialog = TranslationsBackupCloudChooseFolderDialogDe.internal(_root);
+
+  /// de: 'Letzte Synchronisierung'
+  String get last_sync_label => 'Letzte Synchronisierung';
+
+  /// de: 'Wird synchronisiert …'
+  String get syncing => 'Wird synchronisiert …';
+
+  /// de: 'Sync-Einstellungen'
+  String get settings => 'Sync-Einstellungen';
+
+  late final TranslationsBackupCloudIntervalDe interval = TranslationsBackupCloudIntervalDe.internal(_root);
+  late final TranslationsBackupCloudStatusDe status = TranslationsBackupCloudStatusDe.internal(_root);
+  late final TranslationsBackupCloudEventsDe events = TranslationsBackupCloudEventsDe.internal(_root);
 }
 
 // Path: colors.stats
@@ -3335,25 +3444,107 @@ class TranslationsFinancesCategoriesMonthsShortDe {
   String get may => 'Mai';
 }
 
-// Path: account.data.import_dialog
-class TranslationsAccountDataImportDialogDe {
-  TranslationsAccountDataImportDialogDe.internal(this._root);
+// Path: backup.cloud.choose_folder_dialog
+class TranslationsBackupCloudChooseFolderDialogDe {
+  TranslationsBackupCloudChooseFolderDialogDe.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
   // Translations
 
-  /// de: 'Daten importieren'
-  String get title => 'Daten importieren';
+  /// de: 'Cloud-Ordner wählen?'
+  String get title => 'Cloud-Ordner wählen?';
 
-  /// de: 'Möchtest du die vorhandenen Daten vorher löschen oder die importierten Daten hinzufügen?'
-  String get content => 'Möchtest du die vorhandenen Daten vorher löschen oder die importierten Daten hinzufügen?';
+  /// de: 'Damit automatische Backups gesichert werden können, wähle jetzt einen Ordner in deiner Cloud (z.B. Google Drive).'
+  String get content => 'Damit automatische Backups gesichert werden können, wähle jetzt einen Ordner in deiner Cloud (z.B. Google Drive).';
 
-  /// de: 'Hinzufügen'
-  String get add => 'Hinzufügen';
+  /// de: 'Ordner wählen'
+  String get confirm => 'Ordner wählen';
+}
 
-  /// de: 'Ersetzen'
-  String get replace => 'Ersetzen';
+// Path: backup.cloud.interval
+class TranslationsBackupCloudIntervalDe {
+  TranslationsBackupCloudIntervalDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Auto-Backup-Intervall'
+  String get label => 'Auto-Backup-Intervall';
+
+  /// de: 'Wie oft beim App-Start automatisch gesichert wird'
+  String get sub => 'Wie oft beim App-Start automatisch gesichert wird';
+
+  /// de: 'Intervall wählen'
+  String get sheet_title => 'Intervall wählen';
+
+  /// de: 'Bei jedem Start'
+  String get every_launch => 'Bei jedem Start';
+
+  /// de: 'Täglich'
+  String get daily => 'Täglich';
+
+  /// de: 'Wöchentlich'
+  String get weekly => 'Wöchentlich';
+
+  /// de: 'Manuell'
+  String get off => 'Manuell';
+}
+
+// Path: backup.cloud.status
+class TranslationsBackupCloudStatusDe {
+  TranslationsBackupCloudStatusDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Zuletzt synchronisiert: heute'
+  String get synced_today => 'Zuletzt synchronisiert: heute';
+
+  /// de: '(one) {Zuletzt synchronisiert: vor 1 Tag} (other) {Zuletzt synchronisiert: vor {count} Tagen}'
+  String synced_days_ago({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(
+        count,
+        one: 'Zuletzt synchronisiert: vor 1 Tag',
+        other: 'Zuletzt synchronisiert: vor {count} Tagen',
+      );
+
+  /// de: 'Noch nicht synchronisiert'
+  String get never => 'Noch nicht synchronisiert';
+
+  /// de: 'Nicht bei iCloud angemeldet'
+  String get unavailable_icloud => 'Nicht bei iCloud angemeldet';
+
+  /// de: 'Kein Zugriff auf den Ordner – bitte neu wählen'
+  String get unavailable_folder => 'Kein Zugriff auf den Ordner – bitte neu wählen';
+}
+
+// Path: backup.cloud.events
+class TranslationsBackupCloudEventsDe {
+  TranslationsBackupCloudEventsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Cloud-Ordner gesetzt: {{name}}'
+  String location_chosen({required Object Name}) => 'Cloud-Ordner gesetzt: ${Name}';
+
+  /// de: 'Kein Ordner gewählt'
+  String get location_failed => 'Kein Ordner gewählt';
+
+  /// de: 'In Cloud gesichert'
+  String get sync_succeeded => 'In Cloud gesichert';
+
+  /// de: 'Cloud-Sync fehlgeschlagen: {{error}}'
+  String sync_failed({required Object Error}) => 'Cloud-Sync fehlgeschlagen: ${Error}';
+
+  /// de: 'Nicht bei iCloud angemeldet'
+  String get unavailable_icloud => 'Nicht bei iCloud angemeldet';
+
+  /// de: 'Kein Zugriff auf den Cloud-Ordner. Bitte neu wählen.'
+  String get unavailable_folder => 'Kein Zugriff auf den Cloud-Ordner. Bitte neu wählen.';
 }
 
 // Path: contacts.fields.title

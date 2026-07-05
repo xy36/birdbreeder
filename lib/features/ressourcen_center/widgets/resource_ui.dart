@@ -345,11 +345,6 @@ class DetailActionRow extends StatelessWidget {
               height: 48,
               child: FilledButton.icon(
                 onPressed: onEdit,
-                style: FilledButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                ),
                 icon: const Icon(AppIcons.edit, size: 18),
                 label: Text(context.tr.resources.actions.edit),
               ),

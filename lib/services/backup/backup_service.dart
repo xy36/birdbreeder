@@ -1,9 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:archive/archive_io.dart';
 import 'package:birdbreeder/services/backup/models/backup_manifest.dart';
 import 'package:birdbreeder/services/database/app_database.dart';
+import 'package:birdbreeder/services/images/image_reference_resolver.dart';
+import 'package:birdbreeder/services/images/image_store.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/services/logging_service.dart';
 import 'package:file_picker/file_picker.dart';
@@ -11,6 +14,29 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+/// How often an automatic backup snapshot is created on app launch.
+///
+/// There is no background scheduler — the check runs at startup, so a snapshot
+/// is created at most once per interval, the next time the app is opened.
+enum AutoBackupInterval {
+  everyLaunch(Duration.zero),
+  daily(Duration(days: 1)),
+  weekly(Duration(days: 7)),
+  off(null);
+
+  const AutoBackupInterval(this.minAge);
+
+  /// Minimum age of the latest snapshot before a new one is due. `null` for
+  /// [off] (auto snapshots disabled).
+  final Duration? minAge;
+
+  static AutoBackupInterval fromName(String? name) =>
+      AutoBackupInterval.values.firstWhere(
+        (i) => i.name == name,
+        orElse: () => AutoBackupInterval.daily,
+      );
+}
 
 class BackupService {
   static const _dbFileName = 'birdbreeder.sqlite';
@@ -23,15 +49,21 @@ class BackupService {
   static const _manifestEntry = 'manifest.json';
   static const _dbEntry = 'db/$_dbFileName';
 
-  /// Bump when bundle structure changes in an incompatible way.
-  static const int currentFormatVersion = 1;
+  static const _imagesEntryPrefix = 'images/';
 
-  static const Duration autoSnapshotInterval = Duration(hours: 24);
+  /// Bump when bundle structure changes in an incompatible way.
+  ///
+  /// v2 adds `imageHashes` + `imageMode` to the manifest and an optional
+  /// embedded `images/<hash>` directory. v1 bundles (no such keys) still
+  /// restore unchanged via the tolerant [BackupManifest.fromJson] defaults.
+  static const int currentFormatVersion = 2;
+
   static const int keepDaily = 7;
   static const int keepWeekly = 4;
 
   static const _prefsLastExternalKey = 'backup_last_external_at';
   static const _prefsSnoozeUntilKey = 'backup_reminder_snooze_until';
+  static const _prefsAutoIntervalKey = 'backup_auto_interval';
   static const Duration reminderThreshold = Duration(days: 7);
   static const Duration snoozeDuration = Duration(days: 3);
 
@@ -83,14 +115,34 @@ class BackupService {
     return target;
   }
 
+  /// Writes a bundle containing the manifest and DB.
+  ///
+  /// By default the bundle is **image-free**: it only records the referenced
+  /// image hashes in the manifest, and the blobs are resolved elsewhere (the
+  /// device's [ImageStore] or the cloud folder). This keeps every snapshot
+  /// small instead of duplicating all images into each file.
+  ///
+  /// Pass [embedImages] to build a self-contained bundle that carries the blobs
+  /// under `images/<hash>` — used when exporting/sharing to another device.
   static Future<void> _writeBundle({
     required File dbFile,
     required File target,
+    bool embedImages = false,
   }) async {
+    final hashes = (await ImageReferenceResolver.referencedHashes()).toList();
+    final hasImages = hashes.isNotEmpty;
+    final mode = !hasImages
+        ? ImageMode.none
+        : embedImages
+            ? ImageMode.embedded
+            : ImageMode.external;
+
     final manifest = BackupManifest(
       format: currentFormatVersion,
       createdAt: DateTime.now().toUtc(),
-      hasImages: false,
+      hasImages: hasImages,
+      imageHashes: hashes,
+      imageMode: mode,
     );
 
     final encoder = ZipFileEncoder()..create(target.path);
@@ -101,6 +153,15 @@ class BackupService {
       );
       // Stream DB into zip to avoid loading the whole file into memory.
       await encoder.addFile(dbFile, _dbEntry);
+
+      if (mode == ImageMode.embedded) {
+        for (final hash in hashes) {
+          final blob = await ImageStore.get(hash);
+          if (blob != null) {
+            await encoder.addFile(blob, '$_imagesEntryPrefix$hash');
+          }
+        }
+      }
     } finally {
       await encoder.close();
     }
@@ -327,6 +388,14 @@ class BackupService {
     await _restoreImagesIfAny(archive, manifest);
   }
 
+  /// Reads the manifest of a bundle file, or null if it isn't a zip bundle
+  /// (e.g. a legacy raw `.sqlite` backup).
+  static Future<BackupManifest?> readManifest(File bundle) async {
+    final bytes = await bundle.readAsBytes();
+    if (!_isZipBytes(bytes)) return null;
+    return _readManifest(ZipDecoder().decodeBytes(bytes));
+  }
+
   static BackupManifest _readManifest(Archive archive) {
     final manifestFile = archive.findFile(_manifestEntry);
     if (manifestFile == null) {
@@ -342,19 +411,43 @@ class BackupService {
     return BackupManifest.fromJson(json);
   }
 
-  /// Stub for future image restore. Currently no-op.
+  /// Restores blobs embedded in the bundle into the local [ImageStore].
+  ///
+  /// Only bundles written with [ImageMode.embedded] carry blobs; for
+  /// [ImageMode.external] the archive has none and the images are resolved by
+  /// hash elsewhere (e.g. the cloud restore path downloads the missing ones).
   static Future<void> _restoreImagesIfAny(
     Archive archive,
     BackupManifest manifest,
   ) async {
     if (!manifest.hasImages) return;
-    // Wird gefüllt sobald Bilder-Feature live ist.
+    for (final entry in archive) {
+      if (!entry.isFile || !entry.name.startsWith(_imagesEntryPrefix)) continue;
+      final bytes = Uint8List.fromList(entry.content as List<int>);
+      // put() re-hashes the bytes, so a tampered/renamed entry lands under its
+      // true content hash rather than the (possibly wrong) archive name.
+      await ImageStore.put(bytes);
+    }
+  }
+
+  /// The configured automatic-backup interval (defaults to [AutoBackupInterval.daily]).
+  static Future<AutoBackupInterval> getAutoInterval() async {
+    final prefs = await SharedPreferences.getInstance();
+    return AutoBackupInterval.fromName(prefs.getString(_prefsAutoIntervalKey));
+  }
+
+  static Future<void> setAutoInterval(AutoBackupInterval interval) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_prefsAutoIntervalKey, interval.name);
   }
 
   static Future<bool> shouldAutoSnapshot() async {
+    final interval = await getAutoInterval();
+    final minAge = interval.minAge;
+    if (minAge == null) return false; // AutoBackupInterval.off
     final latest = await latestSnapshot();
     if (latest == null) return true;
     final age = DateTime.now().difference(latest.lastModifiedSync());
-    return age >= autoSnapshotInterval;
+    return age >= minAge;
   }
 }

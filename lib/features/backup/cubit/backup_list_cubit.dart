@@ -5,6 +5,8 @@ import 'package:birdbreeder/app.dart';
 import 'package:birdbreeder/features/backup/cubit/backup_list_cubit_event.dart';
 import 'package:birdbreeder/i18n/strings.g.dart';
 import 'package:birdbreeder/services/backup/backup_service.dart';
+import 'package:birdbreeder/services/backup/cloud/cloud_backup_manager.dart';
+import 'package:birdbreeder/services/backup/cloud/cloud_backup_target.dart';
 import 'package:birdbreeder/services/database/app_database.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:bloc/bloc.dart';
@@ -61,6 +63,30 @@ class BackupListCubit extends Cubit<BackupListState>
       }
       await s1.reset();
       await BackupService.overwriteDatabase(f);
+      await initializeDependencyInjection();
+      runApp(TranslationProvider(child: const App()));
+    } on Exception catch (e) {
+      emitPresentation(BackupListCubitEvent.restoreFailed(e.toString()));
+    }
+  }
+
+  /// Snapshot bundles present in the configured cloud folder, newest first.
+  Future<List<CloudEntry>> cloudSnapshots() =>
+      CloudBackupManager.listRemoteSnapshots();
+
+  /// Downloads a cloud snapshot, restores the DB and pulls any referenced
+  /// external image blobs before restarting the app.
+  Future<void> restoreFromCloud(CloudEntry entry) async {
+    try {
+      final file = await CloudBackupManager.fetchForRestore(entry);
+      final externalHashes =
+          await CloudBackupManager.imageHashesFromBundle(file);
+      if (s1.isRegistered<AppDatabase>()) {
+        await s1.get<AppDatabase>().close();
+      }
+      await s1.reset();
+      await BackupService.overwriteDatabase(file);
+      await CloudBackupManager.restoreExternalImages(externalHashes);
       await initializeDependencyInjection();
       runApp(TranslationProvider(child: const App()));
     } on Exception catch (e) {

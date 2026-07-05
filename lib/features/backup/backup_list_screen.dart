@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/features/backup/cubit/backup_list_cubit.dart';
 import 'package:birdbreeder/features/backup/extensions/file_extensions.dart';
+import 'package:birdbreeder/services/backup/cloud/cloud_backup_manager.dart';
+import 'package:birdbreeder/services/backup/cloud/cloud_backup_target.dart';
 import 'package:birdbreeder/shared/icons.dart';
 
 class BackupListScreen extends StatelessWidget {
@@ -59,11 +61,90 @@ class BackupListScreen extends StatelessWidget {
     await cubit.restore(f);
   }
 
+  Future<void> _confirmRestoreCloud(BuildContext context, CloudEntry e) async {
+    final cubit = context.read<BackupListCubit>();
+    final tr = context.tr;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(tr.backup.restore_dialog.title),
+        content: Text(tr.backup.restore_dialog.content_named(Name: e.name)),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: Text(tr.common.cancel),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: Text(tr.backup.restore_dialog.confirm),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true) return;
+    await cubit.restoreFromCloud(e);
+  }
+
+  void _openCloudSheet(BuildContext context) {
+    final cubit = context.read<BackupListCubit>();
+    final tr = context.tr.backup;
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (_) => SafeArea(
+        child: FutureBuilder<List<CloudEntry>>(
+          future: cubit.cloudSnapshots(),
+          builder: (sheetContext, snapshot) {
+            if (snapshot.connectionState != ConnectionState.done) {
+              return const Padding(
+                padding: EdgeInsets.all(32),
+                child: Center(child: CircularProgressIndicator()),
+              );
+            }
+            final entries = snapshot.data ?? const <CloudEntry>[];
+            if (entries.isEmpty) {
+              return Padding(
+                padding: const EdgeInsets.all(32),
+                child: Text(tr.empty, textAlign: TextAlign.center),
+              );
+            }
+            return ListView.separated(
+              shrinkWrap: true,
+              itemCount: entries.length,
+              separatorBuilder: (_, __) => const Divider(height: 1),
+              itemBuilder: (_, i) {
+                final e = entries[i];
+                return ListTile(
+                  leading: const Icon(AppIcons.cloud),
+                  title: Text(e.name),
+                  trailing: const Icon(AppIcons.restore),
+                  onTap: () {
+                    Navigator.of(sheetContext).pop();
+                    unawaited(_confirmRestoreCloud(context, e));
+                  },
+                );
+              },
+            );
+          },
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final tr = context.tr.backup;
     return Scaffold(
-      appBar: AppBar(title: Text(tr.page_title)),
+      appBar: AppBar(
+        title: Text(tr.page_title),
+        actions: [
+          if (CloudBackupManager.isSupported)
+            IconButton(
+              icon: const Icon(AppIcons.cloud),
+              tooltip: tr.cloud.section_title,
+              onPressed: () => _openCloudSheet(context),
+            ),
+        ],
+      ),
       body: BlocBuilder<BackupListCubit, BackupListState>(
         builder: (context, state) {
           if (state.isLoading) {

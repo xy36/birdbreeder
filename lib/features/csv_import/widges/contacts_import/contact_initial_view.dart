@@ -52,12 +52,6 @@ class ContactInitialView extends StatelessWidget {
                     },
                     icon: const Icon(AppIcons.fileOpen),
                     label: Text(t.csv_import.select_file),
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 32,
-                        vertical: 16,
-                      ),
-                    ),
                   ),
                 ],
               ),
