@@ -1,4 +1,5 @@
 import 'package:birdbreeder/models/bird/entity/bird.dart';
+import 'package:birdbreeder/models/bird_image/entity/bird_image.dart';
 import 'package:birdbreeder/models/breeding/entity/breeding_pair.dart';
 import 'package:birdbreeder/models/breeding/entity/brood.dart';
 import 'package:birdbreeder/models/contact/entity/contact.dart';
@@ -17,6 +18,7 @@ part 'bird_breeder_resources.freezed.dart';
 abstract class BirdBreederResources with _$BirdBreederResources {
   const factory BirdBreederResources({
     required List<Bird> birds,
+    required List<BirdImage> birdImages,
     required List<BreedingPair> breedingPairs,
     required List<Brood> broods,
     required List<Egg> eggs,

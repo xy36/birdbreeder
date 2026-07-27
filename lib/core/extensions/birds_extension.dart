@@ -6,6 +6,7 @@ import 'package:birdbreeder/core/extensions/species_extension.dart';
 import 'package:birdbreeder/core/genetics/inbreeding_calculator.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/bird_breeder_resources.dart';
+import 'package:birdbreeder/models/bird_image/entity/bird_image.dart';
 import 'package:birdbreeder/models/breeding/entity/brood.dart';
 import 'package:birdbreeder/models/contact/entity/contact.dart';
 import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
@@ -87,6 +88,14 @@ extension BirdsExtension on Bird {
         .birds
         .where((e) => id == e.fatherId || id == e.motherId)
         .toList();
+  }
+
+  /// This bird's photos, ordered by [BirdImage.position].
+  List<BirdImage> get imagesResolved {
+    return _birdBreederResources()
+        .birdImages
+        .where((i) => i.birdId == id)
+        .sortedBy((i) => i.position);
   }
 
   InbreedingCalculator get _inbreedingCalculator => InbreedingCalculator(

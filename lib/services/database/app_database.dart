@@ -105,6 +105,20 @@ class Eggs extends Table {
   Set<Column> get primaryKey => {id};
 }
 
+/// Photos attached to a bird. `hash` is the content hash of the blob stored in
+/// the local ImageStore; `position` orders images within a bird.
+class BirdImages extends Table {
+  TextColumn get id => text()();
+  TextColumn get bird => text()();
+  TextColumn get hash => text()();
+  IntColumn get position => integer().withDefault(const Constant(0))();
+  DateTimeColumn get created => dateTime().nullable()();
+  DateTimeColumn get updated => dateTime().nullable()();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
 class Contacts extends Table {
   TextColumn get id => text()();
   TextColumn get number => text().nullable()();
@@ -218,6 +232,7 @@ class BirdColors extends Table {
     BreedingPairs,
     Broods,
     Eggs,
+    BirdImages,
     Contacts,
     Finances,
     FinanceCategories,
@@ -233,7 +248,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.forTesting(super.e);
 
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 4;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -244,6 +259,9 @@ class AppDatabase extends _$AppDatabase {
           },
           from2To3: (m, schema) async {
             await m.addColumn(schema.eggs, schema.eggs.diedAt);
+          },
+          from3To4: (m, schema) async {
+            await m.createTable(schema.birdImages);
           },
         ),
       );

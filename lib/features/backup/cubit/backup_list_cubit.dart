@@ -58,11 +58,17 @@ class BackupListCubit extends Cubit<BackupListState>
 
   Future<void> restore(File f) async {
     try {
+      // Local snapshots are image-free (external mode): they carry only image
+      // hashes, not blobs. If the blobs aren't already in this device's store
+      // (reinstall, another device, GC), pull them from the cloud folder so the
+      // restored birds keep their photos — mirroring [restoreFromCloud].
+      final externalHashes = await CloudBackupManager.imageHashesFromBundle(f);
       if (s1.isRegistered<AppDatabase>()) {
         await s1.get<AppDatabase>().close();
       }
       await s1.reset();
       await BackupService.overwriteDatabase(f);
+      await CloudBackupManager.restoreExternalImages(externalHashes);
       await initializeDependencyInjection();
       runApp(TranslationProvider(child: const App()));
     } on Exception catch (e) {

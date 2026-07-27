@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:birdbreeder/features/backup/cubit/cloud_backup_cubit_event.dart';
 import 'package:birdbreeder/services/backup/backup_service.dart';
@@ -64,23 +65,32 @@ class CloudBackupCubit extends Cubit<CloudBackupState>
       !state.available &&
       state.unavailableReason == CloudUnavailableReason.noLocation;
 
-  Future<void> chooseLocation() async {
+  /// Returns whether a location was chosen, so the caller can offer to sync
+  /// immediately after a folder change.
+  Future<bool> chooseLocation() async {
     final location = await CloudBackupManager.chooseLocation();
     if (location == null) {
       emitPresentation(const CloudBackupCubitEvent.locationFailed());
-      return;
+      return false;
     }
     emitPresentation(
       CloudBackupCubitEvent.locationChosen(location.displayName),
     );
     await refresh();
+    return true;
   }
 
+  /// Creates a fresh snapshot of the current data and uploads it, so "sync
+  /// now" always mirrors the latest state — not a possibly stale snapshot.
   Future<void> syncNow() async {
     emit(state.copyWith(syncing: true));
-    final snapshot = await BackupService.latestSnapshot();
-    if (snapshot == null) {
+    final File snapshot;
+    try {
+      snapshot = await BackupService.createSnapshot();
+      await BackupService.rotateSnapshots();
+    } on Exception catch (e) {
       emit(state.copyWith(syncing: false));
+      emitPresentation(CloudBackupCubitEvent.syncFailed(e.toString()));
       return;
     }
     final result = await CloudBackupManager.syncSnapshot(snapshot);

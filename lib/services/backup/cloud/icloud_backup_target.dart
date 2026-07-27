@@ -96,6 +96,13 @@ class ICloudBackupTarget implements CloudBackupTarget {
   }
 
   @override
+  Future<bool> imageExists(String hash) async {
+    // gather() lists real container files, so the hash set is truthful.
+    final hashes = await listImageHashes();
+    return hashes.contains(hash);
+  }
+
+  @override
   Future<void> uploadImage(String hash, File local) async {
     await ICloudStorage.upload(
       containerId: containerId,

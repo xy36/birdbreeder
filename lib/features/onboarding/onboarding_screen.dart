@@ -1,7 +1,8 @@
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/features/backup/cubit/backup_cubit.dart';
-import 'package:birdbreeder/features/backup/cubit/backup_listener.dart';
+import 'package:birdbreeder/features/account/widgets/restore_sheet.dart';
+import 'package:birdbreeder/features/backup/cubit/backup_list_cubit.dart';
+import 'package:birdbreeder/features/backup/cubit/backup_list_listener.dart';
 import 'package:birdbreeder/models/contact/entity/contact.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
@@ -19,8 +20,8 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => BackupCubit(),
-      child: BackupListener(child: const _OnboardingForm()),
+      create: (_) => BackupListCubit(),
+      child: BackupListListener(child: const _OnboardingForm()),
     );
   }
 }
@@ -68,35 +69,16 @@ class _OnboardingFormState extends State<_OnboardingForm> {
     }
   }
 
-  /// Picks a backup file, confirms, and restores it. On success the app
-  /// restarts and the gate re-evaluates the restored data.
+  /// Opens the restore sheet (cloud + local + file). On success the app restarts
+  /// and the gate re-evaluates the restored data. Enables ongoing cloud backup
+  /// when the restore came from a cloud snapshot.
   Future<void> _restoreBackup() async {
     if (_saving) return;
-    final cubit = context.read<BackupCubit>();
-    final tr = context.tr;
-
-    final file = await cubit.pickRestoreFile();
-    if (file == null || !mounted) return;
-
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(tr.backup.restore_dialog.title),
-        content: Text(tr.backup.restore_dialog.content_picked),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(false),
-            child: Text(tr.common.cancel),
-          ),
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(true),
-            child: Text(tr.backup.restore_dialog.confirm),
-          ),
-        ],
-      ),
+    await RestoreSheet.show(
+      context,
+      context.read<BackupListCubit>(),
+      autoEnableCloudOnRestore: true,
     );
-    if (confirmed != true) return;
-    await cubit.restoreFromFile(file);
   }
 
   @override

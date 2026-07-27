@@ -15,6 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$BirdBreederResources implements DiagnosticableTreeMixin {
   List<Bird> get birds;
+  List<BirdImage> get birdImages;
   List<BreedingPair> get breedingPairs;
   List<Brood> get broods;
   List<Egg> get eggs;
@@ -38,6 +39,7 @@ mixin _$BirdBreederResources implements DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'BirdBreederResources'))
       ..add(DiagnosticsProperty('birds', birds))
+      ..add(DiagnosticsProperty('birdImages', birdImages))
       ..add(DiagnosticsProperty('breedingPairs', breedingPairs))
       ..add(DiagnosticsProperty('broods', broods))
       ..add(DiagnosticsProperty('eggs', eggs))
@@ -56,6 +58,8 @@ mixin _$BirdBreederResources implements DiagnosticableTreeMixin {
             other is BirdBreederResources &&
             const DeepCollectionEquality().equals(other.birds, birds) &&
             const DeepCollectionEquality()
+                .equals(other.birdImages, birdImages) &&
+            const DeepCollectionEquality()
                 .equals(other.breedingPairs, breedingPairs) &&
             const DeepCollectionEquality().equals(other.broods, broods) &&
             const DeepCollectionEquality().equals(other.eggs, eggs) &&
@@ -72,6 +76,7 @@ mixin _$BirdBreederResources implements DiagnosticableTreeMixin {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(birds),
+      const DeepCollectionEquality().hash(birdImages),
       const DeepCollectionEquality().hash(breedingPairs),
       const DeepCollectionEquality().hash(broods),
       const DeepCollectionEquality().hash(eggs),
@@ -84,7 +89,7 @@ mixin _$BirdBreederResources implements DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BirdBreederResources(birds: $birds, breedingPairs: $breedingPairs, broods: $broods, eggs: $eggs, cages: $cages, colors: $colors, contacts: $contacts, species: $species, financesCategories: $financesCategories, finances: $finances)';
+    return 'BirdBreederResources(birds: $birds, birdImages: $birdImages, breedingPairs: $breedingPairs, broods: $broods, eggs: $eggs, cages: $cages, colors: $colors, contacts: $contacts, species: $species, financesCategories: $financesCategories, finances: $finances)';
   }
 }
 
@@ -96,6 +101,7 @@ abstract mixin class $BirdBreederResourcesCopyWith<$Res> {
   @useResult
   $Res call(
       {List<Bird> birds,
+      List<BirdImage> birdImages,
       List<BreedingPair> breedingPairs,
       List<Brood> broods,
       List<Egg> eggs,
@@ -121,6 +127,7 @@ class _$BirdBreederResourcesCopyWithImpl<$Res>
   @override
   $Res call({
     Object? birds = null,
+    Object? birdImages = null,
     Object? breedingPairs = null,
     Object? broods = null,
     Object? eggs = null,
@@ -136,6 +143,10 @@ class _$BirdBreederResourcesCopyWithImpl<$Res>
           ? _self.birds
           : birds // ignore: cast_nullable_to_non_nullable
               as List<Bird>,
+      birdImages: null == birdImages
+          ? _self.birdImages
+          : birdImages // ignore: cast_nullable_to_non_nullable
+              as List<BirdImage>,
       breedingPairs: null == breedingPairs
           ? _self.breedingPairs
           : breedingPairs // ignore: cast_nullable_to_non_nullable
@@ -271,6 +282,7 @@ extension BirdBreederResourcesPatterns on BirdBreederResources {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             List<Bird> birds,
+            List<BirdImage> birdImages,
             List<BreedingPair> breedingPairs,
             List<Brood> broods,
             List<Egg> eggs,
@@ -288,6 +300,7 @@ extension BirdBreederResourcesPatterns on BirdBreederResources {
       case _BirdBreederResources() when $default != null:
         return $default(
             _that.birds,
+            _that.birdImages,
             _that.breedingPairs,
             _that.broods,
             _that.eggs,
@@ -319,6 +332,7 @@ extension BirdBreederResourcesPatterns on BirdBreederResources {
   TResult when<TResult extends Object?>(
     TResult Function(
             List<Bird> birds,
+            List<BirdImage> birdImages,
             List<BreedingPair> breedingPairs,
             List<Brood> broods,
             List<Egg> eggs,
@@ -335,6 +349,7 @@ extension BirdBreederResourcesPatterns on BirdBreederResources {
       case _BirdBreederResources():
         return $default(
             _that.birds,
+            _that.birdImages,
             _that.breedingPairs,
             _that.broods,
             _that.eggs,
@@ -365,6 +380,7 @@ extension BirdBreederResourcesPatterns on BirdBreederResources {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             List<Bird> birds,
+            List<BirdImage> birdImages,
             List<BreedingPair> breedingPairs,
             List<Brood> broods,
             List<Egg> eggs,
@@ -381,6 +397,7 @@ extension BirdBreederResourcesPatterns on BirdBreederResources {
       case _BirdBreederResources() when $default != null:
         return $default(
             _that.birds,
+            _that.birdImages,
             _that.breedingPairs,
             _that.broods,
             _that.eggs,
@@ -402,6 +419,7 @@ class _BirdBreederResources extends BirdBreederResources
     with DiagnosticableTreeMixin {
   const _BirdBreederResources(
       {required final List<Bird> birds,
+      required final List<BirdImage> birdImages,
       required final List<BreedingPair> breedingPairs,
       required final List<Brood> broods,
       required final List<Egg> eggs,
@@ -412,6 +430,7 @@ class _BirdBreederResources extends BirdBreederResources
       required final List<FinanceCategory> financesCategories,
       required final List<Finance> finances})
       : _birds = birds,
+        _birdImages = birdImages,
         _breedingPairs = breedingPairs,
         _broods = broods,
         _eggs = eggs,
@@ -429,6 +448,14 @@ class _BirdBreederResources extends BirdBreederResources
     if (_birds is EqualUnmodifiableListView) return _birds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_birds);
+  }
+
+  final List<BirdImage> _birdImages;
+  @override
+  List<BirdImage> get birdImages {
+    if (_birdImages is EqualUnmodifiableListView) return _birdImages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_birdImages);
   }
 
   final List<BreedingPair> _breedingPairs;
@@ -518,6 +545,7 @@ class _BirdBreederResources extends BirdBreederResources
     properties
       ..add(DiagnosticsProperty('type', 'BirdBreederResources'))
       ..add(DiagnosticsProperty('birds', birds))
+      ..add(DiagnosticsProperty('birdImages', birdImages))
       ..add(DiagnosticsProperty('breedingPairs', breedingPairs))
       ..add(DiagnosticsProperty('broods', broods))
       ..add(DiagnosticsProperty('eggs', eggs))
@@ -536,6 +564,8 @@ class _BirdBreederResources extends BirdBreederResources
             other is _BirdBreederResources &&
             const DeepCollectionEquality().equals(other._birds, _birds) &&
             const DeepCollectionEquality()
+                .equals(other._birdImages, _birdImages) &&
+            const DeepCollectionEquality()
                 .equals(other._breedingPairs, _breedingPairs) &&
             const DeepCollectionEquality().equals(other._broods, _broods) &&
             const DeepCollectionEquality().equals(other._eggs, _eggs) &&
@@ -552,6 +582,7 @@ class _BirdBreederResources extends BirdBreederResources
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_birds),
+      const DeepCollectionEquality().hash(_birdImages),
       const DeepCollectionEquality().hash(_breedingPairs),
       const DeepCollectionEquality().hash(_broods),
       const DeepCollectionEquality().hash(_eggs),
@@ -564,7 +595,7 @@ class _BirdBreederResources extends BirdBreederResources
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BirdBreederResources(birds: $birds, breedingPairs: $breedingPairs, broods: $broods, eggs: $eggs, cages: $cages, colors: $colors, contacts: $contacts, species: $species, financesCategories: $financesCategories, finances: $finances)';
+    return 'BirdBreederResources(birds: $birds, birdImages: $birdImages, breedingPairs: $breedingPairs, broods: $broods, eggs: $eggs, cages: $cages, colors: $colors, contacts: $contacts, species: $species, financesCategories: $financesCategories, finances: $finances)';
   }
 }
 
@@ -578,6 +609,7 @@ abstract mixin class _$BirdBreederResourcesCopyWith<$Res>
   @useResult
   $Res call(
       {List<Bird> birds,
+      List<BirdImage> birdImages,
       List<BreedingPair> breedingPairs,
       List<Brood> broods,
       List<Egg> eggs,
@@ -603,6 +635,7 @@ class __$BirdBreederResourcesCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? birds = null,
+    Object? birdImages = null,
     Object? breedingPairs = null,
     Object? broods = null,
     Object? eggs = null,
@@ -618,6 +651,10 @@ class __$BirdBreederResourcesCopyWithImpl<$Res>
           ? _self._birds
           : birds // ignore: cast_nullable_to_non_nullable
               as List<Bird>,
+      birdImages: null == birdImages
+          ? _self._birdImages
+          : birdImages // ignore: cast_nullable_to_non_nullable
+              as List<BirdImage>,
       breedingPairs: null == breedingPairs
           ? _self._breedingPairs
           : breedingPairs // ignore: cast_nullable_to_non_nullable

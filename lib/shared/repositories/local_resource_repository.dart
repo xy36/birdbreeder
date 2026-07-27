@@ -7,8 +7,7 @@ import 'package:uuid/uuid.dart';
 
 const _uuid = Uuid();
 
-class LocalResourceRepository<TModel, TDto>
-    implements ICrudRepository<TModel> {
+class LocalResourceRepository<TModel, TDto> implements ICrudRepository<TModel> {
   LocalResourceRepository({
     required this.database,
     required this.tableName,
@@ -83,14 +82,16 @@ class LocalResourceRepository<TModel, TDto>
   }
 
   String _buildUpdateSql(Map<String, dynamic> data, String id) {
-    final sets = data.keys.where((k) => k != 'id').map((k) => '$k = ?').join(', ');
+    final sets =
+        data.keys.where((k) => k != 'id').map((k) => '$k = ?').join(', ');
     return 'UPDATE $tableName SET $sets WHERE id = ?';
   }
 
   List<Variable<Object>> _buildVariables(Map<String, dynamic> data) {
     return data.values.map((v) {
       if (v == null) return const Variable<Object>(null);
-      if (v is DateTime) return Variable<Object>(v.millisecondsSinceEpoch ~/ 1000);
+      if (v is DateTime)
+        return Variable<Object>(v.millisecondsSinceEpoch ~/ 1000);
       if (v is bool) return Variable<Object>(v ? 1 : 0);
       return Variable<Object>(v);
     }).toList();
@@ -208,9 +209,11 @@ class LocalResourceRepository<TModel, TDto>
   @override
   Future<Result<List<TModel>>> getAll() async {
     try {
-      final rows = await database.customSelect(
-        'SELECT * FROM $tableName',
-      ).get();
+      final rows = await database
+          .customSelect(
+            'SELECT * FROM $tableName',
+          )
+          .get();
 
       final list = rows.map((QueryRow row) {
         return fromDto(fromJson(_snakeToCamelJson(row.data)));

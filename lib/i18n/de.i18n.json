@@ -192,7 +192,7 @@
         "manual_section": "Manuelles Backup",
         "last_backup_label": "Letztes Backup",
         "no_backup_size": "Noch kein Backup",
-        "create_hint": "Öffnet den Teilen-Dialog – wähle Drive, Dateien, E-Mail o.ä.",
+        "create_hint": "Öffnet den Teilen-Dialog – wähle Drive, Dateien, E-Mail o.ä. Fotos sind enthalten.",
         "restore_hint": "Z.B. nach Gerätewechsel – spielt einen älteren Stand zurück.",
         "restore_sheet": {
             "title": "Backup auswählen",
@@ -260,8 +260,14 @@
                 "content": "Damit automatische Backups gesichert werden können, wähle jetzt einen Ordner in deiner Cloud (z.B. Google Drive).",
                 "confirm": "Ordner wählen"
             },
+            "sync_after_change_dialog": {
+                "title": "Jetzt synchronisieren?",
+                "content": "Der Cloud-Ordner wurde geändert. Sollen deine aktuellen Daten jetzt dorthin gesichert werden?",
+                "confirm": "Synchronisieren"
+            },
             "last_sync_label": "Letzte Synchronisierung",
             "syncing": "Wird synchronisiert …",
+            "syncing_hint": "Deine Fotos und Daten werden in die Cloud geladen.",
             "settings": "Sync-Einstellungen",
             "interval": {
                 "label": "Auto-Backup-Intervall",
@@ -692,6 +698,30 @@
             "notes": {
                 "title": "Notizen",
                 "subTitle": "Informationen zu den Notizen des Vogels"
+            },
+            "photos": {
+                "title": "Fotos",
+                "subTitle": "Fotos dieses Vogels verwalten",
+                "add_camera": "Kamera",
+                "add_gallery": "Galerie",
+                "save_first": "Speichere den Vogel zuerst, um Fotos hinzuzufügen.",
+                "empty": "Noch keine Fotos",
+                "delete_title": "Foto löschen?",
+                "delete_confirm": "Löschen",
+                "manage": "Fotos verwalten",
+                "capture": "Foto aufnehmen",
+                "capture_sub": "oder aus Galerie wählen · mehrere möglich",
+                "section_label": "Fotos dieses Vogels",
+                "add_tile": "Hinzufügen",
+                "cover_badge": "Titel",
+                "set_cover": "Als Titelbild festlegen",
+                "remove": "Entfernen",
+                "source_camera": "Kamera",
+                "source_gallery": "Galerie",
+                "hint": "Tippe auf ein Foto, um es groß anzuzeigen. Halte ein Foto gedrückt und ziehe es an eine andere Position – das erste Foto ist das Titelbild und erscheint in Listen und auf der Vogel-Detailseite.",
+                "done": "Fertig",
+                "count_preview_one": "{{count}} Foto",
+                "count_preview_other": "{{count}} Fotos"
             },
             "parent": {
                 "title": "Eltern",

@@ -33,8 +33,7 @@ class _CategoryFilterSheetState extends State<CategoryFilterSheet> {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final tr = context.tr;
-    final sorted = [...widget.categories]
-      ..sort((a, b) {
+    final sorted = [...widget.categories]..sort((a, b) {
         final ki = a.kind.index.compareTo(b.kind.index);
         if (ki != 0) return ki;
         return a.name.toLowerCase().compareTo(b.name.toLowerCase());
@@ -122,8 +121,7 @@ class _CategoryFilterSheetState extends State<CategoryFilterSheet> {
                         decoration: BoxDecoration(
                           color: accent,
                           shape: BoxShape.circle,
-                          border:
-                              Border.all(color: cs.outline, width: 0.5),
+                          border: Border.all(color: cs.outline, width: 0.5),
                         ),
                       ),
                       controlAffinity: ListTileControlAffinity.trailing,

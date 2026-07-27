@@ -209,8 +209,8 @@ class TranslationsBackupDe {
   /// de: 'Noch kein Backup'
   String get no_backup_size => 'Noch kein Backup';
 
-  /// de: 'Öffnet den Teilen-Dialog – wähle Drive, Dateien, E-Mail o.ä.'
-  String get create_hint => 'Öffnet den Teilen-Dialog – wähle Drive, Dateien, E-Mail o.ä.';
+  /// de: 'Öffnet den Teilen-Dialog – wähle Drive, Dateien, E-Mail o.ä. Fotos sind enthalten.'
+  String get create_hint => 'Öffnet den Teilen-Dialog – wähle Drive, Dateien, E-Mail o.ä. Fotos sind enthalten.';
 
   /// de: 'Z.B. nach Gerätewechsel – spielt einen älteren Stand zurück.'
   String get restore_hint => 'Z.B. nach Gerätewechsel – spielt einen älteren Stand zurück.';
@@ -1964,12 +1964,16 @@ class TranslationsBackupCloudDe {
   String get change => 'Ändern';
 
   late final TranslationsBackupCloudChooseFolderDialogDe choose_folder_dialog = TranslationsBackupCloudChooseFolderDialogDe.internal(_root);
+  late final TranslationsBackupCloudSyncAfterChangeDialogDe sync_after_change_dialog = TranslationsBackupCloudSyncAfterChangeDialogDe.internal(_root);
 
   /// de: 'Letzte Synchronisierung'
   String get last_sync_label => 'Letzte Synchronisierung';
 
   /// de: 'Wird synchronisiert …'
   String get syncing => 'Wird synchronisiert …';
+
+  /// de: 'Deine Fotos und Daten werden in die Cloud geladen.'
+  String get syncing_hint => 'Deine Fotos und Daten werden in die Cloud geladen.';
 
   /// de: 'Sync-Einstellungen'
   String get settings => 'Sync-Einstellungen';
@@ -2557,6 +2561,7 @@ class TranslationsBirdSectionsDe {
   late final TranslationsBirdSectionsHealthDe health = TranslationsBirdSectionsHealthDe.internal(_root);
   late final TranslationsBirdSectionsLifeDe life = TranslationsBirdSectionsLifeDe.internal(_root);
   late final TranslationsBirdSectionsNotesDe notes = TranslationsBirdSectionsNotesDe.internal(_root);
+  late final TranslationsBirdSectionsPhotosDe photos = TranslationsBirdSectionsPhotosDe.internal(_root);
   late final TranslationsBirdSectionsParentDe parent = TranslationsBirdSectionsParentDe.internal(_root);
   late final TranslationsBirdSectionsBreederDe breeder = TranslationsBirdSectionsBreederDe.internal(_root);
   late final TranslationsBirdSectionsChildrenDe children = TranslationsBirdSectionsChildrenDe.internal(_root);
@@ -3462,6 +3467,24 @@ class TranslationsBackupCloudChooseFolderDialogDe {
   String get confirm => 'Ordner wählen';
 }
 
+// Path: backup.cloud.sync_after_change_dialog
+class TranslationsBackupCloudSyncAfterChangeDialogDe {
+  TranslationsBackupCloudSyncAfterChangeDialogDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Jetzt synchronisieren?'
+  String get title => 'Jetzt synchronisieren?';
+
+  /// de: 'Der Cloud-Ordner wurde geändert. Sollen deine aktuellen Daten jetzt dorthin gesichert werden?'
+  String get content => 'Der Cloud-Ordner wurde geändert. Sollen deine aktuellen Daten jetzt dorthin gesichert werden?';
+
+  /// de: 'Synchronisieren'
+  String get confirm => 'Synchronisieren';
+}
+
 // Path: backup.cloud.interval
 class TranslationsBackupCloudIntervalDe {
   TranslationsBackupCloudIntervalDe.internal(this._root);
@@ -3792,6 +3815,82 @@ class TranslationsBirdSectionsNotesDe {
 
   /// de: 'Informationen zu den Notizen des Vogels'
   String get sub_title => 'Informationen zu den Notizen des Vogels';
+}
+
+// Path: bird.sections.photos
+class TranslationsBirdSectionsPhotosDe {
+  TranslationsBirdSectionsPhotosDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Fotos'
+  String get title => 'Fotos';
+
+  /// de: 'Fotos dieses Vogels verwalten'
+  String get sub_title => 'Fotos dieses Vogels verwalten';
+
+  /// de: 'Kamera'
+  String get add_camera => 'Kamera';
+
+  /// de: 'Galerie'
+  String get add_gallery => 'Galerie';
+
+  /// de: 'Speichere den Vogel zuerst, um Fotos hinzuzufügen.'
+  String get save_first => 'Speichere den Vogel zuerst, um Fotos hinzuzufügen.';
+
+  /// de: 'Noch keine Fotos'
+  String get empty => 'Noch keine Fotos';
+
+  /// de: 'Foto löschen?'
+  String get delete_title => 'Foto löschen?';
+
+  /// de: 'Löschen'
+  String get delete_confirm => 'Löschen';
+
+  /// de: 'Fotos verwalten'
+  String get manage => 'Fotos verwalten';
+
+  /// de: 'Foto aufnehmen'
+  String get capture => 'Foto aufnehmen';
+
+  /// de: 'oder aus Galerie wählen · mehrere möglich'
+  String get capture_sub => 'oder aus Galerie wählen · mehrere möglich';
+
+  /// de: 'Fotos dieses Vogels'
+  String get section_label => 'Fotos dieses Vogels';
+
+  /// de: 'Hinzufügen'
+  String get add_tile => 'Hinzufügen';
+
+  /// de: 'Titel'
+  String get cover_badge => 'Titel';
+
+  /// de: 'Als Titelbild festlegen'
+  String get set_cover => 'Als Titelbild festlegen';
+
+  /// de: 'Entfernen'
+  String get remove => 'Entfernen';
+
+  /// de: 'Kamera'
+  String get source_camera => 'Kamera';
+
+  /// de: 'Galerie'
+  String get source_gallery => 'Galerie';
+
+  /// de: 'Tippe auf ein Foto, um es groß anzuzeigen. Halte ein Foto gedrückt und ziehe es an eine andere Position – das erste Foto ist das Titelbild und erscheint in Listen und auf der Vogel-Detailseite.'
+  String get hint =>
+      'Tippe auf ein Foto, um es groß anzuzeigen. Halte ein Foto gedrückt und ziehe es an eine andere Position – das erste Foto ist das Titelbild und erscheint in Listen und auf der Vogel-Detailseite.';
+
+  /// de: 'Fertig'
+  String get done => 'Fertig';
+
+  /// de: '{{count}} Foto'
+  String count_preview_one({required Object Count}) => '${Count} Foto';
+
+  /// de: '{{count}} Fotos'
+  String count_preview_other({required Object Count}) => '${Count} Fotos';
 }
 
 // Path: bird.sections.parent

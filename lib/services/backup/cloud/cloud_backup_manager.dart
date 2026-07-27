@@ -7,6 +7,9 @@ import 'package:birdbreeder/services/backup/cloud/saf_backup_target.dart';
 import 'package:birdbreeder/services/backup/models/backup_manifest.dart';
 import 'package:birdbreeder/services/images/image_reference_resolver.dart';
 import 'package:birdbreeder/services/images/image_store.dart';
+import 'package:birdbreeder/services/injection.dart';
+import 'package:birdbreeder/services/logging_service.dart';
+import 'package:logger/logger.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -121,22 +124,62 @@ class CloudBackupManager {
     }
   }
 
+  static Logger? get _logger => s1.isRegistered<LoggingService>()
+      ? s1.get<LoggingService>().logger
+      : null;
+
   static Future<void> _uploadMissingImages(CloudBackupTarget target) async {
     final referenced = await ImageReferenceResolver.referencedHashes();
     if (referenced.isEmpty) return;
     final remote = await target.listImageHashes();
+    final missing = referenced.difference(remote);
+
+    // Self-heal: the hash index can claim a referenced blob is present when its
+    // file is actually gone (deleted, partial sync). Verify the referenced
+    // hashes the index vouches for and re-queue any physically missing ones —
+    // otherwise they stay skipped forever. The referenced set is small (one
+    // per bird image), so the per-hash existence check is cheap.
+    final vanished = <String>{};
+    for (final hash in referenced.intersection(remote)) {
+      if (!await target.imageExists(hash)) vanished.add(hash);
+    }
+
+    final toUpload = {...missing, ...vanished};
+    _logger?.i(
+      'Cloud image sync: ${referenced.length} referenced, '
+      '${remote.length} in cloud, ${missing.length} new, '
+      '${vanished.length} to re-upload (index stale)',
+    );
+
     final uploaded = <String>{};
-    for (final hash in referenced.difference(remote)) {
+    for (final hash in toUpload) {
       final blob = await ImageStore.get(hash);
-      if (blob != null) {
+      if (blob == null) {
+        // A referenced hash with no local blob would otherwise vanish
+        // silently, leaving the cloud short an image. Surface it.
+        _logger?.w('Skipping upload, blob missing locally: $hash');
+        continue;
+      }
+      try {
         await target.uploadImage(hash, blob);
         // Record only after a successful upload so a failed one is retried
         // next sync instead of being wrongly marked present.
         uploaded.add(hash);
+      } on Object catch (e, st) {
+        // Don't let one failing image abort the whole sync (and thus the
+        // index write for the images that did upload).
+        _logger?.w('Image upload failed for $hash: $e', stackTrace: st);
       }
     }
+
     if (uploaded.isNotEmpty) {
       await target.recordUploadedImages(uploaded);
+    }
+    if (uploaded.length != toUpload.length) {
+      _logger?.w(
+        'Cloud image sync incomplete: '
+        '${uploaded.length}/${toUpload.length} uploaded',
+      );
     }
   }
 
@@ -166,21 +209,37 @@ class CloudBackupManager {
     if (hashes.isEmpty) return;
     final target = await _target();
     final tmp = await getTemporaryDirectory();
+    var alreadyLocal = 0;
+    var restored = 0;
+    var failed = 0;
     for (final hash in hashes) {
-      if (await ImageStore.exists(hash)) continue;
+      if (await ImageStore.exists(hash)) {
+        alreadyLocal++;
+        continue;
+      }
       final dest = File(p.join(tmp.path, 'img_$hash'));
       try {
         await target.downloadImage(hash, dest: dest);
         final bytes = await dest.readAsBytes();
         if (ImageStore.hashBytes(bytes) == hash) {
           await ImageStore.put(bytes);
+          restored++;
+        } else {
+          failed++;
+          _logger?.w('Restored blob hash mismatch, rejected: $hash');
         }
-      } on Object {
+      } on Object catch (e) {
         // Best effort: a missing/corrupt cloud blob must not abort restore.
+        failed++;
+        _logger?.w('Image restore failed for $hash: $e');
       } finally {
         if (dest.existsSync()) await dest.delete();
       }
     }
+    _logger?.i(
+      'Image restore: ${hashes.length} referenced, $alreadyLocal local, '
+      '$restored downloaded, $failed failed',
+    );
   }
 
   /// Reads the referenced image hashes recorded in a bundle's manifest.

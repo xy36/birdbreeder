@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/birds_extension.dart';
 import 'package:birdbreeder/models/bird/bird_actions.dart';
@@ -5,6 +7,8 @@ import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/bird/sex_enum.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';
 import 'package:birdbreeder/shared/icons.dart';
+import 'package:birdbreeder/shared/widgets/hash_image.dart';
+import 'package:birdbreeder/shared/widgets/image_lightbox.dart';
 
 /// Ultra-compact, single-line row for a bird inside a cage group.
 ///
@@ -51,7 +55,7 @@ class BirdRow extends StatelessWidget {
           ),
           child: Row(
             children: [
-              _SexGlyph(sex: bird.sex),
+              _Leading(bird: bird),
               const SizedBox(width: 10),
               Expanded(child: _main(context)),
               if (bird.isSold) ...[
@@ -152,6 +156,37 @@ class BirdRow extends StatelessWidget {
           ],
         ),
       ],
+    );
+  }
+}
+
+/// Leading element of a bird row: the first photo if the bird has one,
+/// otherwise the tinted sex glyph.
+class _Leading extends StatelessWidget {
+  const _Leading({required this.bird});
+
+  final Bird bird;
+
+  @override
+  Widget build(BuildContext context) {
+    final images = bird.imagesResolved;
+    if (images.isEmpty) return _SexGlyph(sex: bird.sex);
+    return GestureDetector(
+      onTap: () => unawaited(
+        ImageLightbox.show(
+          context,
+          hashes: [for (final i in images) i.hash],
+          initialIndex: 0,
+        ),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(6),
+        child: SizedBox(
+          width: 28,
+          height: 28,
+          child: HashImage(hash: images.first.hash),
+        ),
+      ),
     );
   }
 }

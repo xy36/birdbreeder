@@ -6,6 +6,7 @@ import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bree
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/general/identification_section.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/general/keeping_section.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/general/notes_section.dart';
+import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/general/photos_section.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/purchase_and_sale/purchase_section.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/purchase_and_sale/sale_section.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/purchase_and_sale/sale_status_section.dart';
@@ -49,6 +50,7 @@ enum BirdSections {
         return [
           IdentificationSection(bird),
           KeepingSection(bird),
+          PhotosSection(bird),
           NotesSection(bird),
         ];
       case BirdSections.statusAndLifeCycle:

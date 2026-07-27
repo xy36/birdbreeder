@@ -64,6 +64,7 @@ dependencies:
   saf_util: ^2.2.0
   crypto: ^3.0.7
   saf_stream: ^2.0.0
+  image_picker: ^1.2.3
 
 
 

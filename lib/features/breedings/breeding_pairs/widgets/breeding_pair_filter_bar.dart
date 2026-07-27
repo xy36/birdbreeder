@@ -45,7 +45,8 @@ class BreedingPairFilterBar extends StatelessWidget {
           Center(
             child: Padding(
               padding: const EdgeInsets.only(right: 8),
-              child: Icon(AppIcons.filter, size: 20, color: cs.onSurfaceVariant),
+              child:
+                  Icon(AppIcons.filter, size: 20, color: cs.onSurfaceVariant),
             ),
           ),
           for (final d in dimensions)

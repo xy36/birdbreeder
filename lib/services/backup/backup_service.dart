@@ -87,6 +87,21 @@ class BackupService {
         '${two(dt.hour)}-${two(dt.minute)}';
   }
 
+  /// Folds the WAL into the main DB file so a copy is consistent.
+  static Future<void> _checkpointWal() async {
+    if (!s1.isRegistered<AppDatabase>()) return;
+    try {
+      await s1
+          .get<AppDatabase>()
+          .customStatement('PRAGMA wal_checkpoint(FULL)');
+    } on Object catch (e) {
+      s1
+          .get<LoggingService>()
+          .logger
+          .w('WAL checkpoint failed (continuing): $e');
+    }
+  }
+
   /// Create snapshot bundle of current SQLite DB. Returns the new file.
   static Future<File> createSnapshot() async {
     final logger = s1.get<LoggingService>().logger;
@@ -95,15 +110,7 @@ class BackupService {
       throw StateError('Database file not found at ${src.path}');
     }
 
-    if (s1.isRegistered<AppDatabase>()) {
-      try {
-        await s1
-            .get<AppDatabase>()
-            .customStatement('PRAGMA wal_checkpoint(FULL)');
-      } on Object catch (e) {
-        logger.w('WAL checkpoint failed (continuing): $e');
-      }
-    }
+    await _checkpointWal();
 
     final dir = await _backupDir();
     final target = File(
@@ -112,6 +119,32 @@ class BackupService {
 
     await _writeBundle(dbFile: src, target: target);
     logger.i('Backup bundle created: ${target.path}');
+    return target;
+  }
+
+  /// Creates a self-contained export bundle with all photos embedded.
+  ///
+  /// Unlike [createSnapshot] the blobs are packed into the zip, so the file
+  /// restores completely on a device without access to the cloud folder
+  /// (device migration, sharing). Written to the temp directory — not to
+  /// `backups/` — so large bundles never enter the rotation. The caller is
+  /// responsible for deleting the returned file after use.
+  static Future<File> createExportBundle() async {
+    final logger = s1.get<LoggingService>().logger;
+    final src = await _dbFile();
+    if (!src.existsSync()) {
+      throw StateError('Database file not found at ${src.path}');
+    }
+
+    await _checkpointWal();
+
+    final tmp = await getTemporaryDirectory();
+    final target = File(
+      p.join(tmp.path, '$_filePrefix${_timestamp(DateTime.now())}$_bundleExt'),
+    );
+
+    await _writeBundle(dbFile: src, target: target, embedImages: true);
+    logger.i('Export bundle created: ${target.path}');
     return target;
   }
 
@@ -445,6 +478,9 @@ class BackupService {
     final interval = await getAutoInterval();
     final minAge = interval.minAge;
     if (minAge == null) return false; // AutoBackupInterval.off
+    // Fresh install (or before the DB is first materialized): nothing to back
+    // up yet, and createSnapshot would throw on the missing file.
+    if (!(await _dbFile()).existsSync()) return false;
     final latest = await latestSnapshot();
     if (latest == null) return true;
     final age = DateTime.now().difference(latest.lastModifiedSync());

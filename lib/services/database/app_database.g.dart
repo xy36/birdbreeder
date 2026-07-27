@@ -3146,6 +3146,351 @@ class EggsCompanion extends UpdateCompanion<Egg> {
   }
 }
 
+class $BirdImagesTable extends BirdImages
+    with TableInfo<$BirdImagesTable, BirdImage> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $BirdImagesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+      'id', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _birdMeta = const VerificationMeta('bird');
+  @override
+  late final GeneratedColumn<String> bird = GeneratedColumn<String>(
+      'bird', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _hashMeta = const VerificationMeta('hash');
+  @override
+  late final GeneratedColumn<String> hash = GeneratedColumn<String>(
+      'hash', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _positionMeta =
+      const VerificationMeta('position');
+  @override
+  late final GeneratedColumn<int> position = GeneratedColumn<int>(
+      'position', aliasedName, false,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultValue: const Constant(0));
+  static const VerificationMeta _createdMeta =
+      const VerificationMeta('created');
+  @override
+  late final GeneratedColumn<DateTime> created = GeneratedColumn<DateTime>(
+      'created', aliasedName, true,
+      type: DriftSqlType.dateTime, requiredDuringInsert: false);
+  static const VerificationMeta _updatedMeta =
+      const VerificationMeta('updated');
+  @override
+  late final GeneratedColumn<DateTime> updated = GeneratedColumn<DateTime>(
+      'updated', aliasedName, true,
+      type: DriftSqlType.dateTime, requiredDuringInsert: false);
+  @override
+  List<GeneratedColumn> get $columns =>
+      [id, bird, hash, position, created, updated];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'bird_images';
+  @override
+  VerificationContext validateIntegrity(Insertable<BirdImage> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('bird')) {
+      context.handle(
+          _birdMeta, bird.isAcceptableOrUnknown(data['bird']!, _birdMeta));
+    } else if (isInserting) {
+      context.missing(_birdMeta);
+    }
+    if (data.containsKey('hash')) {
+      context.handle(
+          _hashMeta, hash.isAcceptableOrUnknown(data['hash']!, _hashMeta));
+    } else if (isInserting) {
+      context.missing(_hashMeta);
+    }
+    if (data.containsKey('position')) {
+      context.handle(_positionMeta,
+          position.isAcceptableOrUnknown(data['position']!, _positionMeta));
+    }
+    if (data.containsKey('created')) {
+      context.handle(_createdMeta,
+          created.isAcceptableOrUnknown(data['created']!, _createdMeta));
+    }
+    if (data.containsKey('updated')) {
+      context.handle(_updatedMeta,
+          updated.isAcceptableOrUnknown(data['updated']!, _updatedMeta));
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  BirdImage map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return BirdImage(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
+      bird: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}bird'])!,
+      hash: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}hash'])!,
+      position: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}position'])!,
+      created: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}created']),
+      updated: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}updated']),
+    );
+  }
+
+  @override
+  $BirdImagesTable createAlias(String alias) {
+    return $BirdImagesTable(attachedDatabase, alias);
+  }
+}
+
+class BirdImage extends DataClass implements Insertable<BirdImage> {
+  final String id;
+  final String bird;
+  final String hash;
+  final int position;
+  final DateTime? created;
+  final DateTime? updated;
+  const BirdImage(
+      {required this.id,
+      required this.bird,
+      required this.hash,
+      required this.position,
+      this.created,
+      this.updated});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['bird'] = Variable<String>(bird);
+    map['hash'] = Variable<String>(hash);
+    map['position'] = Variable<int>(position);
+    if (!nullToAbsent || created != null) {
+      map['created'] = Variable<DateTime>(created);
+    }
+    if (!nullToAbsent || updated != null) {
+      map['updated'] = Variable<DateTime>(updated);
+    }
+    return map;
+  }
+
+  BirdImagesCompanion toCompanion(bool nullToAbsent) {
+    return BirdImagesCompanion(
+      id: Value(id),
+      bird: Value(bird),
+      hash: Value(hash),
+      position: Value(position),
+      created: created == null && nullToAbsent
+          ? const Value.absent()
+          : Value(created),
+      updated: updated == null && nullToAbsent
+          ? const Value.absent()
+          : Value(updated),
+    );
+  }
+
+  factory BirdImage.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return BirdImage(
+      id: serializer.fromJson<String>(json['id']),
+      bird: serializer.fromJson<String>(json['bird']),
+      hash: serializer.fromJson<String>(json['hash']),
+      position: serializer.fromJson<int>(json['position']),
+      created: serializer.fromJson<DateTime?>(json['created']),
+      updated: serializer.fromJson<DateTime?>(json['updated']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'bird': serializer.toJson<String>(bird),
+      'hash': serializer.toJson<String>(hash),
+      'position': serializer.toJson<int>(position),
+      'created': serializer.toJson<DateTime?>(created),
+      'updated': serializer.toJson<DateTime?>(updated),
+    };
+  }
+
+  BirdImage copyWith(
+          {String? id,
+          String? bird,
+          String? hash,
+          int? position,
+          Value<DateTime?> created = const Value.absent(),
+          Value<DateTime?> updated = const Value.absent()}) =>
+      BirdImage(
+        id: id ?? this.id,
+        bird: bird ?? this.bird,
+        hash: hash ?? this.hash,
+        position: position ?? this.position,
+        created: created.present ? created.value : this.created,
+        updated: updated.present ? updated.value : this.updated,
+      );
+  BirdImage copyWithCompanion(BirdImagesCompanion data) {
+    return BirdImage(
+      id: data.id.present ? data.id.value : this.id,
+      bird: data.bird.present ? data.bird.value : this.bird,
+      hash: data.hash.present ? data.hash.value : this.hash,
+      position: data.position.present ? data.position.value : this.position,
+      created: data.created.present ? data.created.value : this.created,
+      updated: data.updated.present ? data.updated.value : this.updated,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('BirdImage(')
+          ..write('id: $id, ')
+          ..write('bird: $bird, ')
+          ..write('hash: $hash, ')
+          ..write('position: $position, ')
+          ..write('created: $created, ')
+          ..write('updated: $updated')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, bird, hash, position, created, updated);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is BirdImage &&
+          other.id == this.id &&
+          other.bird == this.bird &&
+          other.hash == this.hash &&
+          other.position == this.position &&
+          other.created == this.created &&
+          other.updated == this.updated);
+}
+
+class BirdImagesCompanion extends UpdateCompanion<BirdImage> {
+  final Value<String> id;
+  final Value<String> bird;
+  final Value<String> hash;
+  final Value<int> position;
+  final Value<DateTime?> created;
+  final Value<DateTime?> updated;
+  final Value<int> rowid;
+  const BirdImagesCompanion({
+    this.id = const Value.absent(),
+    this.bird = const Value.absent(),
+    this.hash = const Value.absent(),
+    this.position = const Value.absent(),
+    this.created = const Value.absent(),
+    this.updated = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  BirdImagesCompanion.insert({
+    required String id,
+    required String bird,
+    required String hash,
+    this.position = const Value.absent(),
+    this.created = const Value.absent(),
+    this.updated = const Value.absent(),
+    this.rowid = const Value.absent(),
+  })  : id = Value(id),
+        bird = Value(bird),
+        hash = Value(hash);
+  static Insertable<BirdImage> custom({
+    Expression<String>? id,
+    Expression<String>? bird,
+    Expression<String>? hash,
+    Expression<int>? position,
+    Expression<DateTime>? created,
+    Expression<DateTime>? updated,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (bird != null) 'bird': bird,
+      if (hash != null) 'hash': hash,
+      if (position != null) 'position': position,
+      if (created != null) 'created': created,
+      if (updated != null) 'updated': updated,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  BirdImagesCompanion copyWith(
+      {Value<String>? id,
+      Value<String>? bird,
+      Value<String>? hash,
+      Value<int>? position,
+      Value<DateTime?>? created,
+      Value<DateTime?>? updated,
+      Value<int>? rowid}) {
+    return BirdImagesCompanion(
+      id: id ?? this.id,
+      bird: bird ?? this.bird,
+      hash: hash ?? this.hash,
+      position: position ?? this.position,
+      created: created ?? this.created,
+      updated: updated ?? this.updated,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (bird.present) {
+      map['bird'] = Variable<String>(bird.value);
+    }
+    if (hash.present) {
+      map['hash'] = Variable<String>(hash.value);
+    }
+    if (position.present) {
+      map['position'] = Variable<int>(position.value);
+    }
+    if (created.present) {
+      map['created'] = Variable<DateTime>(created.value);
+    }
+    if (updated.present) {
+      map['updated'] = Variable<DateTime>(updated.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('BirdImagesCompanion(')
+          ..write('id: $id, ')
+          ..write('bird: $bird, ')
+          ..write('hash: $hash, ')
+          ..write('position: $position, ')
+          ..write('created: $created, ')
+          ..write('updated: $updated, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $ContactsTable extends Contacts with TableInfo<$ContactsTable, Contact> {
   @override
   final GeneratedDatabase attachedDatabase;
@@ -6337,6 +6682,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $BreedingPairsTable breedingPairs = $BreedingPairsTable(this);
   late final $BroodsTable broods = $BroodsTable(this);
   late final $EggsTable eggs = $EggsTable(this);
+  late final $BirdImagesTable birdImages = $BirdImagesTable(this);
   late final $ContactsTable contacts = $ContactsTable(this);
   late final $FinancesTable finances = $FinancesTable(this);
   late final $FinanceCategoriesTable financeCategories =
@@ -6353,6 +6699,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
         breedingPairs,
         broods,
         eggs,
+        birdImages,
         contacts,
         finances,
         financeCategories,
@@ -7752,6 +8099,186 @@ typedef $$EggsTableProcessedTableManager = ProcessedTableManager<
     $$EggsTableUpdateCompanionBuilder,
     (Egg, BaseReferences<_$AppDatabase, $EggsTable, Egg>),
     Egg,
+    PrefetchHooks Function()>;
+typedef $$BirdImagesTableCreateCompanionBuilder = BirdImagesCompanion Function({
+  required String id,
+  required String bird,
+  required String hash,
+  Value<int> position,
+  Value<DateTime?> created,
+  Value<DateTime?> updated,
+  Value<int> rowid,
+});
+typedef $$BirdImagesTableUpdateCompanionBuilder = BirdImagesCompanion Function({
+  Value<String> id,
+  Value<String> bird,
+  Value<String> hash,
+  Value<int> position,
+  Value<DateTime?> created,
+  Value<DateTime?> updated,
+  Value<int> rowid,
+});
+
+class $$BirdImagesTableFilterComposer
+    extends Composer<_$AppDatabase, $BirdImagesTable> {
+  $$BirdImagesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get bird => $composableBuilder(
+      column: $table.bird, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get hash => $composableBuilder(
+      column: $table.hash, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get position => $composableBuilder(
+      column: $table.position, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get created => $composableBuilder(
+      column: $table.created, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get updated => $composableBuilder(
+      column: $table.updated, builder: (column) => ColumnFilters(column));
+}
+
+class $$BirdImagesTableOrderingComposer
+    extends Composer<_$AppDatabase, $BirdImagesTable> {
+  $$BirdImagesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get bird => $composableBuilder(
+      column: $table.bird, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get hash => $composableBuilder(
+      column: $table.hash, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get position => $composableBuilder(
+      column: $table.position, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get created => $composableBuilder(
+      column: $table.created, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get updated => $composableBuilder(
+      column: $table.updated, builder: (column) => ColumnOrderings(column));
+}
+
+class $$BirdImagesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $BirdImagesTable> {
+  $$BirdImagesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get bird =>
+      $composableBuilder(column: $table.bird, builder: (column) => column);
+
+  GeneratedColumn<String> get hash =>
+      $composableBuilder(column: $table.hash, builder: (column) => column);
+
+  GeneratedColumn<int> get position =>
+      $composableBuilder(column: $table.position, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get created =>
+      $composableBuilder(column: $table.created, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updated =>
+      $composableBuilder(column: $table.updated, builder: (column) => column);
+}
+
+class $$BirdImagesTableTableManager extends RootTableManager<
+    _$AppDatabase,
+    $BirdImagesTable,
+    BirdImage,
+    $$BirdImagesTableFilterComposer,
+    $$BirdImagesTableOrderingComposer,
+    $$BirdImagesTableAnnotationComposer,
+    $$BirdImagesTableCreateCompanionBuilder,
+    $$BirdImagesTableUpdateCompanionBuilder,
+    (BirdImage, BaseReferences<_$AppDatabase, $BirdImagesTable, BirdImage>),
+    BirdImage,
+    PrefetchHooks Function()> {
+  $$BirdImagesTableTableManager(_$AppDatabase db, $BirdImagesTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$BirdImagesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$BirdImagesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$BirdImagesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback: ({
+            Value<String> id = const Value.absent(),
+            Value<String> bird = const Value.absent(),
+            Value<String> hash = const Value.absent(),
+            Value<int> position = const Value.absent(),
+            Value<DateTime?> created = const Value.absent(),
+            Value<DateTime?> updated = const Value.absent(),
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              BirdImagesCompanion(
+            id: id,
+            bird: bird,
+            hash: hash,
+            position: position,
+            created: created,
+            updated: updated,
+            rowid: rowid,
+          ),
+          createCompanionCallback: ({
+            required String id,
+            required String bird,
+            required String hash,
+            Value<int> position = const Value.absent(),
+            Value<DateTime?> created = const Value.absent(),
+            Value<DateTime?> updated = const Value.absent(),
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              BirdImagesCompanion.insert(
+            id: id,
+            bird: bird,
+            hash: hash,
+            position: position,
+            created: created,
+            updated: updated,
+            rowid: rowid,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$BirdImagesTableProcessedTableManager = ProcessedTableManager<
+    _$AppDatabase,
+    $BirdImagesTable,
+    BirdImage,
+    $$BirdImagesTableFilterComposer,
+    $$BirdImagesTableOrderingComposer,
+    $$BirdImagesTableAnnotationComposer,
+    $$BirdImagesTableCreateCompanionBuilder,
+    $$BirdImagesTableUpdateCompanionBuilder,
+    (BirdImage, BaseReferences<_$AppDatabase, $BirdImagesTable, BirdImage>),
+    BirdImage,
     PrefetchHooks Function()>;
 typedef $$ContactsTableCreateCompanionBuilder = ContactsCompanion Function({
   required String id,
@@ -9285,6 +9812,8 @@ class $AppDatabaseManager {
   $$BroodsTableTableManager get broods =>
       $$BroodsTableTableManager(_db, _db.broods);
   $$EggsTableTableManager get eggs => $$EggsTableTableManager(_db, _db.eggs);
+  $$BirdImagesTableTableManager get birdImages =>
+      $$BirdImagesTableTableManager(_db, _db.birdImages);
   $$ContactsTableTableManager get contacts =>
       $$ContactsTableTableManager(_db, _db.contacts);
   $$FinancesTableTableManager get finances =>

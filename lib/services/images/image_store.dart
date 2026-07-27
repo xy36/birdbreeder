@@ -13,9 +13,9 @@ import 'package:path_provider/path_provider.dart';
 /// keeps the hash string (plus an extension in a separate column), never the
 /// bytes, which keeps DB snapshots small.
 ///
-/// Nothing produces images yet (birds have no image column). This store is the
-/// infrastructure that the future capture feature and the backup system build
-/// on.
+/// Bird photos are written here by `addBirdImage` (via `BirdImagePicker`);
+/// the backup system uploads/restores the blobs by hash and [gc] reclaims
+/// unreferenced ones on startup.
 class ImageStore {
   static const _dirName = 'images';
 

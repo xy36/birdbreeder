@@ -175,6 +175,13 @@ class AppIcons {
   static const IconData groupsOutlined = Icons.groups_outlined;
   static const IconData hubOutlined = Icons.hub_outlined;
   static const IconData imageOutlined = Icons.image_outlined;
+  static const IconData camera = Icons.photo_camera;
+  static const IconData gallery = Icons.photo_library;
+  static const IconData dragHandle = Icons.drag_handle;
+  static const IconData addAPhoto = Icons.add_a_photo_outlined;
+  static const IconData star = Icons.star;
+  static const IconData starBorder = Icons.star_border;
+  static const IconData photoLibraryOutlined = Icons.photo_library_outlined;
   static const IconData importExport = Icons.import_export;
   static const IconData info = Icons.info;
   static const IconData infoOutline = Icons.info_outline;

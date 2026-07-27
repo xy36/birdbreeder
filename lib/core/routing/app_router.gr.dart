@@ -87,6 +87,50 @@ class BirdRouteArgs {
 }
 
 /// generated route for
+/// [BirdPhotosPage]
+class BirdPhotosRoute extends PageRouteInfo<BirdPhotosRouteArgs> {
+  BirdPhotosRoute({required Bird bird, Key? key, List<PageRouteInfo>? children})
+      : super(
+          BirdPhotosRoute.name,
+          args: BirdPhotosRouteArgs(bird: bird, key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'BirdPhotosRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<BirdPhotosRouteArgs>();
+      return BirdPhotosPage(bird: args.bird, key: args.key);
+    },
+  );
+}
+
+class BirdPhotosRouteArgs {
+  const BirdPhotosRouteArgs({required this.bird, this.key});
+
+  final Bird bird;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'BirdPhotosRouteArgs{bird: $bird, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! BirdPhotosRouteArgs) return false;
+    return bird == other.bird && key == other.key;
+  }
+
+  @override
+  int get hashCode => bird.hashCode ^ key.hashCode;
+}
+
+/// generated route for
 /// [BirdsOverviewPage]
 class BirdsOverviewRoute extends PageRouteInfo<void> {
   const BirdsOverviewRoute({List<PageRouteInfo>? children})

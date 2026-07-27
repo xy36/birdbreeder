@@ -39,7 +39,63 @@ class CloudBackupCard extends StatelessWidget {
         ],
       ),
     );
-    if (confirmed ?? false) await cubit.chooseLocation();
+    final chosen = (confirmed ?? false) &&
+        context.mounted &&
+        await _changeFolder(context, cubit);
+    // Without a folder cloud backup can't work, so revert the enable rather
+    // than leaving it on in a permanently unavailable state.
+    if (!chosen && context.mounted) await cubit.toggle(false);
+  }
+
+  /// Picks a cloud folder and, if one was chosen, offers to sync immediately —
+  /// picking a folder alone uploads nothing until the next auto/manual sync.
+  ///
+  /// Returns whether a folder was chosen.
+  Future<bool> _changeFolder(
+    BuildContext context,
+    CloudBackupCubit cubit,
+  ) async {
+    final chosen = await cubit.chooseLocation();
+    if (!chosen || !context.mounted) return chosen;
+    final tr = context.tr.backup.cloud.sync_after_change_dialog;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(tr.title),
+        content: Text(tr.content),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: Text(context.tr.common.cancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: Text(tr.confirm),
+          ),
+        ],
+      ),
+    );
+    if ((confirmed ?? false) && context.mounted) {
+      await _syncNow(context, cubit);
+    }
+    return true;
+  }
+
+  /// Runs a sync behind a blocking spinner dialog so the upload can't be left
+  /// half-done by navigating away mid-flight. The dialog closes itself when the
+  /// sync future settles — it must not be popped from here, since a fast sync
+  /// can finish before the dialog route is even pushed, which would pop the
+  /// wrong route.
+  Future<void> _syncNow(BuildContext context, CloudBackupCubit cubit) {
+    // Start the sync once, outside the builder: showDialog may invoke its
+    // builder more than once, and calling syncNow there would fire concurrent
+    // syncs.
+    final sync = cubit.syncNow();
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => _SyncingDialog(sync: sync),
+    );
   }
 
   String _intervalLabel(BuildContext context, AutoBackupInterval interval) {
@@ -149,7 +205,7 @@ class CloudBackupCard extends StatelessWidget {
                   title: tr.folder_label,
                   subtitle: Text(state.locationName ?? tr.location_none),
                   trailing: TextButton(
-                    onPressed: () => unawaited(cubit.chooseLocation()),
+                    onPressed: () => unawaited(_changeFolder(context, cubit)),
                     child: Text(tr.change),
                   ),
                   showDivider: true,
@@ -169,7 +225,7 @@ class CloudBackupCard extends StatelessWidget {
                     icon: const Icon(AppIcons.cloudSync, size: 18),
                     label: Text(state.syncing ? tr.syncing : tr.sync_now),
                     onPressed: state.available && !state.syncing
-                        ? () => unawaited(cubit.syncNow())
+                        ? () => unawaited(_syncNow(context, cubit))
                         : null,
                   ),
                 ),
@@ -223,6 +279,95 @@ class CloudBackupCard extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+/// Non-dismissible spinner shown while a cloud sync runs, blocking interaction
+/// (including back navigation) until the upload finishes.
+///
+/// The dialog pops itself once [sync] settles, using its own route context —
+/// this avoids the race of popping from the caller before the route is pushed.
+class _SyncingDialog extends StatefulWidget {
+  const _SyncingDialog({required this.sync});
+
+  final Future<void> sync;
+
+  @override
+  State<_SyncingDialog> createState() => _SyncingDialogState();
+}
+
+class _SyncingDialogState extends State<_SyncingDialog> {
+  @override
+  void initState() {
+    super.initState();
+    widget.sync.whenComplete(() {
+      if (mounted) Navigator.of(context).pop();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final tr = context.tr.backup.cloud;
+    final theme = Theme.of(context);
+    final scheme = theme.colorScheme;
+    return PopScope(
+      canPop: false,
+      child: Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(28, 28, 28, 24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox.square(
+                dimension: 68,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    CircularProgressIndicator(
+                      strokeWidth: 3,
+                      color: scheme.primary,
+                      backgroundColor: scheme.primary.withValues(alpha: 0.12),
+                    ),
+                    Container(
+                      width: 44,
+                      height: 44,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: scheme.primaryContainer,
+                      ),
+                      child: Icon(
+                        AppIcons.cloudSync,
+                        size: 24,
+                        color: scheme.onPrimaryContainer,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                tr.syncing,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 6),
+              Text(
+                tr.syncing_hint,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: scheme.onSurfaceVariant,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

@@ -16,7 +16,7 @@ class ManualBackupCard extends StatelessWidget {
   Future<void> _createAndShare(BuildContext context) async {
     final cubit = context.read<BackupCubit>();
     await cubit.createBackup();
-    await cubit.shareLatestBackup();
+    await cubit.shareExportBundle();
   }
 
   @override

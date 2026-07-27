@@ -28,6 +28,10 @@
 	<true/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Damit du Fotos deiner Vögel direkt aufnehmen kannst.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Damit du Fotos deiner Vögel aus der Galerie hinzufügen kannst.</string>
 	<key>NSUbiquitousContainers</key>
 	<dict>
 		<key>iCloud.com.xy36.birdbreeder</key>

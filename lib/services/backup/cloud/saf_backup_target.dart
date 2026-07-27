@@ -191,6 +191,12 @@ class SafBackupTarget implements CloudBackupTarget {
   }
 
   @override
+  Future<bool> imageExists(String hash) async {
+    final images = await _subDirUri(_imagesDir);
+    return (await _saf.child(images, [hash])) != null;
+  }
+
+  @override
   Future<void> uploadImage(String hash, File local) async {
     final images = await _subDirUri(_imagesDir);
     await _stream.pasteLocalFile(

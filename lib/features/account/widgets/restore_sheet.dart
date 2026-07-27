@@ -1,3 +1,4 @@
+import 'dart:developer' as developer;
 import 'dart:io';
 
 import 'package:birdbreeder/common_imports.dart';
@@ -41,16 +42,32 @@ class _RestoreItem {
 /// Restore flow bottom sheet: list available backups (cloud + local) → confirm
 /// → restore (which resets the DB and restarts the app).
 class RestoreSheet extends StatefulWidget {
-  const RestoreSheet({required this.cubit, super.key});
+  const RestoreSheet({
+    required this.cubit,
+    this.autoEnableCloudOnRestore = false,
+    super.key,
+  });
 
   final BackupListCubit cubit;
 
-  static Future<void> show(BuildContext context, BackupListCubit cubit) {
+  /// Whether a successful cloud restore should also switch on ongoing cloud
+  /// backup. Set from onboarding (a cloud restore implies the user wants cloud
+  /// backup); the account screen leaves it off so cloud state stays deliberate.
+  final bool autoEnableCloudOnRestore;
+
+  static Future<void> show(
+    BuildContext context,
+    BackupListCubit cubit, {
+    bool autoEnableCloudOnRestore = false,
+  }) {
     return showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
       showDragHandle: true,
-      builder: (_) => RestoreSheet(cubit: cubit),
+      builder: (_) => RestoreSheet(
+        cubit: cubit,
+        autoEnableCloudOnRestore: autoEnableCloudOnRestore,
+      ),
     );
   }
 
@@ -58,8 +75,13 @@ class RestoreSheet extends StatefulWidget {
   State<RestoreSheet> createState() => _RestoreSheetState();
 }
 
+/// The restore list plus whether the Android cloud-folder picker should be
+/// offered (SAF folder not yet granted — the only case where picking a folder
+/// unlocks cloud backups).
+typedef _RestoreListing = ({List<_RestoreItem> items, bool canChooseFolder});
+
 class _RestoreSheetState extends State<RestoreSheet> {
-  late Future<List<_RestoreItem>> _itemsFuture;
+  late Future<_RestoreListing> _itemsFuture;
   _RestoreItem? _selected;
   bool _restoring = false;
 
@@ -69,19 +91,72 @@ class _RestoreSheetState extends State<RestoreSheet> {
     _itemsFuture = _loadItems();
   }
 
-  Future<List<_RestoreItem>> _loadItems() async {
-    final cloud = await CloudBackupManager.listRemoteSnapshots();
+  Future<_RestoreListing> _loadItems() async {
     final local = await BackupService.listSnapshots();
-    return [
-      ...cloud.map(_RestoreItem.cloud),
-      ...local.map(_RestoreItem.local),
-    ];
+    // A cloud listing failure must not blank the whole sheet — keep local
+    // snapshots visible and log the cause instead of surfacing an empty list.
+    var cloud = const <CloudEntry>[];
+    try {
+      cloud = await CloudBackupManager.listRemoteSnapshots();
+    } on Object catch (e, st) {
+      developer.log(
+        'Cloud snapshot listing failed',
+        name: 'restore_sheet',
+        error: e,
+        stackTrace: st,
+      );
+    }
+    // Only Android's SAF target reports noLocation; iOS lists with zero setup.
+    final canChooseFolder = Platform.isAndroid &&
+        (await CloudBackupManager.availability()).reason ==
+            CloudUnavailableReason.noLocation;
+    return (
+      items: [
+        ...cloud.map(_RestoreItem.cloud),
+        ...local.map(_RestoreItem.local),
+      ],
+      canChooseFolder: canChooseFolder,
+    );
+  }
+
+  void _refresh() {
+    // Block body, not `=> _itemsFuture = _loadItems()`: an arrow returns the
+    // assignment value (a Future), and setState rejects a callback that returns
+    // a Future — which would skip the rebuild entirely.
+    setState(() {
+      _itemsFuture = _loadItems();
+    });
+  }
+
+  Future<void> _chooseFolder() async {
+    try {
+      final location = await CloudBackupManager.chooseLocation();
+      if (!mounted) return;
+      if (location == null) {
+        context.snackError(context.tr.backup.cloud.events.location_failed);
+        return;
+      }
+      _refresh();
+    } on Object catch (e, st) {
+      developer.log(
+        'chooseLocation failed',
+        name: 'restore_sheet',
+        error: e,
+        stackTrace: st,
+      );
+      if (mounted) context.snackError(e.toString());
+    }
   }
 
   Future<void> _confirmRestore() async {
     setState(() => _restoring = true);
     final item = _selected!;
     if (item.isCloud) {
+      // The user restored from cloud, so enable ongoing cloud backup. Persisted
+      // to prefs, which survives the s1.reset()/runApp restart in the restore.
+      if (widget.autoEnableCloudOnRestore) {
+        await CloudBackupManager.setEnabled(true);
+      }
       await widget.cubit.restoreFromCloud(item.cloud!);
     } else {
       await widget.cubit.restore(item.file!);
@@ -109,7 +184,7 @@ class _RestoreSheetState extends State<RestoreSheet> {
   Widget _buildList() {
     final tr = context.tr.backup.restore_sheet;
     final scheme = Theme.of(context).colorScheme;
-    return FutureBuilder<List<_RestoreItem>>(
+    return FutureBuilder<_RestoreListing>(
       future: _itemsFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
@@ -118,7 +193,8 @@ class _RestoreSheetState extends State<RestoreSheet> {
             child: Center(child: CircularProgressIndicator()),
           );
         }
-        final items = snapshot.data ?? const <_RestoreItem>[];
+        final items = snapshot.data?.items ?? const <_RestoreItem>[];
+        final canChooseFolder = snapshot.data?.canChooseFolder ?? false;
         return Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -148,6 +224,12 @@ class _RestoreSheetState extends State<RestoreSheet> {
                       ),
                   ],
                 ),
+              ),
+            if (canChooseFolder)
+              ListTile(
+                leading: const Icon(AppIcons.cloud),
+                title: Text(tr.choose_folder_first),
+                onTap: _chooseFolder,
               ),
             Divider(height: 1, color: scheme.outlineVariant),
             ListTile(

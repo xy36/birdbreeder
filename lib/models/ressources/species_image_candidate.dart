@@ -1,4 +1,5 @@
-import 'package:birdbreeder/services/species_image_search_service.dart' show SpeciesImageSearchService;
+import 'package:birdbreeder/services/species_image_search_service.dart'
+    show SpeciesImageSearchService;
 
 /// Single image suggestion returned by [SpeciesImageSearchService].
 class SpeciesImageCandidate {

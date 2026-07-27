@@ -92,6 +92,13 @@ abstract class CloudBackupTarget {
   /// without a full directory listing. No-op where listing is already cheap.
   Future<void> recordUploadedImages(Set<String> hashes);
 
+  /// Whether the image blob `images/<hash>` physically exists in the cloud.
+  ///
+  /// Used to self-heal a stale hash index (SAF) that vouches for a blob whose
+  /// file is actually gone, so the missing image is re-uploaded instead of
+  /// skipped forever.
+  Future<bool> imageExists(String hash);
+
   /// Uploads a single image blob as `images/<hash>` if not already present.
   Future<void> uploadImage(String hash, File local);
 

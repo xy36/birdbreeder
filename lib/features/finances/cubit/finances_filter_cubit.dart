@@ -37,14 +37,12 @@ class FinancesFilterCubit extends Cubit<FinanceFilter> {
         to.day == 31;
   }
 
-  bool get hasAnyYearSelected =>
-      state.fromDate != null || state.toDate != null;
+  bool get hasAnyYearSelected => state.fromDate != null || state.toDate != null;
 
   List<Finance> filterFinances(List<Finance> finances) {
     final f = state;
 
-    final categorySet =
-        f.categoryIds.isEmpty ? null : f.categoryIds.toSet();
+    final categorySet = f.categoryIds.isEmpty ? null : f.categoryIds.toSet();
     final kindSet = f.kinds.isEmpty ? null : f.kinds.toSet();
     final birdSet = f.birdIds.isEmpty ? null : f.birdIds.toSet();
 

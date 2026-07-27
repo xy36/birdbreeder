@@ -50,11 +50,18 @@ class BackupCubit extends Cubit<BackupState>
     }
   }
 
-  Future<void> shareLatestBackup() async {
-    final latest = state.latestSnapshot;
-    if (latest == null) return;
+  /// Builds a self-contained export bundle (photos embedded) and shares it.
+  ///
+  /// The bundle lives in the temp directory and is deleted after the share
+  /// sheet closes; the local snapshot history stays image-free.
+  Future<void> shareExportBundle() async {
     try {
-      await BackupService.shareSnapshot(latest);
+      final bundle = await BackupService.createExportBundle();
+      try {
+        await BackupService.shareSnapshot(bundle);
+      } finally {
+        if (bundle.existsSync()) await bundle.delete();
+      }
       await refresh();
     } on Exception catch (e) {
       emitPresentation(BackupCubitEvent.shareFailed(e.toString()));
@@ -75,11 +82,18 @@ class BackupCubit extends Cubit<BackupState>
   /// Caller must have already confirmed; this commits and restarts.
   Future<void> restoreFromFile(File file) async {
     try {
+      // Image-free bundles (external mode) only carry hashes; pull the blobs
+      // from the cloud folder afterwards — mirroring [BackupListCubit.restore].
+      // Embedded bundles restore their blobs inside overwriteDatabase.
+      final externalHashes = await CloudBackupManager.imageHashesFromBundle(
+        file,
+      );
       if (s1.isRegistered<AppDatabase>()) {
         await s1.get<AppDatabase>().close();
       }
       await s1.reset();
       await BackupService.overwriteDatabase(file);
+      await CloudBackupManager.restoreExternalImages(externalHashes);
       await initializeDependencyInjection();
       runApp(TranslationProvider(child: const App()));
     } on Exception catch (e) {

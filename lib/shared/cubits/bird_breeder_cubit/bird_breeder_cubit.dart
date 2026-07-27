@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/bird_breeder_resources.dart';
+import 'package:birdbreeder/models/bird_image/entity/bird_image.dart';
 import 'package:birdbreeder/models/breeding/entity/breeding_pair.dart';
 import 'package:birdbreeder/models/breeding/entity/brood.dart';
 import 'package:birdbreeder/models/contact/entity/contact.dart';
@@ -12,6 +14,7 @@ import 'package:birdbreeder/models/finance/entity/finance_category.dart';
 import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';
 import 'package:birdbreeder/models/ressources/entity/species.dart';
+import 'package:birdbreeder/services/images/image_store.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit_event.dart';
 import 'package:birdbreeder/shared/repositories/i_crud_repository.dart';
 import 'package:bloc_presentation/bloc_presentation.dart';
@@ -20,6 +23,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'bird_breeder_cubit.freezed.dart';
 part 'bird_breeder_state.dart';
 part 'crud_files/bird_breeder_cubit.birds.dart';
+part 'crud_files/bird_breeder_cubit.bird_images.dart';
 part 'crud_files/bird_breeder_cubit.breeding_pairs.dart';
 part 'crud_files/bird_breeder_cubit.broods.dart';
 part 'crud_files/bird_breeder_cubit.cages.dart';
@@ -43,6 +47,7 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
     this._eggsRepository,
     this._financesRepository,
     this._financesCategoriesRepository,
+    this._birdImagesRepository,
   ) : super(
           initialState(),
         );
@@ -50,6 +55,7 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
   static BirdBreederState initialState() => const BirdBreederState.initial(
         birdBreederResources: BirdBreederResources(
           birds: [],
+          birdImages: [],
           breedingPairs: [],
           broods: [],
           cages: [],
@@ -62,6 +68,7 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
         ),
       );
 
+  final ICrudRepository<BirdImage> _birdImagesRepository;
   final ICrudRepository<BirdColor> _birdColorsRepository;
   final ICrudRepository<Contact> _contactsRepository;
   final ICrudRepository<Cage> _cagesRepository;
@@ -112,7 +119,8 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
       species,
       eggs,
       financesCategories,
-      finances
+      finances,
+      birdImages
     ) = await Future.wait([
       fetchBirds(),
       fetchBreedingPairs(),
@@ -124,6 +132,7 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
       fetchEggs(),
       fetchFinancesCategories(),
       fetchFinances(),
+      fetchBirdImages(),
     ]).then(
       (list) => (
         list[0] as List<Bird>,
@@ -136,6 +145,7 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
         list[7] as List<Egg>,
         list[8] as List<FinanceCategory>,
         list[9] as List<Finance>,
+        list[10] as List<BirdImage>,
       ),
     );
 
@@ -150,11 +160,13 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
       eggs: eggs,
       financesCategories: financesCategories,
       finances: finances,
+      birdImages: birdImages,
     );
   }
 
   void emitLoaded({
     List<Bird>? birds,
+    List<BirdImage>? birdImages,
     List<BreedingPair>? breedingPairs,
     List<Brood>? broods,
     List<Cage>? cages,
@@ -169,6 +181,7 @@ class BirdBreederCubit extends Cubit<BirdBreederState>
       BirdBreederLoaded(
         birdBreederResources: BirdBreederResources(
           birds: birds ?? state.birdBreederResources.birds,
+          birdImages: birdImages ?? state.birdBreederResources.birdImages,
           breedingPairs:
               breedingPairs ?? state.birdBreederResources.breedingPairs,
           broods: broods ?? state.birdBreederResources.broods,

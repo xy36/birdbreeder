@@ -80,7 +80,8 @@ class SpeciesImageSearchService {
       if (src == null || src.isEmpty) continue;
       final title = page['title'] as String? ?? '?';
       final terms = page['terms'] as Map<String, dynamic>?;
-      final description = (terms?['description'] as List?)?.firstOrNull as String?;
+      final description =
+          (terms?['description'] as List?)?.firstOrNull as String?;
       out.add(
         SpeciesImageCandidate(
           title: title,

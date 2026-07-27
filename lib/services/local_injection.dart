@@ -2,6 +2,7 @@
 // Local mode (Drift/SQLite)
 // ──────────────────────────────────────────
 
+import 'package:birdbreeder/mapper/local/local_bird_image_mapper.dart';
 import 'package:birdbreeder/mapper/local/local_bird_mapper.dart';
 import 'package:birdbreeder/mapper/local/local_breeding_pair_mapper.dart';
 import 'package:birdbreeder/mapper/local/local_brood_mapper.dart';
@@ -13,6 +14,7 @@ import 'package:birdbreeder/mapper/local/local_finances_category_mapper.dart';
 import 'package:birdbreeder/mapper/local/local_finances_mapper.dart';
 import 'package:birdbreeder/mapper/local/local_species_mapper.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
+import 'package:birdbreeder/models/bird_image/entity/bird_image.dart';
 import 'package:birdbreeder/models/breeding/entity/breeding_pair.dart';
 import 'package:birdbreeder/models/breeding/entity/brood.dart';
 import 'package:birdbreeder/models/contact/entity/contact.dart';
@@ -142,6 +144,17 @@ void registerLocal() {
         toDto: (m) => LocalEggMapper().convert<Egg, local_db.Egg>(m),
       ),
     )
+    ..registerLazySingleton<ICrudRepository<BirdImage>>(
+      () => localRepo<BirdImage, local_db.BirdImage>(
+        tableName: 'bird_images',
+        fromJson: local_db.BirdImage.fromJson,
+        toJson: (d) => d.toJson(),
+        fromDto: (dto) =>
+            LocalBirdImageMapper().convert<local_db.BirdImage, BirdImage>(dto),
+        toDto: (m) =>
+            LocalBirdImageMapper().convert<BirdImage, local_db.BirdImage>(m),
+      ),
+    )
     ..registerLazySingleton<ICrudRepository<FinanceCategory>>(
       () => localRepo<FinanceCategory, local_db.FinanceCategory>(
         tableName: 'finance_categories',
@@ -178,6 +191,7 @@ void registerLocal() {
         s1<ICrudRepository<Egg>>(),
         s1<ICrudRepository<Finance>>(),
         s1<ICrudRepository<FinanceCategory>>(),
+        s1<ICrudRepository<BirdImage>>(),
       )..initialLoad(),
     );
 }
