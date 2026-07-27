@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.12.0](https://github.com/xy36/birdbreeder/compare/v1.11.0...v1.12.0) (2026-07-27)
+
+
+### Features
+
+* Implement cloud backup functionality with image indexing and rework accoutn screen ([2e18218](https://github.com/xy36/birdbreeder/commit/2e182189af2e3563c0b582fedd81ed8d7d7ea71d))
+* improve cloud storage funcitonality and add image support ([8390eb7](https://github.com/xy36/birdbreeder/commit/8390eb704384fec5141f39caaa34219e02efaa29))
+
 ## [1.11.0](https://github.com/xy36/birdbreeder/compare/v1.10.0...v1.11.0) (2026-06-29)
 
 
