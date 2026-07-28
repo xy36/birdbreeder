@@ -20,10 +20,10 @@ class AppIcons {
   static const IconData eggStatusInStock = Icons.inventory_2_outlined;
   static const IconData eggStatusUnknown = Icons.help_outline;
 
-  static const IconData birdTabsGeneral = Icons.info_outline;
-  static const IconData birdTabsBreeding = Icons.pets;
-  static const IconData birdTabsStatusAndLifeCycle = Icons.timelapse;
-  static const IconData birdTabsPurchaseAndSale = Icons.attach_money;
+  static const IconData birdTabsGeneral = Icons.badge;
+  static const IconData birdTabsBreeding = Icons.account_tree;
+  static const IconData birdTabsStatusAndLifeCycle = Icons.timeline;
+  static const IconData birdTabsPurchaseAndSale = Icons.payments;
   static const IconData birdSectionParent = Icons.family_restroom;
   static const IconData birdSectionBreeder = Icons.person_outline;
   static const IconData birdSectionChildren = Icons.child_friendly;

@@ -1,5 +1,6 @@
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/bird_summary_header.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/breeding/breeder_section.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/breeding/children_section.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/breeding/parent_section.dart';
@@ -97,58 +98,107 @@ class _BirdFieldsState extends State<BirdFields> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return FormBuilder(
       key: formKey,
-      child: Column(
-        children: [
-          TabBar(
-            indicatorPadding: const EdgeInsets.symmetric(vertical: 8),
-            controller: controller,
-            isScrollable: true,
-            physics: const BouncingScrollPhysics(),
-            tabAlignment: TabAlignment.center,
-            indicator: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: Theme.of(context).colorScheme.primaryContainer,
-            ),
-            tabs: BirdSections.values
-                .map(
-                  (tab) => Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Tab(
-                      icon: tab.getIcon(),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 4),
-                        child: Text(
-                          tab.getDisplayName(context),
-                          style: context.bodySmall,
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ),
-                  ),
-                )
-                .toList(),
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: controller,
-              children: BirdSections.values
-                  .map(
-                    (e) => SingleChildScrollView(
-                      physics: const AlwaysScrollableScrollPhysics(
-                        parent: BouncingScrollPhysics(),
-                      ),
-                      child: Column(
-                        children: e.getSectionWidgets(context, widget.bird),
-                      ),
-                    ),
-                  )
-                  .toList(),
+      child: NestedScrollView(
+        headerSliverBuilder: (context, _) => [
+          // Summary scrolls away with the header.
+          SliverToBoxAdapter(child: BirdSummaryHeader(bird: widget.bird)),
+          // Tabs stay pinned beneath it.
+          SliverOverlapAbsorber(
+            handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+            sliver: SliverPersistentHeader(
+              pinned: true,
+              delegate: _PinnedTabBar(_buildTabBar(context)),
             ),
           ),
         ],
+        body: TabBarView(
+          controller: controller,
+          children: [
+            for (final section in BirdSections.values)
+              Builder(
+                builder: (context) => CustomScrollView(
+                  key: PageStorageKey(section),
+                  physics: const AlwaysScrollableScrollPhysics(
+                    parent: BouncingScrollPhysics(),
+                  ),
+                  slivers: [
+                    SliverOverlapInjector(
+                      handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
+                        context,
+                      ),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Column(
+                        children:
+                            section.getSectionWidgets(context, widget.bird),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
+
+  TabBar _buildTabBar(BuildContext context) {
+    return TabBar(
+      indicatorPadding: const EdgeInsets.symmetric(vertical: 8),
+      controller: controller,
+      isScrollable: true,
+      physics: const BouncingScrollPhysics(),
+      tabAlignment: TabAlignment.center,
+      indicator: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        color: Theme.of(context).colorScheme.primaryContainer,
+      ),
+      tabs: BirdSections.values
+          .map(
+            (tab) => Padding(
+              padding: const EdgeInsets.all(8),
+              child: Tab(
+                icon: tab.getIcon(),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 4),
+                  child: Text(
+                    tab.getDisplayName(context),
+                    style: context.bodySmall,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ),
+            ),
+          )
+          .toList(),
+    );
+  }
+}
+
+/// Pins the [TabBar] beneath the collapsing summary header.
+class _PinnedTabBar extends SliverPersistentHeaderDelegate {
+  const _PinnedTabBar(this.tabBar);
+
+  final TabBar tabBar;
+
+  static const double _height = 88;
+
+  @override
+  double get minExtent => _height;
+
+  @override
+  double get maxExtent => _height;
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlaps) {
+    return ColoredBox(
+      color: Theme.of(context).colorScheme.surface,
+      child: tabBar,
+    );
+  }
+
+  @override
+  bool shouldRebuild(_PinnedTabBar oldDelegate) => oldDelegate.tabBar != tabBar;
 }

@@ -824,6 +824,7 @@ class TranslationsBirdDe {
   String created_information({required Object DateTimeDate, required Object Time}) => 'Erstellt am ${DateTimeDate} um ${Time}';
 
   late final TranslationsBirdTabsDe tabs = TranslationsBirdTabsDe.internal(_root);
+  late final TranslationsBirdSummaryDe summary = TranslationsBirdSummaryDe.internal(_root);
   late final TranslationsBirdSectionsDe sections = TranslationsBirdSectionsDe.internal(_root);
 }
 
@@ -2637,6 +2638,30 @@ class TranslationsBirdTabsDe {
 
   /// de: 'Finanzen'
   String get purchase_and_sale => 'Finanzen';
+}
+
+// Path: bird.summary
+class TranslationsBirdSummaryDe {
+  TranslationsBirdSummaryDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Geschlecht'
+  String get sex => 'Geschlecht';
+
+  /// de: 'Alter'
+  String get age => 'Alter';
+
+  /// de: 'Käfig'
+  String get cage => 'Käfig';
+
+  /// de: 'Nachkommen'
+  String get offspring => 'Nachkommen';
+
+  /// de: '—'
+  String get unknown => '—';
 }
 
 // Path: bird.sections

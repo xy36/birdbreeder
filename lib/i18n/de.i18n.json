@@ -690,6 +690,13 @@
             "breeding": "Zucht",
             "purchase_and_sale": "Finanzen"
         },
+        "summary": {
+            "sex": "Geschlecht",
+            "age": "Alter",
+            "cage": "Käfig",
+            "offspring": "Nachkommen",
+            "unknown": "—"
+        },
         "sections": {
             "identification": {
                 "title": "Identifikation",

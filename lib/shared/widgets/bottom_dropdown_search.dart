@@ -83,6 +83,7 @@ class _BottomDropdownSearchState<T> extends State<BottomDropdownSearch<T>> {
           child: Text(widget.title, style: context.titleLarge),
         ),
         modalBottomSheetProps: ModalBottomSheetProps(
+          backgroundColor: Theme.of(context).colorScheme.surface,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
