@@ -464,6 +464,33 @@
             "open_website_tooltipp": "Webseite öffnen",
             "send_email_tooltipp": "E-Mail schreiben",
             "call_tooltipp": "Anrufen"
+        },
+        "overview": {
+            "total_label": "Kontakte",
+            "bought_chip(count)": "{{count}} gekauft",
+            "sold_chip(count)": "{{count}} verkauft",
+            "all_contacts": "Alle Kontakte",
+            "search_hint": "Name, Ort suchen …",
+            "activity_sold(ring)": "Verkauft {{ring}}",
+            "activity_bought(ring)": "Gekauft {{ring}}"
+        },
+        "card": {
+            "call": "Anrufen",
+            "email": "E-Mail",
+            "details": "Details"
+        },
+        "detail": {
+            "title": "Kontakt",
+            "bought": "Gekauft",
+            "sold": "Verkauft",
+            "balance": "Saldo",
+            "contact_data": "Kontaktdaten",
+            "no_contact_data": "Keine Kontaktdaten hinterlegt",
+            "linked_birds": "Verknüpfte Vögel",
+            "role_sold": "VERKAUFT",
+            "role_bought": "GEKAUFT",
+            "location": "Standort",
+            "edit": "Bearbeiten"
         }
     },
     "breeding_pairs": {

@@ -10,6 +10,7 @@ import 'package:birdbreeder/features/birds/presentation/photos/bird_photos_page.
 import 'package:birdbreeder/features/breedings/breeding_pair_details/breeding_pair_details_page.dart';
 import 'package:birdbreeder/features/breedings/breeding_pairs/breeding_pairs_page.dart';
 import 'package:birdbreeder/features/contacts/contact_details_page.dart';
+import 'package:birdbreeder/features/contacts/contact_view_page.dart';
 import 'package:birdbreeder/features/contacts/contacts_page.dart';
 import 'package:birdbreeder/features/csv_import/csv_import_page.dart';
 import 'package:birdbreeder/features/finances/finances_page.dart';
@@ -50,6 +51,7 @@ class AppRouter extends RootStackRouter {
             AutoRoute(page: BirdPhotosRoute.page, path: 'birds/bird/photos'),
             AutoRoute(page: PedigreeRoute.page, path: 'birds/pedigree'),
             AutoRoute(page: ContactsRoute.page, path: 'contacts'),
+            AutoRoute(page: ContactViewRoute.page, path: 'contacts/view'),
             AutoRoute(page: ContactDetailsRoute.page, path: 'contacts/details'),
             AutoRoute(page: BreedingPairsRoute.page, path: 'breedingPairs'),
             AutoRoute(

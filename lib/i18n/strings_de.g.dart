@@ -503,6 +503,9 @@ class TranslationsContactsDe {
 
   late final TranslationsContactsSectionsDe sections = TranslationsContactsSectionsDe.internal(_root);
   late final TranslationsContactsActionButtonDe action_button = TranslationsContactsActionButtonDe.internal(_root);
+  late final TranslationsContactsOverviewDe overview = TranslationsContactsOverviewDe.internal(_root);
+  late final TranslationsContactsCardDe card = TranslationsContactsCardDe.internal(_root);
+  late final TranslationsContactsDetailDe detail = TranslationsContactsDetailDe.internal(_root);
 }
 
 // Path: breeding_pairs
@@ -2248,6 +2251,96 @@ class TranslationsContactsActionButtonDe {
 
   /// de: 'Anrufen'
   String get call_tooltipp => 'Anrufen';
+}
+
+// Path: contacts.overview
+class TranslationsContactsOverviewDe {
+  TranslationsContactsOverviewDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Kontakte'
+  String get total_label => 'Kontakte';
+
+  /// de: '{{count}} gekauft'
+  String bought_chip({required Object Count}) => '${Count} gekauft';
+
+  /// de: '{{count}} verkauft'
+  String sold_chip({required Object Count}) => '${Count} verkauft';
+
+  /// de: 'Alle Kontakte'
+  String get all_contacts => 'Alle Kontakte';
+
+  /// de: 'Name, Ort suchen …'
+  String get search_hint => 'Name, Ort suchen …';
+
+  /// de: 'Verkauft {{ring}}'
+  String activity_sold({required Object Ring}) => 'Verkauft ${Ring}';
+
+  /// de: 'Gekauft {{ring}}'
+  String activity_bought({required Object Ring}) => 'Gekauft ${Ring}';
+}
+
+// Path: contacts.card
+class TranslationsContactsCardDe {
+  TranslationsContactsCardDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Anrufen'
+  String get call => 'Anrufen';
+
+  /// de: 'E-Mail'
+  String get email => 'E-Mail';
+
+  /// de: 'Details'
+  String get details => 'Details';
+}
+
+// Path: contacts.detail
+class TranslationsContactsDetailDe {
+  TranslationsContactsDetailDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Kontakt'
+  String get title => 'Kontakt';
+
+  /// de: 'Gekauft'
+  String get bought => 'Gekauft';
+
+  /// de: 'Verkauft'
+  String get sold => 'Verkauft';
+
+  /// de: 'Saldo'
+  String get balance => 'Saldo';
+
+  /// de: 'Kontaktdaten'
+  String get contact_data => 'Kontaktdaten';
+
+  /// de: 'Keine Kontaktdaten hinterlegt'
+  String get no_contact_data => 'Keine Kontaktdaten hinterlegt';
+
+  /// de: 'Verknüpfte Vögel'
+  String get linked_birds => 'Verknüpfte Vögel';
+
+  /// de: 'VERKAUFT'
+  String get role_sold => 'VERKAUFT';
+
+  /// de: 'GEKAUFT'
+  String get role_bought => 'GEKAUFT';
+
+  /// de: 'Standort'
+  String get location => 'Standort';
+
+  /// de: 'Bearbeiten'
+  String get edit => 'Bearbeiten';
 }
 
 // Path: breeding_pairs.status

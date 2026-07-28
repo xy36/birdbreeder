@@ -458,6 +458,53 @@ class ContactDetailsRouteArgs {
 }
 
 /// generated route for
+/// [ContactViewPage]
+class ContactViewRoute extends PageRouteInfo<ContactViewRouteArgs> {
+  ContactViewRoute({
+    required Contact contact,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ContactViewRoute.name,
+          args: ContactViewRouteArgs(contact: contact, key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'ContactViewRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ContactViewRouteArgs>();
+      return ContactViewPage(contact: args.contact, key: args.key);
+    },
+  );
+}
+
+class ContactViewRouteArgs {
+  const ContactViewRouteArgs({required this.contact, this.key});
+
+  final Contact contact;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ContactViewRouteArgs{contact: $contact, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ContactViewRouteArgs) return false;
+    return contact == other.contact && key == other.key;
+  }
+
+  @override
+  int get hashCode => contact.hashCode ^ key.hashCode;
+}
+
+/// generated route for
 /// [ContactsPage]
 class ContactsRoute extends PageRouteInfo<void> {
   const ContactsRoute({List<PageRouteInfo>? children})
