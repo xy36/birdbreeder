@@ -3,6 +3,8 @@ import 'package:birdbreeder/core/extensions/contact_extension.dart';
 import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/cubit/birds_filter_cubit.dart';
 import 'package:birdbreeder/features/breedings/breeding_pairs/cubit/breeding_pairs_filter_cubit.dart';
+import 'package:birdbreeder/features/export/presentation/cubit/export_cubit.dart';
+import 'package:birdbreeder/features/export/presentation/cubit/export_listener.dart';
 import 'package:birdbreeder/features/finances/cubit/finances_filter_cubit.dart';
 import 'package:birdbreeder/features/onboarding/onboarding_screen.dart';
 import 'package:birdbreeder/i18n/strings.g.dart';
@@ -160,6 +162,7 @@ class _RouterApp extends StatelessWidget {
         BlocProvider(create: (context) => FinancesFilterCubit()),
         BlocProvider(create: (context) => BreedingPairSearchCubit()),
         BlocProvider(create: (context) => BreedingPairsFilterCubit()),
+        BlocProvider(create: (context) => ExportCubit()),
         BlocProvider(
           create: (context) => BirdsFilterCubit(
             currentUserContactId: s1
@@ -184,7 +187,7 @@ class _RouterApp extends StatelessWidget {
         themeMode: themeMode,
         builder: (context, child) => PopScope(
           canPop: false,
-          child: child!,
+          child: ExportListener(child: child),
         ),
         locale: TranslationProvider.of(context).flutterLocale,
         supportedLocales: AppLocaleUtils.supportedLocales,

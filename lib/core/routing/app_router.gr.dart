@@ -585,6 +585,71 @@ class MenuRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PdfHeaderEditPage]
+class PdfHeaderEditRoute extends PageRouteInfo<PdfHeaderEditRouteArgs> {
+  PdfHeaderEditRoute({
+    PdfHeaderProfile? profile,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          PdfHeaderEditRoute.name,
+          args: PdfHeaderEditRouteArgs(profile: profile, key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'PdfHeaderEditRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<PdfHeaderEditRouteArgs>(
+        orElse: () => const PdfHeaderEditRouteArgs(),
+      );
+      return PdfHeaderEditPage(profile: args.profile, key: args.key);
+    },
+  );
+}
+
+class PdfHeaderEditRouteArgs {
+  const PdfHeaderEditRouteArgs({this.profile, this.key});
+
+  final PdfHeaderProfile? profile;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'PdfHeaderEditRouteArgs{profile: $profile, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PdfHeaderEditRouteArgs) return false;
+    return profile == other.profile && key == other.key;
+  }
+
+  @override
+  int get hashCode => profile.hashCode ^ key.hashCode;
+}
+
+/// generated route for
+/// [PdfHeaderListPage]
+class PdfHeaderListRoute extends PageRouteInfo<void> {
+  const PdfHeaderListRoute({List<PageRouteInfo>? children})
+      : super(PdfHeaderListRoute.name, initialChildren: children);
+
+  static const String name = 'PdfHeaderListRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PdfHeaderListPage();
+    },
+  );
+}
+
+/// generated route for
 /// [PedigreePage]
 class PedigreeRoute extends PageRouteInfo<PedigreeRouteArgs> {
   PedigreeRoute({required Bird bird, Key? key, List<PageRouteInfo>? children})

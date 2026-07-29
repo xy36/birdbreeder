@@ -13,6 +13,8 @@ import 'package:birdbreeder/features/contacts/contact_details_page.dart';
 import 'package:birdbreeder/features/contacts/contact_view_page.dart';
 import 'package:birdbreeder/features/contacts/contacts_page.dart';
 import 'package:birdbreeder/features/csv_import/csv_import_page.dart';
+import 'package:birdbreeder/features/export/presentation/header/pdf_header_edit_page.dart';
+import 'package:birdbreeder/features/export/presentation/header/pdf_header_list_page.dart';
 import 'package:birdbreeder/features/finances/finances_page.dart';
 import 'package:birdbreeder/features/menu/presentation/menu_page.dart';
 import 'package:birdbreeder/features/ressourcen_center/cages/cage_detail_page.dart';
@@ -26,6 +28,7 @@ import 'package:birdbreeder/features/ressourcen_center/species/species_page.dart
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/contact/entity/contact.dart';
 import 'package:birdbreeder/models/finance/entity/finance_category.dart';
+import 'package:birdbreeder/models/pdf_header/entity/pdf_header_profile.dart';
 import 'package:birdbreeder/models/ressources/entity/bird_color.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';
 import 'package:birdbreeder/models/ressources/entity/species.dart';
@@ -61,6 +64,14 @@ class AppRouter extends RootStackRouter {
             AutoRoute(page: FinancesRoute.page, path: 'finances'),
             AutoRoute(page: AccountRoute.page, path: 'account'),
             AutoRoute(page: BackupListRoute.page, path: 'account/backups'),
+            AutoRoute(
+              page: PdfHeaderListRoute.page,
+              path: 'account/pdf-header',
+            ),
+            AutoRoute(
+              page: PdfHeaderEditRoute.page,
+              path: 'account/pdf-header/edit',
+            ),
             AutoRoute(page: CsvImportRoute.page, path: 'csv-import'),
             AutoRoute(page: CagesTabRoute.page, path: 'resources/cages'),
             AutoRoute(page: ColorsTabRoute.page, path: 'resources/colors'),

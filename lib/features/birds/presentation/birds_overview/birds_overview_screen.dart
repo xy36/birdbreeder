@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/birds_extension.dart';
@@ -9,6 +11,10 @@ import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/b
 import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/bird_filter_bar.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/bird_row.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/widgets/birds_roster_summary.dart';
+import 'package:birdbreeder/features/export/domain/columns/bird_export_columns.dart';
+import 'package:birdbreeder/features/export/domain/export_request.dart';
+import 'package:birdbreeder/features/export/presentation/cubit/export_cubit.dart';
+import 'package:birdbreeder/features/export/presentation/export_sheet.dart';
 import 'package:birdbreeder/models/bird/bird_filter.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 import 'package:birdbreeder/models/ressources/entity/cage.dart';
@@ -58,6 +64,34 @@ class _BirdsOverviewScreenState extends State<BirdsOverviewScreen> {
     widget.mode == BirdOverviewMode.picker ? pickBird(bird) : openBird(bird);
   }
 
+  /// Exports exactly what the list shows.
+  ///
+  /// The search cubit holds the filtered list the body last fed it, so its
+  /// `searchedItems` is the rendered result of filter *and* search — no need
+  /// to re-run either here.
+  Future<void> exportBirds() async {
+    final cubit = context.read<ExportCubit>();
+    final translations = context.tr;
+    final request = ExportRequest<Bird>(
+      items: context.read<BirdSearchCubit>().searchedItems,
+      listTitle: translations.export.lists.birds,
+      fileBaseName: translations.export.file_names.birds,
+      presets: BirdExportPresets.all,
+    );
+
+    final choice = await showExportSheet<Bird>(context, request);
+    if (choice == null) return;
+
+    await cubit.export(
+      request: request,
+      preset: choice.preset,
+      format: choice.format,
+      fileName: choice.fileName,
+      profile: choice.profile,
+      t: translations,
+    );
+  }
+
   /// Buckets birds by their cage, ordered by cage name with the
   /// "no cage" bucket last. Order within a group preserves the incoming
   /// (already filtered + sorted) order.
@@ -98,6 +132,12 @@ class _BirdsOverviewScreenState extends State<BirdsOverviewScreen> {
                 : context.tr.birds.overview.view_grouped,
             onPressed: () => setState(() => _grouped = !_grouped),
           ),
+          if (widget.mode == BirdOverviewMode.viewer)
+            IconButton(
+              icon: const Icon(AppIcons.export),
+              tooltip: context.tr.export.title,
+              onPressed: () => unawaited(exportBirds()),
+            ),
         ],
       ),
       body: BlocListener<BirdBreederCubit, BirdBreederState>(

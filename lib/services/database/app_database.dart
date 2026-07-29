@@ -119,6 +119,42 @@ class BirdImages extends Table {
   Set<Column> get primaryKey => {id};
 }
 
+/// Reusable letterheads for exported PDFs.
+///
+/// `logoHash` points at a blob in the local ImageStore, exactly like
+/// [BirdImages.hash] — which is why `ImageReferenceResolver` has to count this
+/// column too, or the garbage collector would reclaim a logo nobody else
+/// references.
+@DataClassName('PdfHeaderProfileRow')
+class PdfHeaderProfiles extends Table {
+  TextColumn get id => text()();
+  TextColumn get name => text()();
+  BoolColumn get isDefault => boolean().withDefault(const Constant(false))();
+  TextColumn get layout => text().withDefault(const Constant('logoLeft'))();
+  TextColumn get logoHash => text().nullable()();
+  TextColumn get logoSize => text().withDefault(const Constant('medium'))();
+  TextColumn get titleTemplate => text().nullable()();
+  TextColumn get subtitleTemplate => text().nullable()();
+  BoolColumn get showAddressBlock =>
+      boolean().withDefault(const Constant(true))();
+  TextColumn get addressOverride => text().nullable()();
+  BoolColumn get showDate => boolean().withDefault(const Constant(true))();
+  BoolColumn get showCount => boolean().withDefault(const Constant(true))();
+  BoolColumn get showFilterSummary =>
+      boolean().withDefault(const Constant(true))();
+  BoolColumn get showBreederNumber =>
+      boolean().withDefault(const Constant(true))();
+  BoolColumn get showDivider => boolean().withDefault(const Constant(true))();
+  TextColumn get footerTemplate => text().nullable()();
+  BoolColumn get showPageNumbers =>
+      boolean().withDefault(const Constant(true))();
+  DateTimeColumn get created => dateTime().nullable()();
+  DateTimeColumn get updated => dateTime().nullable()();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
 class Contacts extends Table {
   TextColumn get id => text()();
   TextColumn get number => text().nullable()();
@@ -239,6 +275,7 @@ class BirdColors extends Table {
     SpeciesTable,
     Cages,
     BirdColors,
+    PdfHeaderProfiles,
   ],
 )
 class AppDatabase extends _$AppDatabase {
@@ -248,7 +285,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.forTesting(super.e);
 
   @override
-  int get schemaVersion => 4;
+  int get schemaVersion => 5;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -262,6 +299,9 @@ class AppDatabase extends _$AppDatabase {
           },
           from3To4: (m, schema) async {
             await m.createTable(schema.birdImages);
+          },
+          from4To5: (m, schema) async {
+            await m.createTable(schema.pdfHeaderProfiles);
           },
         ),
       );

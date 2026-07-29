@@ -1140,6 +1140,175 @@
         "duplicate": "Duplizieren",
         "delete": "Löschen"
     },
+    "export": {
+        "title": "Exportieren",
+        "action": "Exportieren",
+        "scope_hint": "Exportiert wird genau die aktuell angezeigte Liste.",
+        "file_name_label": "Dateiname",
+        "empty": "Es gibt nichts zu exportieren.",
+        "events": {
+            "succeeded": "\"{{fileName}}\" erstellt.",
+            "failed": "Export fehlgeschlagen: {{error}}"
+        },
+        "row_count_one": "1 Eintrag",
+        "row_count_other": "{{count}} Einträge",
+        "format": {
+            "title": "Format",
+            "csv": {
+                "label": "CSV",
+                "description": "Für Excel und Tabellen"
+            },
+            "pdf": {
+                "label": "PDF",
+                "description": "Zum Drucken und Weitergeben"
+            }
+        },
+        "preset": {
+            "title": "Umfang"
+        },
+        "pdf": {
+            "page": "Seite {{page}} von {{total}}"
+        },
+        "header": {
+            "title": "PDF-Briefkopf",
+            "subtitle": "Kopfzeile für exportierte PDFs",
+            "list_empty": "Noch kein Briefkopf angelegt. Ohne Profil nutzt der Export den Namen der Liste und deine Profildaten.",
+            "add": "Briefkopf anlegen",
+            "new_name": "Neuer Briefkopf",
+            "none": "Ohne Briefkopf",
+            "default_badge": "Standard",
+            "set_default": "Als Standard verwenden",
+            "delete_title": "Briefkopf löschen?",
+            "delete_content": "\"{{name}}\" wird dauerhaft gelöscht.",
+            "deleted": "Briefkopf gelöscht.",
+            "saved": "Briefkopf gespeichert.",
+            "name_label": "Name des Profils",
+            "name_hint": "z. B. Verein oder Verkauf",
+            "section_layout": "Anordnung",
+            "section_logo": "Logo",
+            "section_text": "Texte",
+            "section_meta": "Angaben",
+            "section_footer": "Fußzeile",
+            "layout": {
+                "logo_left": "Logo links",
+                "centered": "Zentriert",
+                "address_left_logo_right": "Adresse links, Logo rechts"
+            },
+            "logo_size": {
+                "label": "Größe",
+                "small": "Klein",
+                "medium": "Mittel",
+                "large": "Groß"
+            },
+            "logo_pick": "Logo wählen",
+            "logo_replace": "Logo ersetzen",
+            "logo_remove": "Logo entfernen",
+            "title_label": "Titelzeile",
+            "subtitle_label": "Unterzeile",
+            "footer_label": "Fußzeilentext",
+            "address_show": "Adressblock anzeigen",
+            "address_override_label": "Eigener Adressblock",
+            "address_override_hint": "Leer lassen, um die Adresse aus deinem Profil zu nutzen",
+            "address_from_profile": "Aus Profil übernehmen",
+            "show_date": "Datum anzeigen",
+            "show_count": "Anzahl anzeigen",
+            "show_filter": "Aktive Filter anzeigen",
+            "show_breeder_number": "Züchternummer anzeigen",
+            "show_divider": "Trennlinie anzeigen",
+            "show_page_numbers": "Seitenzahlen anzeigen",
+            "placeholders_hint": "Platzhalter antippen zum Einfügen",
+            "preview_title": "Vorschau",
+            "preview_list": "Bestandsliste",
+            "preview_filter": "Art: Wellensittich"
+        },
+        "profile_label": "Briefkopf",
+        "summary": {
+            "birds": "Vögel",
+            "pairs": "Paare",
+            "hatch_rate": "Schlupfquote",
+            "income": "Einnahmen",
+            "expense": "Ausgaben",
+            "net": "Saldo"
+        },
+        "lists": {
+            "birds": "Bestandsliste",
+            "breeding_pairs": "Zuchtpaare",
+            "finances": "Finanzbuch"
+        },
+        "file_names": {
+            "birds": "bestand",
+            "breeding_pairs": "zuchtpaare",
+            "finances": "finanzbuch"
+        },
+        "presets": {
+            "birds": {
+                "overview": "Übersicht",
+                "full": "Vollständig"
+            },
+            "breeding_pairs": {
+                "overview": "Übersicht",
+                "full": "Vollständig"
+            },
+            "finances": {
+                "bookings": "Buchungen",
+                "full": "Vollständig"
+            }
+        },
+        "columns": {
+            "bird": {
+                "ring_number": "Ringnummer",
+                "species": "Art",
+                "color": "Farbe",
+                "cage": "Voliere",
+                "sex": "Geschlecht",
+                "laid_at": "Gelegt am",
+                "hatched_at": "Geschlüpft am",
+                "fledged_at": "Ausgeflogen am",
+                "born_at": "Geboren am",
+                "died_at": "Gestorben am",
+                "father": "Vater",
+                "mother": "Mutter",
+                "breeder": "Züchter",
+                "breeder_number": "Züchternummer",
+                "owner": "Besitzer",
+                "owner_number": "Besitzernummer",
+                "bought_at": "Gekauft am",
+                "bought_price": "Kaufpreis",
+                "bought_from": "Gekauft von",
+                "sale_status": "Verkaufsstatus",
+                "asking_price": "Angebotspreis",
+                "final_price": "Endpreis",
+                "sold_at": "Verkauft am",
+                "sold_to": "Verkauft an",
+                "notes": "Notizen"
+            },
+            "breeding_pair": {
+                "father_ring": "Vater (Ring)",
+                "father_species": "Vater (Art)",
+                "mother_ring": "Mutter (Ring)",
+                "mother_species": "Mutter (Art)",
+                "cage": "Voliere",
+                "status": "Status",
+                "start": "Beginn",
+                "end": "Ende",
+                "broods": "Bruten",
+                "laid": "Gelegt",
+                "fertilized": "Befruchtet",
+                "hatched": "Geschlüpft",
+                "fledged": "Ausgeflogen",
+                "notes": "Notizen"
+            },
+            "finance": {
+                "date": "Datum",
+                "title": "Titel",
+                "category": "Kategorie",
+                "kind": "Art",
+                "amount": "Betrag",
+                "bird": "Vogel",
+                "notes": "Notizen"
+            }
+        }
+    },
     "snackbars": {
         "sign_in_failed": "Anmeldung fehlgeschlagen, bitte überprüfen Sie Ihre Anmeldedaten und Ihre Internetverbindung.",
         "sign_up_failed": "Registrierung fehlgeschlagen, bitte überprüfen Sie Ihre Eingaben und Ihre Internetverbindung.",

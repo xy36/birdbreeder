@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/account/widgets/account_ui.dart';
 import 'package:birdbreeder/features/account/widgets/appearance_section.dart';
 import 'package:birdbreeder/features/account/widgets/cloud_backup_card.dart';
@@ -30,6 +32,20 @@ class AccountScreen extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.all(14),
                 child: AppearanceSection(),
+              ),
+            ),
+            const SizedBox(height: 16),
+            AccountSectionLabel(
+              icon: AppIcons.export,
+              label: tr.export.title,
+            ),
+            AccountCard(
+              child: AccountRow(
+                badge: const AccountIconBadge(icon: AppIcons.letterhead),
+                title: tr.export.header.title,
+                subtitle: Text(tr.export.header.subtitle),
+                trailing: const Icon(AppIcons.chevronRight),
+                onTap: () => context.router.push(const PdfHeaderListRoute()),
               ),
             ),
             const SizedBox(height: 16),

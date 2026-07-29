@@ -1483,10 +1483,455 @@ i1.GeneratedColumn<int> _column_80(String aliasedName) =>
         type: i1.DriftSqlType.int,
         $customConstraints: 'NOT NULL DEFAULT 0',
         defaultValue: const i1.CustomExpression('0'));
+
+final class Schema5 extends i0.VersionedSchema {
+  Schema5({required super.database}) : super(version: 5);
+  @override
+  late final List<i1.DatabaseSchemaEntity> entities = [
+    birds,
+    breedingPairs,
+    broods,
+    eggs,
+    birdImages,
+    contacts,
+    finances,
+    financeCategories,
+    species,
+    cages,
+    birdColors,
+    pdfHeaderProfiles,
+  ];
+  late final Shape0 birds = Shape0(
+      source: i0.VersionedTable(
+        entityName: 'birds',
+        withoutRowId: false,
+        isStrict: false,
+        tableConstraints: [
+          'PRIMARY KEY(id)',
+        ],
+        columns: [
+          _column_0,
+          _column_1,
+          _column_2,
+          _column_3,
+          _column_4,
+          _column_5,
+          _column_6,
+          _column_7,
+          _column_8,
+          _column_9,
+          _column_10,
+          _column_11,
+          _column_12,
+          _column_13,
+          _column_14,
+          _column_15,
+          _column_16,
+          _column_17,
+          _column_18,
+          _column_19,
+          _column_20,
+          _column_21,
+          _column_22,
+          _column_23,
+          _column_24,
+          _column_25,
+          _column_26,
+          _column_27,
+          _column_28,
+          _column_29,
+        ],
+        attachedDatabase: database,
+      ),
+      alias: null);
+  late final Shape1 breedingPairs = Shape1(
+      source: i0.VersionedTable(
+        entityName: 'breeding_pairs',
+        withoutRowId: false,
+        isStrict: false,
+        tableConstraints: [
+          'PRIMARY KEY(id)',
+        ],
+        columns: [
+          _column_0,
+          _column_30,
+          _column_31,
+          _column_32,
+          _column_7,
+          _column_33,
+          _column_34,
+          _column_21,
+          _column_27,
+          _column_28,
+          _column_29,
+        ],
+        attachedDatabase: database,
+      ),
+      alias: null);
+  late final Shape2 broods = Shape2(
+      source: i0.VersionedTable(
+        entityName: 'broods',
+        withoutRowId: false,
+        isStrict: false,
+        tableConstraints: [
+          'PRIMARY KEY(id)',
+        ],
+        columns: [
+          _column_0,
+          _column_35,
+          _column_7,
+          _column_33,
+          _column_34,
+          _column_21,
+          _column_27,
+          _column_28,
+          _column_29,
+        ],
+        attachedDatabase: database,
+      ),
+      alias: null);
+  late final Shape10 eggs = Shape10(
+      source: i0.VersionedTable(
+        entityName: 'eggs',
+        withoutRowId: false,
+        isStrict: false,
+        tableConstraints: [
+          'PRIMARY KEY(id)',
+        ],
+        columns: [
+          _column_0,
+          _column_36,
+          _column_37,
+          _column_38,
+          _column_10,
+          _column_39,
+          _column_40,
+          _column_11,
+          _column_13,
+          _column_41,
+          _column_1,
+          _column_3,
+          _column_7,
+          _column_2,
+          _column_42,
+          _column_21,
+          _column_28,
+          _column_29,
+        ],
+        attachedDatabase: database,
+      ),
+      alias: null);
+  late final Shape11 birdImages = Shape11(
+      source: i0.VersionedTable(
+        entityName: 'bird_images',
+        withoutRowId: false,
+        isStrict: false,
+        tableConstraints: [
+          'PRIMARY KEY(id)',
+        ],
+        columns: [
+          _column_0,
+          _column_78,
+          _column_79,
+          _column_80,
+          _column_28,
+          _column_29,
+        ],
+        attachedDatabase: database,
+      ),
+      alias: null);
+  late final Shape4 contacts = Shape4(
+      source: i0.VersionedTable(
+        entityName: 'contacts',
+        withoutRowId: false,
+        isStrict: false,
+        tableConstraints: [
+          'PRIMARY KEY(id)',
+        ],
+        columns: [
+          _column_0,
+          _column_43,
+          _column_44,
+          _column_45,
+          _column_46,
+          _column_47,
+          _column_48,
+          _column_49,
+          _column_50,
+          _column_51,
+          _column_52,
+          _column_53,
+          _column_54,
+          _column_55,
+          _column_27,
+          _column_28,
+          _column_29,
+        ],
+        attachedDatabase: database,
+      ),
+      alias: null);
+  late final Shape5 finances = Shape5(
+      source: i0.VersionedTable(
+        entityName: 'finances',
+        withoutRowId: false,
+        isStrict: false,
+        tableConstraints: [
+          'PRIMARY KEY(id)',
+        ],
+        columns: [
+          _column_0,
+          _column_56,
+          _column_57,
+          _column_58,
+          _column_21,
+          _column_59,
+          _column_60,
+          _column_28,
+          _column_29,
+        ],
+        attachedDatabase: database,
+      ),
+      alias: null);
+  late final Shape6 financeCategories = Shape6(
+      source: i0.VersionedTable(
+        entityName: 'finance_categories',
+        withoutRowId: false,
+        isStrict: false,
+        tableConstraints: [
+          'PRIMARY KEY(id)',
+        ],
+        columns: [
+          _column_0,
+          _column_61,
+          _column_62,
+          _column_63,
+          _column_21,
+          _column_28,
+          _column_29,
+        ],
+        attachedDatabase: database,
+      ),
+      alias: null);
+  late final Shape7 species = Shape7(
+      source: i0.VersionedTable(
+        entityName: 'species',
+        withoutRowId: false,
+        isStrict: false,
+        tableConstraints: [
+          'PRIMARY KEY(id)',
+        ],
+        columns: [
+          _column_0,
+          _column_64,
+          _column_65,
+          _column_66,
+          _column_67,
+          _column_68,
+          _column_21,
+          _column_27,
+          _column_28,
+          _column_29,
+        ],
+        attachedDatabase: database,
+      ),
+      alias: null);
+  late final Shape8 cages = Shape8(
+      source: i0.VersionedTable(
+        entityName: 'cages',
+        withoutRowId: false,
+        isStrict: false,
+        tableConstraints: [
+          'PRIMARY KEY(id)',
+        ],
+        columns: [
+          _column_0,
+          _column_64,
+          _column_69,
+          _column_70,
+          _column_71,
+          _column_72,
+          _column_73,
+          _column_74,
+          _column_75,
+          _column_21,
+          _column_27,
+          _column_28,
+          _column_29,
+        ],
+        attachedDatabase: database,
+      ),
+      alias: null);
+  late final Shape9 birdColors = Shape9(
+      source: i0.VersionedTable(
+        entityName: 'bird_colors',
+        withoutRowId: false,
+        isStrict: false,
+        tableConstraints: [
+          'PRIMARY KEY(id)',
+        ],
+        columns: [
+          _column_0,
+          _column_64,
+          _column_76,
+          _column_77,
+          _column_21,
+          _column_27,
+          _column_28,
+          _column_29,
+        ],
+        attachedDatabase: database,
+      ),
+      alias: null);
+  late final Shape12 pdfHeaderProfiles = Shape12(
+      source: i0.VersionedTable(
+        entityName: 'pdf_header_profiles',
+        withoutRowId: false,
+        isStrict: false,
+        tableConstraints: [
+          'PRIMARY KEY(id)',
+        ],
+        columns: [
+          _column_0,
+          _column_61,
+          _column_81,
+          _column_82,
+          _column_83,
+          _column_84,
+          _column_85,
+          _column_86,
+          _column_87,
+          _column_88,
+          _column_89,
+          _column_90,
+          _column_91,
+          _column_92,
+          _column_93,
+          _column_94,
+          _column_95,
+          _column_28,
+          _column_29,
+        ],
+        attachedDatabase: database,
+      ),
+      alias: null);
+}
+
+class Shape12 extends i0.VersionedTable {
+  Shape12({required super.source, required super.alias}) : super.aliased();
+  i1.GeneratedColumn<String> get id =>
+      columnsByName['id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get name =>
+      columnsByName['name']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<int> get isDefault =>
+      columnsByName['is_default']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<String> get layout =>
+      columnsByName['layout']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get logoHash =>
+      columnsByName['logo_hash']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get logoSize =>
+      columnsByName['logo_size']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get titleTemplate =>
+      columnsByName['title_template']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get subtitleTemplate =>
+      columnsByName['subtitle_template']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<int> get showAddressBlock =>
+      columnsByName['show_address_block']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<String> get addressOverride =>
+      columnsByName['address_override']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<int> get showDate =>
+      columnsByName['show_date']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<int> get showCount =>
+      columnsByName['show_count']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<int> get showFilterSummary =>
+      columnsByName['show_filter_summary']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<int> get showBreederNumber =>
+      columnsByName['show_breeder_number']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<int> get showDivider =>
+      columnsByName['show_divider']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<String> get footerTemplate =>
+      columnsByName['footer_template']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<int> get showPageNumbers =>
+      columnsByName['show_page_numbers']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<int> get created =>
+      columnsByName['created']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<int> get updated =>
+      columnsByName['updated']! as i1.GeneratedColumn<int>;
+}
+
+i1.GeneratedColumn<int> _column_81(String aliasedName) =>
+    i1.GeneratedColumn<int>('is_default', aliasedName, false,
+        type: i1.DriftSqlType.int,
+        $customConstraints: 'NOT NULL DEFAULT 0 CHECK (is_default IN (0, 1))',
+        defaultValue: const i1.CustomExpression('0'));
+i1.GeneratedColumn<String> _column_82(String aliasedName) =>
+    i1.GeneratedColumn<String>('layout', aliasedName, false,
+        type: i1.DriftSqlType.string,
+        $customConstraints: 'NOT NULL DEFAULT \'logoLeft\'',
+        defaultValue: const i1.CustomExpression('\'logoLeft\''));
+i1.GeneratedColumn<String> _column_83(String aliasedName) =>
+    i1.GeneratedColumn<String>('logo_hash', aliasedName, true,
+        type: i1.DriftSqlType.string, $customConstraints: 'NULL');
+i1.GeneratedColumn<String> _column_84(String aliasedName) =>
+    i1.GeneratedColumn<String>('logo_size', aliasedName, false,
+        type: i1.DriftSqlType.string,
+        $customConstraints: 'NOT NULL DEFAULT \'medium\'',
+        defaultValue: const i1.CustomExpression('\'medium\''));
+i1.GeneratedColumn<String> _column_85(String aliasedName) =>
+    i1.GeneratedColumn<String>('title_template', aliasedName, true,
+        type: i1.DriftSqlType.string, $customConstraints: 'NULL');
+i1.GeneratedColumn<String> _column_86(String aliasedName) =>
+    i1.GeneratedColumn<String>('subtitle_template', aliasedName, true,
+        type: i1.DriftSqlType.string, $customConstraints: 'NULL');
+i1.GeneratedColumn<int> _column_87(String aliasedName) =>
+    i1.GeneratedColumn<int>('show_address_block', aliasedName, false,
+        type: i1.DriftSqlType.int,
+        $customConstraints:
+            'NOT NULL DEFAULT 1 CHECK (show_address_block IN (0, 1))',
+        defaultValue: const i1.CustomExpression('1'));
+i1.GeneratedColumn<String> _column_88(String aliasedName) =>
+    i1.GeneratedColumn<String>('address_override', aliasedName, true,
+        type: i1.DriftSqlType.string, $customConstraints: 'NULL');
+i1.GeneratedColumn<int> _column_89(String aliasedName) =>
+    i1.GeneratedColumn<int>('show_date', aliasedName, false,
+        type: i1.DriftSqlType.int,
+        $customConstraints: 'NOT NULL DEFAULT 1 CHECK (show_date IN (0, 1))',
+        defaultValue: const i1.CustomExpression('1'));
+i1.GeneratedColumn<int> _column_90(String aliasedName) =>
+    i1.GeneratedColumn<int>('show_count', aliasedName, false,
+        type: i1.DriftSqlType.int,
+        $customConstraints: 'NOT NULL DEFAULT 1 CHECK (show_count IN (0, 1))',
+        defaultValue: const i1.CustomExpression('1'));
+i1.GeneratedColumn<int> _column_91(String aliasedName) =>
+    i1.GeneratedColumn<int>('show_filter_summary', aliasedName, false,
+        type: i1.DriftSqlType.int,
+        $customConstraints:
+            'NOT NULL DEFAULT 1 CHECK (show_filter_summary IN (0, 1))',
+        defaultValue: const i1.CustomExpression('1'));
+i1.GeneratedColumn<int> _column_92(String aliasedName) =>
+    i1.GeneratedColumn<int>('show_breeder_number', aliasedName, false,
+        type: i1.DriftSqlType.int,
+        $customConstraints:
+            'NOT NULL DEFAULT 1 CHECK (show_breeder_number IN (0, 1))',
+        defaultValue: const i1.CustomExpression('1'));
+i1.GeneratedColumn<int> _column_93(String aliasedName) =>
+    i1.GeneratedColumn<int>('show_divider', aliasedName, false,
+        type: i1.DriftSqlType.int,
+        $customConstraints: 'NOT NULL DEFAULT 1 CHECK (show_divider IN (0, 1))',
+        defaultValue: const i1.CustomExpression('1'));
+i1.GeneratedColumn<String> _column_94(String aliasedName) =>
+    i1.GeneratedColumn<String>('footer_template', aliasedName, true,
+        type: i1.DriftSqlType.string, $customConstraints: 'NULL');
+i1.GeneratedColumn<int> _column_95(String aliasedName) =>
+    i1.GeneratedColumn<int>('show_page_numbers', aliasedName, false,
+        type: i1.DriftSqlType.int,
+        $customConstraints:
+            'NOT NULL DEFAULT 1 CHECK (show_page_numbers IN (0, 1))',
+        defaultValue: const i1.CustomExpression('1'));
 i0.MigrationStepWithVersion migrationSteps({
   required Future<void> Function(i1.Migrator m, Schema2 schema) from1To2,
   required Future<void> Function(i1.Migrator m, Schema3 schema) from2To3,
   required Future<void> Function(i1.Migrator m, Schema4 schema) from3To4,
+  required Future<void> Function(i1.Migrator m, Schema5 schema) from4To5,
 }) {
   return (currentVersion, database) async {
     switch (currentVersion) {
@@ -1505,6 +1950,11 @@ i0.MigrationStepWithVersion migrationSteps({
         final migrator = i1.Migrator(database, schema);
         await from3To4(migrator, schema);
         return 4;
+      case 4:
+        final schema = Schema5(database: database);
+        final migrator = i1.Migrator(database, schema);
+        await from4To5(migrator, schema);
+        return 5;
       default:
         throw ArgumentError.value('Unknown migration from $currentVersion');
     }
@@ -1515,10 +1965,12 @@ i1.OnUpgrade stepByStep({
   required Future<void> Function(i1.Migrator m, Schema2 schema) from1To2,
   required Future<void> Function(i1.Migrator m, Schema3 schema) from2To3,
   required Future<void> Function(i1.Migrator m, Schema4 schema) from3To4,
+  required Future<void> Function(i1.Migrator m, Schema5 schema) from4To5,
 }) =>
     i0.VersionedSchema.stepByStepHelper(
         step: migrationSteps(
       from1To2: from1To2,
       from2To3: from2To3,
       from3To4: from3To4,
+      from4To5: from4To5,
     ));

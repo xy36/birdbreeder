@@ -1,0 +1,10 @@
+targets:
+  $default:
+    builders:
+      # Translations are generated with the standalone `dart run slang`, as
+      # documented in CLAUDE.md. The build_runner variant of the same builder
+      # ignores `slang.yaml`'s `base_locale: de`, looks for a non-existent
+      # `en` file and fails — which aborted the whole build before auto_route
+      # and auto_mappr had run.
+      slang_build_runner:
+        enabled: false

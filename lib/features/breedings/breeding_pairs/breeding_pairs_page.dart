@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/birds_extension.dart';
@@ -8,6 +10,10 @@ import 'package:birdbreeder/features/breedings/breeding_pairs/cubit/breeding_pai
 import 'package:birdbreeder/features/breedings/breeding_pairs/widgets/add_breeding_pair_sheet.dart';
 import 'package:birdbreeder/features/breedings/breeding_pairs/widgets/breeding_pair_filter_bar.dart';
 import 'package:birdbreeder/features/breedings/shared/mini_stats.dart';
+import 'package:birdbreeder/features/export/domain/columns/breeding_pair_export_columns.dart';
+import 'package:birdbreeder/features/export/domain/export_request.dart';
+import 'package:birdbreeder/features/export/presentation/cubit/export_cubit.dart';
+import 'package:birdbreeder/features/export/presentation/export_sheet.dart';
 import 'package:birdbreeder/models/bird/sex_enum.dart';
 import 'package:birdbreeder/models/breeding/brood_status.dart';
 import 'package:birdbreeder/models/breeding/entity/breeding_pair.dart';
@@ -48,7 +54,16 @@ class _BreedingPairsPageState extends State<BreedingPairsPage> {
     final tr = context.tr;
     return Scaffold(
       drawer: sharedMenuDrawer(context),
-      appBar: SharedAppBarWithDrawer(title: tr.breeding_pairs.title),
+      appBar: SharedAppBarWithDrawer(
+        title: tr.breeding_pairs.title,
+        actions: [
+          IconButton(
+            icon: const Icon(AppIcons.export),
+            tooltip: tr.export.title,
+            onPressed: () => unawaited(exportPairs()),
+          ),
+        ],
+      ),
       body: BlocBuilder<BirdBreederCubit, BirdBreederState>(
         builder: (context, state) {
           final allPairs = state.birdBreederResources.breedingPairs;
@@ -150,6 +165,39 @@ class _BreedingPairsPageState extends State<BreedingPairsPage> {
           );
         },
       ),
+    );
+  }
+
+  /// Exports exactly the pairs the list shows.
+  ///
+  /// Rebuilt from the same three steps the body walks — search, filter cubit,
+  /// selected year — because the search cubit here is seeded with *all* pairs,
+  /// so its result alone would ignore both later narrowings.
+  Future<void> exportPairs() async {
+    final cubit = context.read<ExportCubit>();
+    final translations = context.tr;
+    final searched = context.read<BreedingPairSearchCubit>().searchedItems;
+    final byFilter =
+        context.read<BreedingPairsFilterCubit>().filterPairs(searched);
+
+    final request = ExportRequest<BreedingPair>(
+      items: _filterByYear(byFilter, _selectedYear),
+      listTitle: translations.export.lists.breeding_pairs,
+      fileBaseName: translations.export.file_names.breeding_pairs,
+      presets: BreedingPairExportPresets.all,
+      summary: breedingPairExportSummary,
+    );
+
+    final choice = await showExportSheet<BreedingPair>(context, request);
+    if (choice == null) return;
+
+    await cubit.export(
+      request: request,
+      preset: choice.preset,
+      format: choice.format,
+      fileName: choice.fileName,
+      profile: choice.profile,
+      t: translations,
     );
   }
 

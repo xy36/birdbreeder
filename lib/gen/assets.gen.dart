@@ -39,6 +39,22 @@ class $AssetsBrandingGen {
       ];
 }
 
+class $AssetsFontsGen {
+  const $AssetsFontsGen();
+
+  /// File path: assets/fonts/Roboto-Bold.ttf
+  String get robotoBold => 'assets/fonts/Roboto-Bold.ttf';
+
+  /// File path: assets/fonts/Roboto-Regular.ttf
+  String get robotoRegular => 'assets/fonts/Roboto-Regular.ttf';
+
+  /// File path: assets/fonts/Roboto_LICENSE.txt
+  String get robotoLICENSE => 'assets/fonts/Roboto_LICENSE.txt';
+
+  /// List of all assets
+  List<String> get values => [robotoBold, robotoRegular, robotoLICENSE];
+}
+
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
@@ -71,6 +87,7 @@ class Assets {
   const Assets._();
 
   static const $AssetsBrandingGen branding = $AssetsBrandingGen();
+  static const $AssetsFontsGen fonts = $AssetsFontsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsThemesGen themes = $AssetsThemesGen();
 }

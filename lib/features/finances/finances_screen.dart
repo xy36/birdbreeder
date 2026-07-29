@@ -1,5 +1,11 @@
+import 'dart:async';
+
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/finances_extension.dart';
+import 'package:birdbreeder/features/export/domain/columns/finance_export_columns.dart';
+import 'package:birdbreeder/features/export/domain/export_request.dart';
+import 'package:birdbreeder/features/export/presentation/cubit/export_cubit.dart';
+import 'package:birdbreeder/features/export/presentation/export_sheet.dart';
 import 'package:birdbreeder/features/finances/cubit/finances_filter_cubit.dart';
 import 'package:birdbreeder/features/finances/widgets/add_finances_sheet.dart';
 import 'package:birdbreeder/features/finances/widgets/category_filter_sheet.dart';
@@ -109,6 +115,35 @@ class _FinancesScreenState extends State<FinancesScreen> {
     });
   }
 
+  /// Exports exactly the bookings the list shows.
+  ///
+  /// The search cubit is seeded with the fully narrowed list — filter cubit,
+  /// scope range, kind toggle and category selection have all been applied
+  /// before `setItems` — so its result is what the screen renders.
+  Future<void> exportFinances() async {
+    final cubit = context.read<ExportCubit>();
+    final translations = context.tr;
+    final request = ExportRequest<Finance>(
+      items: context.read<FinanceSearchCubit>().searchedItems,
+      listTitle: translations.export.lists.finances,
+      fileBaseName: translations.export.file_names.finances,
+      presets: FinanceExportPresets.all,
+      summary: financeExportSummary,
+    );
+
+    final choice = await showExportSheet<Finance>(context, request);
+    if (choice == null) return;
+
+    await cubit.export(
+      request: request,
+      preset: choice.preset,
+      format: choice.format,
+      fileName: choice.fileName,
+      profile: choice.profile,
+      t: translations,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
@@ -116,6 +151,13 @@ class _FinancesScreenState extends State<FinancesScreen> {
       drawer: sharedMenuDrawer(context),
       appBar: SharedAppBarWithDrawer(
         title: context.tr.finances.title,
+        actions: [
+          IconButton(
+            icon: const Icon(AppIcons.export),
+            tooltip: context.tr.export.title,
+            onPressed: () => unawaited(exportFinances()),
+          ),
+        ],
       ),
       body: BirdBreederWrapper(
         child: BlocBuilder<BirdBreederCubit, BirdBreederState>(
@@ -167,21 +209,9 @@ class _FinancesScreenState extends State<FinancesScreen> {
                   builder: (context, _) {
                     final searched =
                         context.read<FinanceSearchCubit>().searchedItems;
-                    final income = searched
-                        .where(
-                          (f) =>
-                              f.categoryResolved?.kind ==
-                              FinanceCategoryKind.income,
-                        )
-                        .fold<double>(0, (a, b) => a + b.amount);
-                    final expense = searched
-                        .where(
-                          (f) =>
-                              f.categoryResolved?.kind ==
-                              FinanceCategoryKind.expense,
-                        )
-                        .fold<double>(0, (a, b) => a + b.amount);
-                    final net = income - expense;
+                    final income = searched.income;
+                    final expense = searched.expense;
+                    final net = searched.net;
                     final grouped = _buildGroups(searched);
                     return Column(
                       children: [

@@ -1,7 +1,6 @@
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/extensions/finances_extension.dart';
 import 'package:birdbreeder/models/finance/entity/finance.dart';
-import 'package:birdbreeder/models/finance/finance_category_kind.dart';
 import 'package:birdbreeder/theme/app_colors.dart';
 import 'package:intl/intl.dart';
 
@@ -9,28 +8,12 @@ class FinanceSummaryBar extends StatelessWidget {
   const FinanceSummaryBar({required this.finances, super.key});
   final List<Finance> finances;
 
-  ({double income, double expense}) _totals() {
-    var income = 0.0;
-    var expense = 0.0;
-    for (final f in finances) {
-      switch (f.categoryResolved?.kind) {
-        case FinanceCategoryKind.income:
-          income += f.amount;
-        case FinanceCategoryKind.expense:
-          expense += f.amount;
-        case null:
-      }
-    }
-    return (income: income, expense: expense);
-  }
-
   String _fmt(double v) =>
       NumberFormat.currency(locale: 'de_DE', symbol: '€').format(v);
 
   @override
   Widget build(BuildContext context) {
-    final t = _totals();
-    final net = t.income - t.expense;
+    final net = finances.net;
     final scheme = Theme.of(context).colorScheme;
     final tr = context.tr.finances;
 
@@ -63,8 +46,12 @@ class FinanceSummaryBar extends StatelessWidget {
       ),
       child: Row(
         children: [
-          cell(tr.kind.income, _fmt(t.income), context.appColors.income),
-          cell(tr.kind.expense, _fmt(t.expense), context.appColors.expense),
+          cell(tr.kind.income, _fmt(finances.income), context.appColors.income),
+          cell(
+            tr.kind.expense,
+            _fmt(finances.expense),
+            context.appColors.expense,
+          ),
           cell(
             tr.summary.net,
             _fmt(net),

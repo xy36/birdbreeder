@@ -11,11 +11,22 @@ class ImageReferenceResolver {
   const ImageReferenceResolver._();
 
   /// The set of image hashes referenced by rows in the current database.
+  ///
+  /// Every table that stores an ImageStore hash has to appear here. A blob
+  /// missing from this set is treated as an orphan: `ImageStore.gc` deletes it
+  /// once the grace window passes and the cloud sync never uploads it, so it
+  /// vanishes silently on the next restore.
   static Future<Set<String>> referencedHashes() async {
     if (!s1.isRegistered<AppDatabase>()) return const <String>{};
     final db = s1.get<AppDatabase>();
-    final rows =
-        await db.customSelect('SELECT DISTINCT hash FROM bird_images').get();
+    final rows = await db
+        .customSelect(
+          'SELECT DISTINCT hash FROM bird_images '
+          'UNION '
+          'SELECT DISTINCT logo_hash AS hash FROM pdf_header_profiles '
+          'WHERE logo_hash IS NOT NULL',
+        )
+        .get();
     return rows.map((r) => r.read<String>('hash')).toSet();
   }
 }

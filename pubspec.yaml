@@ -66,6 +66,8 @@ dependencies:
   saf_stream: ^2.0.0
   image_picker: ^1.2.3
   scrollable_positioned_list: ^0.3.8
+  pdf: ^3.12.0
+  printing: ^5.14.3
 
 
 
@@ -106,6 +108,10 @@ flutter:
     - assets/images/
     - assets/
     - assets/branding/
+    # Roboto (Apache 2.0) is embedded into exported PDFs. The pdf package's
+    # built-in fonts encode with strict latin1 and throw on anything outside
+    # it — a "€" or a smart quote in a note would abort the export.
+    - assets/fonts/
 
 flutter_launcher_icons:
   android: true

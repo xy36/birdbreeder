@@ -165,6 +165,12 @@ class AppIcons {
   static const IconData diversity3Outlined = Icons.diversity_3_outlined;
   static const IconData download = Icons.download;
   static const IconData errorIcon = Icons.error;
+  static const IconData export = Icons.file_upload_outlined;
+  static const IconData exportCsv = Icons.table_chart_outlined;
+  static const IconData letterhead = Icons.article_outlined;
+  static const IconData layoutLogoLeft = Icons.view_sidebar_outlined;
+  static const IconData layoutCentered = Icons.vertical_align_center;
+  static const IconData layoutAddressLeft = Icons.view_quilt_outlined;
   static const IconData errorOutline = Icons.error_outline;
   static const IconData eventOutlined = Icons.event_outlined;
   static const IconData fileOpen = Icons.file_open;

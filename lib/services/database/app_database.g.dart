@@ -6675,6 +6675,925 @@ class BirdColorsCompanion extends UpdateCompanion<BirdColor> {
   }
 }
 
+class $PdfHeaderProfilesTable extends PdfHeaderProfiles
+    with TableInfo<$PdfHeaderProfilesTable, PdfHeaderProfileRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $PdfHeaderProfilesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+      'id', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+      'name', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _isDefaultMeta =
+      const VerificationMeta('isDefault');
+  @override
+  late final GeneratedColumn<bool> isDefault = GeneratedColumn<bool>(
+      'is_default', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('CHECK ("is_default" IN (0, 1))'),
+      defaultValue: const Constant(false));
+  static const VerificationMeta _layoutMeta = const VerificationMeta('layout');
+  @override
+  late final GeneratedColumn<String> layout = GeneratedColumn<String>(
+      'layout', aliasedName, false,
+      type: DriftSqlType.string,
+      requiredDuringInsert: false,
+      defaultValue: const Constant('logoLeft'));
+  static const VerificationMeta _logoHashMeta =
+      const VerificationMeta('logoHash');
+  @override
+  late final GeneratedColumn<String> logoHash = GeneratedColumn<String>(
+      'logo_hash', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _logoSizeMeta =
+      const VerificationMeta('logoSize');
+  @override
+  late final GeneratedColumn<String> logoSize = GeneratedColumn<String>(
+      'logo_size', aliasedName, false,
+      type: DriftSqlType.string,
+      requiredDuringInsert: false,
+      defaultValue: const Constant('medium'));
+  static const VerificationMeta _titleTemplateMeta =
+      const VerificationMeta('titleTemplate');
+  @override
+  late final GeneratedColumn<String> titleTemplate = GeneratedColumn<String>(
+      'title_template', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _subtitleTemplateMeta =
+      const VerificationMeta('subtitleTemplate');
+  @override
+  late final GeneratedColumn<String> subtitleTemplate = GeneratedColumn<String>(
+      'subtitle_template', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _showAddressBlockMeta =
+      const VerificationMeta('showAddressBlock');
+  @override
+  late final GeneratedColumn<bool> showAddressBlock = GeneratedColumn<bool>(
+      'show_address_block', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: false,
+      defaultConstraints: GeneratedColumn.constraintIsAlways(
+          'CHECK ("show_address_block" IN (0, 1))'),
+      defaultValue: const Constant(true));
+  static const VerificationMeta _addressOverrideMeta =
+      const VerificationMeta('addressOverride');
+  @override
+  late final GeneratedColumn<String> addressOverride = GeneratedColumn<String>(
+      'address_override', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _showDateMeta =
+      const VerificationMeta('showDate');
+  @override
+  late final GeneratedColumn<bool> showDate = GeneratedColumn<bool>(
+      'show_date', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('CHECK ("show_date" IN (0, 1))'),
+      defaultValue: const Constant(true));
+  static const VerificationMeta _showCountMeta =
+      const VerificationMeta('showCount');
+  @override
+  late final GeneratedColumn<bool> showCount = GeneratedColumn<bool>(
+      'show_count', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('CHECK ("show_count" IN (0, 1))'),
+      defaultValue: const Constant(true));
+  static const VerificationMeta _showFilterSummaryMeta =
+      const VerificationMeta('showFilterSummary');
+  @override
+  late final GeneratedColumn<bool> showFilterSummary = GeneratedColumn<bool>(
+      'show_filter_summary', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: false,
+      defaultConstraints: GeneratedColumn.constraintIsAlways(
+          'CHECK ("show_filter_summary" IN (0, 1))'),
+      defaultValue: const Constant(true));
+  static const VerificationMeta _showBreederNumberMeta =
+      const VerificationMeta('showBreederNumber');
+  @override
+  late final GeneratedColumn<bool> showBreederNumber = GeneratedColumn<bool>(
+      'show_breeder_number', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: false,
+      defaultConstraints: GeneratedColumn.constraintIsAlways(
+          'CHECK ("show_breeder_number" IN (0, 1))'),
+      defaultValue: const Constant(true));
+  static const VerificationMeta _showDividerMeta =
+      const VerificationMeta('showDivider');
+  @override
+  late final GeneratedColumn<bool> showDivider = GeneratedColumn<bool>(
+      'show_divider', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: false,
+      defaultConstraints: GeneratedColumn.constraintIsAlways(
+          'CHECK ("show_divider" IN (0, 1))'),
+      defaultValue: const Constant(true));
+  static const VerificationMeta _footerTemplateMeta =
+      const VerificationMeta('footerTemplate');
+  @override
+  late final GeneratedColumn<String> footerTemplate = GeneratedColumn<String>(
+      'footer_template', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _showPageNumbersMeta =
+      const VerificationMeta('showPageNumbers');
+  @override
+  late final GeneratedColumn<bool> showPageNumbers = GeneratedColumn<bool>(
+      'show_page_numbers', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: false,
+      defaultConstraints: GeneratedColumn.constraintIsAlways(
+          'CHECK ("show_page_numbers" IN (0, 1))'),
+      defaultValue: const Constant(true));
+  static const VerificationMeta _createdMeta =
+      const VerificationMeta('created');
+  @override
+  late final GeneratedColumn<DateTime> created = GeneratedColumn<DateTime>(
+      'created', aliasedName, true,
+      type: DriftSqlType.dateTime, requiredDuringInsert: false);
+  static const VerificationMeta _updatedMeta =
+      const VerificationMeta('updated');
+  @override
+  late final GeneratedColumn<DateTime> updated = GeneratedColumn<DateTime>(
+      'updated', aliasedName, true,
+      type: DriftSqlType.dateTime, requiredDuringInsert: false);
+  @override
+  List<GeneratedColumn> get $columns => [
+        id,
+        name,
+        isDefault,
+        layout,
+        logoHash,
+        logoSize,
+        titleTemplate,
+        subtitleTemplate,
+        showAddressBlock,
+        addressOverride,
+        showDate,
+        showCount,
+        showFilterSummary,
+        showBreederNumber,
+        showDivider,
+        footerTemplate,
+        showPageNumbers,
+        created,
+        updated
+      ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'pdf_header_profiles';
+  @override
+  VerificationContext validateIntegrity(
+      Insertable<PdfHeaderProfileRow> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+          _nameMeta, name.isAcceptableOrUnknown(data['name']!, _nameMeta));
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('is_default')) {
+      context.handle(_isDefaultMeta,
+          isDefault.isAcceptableOrUnknown(data['is_default']!, _isDefaultMeta));
+    }
+    if (data.containsKey('layout')) {
+      context.handle(_layoutMeta,
+          layout.isAcceptableOrUnknown(data['layout']!, _layoutMeta));
+    }
+    if (data.containsKey('logo_hash')) {
+      context.handle(_logoHashMeta,
+          logoHash.isAcceptableOrUnknown(data['logo_hash']!, _logoHashMeta));
+    }
+    if (data.containsKey('logo_size')) {
+      context.handle(_logoSizeMeta,
+          logoSize.isAcceptableOrUnknown(data['logo_size']!, _logoSizeMeta));
+    }
+    if (data.containsKey('title_template')) {
+      context.handle(
+          _titleTemplateMeta,
+          titleTemplate.isAcceptableOrUnknown(
+              data['title_template']!, _titleTemplateMeta));
+    }
+    if (data.containsKey('subtitle_template')) {
+      context.handle(
+          _subtitleTemplateMeta,
+          subtitleTemplate.isAcceptableOrUnknown(
+              data['subtitle_template']!, _subtitleTemplateMeta));
+    }
+    if (data.containsKey('show_address_block')) {
+      context.handle(
+          _showAddressBlockMeta,
+          showAddressBlock.isAcceptableOrUnknown(
+              data['show_address_block']!, _showAddressBlockMeta));
+    }
+    if (data.containsKey('address_override')) {
+      context.handle(
+          _addressOverrideMeta,
+          addressOverride.isAcceptableOrUnknown(
+              data['address_override']!, _addressOverrideMeta));
+    }
+    if (data.containsKey('show_date')) {
+      context.handle(_showDateMeta,
+          showDate.isAcceptableOrUnknown(data['show_date']!, _showDateMeta));
+    }
+    if (data.containsKey('show_count')) {
+      context.handle(_showCountMeta,
+          showCount.isAcceptableOrUnknown(data['show_count']!, _showCountMeta));
+    }
+    if (data.containsKey('show_filter_summary')) {
+      context.handle(
+          _showFilterSummaryMeta,
+          showFilterSummary.isAcceptableOrUnknown(
+              data['show_filter_summary']!, _showFilterSummaryMeta));
+    }
+    if (data.containsKey('show_breeder_number')) {
+      context.handle(
+          _showBreederNumberMeta,
+          showBreederNumber.isAcceptableOrUnknown(
+              data['show_breeder_number']!, _showBreederNumberMeta));
+    }
+    if (data.containsKey('show_divider')) {
+      context.handle(
+          _showDividerMeta,
+          showDivider.isAcceptableOrUnknown(
+              data['show_divider']!, _showDividerMeta));
+    }
+    if (data.containsKey('footer_template')) {
+      context.handle(
+          _footerTemplateMeta,
+          footerTemplate.isAcceptableOrUnknown(
+              data['footer_template']!, _footerTemplateMeta));
+    }
+    if (data.containsKey('show_page_numbers')) {
+      context.handle(
+          _showPageNumbersMeta,
+          showPageNumbers.isAcceptableOrUnknown(
+              data['show_page_numbers']!, _showPageNumbersMeta));
+    }
+    if (data.containsKey('created')) {
+      context.handle(_createdMeta,
+          created.isAcceptableOrUnknown(data['created']!, _createdMeta));
+    }
+    if (data.containsKey('updated')) {
+      context.handle(_updatedMeta,
+          updated.isAcceptableOrUnknown(data['updated']!, _updatedMeta));
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  PdfHeaderProfileRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return PdfHeaderProfileRow(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
+      name: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
+      isDefault: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}is_default'])!,
+      layout: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}layout'])!,
+      logoHash: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}logo_hash']),
+      logoSize: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}logo_size'])!,
+      titleTemplate: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}title_template']),
+      subtitleTemplate: attachedDatabase.typeMapping.read(
+          DriftSqlType.string, data['${effectivePrefix}subtitle_template']),
+      showAddressBlock: attachedDatabase.typeMapping.read(
+          DriftSqlType.bool, data['${effectivePrefix}show_address_block'])!,
+      addressOverride: attachedDatabase.typeMapping.read(
+          DriftSqlType.string, data['${effectivePrefix}address_override']),
+      showDate: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}show_date'])!,
+      showCount: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}show_count'])!,
+      showFilterSummary: attachedDatabase.typeMapping.read(
+          DriftSqlType.bool, data['${effectivePrefix}show_filter_summary'])!,
+      showBreederNumber: attachedDatabase.typeMapping.read(
+          DriftSqlType.bool, data['${effectivePrefix}show_breeder_number'])!,
+      showDivider: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}show_divider'])!,
+      footerTemplate: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}footer_template']),
+      showPageNumbers: attachedDatabase.typeMapping.read(
+          DriftSqlType.bool, data['${effectivePrefix}show_page_numbers'])!,
+      created: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}created']),
+      updated: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}updated']),
+    );
+  }
+
+  @override
+  $PdfHeaderProfilesTable createAlias(String alias) {
+    return $PdfHeaderProfilesTable(attachedDatabase, alias);
+  }
+}
+
+class PdfHeaderProfileRow extends DataClass
+    implements Insertable<PdfHeaderProfileRow> {
+  final String id;
+  final String name;
+  final bool isDefault;
+  final String layout;
+  final String? logoHash;
+  final String logoSize;
+  final String? titleTemplate;
+  final String? subtitleTemplate;
+  final bool showAddressBlock;
+  final String? addressOverride;
+  final bool showDate;
+  final bool showCount;
+  final bool showFilterSummary;
+  final bool showBreederNumber;
+  final bool showDivider;
+  final String? footerTemplate;
+  final bool showPageNumbers;
+  final DateTime? created;
+  final DateTime? updated;
+  const PdfHeaderProfileRow(
+      {required this.id,
+      required this.name,
+      required this.isDefault,
+      required this.layout,
+      this.logoHash,
+      required this.logoSize,
+      this.titleTemplate,
+      this.subtitleTemplate,
+      required this.showAddressBlock,
+      this.addressOverride,
+      required this.showDate,
+      required this.showCount,
+      required this.showFilterSummary,
+      required this.showBreederNumber,
+      required this.showDivider,
+      this.footerTemplate,
+      required this.showPageNumbers,
+      this.created,
+      this.updated});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['name'] = Variable<String>(name);
+    map['is_default'] = Variable<bool>(isDefault);
+    map['layout'] = Variable<String>(layout);
+    if (!nullToAbsent || logoHash != null) {
+      map['logo_hash'] = Variable<String>(logoHash);
+    }
+    map['logo_size'] = Variable<String>(logoSize);
+    if (!nullToAbsent || titleTemplate != null) {
+      map['title_template'] = Variable<String>(titleTemplate);
+    }
+    if (!nullToAbsent || subtitleTemplate != null) {
+      map['subtitle_template'] = Variable<String>(subtitleTemplate);
+    }
+    map['show_address_block'] = Variable<bool>(showAddressBlock);
+    if (!nullToAbsent || addressOverride != null) {
+      map['address_override'] = Variable<String>(addressOverride);
+    }
+    map['show_date'] = Variable<bool>(showDate);
+    map['show_count'] = Variable<bool>(showCount);
+    map['show_filter_summary'] = Variable<bool>(showFilterSummary);
+    map['show_breeder_number'] = Variable<bool>(showBreederNumber);
+    map['show_divider'] = Variable<bool>(showDivider);
+    if (!nullToAbsent || footerTemplate != null) {
+      map['footer_template'] = Variable<String>(footerTemplate);
+    }
+    map['show_page_numbers'] = Variable<bool>(showPageNumbers);
+    if (!nullToAbsent || created != null) {
+      map['created'] = Variable<DateTime>(created);
+    }
+    if (!nullToAbsent || updated != null) {
+      map['updated'] = Variable<DateTime>(updated);
+    }
+    return map;
+  }
+
+  PdfHeaderProfilesCompanion toCompanion(bool nullToAbsent) {
+    return PdfHeaderProfilesCompanion(
+      id: Value(id),
+      name: Value(name),
+      isDefault: Value(isDefault),
+      layout: Value(layout),
+      logoHash: logoHash == null && nullToAbsent
+          ? const Value.absent()
+          : Value(logoHash),
+      logoSize: Value(logoSize),
+      titleTemplate: titleTemplate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(titleTemplate),
+      subtitleTemplate: subtitleTemplate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(subtitleTemplate),
+      showAddressBlock: Value(showAddressBlock),
+      addressOverride: addressOverride == null && nullToAbsent
+          ? const Value.absent()
+          : Value(addressOverride),
+      showDate: Value(showDate),
+      showCount: Value(showCount),
+      showFilterSummary: Value(showFilterSummary),
+      showBreederNumber: Value(showBreederNumber),
+      showDivider: Value(showDivider),
+      footerTemplate: footerTemplate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(footerTemplate),
+      showPageNumbers: Value(showPageNumbers),
+      created: created == null && nullToAbsent
+          ? const Value.absent()
+          : Value(created),
+      updated: updated == null && nullToAbsent
+          ? const Value.absent()
+          : Value(updated),
+    );
+  }
+
+  factory PdfHeaderProfileRow.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return PdfHeaderProfileRow(
+      id: serializer.fromJson<String>(json['id']),
+      name: serializer.fromJson<String>(json['name']),
+      isDefault: serializer.fromJson<bool>(json['isDefault']),
+      layout: serializer.fromJson<String>(json['layout']),
+      logoHash: serializer.fromJson<String?>(json['logoHash']),
+      logoSize: serializer.fromJson<String>(json['logoSize']),
+      titleTemplate: serializer.fromJson<String?>(json['titleTemplate']),
+      subtitleTemplate: serializer.fromJson<String?>(json['subtitleTemplate']),
+      showAddressBlock: serializer.fromJson<bool>(json['showAddressBlock']),
+      addressOverride: serializer.fromJson<String?>(json['addressOverride']),
+      showDate: serializer.fromJson<bool>(json['showDate']),
+      showCount: serializer.fromJson<bool>(json['showCount']),
+      showFilterSummary: serializer.fromJson<bool>(json['showFilterSummary']),
+      showBreederNumber: serializer.fromJson<bool>(json['showBreederNumber']),
+      showDivider: serializer.fromJson<bool>(json['showDivider']),
+      footerTemplate: serializer.fromJson<String?>(json['footerTemplate']),
+      showPageNumbers: serializer.fromJson<bool>(json['showPageNumbers']),
+      created: serializer.fromJson<DateTime?>(json['created']),
+      updated: serializer.fromJson<DateTime?>(json['updated']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'name': serializer.toJson<String>(name),
+      'isDefault': serializer.toJson<bool>(isDefault),
+      'layout': serializer.toJson<String>(layout),
+      'logoHash': serializer.toJson<String?>(logoHash),
+      'logoSize': serializer.toJson<String>(logoSize),
+      'titleTemplate': serializer.toJson<String?>(titleTemplate),
+      'subtitleTemplate': serializer.toJson<String?>(subtitleTemplate),
+      'showAddressBlock': serializer.toJson<bool>(showAddressBlock),
+      'addressOverride': serializer.toJson<String?>(addressOverride),
+      'showDate': serializer.toJson<bool>(showDate),
+      'showCount': serializer.toJson<bool>(showCount),
+      'showFilterSummary': serializer.toJson<bool>(showFilterSummary),
+      'showBreederNumber': serializer.toJson<bool>(showBreederNumber),
+      'showDivider': serializer.toJson<bool>(showDivider),
+      'footerTemplate': serializer.toJson<String?>(footerTemplate),
+      'showPageNumbers': serializer.toJson<bool>(showPageNumbers),
+      'created': serializer.toJson<DateTime?>(created),
+      'updated': serializer.toJson<DateTime?>(updated),
+    };
+  }
+
+  PdfHeaderProfileRow copyWith(
+          {String? id,
+          String? name,
+          bool? isDefault,
+          String? layout,
+          Value<String?> logoHash = const Value.absent(),
+          String? logoSize,
+          Value<String?> titleTemplate = const Value.absent(),
+          Value<String?> subtitleTemplate = const Value.absent(),
+          bool? showAddressBlock,
+          Value<String?> addressOverride = const Value.absent(),
+          bool? showDate,
+          bool? showCount,
+          bool? showFilterSummary,
+          bool? showBreederNumber,
+          bool? showDivider,
+          Value<String?> footerTemplate = const Value.absent(),
+          bool? showPageNumbers,
+          Value<DateTime?> created = const Value.absent(),
+          Value<DateTime?> updated = const Value.absent()}) =>
+      PdfHeaderProfileRow(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        isDefault: isDefault ?? this.isDefault,
+        layout: layout ?? this.layout,
+        logoHash: logoHash.present ? logoHash.value : this.logoHash,
+        logoSize: logoSize ?? this.logoSize,
+        titleTemplate:
+            titleTemplate.present ? titleTemplate.value : this.titleTemplate,
+        subtitleTemplate: subtitleTemplate.present
+            ? subtitleTemplate.value
+            : this.subtitleTemplate,
+        showAddressBlock: showAddressBlock ?? this.showAddressBlock,
+        addressOverride: addressOverride.present
+            ? addressOverride.value
+            : this.addressOverride,
+        showDate: showDate ?? this.showDate,
+        showCount: showCount ?? this.showCount,
+        showFilterSummary: showFilterSummary ?? this.showFilterSummary,
+        showBreederNumber: showBreederNumber ?? this.showBreederNumber,
+        showDivider: showDivider ?? this.showDivider,
+        footerTemplate:
+            footerTemplate.present ? footerTemplate.value : this.footerTemplate,
+        showPageNumbers: showPageNumbers ?? this.showPageNumbers,
+        created: created.present ? created.value : this.created,
+        updated: updated.present ? updated.value : this.updated,
+      );
+  PdfHeaderProfileRow copyWithCompanion(PdfHeaderProfilesCompanion data) {
+    return PdfHeaderProfileRow(
+      id: data.id.present ? data.id.value : this.id,
+      name: data.name.present ? data.name.value : this.name,
+      isDefault: data.isDefault.present ? data.isDefault.value : this.isDefault,
+      layout: data.layout.present ? data.layout.value : this.layout,
+      logoHash: data.logoHash.present ? data.logoHash.value : this.logoHash,
+      logoSize: data.logoSize.present ? data.logoSize.value : this.logoSize,
+      titleTemplate: data.titleTemplate.present
+          ? data.titleTemplate.value
+          : this.titleTemplate,
+      subtitleTemplate: data.subtitleTemplate.present
+          ? data.subtitleTemplate.value
+          : this.subtitleTemplate,
+      showAddressBlock: data.showAddressBlock.present
+          ? data.showAddressBlock.value
+          : this.showAddressBlock,
+      addressOverride: data.addressOverride.present
+          ? data.addressOverride.value
+          : this.addressOverride,
+      showDate: data.showDate.present ? data.showDate.value : this.showDate,
+      showCount: data.showCount.present ? data.showCount.value : this.showCount,
+      showFilterSummary: data.showFilterSummary.present
+          ? data.showFilterSummary.value
+          : this.showFilterSummary,
+      showBreederNumber: data.showBreederNumber.present
+          ? data.showBreederNumber.value
+          : this.showBreederNumber,
+      showDivider:
+          data.showDivider.present ? data.showDivider.value : this.showDivider,
+      footerTemplate: data.footerTemplate.present
+          ? data.footerTemplate.value
+          : this.footerTemplate,
+      showPageNumbers: data.showPageNumbers.present
+          ? data.showPageNumbers.value
+          : this.showPageNumbers,
+      created: data.created.present ? data.created.value : this.created,
+      updated: data.updated.present ? data.updated.value : this.updated,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PdfHeaderProfileRow(')
+          ..write('id: $id, ')
+          ..write('name: $name, ')
+          ..write('isDefault: $isDefault, ')
+          ..write('layout: $layout, ')
+          ..write('logoHash: $logoHash, ')
+          ..write('logoSize: $logoSize, ')
+          ..write('titleTemplate: $titleTemplate, ')
+          ..write('subtitleTemplate: $subtitleTemplate, ')
+          ..write('showAddressBlock: $showAddressBlock, ')
+          ..write('addressOverride: $addressOverride, ')
+          ..write('showDate: $showDate, ')
+          ..write('showCount: $showCount, ')
+          ..write('showFilterSummary: $showFilterSummary, ')
+          ..write('showBreederNumber: $showBreederNumber, ')
+          ..write('showDivider: $showDivider, ')
+          ..write('footerTemplate: $footerTemplate, ')
+          ..write('showPageNumbers: $showPageNumbers, ')
+          ..write('created: $created, ')
+          ..write('updated: $updated')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      id,
+      name,
+      isDefault,
+      layout,
+      logoHash,
+      logoSize,
+      titleTemplate,
+      subtitleTemplate,
+      showAddressBlock,
+      addressOverride,
+      showDate,
+      showCount,
+      showFilterSummary,
+      showBreederNumber,
+      showDivider,
+      footerTemplate,
+      showPageNumbers,
+      created,
+      updated);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is PdfHeaderProfileRow &&
+          other.id == this.id &&
+          other.name == this.name &&
+          other.isDefault == this.isDefault &&
+          other.layout == this.layout &&
+          other.logoHash == this.logoHash &&
+          other.logoSize == this.logoSize &&
+          other.titleTemplate == this.titleTemplate &&
+          other.subtitleTemplate == this.subtitleTemplate &&
+          other.showAddressBlock == this.showAddressBlock &&
+          other.addressOverride == this.addressOverride &&
+          other.showDate == this.showDate &&
+          other.showCount == this.showCount &&
+          other.showFilterSummary == this.showFilterSummary &&
+          other.showBreederNumber == this.showBreederNumber &&
+          other.showDivider == this.showDivider &&
+          other.footerTemplate == this.footerTemplate &&
+          other.showPageNumbers == this.showPageNumbers &&
+          other.created == this.created &&
+          other.updated == this.updated);
+}
+
+class PdfHeaderProfilesCompanion extends UpdateCompanion<PdfHeaderProfileRow> {
+  final Value<String> id;
+  final Value<String> name;
+  final Value<bool> isDefault;
+  final Value<String> layout;
+  final Value<String?> logoHash;
+  final Value<String> logoSize;
+  final Value<String?> titleTemplate;
+  final Value<String?> subtitleTemplate;
+  final Value<bool> showAddressBlock;
+  final Value<String?> addressOverride;
+  final Value<bool> showDate;
+  final Value<bool> showCount;
+  final Value<bool> showFilterSummary;
+  final Value<bool> showBreederNumber;
+  final Value<bool> showDivider;
+  final Value<String?> footerTemplate;
+  final Value<bool> showPageNumbers;
+  final Value<DateTime?> created;
+  final Value<DateTime?> updated;
+  final Value<int> rowid;
+  const PdfHeaderProfilesCompanion({
+    this.id = const Value.absent(),
+    this.name = const Value.absent(),
+    this.isDefault = const Value.absent(),
+    this.layout = const Value.absent(),
+    this.logoHash = const Value.absent(),
+    this.logoSize = const Value.absent(),
+    this.titleTemplate = const Value.absent(),
+    this.subtitleTemplate = const Value.absent(),
+    this.showAddressBlock = const Value.absent(),
+    this.addressOverride = const Value.absent(),
+    this.showDate = const Value.absent(),
+    this.showCount = const Value.absent(),
+    this.showFilterSummary = const Value.absent(),
+    this.showBreederNumber = const Value.absent(),
+    this.showDivider = const Value.absent(),
+    this.footerTemplate = const Value.absent(),
+    this.showPageNumbers = const Value.absent(),
+    this.created = const Value.absent(),
+    this.updated = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  PdfHeaderProfilesCompanion.insert({
+    required String id,
+    required String name,
+    this.isDefault = const Value.absent(),
+    this.layout = const Value.absent(),
+    this.logoHash = const Value.absent(),
+    this.logoSize = const Value.absent(),
+    this.titleTemplate = const Value.absent(),
+    this.subtitleTemplate = const Value.absent(),
+    this.showAddressBlock = const Value.absent(),
+    this.addressOverride = const Value.absent(),
+    this.showDate = const Value.absent(),
+    this.showCount = const Value.absent(),
+    this.showFilterSummary = const Value.absent(),
+    this.showBreederNumber = const Value.absent(),
+    this.showDivider = const Value.absent(),
+    this.footerTemplate = const Value.absent(),
+    this.showPageNumbers = const Value.absent(),
+    this.created = const Value.absent(),
+    this.updated = const Value.absent(),
+    this.rowid = const Value.absent(),
+  })  : id = Value(id),
+        name = Value(name);
+  static Insertable<PdfHeaderProfileRow> custom({
+    Expression<String>? id,
+    Expression<String>? name,
+    Expression<bool>? isDefault,
+    Expression<String>? layout,
+    Expression<String>? logoHash,
+    Expression<String>? logoSize,
+    Expression<String>? titleTemplate,
+    Expression<String>? subtitleTemplate,
+    Expression<bool>? showAddressBlock,
+    Expression<String>? addressOverride,
+    Expression<bool>? showDate,
+    Expression<bool>? showCount,
+    Expression<bool>? showFilterSummary,
+    Expression<bool>? showBreederNumber,
+    Expression<bool>? showDivider,
+    Expression<String>? footerTemplate,
+    Expression<bool>? showPageNumbers,
+    Expression<DateTime>? created,
+    Expression<DateTime>? updated,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (isDefault != null) 'is_default': isDefault,
+      if (layout != null) 'layout': layout,
+      if (logoHash != null) 'logo_hash': logoHash,
+      if (logoSize != null) 'logo_size': logoSize,
+      if (titleTemplate != null) 'title_template': titleTemplate,
+      if (subtitleTemplate != null) 'subtitle_template': subtitleTemplate,
+      if (showAddressBlock != null) 'show_address_block': showAddressBlock,
+      if (addressOverride != null) 'address_override': addressOverride,
+      if (showDate != null) 'show_date': showDate,
+      if (showCount != null) 'show_count': showCount,
+      if (showFilterSummary != null) 'show_filter_summary': showFilterSummary,
+      if (showBreederNumber != null) 'show_breeder_number': showBreederNumber,
+      if (showDivider != null) 'show_divider': showDivider,
+      if (footerTemplate != null) 'footer_template': footerTemplate,
+      if (showPageNumbers != null) 'show_page_numbers': showPageNumbers,
+      if (created != null) 'created': created,
+      if (updated != null) 'updated': updated,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  PdfHeaderProfilesCompanion copyWith(
+      {Value<String>? id,
+      Value<String>? name,
+      Value<bool>? isDefault,
+      Value<String>? layout,
+      Value<String?>? logoHash,
+      Value<String>? logoSize,
+      Value<String?>? titleTemplate,
+      Value<String?>? subtitleTemplate,
+      Value<bool>? showAddressBlock,
+      Value<String?>? addressOverride,
+      Value<bool>? showDate,
+      Value<bool>? showCount,
+      Value<bool>? showFilterSummary,
+      Value<bool>? showBreederNumber,
+      Value<bool>? showDivider,
+      Value<String?>? footerTemplate,
+      Value<bool>? showPageNumbers,
+      Value<DateTime?>? created,
+      Value<DateTime?>? updated,
+      Value<int>? rowid}) {
+    return PdfHeaderProfilesCompanion(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      isDefault: isDefault ?? this.isDefault,
+      layout: layout ?? this.layout,
+      logoHash: logoHash ?? this.logoHash,
+      logoSize: logoSize ?? this.logoSize,
+      titleTemplate: titleTemplate ?? this.titleTemplate,
+      subtitleTemplate: subtitleTemplate ?? this.subtitleTemplate,
+      showAddressBlock: showAddressBlock ?? this.showAddressBlock,
+      addressOverride: addressOverride ?? this.addressOverride,
+      showDate: showDate ?? this.showDate,
+      showCount: showCount ?? this.showCount,
+      showFilterSummary: showFilterSummary ?? this.showFilterSummary,
+      showBreederNumber: showBreederNumber ?? this.showBreederNumber,
+      showDivider: showDivider ?? this.showDivider,
+      footerTemplate: footerTemplate ?? this.footerTemplate,
+      showPageNumbers: showPageNumbers ?? this.showPageNumbers,
+      created: created ?? this.created,
+      updated: updated ?? this.updated,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (isDefault.present) {
+      map['is_default'] = Variable<bool>(isDefault.value);
+    }
+    if (layout.present) {
+      map['layout'] = Variable<String>(layout.value);
+    }
+    if (logoHash.present) {
+      map['logo_hash'] = Variable<String>(logoHash.value);
+    }
+    if (logoSize.present) {
+      map['logo_size'] = Variable<String>(logoSize.value);
+    }
+    if (titleTemplate.present) {
+      map['title_template'] = Variable<String>(titleTemplate.value);
+    }
+    if (subtitleTemplate.present) {
+      map['subtitle_template'] = Variable<String>(subtitleTemplate.value);
+    }
+    if (showAddressBlock.present) {
+      map['show_address_block'] = Variable<bool>(showAddressBlock.value);
+    }
+    if (addressOverride.present) {
+      map['address_override'] = Variable<String>(addressOverride.value);
+    }
+    if (showDate.present) {
+      map['show_date'] = Variable<bool>(showDate.value);
+    }
+    if (showCount.present) {
+      map['show_count'] = Variable<bool>(showCount.value);
+    }
+    if (showFilterSummary.present) {
+      map['show_filter_summary'] = Variable<bool>(showFilterSummary.value);
+    }
+    if (showBreederNumber.present) {
+      map['show_breeder_number'] = Variable<bool>(showBreederNumber.value);
+    }
+    if (showDivider.present) {
+      map['show_divider'] = Variable<bool>(showDivider.value);
+    }
+    if (footerTemplate.present) {
+      map['footer_template'] = Variable<String>(footerTemplate.value);
+    }
+    if (showPageNumbers.present) {
+      map['show_page_numbers'] = Variable<bool>(showPageNumbers.value);
+    }
+    if (created.present) {
+      map['created'] = Variable<DateTime>(created.value);
+    }
+    if (updated.present) {
+      map['updated'] = Variable<DateTime>(updated.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PdfHeaderProfilesCompanion(')
+          ..write('id: $id, ')
+          ..write('name: $name, ')
+          ..write('isDefault: $isDefault, ')
+          ..write('layout: $layout, ')
+          ..write('logoHash: $logoHash, ')
+          ..write('logoSize: $logoSize, ')
+          ..write('titleTemplate: $titleTemplate, ')
+          ..write('subtitleTemplate: $subtitleTemplate, ')
+          ..write('showAddressBlock: $showAddressBlock, ')
+          ..write('addressOverride: $addressOverride, ')
+          ..write('showDate: $showDate, ')
+          ..write('showCount: $showCount, ')
+          ..write('showFilterSummary: $showFilterSummary, ')
+          ..write('showBreederNumber: $showBreederNumber, ')
+          ..write('showDivider: $showDivider, ')
+          ..write('footerTemplate: $footerTemplate, ')
+          ..write('showPageNumbers: $showPageNumbers, ')
+          ..write('created: $created, ')
+          ..write('updated: $updated, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -6690,6 +7609,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $SpeciesTableTable speciesTable = $SpeciesTableTable(this);
   late final $CagesTable cages = $CagesTable(this);
   late final $BirdColorsTable birdColors = $BirdColorsTable(this);
+  late final $PdfHeaderProfilesTable pdfHeaderProfiles =
+      $PdfHeaderProfilesTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -6705,7 +7626,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
         financeCategories,
         speciesTable,
         cages,
-        birdColors
+        birdColors,
+        pdfHeaderProfiles
       ];
 }
 
@@ -9801,6 +10723,408 @@ typedef $$BirdColorsTableProcessedTableManager = ProcessedTableManager<
     (BirdColor, BaseReferences<_$AppDatabase, $BirdColorsTable, BirdColor>),
     BirdColor,
     PrefetchHooks Function()>;
+typedef $$PdfHeaderProfilesTableCreateCompanionBuilder
+    = PdfHeaderProfilesCompanion Function({
+  required String id,
+  required String name,
+  Value<bool> isDefault,
+  Value<String> layout,
+  Value<String?> logoHash,
+  Value<String> logoSize,
+  Value<String?> titleTemplate,
+  Value<String?> subtitleTemplate,
+  Value<bool> showAddressBlock,
+  Value<String?> addressOverride,
+  Value<bool> showDate,
+  Value<bool> showCount,
+  Value<bool> showFilterSummary,
+  Value<bool> showBreederNumber,
+  Value<bool> showDivider,
+  Value<String?> footerTemplate,
+  Value<bool> showPageNumbers,
+  Value<DateTime?> created,
+  Value<DateTime?> updated,
+  Value<int> rowid,
+});
+typedef $$PdfHeaderProfilesTableUpdateCompanionBuilder
+    = PdfHeaderProfilesCompanion Function({
+  Value<String> id,
+  Value<String> name,
+  Value<bool> isDefault,
+  Value<String> layout,
+  Value<String?> logoHash,
+  Value<String> logoSize,
+  Value<String?> titleTemplate,
+  Value<String?> subtitleTemplate,
+  Value<bool> showAddressBlock,
+  Value<String?> addressOverride,
+  Value<bool> showDate,
+  Value<bool> showCount,
+  Value<bool> showFilterSummary,
+  Value<bool> showBreederNumber,
+  Value<bool> showDivider,
+  Value<String?> footerTemplate,
+  Value<bool> showPageNumbers,
+  Value<DateTime?> created,
+  Value<DateTime?> updated,
+  Value<int> rowid,
+});
+
+class $$PdfHeaderProfilesTableFilterComposer
+    extends Composer<_$AppDatabase, $PdfHeaderProfilesTable> {
+  $$PdfHeaderProfilesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get name => $composableBuilder(
+      column: $table.name, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get isDefault => $composableBuilder(
+      column: $table.isDefault, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get layout => $composableBuilder(
+      column: $table.layout, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get logoHash => $composableBuilder(
+      column: $table.logoHash, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get logoSize => $composableBuilder(
+      column: $table.logoSize, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get titleTemplate => $composableBuilder(
+      column: $table.titleTemplate, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get subtitleTemplate => $composableBuilder(
+      column: $table.subtitleTemplate,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get showAddressBlock => $composableBuilder(
+      column: $table.showAddressBlock,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get addressOverride => $composableBuilder(
+      column: $table.addressOverride,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get showDate => $composableBuilder(
+      column: $table.showDate, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get showCount => $composableBuilder(
+      column: $table.showCount, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get showFilterSummary => $composableBuilder(
+      column: $table.showFilterSummary,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get showBreederNumber => $composableBuilder(
+      column: $table.showBreederNumber,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get showDivider => $composableBuilder(
+      column: $table.showDivider, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get footerTemplate => $composableBuilder(
+      column: $table.footerTemplate,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get showPageNumbers => $composableBuilder(
+      column: $table.showPageNumbers,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get created => $composableBuilder(
+      column: $table.created, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get updated => $composableBuilder(
+      column: $table.updated, builder: (column) => ColumnFilters(column));
+}
+
+class $$PdfHeaderProfilesTableOrderingComposer
+    extends Composer<_$AppDatabase, $PdfHeaderProfilesTable> {
+  $$PdfHeaderProfilesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get name => $composableBuilder(
+      column: $table.name, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<bool> get isDefault => $composableBuilder(
+      column: $table.isDefault, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get layout => $composableBuilder(
+      column: $table.layout, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get logoHash => $composableBuilder(
+      column: $table.logoHash, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get logoSize => $composableBuilder(
+      column: $table.logoSize, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get titleTemplate => $composableBuilder(
+      column: $table.titleTemplate,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get subtitleTemplate => $composableBuilder(
+      column: $table.subtitleTemplate,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<bool> get showAddressBlock => $composableBuilder(
+      column: $table.showAddressBlock,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get addressOverride => $composableBuilder(
+      column: $table.addressOverride,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<bool> get showDate => $composableBuilder(
+      column: $table.showDate, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<bool> get showCount => $composableBuilder(
+      column: $table.showCount, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<bool> get showFilterSummary => $composableBuilder(
+      column: $table.showFilterSummary,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<bool> get showBreederNumber => $composableBuilder(
+      column: $table.showBreederNumber,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<bool> get showDivider => $composableBuilder(
+      column: $table.showDivider, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get footerTemplate => $composableBuilder(
+      column: $table.footerTemplate,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<bool> get showPageNumbers => $composableBuilder(
+      column: $table.showPageNumbers,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get created => $composableBuilder(
+      column: $table.created, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get updated => $composableBuilder(
+      column: $table.updated, builder: (column) => ColumnOrderings(column));
+}
+
+class $$PdfHeaderProfilesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $PdfHeaderProfilesTable> {
+  $$PdfHeaderProfilesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<bool> get isDefault =>
+      $composableBuilder(column: $table.isDefault, builder: (column) => column);
+
+  GeneratedColumn<String> get layout =>
+      $composableBuilder(column: $table.layout, builder: (column) => column);
+
+  GeneratedColumn<String> get logoHash =>
+      $composableBuilder(column: $table.logoHash, builder: (column) => column);
+
+  GeneratedColumn<String> get logoSize =>
+      $composableBuilder(column: $table.logoSize, builder: (column) => column);
+
+  GeneratedColumn<String> get titleTemplate => $composableBuilder(
+      column: $table.titleTemplate, builder: (column) => column);
+
+  GeneratedColumn<String> get subtitleTemplate => $composableBuilder(
+      column: $table.subtitleTemplate, builder: (column) => column);
+
+  GeneratedColumn<bool> get showAddressBlock => $composableBuilder(
+      column: $table.showAddressBlock, builder: (column) => column);
+
+  GeneratedColumn<String> get addressOverride => $composableBuilder(
+      column: $table.addressOverride, builder: (column) => column);
+
+  GeneratedColumn<bool> get showDate =>
+      $composableBuilder(column: $table.showDate, builder: (column) => column);
+
+  GeneratedColumn<bool> get showCount =>
+      $composableBuilder(column: $table.showCount, builder: (column) => column);
+
+  GeneratedColumn<bool> get showFilterSummary => $composableBuilder(
+      column: $table.showFilterSummary, builder: (column) => column);
+
+  GeneratedColumn<bool> get showBreederNumber => $composableBuilder(
+      column: $table.showBreederNumber, builder: (column) => column);
+
+  GeneratedColumn<bool> get showDivider => $composableBuilder(
+      column: $table.showDivider, builder: (column) => column);
+
+  GeneratedColumn<String> get footerTemplate => $composableBuilder(
+      column: $table.footerTemplate, builder: (column) => column);
+
+  GeneratedColumn<bool> get showPageNumbers => $composableBuilder(
+      column: $table.showPageNumbers, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get created =>
+      $composableBuilder(column: $table.created, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updated =>
+      $composableBuilder(column: $table.updated, builder: (column) => column);
+}
+
+class $$PdfHeaderProfilesTableTableManager extends RootTableManager<
+    _$AppDatabase,
+    $PdfHeaderProfilesTable,
+    PdfHeaderProfileRow,
+    $$PdfHeaderProfilesTableFilterComposer,
+    $$PdfHeaderProfilesTableOrderingComposer,
+    $$PdfHeaderProfilesTableAnnotationComposer,
+    $$PdfHeaderProfilesTableCreateCompanionBuilder,
+    $$PdfHeaderProfilesTableUpdateCompanionBuilder,
+    (
+      PdfHeaderProfileRow,
+      BaseReferences<_$AppDatabase, $PdfHeaderProfilesTable,
+          PdfHeaderProfileRow>
+    ),
+    PdfHeaderProfileRow,
+    PrefetchHooks Function()> {
+  $$PdfHeaderProfilesTableTableManager(
+      _$AppDatabase db, $PdfHeaderProfilesTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$PdfHeaderProfilesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$PdfHeaderProfilesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$PdfHeaderProfilesTableAnnotationComposer(
+                  $db: db, $table: table),
+          updateCompanionCallback: ({
+            Value<String> id = const Value.absent(),
+            Value<String> name = const Value.absent(),
+            Value<bool> isDefault = const Value.absent(),
+            Value<String> layout = const Value.absent(),
+            Value<String?> logoHash = const Value.absent(),
+            Value<String> logoSize = const Value.absent(),
+            Value<String?> titleTemplate = const Value.absent(),
+            Value<String?> subtitleTemplate = const Value.absent(),
+            Value<bool> showAddressBlock = const Value.absent(),
+            Value<String?> addressOverride = const Value.absent(),
+            Value<bool> showDate = const Value.absent(),
+            Value<bool> showCount = const Value.absent(),
+            Value<bool> showFilterSummary = const Value.absent(),
+            Value<bool> showBreederNumber = const Value.absent(),
+            Value<bool> showDivider = const Value.absent(),
+            Value<String?> footerTemplate = const Value.absent(),
+            Value<bool> showPageNumbers = const Value.absent(),
+            Value<DateTime?> created = const Value.absent(),
+            Value<DateTime?> updated = const Value.absent(),
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              PdfHeaderProfilesCompanion(
+            id: id,
+            name: name,
+            isDefault: isDefault,
+            layout: layout,
+            logoHash: logoHash,
+            logoSize: logoSize,
+            titleTemplate: titleTemplate,
+            subtitleTemplate: subtitleTemplate,
+            showAddressBlock: showAddressBlock,
+            addressOverride: addressOverride,
+            showDate: showDate,
+            showCount: showCount,
+            showFilterSummary: showFilterSummary,
+            showBreederNumber: showBreederNumber,
+            showDivider: showDivider,
+            footerTemplate: footerTemplate,
+            showPageNumbers: showPageNumbers,
+            created: created,
+            updated: updated,
+            rowid: rowid,
+          ),
+          createCompanionCallback: ({
+            required String id,
+            required String name,
+            Value<bool> isDefault = const Value.absent(),
+            Value<String> layout = const Value.absent(),
+            Value<String?> logoHash = const Value.absent(),
+            Value<String> logoSize = const Value.absent(),
+            Value<String?> titleTemplate = const Value.absent(),
+            Value<String?> subtitleTemplate = const Value.absent(),
+            Value<bool> showAddressBlock = const Value.absent(),
+            Value<String?> addressOverride = const Value.absent(),
+            Value<bool> showDate = const Value.absent(),
+            Value<bool> showCount = const Value.absent(),
+            Value<bool> showFilterSummary = const Value.absent(),
+            Value<bool> showBreederNumber = const Value.absent(),
+            Value<bool> showDivider = const Value.absent(),
+            Value<String?> footerTemplate = const Value.absent(),
+            Value<bool> showPageNumbers = const Value.absent(),
+            Value<DateTime?> created = const Value.absent(),
+            Value<DateTime?> updated = const Value.absent(),
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              PdfHeaderProfilesCompanion.insert(
+            id: id,
+            name: name,
+            isDefault: isDefault,
+            layout: layout,
+            logoHash: logoHash,
+            logoSize: logoSize,
+            titleTemplate: titleTemplate,
+            subtitleTemplate: subtitleTemplate,
+            showAddressBlock: showAddressBlock,
+            addressOverride: addressOverride,
+            showDate: showDate,
+            showCount: showCount,
+            showFilterSummary: showFilterSummary,
+            showBreederNumber: showBreederNumber,
+            showDivider: showDivider,
+            footerTemplate: footerTemplate,
+            showPageNumbers: showPageNumbers,
+            created: created,
+            updated: updated,
+            rowid: rowid,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$PdfHeaderProfilesTableProcessedTableManager = ProcessedTableManager<
+    _$AppDatabase,
+    $PdfHeaderProfilesTable,
+    PdfHeaderProfileRow,
+    $$PdfHeaderProfilesTableFilterComposer,
+    $$PdfHeaderProfilesTableOrderingComposer,
+    $$PdfHeaderProfilesTableAnnotationComposer,
+    $$PdfHeaderProfilesTableCreateCompanionBuilder,
+    $$PdfHeaderProfilesTableUpdateCompanionBuilder,
+    (
+      PdfHeaderProfileRow,
+      BaseReferences<_$AppDatabase, $PdfHeaderProfilesTable,
+          PdfHeaderProfileRow>
+    ),
+    PdfHeaderProfileRow,
+    PrefetchHooks Function()>;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -9826,4 +11150,6 @@ class $AppDatabaseManager {
       $$CagesTableTableManager(_db, _db.cages);
   $$BirdColorsTableTableManager get birdColors =>
       $$BirdColorsTableTableManager(_db, _db.birdColors);
+  $$PdfHeaderProfilesTableTableManager get pdfHeaderProfiles =>
+      $$PdfHeaderProfilesTableTableManager(_db, _db.pdfHeaderProfiles);
 }
