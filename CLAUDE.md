@@ -489,13 +489,48 @@ final ButtonStyle myButtonStyle = ButtonStyle(
 * **No hardcoded UI strings:** Every user-visible text MUST come from a
   translation key via `context.tr.*`. Never inline German/English literals in
   widgets, dialogs, snackbars, tooltips, error messages, or any other UI surface.
-* **Adding new keys:** Add the German source string to
-  [lib/i18n/de.i18n.json](lib/i18n/de.i18n.json) under the appropriate feature
-  namespace (e.g. `cages.*`, `birds.*`, `resources.*`). Use snake_case keys.
+* **Locales:** `de` (base), `en`, `es`, `fr`, `it`, `nl` — one
+  `lib/i18n/<code>.i18n.json` each. Missing keys fall back to German.
+* **Language selection:** [LocaleService](lib/services/locale/locale_service.dart)
+  owns it. The default follows the device language; the user can pin a language
+  in Account → Language, persisted under the `app_locale` pref. Always switch via
+  `LocaleService.apply`, never `LocaleSettings.setLocale` directly — see the
+  plural-resolver note below.
+* **Adding new keys:** Add the key to **every** locale file under the
+  appropriate feature namespace (e.g. `cages.*`, `birds.*`, `resources.*`). Use
+  snake_case keys. Key names and `{{placeholders}}` must match across locales —
+  they determine the generated Dart signature.
+* **New locale:** Drop a `<code>.i18n.json` next to the existing ones, add the
+  language code to `CFBundleLocalizations` in
+  [ios/Runner/Info.plist](ios/Runner/Info.plist), and add its endonym to
+  `_endonyms` in
+  [language_section.dart](lib/features/account/widgets/language_section.dart).
+  Without the plist entry iOS reports only the development region and the device
+  language never reaches Flutter.
+* **Plural resolvers:** slang only ships resolvers for
+  `cs de en es fr it ja pl ru sv uk vi`. Any other language needs an entry in
+  `_customCardinalResolvers` in `LocaleService`, otherwise slang logs an error on
+  every plural lookup. Two constraints: register it **before** `setLocale`
+  (rebuilding a translation instance does not notify `TranslationProvider`), and
+  use the **async** `setPluralResolver` — the `…Sync` variant throws
+  "Deferred library … was not loaded" under `lazy: true`.
 * **Regenerate:** Run `dart run slang` after adding keys to update the generated
   `context.tr.*` accessors.
+* **Coverage check:** [test/i18n/locales_test.dart](test/i18n/locales_test.dart)
+  builds every locale and exercises plurals.
+* **Currency:** Never hardcode `€` or hand-roll amounts with
+  `toStringAsFixed`. Format every monetary amount through `context.money`
+  ([MoneyFormatter](lib/shared/utils/formatter/money_formatter.dart)), which
+  follows the display currency the user picked in Account → Currency
+  (`CurrencyCubit`, persisted as `app_currency`). It is a display setting only —
+  amounts are stored as plain numbers and are relabelled, never converted.
+  `context.money` uses `watch` and therefore only works in `build`; in
+  callbacks construct `MoneyFormatter` with `read<CurrencyCubit>().state`.
+  CSV exports stay symbol-free (`ExportValueFormat.decimal`); only the PDF
+  summary strip carries the currency.
 * **Parameters:** Use `{{name}}` interpolation in JSON; slang capitalizes the
-  param name in the Dart API (e.g. `{{occupied}}` becomes `Occupied:`).
+  param name in the Dart API (e.g. `{{occupied}}` becomes `Occupied:`). Single
+  braces are **not** interpolated with this config.
 * **Exempt:** Log messages, debug strings, exception messages thrown internally,
   and code-only identifiers — those stay literal.
 

@@ -8,6 +8,7 @@ import 'package:birdbreeder/services/images/image_reference_resolver.dart';
 import 'package:birdbreeder/services/images/image_store.dart';
 import 'package:birdbreeder/services/initialization_service.dart';
 import 'package:birdbreeder/services/injection.dart';
+import 'package:birdbreeder/services/locale/locale_service.dart';
 import 'package:birdbreeder/services/logging_service.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
 import 'package:bloc/bloc.dart';
@@ -49,6 +50,10 @@ String _short(Object? state) {
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Applies the persisted language choice, falling back to the device language
+  // and keeping up with system language changes while the app runs.
+  await LocaleService.applyPersisted();
 
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);

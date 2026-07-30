@@ -27,14 +27,10 @@ class ExportValueFormat {
     return value.toStringAsFixed(2).replaceAll('.', ',');
   }
 
-  static final NumberFormat _currency =
-      NumberFormat.currency(locale: 'de_DE', symbol: '€');
-
-  /// A grouped, symbol-bearing amount for the PDF summary block.
-  ///
-  /// Unlike [decimal] this is meant for human eyes only — never write it to a
-  /// CSV cell, where the grouping separator would defeat the importer.
-  static String currency(double value) => _currency.format(value);
+  // Note: there is deliberately no currency helper here. The PDF summary is
+  // the one export surface meant for human eyes, so it follows the user's
+  // display currency via [MoneyFormatter] — see [financeExportSummary]. CSV
+  // cells stay symbol-free ([decimal]) so Excel treats them as numbers.
 
   /// Trims [value] and flattens newlines, returning null for blanks.
   ///

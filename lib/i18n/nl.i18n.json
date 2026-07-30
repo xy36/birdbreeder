@@ -1,0 +1,1327 @@
+{
+    "app": {
+        "title": "Birdbreeder"
+    },
+    "onboarding": {
+        "title": "Profiel instellen",
+        "subtitle": "Maak je eigen profiel aan. Het wordt gebruikt als app-gebruiker, bijvoorbeeld om je eigen vogels te markeren.",
+        "first_name": "Voornaam",
+        "last_name": "Achternaam",
+        "last_name_required": "Voer een achternaam in.",
+        "breeder_number": "Kwekernummer",
+        "breeder_number_required": "Voer een kwekernummer in.",
+        "save": "Profiel opslaan",
+        "or": "of",
+        "restore_backup": "Back-up terugzetten"
+    },
+    "finances": {
+        "title": "Financiën",
+        "categories": {
+            "title": "Categorieën",
+            "category": "Categorie",
+            "add": "Categorie toevoegen",
+            "edit": "Categorie bewerken",
+            "select": "Categorie kiezen",
+            "delete": "Categorie verwijderen?",
+            "name": "Naam van de categorie",
+            "color": "Kleur van de categorie",
+            "description": "Omschrijving",
+            "list_title": "Categorieën",
+            "designation": "Aanduiding",
+            "bookings": "Boekingen",
+            "filters": {
+                "all": "Alle",
+                "income": "Inkomsten",
+                "expense": "Uitgaven"
+            },
+            "groups": {
+                "income": "Inkomsten",
+                "expense": "Uitgaven"
+            },
+            "kind_singular": {
+                "income": "Inkomst",
+                "expense": "Uitgave"
+            },
+            "pill": {
+                "income": "↑ INKOMSTEN",
+                "expense": "↓ UITGAVEN"
+            },
+            "empty": "Geen categorieën",
+            "type_lock_hint": "Type kan na het aanmaken niet meer worden gewijzigd — {{usage}} boekingen gekoppeld.",
+            "type_lock_default": "Bepaalt het rekenteken voor boekingen.",
+            "detail_title": "Financiële categorie",
+            "detail": {
+                "bookings_label": "Boekingen",
+                "six_months": "6 maanden",
+                "avg_per_month": "Ø per maand",
+                "recent_bookings": "Laatste boekingen",
+                "no_bookings": "Geen boekingen",
+                "last_six_months_label": "laatste 6 maanden",
+                "course_six_months": "Verloop · 6 maanden"
+            },
+            "months_short": {
+                "dec": "dec",
+                "jan": "jan",
+                "feb": "feb",
+                "mar": "mrt",
+                "apr": "apr",
+                "may": "mei"
+            }
+        },
+        "delete": "Boeking verwijderen?",
+        "add": {
+            "name": "Boeking toevoegen",
+            "title": "Omschrijving",
+            "date": "Datum",
+            "category": "Categorie kiezen",
+            "amount": "Bedrag invoeren",
+            "amount_invalid": "Voer een geldig bedrag in",
+            "notes": "Omschrijving",
+            "bird": "Betreffende vogel"
+        },
+        "kind": {
+            "name": "Soort",
+            "income": "Inkomsten",
+            "expense": "Uitgaven"
+        },
+        "summary": {
+            "net": "Saldo",
+            "net_label": "NETTO",
+            "today": "VANDAAG",
+            "income_label": "INKOMSTEN",
+            "expense_label": "UITGAVEN"
+        },
+        "view": {
+            "all": "Alle",
+            "today": "Vandaag",
+            "yesterday": "Gisteren",
+            "search_hint": "Boeking zoeken …",
+            "empty": "Geen boekingen in deze periode",
+            "categories_filter_title": "Op categorie filteren",
+            "all_categories": "Alle categorieën",
+            "filter_button": "Filter",
+            "filter_sheet_title": "Categorieën filteren",
+            "filter_clear_all": "Alles deselecteren",
+            "filter_apply": "Toepassen",
+            "filter_search_hint": "Categorie zoeken …"
+        },
+        "scope": {
+            "month": "Maand",
+            "year": "Jaar",
+            "all": "Alle",
+            "custom": "Periode",
+            "current_year": "DIT JAAR",
+            "from_short": "Van",
+            "to_short": "Tot",
+            "pick_date": "Datum kiezen"
+        },
+        "filter": {
+            "bird": "Vogel",
+            "date_range": "Periode",
+            "from": "Van",
+            "to": "Tot",
+            "all_years": "Alle"
+        },
+        "sorting": {
+            "date_desc": "Datum (nieuw → oud)",
+            "date_asc": "Datum (oud → nieuw)",
+            "amount_desc": "Bedrag (hoog → laag)",
+            "amount_asc": "Bedrag (laag → hoog)"
+        }
+    },
+    "account": {
+        "title": "Account",
+        "logout": "Uitloggen",
+        "switch_to_local": "Naar lokale modus wisselen",
+        "switch_to_local_dialog": {
+            "title": "Naar lokale modus wisselen",
+            "content": "Al je gegevens worden van de server naar de lokale database gekopieerd. Daarna start de app opnieuw op in lokale modus.\n\nWil je doorgaan?",
+            "confirm": "Wisselen"
+        },
+        "local_mode": {
+            "title": "Lokale modus",
+            "description": "Alle gegevens worden lokaal op dit apparaat opgeslagen."
+        },
+        "appearance": {
+            "title": "Weergave",
+            "system": "Systeem",
+            "light": "Licht",
+            "dark": "Donker"
+        },
+        "language": {
+            "title": "Taal",
+            "system": "Systeemtaal",
+            "sheet_title": "Taal kiezen"
+        },
+        "currency": {
+            "title": "Valuta",
+            "sheet_title": "Valuta kiezen",
+            "hint": "Bedragen krijgen alleen een ander label, ze worden niet omgerekend."
+        },
+        "profile": {
+            "breeder_number(value)": "Kwekernummer {{value}}",
+            "no_contact": "Geen profielcontact ingesteld",
+            "edit": "Profiel bewerken"
+        },
+        "user": {
+            "email(value)": "E-mail: {{value}}",
+            "first_name(value)": "Voornaam: {{value}}",
+            "last_name(value)": "Achternaam: {{value}}"
+        },
+        "events": {
+            "switch_failed(error)": "Wisselen mislukt: {{error}}",
+            "switched_to_local(param=count)": {
+                "one": "1 vermelding overgezet. Lokale modus actief.",
+                "other": "{count} vermeldingen overgezet. Lokale modus actief."
+            }
+        }
+    },
+    "backup": {
+        "section_title": "Back-up",
+        "page_title": "Back-ups",
+        "empty": "Nog geen back-ups aanwezig.",
+        "loading": "Bezig met laden…",
+        "no_backup_yet": "Nog geen back-up",
+        "last_backup(date)": "Laatste back-up: {{date}}",
+        "external": {
+            "never": "Nog nooit extern opgeslagen",
+            "today": "Laatst extern opgeslagen: vandaag",
+            "days_ago(param=count)": {
+                "one": "Laatst extern opgeslagen: 1 dag geleden",
+                "other": "Laatst extern opgeslagen: {count} dagen geleden"
+            }
+        },
+        "actions": {
+            "share_latest": "Laatste back-up delen",
+            "create_now": "Nu back-up maken",
+            "create_and_save": "Back-up maken & opslaan",
+            "restore": "Back-up terugzetten",
+            "manage": "Alle back-ups beheren…",
+            "new": "Nieuw"
+        },
+        "manual_section": "Handmatige back-up",
+        "last_backup_label": "Laatste back-up",
+        "no_backup_size": "Nog geen back-up",
+        "create_hint": "Opent het deelvenster – kies Drive, Bestanden, e-mail of iets anders. Foto's zijn inbegrepen.",
+        "restore_hint": "Bijv. na het wisselen van apparaat – zet een oudere stand terug.",
+        "restore_sheet": {
+            "title": "Back-up kiezen",
+            "available": "Beschikbare back-ups",
+            "kind_cloud": "CLOUD",
+            "kind_manual": "HANDMATIG",
+            "pick_file_title": "Bestand van apparaat kiezen",
+            "pick_file_sub": "Handmatig een .zip-back-up kiezen",
+            "empty": "Geen back-ups gevonden",
+            "choose_folder_first": "Kies eerst een cloudmap",
+            "confirm_title": "Back-up terugzetten?",
+            "warning(name)": "Je huidige gegevens op dit apparaat worden door deze stand vervangen. Wijzigingen van na „{{name}}” gaan verloren.",
+            "confirm_button": "Ja, vervangen en terugzetten",
+            "restoring": "Bezig met terugzetten …",
+            "back": "Terug"
+        },
+        "menu": {
+            "share": "Delen",
+            "restore": "Terugzetten",
+            "delete": "Verwijderen"
+        },
+        "delete_dialog": {
+            "title": "Back-up verwijderen?",
+            "confirm": "Verwijderen"
+        },
+        "restore_dialog": {
+            "title": "Back-up terugzetten",
+            "content_picked": "Huidige lokale gegevens worden overschreven met de gekozen back-up. Doorgaan?",
+            "content_named(name)": "Huidige lokale gegevens worden overschreven met de back-up\n\"{{name}}\".\n\nDoorgaan?",
+            "confirm": "Terugzetten"
+        },
+        "reminder": {
+            "title": "Back-up veiligstellen",
+            "never": "Je hebt nog geen externe back-up opgeslagen.",
+            "age(param=count)": {
+                "one": "Je laatste externe back-up is 1 dag geleden.",
+                "other": "Je laatste externe back-up is {count} dagen geleden."
+            },
+            "body": "Sla hem nu op een veilige plek op (iCloud, Drive, mail), zodat je gegevens niet verloren gaan als je je apparaat kwijtraakt.",
+            "snooze": "Later herinneren",
+            "already_saved": "Al opgeslagen",
+            "share_now": "Nu delen"
+        },
+        "events": {
+            "created": "Back-up gemaakt",
+            "create_failed(error)": "Back-up mislukt: {{error}}",
+            "share_failed(error)": "Delen mislukt: {{error}}",
+            "delete_failed(error)": "Verwijderen mislukt: {{error}}",
+            "restore_failed(error)": "Terugzetten mislukt: {{error}}"
+        },
+        "cloud": {
+            "section_title": "Cloudback-up",
+            "enable": "Automatisch in de cloud opslaan",
+            "choose_location": "Cloudmap kiezen…",
+            "location_none": "Geen cloudmap gekozen",
+            "location_set(name)": "Doel: {{name}}",
+            "sync_now": "Nu synchroniseren",
+            "auto_title": "Automatische cloudback-up",
+            "auto_on": "Actief · slaat je gegevens automatisch op",
+            "auto_off": "Uitgeschakeld",
+            "folder_label": "Cloudmap",
+            "change": "Wijzigen",
+            "choose_folder_dialog": {
+                "title": "Cloudmap kiezen?",
+                "content": "Kies nu een map in je cloud (bijv. Google Drive), zodat automatische back-ups opgeslagen kunnen worden.",
+                "confirm": "Map kiezen"
+            },
+            "sync_after_change_dialog": {
+                "title": "Nu synchroniseren?",
+                "content": "De cloudmap is gewijzigd. Moeten je huidige gegevens daar nu heen worden opgeslagen?",
+                "confirm": "Synchroniseren"
+            },
+            "last_sync_label": "Laatste synchronisatie",
+            "syncing": "Bezig met synchroniseren …",
+            "syncing_hint": "Je foto's en gegevens worden naar de cloud geüpload.",
+            "settings": "Sync-instellingen",
+            "interval": {
+                "label": "Interval automatische back-up",
+                "sub": "Hoe vaak er bij het starten van de app automatisch wordt opgeslagen",
+                "sheet_title": "Interval kiezen",
+                "every_launch": "Bij elke start",
+                "daily": "Dagelijks",
+                "weekly": "Wekelijks",
+                "off": "Handmatig"
+            },
+            "status": {
+                "synced_today": "Laatst gesynchroniseerd: vandaag",
+                "synced_days_ago(param=count)": {
+                    "one": "Laatst gesynchroniseerd: 1 dag geleden",
+                    "other": "Laatst gesynchroniseerd: {count} dagen geleden"
+                },
+                "never": "Nog niet gesynchroniseerd",
+                "unavailable_icloud": "Niet aangemeld bij iCloud",
+                "unavailable_folder": "Geen toegang tot de map – kies opnieuw"
+            },
+            "events": {
+                "location_chosen(name)": "Cloudmap ingesteld: {{name}}",
+                "location_failed": "Geen map gekozen",
+                "sync_succeeded": "In de cloud opgeslagen",
+                "sync_failed(error)": "Cloudsynchronisatie mislukt: {{error}}",
+                "unavailable_icloud": "Niet aangemeld bij iCloud",
+                "unavailable_folder": "Geen toegang tot de cloudmap. Kies opnieuw."
+            }
+        }
+    },
+    "breedings": {
+        "title": "Kweek"
+    },
+    "colors": {
+        "title": "Kleuren",
+        "add": "Kleur toevoegen",
+        "edit": "Kleur bewerken",
+        "select": "Kleur kiezen",
+        "pick": "Kleur kiezen",
+        "delete": "Kleur verwijderen?",
+        "color": "Kleur",
+        "list_title": "Kleurslagen",
+        "value_label": "Kleurwaarde",
+        "genetics_section": "Genetica (optioneel)",
+        "inheritance_label": "Vererving",
+        "inheritance_hint": "bijv. autosomaal dominant",
+        "birds_with_color": "Vogels met deze kleur",
+        "no_birds_with_color": "Geen vogels met deze kleur",
+        "empty": "Geen kleuren",
+        "detail_title": "Kleur",
+        "stats": {
+            "birds": "Vogels",
+            "male_roosters": "Mannen",
+            "female_hens": "Poppen"
+        }
+    },
+    "cages": {
+        "title": "Volières",
+        "add": "Volière toevoegen",
+        "edit": "Volière bewerken",
+        "select": "Volière kiezen",
+        "delete": "Volière verwijderen?",
+        "name": "Naam van de volière",
+        "description": "Omschrijving",
+        "height": "Hoogte",
+        "width": "Breedte",
+        "depth": "Diepte",
+        "list_title": "Kooien",
+        "detail_title": "Volière",
+        "section": {
+            "basics": "Basisgegevens",
+            "capacity": "Capaciteit & bezetting"
+        },
+        "field": {
+            "type": "Type",
+            "location": "Locatie",
+            "max_capacity": "Maximaal aantal plaatsen"
+        },
+        "units": {
+            "birds": "vogels"
+        },
+        "occupancy": "Bezetting",
+        "occupied_label": "Bezet",
+        "free_label": "Vrij",
+        "birds_count_label": "Vogels",
+        "capacity_hint": "Momenteel bezet: {{occupied}}. Verlagen onder {{occupied}} is niet mogelijk.",
+        "capacity_missing_hint": "Capaciteit niet ingesteld — voer een waarde in",
+        "empty_badge": "LEEG",
+        "places_occupied": "{{occupied}}/{{capacity}} plaatsen bezet",
+        "empty_filter": "Geen kooien voor dit filter",
+        "filters": {
+            "all": "Alle",
+            "aviaries": "Volières",
+            "breeding_boxes": "Broedkooien",
+            "quarantine": "Quarantaine",
+            "empty": "Lege"
+        },
+        "types": {
+            "aviary": "Volière",
+            "breeding_box": "Broedkooi",
+            "quarantine": "Quarantaine"
+        }
+    },
+    "species": {
+        "title": "Soorten",
+        "add": "Soort toevoegen",
+        "edit": "Soort bewerken",
+        "select": "Soort kiezen",
+        "delete": "Soort verwijderen?",
+        "name": "Naam van de soort",
+        "latin_name": "Latijnse naam",
+        "detail_title": "Soort",
+        "section": {
+            "identity": "Identiteit",
+            "lifecycle": "Levenscyclus",
+            "icon": "Pictogram",
+            "notes": "Notities"
+        },
+        "incubation": "Broedduur",
+        "fledge": "Uitvliegen",
+        "days_short": "d",
+        "lifecycle_total": "{{days}}d totaal",
+        "lifecycle_hint": "Wordt automatisch gebruikt voor voorspellingen van uitkomen en uitvliegen.",
+        "image": {
+            "section": "Afbeelding",
+            "search": "Afbeelding zoeken",
+            "search_another": "Andere afbeelding zoeken",
+            "remove": "Verwijderen",
+            "no_results": "Geen afbeeldingen gevonden",
+            "loading": "Afbeeldingen worden gezocht…",
+            "picker_title": "Afbeelding kiezen",
+            "name_required_hint": "Voer eerst een naam in"
+        },
+        "lifecycle_label_total": "{{total}} DAGEN TOTAAL",
+        "chick_until_fledge": "Jong tot uitvliegen",
+        "hatch_label": "Uitkomen · D{{day}}",
+        "fledge_label": "Uitvliegen · D{{day}}",
+        "latin_hint_example": "bijv. Melopsittacus undulatus",
+        "latin_hint": "Latijnse soortnaam voor exacte identificatie.",
+        "scientific_name": "Wetenschappelijke naam",
+        "empty": "Geen soorten",
+        "birds_in_stock": "Vogels in bestand",
+        "no_birds": "Geen vogels",
+        "stats": {
+            "stock": "In bestand",
+            "male_roosters": "Mannen",
+            "female_hens": "Poppen"
+        }
+    },
+    "contacts": {
+        "title(count)": "Contacten ({{count}})",
+        "edit": "Contact bewerken",
+        "create": "Contact aanmaken",
+        "deleted": "Contact verwijderd",
+        "saved": "Contact opgeslagen",
+        "fields": {
+            "first_name": "Voornaam",
+            "last_name": "Achternaam",
+            "title": {
+                "name": "Aanhef",
+                "none": "Geen",
+                "mr": "Dhr.",
+                "ms": "Mevr."
+            },
+            "app_user": {
+                "title": "Dit contact ben ik",
+                "sub_title": "Markeert het contact als app-gebruiker."
+            },
+            "email": "E-mail",
+            "number": "Kwekernummer",
+            "phone": "Telefoonnummer",
+            "cell_phone_number": "Mobiel nummer",
+            "address": "Adres",
+            "city": "Plaats",
+            "country": "Land",
+            "postal": "Postcode",
+            "website": "Website"
+        },
+        "empty_list_information": "Er zijn nog geen contacten. Je kunt contacten toevoegen of importeren uit een CSV-bestand.",
+        "import_button_text": "Contacten importeren",
+        "add_contact_button_text": "Contact toevoegen",
+        "delete": "Contact verwijderen?",
+        "add": "Contact toevoegen?",
+        "select": "Contact kiezen",
+        "sections": {
+            "personal": "Persoonlijke gegevens",
+            "app_user": "App-gebruiker",
+            "breeder": "Kwekergegevens",
+            "contact": "Contactgegevens",
+            "address": "Adres",
+            "meta": "Metagegevens"
+        },
+        "actionButton": {
+            "open_website_tooltipp": "Website openen",
+            "send_email_tooltipp": "E-mail schrijven",
+            "call_tooltipp": "Bellen"
+        },
+        "overview": {
+            "total_label": "Contacten",
+            "bought_chip(count)": "{{count}} gekocht",
+            "sold_chip(count)": "{{count}} verkocht",
+            "all_contacts": "Alle contacten",
+            "search_hint": "Naam, plaats zoeken …",
+            "activity_sold(ring)": "Verkocht {{ring}}",
+            "activity_bought(ring)": "Gekocht {{ring}}"
+        },
+        "card": {
+            "call": "Bellen",
+            "email": "E-mail",
+            "details": "Details"
+        },
+        "detail": {
+            "title": "Contact",
+            "bought": "Gekocht",
+            "sold": "Verkocht",
+            "balance": "Saldo",
+            "contact_data": "Contactgegevens",
+            "no_contact_data": "Geen contactgegevens opgeslagen",
+            "linked_birds": "Gekoppelde vogels",
+            "role_sold": "VERKOCHT",
+            "role_bought": "GEKOCHT",
+            "location": "Locatie",
+            "edit": "Bewerken"
+        }
+    },
+    "breeding_pairs": {
+        "title": "Kweekkoppel",
+        "add": "Kweekkoppel toevoegen",
+        "edit": "Kweekkoppel bewerken",
+        "delete": "Kweekkoppel verwijderen?",
+        "status": {
+            "name": "Status",
+            "active": "Actief",
+            "paused": "Gepauzeerd",
+            "finished": "Beëindigd"
+        },
+        "start_date": "Startdatum",
+        "end_date": "Einddatum",
+        "notes": "Notities",
+        "year_filter": {
+            "label": "JAAR",
+            "all": "Alle"
+        },
+        "filter": {
+            "show_results(count)": "{{count}} kweekkoppels tonen"
+        },
+        "pair_one": "Koppel",
+        "pair_other": "Koppels",
+        "cages_count(count)": "{{count}} kooien",
+        "active_broods_one(count)": "{{count}} actief broedsel",
+        "active_broods_other(count)": "{{count}} actieve broedsels",
+        "broods_total_one(count)": "{{count}} broedsel",
+        "broods_total_other(count)": "{{count}} broedsels",
+        "brood_status": {
+            "active": "actief",
+            "inactive": "gepauzeerd",
+            "completed": "beëindigd"
+        },
+        "finished_tag": "BEËINDIGD",
+        "no_cage": "Zonder kooi",
+        "since(date)": "sinds {{date}}",
+        "until(date)": "tot {{date}}",
+        "empty_for_year(year)": "Geen kweekkoppels in {{year}}.",
+        "empty": "Geen kweekkoppels.",
+        "search_hint": "Ring, kooi zoeken …",
+        "sort_by": {
+            "cage": "Volière",
+            "updated": "Laatst gewijzigd",
+            "created": "Aangemaakt"
+        },
+        "stats": {
+            "abbr": {
+                "laid": "GL",
+                "fertilized": "BV",
+                "hatched": "UK",
+                "fledged": "UV"
+            },
+            "label": {
+                "laid": "Eieren gelegd",
+                "fertilized": "Bevrucht",
+                "hatched": "Uitgekomen",
+                "fledged": "Uitgevlogen"
+            },
+            "legend": {
+                "title": "Legenda"
+            }
+        }
+    },
+    "resources": {
+        "title": "Bronnen",
+        "usage_count(param=count)": {
+            "zero": "Bij geen enkele vogel gebruikt",
+            "one": "Gebruikt bij één vogel",
+            "other": "Gebruikt bij {{n}} vogels"
+        },
+        "no_search_results": "Niets gevonden, tik op \"Toevoegen\" om een nieuwe vermelding te maken.",
+        "section": {
+            "identity": "Identiteit",
+            "basics": "Basisgegevens",
+            "lifecycle": "Levenscyclus",
+            "icon": "Pictogram",
+            "notes": "Notities",
+            "color": "Kleur"
+        },
+        "actions": {
+            "edit": "Bewerken"
+        },
+        "color_picker": {
+            "title": "Kleur kiezen"
+        },
+        "field": {
+            "name": "Naam",
+            "required": "Verplicht veld"
+        },
+        "delete": {
+            "with_usage(usage)": "{{usage}} koppelingen worden verbroken. Toch doorgaan?"
+        },
+        "sort": {
+            "label": "Sorteren",
+            "by": {
+                "name": "Naam",
+                "created": "Aangemaakt",
+                "capacity": "Capaciteit",
+                "kind": "Type",
+                "lat_name": "Lat. naam",
+                "hex": "Kleurcode"
+            },
+            "asc": "Oplopend",
+            "desc": "Aflopend"
+        }
+    },
+    "birds": {
+        "title": "Vogels",
+        "overview": {
+            "subtitle(birds, cages)": "{{birds}} vogels · {{cages}} kooien",
+            "for_sale(count)": "{{count}} te koop",
+            "group_by_cage": "Groeperen: kooi",
+            "no_cage": "Zonder kooi",
+            "birds_label": "Vogels",
+            "sale_badge": "Te koop",
+            "empty": "Geen vogels gevonden",
+            "view_grouped": "Op volière groeperen",
+            "view_list": "Als lijst tonen"
+        },
+        "filter": {
+            "show_results(count)": "{{count}} vogels tonen",
+            "sort_title": "Sorteren",
+            "more_title": "Meer",
+            "show_deceased": "Overleden tonen"
+        }
+    },
+    "pedigree": {
+        "title": "Stamboom",
+        "subtitle": "Afstammingskaart",
+        "col_bird": "Vogel",
+        "col_parents": "Ouders",
+        "col_grandparents": "Grootouders",
+        "col_greatgrandparents": "Overgrootouders",
+        "col_ancestors": "Voorouders",
+        "section_ancestors": "Voorouders",
+        "section_descendants": "Nakomelingen",
+        "no_descendants": "Geen nakomelingen vastgelegd",
+        "unknown": "Onbekend",
+        "assign_parent": "Ouder toewijzen",
+        "add_father": "Vader toevoegen",
+        "add_mother": "Moeder toevoegen",
+        "common_ancestor": "Gemeenschappelijke voorouder (inteelt)",
+        "sold": "Verkocht",
+        "not_own": "Niet in bezit",
+        "deceased": "Overleden",
+        "share": "Delen",
+        "share_filename": "stamboom_{{ring}}",
+        "depth": "Diepte",
+        "depth_all": "Alle",
+        "inbreeding_explainer": "Deze vogels zijn zowel via de vaderlijke als via de moederlijke lijn verwant.",
+        "via_father": "via vader",
+        "via_mother": "via moeder",
+        "stats": {
+            "generations": "Generaties",
+            "ancestors": "Voorouders",
+            "descendants": "Nakomelingen",
+            "inbreeding": "Inteelt",
+            "no_inbreeding": "Geen inteelt"
+        },
+        "swipe_hint": "Veeg voor meer overzicht"
+    },
+    "inbreeding": {
+        "coefficient": "Inteeltcoëfficiënt",
+        "coefficient_short": "F",
+        "severity_none": "Geen inteelt",
+        "severity_low": "Laag",
+        "severity_elevated": "Verhoogd",
+        "severity_high": "Hoog",
+        "common_ancestors_one": "1 gemeenschappelijke voorouder",
+        "common_ancestors_other": "{{count}} gemeenschappelijke voorouders",
+        "path_contribution": "Bijdrage",
+        "banner_label": "Inteeltcoëfficiënt: {{percent}}",
+        "pair_warning_title": "Inteeltwaarschuwing",
+        "pair_warning_body": "Het koppelen van deze vogels geeft een inteeltcoëfficiënt van {{percent}} ({{severity}}). Toch aanmaken?",
+        "proceed_anyway": "Toch aanmaken"
+    },
+    "bird": {
+        "title": "Vogel",
+        "edit": "Vogel bewerken",
+        "deleted": "Vogel verwijderd",
+        "saved": "Vogel opgeslagen",
+        "delete": "Vogel verwijderen?",
+        "duplicate": "Vogel dupliceren",
+        "add": "Vogel toevoegen",
+        "select_color_label": "Kleur kiezen",
+        "select_species_label": "Soort kiezen",
+        "select_cage_label": "Volière kiezen",
+        "select_owner_label": "Eigenaar kiezen",
+        "select_sold_to_label": "Koper kiezen",
+        "select_bought_from_label": "Verkoper kiezen",
+        "created_information(date, time)": "Aangemaakt op {{DateTime date}} om {{time}}",
+        "tabs": {
+            "general": "Algemeen",
+            "state_and_life": "Status",
+            "breeding": "Kweek",
+            "purchase_and_sale": "Financiën"
+        },
+        "summary": {
+            "sex": "Geslacht",
+            "age": "Leeftijd",
+            "cage": "Kooi",
+            "offspring": "Nakomelingen",
+            "unknown": "—"
+        },
+        "sections": {
+            "identification": {
+                "title": "Identificatie",
+                "subTitle": "Gegevens ter identificatie van de vogel"
+            },
+            "keeping": {
+                "title": "Huisvesting",
+                "subTitle": "Gegevens over de huisvesting van de vogel"
+            },
+            "status": {
+                "title": "Status",
+                "subTitle": "Gegevens over de status van de vogel"
+            },
+            "sale": {
+                "title": "Verkoop",
+                "subTitle": "Gegevens over de verkoop van de vogel"
+            },
+            "purchase": {
+                "title": "Aankoop",
+                "subTitle": "Gegevens over de aankoop van de vogel"
+            },
+            "health": {
+                "title": "Gezondheid",
+                "subTitle": "Gegevens over de gezondheid van de vogel"
+            },
+            "life": {
+                "title": "Levensfase",
+                "subTitle": "Gegevens over de levensfase van de vogel",
+                "unknown_lifecycle_title": "Levenscyclusgegevens onbekend?",
+                "unknown_lifecycle_sub_title": "Schakel deze optie in als de levenscyclusgegevens niet bekend zijn.",
+                "unknown_lifecycle_description": "Als er een geboortedatum is, wordt de vogel als volwassen beschouwd. Als er een sterfdatum is, wordt de vogel als overleden beschouwd."
+            },
+            "notes": {
+                "title": "Notities",
+                "subTitle": "Gegevens over de notities van de vogel"
+            },
+            "photos": {
+                "title": "Foto's",
+                "subTitle": "Foto's van deze vogel beheren",
+                "add_camera": "Camera",
+                "add_gallery": "Galerij",
+                "save_first": "Sla de vogel eerst op om foto's toe te voegen.",
+                "empty": "Nog geen foto's",
+                "delete_title": "Foto verwijderen?",
+                "delete_confirm": "Verwijderen",
+                "manage": "Foto's beheren",
+                "capture": "Foto maken",
+                "capture_sub": "of uit galerij kiezen · meerdere mogelijk",
+                "section_label": "Foto's van deze vogel",
+                "add_tile": "Toevoegen",
+                "cover_badge": "Omslag",
+                "set_cover": "Als omslagfoto instellen",
+                "remove": "Verwijderen",
+                "source_camera": "Camera",
+                "source_gallery": "Galerij",
+                "hint": "Tik op een foto om hem groot te bekijken. Houd een foto ingedrukt en sleep hem naar een andere positie – de eerste foto is de omslagfoto en verschijnt in lijsten en op de detailpagina van de vogel.",
+                "done": "Klaar",
+                "count_preview_one": "{{count}} foto",
+                "count_preview_other": "{{count}} foto's"
+            },
+            "parent": {
+                "title": "Ouders",
+                "subTitle": "Gegevens over de ouders van de vogel"
+            },
+            "breeder": {
+                "title": "Kweker",
+                "subTitle": "Gegevens over de kweker van de vogel"
+            },
+            "children": {
+                "title": "Nakomelingen",
+                "subTitle": "Gegevens over de nakomelingen van de vogel"
+            }
+        }
+    },
+    "pair_detail": {
+        "father_label": "♂ VADER",
+        "mother_label": "♀ MOEDER",
+        "current_brood": "Huidig broedsel",
+        "history": "Verloop",
+        "history_count_one(count)": "{{count}} broedsel",
+        "history_count_other(count)": "{{count}} broedsels",
+        "brood_short": "BROEDSEL",
+        "day(day)": "Dag {{day}}",
+        "start_label(date)": "Start: {{date}}",
+        "no_current_brood": "Geen actief broedsel",
+        "kpi": {
+            "broods": "Broedsels",
+            "eggs": "Eieren",
+            "hatched": "Uitgekomen",
+            "fledged": "Uitgevl."
+        },
+        "new_brood": "Nieuw broedsel",
+        "since(date)": "sinds {{date}}"
+    },
+    "brood": {
+        "name": "Legsel",
+        "overview": "Broedoverzicht",
+        "latest": "Laatste broedsel",
+        "add": "Legsel toevoegen",
+        "delete": "Legsel verwijderen?",
+        "edit": "Legsel bewerken",
+        "empty": "Nog geen legsel toegevoegd",
+        "since": "Sinds {{date}}",
+        "eggs_count(param=count)": {
+            "zero": "Geen eieren",
+            "one": "1 ei",
+            "other": "{{count}} eieren"
+        },
+        "kpi": {
+            "eggs": "Eieren",
+            "hatched": "Uitgekomen",
+            "fledged": "Uitgevlogen"
+        },
+        "hatched_count(param=count)": {
+            "zero": "Geen uitgekomen",
+            "one": "1 uitgekomen",
+            "other": "{{count}} uitgekomen"
+        },
+        "fledged_count(param=count)": {
+            "zero": "Geen uitgevlogen",
+            "one": "1 uitgevlogen",
+            "other": "{{count}} uitgevlogen"
+        },
+        "notes": "Notities (optioneel)",
+        "created_information(date, time)": "Aangemaakt op {{DateTime date}} om {{time}}"
+    },
+    "egg": {
+        "name": "Ei",
+        "add": "Ei toevoegen",
+        "status": {
+            "laid": "Gelegd",
+            "fertilized": "Bevrucht",
+            "unfertilized": "Onbevrucht",
+            "hatched": "Uitgekomen",
+            "dead": "Gestorven",
+            "fledged": "Uitgevlogen",
+            "in_stock": "In bestand",
+            "unknown": "Onbekend"
+        },
+        "action": {
+            "set_ringnumber": "Nieuw ringnummer invoeren"
+        },
+        "pick_laid_date": "Legdatum kiezen",
+        "pick_fledged_date": "Datum uitvliegen kiezen",
+        "pick_hatched_date": "Datum uitkomen kiezen",
+        "pick_fertilized_date": "Datum bevruchting kiezen",
+        "pick_unfertilized_date": "Datum onbevrucht kiezen",
+        "pick_died_date": "Sterfdatum kiezen",
+        "in_stock": "In bestand",
+        "lifecycle": {
+            "title": "Ei {{number}}",
+            "section_cycle": "Levenscyclus",
+            "section_details": "Details",
+            "set_date": "Datum instellen",
+            "confirm_delete": "Ei verwijderen?"
+        }
+    },
+    "common": {
+        "bottom_sheet": {
+            "search_empty_builder_text(text)": "De zoekopdracht naar {{text}} heeft helaas niets opgeleverd."
+        },
+        "sale_status": {
+            "name": "Aan-/verkoopstatus",
+            "not_for_sale": "Niet te koop",
+            "listed": "Te koop aangeboden",
+            "reserved": "Gereserveerd",
+            "sold": "Verkocht"
+        },
+        "all_label": "Alle",
+        "more_label": "Meer",
+        "less_label": "Minder",
+        "search": "Zoeken",
+        "search_hint": "Zoeken ...",
+        "countbird(param=count)": {
+            "zero": "Geen vogels",
+            "one": "1 vogel",
+            "other": "{count} vogels"
+        },
+        "optional": "Optioneel",
+        "apply": "Toepassen",
+        "reset": "Herstellen",
+        "add": "Toevoegen",
+        "close": "Sluiten",
+        "cancel": "Annuleren",
+        "ok": "Ok",
+        "sex": {
+            "name": "Geslacht",
+            "male": "Man",
+            "female": "Pop",
+            "unknown": "Onbekend"
+        },
+        "sell": {
+            "year": "Verkoopjaar",
+            "bird": "Vogel verkopen",
+            "price": {
+                "final": "Werkelijke verkoopprijs",
+                "asking": "Gewenste verkoopprijs"
+            }
+        },
+        "bought": {
+            "year": "Aankoopjaar",
+            "from": "Gekocht van",
+            "at": "Gekocht op",
+            "price": "Aankoopprijs"
+        },
+        "eggs_short": {
+            "one": "Ei",
+            "other": "Eieren"
+        },
+        "laid_short": "gel.",
+        "fertilzed_short": "bevr.",
+        "hatched_short": "uitgek.",
+        "fledged_short": "uitgev.",
+        "died_short": "gest.",
+        "sorting": {
+            "name": "Sortering",
+            "updated": "Laatst bijgewerkt",
+            "age": "Leeftijd",
+            "ringnumber": "Ringnummer"
+        },
+        "something_went_wrong": "Oeps, er is iets misgegaan.",
+        "save": "Opslaan",
+        "general": "Algemeen",
+        "ringnumber": "Ringnummer",
+        "notes": "Notities",
+        "clutches": "Legsels",
+        "laid": "Gelegd",
+        "fertilzed": "Bevrucht",
+        "hatched": "Uitgekomen",
+        "fledged": "Uitgevlogen",
+        "origin": "Herkomst",
+        "species": "Soort",
+        "color": "Kleur",
+        "cage": "Volière",
+        "owner": "Eigenaar",
+        "sold": {
+            "to": "Verkocht aan",
+            "at": "Verkocht op"
+        },
+        "gender": "Geslacht",
+        "died_at": "Sterfdatum",
+        "born_at": "Geboortedatum",
+        "father": "Vader",
+        "mother": "Moeder",
+        "partner": "Partner",
+        "is_for_sale": "Te koop",
+        "yes": "Ja",
+        "no": "Nee",
+        "unit": {
+            "m": "m",
+            "cm": "cm"
+        },
+        "email": "E-mail",
+        "password": "Wachtwoord",
+        "hint": {
+            "select": "Kiezen",
+            "text": "Invoeren"
+        },
+        "required": "Dit veld moet ingevuld worden"
+    },
+    "auth": {
+        "sign_in": "Inloggen",
+        "sign_up": "Registreren",
+        "confirm_password": "Wachtwoord bevestigen",
+        "passwords_do_not_match": "Wachtwoorden komen niet overeen",
+        "create_account": "Account aanmaken",
+        "first_name": "Voornaam",
+        "last_name": "Achternaam",
+        "sign_in_text": "Log in om verder te gaan. Als je nog geen account hebt, kun je er een aanmaken. Ga daarvoor naar het tabblad \"Account aanmaken\".",
+        "sign_up_text": "Maak een account aan om verder te gaan. Als je al een account hebt, kun je gewoon inloggen. Ga daarvoor naar het tabblad \"Inloggen\".",
+        "validators": {
+            "email": "Voer een geldig e-mailadres in",
+            "email_format": "Voer een geldig e-mailadres in",
+            "password": "Voer een wachtwoord in",
+            "password_length": "Het wachtwoord moet minstens 6 tekens lang zijn",
+            "first_name": "Voer je voornaam in",
+            "first_name_length": "De voornaam moet minstens 3 tekens lang zijn",
+            "last_name": "Voer je achternaam in"
+        }
+    },
+    "csvImport": {
+        "title": "CSV-import",
+        "selectType": "Kies wat je wilt importeren:",
+        "back": "Terug",
+        "selectFile": "CSV-bestand kiezen",
+        "cancel": "Annuleren",
+        "newImport": "Nieuwe import",
+        "retry": "Opnieuw proberen",
+        "reading": "\"{{fileName}}\" wordt gelezen...",
+        "importing": "{{itemName}} worden geïmporteerd...",
+        "progress": "{{current}} van {{total}}",
+        "completed": "Import voltooid",
+        "birds": {
+            "title": "Vogels",
+            "description": "Importeer vogels met soort,\nkleur en volière",
+            "importTitle": "Vogels uit CSV importeren",
+            "importDescription": "Kies een CSV-bestand met je vogelgegevens.\nSoorten, kleuren en volières worden automatisch aangemaakt als ze nog niet bestaan. Als scheidingsteken in het CSV-bestand wordt een puntkomma (;) verwacht. Het datumformaat moet yyyy-MM-dd, dd.MM.yyyy of dd/MM/yyyy zijn.",
+            "importButton": "{{count}} vogels importeren",
+            "itemName": "vogels"
+        },
+        "contacts": {
+            "title": "Contacten",
+            "description": "Importeer contactgegevens\nzoals kwekers of kopers",
+            "importTitle": "Contacten uit CSV importeren",
+            "importDescription": "Kies een CSV-bestand met je contactgegevens. Als scheidingsteken in het CSV-bestand wordt een puntkomma (;) verwacht.",
+            "importButton": "{{count}} contacten importeren",
+            "itemName": "contacten"
+        },
+        "columns": {
+            "title": "Ondersteunde kolommen:",
+            "dateFormats": "Datumformaten: yyyy-MM-dd, dd.MM.yyyy, dd/MM/yyyy",
+            "birdColumns": "• ringnumber / ring / ringnummer - Ringnummer (verplicht)\n• species / art / vogelart - Vogelsoort\n• color / farbe / colour - Kleur\n• cage / voliere / käfig - Volière\n• sex / geschlecht - Geslacht (male/female/männlich/weiblich)\n• born_at / geboren / geburtsdatum - Geboortedatum\n• father / vater - Ringnummer vader\n• mother / mutter - Ringnummer moeder\n• notes / notizen / bemerkungen - Notities",
+            "contactColumns": "• firstname / vorname - Voornaam\n• name / nachname / lastname - Achternaam (minstens voor- of achternaam vereist)\n• number / nummer / kundennummer - Contactnummer\n• phone / telefon / mobil - Telefoonnummer\n• email / e-mail / mail - E-mailadres\n• address / adresse / strasse - Straat\n• city / stadt / ort - Plaats\n• postalcode / plz / zip - Postcode\n• country / land - Land\n• website / homepage / url - Website"
+        },
+        "preview": {
+            "valid": "{{count}} geldig",
+            "invalid": "{{count}} ongeldig"
+        },
+        "table": {
+            "row": "#",
+            "ringNumber": "Ringnummer",
+            "species": "Soort",
+            "color": "Kleur",
+            "cage": "Volière",
+            "sex": "Geslacht",
+            "birthDate": "Geb.datum",
+            "deathDate": "Overleden",
+            "father": "Vader",
+            "mother": "Moeder",
+            "breeder": "Kweker",
+            "owner": "Eigenaar",
+            "status": "Status",
+            "number": "Nummer",
+            "firstName": "Voornaam",
+            "lastName": "Achternaam",
+            "phone": "Telefoon",
+            "cellPhone": "Mobiel",
+            "email": "E-mail",
+            "city": "Plaats"
+        },
+        "status": {
+            "error": "Fout",
+            "missingRingNumber": "Ringnummer ontbreekt",
+            "missingName": "Naam ontbreekt",
+            "noRingNumber": "Geen ringnummer"
+        },
+        "summary": {
+            "successful": "Succesvol geïmporteerd",
+            "failed": "Mislukt",
+            "skippedDuplicates": "Overgeslagen (duplicaten)",
+            "skippedInvalid": "Overgeslagen (ongeldig)",
+            "speciesCreated": "Nieuwe soorten aangemaakt",
+            "colorsCreated": "Nieuwe kleuren aangemaakt",
+            "cagesCreated": "Nieuwe volières aangemaakt",
+            "failedImports": "Mislukte imports",
+            "skippedEntries": "Overgeslagen vermeldingen (duplicaten)"
+        },
+        "errors": {
+            "selectCsvFile": "Kies een CSV-bestand",
+            "notCsvFile": "Het gekozen bestand is geen CSV-bestand.",
+            "couldNotReadFile": "Bestand kon niet gelezen worden",
+            "errorReadingFile": "Fout bij het lezen van het bestand",
+            "ringNumberExists": "Ringnummer bestaat al",
+            "couldNotCreateBird": "Vogel kon niet aangemaakt worden",
+            "contactNumberExists": "Contactnummer \"{{number}}\" bestaat al",
+            "couldNotCreateContact": "Contact kon niet aangemaakt worden"
+        }
+    },
+    "menu": {
+        "sections": {
+            "main": "Hoofdonderdelen",
+            "data": "Stamgegevens",
+            "settings": "Instellingen"
+        },
+        "birds": {
+            "title": "Vogels",
+            "description": "Beheer je vogels"
+        },
+        "contacts": {
+            "title": "Contacten",
+            "description": "Beheer je contacten"
+        },
+        "breedings": {
+            "title": "Kweek",
+            "description": "Actieve & afgeronde kweekkoppels"
+        },
+        "resources": {
+            "title": "Bronnen",
+            "description": "Kleuren, soorten, volières"
+        },
+        "finances": {
+            "title": "Financiën",
+            "description": "Kasboek"
+        },
+        "csv_import": {
+            "title": "CSV-import",
+            "description": "Importeer gegevens uit CSV"
+        },
+        "account": {
+            "title": "Account",
+            "description": "Je account"
+        },
+        "species": {
+            "title": "Soorten",
+            "description": "Vogelsoorten beheren"
+        },
+        "cages": {
+            "title": "Volières",
+            "description": "Volières & kooien"
+        },
+        "colors": {
+            "title": "Kleuren",
+            "description": "Kleurslagen"
+        },
+        "finance_categories": {
+            "title": "Financiële categorieën",
+            "description": "Categorieën voor inkomsten en uitgaven"
+        },
+        "addBird": "Vogel toevoegen"
+    },
+    "error": {
+        "message": "Sorry, er is een fout opgetreden"
+    },
+    "dialog": {
+        "discard_changes": {
+            "title": "Wijzigingen verwerpen?",
+            "content": "Je wijzigingen worden verworpen, weet je het zeker?"
+        },
+        "delete_entry": {
+            "content": "Wil je deze vermelding echt verwijderen?"
+        }
+    },
+    "pop_up_menu": {
+        "open": "Openen",
+        "edit": "Bewerken",
+        "show": "Tonen",
+        "pedigree": "Stamboom",
+        "set_ringnumber": "Ringnummer instellen",
+        "set_color": "Kleur instellen",
+        "add_to_stock": "In bestand opnemen",
+        "duplicate": "Dupliceren",
+        "delete": "Verwijderen"
+    },
+    "export": {
+        "title": "Exporteren",
+        "action": "Exporteren",
+        "scope_hint": "Precies de nu getoonde lijst wordt geëxporteerd.",
+        "file_name_label": "Bestandsnaam",
+        "empty": "Er is niets om te exporteren.",
+        "events": {
+            "succeeded": "\"{{fileName}}\" aangemaakt.",
+            "failed": "Export mislukt: {{error}}"
+        },
+        "row_count_one": "1 vermelding",
+        "row_count_other": "{{count}} vermeldingen",
+        "format": {
+            "title": "Formaat",
+            "csv": {
+                "label": "CSV",
+                "description": "Voor Excel en spreadsheets"
+            },
+            "pdf": {
+                "label": "PDF",
+                "description": "Om af te drukken en door te geven"
+            }
+        },
+        "preset": {
+            "title": "Omvang"
+        },
+        "pdf": {
+            "page": "Pagina {{page}} van {{total}}"
+        },
+        "header": {
+            "title": "PDF-briefhoofd",
+            "subtitle": "Koptekst voor geëxporteerde PDF's",
+            "list_empty": "Nog geen briefhoofd aangemaakt. Zonder profiel gebruikt de export de naam van de lijst en je profielgegevens.",
+            "add": "Briefhoofd aanmaken",
+            "new_name": "Nieuw briefhoofd",
+            "none": "Zonder briefhoofd",
+            "default_badge": "Standaard",
+            "set_default": "Als standaard gebruiken",
+            "delete_title": "Briefhoofd verwijderen?",
+            "delete_content": "\"{{name}}\" wordt definitief verwijderd.",
+            "deleted": "Briefhoofd verwijderd.",
+            "saved": "Briefhoofd opgeslagen.",
+            "name_label": "Naam van het profiel",
+            "name_hint": "bijv. vereniging of verkoop",
+            "section_layout": "Indeling",
+            "section_logo": "Logo",
+            "section_text": "Teksten",
+            "section_meta": "Gegevens",
+            "section_footer": "Voettekst",
+            "layout": {
+                "logo_left": "Logo links",
+                "centered": "Gecentreerd",
+                "address_left_logo_right": "Adres links, logo rechts"
+            },
+            "logo_size": {
+                "label": "Grootte",
+                "small": "Klein",
+                "medium": "Middel",
+                "large": "Groot"
+            },
+            "logo_pick": "Logo kiezen",
+            "logo_replace": "Logo vervangen",
+            "logo_remove": "Logo verwijderen",
+            "title_label": "Titelregel",
+            "subtitle_label": "Ondertitel",
+            "footer_label": "Voettekst",
+            "address_show": "Adresblok tonen",
+            "address_override_label": "Eigen adresblok",
+            "address_override_hint": "Leeg laten om het adres uit je profiel te gebruiken",
+            "address_from_profile": "Uit profiel overnemen",
+            "show_date": "Datum tonen",
+            "show_count": "Aantal tonen",
+            "show_filter": "Actieve filters tonen",
+            "show_breeder_number": "Kwekernummer tonen",
+            "show_divider": "Scheidingslijn tonen",
+            "show_page_numbers": "Paginanummers tonen",
+            "placeholders_hint": "Tik op een tijdelijke aanduiding om hem in te voegen",
+            "preview_title": "Voorbeeld",
+            "preview_list": "Bestandslijst",
+            "preview_filter": "Soort: Grasparkiet"
+        },
+        "profile_label": "Briefhoofd",
+        "summary": {
+            "birds": "Vogels",
+            "pairs": "Koppels",
+            "hatch_rate": "Uitkomstpercentage",
+            "income": "Inkomsten",
+            "expense": "Uitgaven",
+            "net": "Saldo"
+        },
+        "lists": {
+            "birds": "Bestandslijst",
+            "breeding_pairs": "Kweekkoppels",
+            "finances": "Kasboek"
+        },
+        "file_names": {
+            "birds": "bestandslijst",
+            "breeding_pairs": "kweekkoppels",
+            "finances": "kasboek"
+        },
+        "presets": {
+            "birds": {
+                "overview": "Overzicht",
+                "full": "Volledig"
+            },
+            "breeding_pairs": {
+                "overview": "Overzicht",
+                "full": "Volledig"
+            },
+            "finances": {
+                "bookings": "Boekingen",
+                "full": "Volledig"
+            }
+        },
+        "columns": {
+            "bird": {
+                "ring_number": "Ringnummer",
+                "species": "Soort",
+                "color": "Kleur",
+                "cage": "Volière",
+                "sex": "Geslacht",
+                "laid_at": "Gelegd op",
+                "hatched_at": "Uitgekomen op",
+                "fledged_at": "Uitgevlogen op",
+                "born_at": "Geboren op",
+                "died_at": "Gestorven op",
+                "father": "Vader",
+                "mother": "Moeder",
+                "breeder": "Kweker",
+                "breeder_number": "Kwekernummer",
+                "owner": "Eigenaar",
+                "owner_number": "Eigenaarsnummer",
+                "bought_at": "Gekocht op",
+                "bought_price": "Aankoopprijs",
+                "bought_from": "Gekocht van",
+                "sale_status": "Verkoopstatus",
+                "asking_price": "Vraagprijs",
+                "final_price": "Eindprijs",
+                "sold_at": "Verkocht op",
+                "sold_to": "Verkocht aan",
+                "notes": "Notities"
+            },
+            "breeding_pair": {
+                "father_ring": "Vader (ring)",
+                "father_species": "Vader (soort)",
+                "mother_ring": "Moeder (ring)",
+                "mother_species": "Moeder (soort)",
+                "cage": "Volière",
+                "status": "Status",
+                "start": "Begin",
+                "end": "Einde",
+                "broods": "Broedsels",
+                "laid": "Gelegd",
+                "fertilized": "Bevrucht",
+                "hatched": "Uitgekomen",
+                "fledged": "Uitgevlogen",
+                "notes": "Notities"
+            },
+            "finance": {
+                "date": "Datum",
+                "title": "Titel",
+                "category": "Categorie",
+                "kind": "Soort",
+                "amount": "Bedrag",
+                "bird": "Vogel",
+                "notes": "Notities"
+            }
+        }
+    },
+    "snackbars": {
+        "sign_in_failed": "Inloggen mislukt, controleer je inloggegevens en je internetverbinding.",
+        "sign_up_failed": "Registreren mislukt, controleer je invoer en je internetverbinding.",
+        "sign_up_success": "Registratie geslaagd, je wordt automatisch ingelogd."
+    }
+}

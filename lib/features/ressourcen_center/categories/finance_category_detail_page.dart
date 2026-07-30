@@ -74,12 +74,13 @@ class CategoryDetailPage extends StatelessWidget {
                   label: context.tr.finances.categories.detail.bookings_label,
                 ),
                 StatCell(
-                  value: '${isIncome ? '+' : '−'}${sum.toStringAsFixed(0)}€',
+                  value: context.money
+                      .withSign(isIncome ? '+' : '−', sum, decimals: false),
                   label: context.tr.finances.categories.detail.six_months,
                   color: accent,
                 ),
                 StatCell(
-                  value: '${avg.toStringAsFixed(0)}€',
+                  value: context.money.format(avg, decimals: false),
                   label: context.tr.finances.categories.detail.avg_per_month,
                 ),
               ],
@@ -237,7 +238,8 @@ class _SparkCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                '${isIncome ? '+' : '−'}${sum.toStringAsFixed(0)}€',
+                context.money
+                    .withSign(isIncome ? '+' : '−', sum, decimals: false),
                 style: TextStyle(
                   fontFamily: 'monospace',
                   fontSize: 26,
@@ -377,7 +379,7 @@ class _BookingRow extends StatelessWidget {
             ),
           ),
           Text(
-            '${isPositive ? '+' : ''}${amount.toStringAsFixed(2)}€',
+            context.money.signed(amount),
             style: TextStyle(
               fontFamily: 'monospace',
               fontSize: 13,

@@ -1,0 +1,1327 @@
+{
+    "app": {
+        "title": "Birdbreeder"
+    },
+    "onboarding": {
+        "title": "Configurer le profil",
+        "subtitle": "Créez votre propre profil. Il sert d'utilisateur de l'application, par exemple pour identifier vos propres oiseaux.",
+        "first_name": "Prénom",
+        "last_name": "Nom",
+        "last_name_required": "Veuillez saisir un nom.",
+        "breeder_number": "Numéro d'éleveur",
+        "breeder_number_required": "Veuillez saisir un numéro d'éleveur.",
+        "save": "Enregistrer le profil",
+        "or": "ou",
+        "restore_backup": "Restaurer une sauvegarde"
+    },
+    "finances": {
+        "title": "Finances",
+        "categories": {
+            "title": "Catégories",
+            "category": "Catégorie",
+            "add": "Ajouter une catégorie",
+            "edit": "Modifier la catégorie",
+            "select": "Choisir une catégorie",
+            "delete": "Supprimer la catégorie ?",
+            "name": "Nom de la catégorie",
+            "color": "Couleur de la catégorie",
+            "description": "Description",
+            "list_title": "Catégories",
+            "designation": "Désignation",
+            "bookings": "Opérations",
+            "filters": {
+                "all": "Toutes",
+                "income": "Recettes",
+                "expense": "Dépenses"
+            },
+            "groups": {
+                "income": "Recettes",
+                "expense": "Dépenses"
+            },
+            "kind_singular": {
+                "income": "Recette",
+                "expense": "Dépense"
+            },
+            "pill": {
+                "income": "↑ RECETTE",
+                "expense": "↓ DÉPENSE"
+            },
+            "empty": "Aucune catégorie",
+            "type_lock_hint": "Le type ne peut plus être modifié après la création — {{usage}} opérations liées.",
+            "type_lock_default": "Détermine le signe de calcul des opérations.",
+            "detail_title": "Catégorie financière",
+            "detail": {
+                "bookings_label": "Opérations",
+                "six_months": "6 mois",
+                "avg_per_month": "Ø par mois",
+                "recent_bookings": "Dernières opérations",
+                "no_bookings": "Aucune opération",
+                "last_six_months_label": "6 derniers mois",
+                "course_six_months": "Évolution · 6 mois"
+            },
+            "months_short": {
+                "dec": "déc",
+                "jan": "janv",
+                "feb": "févr",
+                "mar": "mars",
+                "apr": "avr",
+                "may": "mai"
+            }
+        },
+        "delete": "Supprimer l'écriture ?",
+        "add": {
+            "name": "Ajouter une écriture",
+            "title": "Objet",
+            "date": "Date",
+            "category": "Choisir une catégorie",
+            "amount": "Saisir un montant",
+            "amount_invalid": "Veuillez saisir un montant valide",
+            "notes": "Description",
+            "bird": "Oiseau concerné"
+        },
+        "kind": {
+            "name": "Type",
+            "income": "Recettes",
+            "expense": "Dépenses"
+        },
+        "summary": {
+            "net": "Solde",
+            "net_label": "NET",
+            "today": "AUJOURD'HUI",
+            "income_label": "RECETTES",
+            "expense_label": "DÉPENSES"
+        },
+        "view": {
+            "all": "Toutes",
+            "today": "Aujourd'hui",
+            "yesterday": "Hier",
+            "search_hint": "Rechercher une opération …",
+            "empty": "Aucune opération sur la période",
+            "categories_filter_title": "Filtrer par catégorie",
+            "all_categories": "Toutes les catégories",
+            "filter_button": "Filtre",
+            "filter_sheet_title": "Filtrer les catégories",
+            "filter_clear_all": "Tout désélectionner",
+            "filter_apply": "Appliquer",
+            "filter_search_hint": "Rechercher une catégorie …"
+        },
+        "scope": {
+            "month": "Mois",
+            "year": "Année",
+            "all": "Tout",
+            "custom": "Période",
+            "current_year": "CETTE ANNÉE",
+            "from_short": "Du",
+            "to_short": "Au",
+            "pick_date": "Choisir une date"
+        },
+        "filter": {
+            "bird": "Oiseau",
+            "date_range": "Période",
+            "from": "Du",
+            "to": "Au",
+            "all_years": "Tout"
+        },
+        "sorting": {
+            "date_desc": "Date (récent → ancien)",
+            "date_asc": "Date (ancien → récent)",
+            "amount_desc": "Montant (élevé → faible)",
+            "amount_asc": "Montant (faible → élevé)"
+        }
+    },
+    "account": {
+        "title": "Compte",
+        "logout": "Déconnexion",
+        "switch_to_local": "Passer en mode local",
+        "switch_to_local_dialog": {
+            "title": "Passer en mode local",
+            "content": "Toutes vos données seront copiées du serveur vers la base de données locale. L'application redémarrera ensuite en mode local.\n\nVoulez-vous continuer ?",
+            "confirm": "Basculer"
+        },
+        "local_mode": {
+            "title": "Mode local",
+            "description": "Toutes les données sont enregistrées localement sur cet appareil."
+        },
+        "appearance": {
+            "title": "Apparence",
+            "system": "Système",
+            "light": "Clair",
+            "dark": "Sombre"
+        },
+        "language": {
+            "title": "Langue",
+            "system": "Langue du système",
+            "sheet_title": "Choisir la langue"
+        },
+        "currency": {
+            "title": "Devise",
+            "sheet_title": "Choisir la devise",
+            "hint": "Les montants sont seulement réétiquetés, pas convertis."
+        },
+        "profile": {
+            "breeder_number(value)": "Numéro d'éleveur {{value}}",
+            "no_contact": "Aucun contact de profil enregistré",
+            "edit": "Modifier le profil"
+        },
+        "user": {
+            "email(value)": "E-mail : {{value}}",
+            "first_name(value)": "Prénom : {{value}}",
+            "last_name(value)": "Nom : {{value}}"
+        },
+        "events": {
+            "switch_failed(error)": "Basculement échoué : {{error}}",
+            "switched_to_local(param=count)": {
+                "one": "1 entrée transférée. Mode local actif.",
+                "other": "{count} entrées transférées. Mode local actif."
+            }
+        }
+    },
+    "backup": {
+        "section_title": "Sauvegarde",
+        "page_title": "Sauvegardes",
+        "empty": "Aucune sauvegarde pour le moment.",
+        "loading": "Chargement…",
+        "no_backup_yet": "Aucune sauvegarde",
+        "last_backup(date)": "Dernière sauvegarde : {{date}}",
+        "external": {
+            "never": "Jamais sauvegardé en externe",
+            "today": "Dernière sauvegarde externe : aujourd'hui",
+            "days_ago(param=count)": {
+                "one": "Dernière sauvegarde externe : il y a 1 jour",
+                "other": "Dernière sauvegarde externe : il y a {count} jours"
+            }
+        },
+        "actions": {
+            "share_latest": "Partager la dernière sauvegarde",
+            "create_now": "Créer une sauvegarde",
+            "create_and_save": "Créer et enregistrer une sauvegarde",
+            "restore": "Restaurer une sauvegarde",
+            "manage": "Gérer toutes les sauvegardes…",
+            "new": "Nouveau"
+        },
+        "manual_section": "Sauvegarde manuelle",
+        "last_backup_label": "Dernière sauvegarde",
+        "no_backup_size": "Aucune sauvegarde",
+        "create_hint": "Ouvre la boîte de partage – choisissez Drive, Fichiers, e-mail, etc. Les photos sont incluses.",
+        "restore_hint": "Par ex. après un changement d'appareil – restaure un état antérieur.",
+        "restore_sheet": {
+            "title": "Choisir une sauvegarde",
+            "available": "Sauvegardes disponibles",
+            "kind_cloud": "CLOUD",
+            "kind_manual": "MANUEL",
+            "pick_file_title": "Choisir un fichier sur l'appareil",
+            "pick_file_sub": "Sélectionner manuellement une sauvegarde .zip",
+            "empty": "Aucune sauvegarde trouvée",
+            "choose_folder_first": "Choisissez d'abord un dossier cloud",
+            "confirm_title": "Restaurer la sauvegarde ?",
+            "warning(name)": "Vos données actuelles sur cet appareil seront remplacées par cet état. Les modifications postérieures à « {{name}} » seront perdues.",
+            "confirm_button": "Oui, remplacer et restaurer",
+            "restoring": "Restauration en cours …",
+            "back": "Retour"
+        },
+        "menu": {
+            "share": "Partager",
+            "restore": "Restaurer",
+            "delete": "Supprimer"
+        },
+        "delete_dialog": {
+            "title": "Supprimer la sauvegarde ?",
+            "confirm": "Supprimer"
+        },
+        "restore_dialog": {
+            "title": "Restaurer la sauvegarde",
+            "content_picked": "Les données locales actuelles seront écrasées par la sauvegarde sélectionnée. Continuer ?",
+            "content_named(name)": "Les données locales actuelles seront écrasées par la sauvegarde\n\"{{name}}\".\n\nContinuer ?",
+            "confirm": "Restaurer"
+        },
+        "reminder": {
+            "title": "Mettre la sauvegarde à l'abri",
+            "never": "Vous n'avez encore enregistré aucune sauvegarde externe.",
+            "age(param=count)": {
+                "one": "Votre dernière sauvegarde externe date d'1 jour.",
+                "other": "Votre dernière sauvegarde externe date de {count} jours."
+            },
+            "body": "Enregistrez-la dès maintenant en lieu sûr (iCloud, Drive, e-mail) afin de ne pas perdre vos données en cas de perte de l'appareil.",
+            "snooze": "Me rappeler plus tard",
+            "already_saved": "Déjà enregistrée",
+            "share_now": "Partager maintenant"
+        },
+        "events": {
+            "created": "Sauvegarde créée",
+            "create_failed(error)": "Échec de la sauvegarde : {{error}}",
+            "share_failed(error)": "Échec du partage : {{error}}",
+            "delete_failed(error)": "Échec de la suppression : {{error}}",
+            "restore_failed(error)": "Échec de la restauration : {{error}}"
+        },
+        "cloud": {
+            "section_title": "Sauvegarde cloud",
+            "enable": "Sauvegarder automatiquement dans le cloud",
+            "choose_location": "Choisir un dossier cloud…",
+            "location_none": "Aucun dossier cloud choisi",
+            "location_set(name)": "Destination : {{name}}",
+            "sync_now": "Synchroniser maintenant",
+            "auto_title": "Sauvegarde cloud automatique",
+            "auto_on": "Active · sauvegarde vos données automatiquement",
+            "auto_off": "Désactivée",
+            "folder_label": "Dossier cloud",
+            "change": "Modifier",
+            "choose_folder_dialog": {
+                "title": "Choisir un dossier cloud ?",
+                "content": "Pour que les sauvegardes automatiques puissent être enregistrées, choisissez maintenant un dossier dans votre cloud (par ex. Google Drive).",
+                "confirm": "Choisir un dossier"
+            },
+            "sync_after_change_dialog": {
+                "title": "Synchroniser maintenant ?",
+                "content": "Le dossier cloud a été modifié. Vos données actuelles doivent-elles y être sauvegardées maintenant ?",
+                "confirm": "Synchroniser"
+            },
+            "last_sync_label": "Dernière synchronisation",
+            "syncing": "Synchronisation en cours …",
+            "syncing_hint": "Vos photos et vos données sont envoyées vers le cloud.",
+            "settings": "Paramètres de synchronisation",
+            "interval": {
+                "label": "Intervalle de sauvegarde automatique",
+                "sub": "Fréquence de sauvegarde automatique au démarrage de l'application",
+                "sheet_title": "Choisir un intervalle",
+                "every_launch": "À chaque démarrage",
+                "daily": "Quotidien",
+                "weekly": "Hebdomadaire",
+                "off": "Manuel"
+            },
+            "status": {
+                "synced_today": "Dernière synchronisation : aujourd'hui",
+                "synced_days_ago(param=count)": {
+                    "one": "Dernière synchronisation : il y a 1 jour",
+                    "other": "Dernière synchronisation : il y a {count} jours"
+                },
+                "never": "Pas encore synchronisé",
+                "unavailable_icloud": "Non connecté à iCloud",
+                "unavailable_folder": "Aucun accès au dossier – veuillez le choisir à nouveau"
+            },
+            "events": {
+                "location_chosen(name)": "Dossier cloud défini : {{name}}",
+                "location_failed": "Aucun dossier choisi",
+                "sync_succeeded": "Sauvegardé dans le cloud",
+                "sync_failed(error)": "Échec de la synchronisation cloud : {{error}}",
+                "unavailable_icloud": "Non connecté à iCloud",
+                "unavailable_folder": "Aucun accès au dossier cloud. Veuillez le choisir à nouveau."
+            }
+        }
+    },
+    "breedings": {
+        "title": "Élevages"
+    },
+    "colors": {
+        "title": "Couleurs",
+        "add": "Ajouter une couleur",
+        "edit": "Modifier la couleur",
+        "select": "Choisir une couleur",
+        "pick": "Choisir une couleur",
+        "delete": "Supprimer la couleur ?",
+        "color": "Couleur",
+        "list_title": "Variétés de couleur",
+        "value_label": "Valeur de couleur",
+        "genetics_section": "Génétique (facultatif)",
+        "inheritance_label": "Hérédité",
+        "inheritance_hint": "par ex. autosomique dominant",
+        "birds_with_color": "Oiseaux de cette couleur",
+        "no_birds_with_color": "Aucun oiseau de cette couleur",
+        "empty": "Aucune couleur",
+        "detail_title": "Couleur",
+        "stats": {
+            "birds": "Oiseaux",
+            "male_roosters": "Mâles",
+            "female_hens": "Femelles"
+        }
+    },
+    "cages": {
+        "title": "Volières",
+        "add": "Ajouter une volière",
+        "edit": "Modifier la volière",
+        "select": "Choisir une volière",
+        "delete": "Supprimer la volière ?",
+        "name": "Nom de la volière",
+        "description": "Description",
+        "height": "Hauteur",
+        "width": "Largeur",
+        "depth": "Profondeur",
+        "list_title": "Cages",
+        "detail_title": "Volière",
+        "section": {
+            "basics": "Données de base",
+            "capacity": "Capacité et occupation"
+        },
+        "field": {
+            "type": "Type",
+            "location": "Emplacement",
+            "max_capacity": "Places maximales"
+        },
+        "units": {
+            "birds": "oiseaux"
+        },
+        "occupancy": "Occupation",
+        "occupied_label": "Occupées",
+        "free_label": "Libres",
+        "birds_count_label": "Oiseaux",
+        "capacity_hint": "Actuellement occupées : {{occupied}}. Impossible de descendre sous {{occupied}}.",
+        "capacity_missing_hint": "Capacité non définie — veuillez saisir une valeur",
+        "empty_badge": "VIDE",
+        "places_occupied": "{{occupied}}/{{capacity}} places occupées",
+        "empty_filter": "Aucune cage pour ce filtre",
+        "filters": {
+            "all": "Toutes",
+            "aviaries": "Volières",
+            "breeding_boxes": "Cages d'élevage",
+            "quarantine": "Quarantaine",
+            "empty": "Vides"
+        },
+        "types": {
+            "aviary": "Volière",
+            "breeding_box": "Cage d'élevage",
+            "quarantine": "Quarantaine"
+        }
+    },
+    "species": {
+        "title": "Espèces",
+        "add": "Ajouter une espèce",
+        "edit": "Modifier l'espèce",
+        "select": "Choisir une espèce",
+        "delete": "Supprimer l'espèce ?",
+        "name": "Nom de l'espèce",
+        "latin_name": "Nom latin",
+        "detail_title": "Espèce",
+        "section": {
+            "identity": "Identité",
+            "lifecycle": "Cycle de vie",
+            "icon": "Icône",
+            "notes": "Notes"
+        },
+        "incubation": "Incubation",
+        "fledge": "Envol",
+        "days_short": "j",
+        "lifecycle_total": "{{days}}j au total",
+        "lifecycle_hint": "Utilisé automatiquement pour les prévisions d'éclosion et d'envol.",
+        "image": {
+            "section": "Image",
+            "search": "Rechercher une image",
+            "search_another": "Rechercher une autre image",
+            "remove": "Supprimer",
+            "no_results": "Aucune image trouvée",
+            "loading": "Recherche d'images…",
+            "picker_title": "Choisir une image",
+            "name_required_hint": "Saisissez d'abord un nom"
+        },
+        "lifecycle_label_total": "{{total}} JOURS AU TOTAL",
+        "chick_until_fledge": "Poussin jusqu'à l'envol",
+        "hatch_label": "Éclosion · J{{day}}",
+        "fledge_label": "Envol · J{{day}}",
+        "latin_hint_example": "par ex. Melopsittacus undulatus",
+        "latin_hint": "Nom latin de l'espèce pour une identification précise.",
+        "scientific_name": "Nom scientifique",
+        "empty": "Aucune espèce",
+        "birds_in_stock": "Oiseaux en cheptel",
+        "no_birds": "Aucun oiseau",
+        "stats": {
+            "stock": "En cheptel",
+            "male_roosters": "Mâles",
+            "female_hens": "Femelles"
+        }
+    },
+    "contacts": {
+        "title(count)": "Contacts ({{count}})",
+        "edit": "Modifier le contact",
+        "create": "Créer un contact",
+        "deleted": "Contact supprimé",
+        "saved": "Contact enregistré",
+        "fields": {
+            "first_name": "Prénom",
+            "last_name": "Nom",
+            "title": {
+                "name": "Civilité",
+                "none": "Aucune",
+                "mr": "M.",
+                "ms": "Mme"
+            },
+            "app_user": {
+                "title": "Ce contact, c'est moi",
+                "sub_title": "Marque le contact comme utilisateur de l'application."
+            },
+            "email": "E-mail",
+            "number": "Numéro d'éleveur",
+            "phone": "Numéro de téléphone",
+            "cell_phone_number": "Numéro de mobile",
+            "address": "Adresse",
+            "city": "Ville",
+            "country": "Pays",
+            "postal": "Code postal",
+            "website": "Site web"
+        },
+        "empty_list_information": "Il n'y a encore aucun contact. Vous pouvez ajouter des contacts ou les importer depuis un fichier CSV.",
+        "import_button_text": "Importer des contacts",
+        "add_contact_button_text": "Ajouter un contact",
+        "delete": "Supprimer le contact ?",
+        "add": "Ajouter le contact ?",
+        "select": "Choisir un contact",
+        "sections": {
+            "personal": "Informations personnelles",
+            "app_user": "Utilisateur de l'application",
+            "breeder": "Informations sur l'éleveur",
+            "contact": "Coordonnées",
+            "address": "Adresse",
+            "meta": "Métadonnées"
+        },
+        "actionButton": {
+            "open_website_tooltipp": "Ouvrir le site web",
+            "send_email_tooltipp": "Écrire un e-mail",
+            "call_tooltipp": "Appeler"
+        },
+        "overview": {
+            "total_label": "Contacts",
+            "bought_chip(count)": "{{count}} achetés",
+            "sold_chip(count)": "{{count}} vendus",
+            "all_contacts": "Tous les contacts",
+            "search_hint": "Rechercher un nom, une ville …",
+            "activity_sold(ring)": "Vendu {{ring}}",
+            "activity_bought(ring)": "Acheté {{ring}}"
+        },
+        "card": {
+            "call": "Appeler",
+            "email": "E-mail",
+            "details": "Détails"
+        },
+        "detail": {
+            "title": "Contact",
+            "bought": "Acheté",
+            "sold": "Vendu",
+            "balance": "Solde",
+            "contact_data": "Coordonnées",
+            "no_contact_data": "Aucune coordonnée enregistrée",
+            "linked_birds": "Oiseaux liés",
+            "role_sold": "VENDU",
+            "role_bought": "ACHETÉ",
+            "location": "Emplacement",
+            "edit": "Modifier"
+        }
+    },
+    "breeding_pairs": {
+        "title": "Couple reproducteur",
+        "add": "Ajouter un couple",
+        "edit": "Modifier le couple",
+        "delete": "Supprimer le couple ?",
+        "status": {
+            "name": "Statut",
+            "active": "Actif",
+            "paused": "En pause",
+            "finished": "Terminé"
+        },
+        "start_date": "Date de début",
+        "end_date": "Date de fin",
+        "notes": "Notes",
+        "year_filter": {
+            "label": "ANNÉE",
+            "all": "Toutes"
+        },
+        "filter": {
+            "show_results(count)": "Afficher {{count}} couples"
+        },
+        "pair_one": "Couple",
+        "pair_other": "Couples",
+        "cages_count(count)": "{{count}} cages",
+        "active_broods_one(count)": "{{count}} nichée active",
+        "active_broods_other(count)": "{{count}} nichées actives",
+        "broods_total_one(count)": "{{count}} nichée",
+        "broods_total_other(count)": "{{count}} nichées",
+        "brood_status": {
+            "active": "active",
+            "inactive": "en pause",
+            "completed": "terminée"
+        },
+        "finished_tag": "TERMINÉ",
+        "no_cage": "Sans cage",
+        "since(date)": "depuis le {{date}}",
+        "until(date)": "jusqu'au {{date}}",
+        "empty_for_year(year)": "Aucun couple en {{year}}.",
+        "empty": "Aucun couple reproducteur.",
+        "search_hint": "Rechercher une bague, une cage …",
+        "sort_by": {
+            "cage": "Volière",
+            "updated": "Dernière modification",
+            "created": "Créé le"
+        },
+        "stats": {
+            "abbr": {
+                "laid": "PD",
+                "fertilized": "FÉ",
+                "hatched": "ÉC",
+                "fledged": "EN"
+            },
+            "label": {
+                "laid": "Œufs pondus",
+                "fertilized": "Fécondés",
+                "hatched": "Éclos",
+                "fledged": "Envolés"
+            },
+            "legend": {
+                "title": "Légende"
+            }
+        }
+    },
+    "resources": {
+        "title": "Ressources",
+        "usage_count(param=count)": {
+            "zero": "Utilisé par aucun oiseau",
+            "one": "Utilisé par un oiseau",
+            "other": "Utilisé par {{n}} oiseaux"
+        },
+        "no_search_results": "Aucun résultat, appuyez sur « Ajouter » pour créer une nouvelle entrée.",
+        "section": {
+            "identity": "Identité",
+            "basics": "Données de base",
+            "lifecycle": "Cycle de vie",
+            "icon": "Icône",
+            "notes": "Notes",
+            "color": "Couleur"
+        },
+        "actions": {
+            "edit": "Modifier"
+        },
+        "color_picker": {
+            "title": "Choisir une couleur"
+        },
+        "field": {
+            "name": "Nom",
+            "required": "Champ obligatoire"
+        },
+        "delete": {
+            "with_usage(usage)": "{{usage}} liens seront rompus. Continuer malgré tout ?"
+        },
+        "sort": {
+            "label": "Trier",
+            "by": {
+                "name": "Nom",
+                "created": "Créé le",
+                "capacity": "Capacité",
+                "kind": "Type",
+                "lat_name": "Nom lat.",
+                "hex": "Code couleur"
+            },
+            "asc": "Croissant",
+            "desc": "Décroissant"
+        }
+    },
+    "birds": {
+        "title": "Oiseaux",
+        "overview": {
+            "subtitle(birds, cages)": "{{birds}} oiseaux · {{cages}} cages",
+            "for_sale(count)": "{{count}} à vendre",
+            "group_by_cage": "Grouper : cage",
+            "no_cage": "Sans cage",
+            "birds_label": "Oiseaux",
+            "sale_badge": "À vendre",
+            "empty": "Aucun oiseau trouvé",
+            "view_grouped": "Grouper par volière",
+            "view_list": "Afficher en liste"
+        },
+        "filter": {
+            "show_results(count)": "Afficher {{count}} oiseaux",
+            "sort_title": "Trier",
+            "more_title": "Plus",
+            "show_deceased": "Afficher les décédés"
+        }
+    },
+    "pedigree": {
+        "title": "Pedigree",
+        "subtitle": "Arbre généalogique",
+        "col_bird": "Oiseau",
+        "col_parents": "Parents",
+        "col_grandparents": "Grands-parents",
+        "col_greatgrandparents": "Arrière-grands-parents",
+        "col_ancestors": "Ancêtres",
+        "section_ancestors": "Ascendants",
+        "section_descendants": "Descendants",
+        "no_descendants": "Aucun descendant enregistré",
+        "unknown": "Inconnu",
+        "assign_parent": "Attribuer un parent",
+        "add_father": "Ajouter le père",
+        "add_mother": "Ajouter la mère",
+        "common_ancestor": "Ancêtre commun (consanguinité)",
+        "sold": "Vendu",
+        "not_own": "Pas en possession",
+        "deceased": "Décédé",
+        "share": "Partager",
+        "share_filename": "pedigree_{{ring}}",
+        "depth": "Profondeur",
+        "depth_all": "Tout",
+        "inbreeding_explainer": "Ces oiseaux sont apparentés à la fois par la lignée paternelle et par la lignée maternelle.",
+        "via_father": "par le père",
+        "via_mother": "par la mère",
+        "stats": {
+            "generations": "Générations",
+            "ancestors": "Ascendants",
+            "descendants": "Descendants",
+            "inbreeding": "Consanguinité",
+            "no_inbreeding": "Aucune consanguinité"
+        },
+        "swipe_hint": "Balayez pour une meilleure vue d'ensemble"
+    },
+    "inbreeding": {
+        "coefficient": "Coefficient de consanguinité",
+        "coefficient_short": "F",
+        "severity_none": "Aucune consanguinité",
+        "severity_low": "Faible",
+        "severity_elevated": "Élevé",
+        "severity_high": "Fort",
+        "common_ancestors_one": "1 ancêtre commun",
+        "common_ancestors_other": "{{count}} ancêtres communs",
+        "path_contribution": "Contribution",
+        "banner_label": "Coefficient de consanguinité : {{percent}}",
+        "pair_warning_title": "Avertissement de consanguinité",
+        "pair_warning_body": "L'accouplement de ces oiseaux donne un coefficient de consanguinité de {{percent}} ({{severity}}). Créer quand même ?",
+        "proceed_anyway": "Créer quand même"
+    },
+    "bird": {
+        "title": "Oiseau",
+        "edit": "Modifier l'oiseau",
+        "deleted": "Oiseau supprimé",
+        "saved": "Oiseau enregistré",
+        "delete": "Supprimer l'oiseau ?",
+        "duplicate": "Dupliquer l'oiseau",
+        "add": "Ajouter un oiseau",
+        "select_color_label": "Choisir une couleur",
+        "select_species_label": "Choisir une espèce",
+        "select_cage_label": "Choisir une volière",
+        "select_owner_label": "Choisir un propriétaire",
+        "select_sold_to_label": "Choisir l'acheteur",
+        "select_bought_from_label": "Choisir le vendeur",
+        "created_information(date, time)": "Créé le {{DateTime date}} à {{time}}",
+        "tabs": {
+            "general": "Général",
+            "state_and_life": "État",
+            "breeding": "Élevage",
+            "purchase_and_sale": "Finances"
+        },
+        "summary": {
+            "sex": "Sexe",
+            "age": "Âge",
+            "cage": "Cage",
+            "offspring": "Descendants",
+            "unknown": "—"
+        },
+        "sections": {
+            "identification": {
+                "title": "Identification",
+                "subTitle": "Informations permettant d'identifier l'oiseau"
+            },
+            "keeping": {
+                "title": "Hébergement",
+                "subTitle": "Informations sur l'hébergement de l'oiseau"
+            },
+            "status": {
+                "title": "Statut",
+                "subTitle": "Informations sur le statut de l'oiseau"
+            },
+            "sale": {
+                "title": "Vente",
+                "subTitle": "Informations sur la vente de l'oiseau"
+            },
+            "purchase": {
+                "title": "Achat",
+                "subTitle": "Informations sur l'achat de l'oiseau"
+            },
+            "health": {
+                "title": "Santé",
+                "subTitle": "Informations sur la santé de l'oiseau"
+            },
+            "life": {
+                "title": "Étape de vie",
+                "subTitle": "Informations sur l'étape de vie de l'oiseau",
+                "unknown_lifecycle_title": "Données du cycle de vie inconnues ?",
+                "unknown_lifecycle_sub_title": "Activez cette option si les données du cycle de vie ne sont pas connues.",
+                "unknown_lifecycle_description": "Si une date de naissance existe, l'oiseau est considéré comme adulte. Si une date de décès existe, l'oiseau est considéré comme décédé."
+            },
+            "notes": {
+                "title": "Notes",
+                "subTitle": "Informations sur les notes de l'oiseau"
+            },
+            "photos": {
+                "title": "Photos",
+                "subTitle": "Gérer les photos de cet oiseau",
+                "add_camera": "Appareil photo",
+                "add_gallery": "Galerie",
+                "save_first": "Enregistrez d'abord l'oiseau pour ajouter des photos.",
+                "empty": "Aucune photo pour le moment",
+                "delete_title": "Supprimer la photo ?",
+                "delete_confirm": "Supprimer",
+                "manage": "Gérer les photos",
+                "capture": "Prendre une photo",
+                "capture_sub": "ou choisir dans la galerie · plusieurs possibles",
+                "section_label": "Photos de cet oiseau",
+                "add_tile": "Ajouter",
+                "cover_badge": "Couverture",
+                "set_cover": "Définir comme photo de couverture",
+                "remove": "Supprimer",
+                "source_camera": "Appareil photo",
+                "source_gallery": "Galerie",
+                "hint": "Appuyez sur une photo pour l'afficher en grand. Maintenez une photo enfoncée et faites-la glisser à un autre endroit – la première photo est la photo de couverture et apparaît dans les listes ainsi que sur la page de détail de l'oiseau.",
+                "done": "Terminé",
+                "count_preview_one": "{{count}} photo",
+                "count_preview_other": "{{count}} photos"
+            },
+            "parent": {
+                "title": "Parents",
+                "subTitle": "Informations sur les parents de l'oiseau"
+            },
+            "breeder": {
+                "title": "Éleveur",
+                "subTitle": "Informations sur l'éleveur de l'oiseau"
+            },
+            "children": {
+                "title": "Descendants",
+                "subTitle": "Informations sur les descendants de l'oiseau"
+            }
+        }
+    },
+    "pair_detail": {
+        "father_label": "♂ PÈRE",
+        "mother_label": "♀ MÈRE",
+        "current_brood": "Nichée en cours",
+        "history": "Historique",
+        "history_count_one(count)": "{{count}} nichée",
+        "history_count_other(count)": "{{count}} nichées",
+        "brood_short": "NICHÉE",
+        "day(day)": "Jour {{day}}",
+        "start_label(date)": "Début : {{date}}",
+        "no_current_brood": "Aucune nichée active",
+        "kpi": {
+            "broods": "Nichées",
+            "eggs": "Œufs",
+            "hatched": "Éclos",
+            "fledged": "Envolés"
+        },
+        "new_brood": "Nouvelle nichée",
+        "since(date)": "depuis le {{date}}"
+    },
+    "brood": {
+        "name": "Ponte",
+        "overview": "Aperçu des nichées",
+        "latest": "Dernière nichée",
+        "add": "Ajouter une ponte",
+        "delete": "Supprimer la ponte ?",
+        "edit": "Modifier la ponte",
+        "empty": "Aucune ponte ajoutée pour le moment",
+        "since": "Depuis le {{date}}",
+        "eggs_count(param=count)": {
+            "zero": "Aucun œuf",
+            "one": "1 œuf",
+            "other": "{{count}} œufs"
+        },
+        "kpi": {
+            "eggs": "Œufs",
+            "hatched": "Éclos",
+            "fledged": "Envolés"
+        },
+        "hatched_count(param=count)": {
+            "zero": "Aucun éclos",
+            "one": "1 éclos",
+            "other": "{{count}} éclos"
+        },
+        "fledged_count(param=count)": {
+            "zero": "Aucun envolé",
+            "one": "1 envolé",
+            "other": "{{count}} envolés"
+        },
+        "notes": "Notes (facultatif)",
+        "created_information(date, time)": "Créé le {{DateTime date}} à {{time}}"
+    },
+    "egg": {
+        "name": "Œuf",
+        "add": "Ajouter un œuf",
+        "status": {
+            "laid": "Pondu",
+            "fertilized": "Fécondé",
+            "unfertilized": "Non fécondé",
+            "hatched": "Éclos",
+            "dead": "Mort",
+            "fledged": "Envolé",
+            "in_stock": "En cheptel",
+            "unknown": "Inconnu"
+        },
+        "action": {
+            "set_ringnumber": "Saisir un nouveau numéro de bague"
+        },
+        "pick_laid_date": "Choisir la date de ponte",
+        "pick_fledged_date": "Choisir la date d'envol",
+        "pick_hatched_date": "Choisir la date d'éclosion",
+        "pick_fertilized_date": "Choisir la date de fécondation",
+        "pick_unfertilized_date": "Choisir la date de non-fécondation",
+        "pick_died_date": "Choisir la date de décès",
+        "in_stock": "En cheptel",
+        "lifecycle": {
+            "title": "Œuf {{number}}",
+            "section_cycle": "Cycle de vie",
+            "section_details": "Détails",
+            "set_date": "Définir la date",
+            "confirm_delete": "Supprimer l'œuf ?"
+        }
+    },
+    "common": {
+        "bottom_sheet": {
+            "search_empty_builder_text(text)": "La recherche de {{text}} n'a malheureusement donné aucun résultat."
+        },
+        "sale_status": {
+            "name": "Statut d'achat/vente",
+            "not_for_sale": "Pas à vendre",
+            "listed": "Proposé à la vente",
+            "reserved": "Réservé",
+            "sold": "Vendu"
+        },
+        "all_label": "Tout",
+        "more_label": "Plus",
+        "less_label": "Moins",
+        "search": "Rechercher",
+        "search_hint": "Rechercher ...",
+        "countbird(param=count)": {
+            "zero": "Aucun oiseau",
+            "one": "1 oiseau",
+            "other": "{count} oiseaux"
+        },
+        "optional": "Facultatif",
+        "apply": "Appliquer",
+        "reset": "Réinitialiser",
+        "add": "Ajouter",
+        "close": "Fermer",
+        "cancel": "Annuler",
+        "ok": "Ok",
+        "sex": {
+            "name": "Sexe",
+            "male": "Mâle",
+            "female": "Femelle",
+            "unknown": "Inconnu"
+        },
+        "sell": {
+            "year": "Année de vente",
+            "bird": "Vendre l'oiseau",
+            "price": {
+                "final": "Prix de vente réel",
+                "asking": "Prix de vente souhaité"
+            }
+        },
+        "bought": {
+            "year": "Année d'achat",
+            "from": "Acheté à",
+            "at": "Acheté le",
+            "price": "Prix d'achat"
+        },
+        "eggs_short": {
+            "one": "Œuf",
+            "other": "Œufs"
+        },
+        "laid_short": "pond.",
+        "fertilzed_short": "féc.",
+        "hatched_short": "écl.",
+        "fledged_short": "env.",
+        "died_short": "mort",
+        "sorting": {
+            "name": "Tri",
+            "updated": "Dernière mise à jour",
+            "age": "Âge",
+            "ringnumber": "Numéro de bague"
+        },
+        "something_went_wrong": "Oups, une erreur s'est produite.",
+        "save": "Enregistrer",
+        "general": "Général",
+        "ringnumber": "Numéro de bague",
+        "notes": "Notes",
+        "clutches": "Pontes",
+        "laid": "Pondu",
+        "fertilzed": "Fécondé",
+        "hatched": "Éclos",
+        "fledged": "Envolé",
+        "origin": "Origine",
+        "species": "Espèce",
+        "color": "Couleur",
+        "cage": "Volière",
+        "owner": "Propriétaire",
+        "sold": {
+            "to": "Vendu à",
+            "at": "Vendu le"
+        },
+        "gender": "Sexe",
+        "died_at": "Date de décès",
+        "born_at": "Date de naissance",
+        "father": "Père",
+        "mother": "Mère",
+        "partner": "Partenaire",
+        "is_for_sale": "À vendre",
+        "yes": "Oui",
+        "no": "Non",
+        "unit": {
+            "m": "m",
+            "cm": "cm"
+        },
+        "email": "E-mail",
+        "password": "Mot de passe",
+        "hint": {
+            "select": "Choisir",
+            "text": "Saisir"
+        },
+        "required": "Ce champ doit être rempli"
+    },
+    "auth": {
+        "sign_in": "Se connecter",
+        "sign_up": "S'inscrire",
+        "confirm_password": "Confirmer le mot de passe",
+        "passwords_do_not_match": "Les mots de passe ne correspondent pas",
+        "create_account": "Créer un compte",
+        "first_name": "Prénom",
+        "last_name": "Nom",
+        "sign_in_text": "Connectez-vous pour continuer. Si vous n'avez pas encore de compte, vous pouvez en créer un. Passez simplement à l'onglet « Créer un compte ».",
+        "sign_up_text": "Créez un compte pour continuer. Si vous avez déjà un compte, vous pouvez simplement vous connecter. Passez simplement à l'onglet « Se connecter ».",
+        "validators": {
+            "email": "Veuillez saisir une adresse e-mail valide",
+            "email_format": "Veuillez saisir une adresse e-mail valide",
+            "password": "Veuillez saisir un mot de passe",
+            "password_length": "Le mot de passe doit comporter au moins 6 caractères",
+            "first_name": "Veuillez saisir votre prénom",
+            "first_name_length": "Le prénom doit comporter au moins 3 caractères",
+            "last_name": "Veuillez saisir votre nom"
+        }
+    },
+    "csvImport": {
+        "title": "Import CSV",
+        "selectType": "Choisissez ce que vous souhaitez importer :",
+        "back": "Retour",
+        "selectFile": "Choisir un fichier CSV",
+        "cancel": "Annuler",
+        "newImport": "Nouvel import",
+        "retry": "Réessayer",
+        "reading": "Lecture de « {{fileName}} »...",
+        "importing": "Import de {{itemName}} en cours...",
+        "progress": "{{current}} sur {{total}}",
+        "completed": "Import terminé",
+        "birds": {
+            "title": "Oiseaux",
+            "description": "Importez des oiseaux avec espèce,\ncouleur et volière",
+            "importTitle": "Importer des oiseaux depuis un CSV",
+            "importDescription": "Choisissez un fichier CSV contenant vos données d'oiseaux.\nLes espèces, couleurs et volières sont créées automatiquement si elles n'existent pas encore. Le séparateur attendu dans le fichier CSV est le point-virgule (;). Le format de date doit être yyyy-MM-dd, dd.MM.yyyy ou dd/MM/yyyy.",
+            "importButton": "Importer {{count}} oiseaux",
+            "itemName": "oiseaux"
+        },
+        "contacts": {
+            "title": "Contacts",
+            "description": "Importez des coordonnées\nd'éleveurs ou d'acheteurs",
+            "importTitle": "Importer des contacts depuis un CSV",
+            "importDescription": "Choisissez un fichier CSV contenant vos coordonnées. Le séparateur attendu dans le fichier CSV est le point-virgule (;).",
+            "importButton": "Importer {{count}} contacts",
+            "itemName": "contacts"
+        },
+        "columns": {
+            "title": "Colonnes prises en charge :",
+            "dateFormats": "Formats de date : yyyy-MM-dd, dd.MM.yyyy, dd/MM/yyyy",
+            "birdColumns": "• ringnumber / ring / ringnummer - Numéro de bague (obligatoire)\n• species / art / vogelart - Espèce\n• color / farbe / colour - Couleur\n• cage / voliere / käfig - Volière\n• sex / geschlecht - Sexe (male/female/männlich/weiblich)\n• born_at / geboren / geburtsdatum - Date de naissance\n• father / vater - Numéro de bague du père\n• mother / mutter - Numéro de bague de la mère\n• notes / notizen / bemerkungen - Notes",
+            "contactColumns": "• firstname / vorname - Prénom\n• name / nachname / lastname - Nom (au moins le prénom ou le nom est requis)\n• number / nummer / kundennummer - Numéro de contact\n• phone / telefon / mobil - Numéro de téléphone\n• email / e-mail / mail - Adresse e-mail\n• address / adresse / strasse - Rue\n• city / stadt / ort - Ville\n• postalcode / plz / zip - Code postal\n• country / land - Pays\n• website / homepage / url - Site web"
+        },
+        "preview": {
+            "valid": "{{count}} valides",
+            "invalid": "{{count}} non valides"
+        },
+        "table": {
+            "row": "#",
+            "ringNumber": "Numéro de bague",
+            "species": "Espèce",
+            "color": "Couleur",
+            "cage": "Volière",
+            "sex": "Sexe",
+            "birthDate": "Naissance",
+            "deathDate": "Décès",
+            "father": "Père",
+            "mother": "Mère",
+            "breeder": "Éleveur",
+            "owner": "Propriétaire",
+            "status": "Statut",
+            "number": "Numéro",
+            "firstName": "Prénom",
+            "lastName": "Nom",
+            "phone": "Téléphone",
+            "cellPhone": "Mobile",
+            "email": "E-mail",
+            "city": "Ville"
+        },
+        "status": {
+            "error": "Erreur",
+            "missingRingNumber": "Numéro de bague manquant",
+            "missingName": "Nom manquant",
+            "noRingNumber": "Aucun numéro de bague"
+        },
+        "summary": {
+            "successful": "Importés avec succès",
+            "failed": "Échoués",
+            "skippedDuplicates": "Ignorés (doublons)",
+            "skippedInvalid": "Ignorés (non valides)",
+            "speciesCreated": "Nouvelles espèces créées",
+            "colorsCreated": "Nouvelles couleurs créées",
+            "cagesCreated": "Nouvelles volières créées",
+            "failedImports": "Imports échoués",
+            "skippedEntries": "Entrées ignorées (doublons)"
+        },
+        "errors": {
+            "selectCsvFile": "Veuillez choisir un fichier CSV",
+            "notCsvFile": "Le fichier sélectionné n'est pas un fichier CSV.",
+            "couldNotReadFile": "Le fichier n'a pas pu être lu",
+            "errorReadingFile": "Erreur lors de la lecture du fichier",
+            "ringNumberExists": "Numéro de bague déjà existant",
+            "couldNotCreateBird": "L'oiseau n'a pas pu être créé",
+            "contactNumberExists": "Le numéro de contact « {{number}} » existe déjà",
+            "couldNotCreateContact": "Le contact n'a pas pu être créé"
+        }
+    },
+    "menu": {
+        "sections": {
+            "main": "Sections principales",
+            "data": "Données de référence",
+            "settings": "Paramètres"
+        },
+        "birds": {
+            "title": "Oiseaux",
+            "description": "Gérez vos oiseaux"
+        },
+        "contacts": {
+            "title": "Contacts",
+            "description": "Gérez vos contacts"
+        },
+        "breedings": {
+            "title": "Élevages",
+            "description": "Couples actifs et passés"
+        },
+        "resources": {
+            "title": "Ressources",
+            "description": "Couleurs, espèces, volières"
+        },
+        "finances": {
+            "title": "Finances",
+            "description": "Livre de caisse"
+        },
+        "csv_import": {
+            "title": "Import CSV",
+            "description": "Importez des données depuis un CSV"
+        },
+        "account": {
+            "title": "Compte",
+            "description": "Votre compte"
+        },
+        "species": {
+            "title": "Espèces",
+            "description": "Gérer les espèces d'oiseaux"
+        },
+        "cages": {
+            "title": "Volières",
+            "description": "Volières et cages"
+        },
+        "colors": {
+            "title": "Couleurs",
+            "description": "Variétés de couleur"
+        },
+        "finance_categories": {
+            "title": "Catégories financières",
+            "description": "Catégories de recettes et de dépenses"
+        },
+        "addBird": "Ajouter un oiseau"
+    },
+    "error": {
+        "message": "Désolé, une erreur s'est produite"
+    },
+    "dialog": {
+        "discard_changes": {
+            "title": "Abandonner les modifications ?",
+            "content": "Vos modifications seront abandonnées, êtes-vous sûr ?"
+        },
+        "delete_entry": {
+            "content": "Voulez-vous vraiment supprimer cette entrée ?"
+        }
+    },
+    "pop_up_menu": {
+        "open": "Ouvrir",
+        "edit": "Modifier",
+        "show": "Afficher",
+        "pedigree": "Pedigree",
+        "set_ringnumber": "Définir le numéro de bague",
+        "set_color": "Définir la couleur",
+        "add_to_stock": "Intégrer au cheptel",
+        "duplicate": "Dupliquer",
+        "delete": "Supprimer"
+    },
+    "export": {
+        "title": "Exporter",
+        "action": "Exporter",
+        "scope_hint": "C'est exactement la liste actuellement affichée qui est exportée.",
+        "file_name_label": "Nom du fichier",
+        "empty": "Il n'y a rien à exporter.",
+        "events": {
+            "succeeded": "« {{fileName}} » créé.",
+            "failed": "Échec de l'export : {{error}}"
+        },
+        "row_count_one": "1 entrée",
+        "row_count_other": "{{count}} entrées",
+        "format": {
+            "title": "Format",
+            "csv": {
+                "label": "CSV",
+                "description": "Pour Excel et les tableurs"
+            },
+            "pdf": {
+                "label": "PDF",
+                "description": "Pour imprimer et transmettre"
+            }
+        },
+        "preset": {
+            "title": "Étendue"
+        },
+        "pdf": {
+            "page": "Page {{page}} sur {{total}}"
+        },
+        "header": {
+            "title": "En-tête PDF",
+            "subtitle": "En-tête des PDF exportés",
+            "list_empty": "Aucun en-tête créé pour le moment. Sans profil, l'export utilise le nom de la liste et les données de votre profil.",
+            "add": "Créer un en-tête",
+            "new_name": "Nouvel en-tête",
+            "none": "Sans en-tête",
+            "default_badge": "Par défaut",
+            "set_default": "Utiliser par défaut",
+            "delete_title": "Supprimer l'en-tête ?",
+            "delete_content": "« {{name}} » sera supprimé définitivement.",
+            "deleted": "En-tête supprimé.",
+            "saved": "En-tête enregistré.",
+            "name_label": "Nom du profil",
+            "name_hint": "par ex. association ou vente",
+            "section_layout": "Disposition",
+            "section_logo": "Logo",
+            "section_text": "Textes",
+            "section_meta": "Indications",
+            "section_footer": "Pied de page",
+            "layout": {
+                "logo_left": "Logo à gauche",
+                "centered": "Centré",
+                "address_left_logo_right": "Adresse à gauche, logo à droite"
+            },
+            "logo_size": {
+                "label": "Taille",
+                "small": "Petit",
+                "medium": "Moyen",
+                "large": "Grand"
+            },
+            "logo_pick": "Choisir un logo",
+            "logo_replace": "Remplacer le logo",
+            "logo_remove": "Supprimer le logo",
+            "title_label": "Ligne de titre",
+            "subtitle_label": "Sous-titre",
+            "footer_label": "Texte du pied de page",
+            "address_show": "Afficher le bloc d'adresse",
+            "address_override_label": "Bloc d'adresse personnalisé",
+            "address_override_hint": "Laisser vide pour utiliser l'adresse de votre profil",
+            "address_from_profile": "Reprendre du profil",
+            "show_date": "Afficher la date",
+            "show_count": "Afficher le nombre",
+            "show_filter": "Afficher les filtres actifs",
+            "show_breeder_number": "Afficher le numéro d'éleveur",
+            "show_divider": "Afficher la ligne de séparation",
+            "show_page_numbers": "Afficher les numéros de page",
+            "placeholders_hint": "Appuyez sur un espace réservé pour l'insérer",
+            "preview_title": "Aperçu",
+            "preview_list": "Inventaire",
+            "preview_filter": "Espèce : Perruche ondulée"
+        },
+        "profile_label": "En-tête",
+        "summary": {
+            "birds": "Oiseaux",
+            "pairs": "Couples",
+            "hatch_rate": "Taux d'éclosion",
+            "income": "Recettes",
+            "expense": "Dépenses",
+            "net": "Solde"
+        },
+        "lists": {
+            "birds": "Inventaire",
+            "breeding_pairs": "Couples reproducteurs",
+            "finances": "Livre de caisse"
+        },
+        "file_names": {
+            "birds": "inventaire",
+            "breeding_pairs": "couples_elevage",
+            "finances": "livre_caisse"
+        },
+        "presets": {
+            "birds": {
+                "overview": "Aperçu",
+                "full": "Complet"
+            },
+            "breeding_pairs": {
+                "overview": "Aperçu",
+                "full": "Complet"
+            },
+            "finances": {
+                "bookings": "Opérations",
+                "full": "Complet"
+            }
+        },
+        "columns": {
+            "bird": {
+                "ring_number": "Numéro de bague",
+                "species": "Espèce",
+                "color": "Couleur",
+                "cage": "Volière",
+                "sex": "Sexe",
+                "laid_at": "Pondu le",
+                "hatched_at": "Éclos le",
+                "fledged_at": "Envolé le",
+                "born_at": "Né le",
+                "died_at": "Décédé le",
+                "father": "Père",
+                "mother": "Mère",
+                "breeder": "Éleveur",
+                "breeder_number": "Numéro d'éleveur",
+                "owner": "Propriétaire",
+                "owner_number": "Numéro du propriétaire",
+                "bought_at": "Acheté le",
+                "bought_price": "Prix d'achat",
+                "bought_from": "Acheté à",
+                "sale_status": "Statut de vente",
+                "asking_price": "Prix demandé",
+                "final_price": "Prix final",
+                "sold_at": "Vendu le",
+                "sold_to": "Vendu à",
+                "notes": "Notes"
+            },
+            "breeding_pair": {
+                "father_ring": "Père (bague)",
+                "father_species": "Père (espèce)",
+                "mother_ring": "Mère (bague)",
+                "mother_species": "Mère (espèce)",
+                "cage": "Volière",
+                "status": "Statut",
+                "start": "Début",
+                "end": "Fin",
+                "broods": "Nichées",
+                "laid": "Pondus",
+                "fertilized": "Fécondés",
+                "hatched": "Éclos",
+                "fledged": "Envolés",
+                "notes": "Notes"
+            },
+            "finance": {
+                "date": "Date",
+                "title": "Titre",
+                "category": "Catégorie",
+                "kind": "Type",
+                "amount": "Montant",
+                "bird": "Oiseau",
+                "notes": "Notes"
+            }
+        }
+    },
+    "snackbars": {
+        "sign_in_failed": "Échec de la connexion, veuillez vérifier vos identifiants et votre connexion Internet.",
+        "sign_up_failed": "Échec de l'inscription, veuillez vérifier vos saisies et votre connexion Internet.",
+        "sign_up_success": "Inscription réussie, vous allez être connecté automatiquement."
+    }
+}

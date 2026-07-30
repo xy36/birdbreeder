@@ -1,5 +1,4 @@
 import 'package:birdbreeder/common_imports.dart';
-import 'package:birdbreeder/constants.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/widgets/widgets/bird_price_property_field.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
 
@@ -19,7 +18,7 @@ class AskingPriceField extends StatelessWidget {
       label: context.tr.common.sell.price.asking,
       apply: (b, v) => b.copyWith(askingPrice: v),
       select: (b) => b.askingPrice,
-      suffixText: currencySymbol,
+      suffixText: context.money.symbol,
     );
   }
 }

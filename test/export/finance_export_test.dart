@@ -7,6 +7,7 @@ import 'package:birdbreeder/models/finance/entity/finance.dart';
 import 'package:birdbreeder/models/finance/entity/finance_category.dart';
 import 'package:birdbreeder/models/finance/finance_category_kind.dart';
 import 'package:birdbreeder/services/injection.dart';
+import 'package:birdbreeder/shared/utils/formatter/money_formatter.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'seeded_resources.dart';
@@ -122,8 +123,10 @@ void main() {
   });
 
   group('financeExportSummary', () {
+    final money = MoneyFormatter(locale: 'de', currencyCode: 'EUR');
+
     test('states income, expense and balance as currency', () {
-      final strip = financeExportSummary([sale, feedBill], translations);
+      final strip = financeExportSummary([sale, feedBill], translations, money);
 
       expect(strip.map((e) => e.label), [
         translations.export.summary.income,
@@ -136,7 +139,7 @@ void main() {
     });
 
     test('marks a negative balance', () {
-      final strip = financeExportSummary([feedBill], translations);
+      final strip = financeExportSummary([feedBill], translations, money);
 
       expect(strip.last.value, startsWith('-'));
     });

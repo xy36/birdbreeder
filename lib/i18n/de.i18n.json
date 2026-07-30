@@ -148,6 +148,16 @@
             "light": "Hell",
             "dark": "Dunkel"
         },
+        "language": {
+            "title": "Sprache",
+            "system": "Systemsprache",
+            "sheet_title": "Sprache wählen"
+        },
+        "currency": {
+            "title": "Währung",
+            "sheet_title": "Währung wählen",
+            "hint": "Beträge werden nur neu beschriftet, nicht umgerechnet."
+        },
         "profile": {
             "breeder_number(value)": "Züchternummer {{value}}",
             "no_contact": "Kein Profil-Kontakt hinterlegt",

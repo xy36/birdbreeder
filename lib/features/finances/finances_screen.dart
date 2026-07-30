@@ -15,8 +15,10 @@ import 'package:birdbreeder/models/finance/finance_category_kind.dart';
 import 'package:birdbreeder/models/finance/finance_filter.dart';
 import 'package:birdbreeder/models/finance/finances_actions.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:birdbreeder/shared/cubits/currency_cubit/currency_cubit.dart';
 import 'package:birdbreeder/shared/cubits/generic_search_cubit/generic_search_cubit.dart';
 import 'package:birdbreeder/shared/icons.dart';
+import 'package:birdbreeder/shared/utils/formatter/money_formatter.dart';
 import 'package:birdbreeder/shared/widgets/bird_breeder_wrapper.dart';
 import 'package:birdbreeder/shared/widgets/bottom_search_bar.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
@@ -123,12 +125,18 @@ class _FinancesScreenState extends State<FinancesScreen> {
   Future<void> exportFinances() async {
     final cubit = context.read<ExportCubit>();
     final translations = context.tr;
+    // Built via `read` rather than `context.money`: this runs in a tap
+    // callback, where `watch` is not allowed.
+    final money = MoneyFormatter(
+      locale: Localizations.localeOf(context).languageCode,
+      currencyCode: context.read<CurrencyCubit>().state,
+    );
     final request = ExportRequest<Finance>(
       items: context.read<FinanceSearchCubit>().searchedItems,
       listTitle: translations.export.lists.finances,
       fileBaseName: translations.export.file_names.finances,
       presets: FinanceExportPresets.all,
-      summary: financeExportSummary,
+      summary: (rows, t) => financeExportSummary(rows, t, money),
     );
 
     final choice = await showExportSheet<Finance>(context, request);
@@ -590,7 +598,7 @@ class _MonthHeader extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  '${net >= 0 ? '+' : '−'}${net.abs().toStringAsFixed(2)}',
+                  '${net >= 0 ? '+' : '−'}${context.money.amount(net.abs())}',
                   style: TextStyle(
                     fontFamily: 'monospace',
                     fontSize: 28,
@@ -604,7 +612,7 @@ class _MonthHeader extends StatelessWidget {
                 ),
                 const SizedBox(width: 4),
                 Text(
-                  '€',
+                  context.money.symbol,
                   style: TextStyle(
                     fontSize: 18,
                     color: cs.onSurfaceVariant,
@@ -744,7 +752,7 @@ class _SplitCard extends StatelessWidget {
           ),
           const SizedBox(height: 2),
           Text(
-            '$sign${amount.toStringAsFixed(2)}€',
+            context.money.withSign(sign, amount),
             style: TextStyle(
               fontFamily: 'monospace',
               fontSize: 16,
@@ -997,7 +1005,7 @@ class _DayGroup extends StatelessWidget {
                     borderRadius: BorderRadius.circular(100),
                   ),
                   child: Text(
-                    '${group.total >= 0 ? '+' : '−'}${group.total.abs().toStringAsFixed(2)}€',
+                    context.money.signed(group.total),
                     style: TextStyle(
                       fontFamily: 'monospace',
                       fontSize: 12,
@@ -1077,7 +1085,7 @@ class _TxRow extends StatelessWidget {
     final accent =
         isIncome ? context.appColors.income : context.appColors.expense;
     final amountText =
-        '${isIncome ? '+' : '−'}${finance.amount.abs().toStringAsFixed(2)}€';
+        context.money.withSign(isIncome ? '+' : '−', finance.amount);
     final label = (finance.title.isNotEmpty ?? false)
         ? finance.title
         : (cat?.name ?? '—');

@@ -11,7 +11,9 @@ import 'package:birdbreeder/i18n/strings.g.dart';
 import 'package:birdbreeder/services/authentication/i_authentication_service.dart';
 import 'package:birdbreeder/services/injection.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
+import 'package:birdbreeder/shared/cubits/currency_cubit/currency_cubit.dart';
 import 'package:birdbreeder/shared/cubits/generic_search_cubit/generic_search_cubit.dart';
+import 'package:birdbreeder/shared/cubits/locale_cubit/locale_cubit.dart';
 import 'package:birdbreeder/shared/cubits/theme_cubit/theme_cubit.dart';
 import 'package:birdbreeder/theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -30,8 +32,12 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => ThemeCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => ThemeCubit()),
+        BlocProvider(create: (_) => LocaleCubit()),
+        BlocProvider(create: (_) => CurrencyCubit()),
+      ],
       child: _AppShell(),
     );
   }

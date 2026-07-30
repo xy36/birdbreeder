@@ -4,6 +4,8 @@ import 'package:birdbreeder/core/routing/app_router.dart';
 import 'package:birdbreeder/features/account/widgets/account_ui.dart';
 import 'package:birdbreeder/features/account/widgets/appearance_section.dart';
 import 'package:birdbreeder/features/account/widgets/cloud_backup_card.dart';
+import 'package:birdbreeder/features/account/widgets/currency_section.dart';
+import 'package:birdbreeder/features/account/widgets/language_section.dart';
 import 'package:birdbreeder/features/account/widgets/manual_backup_card.dart';
 import 'package:birdbreeder/features/account/widgets/profile_hero_card.dart';
 import 'package:birdbreeder/services/backup/cloud/cloud_backup_manager.dart';
@@ -34,6 +36,10 @@ class AccountScreen extends StatelessWidget {
                 child: AppearanceSection(),
               ),
             ),
+            const SizedBox(height: 8),
+            const AccountCard(child: LanguageSection()),
+            const SizedBox(height: 8),
+            const AccountCard(child: CurrencySection()),
             const SizedBox(height: 16),
             AccountSectionLabel(
               icon: AppIcons.export,

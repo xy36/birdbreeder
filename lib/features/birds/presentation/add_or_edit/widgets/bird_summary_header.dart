@@ -172,7 +172,7 @@ class _SalePill extends StatelessWidget {
         bird.saleStatus == SaleStatus.sold ? bird.finalPrice : bird.askingPrice;
     final label = [
       bird.saleStatus.getDisplayName(context),
-      if (price != null) '${price.toStringAsFixed(0)} €',
+      if (price != null) context.money.format(price, decimals: false),
     ].join(' · ');
 
     return Container(

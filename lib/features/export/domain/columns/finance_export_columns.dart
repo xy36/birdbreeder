@@ -4,6 +4,7 @@ import 'package:birdbreeder/features/export/domain/export_value_format.dart';
 import 'package:birdbreeder/i18n/strings.g.dart';
 import 'package:birdbreeder/models/finance/entity/finance.dart';
 import 'package:birdbreeder/models/finance/finance_category_kind.dart';
+import 'package:birdbreeder/shared/utils/formatter/money_formatter.dart';
 
 /// Every column a finance book can be exported with.
 ///
@@ -117,23 +118,25 @@ class FinanceExportPresets {
 
 /// The balance strip printed under a finance PDF.
 ///
-/// Reads the same [FinanceTotals] the overview header uses, so the printed
-/// balance always matches the one on screen.
+/// Reads the same [FinanceTotals] the overview header uses and formats them
+/// with the caller's [MoneyFormatter], so the printed balance matches the one
+/// on screen — same totals, same currency.
 List<({String label, String value})> financeExportSummary(
   List<Finance> rows,
   Translations t,
+  MoneyFormatter money,
 ) =>
     [
       (
         label: t.export.summary.income,
-        value: ExportValueFormat.currency(rows.income),
+        value: money.format(rows.income),
       ),
       (
         label: t.export.summary.expense,
-        value: ExportValueFormat.currency(rows.expense),
+        value: money.format(rows.expense),
       ),
       (
         label: t.export.summary.net,
-        value: ExportValueFormat.currency(rows.net),
+        value: money.format(rows.net),
       ),
     ];

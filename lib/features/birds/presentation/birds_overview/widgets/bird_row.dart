@@ -252,7 +252,7 @@ class _PriceTag extends StatelessWidget {
         Icon(AppIcons.sell, size: 11, color: cs.primary),
         const SizedBox(width: 3),
         Text(
-          '${price.toStringAsFixed(0)}€',
+          context.money.format(price, decimals: false),
           style: TextStyle(
             fontFamily: 'monospace',
             fontSize: 12,
@@ -278,8 +278,9 @@ class _SoldTag extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final sold = context.tr.common.sale_status.sold;
-    final label =
-        price != null ? '$sold · ${price!.toStringAsFixed(0)}€' : sold;
+    final label = price != null
+        ? '$sold · ${context.money.format(price!, decimals: false)}'
+        : sold;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),

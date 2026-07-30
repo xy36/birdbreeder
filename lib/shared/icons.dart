@@ -195,6 +195,8 @@ class AppIcons {
   static const IconData labelOutline = Icons.label_outline;
   static const IconData lightbulbOutline = Icons.lightbulb_outline;
   static const IconData list = Icons.list;
+  static const IconData currency = Icons.payments_outlined;
+  static const IconData language = Icons.translate;
   static const IconData localShippingOutlined = Icons.local_shipping_outlined;
   static const IconData locationOnOutlined = Icons.location_on_outlined;
   static const IconData cageQuarantine = Icons.medical_services_outlined;

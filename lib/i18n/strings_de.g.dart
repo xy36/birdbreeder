@@ -167,6 +167,8 @@ class TranslationsAccountDe {
   late final TranslationsAccountSwitchToLocalDialogDe switch_to_local_dialog = TranslationsAccountSwitchToLocalDialogDe.internal(_root);
   late final TranslationsAccountLocalModeDe local_mode = TranslationsAccountLocalModeDe.internal(_root);
   late final TranslationsAccountAppearanceDe appearance = TranslationsAccountAppearanceDe.internal(_root);
+  late final TranslationsAccountLanguageDe language = TranslationsAccountLanguageDe.internal(_root);
+  late final TranslationsAccountCurrencyDe currency = TranslationsAccountCurrencyDe.internal(_root);
   late final TranslationsAccountProfileDe profile = TranslationsAccountProfileDe.internal(_root);
   late final TranslationsAccountUserDe user = TranslationsAccountUserDe.internal(_root);
   late final TranslationsAccountEventsDe events = TranslationsAccountEventsDe.internal(_root);
@@ -1706,6 +1708,42 @@ class TranslationsAccountAppearanceDe {
 
   /// de: 'Dunkel'
   String get dark => 'Dunkel';
+}
+
+// Path: account.language
+class TranslationsAccountLanguageDe {
+  TranslationsAccountLanguageDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Sprache'
+  String get title => 'Sprache';
+
+  /// de: 'Systemsprache'
+  String get system => 'Systemsprache';
+
+  /// de: 'Sprache wählen'
+  String get sheet_title => 'Sprache wählen';
+}
+
+// Path: account.currency
+class TranslationsAccountCurrencyDe {
+  TranslationsAccountCurrencyDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Währung'
+  String get title => 'Währung';
+
+  /// de: 'Währung wählen'
+  String get sheet_title => 'Währung wählen';
+
+  /// de: 'Beträge werden nur neu beschriftet, nicht umgerechnet.'
+  String get hint => 'Beträge werden nur neu beschriftet, nicht umgerechnet.';
 }
 
 // Path: account.profile

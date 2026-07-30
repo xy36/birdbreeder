@@ -218,8 +218,7 @@ class _StatsStrip extends StatelessWidget {
     final appColors = context.appColors;
     final detail = context.tr.contacts.detail;
     final balance = contact.commerceBalance;
-    final balanceLabel =
-        '${balance >= 0 ? '+' : '−'}${balance.abs().toStringAsFixed(0)} €';
+    final balanceLabel = context.money.signed(balance, decimals: false);
 
     return Container(
       decoration: BoxDecoration(
