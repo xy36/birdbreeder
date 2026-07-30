@@ -1144,6 +1144,7 @@
         "edit": "Bearbeiten",
         "show": "Anzeigen",
         "pedigree": "Stammbaum",
+        "documents": "Dokumente",
         "set_ringnumber": "Ringnummer setzen",
         "set_color": "Farbe setzen",
         "add_to_stock": "In Bestand aufnehmen",
@@ -1317,6 +1318,51 @@
                 "bird": "Vogel",
                 "notes": "Notizen"
             }
+        }
+    },
+    "documents": {
+        "title": "Dokument erstellen",
+        "action": "Erstellen",
+        "type_label": "Dokument",
+        "types": {
+            "profile": {
+                "label": "Steckbrief",
+                "description": "Alle Stammdaten auf einer Seite",
+                "file_name": "steckbrief"
+            },
+            "pedigree": {
+                "label": "Abstammungsnachweis",
+                "description": "Ahnentafel über drei Generationen",
+                "file_name": "abstammungsnachweis"
+            },
+            "sale_receipt": {
+                "label": "Abgabebeleg",
+                "description": "Beleg für Verkauf oder Abgabe",
+                "file_name": "abgabebeleg"
+            }
+        },
+        "profile": {
+            "section_general": "Allgemein",
+            "section_lifecycle": "Lebensdaten",
+            "section_origin": "Herkunft & Zucht",
+            "section_commerce": "Kauf & Verkauf",
+            "section_notes": "Notizen"
+        },
+        "pedigree": {
+            "statement": "Hiermit wird bestätigt, dass die Abstammung des oben genannten Vogels nach bestem Wissen korrekt wiedergegeben ist.",
+            "breeder": "Züchter",
+            "breeder_number": "Züchternummer",
+            "signature": "Ort, Datum, Unterschrift des Züchters"
+        },
+        "receipt": {
+            "seller": "Abgebende Person",
+            "buyer": "Übernehmende Person",
+            "bird_data": "Angaben zum Vogel",
+            "price": "Preis",
+            "date": "Datum der Abgabe",
+            "statement": "Der oben beschriebene Vogel wird zum genannten Preis an die übernehmende Person abgegeben. Der Vogel befindet sich zum Zeitpunkt der Abgabe in einem gesunden Zustand.",
+            "signature_seller": "Ort, Datum, Unterschrift abgebende Person",
+            "signature_buyer": "Ort, Datum, Unterschrift übernehmende Person"
         }
     },
     "snackbars": {

@@ -1144,6 +1144,7 @@
         "edit": "Modifica",
         "show": "Mostra",
         "pedigree": "Pedigree",
+        "documents": "Documenti",
         "set_ringnumber": "Imposta numero anello",
         "set_color": "Imposta colore",
         "add_to_stock": "Aggiungi all'allevamento",
@@ -1317,6 +1318,51 @@
                 "bird": "Uccello",
                 "notes": "Note"
             }
+        }
+    },
+    "documents": {
+        "title": "Crea documento",
+        "action": "Crea",
+        "type_label": "Documento",
+        "types": {
+            "profile": {
+                "label": "Scheda",
+                "description": "Tutti i dati anagrafici su una pagina",
+                "file_name": "scheda"
+            },
+            "pedigree": {
+                "label": "Certificato di ascendenza",
+                "description": "Albero genealogico su tre generazioni",
+                "file_name": "certificato_ascendenza"
+            },
+            "sale_receipt": {
+                "label": "Ricevuta di cessione",
+                "description": "Ricevuta per vendita o cessione",
+                "file_name": "ricevuta_cessione"
+            }
+        },
+        "profile": {
+            "section_general": "Generale",
+            "section_lifecycle": "Date di vita",
+            "section_origin": "Origine e allevamento",
+            "section_commerce": "Acquisto e vendita",
+            "section_notes": "Note"
+        },
+        "pedigree": {
+            "statement": "Con la presente si conferma che l'ascendenza dell'uccello sopra indicato è riportata correttamente secondo scienza e coscienza.",
+            "breeder": "Allevatore",
+            "breeder_number": "Numero di allevatore",
+            "signature": "Luogo, data, firma dell'allevatore"
+        },
+        "receipt": {
+            "seller": "Parte cedente",
+            "buyer": "Parte ricevente",
+            "bird_data": "Dati dell'uccello",
+            "price": "Prezzo",
+            "date": "Data della cessione",
+            "statement": "L'uccello sopra descritto viene ceduto alla parte ricevente al prezzo indicato. Al momento della cessione l'uccello è in buono stato di salute.",
+            "signature_seller": "Luogo, data, firma della parte cedente",
+            "signature_buyer": "Luogo, data, firma della parte ricevente"
         }
     },
     "snackbars": {

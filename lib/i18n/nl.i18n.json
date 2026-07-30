@@ -1144,6 +1144,7 @@
         "edit": "Bewerken",
         "show": "Tonen",
         "pedigree": "Stamboom",
+        "documents": "Documenten",
         "set_ringnumber": "Ringnummer instellen",
         "set_color": "Kleur instellen",
         "add_to_stock": "In bestand opnemen",
@@ -1317,6 +1318,51 @@
                 "bird": "Vogel",
                 "notes": "Notities"
             }
+        }
+    },
+    "documents": {
+        "title": "Document aanmaken",
+        "action": "Aanmaken",
+        "type_label": "Document",
+        "types": {
+            "profile": {
+                "label": "Gegevensblad",
+                "description": "Alle stamgegevens op één pagina",
+                "file_name": "gegevensblad"
+            },
+            "pedigree": {
+                "label": "Afstammingsbewijs",
+                "description": "Stamboom over drie generaties",
+                "file_name": "afstammingsbewijs"
+            },
+            "sale_receipt": {
+                "label": "Overdrachtsbewijs",
+                "description": "Bewijs voor verkoop of overdracht",
+                "file_name": "overdrachtsbewijs"
+            }
+        },
+        "profile": {
+            "section_general": "Algemeen",
+            "section_lifecycle": "Levensdata",
+            "section_origin": "Herkomst en kweek",
+            "section_commerce": "Aankoop en verkoop",
+            "section_notes": "Notities"
+        },
+        "pedigree": {
+            "statement": "Hierbij wordt bevestigd dat de afstamming van de hierboven genoemde vogel naar beste weten correct is weergegeven.",
+            "breeder": "Kweker",
+            "breeder_number": "Kwekersnummer",
+            "signature": "Plaats, datum, handtekening van de kweker"
+        },
+        "receipt": {
+            "seller": "Overdragende partij",
+            "buyer": "Ontvangende partij",
+            "bird_data": "Gegevens van de vogel",
+            "price": "Prijs",
+            "date": "Datum van overdracht",
+            "statement": "De hierboven beschreven vogel wordt tegen de genoemde prijs overgedragen aan de ontvangende partij. De vogel verkeert op het moment van overdracht in goede gezondheid.",
+            "signature_seller": "Plaats, datum, handtekening overdragende partij",
+            "signature_buyer": "Plaats, datum, handtekening ontvangende partij"
         }
     },
     "snackbars": {

@@ -66,6 +66,33 @@ class ExportCubit extends Cubit<ExportState>
     }
   }
 
+  /// Renders a single-document PDF via [buildBytes] and hands the file to
+  /// the share sheet.
+  ///
+  /// [buildBytes] runs inside the guard so assembly failures surface through
+  /// the same presentation events the list exports use.
+  Future<void> exportDocument({
+    required Future<Uint8List> Function() buildBytes,
+    required String fileName,
+  }) async {
+    emit(const ExportState.running());
+    try {
+      final file = await ExportFileWriter.writeBytes(
+        bytes: await buildBytes(),
+        fileName: fileName,
+        format: ExportFormat.pdf,
+      );
+      final result = await ExportFileWriter.share(file, ExportFormat.pdf);
+      if (!ExportFileWriter.wasShared(result)) return;
+
+      emitPresentation(ExportCubitEvent.succeeded(file.uri.pathSegments.last));
+    } on Exception catch (e) {
+      emitPresentation(ExportCubitEvent.failed(e.toString()));
+    } finally {
+      emit(const ExportState.idle());
+    }
+  }
+
   Future<File> _writeCsv<T>(
     ExportPreset<T> preset,
     ExportRequest<T> request,

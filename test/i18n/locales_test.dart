@@ -12,6 +12,12 @@ void main() {
         expect(translations.account.language.title, isNotEmpty, reason: tag);
         expect(translations.bird.title, isNotEmpty, reason: tag);
         expect(translations.export.lists.birds, isNotEmpty, reason: tag);
+        expect(
+          translations.documents.types.pedigree.label,
+          isNotEmpty,
+          reason: tag,
+        );
+        expect(translations.pop_up_menu.documents, isNotEmpty, reason: tag);
       }
     });
 

@@ -93,6 +93,8 @@ class TranslationsEs extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _TranslationsExportEs export = _TranslationsExportEs._(_root);
   @override
+  late final _TranslationsDocumentsEs documents = _TranslationsDocumentsEs._(_root);
+  @override
   late final _TranslationsSnackbarsEs snackbars = _TranslationsSnackbarsEs._(_root);
 }
 
@@ -1169,6 +1171,8 @@ class _TranslationsPopUpMenuEs extends TranslationsPopUpMenuDe {
   @override
   String get pedigree => 'Pedigrí';
   @override
+  String get documents => 'Documentos';
+  @override
   String get set_ringnumber => 'Establecer número de anilla';
   @override
   String get set_color => 'Establecer color';
@@ -1225,6 +1229,31 @@ class _TranslationsExportEs extends TranslationsExportDe {
   late final _TranslationsExportPresetsEs presets = _TranslationsExportPresetsEs._(_root);
   @override
   late final _TranslationsExportColumnsEs columns = _TranslationsExportColumnsEs._(_root);
+}
+
+// Path: documents
+class _TranslationsDocumentsEs extends TranslationsDocumentsDe {
+  _TranslationsDocumentsEs._(TranslationsEs root)
+      : this._root = root,
+        super.internal(root);
+
+  final TranslationsEs _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Crear documento';
+  @override
+  String get action => 'Crear';
+  @override
+  String get type_label => 'Documento';
+  @override
+  late final _TranslationsDocumentsTypesEs types = _TranslationsDocumentsTypesEs._(_root);
+  @override
+  late final _TranslationsDocumentsProfileEs profile = _TranslationsDocumentsProfileEs._(_root);
+  @override
+  late final _TranslationsDocumentsPedigreeEs pedigree = _TranslationsDocumentsPedigreeEs._(_root);
+  @override
+  late final _TranslationsDocumentsReceiptEs receipt = _TranslationsDocumentsReceiptEs._(_root);
 }
 
 // Path: snackbars
@@ -3428,6 +3457,92 @@ class _TranslationsExportColumnsEs extends TranslationsExportColumnsDe {
   late final _TranslationsExportColumnsFinanceEs finance = _TranslationsExportColumnsFinanceEs._(_root);
 }
 
+// Path: documents.types
+class _TranslationsDocumentsTypesEs extends TranslationsDocumentsTypesDe {
+  _TranslationsDocumentsTypesEs._(TranslationsEs root)
+      : this._root = root,
+        super.internal(root);
+
+  final TranslationsEs _root; // ignore: unused_field
+
+  // Translations
+  @override
+  late final _TranslationsDocumentsTypesProfileEs profile = _TranslationsDocumentsTypesProfileEs._(_root);
+  @override
+  late final _TranslationsDocumentsTypesPedigreeEs pedigree = _TranslationsDocumentsTypesPedigreeEs._(_root);
+  @override
+  late final _TranslationsDocumentsTypesSaleReceiptEs sale_receipt = _TranslationsDocumentsTypesSaleReceiptEs._(_root);
+}
+
+// Path: documents.profile
+class _TranslationsDocumentsProfileEs extends TranslationsDocumentsProfileDe {
+  _TranslationsDocumentsProfileEs._(TranslationsEs root)
+      : this._root = root,
+        super.internal(root);
+
+  final TranslationsEs _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get section_general => 'General';
+  @override
+  String get section_lifecycle => 'Datos vitales';
+  @override
+  String get section_origin => 'Origen y cría';
+  @override
+  String get section_commerce => 'Compra y venta';
+  @override
+  String get section_notes => 'Notas';
+}
+
+// Path: documents.pedigree
+class _TranslationsDocumentsPedigreeEs extends TranslationsDocumentsPedigreeDe {
+  _TranslationsDocumentsPedigreeEs._(TranslationsEs root)
+      : this._root = root,
+        super.internal(root);
+
+  final TranslationsEs _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get statement =>
+      'Por la presente se confirma que la ascendencia del ave arriba indicada se refleja correctamente según nuestro leal saber y entender.';
+  @override
+  String get breeder => 'Criador';
+  @override
+  String get breeder_number => 'Número de criador';
+  @override
+  String get signature => 'Lugar, fecha y firma del criador';
+}
+
+// Path: documents.receipt
+class _TranslationsDocumentsReceiptEs extends TranslationsDocumentsReceiptDe {
+  _TranslationsDocumentsReceiptEs._(TranslationsEs root)
+      : this._root = root,
+        super.internal(root);
+
+  final TranslationsEs _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get seller => 'Parte cedente';
+  @override
+  String get buyer => 'Parte receptora';
+  @override
+  String get bird_data => 'Datos del ave';
+  @override
+  String get price => 'Precio';
+  @override
+  String get date => 'Fecha de la cesión';
+  @override
+  String get statement =>
+      'El ave descrita arriba se cede a la parte receptora por el precio indicado. El ave se encuentra en buen estado de salud en el momento de la cesión.';
+  @override
+  String get signature_seller => 'Lugar, fecha y firma de la parte cedente';
+  @override
+  String get signature_buyer => 'Lugar, fecha y firma de la parte receptora';
+}
+
 // Path: finances.categories.filters
 class _TranslationsFinancesCategoriesFiltersEs extends TranslationsFinancesCategoriesFiltersDe {
   _TranslationsFinancesCategoriesFiltersEs._(TranslationsEs root)
@@ -4230,4 +4345,55 @@ class _TranslationsExportColumnsFinanceEs extends TranslationsExportColumnsFinan
   String get bird => 'Pájaro';
   @override
   String get notes => 'Notas';
+}
+
+// Path: documents.types.profile
+class _TranslationsDocumentsTypesProfileEs extends TranslationsDocumentsTypesProfileDe {
+  _TranslationsDocumentsTypesProfileEs._(TranslationsEs root)
+      : this._root = root,
+        super.internal(root);
+
+  final TranslationsEs _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get label => 'Ficha';
+  @override
+  String get description => 'Todos los datos maestros en una página';
+  @override
+  String get file_name => 'ficha';
+}
+
+// Path: documents.types.pedigree
+class _TranslationsDocumentsTypesPedigreeEs extends TranslationsDocumentsTypesPedigreeDe {
+  _TranslationsDocumentsTypesPedigreeEs._(TranslationsEs root)
+      : this._root = root,
+        super.internal(root);
+
+  final TranslationsEs _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get label => 'Certificado de pedigrí';
+  @override
+  String get description => 'Árbol genealógico de tres generaciones';
+  @override
+  String get file_name => 'certificado_pedigri';
+}
+
+// Path: documents.types.sale_receipt
+class _TranslationsDocumentsTypesSaleReceiptEs extends TranslationsDocumentsTypesSaleReceiptDe {
+  _TranslationsDocumentsTypesSaleReceiptEs._(TranslationsEs root)
+      : this._root = root,
+        super.internal(root);
+
+  final TranslationsEs _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get label => 'Recibo de cesión';
+  @override
+  String get description => 'Recibo de venta o cesión';
+  @override
+  String get file_name => 'recibo_cesion';
 }

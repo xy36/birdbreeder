@@ -1144,6 +1144,7 @@
         "edit": "Edit",
         "show": "Show",
         "pedigree": "Pedigree",
+        "documents": "Documents",
         "set_ringnumber": "Set ring number",
         "set_color": "Set color",
         "add_to_stock": "Add to stock",
@@ -1317,6 +1318,51 @@
                 "bird": "Bird",
                 "notes": "Notes"
             }
+        }
+    },
+    "documents": {
+        "title": "Create document",
+        "action": "Create",
+        "type_label": "Document",
+        "types": {
+            "profile": {
+                "label": "Profile sheet",
+                "description": "All master data on one page",
+                "file_name": "profile"
+            },
+            "pedigree": {
+                "label": "Pedigree certificate",
+                "description": "Ancestor chart across three generations",
+                "file_name": "pedigree_certificate"
+            },
+            "sale_receipt": {
+                "label": "Transfer receipt",
+                "description": "Receipt for a sale or transfer",
+                "file_name": "transfer_receipt"
+            }
+        },
+        "profile": {
+            "section_general": "General",
+            "section_lifecycle": "Life dates",
+            "section_origin": "Origin & breeding",
+            "section_commerce": "Purchase & sale",
+            "section_notes": "Notes"
+        },
+        "pedigree": {
+            "statement": "This is to confirm that the ancestry of the bird named above is stated correctly to the best of our knowledge.",
+            "breeder": "Breeder",
+            "breeder_number": "Breeder number",
+            "signature": "Place, date, breeder's signature"
+        },
+        "receipt": {
+            "seller": "Transferring party",
+            "buyer": "Receiving party",
+            "bird_data": "Bird details",
+            "price": "Price",
+            "date": "Date of transfer",
+            "statement": "The bird described above is transferred to the receiving party at the stated price. The bird is in a healthy condition at the time of transfer.",
+            "signature_seller": "Place, date, signature of transferring party",
+            "signature_buyer": "Place, date, signature of receiving party"
         }
     },
     "snackbars": {

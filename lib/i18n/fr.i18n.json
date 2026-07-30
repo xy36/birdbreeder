@@ -1144,6 +1144,7 @@
         "edit": "Modifier",
         "show": "Afficher",
         "pedigree": "Pedigree",
+        "documents": "Documents",
         "set_ringnumber": "Définir le numéro de bague",
         "set_color": "Définir la couleur",
         "add_to_stock": "Intégrer au cheptel",
@@ -1317,6 +1318,51 @@
                 "bird": "Oiseau",
                 "notes": "Notes"
             }
+        }
+    },
+    "documents": {
+        "title": "Créer un document",
+        "action": "Créer",
+        "type_label": "Document",
+        "types": {
+            "profile": {
+                "label": "Fiche signalétique",
+                "description": "Toutes les données de base sur une page",
+                "file_name": "fiche"
+            },
+            "pedigree": {
+                "label": "Certificat d'origine",
+                "description": "Arbre généalogique sur trois générations",
+                "file_name": "certificat_origine"
+            },
+            "sale_receipt": {
+                "label": "Attestation de cession",
+                "description": "Justificatif de vente ou de cession",
+                "file_name": "attestation_cession"
+            }
+        },
+        "profile": {
+            "section_general": "Général",
+            "section_lifecycle": "Dates de vie",
+            "section_origin": "Origine et élevage",
+            "section_commerce": "Achat et vente",
+            "section_notes": "Notes"
+        },
+        "pedigree": {
+            "statement": "Nous certifions par la présente que l'ascendance de l'oiseau mentionné ci-dessus est indiquée correctement en toute bonne foi.",
+            "breeder": "Éleveur",
+            "breeder_number": "Numéro d'éleveur",
+            "signature": "Lieu, date, signature de l'éleveur"
+        },
+        "receipt": {
+            "seller": "Partie cédante",
+            "buyer": "Partie preneuse",
+            "bird_data": "Informations sur l'oiseau",
+            "price": "Prix",
+            "date": "Date de la cession",
+            "statement": "L'oiseau décrit ci-dessus est cédé à la partie preneuse au prix indiqué. L'oiseau est en bonne santé au moment de la cession.",
+            "signature_seller": "Lieu, date, signature de la partie cédante",
+            "signature_buyer": "Lieu, date, signature de la partie preneuse"
         }
     },
     "snackbars": {

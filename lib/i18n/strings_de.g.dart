@@ -68,6 +68,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final TranslationsDialogDe dialog = TranslationsDialogDe.internal(_root);
   late final TranslationsPopUpMenuDe pop_up_menu = TranslationsPopUpMenuDe.internal(_root);
   late final TranslationsExportDe export = TranslationsExportDe.internal(_root);
+  late final TranslationsDocumentsDe documents = TranslationsDocumentsDe.internal(_root);
   late final TranslationsSnackbarsDe snackbars = TranslationsSnackbarsDe.internal(_root);
 }
 
@@ -1312,6 +1313,9 @@ class TranslationsPopUpMenuDe {
   /// de: 'Stammbaum'
   String get pedigree => 'Stammbaum';
 
+  /// de: 'Dokumente'
+  String get documents => 'Dokumente';
+
   /// de: 'Ringnummer setzen'
   String get set_ringnumber => 'Ringnummer setzen';
 
@@ -1372,6 +1376,29 @@ class TranslationsExportDe {
   late final TranslationsExportFileNamesDe file_names = TranslationsExportFileNamesDe.internal(_root);
   late final TranslationsExportPresetsDe presets = TranslationsExportPresetsDe.internal(_root);
   late final TranslationsExportColumnsDe columns = TranslationsExportColumnsDe.internal(_root);
+}
+
+// Path: documents
+class TranslationsDocumentsDe {
+  TranslationsDocumentsDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Dokument erstellen'
+  String get title => 'Dokument erstellen';
+
+  /// de: 'Erstellen'
+  String get action => 'Erstellen';
+
+  /// de: 'Dokument'
+  String get type_label => 'Dokument';
+
+  late final TranslationsDocumentsTypesDe types = TranslationsDocumentsTypesDe.internal(_root);
+  late final TranslationsDocumentsProfileDe profile = TranslationsDocumentsProfileDe.internal(_root);
+  late final TranslationsDocumentsPedigreeDe pedigree = TranslationsDocumentsPedigreeDe.internal(_root);
+  late final TranslationsDocumentsReceiptDe receipt = TranslationsDocumentsReceiptDe.internal(_root);
 }
 
 // Path: snackbars
@@ -3802,6 +3829,97 @@ class TranslationsExportColumnsDe {
   late final TranslationsExportColumnsFinanceDe finance = TranslationsExportColumnsFinanceDe.internal(_root);
 }
 
+// Path: documents.types
+class TranslationsDocumentsTypesDe {
+  TranslationsDocumentsTypesDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+  late final TranslationsDocumentsTypesProfileDe profile = TranslationsDocumentsTypesProfileDe.internal(_root);
+  late final TranslationsDocumentsTypesPedigreeDe pedigree = TranslationsDocumentsTypesPedigreeDe.internal(_root);
+  late final TranslationsDocumentsTypesSaleReceiptDe sale_receipt = TranslationsDocumentsTypesSaleReceiptDe.internal(_root);
+}
+
+// Path: documents.profile
+class TranslationsDocumentsProfileDe {
+  TranslationsDocumentsProfileDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Allgemein'
+  String get section_general => 'Allgemein';
+
+  /// de: 'Lebensdaten'
+  String get section_lifecycle => 'Lebensdaten';
+
+  /// de: 'Herkunft & Zucht'
+  String get section_origin => 'Herkunft & Zucht';
+
+  /// de: 'Kauf & Verkauf'
+  String get section_commerce => 'Kauf & Verkauf';
+
+  /// de: 'Notizen'
+  String get section_notes => 'Notizen';
+}
+
+// Path: documents.pedigree
+class TranslationsDocumentsPedigreeDe {
+  TranslationsDocumentsPedigreeDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Hiermit wird bestätigt, dass die Abstammung des oben genannten Vogels nach bestem Wissen korrekt wiedergegeben ist.'
+  String get statement => 'Hiermit wird bestätigt, dass die Abstammung des oben genannten Vogels nach bestem Wissen korrekt wiedergegeben ist.';
+
+  /// de: 'Züchter'
+  String get breeder => 'Züchter';
+
+  /// de: 'Züchternummer'
+  String get breeder_number => 'Züchternummer';
+
+  /// de: 'Ort, Datum, Unterschrift des Züchters'
+  String get signature => 'Ort, Datum, Unterschrift des Züchters';
+}
+
+// Path: documents.receipt
+class TranslationsDocumentsReceiptDe {
+  TranslationsDocumentsReceiptDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Abgebende Person'
+  String get seller => 'Abgebende Person';
+
+  /// de: 'Übernehmende Person'
+  String get buyer => 'Übernehmende Person';
+
+  /// de: 'Angaben zum Vogel'
+  String get bird_data => 'Angaben zum Vogel';
+
+  /// de: 'Preis'
+  String get price => 'Preis';
+
+  /// de: 'Datum der Abgabe'
+  String get date => 'Datum der Abgabe';
+
+  /// de: 'Der oben beschriebene Vogel wird zum genannten Preis an die übernehmende Person abgegeben. Der Vogel befindet sich zum Zeitpunkt der Abgabe in einem gesunden Zustand.'
+  String get statement =>
+      'Der oben beschriebene Vogel wird zum genannten Preis an die übernehmende Person abgegeben. Der Vogel befindet sich zum Zeitpunkt der Abgabe in einem gesunden Zustand.';
+
+  /// de: 'Ort, Datum, Unterschrift abgebende Person'
+  String get signature_seller => 'Ort, Datum, Unterschrift abgebende Person';
+
+  /// de: 'Ort, Datum, Unterschrift übernehmende Person'
+  String get signature_buyer => 'Ort, Datum, Unterschrift übernehmende Person';
+}
+
 // Path: finances.categories.filters
 class TranslationsFinancesCategoriesFiltersDe {
   TranslationsFinancesCategoriesFiltersDe.internal(this._root);
@@ -4703,4 +4821,58 @@ class TranslationsExportColumnsFinanceDe {
 
   /// de: 'Notizen'
   String get notes => 'Notizen';
+}
+
+// Path: documents.types.profile
+class TranslationsDocumentsTypesProfileDe {
+  TranslationsDocumentsTypesProfileDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Steckbrief'
+  String get label => 'Steckbrief';
+
+  /// de: 'Alle Stammdaten auf einer Seite'
+  String get description => 'Alle Stammdaten auf einer Seite';
+
+  /// de: 'steckbrief'
+  String get file_name => 'steckbrief';
+}
+
+// Path: documents.types.pedigree
+class TranslationsDocumentsTypesPedigreeDe {
+  TranslationsDocumentsTypesPedigreeDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Abstammungsnachweis'
+  String get label => 'Abstammungsnachweis';
+
+  /// de: 'Ahnentafel über drei Generationen'
+  String get description => 'Ahnentafel über drei Generationen';
+
+  /// de: 'abstammungsnachweis'
+  String get file_name => 'abstammungsnachweis';
+}
+
+// Path: documents.types.sale_receipt
+class TranslationsDocumentsTypesSaleReceiptDe {
+  TranslationsDocumentsTypesSaleReceiptDe.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// de: 'Abgabebeleg'
+  String get label => 'Abgabebeleg';
+
+  /// de: 'Beleg für Verkauf oder Abgabe'
+  String get description => 'Beleg für Verkauf oder Abgabe';
+
+  /// de: 'abgabebeleg'
+  String get file_name => 'abgabebeleg';
 }

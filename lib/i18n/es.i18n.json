@@ -1144,6 +1144,7 @@
         "edit": "Editar",
         "show": "Mostrar",
         "pedigree": "Pedigrí",
+        "documents": "Documentos",
         "set_ringnumber": "Establecer número de anilla",
         "set_color": "Establecer color",
         "add_to_stock": "Incorporar al plantel",
@@ -1317,6 +1318,51 @@
                 "bird": "Pájaro",
                 "notes": "Notas"
             }
+        }
+    },
+    "documents": {
+        "title": "Crear documento",
+        "action": "Crear",
+        "type_label": "Documento",
+        "types": {
+            "profile": {
+                "label": "Ficha",
+                "description": "Todos los datos maestros en una página",
+                "file_name": "ficha"
+            },
+            "pedigree": {
+                "label": "Certificado de pedigrí",
+                "description": "Árbol genealógico de tres generaciones",
+                "file_name": "certificado_pedigri"
+            },
+            "sale_receipt": {
+                "label": "Recibo de cesión",
+                "description": "Recibo de venta o cesión",
+                "file_name": "recibo_cesion"
+            }
+        },
+        "profile": {
+            "section_general": "General",
+            "section_lifecycle": "Datos vitales",
+            "section_origin": "Origen y cría",
+            "section_commerce": "Compra y venta",
+            "section_notes": "Notas"
+        },
+        "pedigree": {
+            "statement": "Por la presente se confirma que la ascendencia del ave arriba indicada se refleja correctamente según nuestro leal saber y entender.",
+            "breeder": "Criador",
+            "breeder_number": "Número de criador",
+            "signature": "Lugar, fecha y firma del criador"
+        },
+        "receipt": {
+            "seller": "Parte cedente",
+            "buyer": "Parte receptora",
+            "bird_data": "Datos del ave",
+            "price": "Precio",
+            "date": "Fecha de la cesión",
+            "statement": "El ave descrita arriba se cede a la parte receptora por el precio indicado. El ave se encuentra en buen estado de salud en el momento de la cesión.",
+            "signature_seller": "Lugar, fecha y firma de la parte cedente",
+            "signature_buyer": "Lugar, fecha y firma de la parte receptora"
         }
     },
     "snackbars": {
