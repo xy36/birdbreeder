@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.0](https://github.com/xy36/birdbreeder/compare/v1.13.0...v1.14.0) (2026-07-30)
+
+
+### Features
+
+* add bird documents (profile, pedigree, transfer script) ([69ac374](https://github.com/xy36/birdbreeder/commit/69ac374d840a704a94f7f33d60e92f7954e91599))
+
 ## [1.13.0](https://github.com/xy36/birdbreeder/compare/v1.12.0...v1.13.0) (2026-07-30)
 
 
