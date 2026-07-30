@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.13.0](https://github.com/xy36/birdbreeder/compare/v1.12.0...v1.13.0) (2026-07-30)
+
+
+### Features
+
+* Add csv/pdf export ([6abedd6](https://github.com/xy36/birdbreeder/commit/6abedd6d35d1ddb479a56a4940b42a73bfc21633))
+* add further languages and language selector ([8d5f0c0](https://github.com/xy36/birdbreeder/commit/8d5f0c086f15409148cf6b9e7e0cb0d95f557527))
+* **bird_fields:** integrate BirdSummaryHeader and enhance tab layout with NestedScrollView ([4230069](https://github.com/xy36/birdbreeder/commit/42300695ad6280220f95194638054cf9e0b707d0))
+* **contacts:** implement alphabetical grouping and enhanced UI for contacts overview ([26d14b8](https://github.com/xy36/birdbreeder/commit/26d14b848aa5af3909d77a10609f53df3f3f6290))
+* **i18n:** add German translations for bird summary fields ([4230069](https://github.com/xy36/birdbreeder/commit/42300695ad6280220f95194638054cf9e0b707d0))
+* **icons:** update tab icons for improved clarity ([4230069](https://github.com/xy36/birdbreeder/commit/42300695ad6280220f95194638054cf9e0b707d0))
+* implement currency and locale services with cubits for state management ([8d5f0c0](https://github.com/xy36/birdbreeder/commit/8d5f0c086f15409148cf6b9e7e0cb0d95f557527))
+
+
+### Bug Fixes
+
+* **bottom_dropdown_search:** set modal background color to match theme ([4230069](https://github.com/xy36/birdbreeder/commit/42300695ad6280220f95194638054cf9e0b707d0))
+
 ## [1.12.0](https://github.com/xy36/birdbreeder/compare/v1.11.0...v1.12.0) (2026-07-27)
 
 
