@@ -149,23 +149,34 @@ class BirdPedigreePdf {
                 ),
               ),
             )
-          : _slotContent(slot, ringSize, detailSize),
+          : _slotContent(slot, generation, ringSize, detailSize),
     );
     return box;
   }
 
   static pw.Widget _slotContent(
     PedigreeSlot slot,
+    int generation,
     double ringSize,
     double detailSize,
   ) {
-    final details = [
-      slot.sexLabel,
-      slot.speciesName,
-      slot.colorName,
-      if (slot.bornAt != null) '* ${slot.bornAt}',
-      slot.breederName,
-    ].whereType<String>();
+    // A great-grandparent box is only ~40pt tall; species and color share a
+    // line there so a fully known ancestor cannot overflow its border.
+    final speciesAndColor =
+        [slot.speciesName, slot.colorName].whereType<String>().toList();
+    final details = generation < generations - 1
+        ? [
+            slot.sexLabel,
+            slot.speciesName,
+            slot.colorName,
+            if (slot.bornAt != null) '* ${slot.bornAt}',
+            slot.breederName,
+          ].whereType<String>()
+        : [
+            slot.sexLabel,
+            if (speciesAndColor.isNotEmpty) speciesAndColor.join(' · '),
+            if (slot.bornAt != null) '* ${slot.bornAt}',
+          ].whereType<String>();
 
     return pw.Column(
       crossAxisAlignment: pw.CrossAxisAlignment.start,

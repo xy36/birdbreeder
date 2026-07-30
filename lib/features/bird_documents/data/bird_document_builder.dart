@@ -61,7 +61,7 @@ class BirdDocumentBuilder {
           profile: header,
           logoBytes: logoBytes,
           photoBytes: await _photoBytes(bird),
-          ringNumber: bird.ringNumber,
+          ringNumber: _blankToNull(bird.ringNumber),
           notes: _blankToNull(bird.notes),
         ),
       BirdDocumentType.pedigree => BirdPedigreePdf.build(

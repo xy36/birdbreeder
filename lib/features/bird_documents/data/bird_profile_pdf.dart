@@ -62,7 +62,9 @@ class BirdProfilePdf {
     List<DocSection> sections,
     Uint8List? photoBytes,
   ) {
-    if (sections.isEmpty) return const [];
+    if (sections.isEmpty) {
+      return [if (photoBytes != null) _photo(photoBytes)];
+    }
     if (photoBytes == null) {
       return [for (final section in sections) ..._section(section)];
     }

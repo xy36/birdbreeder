@@ -124,96 +124,104 @@ class _BirdDocumentSheetState extends State<BirdDocumentSheet> {
     final tr = context.tr.documents;
     final theme = Theme.of(context);
 
-    return SafeArea(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          BottomSheetHeader(title: tr.title),
-          if (widget.bird.ringNumber != null)
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
-              child: Text(
-                widget.bird.ringNumber!,
-                style: theme.textTheme.bodyMedium
-                    ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+    // The file name field sits directly above the footer; without this the
+    // keyboard covers it, since bottom sheets do not avoid insets on their
+    // own.
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom,
+      ),
+      child: SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            BottomSheetHeader(title: tr.title),
+            if (widget.bird.ringNumber != null)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+                child: Text(
+                  widget.bird.ringNumber!,
+                  style: theme.textTheme.bodyMedium
+                      ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+                ),
               ),
-            ),
-          _SectionLabel(text: tr.type_label),
-          Flexible(
-            child: SingleChildScrollView(
-              child: RadioGroup<BirdDocumentType>(
-                groupValue: _type,
-                onChanged: (type) {
-                  if (type != null) _selectType(type);
-                },
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    for (final type in BirdDocumentType.values)
-                      RadioListTile<BirdDocumentType>(
-                        value: type,
-                        secondary: Icon(type.icon),
-                        title: Text(type.label(context.tr)),
-                        subtitle: Text(type.description(context.tr)),
-                      ),
-                  ],
+            _SectionLabel(text: tr.type_label),
+            Flexible(
+              child: SingleChildScrollView(
+                child: RadioGroup<BirdDocumentType>(
+                  groupValue: _type,
+                  onChanged: (type) {
+                    if (type != null) _selectType(type);
+                  },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      for (final type in BirdDocumentType.values)
+                        RadioListTile<BirdDocumentType>(
+                          value: type,
+                          secondary: Icon(type.icon),
+                          title: Text(type.label(context.tr)),
+                          subtitle: Text(type.description(context.tr)),
+                        ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          if (_profiles.isNotEmpty) ...[
+            if (_profiles.isNotEmpty) ...[
+              const SizedBox(height: 12),
+              _SectionLabel(text: context.tr.export.profile_label),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
+                child: DropdownButtonFormField<String?>(
+                  initialValue: _profile?.id,
+                  items: [
+                    for (final profile in _profiles)
+                      DropdownMenuItem(
+                        value: profile.id,
+                        child: Text(profile.name),
+                      ),
+                    DropdownMenuItem(
+                      child: Text(context.tr.export.header.none),
+                    ),
+                  ],
+                  onChanged: (id) => setState(
+                    () => _profile = id == null
+                        ? null
+                        : _profiles.firstWhere((p) => p.id == id),
+                  ),
+                ),
+              ),
+            ],
             const SizedBox(height: 12),
-            _SectionLabel(text: context.tr.export.profile_label),
+            _SectionLabel(text: context.tr.export.file_name_label),
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
-              child: DropdownButtonFormField<String?>(
-                initialValue: _profile?.id,
-                items: [
-                  for (final profile in _profiles)
-                    DropdownMenuItem(
-                      value: profile.id,
-                      child: Text(profile.name),
-                    ),
-                  DropdownMenuItem(
-                    child: Text(context.tr.export.header.none),
+              child: TextField(
+                controller: _fileName,
+                textInputAction: TextInputAction.done,
+                decoration: const InputDecoration(
+                  suffixText: '.pdf',
+                  isDense: true,
+                ),
+              ),
+            ),
+            BottomSheetFooter(
+              primaryButtonLabel: tr.action,
+              onPrimaryButton: () => Navigator.of(context).pop(
+                (
+                  type: _type,
+                  profile: _profile,
+                  fileName: ExportFileName.sanitize(
+                    _fileName.text,
+                    fallback: _suggestion ?? _suggestionFor(_type),
                   ),
-                ],
-                onChanged: (id) => setState(
-                  () => _profile = id == null
-                      ? null
-                      : _profiles.firstWhere((p) => p.id == id),
                 ),
               ),
             ),
           ],
-          const SizedBox(height: 12),
-          _SectionLabel(text: context.tr.export.file_name_label),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
-            child: TextField(
-              controller: _fileName,
-              textInputAction: TextInputAction.done,
-              decoration: const InputDecoration(
-                suffixText: '.pdf',
-                isDense: true,
-              ),
-            ),
-          ),
-          BottomSheetFooter(
-            primaryButtonLabel: tr.action,
-            onPrimaryButton: () => Navigator.of(context).pop(
-              (
-                type: _type,
-                profile: _profile,
-                fileName: ExportFileName.sanitize(
-                  _fileName.text,
-                  fallback: _suggestion ?? _suggestionFor(_type),
-                ),
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
