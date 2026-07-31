@@ -416,8 +416,6 @@ class _TranslationsSpeciesEn extends TranslationsSpeciesDe {
   @override
   String get lifecycle_hint => 'Used automatically for hatch and fledge forecasts.';
   @override
-  late final _TranslationsSpeciesImageEn image = _TranslationsSpeciesImageEn._(_root);
-  @override
   String lifecycle_label_total({required Object Total}) => '${Total} DAYS TOTAL';
   @override
   String get chick_until_fledge => 'Chick until fledging';
@@ -435,6 +433,12 @@ class _TranslationsSpeciesEn extends TranslationsSpeciesDe {
   String get endangered_hint => 'Marks species that are protected or considered endangered.';
   @override
   String get endangered_not => 'Not endangered';
+  @override
+  String get suggestions => 'Suggestions';
+  @override
+  String get incubation_found => 'Incubation period applied';
+  @override
+  String get incubation_missing => 'No incubation period found – please enter it yourself.';
   @override
   String get scientific_name => 'Scientific name';
   @override
@@ -1990,33 +1994,6 @@ class _TranslationsSpeciesSectionEn extends TranslationsSpeciesSectionDe {
   String get icon => 'Icon';
   @override
   String get notes => 'Notes';
-}
-
-// Path: species.image
-class _TranslationsSpeciesImageEn extends TranslationsSpeciesImageDe {
-  _TranslationsSpeciesImageEn._(TranslationsEn root)
-      : this._root = root,
-        super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get section => 'Image';
-  @override
-  String get search => 'Search image';
-  @override
-  String get search_another => 'Search another image';
-  @override
-  String get remove => 'Remove';
-  @override
-  String get no_results => 'No images found';
-  @override
-  String get loading => 'Searching images…';
-  @override
-  String get picker_title => 'Select image';
-  @override
-  String get name_required_hint => 'Enter a name first';
 }
 
 // Path: species.stats

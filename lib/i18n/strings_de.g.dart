@@ -427,8 +427,6 @@ class TranslationsSpeciesDe {
   /// de: 'Wird automatisch für Schlupf- und Ausflugs-Prognosen verwendet.'
   String get lifecycle_hint => 'Wird automatisch für Schlupf- und Ausflugs-Prognosen verwendet.';
 
-  late final TranslationsSpeciesImageDe image = TranslationsSpeciesImageDe.internal(_root);
-
   /// de: '{{total}} TAGE GESAMT'
   String lifecycle_label_total({required Object Total}) => '${Total} TAGE GESAMT';
 
@@ -455,6 +453,15 @@ class TranslationsSpeciesDe {
 
   /// de: 'Keine gefährdete Art'
   String get endangered_not => 'Keine gefährdete Art';
+
+  /// de: 'Vorschläge'
+  String get suggestions => 'Vorschläge';
+
+  /// de: 'Brutdauer übernommen'
+  String get incubation_found => 'Brutdauer übernommen';
+
+  /// de: 'Keine Brutdauer gefunden – bitte selbst eintragen.'
+  String get incubation_missing => 'Keine Brutdauer gefunden – bitte selbst eintragen.';
 
   /// de: 'Wissenschaftlicher Name'
   String get scientific_name => 'Wissenschaftlicher Name';
@@ -2232,39 +2239,6 @@ class TranslationsSpeciesSectionDe {
 
   /// de: 'Notizen'
   String get notes => 'Notizen';
-}
-
-// Path: species.image
-class TranslationsSpeciesImageDe {
-  TranslationsSpeciesImageDe.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// de: 'Bild'
-  String get section => 'Bild';
-
-  /// de: 'Bild suchen'
-  String get search => 'Bild suchen';
-
-  /// de: 'Anderes Bild suchen'
-  String get search_another => 'Anderes Bild suchen';
-
-  /// de: 'Entfernen'
-  String get remove => 'Entfernen';
-
-  /// de: 'Keine Bilder gefunden'
-  String get no_results => 'Keine Bilder gefunden';
-
-  /// de: 'Bilder werden gesucht…'
-  String get loading => 'Bilder werden gesucht…';
-
-  /// de: 'Bild auswählen'
-  String get picker_title => 'Bild auswählen';
-
-  /// de: 'Erst Name eingeben'
-  String get name_required_hint => 'Erst Name eingeben';
 }
 
 // Path: species.stats

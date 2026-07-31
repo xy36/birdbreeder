@@ -56,6 +56,7 @@ class SpeciesDetailPage extends StatelessWidget {
                         imageUrl: current.imageUrl,
                         name: current.name,
                         size: 96,
+                        openLightbox: true,
                       ),
                       if (totalDays > 0)
                         Expanded(
@@ -267,58 +268,26 @@ class _LifecycleCard extends StatelessWidget {
               height: 36,
               child: Row(
                 children: [
-                  Expanded(
-                    flex: incub,
-                    child: ColoredBox(
-                      color: context.appColors.sexFemale.withValues(
-                        alpha: 0.18,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            AppIcons.egg,
-                            size: 14,
-                            color: context.appColors.sexFemale,
-                          ),
-                          const SizedBox(width: 6),
-                          Text(
-                            speciesTr.incubation,
-                            style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w700,
-                              color: context.appColors.sexFemale,
-                            ),
-                          ),
-                        ],
-                      ),
+                  // Each phase only claims a share once it has a value, so a
+                  // species with just one of the two durations still reads as
+                  // a full bar rather than a stripe with an empty remainder.
+                  if (incub > 0)
+                    _LifecycleSegment(
+                      flex: incub,
+                      icon: AppIcons.egg,
+                      label: speciesTr.incubation,
+                      background:
+                          context.appColors.sexFemale.withValues(alpha: 0.18),
+                      foreground: context.appColors.sexFemale,
                     ),
-                  ),
-                  Expanded(
-                    flex: fledge,
-                    child: ColoredBox(
-                      color: cs.tertiaryContainer,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            AppIcons.pets,
-                            size: 14,
-                            color: cs.onTertiaryContainer,
-                          ),
-                          const SizedBox(width: 6),
-                          Text(
-                            speciesTr.chick_until_fledge,
-                            style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w700,
-                              color: cs.onTertiaryContainer,
-                            ),
-                          ),
-                        ],
-                      ),
+                  if (fledge > 0)
+                    _LifecycleSegment(
+                      flex: fledge,
+                      icon: AppIcons.pets,
+                      label: speciesTr.chick_until_fledge,
+                      background: cs.tertiaryContainer,
+                      foreground: cs.onTertiaryContainer,
                     ),
-                  ),
                 ],
               ),
             ),
@@ -326,37 +295,86 @@ class _LifecycleCard extends StatelessWidget {
           const SizedBox(height: 6),
           Row(
             children: [
-              Expanded(
-                flex: incub,
-                child: Text(
-                  speciesTr.hatch_label(Day: incub),
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    fontFamily: 'monospace',
-                    fontSize: 9,
-                    fontWeight: FontWeight.w600,
-                    color: cs.onSurfaceVariant,
-                  ),
+              if (incub > 0)
+                Expanded(
+                  flex: incub,
+                  child: _DayMark(text: speciesTr.hatch_label(Day: incub)),
                 ),
-              ),
-              const SizedBox(width: 4),
-              Expanded(
-                flex: fledge,
-                child: Text(
-                  speciesTr.fledge_label(Day: total),
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    fontFamily: 'monospace',
-                    fontSize: 9,
-                    fontWeight: FontWeight.w600,
-                    color: cs.onSurfaceVariant,
-                  ),
+              if (incub > 0 && fledge > 0) const SizedBox(width: 4),
+              if (fledge > 0)
+                Expanded(
+                  flex: fledge,
+                  child: _DayMark(text: speciesTr.fledge_label(Day: total)),
                 ),
-              ),
             ],
           ),
         ],
       ),
     );
   }
+}
+
+/// One coloured phase of the lifecycle bar, sized by its share in days.
+class _LifecycleSegment extends StatelessWidget {
+  const _LifecycleSegment({
+    required this.flex,
+    required this.icon,
+    required this.label,
+    required this.background,
+    required this.foreground,
+  });
+
+  final int flex;
+  final IconData icon;
+  final String label;
+  final Color background;
+  final Color foreground;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: flex,
+      child: ColoredBox(
+        color: background,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, size: 14, color: foreground),
+            const SizedBox(width: 6),
+            Flexible(
+              child: Text(
+                label,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w700,
+                  color: foreground,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Day number printed under the end of a lifecycle phase.
+class _DayMark extends StatelessWidget {
+  const _DayMark({required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) => Text(
+        text,
+        textAlign: TextAlign.right,
+        style: TextStyle(
+          fontFamily: 'monospace',
+          fontSize: 9,
+          fontWeight: FontWeight.w600,
+          color: Theme.of(context).colorScheme.onSurfaceVariant,
+        ),
+      );
 }

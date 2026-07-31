@@ -1,4 +1,5 @@
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/shared/widgets/image_lightbox.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 /// Avatar for a Species. Shows the network image if `imageUrl` is set, else
@@ -8,12 +9,19 @@ class SpeciesAvatar extends StatelessWidget {
     required this.imageUrl,
     required this.name,
     this.size = 44,
+    this.openLightbox = false,
     super.key,
   });
 
   final String? imageUrl;
   final String? name;
   final double size;
+
+  /// Whether tapping the avatar opens the image fullscreen.
+  ///
+  /// Off by default: in lists the row already owns the tap, and stealing it
+  /// would break navigating into the species.
+  final bool openLightbox;
 
   static String initialsFor(String? name) {
     final n = (name ?? '').trim();
@@ -30,11 +38,12 @@ class SpeciesAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final radius = BorderRadius.circular(size * 0.27);
-    if (imageUrl != null && imageUrl!.isNotEmpty) {
-      return ClipRRect(
+    final url = imageUrl;
+    if (url != null && url.isNotEmpty) {
+      final image = ClipRRect(
         borderRadius: radius,
         child: CachedNetworkImage(
-          imageUrl: imageUrl!,
+          imageUrl: url,
           width: size,
           height: size,
           fit: BoxFit.cover,
@@ -45,6 +54,15 @@ class SpeciesAvatar extends StatelessWidget {
           ),
           errorWidget: (_, __, ___) => _initialsFallback(cs),
         ),
+      );
+      if (!openLightbox) return image;
+      return GestureDetector(
+        onTap: () => ImageLightbox.showUrls(
+          context,
+          urls: [url],
+          initialIndex: 0,
+        ),
+        child: image,
       );
     }
     return _initialsFallback(cs);

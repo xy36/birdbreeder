@@ -177,62 +177,67 @@ class SpeciesCard extends StatelessWidget {
                     height: 24,
                     child: Row(
                       children: [
-                        Expanded(
-                          flex: incub,
-                          child: Container(
-                            color: context.appColors.sexFemale.withValues(
-                              alpha: 0.18,
-                            ),
-                            alignment: Alignment.center,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  AppIcons.egg,
-                                  size: 11,
-                                  color: context.appColors.sexFemale,
-                                ),
-                                const SizedBox(width: 3),
-                                Text(
-                                  '${incub}T',
-                                  style: TextStyle(
-                                    fontFamily: 'monospace',
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w700,
+                        // Only phases with a value claim a share, so a species
+                        // that has just one of the two durations still fills
+                        // the bar instead of leaving a blank remainder.
+                        if (incub > 0)
+                          Expanded(
+                            flex: incub,
+                            child: Container(
+                              color: context.appColors.sexFemale.withValues(
+                                alpha: 0.18,
+                              ),
+                              alignment: Alignment.center,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    AppIcons.egg,
+                                    size: 11,
                                     color: context.appColors.sexFemale,
                                   ),
-                                ),
-                              ],
+                                  const SizedBox(width: 3),
+                                  Text(
+                                    '${incub}T',
+                                    style: TextStyle(
+                                      fontFamily: 'monospace',
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w700,
+                                      color: context.appColors.sexFemale,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          flex: fledge,
-                          child: Container(
-                            color: cs.tertiaryContainer,
-                            alignment: Alignment.center,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  AppIcons.pets,
-                                  size: 11,
-                                  color: cs.onTertiaryContainer,
-                                ),
-                                const SizedBox(width: 3),
-                                Text(
-                                  '${fledge}T',
-                                  style: TextStyle(
-                                    fontFamily: 'monospace',
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w700,
+                        if (fledge > 0)
+                          Expanded(
+                            flex: fledge,
+                            child: Container(
+                              color: cs.tertiaryContainer,
+                              alignment: Alignment.center,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    AppIcons.pets,
+                                    size: 11,
                                     color: cs.onTertiaryContainer,
                                   ),
-                                ),
-                              ],
+                                  const SizedBox(width: 3),
+                                  Text(
+                                    '${fledge}T',
+                                    style: TextStyle(
+                                      fontFamily: 'monospace',
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w700,
+                                      color: cs.onTertiaryContainer,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
                       ],
                     ),
                   ),

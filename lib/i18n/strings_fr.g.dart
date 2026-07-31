@@ -416,8 +416,6 @@ class _TranslationsSpeciesFr extends TranslationsSpeciesDe {
   @override
   String get lifecycle_hint => 'Utilisé automatiquement pour les prévisions d\'éclosion et d\'envol.';
   @override
-  late final _TranslationsSpeciesImageFr image = _TranslationsSpeciesImageFr._(_root);
-  @override
   String lifecycle_label_total({required Object Total}) => '${Total} JOURS AU TOTAL';
   @override
   String get chick_until_fledge => 'Poussin jusqu\'à l\'envol';
@@ -435,6 +433,12 @@ class _TranslationsSpeciesFr extends TranslationsSpeciesDe {
   String get endangered_hint => 'Signale les espèces protégées ou considérées comme menacées.';
   @override
   String get endangered_not => 'Espèce non menacée';
+  @override
+  String get suggestions => 'Suggestions';
+  @override
+  String get incubation_found => 'Durée d\'incubation reprise';
+  @override
+  String get incubation_missing => 'Aucune durée d\'incubation trouvée – veuillez la saisir vous-même.';
   @override
   String get scientific_name => 'Nom scientifique';
   @override
@@ -1992,33 +1996,6 @@ class _TranslationsSpeciesSectionFr extends TranslationsSpeciesSectionDe {
   String get icon => 'Icône';
   @override
   String get notes => 'Notes';
-}
-
-// Path: species.image
-class _TranslationsSpeciesImageFr extends TranslationsSpeciesImageDe {
-  _TranslationsSpeciesImageFr._(TranslationsFr root)
-      : this._root = root,
-        super.internal(root);
-
-  final TranslationsFr _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get section => 'Image';
-  @override
-  String get search => 'Rechercher une image';
-  @override
-  String get search_another => 'Rechercher une autre image';
-  @override
-  String get remove => 'Supprimer';
-  @override
-  String get no_results => 'Aucune image trouvée';
-  @override
-  String get loading => 'Recherche d\'images…';
-  @override
-  String get picker_title => 'Choisir une image';
-  @override
-  String get name_required_hint => 'Saisissez d\'abord un nom';
 }
 
 // Path: species.stats

@@ -416,8 +416,6 @@ class _TranslationsSpeciesEs extends TranslationsSpeciesDe {
   @override
   String get lifecycle_hint => 'Se usa automáticamente para las previsiones de eclosión y vuelo.';
   @override
-  late final _TranslationsSpeciesImageEs image = _TranslationsSpeciesImageEs._(_root);
-  @override
   String lifecycle_label_total({required Object Total}) => '${Total} DÍAS EN TOTAL';
   @override
   String get chick_until_fledge => 'Pollo hasta el vuelo';
@@ -435,6 +433,12 @@ class _TranslationsSpeciesEs extends TranslationsSpeciesDe {
   String get endangered_hint => 'Marca especies protegidas o consideradas amenazadas.';
   @override
   String get endangered_not => 'Especie no amenazada';
+  @override
+  String get suggestions => 'Sugerencias';
+  @override
+  String get incubation_found => 'Periodo de incubación aplicado';
+  @override
+  String get incubation_missing => 'No se encontró el periodo de incubación: introdúcelo tú mismo.';
   @override
   String get scientific_name => 'Nombre científico';
   @override
@@ -1991,33 +1995,6 @@ class _TranslationsSpeciesSectionEs extends TranslationsSpeciesSectionDe {
   String get icon => 'Icono';
   @override
   String get notes => 'Notas';
-}
-
-// Path: species.image
-class _TranslationsSpeciesImageEs extends TranslationsSpeciesImageDe {
-  _TranslationsSpeciesImageEs._(TranslationsEs root)
-      : this._root = root,
-        super.internal(root);
-
-  final TranslationsEs _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get section => 'Imagen';
-  @override
-  String get search => 'Buscar imagen';
-  @override
-  String get search_another => 'Buscar otra imagen';
-  @override
-  String get remove => 'Quitar';
-  @override
-  String get no_results => 'No se han encontrado imágenes';
-  @override
-  String get loading => 'Buscando imágenes…';
-  @override
-  String get picker_title => 'Seleccionar imagen';
-  @override
-  String get name_required_hint => 'Introduce primero un nombre';
 }
 
 // Path: species.stats

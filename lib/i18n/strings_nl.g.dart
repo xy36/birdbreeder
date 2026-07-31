@@ -416,8 +416,6 @@ class _TranslationsSpeciesNl extends TranslationsSpeciesDe {
   @override
   String get lifecycle_hint => 'Wordt automatisch gebruikt voor voorspellingen van uitkomen en uitvliegen.';
   @override
-  late final _TranslationsSpeciesImageNl image = _TranslationsSpeciesImageNl._(_root);
-  @override
   String lifecycle_label_total({required Object Total}) => '${Total} DAGEN TOTAAL';
   @override
   String get chick_until_fledge => 'Jong tot uitvliegen';
@@ -435,6 +433,12 @@ class _TranslationsSpeciesNl extends TranslationsSpeciesDe {
   String get endangered_hint => 'Markeert soorten die beschermd zijn of als bedreigd gelden.';
   @override
   String get endangered_not => 'Geen bedreigde soort';
+  @override
+  String get suggestions => 'Suggesties';
+  @override
+  String get incubation_found => 'Broedduur overgenomen';
+  @override
+  String get incubation_missing => 'Geen broedduur gevonden – voer deze zelf in.';
   @override
   String get scientific_name => 'Wetenschappelijke naam';
   @override
@@ -1991,33 +1995,6 @@ class _TranslationsSpeciesSectionNl extends TranslationsSpeciesSectionDe {
   String get icon => 'Pictogram';
   @override
   String get notes => 'Notities';
-}
-
-// Path: species.image
-class _TranslationsSpeciesImageNl extends TranslationsSpeciesImageDe {
-  _TranslationsSpeciesImageNl._(TranslationsNl root)
-      : this._root = root,
-        super.internal(root);
-
-  final TranslationsNl _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get section => 'Afbeelding';
-  @override
-  String get search => 'Afbeelding zoeken';
-  @override
-  String get search_another => 'Andere afbeelding zoeken';
-  @override
-  String get remove => 'Verwijderen';
-  @override
-  String get no_results => 'Geen afbeeldingen gevonden';
-  @override
-  String get loading => 'Afbeeldingen worden gezocht…';
-  @override
-  String get picker_title => 'Afbeelding kiezen';
-  @override
-  String get name_required_hint => 'Voer eerst een naam in';
 }
 
 // Path: species.stats

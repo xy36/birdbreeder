@@ -9,17 +9,24 @@ class Stepper2 extends StatelessWidget {
     super.key,
     this.min = 0,
     this.max = 999,
+    this.startValue = 1,
   });
 
-  final int value;
+  /// Current value, or null when nothing is set yet — rendered as a dash so
+  /// "unknown" stays distinguishable from a deliberate zero.
+  final int? value;
   final ValueChanged<int> onChanged;
   final String unit;
   final int min;
   final int max;
 
+  /// Value the first tap on "+" jumps to while [value] is null.
+  final int startValue;
+
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
+    final current = value;
     return Container(
       height: 48,
       padding: const EdgeInsets.all(4),
@@ -32,17 +39,17 @@ class Stepper2 extends StatelessWidget {
         children: [
           _StepBtn(
             icon: AppIcons.removeIcon,
-            onTap: () => onChanged(value - 1),
+            onTap: current == null ? null : () => onChanged(current - 1),
           ),
           Expanded(
             child: Center(
               child: Text(
-                '$value',
+                current == null ? '—' : '$current',
                 style: TextStyle(
                   fontFamily: 'monospace',
                   fontSize: 22,
                   fontWeight: FontWeight.w700,
-                  color: cs.onSurface,
+                  color: current == null ? cs.onSurfaceVariant : cs.onSurface,
                   letterSpacing: 0.3,
                 ),
               ),
@@ -62,7 +69,7 @@ class Stepper2 extends StatelessWidget {
           ),
           _StepBtn(
             icon: AppIcons.add,
-            onTap: () => onChanged(value + 1),
+            onTap: () => onChanged(current == null ? startValue : current + 1),
           ),
         ],
       ),

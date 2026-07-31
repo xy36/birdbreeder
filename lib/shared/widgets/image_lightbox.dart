@@ -1,30 +1,66 @@
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/hash_image.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-/// Fullscreen image viewer: swipe left/right through a set of image hashes,
-/// pinch to zoom. Open via [ImageLightbox.show].
+/// Fullscreen image viewer: swipe left/right through a set of images, pinch
+/// to zoom.
+///
+/// Every screen that displays an image should make it openable here, so
+/// tapping a picture behaves the same everywhere. Open via
+/// [ImageLightbox.show] for local blobs or [ImageLightbox.showUrls] for
+/// remote ones.
 class ImageLightbox extends StatefulWidget {
   const ImageLightbox({
-    required this.hashes,
+    required this.images,
     required this.initialIndex,
+    this.network = false,
     super.key,
   });
 
-  final List<String> hashes;
+  /// Local `ImageStore` hashes, or remote URLs when [network] is set.
+  final List<String> images;
+
   final int initialIndex;
 
+  final bool network;
+
+  /// Opens the lightbox on locally stored image blobs.
   static Future<void> show(
     BuildContext context, {
     required List<String> hashes,
     required int initialIndex,
+  }) =>
+      _push(context, images: hashes, initialIndex: initialIndex);
+
+  /// Opens the lightbox on remote images, e.g. a species photo.
+  static Future<void> showUrls(
+    BuildContext context, {
+    required List<String> urls,
+    required int initialIndex,
+  }) =>
+      _push(
+        context,
+        images: urls,
+        initialIndex: initialIndex,
+        network: true,
+      );
+
+  static Future<void> _push(
+    BuildContext context, {
+    required List<String> images,
+    required int initialIndex,
+    bool network = false,
   }) {
     return Navigator.of(context).push(
       PageRouteBuilder<void>(
         opaque: false,
         barrierColor: Colors.black,
-        pageBuilder: (_, __, ___) =>
-            ImageLightbox(hashes: hashes, initialIndex: initialIndex),
+        pageBuilder: (_, __, ___) => ImageLightbox(
+          images: images,
+          initialIndex: initialIndex,
+          network: network,
+        ),
       ),
     );
   }
@@ -52,9 +88,12 @@ class _ImageLightboxState extends State<ImageLightbox> {
         children: [
           PageView.builder(
             controller: _controller,
-            itemCount: widget.hashes.length,
+            itemCount: widget.images.length,
             onPageChanged: (i) => setState(() => _index = i),
-            itemBuilder: (context, i) => _ZoomableImage(hash: widget.hashes[i]),
+            itemBuilder: (context, i) => _ZoomableImage(
+              image: widget.images[i],
+              network: widget.network,
+            ),
           ),
           SafeArea(
             child: Align(
@@ -65,14 +104,14 @@ class _ImageLightboxState extends State<ImageLightbox> {
               ),
             ),
           ),
-          if (widget.hashes.length > 1)
+          if (widget.images.length > 1)
             SafeArea(
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 16),
                   child: Text(
-                    '${_index + 1} / ${widget.hashes.length}',
+                    '${_index + 1} / ${widget.images.length}',
                     style: const TextStyle(color: Colors.white, fontSize: 13),
                   ),
                 ),
@@ -89,9 +128,12 @@ class _ImageLightboxState extends State<ImageLightbox> {
 /// Double-tapping zooms to 2.5x centered on the tap point; double-tapping again
 /// (or when already zoomed) resets to fit. Pinch zoom stays available.
 class _ZoomableImage extends StatefulWidget {
-  const _ZoomableImage({required this.hash});
+  const _ZoomableImage({required this.image, required this.network});
 
-  final String hash;
+  /// An `ImageStore` hash, or a URL when [network] is set.
+  final String image;
+
+  final bool network;
 
   @override
   State<_ZoomableImage> createState() => _ZoomableImageState();
@@ -128,7 +170,20 @@ class _ZoomableImageState extends State<_ZoomableImage> {
         minScale: 1,
         maxScale: 5,
         child: Center(
-          child: HashImage(hash: widget.hash, fit: BoxFit.contain),
+          child: widget.network
+              ? CachedNetworkImage(
+                  imageUrl: widget.image,
+                  fit: BoxFit.contain,
+                  placeholder: (_, __) => const Center(
+                    child: CircularProgressIndicator(color: Colors.white),
+                  ),
+                  errorWidget: (_, __, ___) => const Icon(
+                    AppIcons.brokenImageOutlined,
+                    color: Colors.white,
+                    size: 48,
+                  ),
+                )
+              : HashImage(hash: widget.image, fit: BoxFit.contain),
         ),
       ),
     );
