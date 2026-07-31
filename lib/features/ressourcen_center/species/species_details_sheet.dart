@@ -81,6 +81,16 @@ class _SpeciesDetailsSheetState extends State<SpeciesDetailsSheet> {
                     ),
                   ),
                   FieldHint(text: speciesTr.latin_hint),
+                  const SizedBox(height: 6),
+                  SwitchListTile(
+                    contentPadding: EdgeInsets.zero,
+                    value: _species.endangered,
+                    title: Text(speciesTr.endangered),
+                    subtitle: Text(speciesTr.endangered_hint),
+                    onChanged: (v) => setState(
+                      () => _species = _species.copyWith(endangered: v),
+                    ),
+                  ),
                   EditSectionDivider(
                     icon: AppIcons.scheduleOutlined,
                     label: speciesTr.section.lifecycle,

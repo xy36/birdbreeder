@@ -20,6 +20,9 @@ mixin _$Species {
   String? get imageUrl;
   int? get incubationDays;
   int? get fledgeDays;
+
+  /// Whether the species is protected or considered endangered.
+  bool get endangered;
   String? get notes;
   DateTime? get created;
   DateTime? get updated;
@@ -45,6 +48,8 @@ mixin _$Species {
                 other.incubationDays == incubationDays) &&
             (identical(other.fledgeDays, fledgeDays) ||
                 other.fledgeDays == fledgeDays) &&
+            (identical(other.endangered, endangered) ||
+                other.endangered == endangered) &&
             (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.created, created) || other.created == created) &&
             (identical(other.updated, updated) || other.updated == updated));
@@ -52,11 +57,11 @@ mixin _$Species {
 
   @override
   int get hashCode => Object.hash(runtimeType, id, name, latName, imageUrl,
-      incubationDays, fledgeDays, notes, created, updated);
+      incubationDays, fledgeDays, endangered, notes, created, updated);
 
   @override
   String toString() {
-    return 'Species(id: $id, name: $name, latName: $latName, imageUrl: $imageUrl, incubationDays: $incubationDays, fledgeDays: $fledgeDays, notes: $notes, created: $created, updated: $updated)';
+    return 'Species(id: $id, name: $name, latName: $latName, imageUrl: $imageUrl, incubationDays: $incubationDays, fledgeDays: $fledgeDays, endangered: $endangered, notes: $notes, created: $created, updated: $updated)';
   }
 }
 
@@ -72,6 +77,7 @@ abstract mixin class $SpeciesCopyWith<$Res> {
       String? imageUrl,
       int? incubationDays,
       int? fledgeDays,
+      bool endangered,
       String? notes,
       DateTime? created,
       DateTime? updated});
@@ -95,6 +101,7 @@ class _$SpeciesCopyWithImpl<$Res> implements $SpeciesCopyWith<$Res> {
     Object? imageUrl = freezed,
     Object? incubationDays = freezed,
     Object? fledgeDays = freezed,
+    Object? endangered = null,
     Object? notes = freezed,
     Object? created = freezed,
     Object? updated = freezed,
@@ -124,6 +131,10 @@ class _$SpeciesCopyWithImpl<$Res> implements $SpeciesCopyWith<$Res> {
           ? _self.fledgeDays
           : fledgeDays // ignore: cast_nullable_to_non_nullable
               as int?,
+      endangered: null == endangered
+          ? _self.endangered
+          : endangered // ignore: cast_nullable_to_non_nullable
+              as bool,
       notes: freezed == notes
           ? _self.notes
           : notes // ignore: cast_nullable_to_non_nullable
@@ -240,6 +251,7 @@ extension SpeciesPatterns on Species {
             String? imageUrl,
             int? incubationDays,
             int? fledgeDays,
+            bool endangered,
             String? notes,
             DateTime? created,
             DateTime? updated)?
@@ -256,6 +268,7 @@ extension SpeciesPatterns on Species {
             _that.imageUrl,
             _that.incubationDays,
             _that.fledgeDays,
+            _that.endangered,
             _that.notes,
             _that.created,
             _that.updated);
@@ -286,6 +299,7 @@ extension SpeciesPatterns on Species {
             String? imageUrl,
             int? incubationDays,
             int? fledgeDays,
+            bool endangered,
             String? notes,
             DateTime? created,
             DateTime? updated)
@@ -301,6 +315,7 @@ extension SpeciesPatterns on Species {
             _that.imageUrl,
             _that.incubationDays,
             _that.fledgeDays,
+            _that.endangered,
             _that.notes,
             _that.created,
             _that.updated);
@@ -330,6 +345,7 @@ extension SpeciesPatterns on Species {
             String? imageUrl,
             int? incubationDays,
             int? fledgeDays,
+            bool endangered,
             String? notes,
             DateTime? created,
             DateTime? updated)?
@@ -345,6 +361,7 @@ extension SpeciesPatterns on Species {
             _that.imageUrl,
             _that.incubationDays,
             _that.fledgeDays,
+            _that.endangered,
             _that.notes,
             _that.created,
             _that.updated);
@@ -364,6 +381,7 @@ class _Species implements Species {
       this.imageUrl,
       this.incubationDays,
       this.fledgeDays,
+      this.endangered = false,
       this.notes,
       this.created,
       this.updated});
@@ -380,6 +398,11 @@ class _Species implements Species {
   final int? incubationDays;
   @override
   final int? fledgeDays;
+
+  /// Whether the species is protected or considered endangered.
+  @override
+  @JsonKey()
+  final bool endangered;
   @override
   final String? notes;
   @override
@@ -409,6 +432,8 @@ class _Species implements Species {
                 other.incubationDays == incubationDays) &&
             (identical(other.fledgeDays, fledgeDays) ||
                 other.fledgeDays == fledgeDays) &&
+            (identical(other.endangered, endangered) ||
+                other.endangered == endangered) &&
             (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.created, created) || other.created == created) &&
             (identical(other.updated, updated) || other.updated == updated));
@@ -416,11 +441,11 @@ class _Species implements Species {
 
   @override
   int get hashCode => Object.hash(runtimeType, id, name, latName, imageUrl,
-      incubationDays, fledgeDays, notes, created, updated);
+      incubationDays, fledgeDays, endangered, notes, created, updated);
 
   @override
   String toString() {
-    return 'Species(id: $id, name: $name, latName: $latName, imageUrl: $imageUrl, incubationDays: $incubationDays, fledgeDays: $fledgeDays, notes: $notes, created: $created, updated: $updated)';
+    return 'Species(id: $id, name: $name, latName: $latName, imageUrl: $imageUrl, incubationDays: $incubationDays, fledgeDays: $fledgeDays, endangered: $endangered, notes: $notes, created: $created, updated: $updated)';
   }
 }
 
@@ -437,6 +462,7 @@ abstract mixin class _$SpeciesCopyWith<$Res> implements $SpeciesCopyWith<$Res> {
       String? imageUrl,
       int? incubationDays,
       int? fledgeDays,
+      bool endangered,
       String? notes,
       DateTime? created,
       DateTime? updated});
@@ -460,6 +486,7 @@ class __$SpeciesCopyWithImpl<$Res> implements _$SpeciesCopyWith<$Res> {
     Object? imageUrl = freezed,
     Object? incubationDays = freezed,
     Object? fledgeDays = freezed,
+    Object? endangered = null,
     Object? notes = freezed,
     Object? created = freezed,
     Object? updated = freezed,
@@ -489,6 +516,10 @@ class __$SpeciesCopyWithImpl<$Res> implements _$SpeciesCopyWith<$Res> {
           ? _self.fledgeDays
           : fledgeDays // ignore: cast_nullable_to_non_nullable
               as int?,
+      endangered: null == endangered
+          ? _self.endangered
+          : endangered // ignore: cast_nullable_to_non_nullable
+              as bool,
       notes: freezed == notes
           ? _self.notes
           : notes // ignore: cast_nullable_to_non_nullable

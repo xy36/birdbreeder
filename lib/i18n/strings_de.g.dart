@@ -447,6 +447,15 @@ class TranslationsSpeciesDe {
   /// de: 'Lateinischer Artname für genaue Identifikation.'
   String get latin_hint => 'Lateinischer Artname für genaue Identifikation.';
 
+  /// de: 'Gefährdete Art'
+  String get endangered => 'Gefährdete Art';
+
+  /// de: 'Kennzeichnet Arten, die unter Schutz stehen oder als gefährdet gelten.'
+  String get endangered_hint => 'Kennzeichnet Arten, die unter Schutz stehen oder als gefährdet gelten.';
+
+  /// de: 'Keine gefährdete Art'
+  String get endangered_not => 'Keine gefährdete Art';
+
   /// de: 'Wissenschaftlicher Name'
   String get scientific_name => 'Wissenschaftlicher Name';
 

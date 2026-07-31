@@ -430,6 +430,12 @@ class _TranslationsSpeciesEs extends TranslationsSpeciesDe {
   @override
   String get latin_hint => 'Nombre latino de la especie para una identificación precisa.';
   @override
+  String get endangered => 'Especie amenazada';
+  @override
+  String get endangered_hint => 'Marca especies protegidas o consideradas amenazadas.';
+  @override
+  String get endangered_not => 'Especie no amenazada';
+  @override
   String get scientific_name => 'Nombre científico';
   @override
   String get empty => 'Sin especies';

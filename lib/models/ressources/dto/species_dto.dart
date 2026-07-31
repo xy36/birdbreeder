@@ -12,6 +12,10 @@ abstract class SpeciesDto with _$SpeciesDto {
     String? imageUrl,
     int? incubationDays,
     int? fledgeDays,
+
+    /// Defaults to false so backups written before the field existed
+    /// deserialize cleanly.
+    @Default(false) bool endangered,
     String? notes,
     String? user,
   }) = _SpeciesDto;

@@ -46,22 +46,28 @@ class SpeciesDetailPage extends StatelessWidget {
             Container(
               color: cs.surface,
               padding: const EdgeInsets.fromLTRB(16, 6, 16, 16),
-              child: Row(
-                spacing: 12,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Column(
                 children: [
-                  SpeciesAvatar(
-                    imageUrl: current.imageUrl,
-                    name: current.name,
-                    size: 96,
-                  ),
-                  if (totalDays > 0)
-                    Expanded(
-                      child: _LifecycleCard(
-                        incub: incub,
-                        fledge: fledge,
+                  Row(
+                    spacing: 12,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SpeciesAvatar(
+                        imageUrl: current.imageUrl,
+                        name: current.name,
+                        size: 96,
                       ),
-                    ),
+                      if (totalDays > 0)
+                        Expanded(
+                          child: _LifecycleCard(
+                            incub: incub,
+                            fledge: fledge,
+                          ),
+                        ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  _EndangeredStatus(endangered: current.endangered),
                 ],
               ),
             ),
@@ -173,6 +179,52 @@ class SpeciesDetailPage extends StatelessWidget {
           color: cs.onSurfaceVariant,
           fontStyle: FontStyle.italic,
         ),
+      ),
+    );
+  }
+}
+
+/// Conservation status of the species, always visible so "not endangered"
+/// reads as a stated fact rather than a missing badge.
+class _EndangeredStatus extends StatelessWidget {
+  const _EndangeredStatus({required this.endangered});
+
+  final bool endangered;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    final speciesTr = context.tr.species;
+    final warn = context.appColors.statusWarning;
+    final color = endangered ? warn : cs.onSurfaceVariant;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: endangered ? warn.withValues(alpha: 0.12) : cs.surface,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: endangered ? warn.withValues(alpha: 0.5) : cs.outlineVariant,
+        ),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            endangered ? AppIcons.warning : AppIcons.check,
+            size: 16,
+            color: color,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            endangered ? speciesTr.endangered : speciesTr.endangered_not,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w700,
+              color: color,
+            ),
+          ),
+        ],
       ),
     );
   }

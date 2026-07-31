@@ -4,6 +4,40 @@ import 'package:birdbreeder/models/ressources/entity/species.dart';
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/theme/app_colors.dart';
 
+/// Compact warning chip shown only for endangered species — an unmarked card
+/// simply is not endangered, the explicit status lives on the detail page.
+class _EndangeredChip extends StatelessWidget {
+  const _EndangeredChip();
+
+  @override
+  Widget build(BuildContext context) {
+    final warn = context.appColors.statusWarning;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+      decoration: BoxDecoration(
+        color: warn.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: warn.withValues(alpha: 0.5)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(AppIcons.warning, size: 11, color: warn),
+          const SizedBox(width: 4),
+          Text(
+            context.tr.species.endangered,
+            style: TextStyle(
+              fontSize: 10,
+              fontWeight: FontWeight.w700,
+              color: warn,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class SpeciesCard extends StatelessWidget {
   const SpeciesCard({
     required this.species,
@@ -69,6 +103,11 @@ class SpeciesCard extends StatelessWidget {
                                 color: cs.onSurfaceVariant,
                               ),
                             ),
+                          ),
+                        if (species.endangered)
+                          const Padding(
+                            padding: EdgeInsets.only(top: 4),
+                            child: _EndangeredChip(),
                           ),
                       ],
                     ),

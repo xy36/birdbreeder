@@ -5164,6 +5164,16 @@ class $SpeciesTableTable extends SpeciesTable
   late final GeneratedColumn<int> fledgeDays = GeneratedColumn<int>(
       'fledge_days', aliasedName, true,
       type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _endangeredMeta =
+      const VerificationMeta('endangered');
+  @override
+  late final GeneratedColumn<bool> endangered = GeneratedColumn<bool>(
+      'endangered', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('CHECK ("endangered" IN (0, 1))'),
+      defaultValue: const Constant(false));
   static const VerificationMeta _notesMeta = const VerificationMeta('notes');
   @override
   late final GeneratedColumn<String> notes = GeneratedColumn<String>(
@@ -5194,6 +5204,7 @@ class $SpeciesTableTable extends SpeciesTable
         imageUrl,
         incubationDays,
         fledgeDays,
+        endangered,
         notes,
         user,
         created,
@@ -5238,6 +5249,12 @@ class $SpeciesTableTable extends SpeciesTable
           fledgeDays.isAcceptableOrUnknown(
               data['fledge_days']!, _fledgeDaysMeta));
     }
+    if (data.containsKey('endangered')) {
+      context.handle(
+          _endangeredMeta,
+          endangered.isAcceptableOrUnknown(
+              data['endangered']!, _endangeredMeta));
+    }
     if (data.containsKey('notes')) {
       context.handle(
           _notesMeta, notes.isAcceptableOrUnknown(data['notes']!, _notesMeta));
@@ -5275,6 +5292,8 @@ class $SpeciesTableTable extends SpeciesTable
           .read(DriftSqlType.int, data['${effectivePrefix}incubation_days']),
       fledgeDays: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}fledge_days']),
+      endangered: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}endangered'])!,
       notes: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}notes']),
       user: attachedDatabase.typeMapping
@@ -5300,6 +5319,7 @@ class SpeciesTableData extends DataClass
   final String? imageUrl;
   final int? incubationDays;
   final int? fledgeDays;
+  final bool endangered;
   final String? notes;
   final String? user;
   final DateTime? created;
@@ -5311,6 +5331,7 @@ class SpeciesTableData extends DataClass
       this.imageUrl,
       this.incubationDays,
       this.fledgeDays,
+      required this.endangered,
       this.notes,
       this.user,
       this.created,
@@ -5334,6 +5355,7 @@ class SpeciesTableData extends DataClass
     if (!nullToAbsent || fledgeDays != null) {
       map['fledge_days'] = Variable<int>(fledgeDays);
     }
+    map['endangered'] = Variable<bool>(endangered);
     if (!nullToAbsent || notes != null) {
       map['notes'] = Variable<String>(notes);
     }
@@ -5365,6 +5387,7 @@ class SpeciesTableData extends DataClass
       fledgeDays: fledgeDays == null && nullToAbsent
           ? const Value.absent()
           : Value(fledgeDays),
+      endangered: Value(endangered),
       notes:
           notes == null && nullToAbsent ? const Value.absent() : Value(notes),
       user: user == null && nullToAbsent ? const Value.absent() : Value(user),
@@ -5387,6 +5410,7 @@ class SpeciesTableData extends DataClass
       imageUrl: serializer.fromJson<String?>(json['imageUrl']),
       incubationDays: serializer.fromJson<int?>(json['incubationDays']),
       fledgeDays: serializer.fromJson<int?>(json['fledgeDays']),
+      endangered: serializer.fromJson<bool>(json['endangered']),
       notes: serializer.fromJson<String?>(json['notes']),
       user: serializer.fromJson<String?>(json['user']),
       created: serializer.fromJson<DateTime?>(json['created']),
@@ -5403,6 +5427,7 @@ class SpeciesTableData extends DataClass
       'imageUrl': serializer.toJson<String?>(imageUrl),
       'incubationDays': serializer.toJson<int?>(incubationDays),
       'fledgeDays': serializer.toJson<int?>(fledgeDays),
+      'endangered': serializer.toJson<bool>(endangered),
       'notes': serializer.toJson<String?>(notes),
       'user': serializer.toJson<String?>(user),
       'created': serializer.toJson<DateTime?>(created),
@@ -5417,6 +5442,7 @@ class SpeciesTableData extends DataClass
           Value<String?> imageUrl = const Value.absent(),
           Value<int?> incubationDays = const Value.absent(),
           Value<int?> fledgeDays = const Value.absent(),
+          bool? endangered,
           Value<String?> notes = const Value.absent(),
           Value<String?> user = const Value.absent(),
           Value<DateTime?> created = const Value.absent(),
@@ -5429,6 +5455,7 @@ class SpeciesTableData extends DataClass
         incubationDays:
             incubationDays.present ? incubationDays.value : this.incubationDays,
         fledgeDays: fledgeDays.present ? fledgeDays.value : this.fledgeDays,
+        endangered: endangered ?? this.endangered,
         notes: notes.present ? notes.value : this.notes,
         user: user.present ? user.value : this.user,
         created: created.present ? created.value : this.created,
@@ -5445,6 +5472,8 @@ class SpeciesTableData extends DataClass
           : this.incubationDays,
       fledgeDays:
           data.fledgeDays.present ? data.fledgeDays.value : this.fledgeDays,
+      endangered:
+          data.endangered.present ? data.endangered.value : this.endangered,
       notes: data.notes.present ? data.notes.value : this.notes,
       user: data.user.present ? data.user.value : this.user,
       created: data.created.present ? data.created.value : this.created,
@@ -5461,6 +5490,7 @@ class SpeciesTableData extends DataClass
           ..write('imageUrl: $imageUrl, ')
           ..write('incubationDays: $incubationDays, ')
           ..write('fledgeDays: $fledgeDays, ')
+          ..write('endangered: $endangered, ')
           ..write('notes: $notes, ')
           ..write('user: $user, ')
           ..write('created: $created, ')
@@ -5471,7 +5501,7 @@ class SpeciesTableData extends DataClass
 
   @override
   int get hashCode => Object.hash(id, name, latName, imageUrl, incubationDays,
-      fledgeDays, notes, user, created, updated);
+      fledgeDays, endangered, notes, user, created, updated);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -5482,6 +5512,7 @@ class SpeciesTableData extends DataClass
           other.imageUrl == this.imageUrl &&
           other.incubationDays == this.incubationDays &&
           other.fledgeDays == this.fledgeDays &&
+          other.endangered == this.endangered &&
           other.notes == this.notes &&
           other.user == this.user &&
           other.created == this.created &&
@@ -5495,6 +5526,7 @@ class SpeciesTableCompanion extends UpdateCompanion<SpeciesTableData> {
   final Value<String?> imageUrl;
   final Value<int?> incubationDays;
   final Value<int?> fledgeDays;
+  final Value<bool> endangered;
   final Value<String?> notes;
   final Value<String?> user;
   final Value<DateTime?> created;
@@ -5507,6 +5539,7 @@ class SpeciesTableCompanion extends UpdateCompanion<SpeciesTableData> {
     this.imageUrl = const Value.absent(),
     this.incubationDays = const Value.absent(),
     this.fledgeDays = const Value.absent(),
+    this.endangered = const Value.absent(),
     this.notes = const Value.absent(),
     this.user = const Value.absent(),
     this.created = const Value.absent(),
@@ -5520,6 +5553,7 @@ class SpeciesTableCompanion extends UpdateCompanion<SpeciesTableData> {
     this.imageUrl = const Value.absent(),
     this.incubationDays = const Value.absent(),
     this.fledgeDays = const Value.absent(),
+    this.endangered = const Value.absent(),
     this.notes = const Value.absent(),
     this.user = const Value.absent(),
     this.created = const Value.absent(),
@@ -5533,6 +5567,7 @@ class SpeciesTableCompanion extends UpdateCompanion<SpeciesTableData> {
     Expression<String>? imageUrl,
     Expression<int>? incubationDays,
     Expression<int>? fledgeDays,
+    Expression<bool>? endangered,
     Expression<String>? notes,
     Expression<String>? user,
     Expression<DateTime>? created,
@@ -5546,6 +5581,7 @@ class SpeciesTableCompanion extends UpdateCompanion<SpeciesTableData> {
       if (imageUrl != null) 'image_url': imageUrl,
       if (incubationDays != null) 'incubation_days': incubationDays,
       if (fledgeDays != null) 'fledge_days': fledgeDays,
+      if (endangered != null) 'endangered': endangered,
       if (notes != null) 'notes': notes,
       if (user != null) 'user': user,
       if (created != null) 'created': created,
@@ -5561,6 +5597,7 @@ class SpeciesTableCompanion extends UpdateCompanion<SpeciesTableData> {
       Value<String?>? imageUrl,
       Value<int?>? incubationDays,
       Value<int?>? fledgeDays,
+      Value<bool>? endangered,
       Value<String?>? notes,
       Value<String?>? user,
       Value<DateTime?>? created,
@@ -5573,6 +5610,7 @@ class SpeciesTableCompanion extends UpdateCompanion<SpeciesTableData> {
       imageUrl: imageUrl ?? this.imageUrl,
       incubationDays: incubationDays ?? this.incubationDays,
       fledgeDays: fledgeDays ?? this.fledgeDays,
+      endangered: endangered ?? this.endangered,
       notes: notes ?? this.notes,
       user: user ?? this.user,
       created: created ?? this.created,
@@ -5602,6 +5640,9 @@ class SpeciesTableCompanion extends UpdateCompanion<SpeciesTableData> {
     if (fledgeDays.present) {
       map['fledge_days'] = Variable<int>(fledgeDays.value);
     }
+    if (endangered.present) {
+      map['endangered'] = Variable<bool>(endangered.value);
+    }
     if (notes.present) {
       map['notes'] = Variable<String>(notes.value);
     }
@@ -5629,6 +5670,7 @@ class SpeciesTableCompanion extends UpdateCompanion<SpeciesTableData> {
           ..write('imageUrl: $imageUrl, ')
           ..write('incubationDays: $incubationDays, ')
           ..write('fledgeDays: $fledgeDays, ')
+          ..write('endangered: $endangered, ')
           ..write('notes: $notes, ')
           ..write('user: $user, ')
           ..write('created: $created, ')
@@ -9987,6 +10029,7 @@ typedef $$SpeciesTableTableCreateCompanionBuilder = SpeciesTableCompanion
   Value<String?> imageUrl,
   Value<int?> incubationDays,
   Value<int?> fledgeDays,
+  Value<bool> endangered,
   Value<String?> notes,
   Value<String?> user,
   Value<DateTime?> created,
@@ -10001,6 +10044,7 @@ typedef $$SpeciesTableTableUpdateCompanionBuilder = SpeciesTableCompanion
   Value<String?> imageUrl,
   Value<int?> incubationDays,
   Value<int?> fledgeDays,
+  Value<bool> endangered,
   Value<String?> notes,
   Value<String?> user,
   Value<DateTime?> created,
@@ -10035,6 +10079,9 @@ class $$SpeciesTableTableFilterComposer
 
   ColumnFilters<int> get fledgeDays => $composableBuilder(
       column: $table.fledgeDays, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get endangered => $composableBuilder(
+      column: $table.endangered, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get notes => $composableBuilder(
       column: $table.notes, builder: (column) => ColumnFilters(column));
@@ -10077,6 +10124,9 @@ class $$SpeciesTableTableOrderingComposer
   ColumnOrderings<int> get fledgeDays => $composableBuilder(
       column: $table.fledgeDays, builder: (column) => ColumnOrderings(column));
 
+  ColumnOrderings<bool> get endangered => $composableBuilder(
+      column: $table.endangered, builder: (column) => ColumnOrderings(column));
+
   ColumnOrderings<String> get notes => $composableBuilder(
       column: $table.notes, builder: (column) => ColumnOrderings(column));
 
@@ -10116,6 +10166,9 @@ class $$SpeciesTableTableAnnotationComposer
 
   GeneratedColumn<int> get fledgeDays => $composableBuilder(
       column: $table.fledgeDays, builder: (column) => column);
+
+  GeneratedColumn<bool> get endangered => $composableBuilder(
+      column: $table.endangered, builder: (column) => column);
 
   GeneratedColumn<String> get notes =>
       $composableBuilder(column: $table.notes, builder: (column) => column);
@@ -10162,6 +10215,7 @@ class $$SpeciesTableTableTableManager extends RootTableManager<
             Value<String?> imageUrl = const Value.absent(),
             Value<int?> incubationDays = const Value.absent(),
             Value<int?> fledgeDays = const Value.absent(),
+            Value<bool> endangered = const Value.absent(),
             Value<String?> notes = const Value.absent(),
             Value<String?> user = const Value.absent(),
             Value<DateTime?> created = const Value.absent(),
@@ -10175,6 +10229,7 @@ class $$SpeciesTableTableTableManager extends RootTableManager<
             imageUrl: imageUrl,
             incubationDays: incubationDays,
             fledgeDays: fledgeDays,
+            endangered: endangered,
             notes: notes,
             user: user,
             created: created,
@@ -10188,6 +10243,7 @@ class $$SpeciesTableTableTableManager extends RootTableManager<
             Value<String?> imageUrl = const Value.absent(),
             Value<int?> incubationDays = const Value.absent(),
             Value<int?> fledgeDays = const Value.absent(),
+            Value<bool> endangered = const Value.absent(),
             Value<String?> notes = const Value.absent(),
             Value<String?> user = const Value.absent(),
             Value<DateTime?> created = const Value.absent(),
@@ -10201,6 +10257,7 @@ class $$SpeciesTableTableTableManager extends RootTableManager<
             imageUrl: imageUrl,
             incubationDays: incubationDays,
             fledgeDays: fledgeDays,
+            endangered: endangered,
             notes: notes,
             user: user,
             created: created,

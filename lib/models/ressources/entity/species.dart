@@ -11,6 +11,9 @@ abstract class Species with _$Species {
     String? imageUrl,
     int? incubationDays,
     int? fledgeDays,
+
+    /// Whether the species is protected or considered endangered.
+    @Default(false) bool endangered,
     String? notes,
     DateTime? created,
     DateTime? updated,
@@ -22,6 +25,7 @@ abstract class Species with _$Species {
     String? imageUrl,
     int? incubationDays,
     int? fledgeDays,
+    bool endangered = false,
     String? notes,
   }) =>
       Species(
@@ -31,6 +35,7 @@ abstract class Species with _$Species {
         imageUrl: imageUrl,
         incubationDays: incubationDays,
         fledgeDays: fledgeDays,
+        endangered: endangered,
         notes: notes,
       );
 }

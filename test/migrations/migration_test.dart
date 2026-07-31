@@ -57,16 +57,24 @@ void main() {
     await verifier.migrateAndValidate(db, 5);
   });
 
+  test('migrating from v5 to v6 yields the expected schema', () async {
+    final connection = await verifier.startAt(5);
+    final db = AppDatabase.forTesting(connection);
+    addTearDown(db.close);
+
+    await verifier.migrateAndValidate(db, 6);
+  });
+
   // Restoring a backup writes its raw SQLite file over the live database, so
   // the next launch opens a file that may be several versions behind. These
   // cover the multi-step jumps `stepByStep` then has to make in one go.
-  for (final from in const [1, 2, 3]) {
-    test('restoring a v$from backup migrates all the way to v5', () async {
+  for (final from in const [1, 2, 3, 4]) {
+    test('restoring a v$from backup migrates all the way to v6', () async {
       final connection = await verifier.startAt(from);
       final db = AppDatabase.forTesting(connection);
       addTearDown(db.close);
 
-      await verifier.migrateAndValidate(db, 5);
+      await verifier.migrateAndValidate(db, 6);
     });
   }
 }

@@ -216,6 +216,7 @@ class SpeciesTable extends Table {
   TextColumn get imageUrl => text().nullable()();
   IntColumn get incubationDays => integer().nullable()();
   IntColumn get fledgeDays => integer().nullable()();
+  BoolColumn get endangered => boolean().withDefault(const Constant(false))();
   TextColumn get notes => text().nullable()();
   TextColumn get user => text().nullable()();
   DateTimeColumn get created => dateTime().nullable()();
@@ -285,7 +286,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.forTesting(super.e);
 
   @override
-  int get schemaVersion => 5;
+  int get schemaVersion => 6;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -302,6 +303,9 @@ class AppDatabase extends _$AppDatabase {
           },
           from4To5: (m, schema) async {
             await m.createTable(schema.pdfHeaderProfiles);
+          },
+          from5To6: (m, schema) async {
+            await m.addColumn(schema.species, schema.species.endangered);
           },
         ),
       );

@@ -430,6 +430,12 @@ class _TranslationsSpeciesNl extends TranslationsSpeciesDe {
   @override
   String get latin_hint => 'Latijnse soortnaam voor exacte identificatie.';
   @override
+  String get endangered => 'Bedreigde soort';
+  @override
+  String get endangered_hint => 'Markeert soorten die beschermd zijn of als bedreigd gelden.';
+  @override
+  String get endangered_not => 'Geen bedreigde soort';
+  @override
   String get scientific_name => 'Wetenschappelijke naam';
   @override
   String get empty => 'Geen soorten';

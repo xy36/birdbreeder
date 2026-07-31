@@ -110,6 +110,7 @@ void registerLocal() {
             .convert<local_db.SpeciesTableData, Species>(dto),
         toDto: (m) =>
             LocalSpeciesMapper().convert<Species, local_db.SpeciesTableData>(m),
+        boolColumns: {'endangered'},
       ),
     )
     ..registerLazySingleton<ICrudRepository<BirdColor>>(

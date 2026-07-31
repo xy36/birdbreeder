@@ -20,6 +20,10 @@ mixin _$SpeciesDto {
   String? get imageUrl;
   int? get incubationDays;
   int? get fledgeDays;
+
+  /// Defaults to false so backups written before the field existed
+  /// deserialize cleanly.
+  bool get endangered;
   String? get notes;
   String? get user;
 
@@ -47,6 +51,8 @@ mixin _$SpeciesDto {
                 other.incubationDays == incubationDays) &&
             (identical(other.fledgeDays, fledgeDays) ||
                 other.fledgeDays == fledgeDays) &&
+            (identical(other.endangered, endangered) ||
+                other.endangered == endangered) &&
             (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.user, user) || other.user == user));
   }
@@ -54,11 +60,11 @@ mixin _$SpeciesDto {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, latName, imageUrl,
-      incubationDays, fledgeDays, notes, user);
+      incubationDays, fledgeDays, endangered, notes, user);
 
   @override
   String toString() {
-    return 'SpeciesDto(id: $id, name: $name, latName: $latName, imageUrl: $imageUrl, incubationDays: $incubationDays, fledgeDays: $fledgeDays, notes: $notes, user: $user)';
+    return 'SpeciesDto(id: $id, name: $name, latName: $latName, imageUrl: $imageUrl, incubationDays: $incubationDays, fledgeDays: $fledgeDays, endangered: $endangered, notes: $notes, user: $user)';
   }
 }
 
@@ -75,6 +81,7 @@ abstract mixin class $SpeciesDtoCopyWith<$Res> {
       String? imageUrl,
       int? incubationDays,
       int? fledgeDays,
+      bool endangered,
       String? notes,
       String? user});
 }
@@ -97,6 +104,7 @@ class _$SpeciesDtoCopyWithImpl<$Res> implements $SpeciesDtoCopyWith<$Res> {
     Object? imageUrl = freezed,
     Object? incubationDays = freezed,
     Object? fledgeDays = freezed,
+    Object? endangered = null,
     Object? notes = freezed,
     Object? user = freezed,
   }) {
@@ -125,6 +133,10 @@ class _$SpeciesDtoCopyWithImpl<$Res> implements $SpeciesDtoCopyWith<$Res> {
           ? _self.fledgeDays
           : fledgeDays // ignore: cast_nullable_to_non_nullable
               as int?,
+      endangered: null == endangered
+          ? _self.endangered
+          : endangered // ignore: cast_nullable_to_non_nullable
+              as bool,
       notes: freezed == notes
           ? _self.notes
           : notes // ignore: cast_nullable_to_non_nullable
@@ -230,16 +242,32 @@ extension SpeciesDtoPatterns on SpeciesDto {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String id, String? name, String? latName, String? imageUrl,
-            int? incubationDays, int? fledgeDays, String? notes, String? user)?
+    TResult Function(
+            String id,
+            String? name,
+            String? latName,
+            String? imageUrl,
+            int? incubationDays,
+            int? fledgeDays,
+            bool endangered,
+            String? notes,
+            String? user)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _SpeciesDto() when $default != null:
-        return $default(_that.id, _that.name, _that.latName, _that.imageUrl,
-            _that.incubationDays, _that.fledgeDays, _that.notes, _that.user);
+        return $default(
+            _that.id,
+            _that.name,
+            _that.latName,
+            _that.imageUrl,
+            _that.incubationDays,
+            _that.fledgeDays,
+            _that.endangered,
+            _that.notes,
+            _that.user);
       case _:
         return orElse();
     }
@@ -260,15 +288,31 @@ extension SpeciesDtoPatterns on SpeciesDto {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String id, String? name, String? latName, String? imageUrl,
-            int? incubationDays, int? fledgeDays, String? notes, String? user)
+    TResult Function(
+            String id,
+            String? name,
+            String? latName,
+            String? imageUrl,
+            int? incubationDays,
+            int? fledgeDays,
+            bool endangered,
+            String? notes,
+            String? user)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _SpeciesDto():
-        return $default(_that.id, _that.name, _that.latName, _that.imageUrl,
-            _that.incubationDays, _that.fledgeDays, _that.notes, _that.user);
+        return $default(
+            _that.id,
+            _that.name,
+            _that.latName,
+            _that.imageUrl,
+            _that.incubationDays,
+            _that.fledgeDays,
+            _that.endangered,
+            _that.notes,
+            _that.user);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -295,6 +339,7 @@ extension SpeciesDtoPatterns on SpeciesDto {
             String? imageUrl,
             int? incubationDays,
             int? fledgeDays,
+            bool endangered,
             String? notes,
             String? user)?
         $default,
@@ -302,8 +347,16 @@ extension SpeciesDtoPatterns on SpeciesDto {
     final _that = this;
     switch (_that) {
       case _SpeciesDto() when $default != null:
-        return $default(_that.id, _that.name, _that.latName, _that.imageUrl,
-            _that.incubationDays, _that.fledgeDays, _that.notes, _that.user);
+        return $default(
+            _that.id,
+            _that.name,
+            _that.latName,
+            _that.imageUrl,
+            _that.incubationDays,
+            _that.fledgeDays,
+            _that.endangered,
+            _that.notes,
+            _that.user);
       case _:
         return null;
     }
@@ -320,6 +373,7 @@ class _SpeciesDto implements SpeciesDto {
       this.imageUrl,
       this.incubationDays,
       this.fledgeDays,
+      this.endangered = false,
       this.notes,
       this.user});
   factory _SpeciesDto.fromJson(Map<String, dynamic> json) =>
@@ -337,6 +391,12 @@ class _SpeciesDto implements SpeciesDto {
   final int? incubationDays;
   @override
   final int? fledgeDays;
+
+  /// Defaults to false so backups written before the field existed
+  /// deserialize cleanly.
+  @override
+  @JsonKey()
+  final bool endangered;
   @override
   final String? notes;
   @override
@@ -371,6 +431,8 @@ class _SpeciesDto implements SpeciesDto {
                 other.incubationDays == incubationDays) &&
             (identical(other.fledgeDays, fledgeDays) ||
                 other.fledgeDays == fledgeDays) &&
+            (identical(other.endangered, endangered) ||
+                other.endangered == endangered) &&
             (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.user, user) || other.user == user));
   }
@@ -378,11 +440,11 @@ class _SpeciesDto implements SpeciesDto {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, latName, imageUrl,
-      incubationDays, fledgeDays, notes, user);
+      incubationDays, fledgeDays, endangered, notes, user);
 
   @override
   String toString() {
-    return 'SpeciesDto(id: $id, name: $name, latName: $latName, imageUrl: $imageUrl, incubationDays: $incubationDays, fledgeDays: $fledgeDays, notes: $notes, user: $user)';
+    return 'SpeciesDto(id: $id, name: $name, latName: $latName, imageUrl: $imageUrl, incubationDays: $incubationDays, fledgeDays: $fledgeDays, endangered: $endangered, notes: $notes, user: $user)';
   }
 }
 
@@ -401,6 +463,7 @@ abstract mixin class _$SpeciesDtoCopyWith<$Res>
       String? imageUrl,
       int? incubationDays,
       int? fledgeDays,
+      bool endangered,
       String? notes,
       String? user});
 }
@@ -423,6 +486,7 @@ class __$SpeciesDtoCopyWithImpl<$Res> implements _$SpeciesDtoCopyWith<$Res> {
     Object? imageUrl = freezed,
     Object? incubationDays = freezed,
     Object? fledgeDays = freezed,
+    Object? endangered = null,
     Object? notes = freezed,
     Object? user = freezed,
   }) {
@@ -451,6 +515,10 @@ class __$SpeciesDtoCopyWithImpl<$Res> implements _$SpeciesDtoCopyWith<$Res> {
           ? _self.fledgeDays
           : fledgeDays // ignore: cast_nullable_to_non_nullable
               as int?,
+      endangered: null == endangered
+          ? _self.endangered
+          : endangered // ignore: cast_nullable_to_non_nullable
+              as bool,
       notes: freezed == notes
           ? _self.notes
           : notes // ignore: cast_nullable_to_non_nullable
