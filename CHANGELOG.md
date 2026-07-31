@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.15.0](https://github.com/xy36/birdbreeder/compare/v1.14.0...v1.15.0) (2026-07-31)
+
+
+### Features
+
+* **species:** add endangered flag ([c53f3a7](https://github.com/xy36/birdbreeder/commit/c53f3a777803c87eba611ab641c647a991005f3d))
+* **species:** suggest species from iNaturalist while typing ([398a9c3](https://github.com/xy36/birdbreeder/commit/398a9c372ed2439df29440fc64a58863b973970e))
+* update bird document builders to handle null values and improve UI layout ([257c5fe](https://github.com/xy36/birdbreeder/commit/257c5fea61668835501ae030ba6b017156c4b067))
+
+
+### Bug Fixes
+
+* **species:** detach birds when their species is deleted ([3f0559a](https://github.com/xy36/birdbreeder/commit/3f0559a8e03b6b8857fdfb026c789e840c2afb0d))
+
 ## [1.14.0](https://github.com/xy36/birdbreeder/compare/v1.13.0...v1.14.0) (2026-07-30)
 
 
