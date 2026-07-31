@@ -421,7 +421,15 @@
             "stock": "En cheptel",
             "male_roosters": "Mâles",
             "female_hens": "Femelles"
-        }
+        },
+        "stock_summary(param=count)": {
+            "one": "{{count}} oiseau dans le cheptel",
+            "other": "{{count}} oiseaux dans le cheptel"
+        },
+        "already_added": "Déjà ajoutée",
+        "duplicate_warning": "Une espèce portant ce nom existe déjà.",
+        "endangered_only": "Espèces menacées uniquement",
+        "image_remove": "Supprimer l'image"
     },
     "contacts": {
         "title(count)": "Contacts ({{count}})",
@@ -599,7 +607,8 @@
                 "capacity": "Capacité",
                 "kind": "Type",
                 "lat_name": "Nom lat.",
-                "hex": "Code couleur"
+                "hex": "Code couleur",
+                "stock": "Cheptel"
             },
             "asc": "Croissant",
             "desc": "Décroissant"

@@ -421,7 +421,15 @@
             "stock": "In bestand",
             "male_roosters": "Mannen",
             "female_hens": "Poppen"
-        }
+        },
+        "stock_summary(param=count)": {
+            "one": "{{count}} vogel in bestand",
+            "other": "{{count}} vogels in bestand"
+        },
+        "already_added": "Al toegevoegd",
+        "duplicate_warning": "Er bestaat al een soort met deze naam.",
+        "endangered_only": "Alleen bedreigde soorten",
+        "image_remove": "Afbeelding verwijderen"
     },
     "contacts": {
         "title(count)": "Contacten ({{count}})",
@@ -599,7 +607,8 @@
                 "capacity": "Capaciteit",
                 "kind": "Type",
                 "lat_name": "Lat. naam",
-                "hex": "Kleurcode"
+                "hex": "Kleurcode",
+                "stock": "Bestand"
             },
             "asc": "Oplopend",
             "desc": "Aflopend"

@@ -11,21 +11,31 @@ class SpeciesFilterCubit extends Cubit<SpeciesFilterState> {
   void setSort(SpeciesSortField field, bool ascending) =>
       emit(state.copyWith(sortField: field, sortAsc: ascending));
 
+  void setEndangeredOnly({required bool value}) =>
+      emit(state.copyWith(endangeredOnly: value));
+
   void reset() => emit(const SpeciesFilterState());
 
-  List<Species> filterSpecies(List<Species> species) {
+  /// Applies query, endangered filter and sorting.
+  ///
+  /// [stockBySpecies] holds the bird count per species id; it is only needed
+  /// for [SpeciesSortField.stock] and defaults to zero for anything missing.
+  List<Species> filterSpecies(
+    List<Species> species, {
+    Map<String, int> stockBySpecies = const {},
+  }) {
     final q = state.query.trim().toLowerCase();
-    final filtered = q.isEmpty
-        ? List<Species>.from(species)
-        : species.where((s) {
-            return (s.name ?? '').toLowerCase().contains(q) ||
-                (s.latName ?? '').toLowerCase().contains(q);
-          }).toList();
-    _sort(filtered);
+    final filtered = species.where((s) {
+      if (state.endangeredOnly && !s.endangered) return false;
+      if (q.isEmpty) return true;
+      return (s.name ?? '').toLowerCase().contains(q) ||
+          (s.latName ?? '').toLowerCase().contains(q);
+    }).toList();
+    _sort(filtered, stockBySpecies);
     return filtered;
   }
 
-  void _sort(List<Species> list) {
+  void _sort(List<Species> list, Map<String, int> stock) {
     final dir = state.sortAsc ? 1 : -1;
     list.sort((a, b) {
       switch (state.sortField) {
@@ -37,6 +47,13 @@ class SpeciesFilterCubit extends Cubit<SpeciesFilterState> {
           final ac = a.created ?? DateTime(1970);
           final bc = b.created ?? DateTime(1970);
           return dir * ac.compareTo(bc);
+        case SpeciesSortField.stock:
+          final byStock = (stock[a.id] ?? 0).compareTo(stock[b.id] ?? 0) * dir;
+          // Equal stock is common, so fall back to the name for a stable,
+          // readable order instead of leaving it to sort order chance.
+          return byStock != 0
+              ? byStock
+              : naturalCompare(a.name ?? '', b.name ?? '');
       }
     });
   }

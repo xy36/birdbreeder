@@ -449,6 +449,20 @@ class _TranslationsSpeciesEn extends TranslationsSpeciesDe {
   String get no_birds => 'No birds';
   @override
   late final _TranslationsSpeciesStatsEn stats = _TranslationsSpeciesStatsEn._(_root);
+  @override
+  String stock_summary({required num count, required Object Count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '${Count} bird in stock',
+        other: '${Count} birds in stock',
+      );
+  @override
+  String get already_added => 'Already added';
+  @override
+  String get duplicate_warning => 'A species with this name already exists.';
+  @override
+  String get endangered_only => 'Endangered species only';
+  @override
+  String get image_remove => 'Remove image';
 }
 
 // Path: contacts
@@ -3847,6 +3861,8 @@ class _TranslationsResourcesSortByEn extends TranslationsResourcesSortByDe {
   String get lat_name => 'Lat. name';
   @override
   String get hex => 'Color code';
+  @override
+  String get stock => 'Stock';
 }
 
 // Path: bird.sections.identification

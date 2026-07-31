@@ -421,7 +421,15 @@
             "stock": "En plantel",
             "male_roosters": "Machos",
             "female_hens": "Hembras"
-        }
+        },
+        "stock_summary(param=count)": {
+            "one": "{{count}} ave en el plantel",
+            "other": "{{count}} aves en el plantel"
+        },
+        "already_added": "Ya añadida",
+        "duplicate_warning": "Ya existe una especie con este nombre.",
+        "endangered_only": "Solo especies amenazadas",
+        "image_remove": "Quitar imagen"
     },
     "contacts": {
         "title(count)": "Contactos ({{count}})",
@@ -599,7 +607,8 @@
                 "capacity": "Capacidad",
                 "kind": "Tipo",
                 "lat_name": "Nombre lat.",
-                "hex": "Código de color"
+                "hex": "Código de color",
+                "stock": "Plantel"
             },
             "asc": "Ascendente",
             "desc": "Descendente"

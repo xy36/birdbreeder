@@ -476,6 +476,25 @@ class TranslationsSpeciesDe {
   String get no_birds => 'Keine Vögel';
 
   late final TranslationsSpeciesStatsDe stats = TranslationsSpeciesStatsDe.internal(_root);
+
+  /// de: '(one) {{{count}} Vogel im Bestand} (other) {{{count}} Vögel im Bestand}'
+  String stock_summary({required num count, required Object Count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(
+        count,
+        one: '${Count} Vogel im Bestand',
+        other: '${Count} Vögel im Bestand',
+      );
+
+  /// de: 'Bereits angelegt'
+  String get already_added => 'Bereits angelegt';
+
+  /// de: 'Eine Art mit diesem Namen existiert bereits.'
+  String get duplicate_warning => 'Eine Art mit diesem Namen existiert bereits.';
+
+  /// de: 'Nur gefährdete Arten'
+  String get endangered_only => 'Nur gefährdete Arten';
+
+  /// de: 'Bild entfernen'
+  String get image_remove => 'Bild entfernen';
 }
 
 // Path: contacts
@@ -4259,6 +4278,9 @@ class TranslationsResourcesSortByDe {
 
   /// de: 'Farbcode'
   String get hex => 'Farbcode';
+
+  /// de: 'Bestand'
+  String get stock => 'Bestand';
 }
 
 // Path: bird.sections.identification

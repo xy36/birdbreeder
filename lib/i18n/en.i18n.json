@@ -421,7 +421,15 @@
             "stock": "In stock",
             "male_roosters": "Cocks",
             "female_hens": "Hens"
-        }
+        },
+        "stock_summary(param=count)": {
+            "one": "{{count}} bird in stock",
+            "other": "{{count}} birds in stock"
+        },
+        "already_added": "Already added",
+        "duplicate_warning": "A species with this name already exists.",
+        "endangered_only": "Endangered species only",
+        "image_remove": "Remove image"
     },
     "contacts": {
         "title(count)": "Contacts ({{count}})",
@@ -599,7 +607,8 @@
                 "capacity": "Capacity",
                 "kind": "Type",
                 "lat_name": "Lat. name",
-                "hex": "Color code"
+                "hex": "Color code",
+                "stock": "Stock"
             },
             "asc": "Ascending",
             "desc": "Descending"

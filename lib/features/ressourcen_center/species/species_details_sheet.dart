@@ -45,6 +45,13 @@ class _SpeciesDetailsSheetState extends State<SpeciesDetailsSheet> {
   /// none has run, true once Wikidata came back empty.
   bool? _incubationMissing;
 
+  /// Another species already carries the typed name.
+  ///
+  /// Suggestions make this easy to hit: a breeder types a name, picks the
+  /// hit and creates a second entry for a species they already keep, which
+  /// then splits their stock across two cards.
+  bool _isDuplicate = false;
+
   bool _incubationLoading = false;
 
   bool get isEdit => widget.initialSpecies != null;
@@ -67,8 +74,22 @@ class _SpeciesDetailsSheetState extends State<SpeciesDetailsSheet> {
     super.dispose();
   }
 
+  /// Whether [name] belongs to a different species that already exists.
+  bool _duplicateExists(String name) {
+    final needle = name.trim().toLowerCase();
+    if (needle.isEmpty) return false;
+    return context.read<BirdBreederCubit>().species.any(
+          (s) =>
+              s.id != _species.id &&
+              (s.name ?? '').trim().toLowerCase() == needle,
+        );
+  }
+
   void _onNameChanged(String value) {
-    setState(() => _species = _species.copyWith(name: value));
+    setState(() {
+      _species = _species.copyWith(name: value);
+      _isDuplicate = _duplicateExists(value);
+    });
     _suggestionDebounce?.cancel();
 
     final query = value.trim();
@@ -96,6 +117,7 @@ class _SpeciesDetailsSheetState extends State<SpeciesDetailsSheet> {
       _appliedSuggestion = suggestion.commonName;
       _nameController.text = suggestion.commonName;
       _latNameController.text = suggestion.scientificName;
+      _isDuplicate = _duplicateExists(suggestion.commonName);
       _species = _species.copyWith(
         name: suggestion.commonName,
         latName: suggestion.scientificName,
@@ -145,6 +167,9 @@ class _SpeciesDetailsSheetState extends State<SpeciesDetailsSheet> {
                       _ImageSection(
                         imageUrl: _species.imageUrl,
                         name: _species.name ?? '',
+                        onRemove: () => setState(
+                          () => _species = _species.copyWith(imageUrl: null),
+                        ),
                       ),
                       const SizedBox(width: 12),
                       Expanded(
@@ -169,10 +194,21 @@ class _SpeciesDetailsSheetState extends State<SpeciesDetailsSheet> {
                       ),
                     ],
                   ),
+                  if (_isDuplicate)
+                    _LookupNote(
+                      icon: AppIcons.warning,
+                      text: speciesTr.duplicate_warning,
+                      warn: true,
+                    ),
                   if (_suggestions.isNotEmpty)
                     _SuggestionList(
                       suggestions: _suggestions,
                       onSelect: _applySuggestion,
+                      existingNames: context
+                          .read<BirdBreederCubit>()
+                          .species
+                          .map((s) => (s.name ?? '').trim().toLowerCase())
+                          .toSet(),
                     ),
                   const SizedBox(height: 14),
                   FieldLabel(label: speciesTr.scientific_name),
@@ -306,15 +342,20 @@ class _LookupNote extends StatelessWidget {
     required this.icon,
     required this.text,
     this.busy = false,
+    this.warn = false,
   });
 
   final IconData icon;
   final String text;
   final bool busy;
 
+  /// Renders in the warning colour, for notes the breeder should act on.
+  final bool warn;
+
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
+    final color = warn ? context.appColors.statusWarning : cs.onSurfaceVariant;
     return Padding(
       padding: const EdgeInsets.only(top: 8),
       child: Row(
@@ -323,17 +364,18 @@ class _LookupNote extends StatelessWidget {
             width: 14,
             height: 14,
             child: busy
-                ? CircularProgressIndicator(
-                    strokeWidth: 2,
-                    color: cs.onSurfaceVariant,
-                  )
-                : Icon(icon, size: 14, color: cs.onSurfaceVariant),
+                ? CircularProgressIndicator(strokeWidth: 2, color: color)
+                : Icon(icon, size: 14, color: color),
           ),
           const SizedBox(width: 8),
           Expanded(
             child: Text(
               text,
-              style: TextStyle(fontSize: 11, color: cs.onSurfaceVariant),
+              style: TextStyle(
+                fontSize: 11,
+                color: color,
+                fontWeight: warn ? FontWeight.w600 : null,
+              ),
             ),
           ),
         ],
@@ -350,10 +392,15 @@ class _SuggestionList extends StatelessWidget {
   const _SuggestionList({
     required this.suggestions,
     required this.onSelect,
+    this.existingNames = const {},
   });
 
   final List<SpeciesSuggestion> suggestions;
   final ValueChanged<SpeciesSuggestion> onSelect;
+
+  /// Lowercased names of species already kept, so a hit can be marked
+  /// before the breeder creates a second entry for it.
+  final Set<String> existingNames;
 
   @override
   Widget build(BuildContext context) {
@@ -381,7 +428,12 @@ class _SuggestionList extends StatelessWidget {
             ),
           ),
           for (final suggestion in suggestions)
-            _SuggestionRow(suggestion: suggestion, onSelect: onSelect),
+            _SuggestionRow(
+              suggestion: suggestion,
+              onSelect: onSelect,
+              alreadyAdded: existingNames
+                  .contains(suggestion.commonName.trim().toLowerCase()),
+            ),
         ],
       ),
     );
@@ -392,10 +444,12 @@ class _SuggestionRow extends StatelessWidget {
   const _SuggestionRow({
     required this.suggestion,
     required this.onSelect,
+    this.alreadyAdded = false,
   });
 
   final SpeciesSuggestion suggestion;
   final ValueChanged<SpeciesSuggestion> onSelect;
+  final bool alreadyAdded;
 
   @override
   Widget build(BuildContext context) {
@@ -439,8 +493,15 @@ class _SuggestionRow extends StatelessWidget {
       ),
       title: Text(suggestion.commonName),
       subtitle: Text(
-        suggestion.scientificName,
-        style: const TextStyle(fontStyle: FontStyle.italic, fontSize: 11),
+        alreadyAdded
+            ? '${suggestion.scientificName} · '
+                '${context.tr.species.already_added}'
+            : suggestion.scientificName,
+        style: TextStyle(
+          fontStyle: FontStyle.italic,
+          fontSize: 11,
+          color: alreadyAdded ? context.appColors.statusWarning : null,
+        ),
       ),
       trailing: suggestion.endangered
           ? Tooltip(
@@ -458,29 +519,49 @@ class _SuggestionRow extends StatelessWidget {
 
 /// The species photo, which comes from the picked suggestion.
 ///
-/// Display only — tapping opens the lightbox.
+/// Tapping opens the lightbox; a long press offers to remove the photo,
+/// which is otherwise impossible once a suggestion has set one.
 class _ImageSection extends StatelessWidget {
   const _ImageSection({
     required this.imageUrl,
     required this.name,
+    required this.onRemove,
   });
 
   final String? imageUrl;
   final String name;
+  final VoidCallback onRemove;
+
+  Future<void> _confirmRemove(BuildContext context) async {
+    final remove = await showModalBottomSheet<bool>(
+      context: context,
+      showDragHandle: true,
+      builder: (sheetContext) => SafeArea(
+        child: ListTile(
+          leading: const Icon(AppIcons.delete, color: Colors.red),
+          title: Text(sheetContext.tr.species.image_remove),
+          onTap: () => Navigator.of(sheetContext).pop(true),
+        ),
+      ),
+    );
+    if (remove ?? false) onRemove();
+  }
 
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final url = imageUrl;
+    final hasImage = url != null && url.isNotEmpty;
     return GestureDetector(
-      onTap: url == null || url.isEmpty
+      onTap: !hasImage
           ? null
           : () => ImageLightbox.showUrls(
                 context,
                 urls: [url],
                 initialIndex: 0,
               ),
-      child: url != null && url.isNotEmpty
+      onLongPress: hasImage ? () => _confirmRemove(context) : null,
+      child: hasImage
           ? CircleAvatar(
               radius: 40,
               child: ClipOval(

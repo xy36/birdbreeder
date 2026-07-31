@@ -421,7 +421,15 @@
             "stock": "In allevamento",
             "male_roosters": "Maschi",
             "female_hens": "Femmine"
-        }
+        },
+        "stock_summary(param=count)": {
+            "one": "{{count}} uccello in allevamento",
+            "other": "{{count}} uccelli in allevamento"
+        },
+        "already_added": "Già presente",
+        "duplicate_warning": "Esiste già una specie con questo nome.",
+        "endangered_only": "Solo specie minacciate",
+        "image_remove": "Rimuovi immagine"
     },
     "contacts": {
         "title(count)": "Contatti ({{count}})",
@@ -599,7 +607,8 @@
                 "capacity": "Capienza",
                 "kind": "Tipo",
                 "lat_name": "Nome lat.",
-                "hex": "Codice colore"
+                "hex": "Codice colore",
+                "stock": "Allevamento"
             },
             "asc": "Crescente",
             "desc": "Decrescente"

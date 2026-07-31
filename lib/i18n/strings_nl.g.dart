@@ -449,6 +449,20 @@ class _TranslationsSpeciesNl extends TranslationsSpeciesDe {
   String get no_birds => 'Geen vogels';
   @override
   late final _TranslationsSpeciesStatsNl stats = _TranslationsSpeciesStatsNl._(_root);
+  @override
+  String stock_summary({required num count, required Object Count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('nl'))(
+        count,
+        one: '${Count} vogel in bestand',
+        other: '${Count} vogels in bestand',
+      );
+  @override
+  String get already_added => 'Al toegevoegd';
+  @override
+  String get duplicate_warning => 'Er bestaat al een soort met deze naam.';
+  @override
+  String get endangered_only => 'Alleen bedreigde soorten';
+  @override
+  String get image_remove => 'Afbeelding verwijderen';
 }
 
 // Path: contacts
@@ -3849,6 +3863,8 @@ class _TranslationsResourcesSortByNl extends TranslationsResourcesSortByDe {
   String get lat_name => 'Lat. naam';
   @override
   String get hex => 'Kleurcode';
+  @override
+  String get stock => 'Bestand';
 }
 
 // Path: bird.sections.identification

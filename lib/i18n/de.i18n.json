@@ -421,7 +421,15 @@
             "stock": "Im Bestand",
             "male_roosters": "Hähne",
             "female_hens": "Hennen"
-        }
+        },
+        "stock_summary(param=count)": {
+            "one": "{{count}} Vogel im Bestand",
+            "other": "{{count}} Vögel im Bestand"
+        },
+        "already_added": "Bereits angelegt",
+        "duplicate_warning": "Eine Art mit diesem Namen existiert bereits.",
+        "endangered_only": "Nur gefährdete Arten",
+        "image_remove": "Bild entfernen"
     },
     "contacts": {
         "title(count)": "Kontakte ({{count}})",
@@ -599,7 +607,8 @@
                 "capacity": "Kapazität",
                 "kind": "Typ",
                 "lat_name": "Lat. Name",
-                "hex": "Farbcode"
+                "hex": "Farbcode",
+                "stock": "Bestand"
             },
             "asc": "Aufsteigend",
             "desc": "Absteigend"

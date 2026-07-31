@@ -51,6 +51,11 @@ extension BirdBreederCubitSpeciesX on BirdBreederCubit {
     return updated;
   }
 
+  /// Deletes [species] and detaches it from every bird that referenced it.
+  ///
+  /// Without the detach those birds would keep pointing at a row that no
+  /// longer exists: `speciesResolved` returns null and no screen shows the
+  /// dangling id, so the breeder cannot even find what broke.
   Future<void> deleteSpecies(Species species) async {
     push(loading());
 
@@ -63,7 +68,24 @@ extension BirdBreederCubitSpeciesX on BirdBreederCubit {
       return;
     }
 
+    await _detachSpeciesFromBirds(species.id);
     _removeSpeciesFromState(species.id);
+  }
+
+  Future<void> _detachSpeciesFromBirds(String speciesId) async {
+    final affected = state.birdBreederResources.birds
+        .where((b) => b.speciesId == speciesId)
+        .toList();
+
+    for (final bird in affected) {
+      await _birdsRepository.update(bird.id, bird.copyWith(speciesId: null));
+    }
+    if (affected.isEmpty) return;
+
+    final updated = state.birdBreederResources.birds
+        .map((b) => b.speciesId == speciesId ? b.copyWith(speciesId: null) : b)
+        .toList();
+    emitLoaded(birds: updated);
   }
 
   void _addSpeciesToState(Species species) {
