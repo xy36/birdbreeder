@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.0](https://github.com/xy36/birdbreeder/compare/v1.15.0...v1.16.0) (2026-08-01)
+
+
+### Features
+
+* **species:** add a reportable flag and show both flags ([fc50d77](https://github.com/xy36/birdbreeder/commit/fc50d778b2128910be6ed612f43137cefc8d958c))
+
 ## [1.15.0](https://github.com/xy36/birdbreeder/compare/v1.14.0...v1.15.0) (2026-07-31)
 
 
