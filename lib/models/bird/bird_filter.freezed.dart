@@ -24,6 +24,12 @@ mixin _$BirdFilter {
   List<Sex> get sexes;
   List<SaleStatus> get saleStatus;
   bool get showDeceased;
+
+  /// Narrow to birds whose species carries the corresponding flag. Both
+  /// live on the species, not the bird, so they resolve through
+  /// `speciesResolved`.
+  bool get endangeredOnly;
+  bool get reportableOnly;
   BirdSort? get sort;
   bool get sortAscending;
 
@@ -55,6 +61,10 @@ mixin _$BirdFilter {
                 .equals(other.saleStatus, saleStatus) &&
             (identical(other.showDeceased, showDeceased) ||
                 other.showDeceased == showDeceased) &&
+            (identical(other.endangeredOnly, endangeredOnly) ||
+                other.endangeredOnly == endangeredOnly) &&
+            (identical(other.reportableOnly, reportableOnly) ||
+                other.reportableOnly == reportableOnly) &&
             (identical(other.sort, sort) || other.sort == sort) &&
             (identical(other.sortAscending, sortAscending) ||
                 other.sortAscending == sortAscending));
@@ -73,12 +83,14 @@ mixin _$BirdFilter {
       const DeepCollectionEquality().hash(sexes),
       const DeepCollectionEquality().hash(saleStatus),
       showDeceased,
+      endangeredOnly,
+      reportableOnly,
       sort,
       sortAscending);
 
   @override
   String toString() {
-    return 'BirdFilter(speciesIds: $speciesIds, speciesName: $speciesName, cageIds: $cageIds, cageName: $cageName, colorIds: $colorIds, colorName: $colorName, ownerIds: $ownerIds, sexes: $sexes, saleStatus: $saleStatus, showDeceased: $showDeceased, sort: $sort, sortAscending: $sortAscending)';
+    return 'BirdFilter(speciesIds: $speciesIds, speciesName: $speciesName, cageIds: $cageIds, cageName: $cageName, colorIds: $colorIds, colorName: $colorName, ownerIds: $ownerIds, sexes: $sexes, saleStatus: $saleStatus, showDeceased: $showDeceased, endangeredOnly: $endangeredOnly, reportableOnly: $reportableOnly, sort: $sort, sortAscending: $sortAscending)';
   }
 }
 
@@ -99,6 +111,8 @@ abstract mixin class $BirdFilterCopyWith<$Res> {
       List<Sex> sexes,
       List<SaleStatus> saleStatus,
       bool showDeceased,
+      bool endangeredOnly,
+      bool reportableOnly,
       BirdSort? sort,
       bool sortAscending});
 }
@@ -125,6 +139,8 @@ class _$BirdFilterCopyWithImpl<$Res> implements $BirdFilterCopyWith<$Res> {
     Object? sexes = null,
     Object? saleStatus = null,
     Object? showDeceased = null,
+    Object? endangeredOnly = null,
+    Object? reportableOnly = null,
     Object? sort = freezed,
     Object? sortAscending = null,
   }) {
@@ -168,6 +184,14 @@ class _$BirdFilterCopyWithImpl<$Res> implements $BirdFilterCopyWith<$Res> {
       showDeceased: null == showDeceased
           ? _self.showDeceased
           : showDeceased // ignore: cast_nullable_to_non_nullable
+              as bool,
+      endangeredOnly: null == endangeredOnly
+          ? _self.endangeredOnly
+          : endangeredOnly // ignore: cast_nullable_to_non_nullable
+              as bool,
+      reportableOnly: null == reportableOnly
+          ? _self.reportableOnly
+          : reportableOnly // ignore: cast_nullable_to_non_nullable
               as bool,
       sort: freezed == sort
           ? _self.sort
@@ -285,6 +309,8 @@ extension BirdFilterPatterns on BirdFilter {
             List<Sex> sexes,
             List<SaleStatus> saleStatus,
             bool showDeceased,
+            bool endangeredOnly,
+            bool reportableOnly,
             BirdSort? sort,
             bool sortAscending)?
         $default, {
@@ -304,6 +330,8 @@ extension BirdFilterPatterns on BirdFilter {
             _that.sexes,
             _that.saleStatus,
             _that.showDeceased,
+            _that.endangeredOnly,
+            _that.reportableOnly,
             _that.sort,
             _that.sortAscending);
       case _:
@@ -337,6 +365,8 @@ extension BirdFilterPatterns on BirdFilter {
             List<Sex> sexes,
             List<SaleStatus> saleStatus,
             bool showDeceased,
+            bool endangeredOnly,
+            bool reportableOnly,
             BirdSort? sort,
             bool sortAscending)
         $default,
@@ -355,6 +385,8 @@ extension BirdFilterPatterns on BirdFilter {
             _that.sexes,
             _that.saleStatus,
             _that.showDeceased,
+            _that.endangeredOnly,
+            _that.reportableOnly,
             _that.sort,
             _that.sortAscending);
       case _:
@@ -387,6 +419,8 @@ extension BirdFilterPatterns on BirdFilter {
             List<Sex> sexes,
             List<SaleStatus> saleStatus,
             bool showDeceased,
+            bool endangeredOnly,
+            bool reportableOnly,
             BirdSort? sort,
             bool sortAscending)?
         $default,
@@ -405,6 +439,8 @@ extension BirdFilterPatterns on BirdFilter {
             _that.sexes,
             _that.saleStatus,
             _that.showDeceased,
+            _that.endangeredOnly,
+            _that.reportableOnly,
             _that.sort,
             _that.sortAscending);
       case _:
@@ -431,6 +467,8 @@ class _BirdFilter implements BirdFilter {
         SaleStatus.reserved
       ],
       this.showDeceased = false,
+      this.endangeredOnly = false,
+      this.reportableOnly = false,
       this.sort = BirdSort.updated,
       this.sortAscending = false})
       : _speciesIds = speciesIds,
@@ -503,6 +541,16 @@ class _BirdFilter implements BirdFilter {
   @override
   @JsonKey()
   final bool showDeceased;
+
+  /// Narrow to birds whose species carries the corresponding flag. Both
+  /// live on the species, not the bird, so they resolve through
+  /// `speciesResolved`.
+  @override
+  @JsonKey()
+  final bool endangeredOnly;
+  @override
+  @JsonKey()
+  final bool reportableOnly;
   @override
   @JsonKey()
   final BirdSort? sort;
@@ -539,6 +587,10 @@ class _BirdFilter implements BirdFilter {
                 .equals(other._saleStatus, _saleStatus) &&
             (identical(other.showDeceased, showDeceased) ||
                 other.showDeceased == showDeceased) &&
+            (identical(other.endangeredOnly, endangeredOnly) ||
+                other.endangeredOnly == endangeredOnly) &&
+            (identical(other.reportableOnly, reportableOnly) ||
+                other.reportableOnly == reportableOnly) &&
             (identical(other.sort, sort) || other.sort == sort) &&
             (identical(other.sortAscending, sortAscending) ||
                 other.sortAscending == sortAscending));
@@ -557,12 +609,14 @@ class _BirdFilter implements BirdFilter {
       const DeepCollectionEquality().hash(_sexes),
       const DeepCollectionEquality().hash(_saleStatus),
       showDeceased,
+      endangeredOnly,
+      reportableOnly,
       sort,
       sortAscending);
 
   @override
   String toString() {
-    return 'BirdFilter(speciesIds: $speciesIds, speciesName: $speciesName, cageIds: $cageIds, cageName: $cageName, colorIds: $colorIds, colorName: $colorName, ownerIds: $ownerIds, sexes: $sexes, saleStatus: $saleStatus, showDeceased: $showDeceased, sort: $sort, sortAscending: $sortAscending)';
+    return 'BirdFilter(speciesIds: $speciesIds, speciesName: $speciesName, cageIds: $cageIds, cageName: $cageName, colorIds: $colorIds, colorName: $colorName, ownerIds: $ownerIds, sexes: $sexes, saleStatus: $saleStatus, showDeceased: $showDeceased, endangeredOnly: $endangeredOnly, reportableOnly: $reportableOnly, sort: $sort, sortAscending: $sortAscending)';
   }
 }
 
@@ -585,6 +639,8 @@ abstract mixin class _$BirdFilterCopyWith<$Res>
       List<Sex> sexes,
       List<SaleStatus> saleStatus,
       bool showDeceased,
+      bool endangeredOnly,
+      bool reportableOnly,
       BirdSort? sort,
       bool sortAscending});
 }
@@ -611,6 +667,8 @@ class __$BirdFilterCopyWithImpl<$Res> implements _$BirdFilterCopyWith<$Res> {
     Object? sexes = null,
     Object? saleStatus = null,
     Object? showDeceased = null,
+    Object? endangeredOnly = null,
+    Object? reportableOnly = null,
     Object? sort = freezed,
     Object? sortAscending = null,
   }) {
@@ -654,6 +712,14 @@ class __$BirdFilterCopyWithImpl<$Res> implements _$BirdFilterCopyWith<$Res> {
       showDeceased: null == showDeceased
           ? _self.showDeceased
           : showDeceased // ignore: cast_nullable_to_non_nullable
+              as bool,
+      endangeredOnly: null == endangeredOnly
+          ? _self.endangeredOnly
+          : endangeredOnly // ignore: cast_nullable_to_non_nullable
+              as bool,
+      reportableOnly: null == reportableOnly
+          ? _self.reportableOnly
+          : reportableOnly // ignore: cast_nullable_to_non_nullable
               as bool,
       sort: freezed == sort
           ? _self.sort

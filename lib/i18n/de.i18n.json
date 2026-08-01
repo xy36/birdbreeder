@@ -410,6 +410,9 @@
         "endangered": "Gefährdete Art",
         "endangered_hint": "Kennzeichnet Arten, die unter Schutz stehen oder als gefährdet gelten.",
         "endangered_not": "Keine gefährdete Art",
+        "reportable": "Meldepflichtig",
+        "reportable_hint": "Das Halten dieser Art muss bei der Behörde gemeldet werden.",
+        "reportable_not": "Nicht meldepflichtig",
         "suggestions": "Vorschläge",
         "incubation_found": "Brutdauer übernommen",
         "incubation_missing": "Keine Brutdauer gefunden – bitte selbst eintragen.",
@@ -428,7 +431,6 @@
         },
         "already_added": "Bereits angelegt",
         "duplicate_warning": "Eine Art mit diesem Namen existiert bereits.",
-        "endangered_only": "Nur gefährdete Arten",
         "image_remove": "Bild entfernen"
     },
     "contacts": {
@@ -631,7 +633,9 @@
             "show_results(count)": "{{count}} Vögel anzeigen",
             "sort_title": "Sortieren",
             "more_title": "Weitere",
-            "show_deceased": "Verstorbene anzeigen"
+            "show_deceased": "Verstorbene anzeigen",
+            "endangered_only": "Nur gefährdete Arten",
+            "reportable_only": "Nur meldepflichtige Arten"
         }
     },
     "pedigree": {

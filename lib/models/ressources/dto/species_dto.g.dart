@@ -14,6 +14,7 @@ _SpeciesDto _$SpeciesDtoFromJson(Map<String, dynamic> json) => _SpeciesDto(
       incubationDays: (json['incubationDays'] as num?)?.toInt(),
       fledgeDays: (json['fledgeDays'] as num?)?.toInt(),
       endangered: json['endangered'] as bool? ?? false,
+      reportable: json['reportable'] as bool? ?? false,
       notes: json['notes'] as String?,
       user: json['user'] as String?,
     );
@@ -27,6 +28,7 @@ Map<String, dynamic> _$SpeciesDtoToJson(_SpeciesDto instance) =>
       'incubationDays': instance.incubationDays,
       'fledgeDays': instance.fledgeDays,
       'endangered': instance.endangered,
+      'reportable': instance.reportable,
       'notes': instance.notes,
       'user': instance.user,
     };

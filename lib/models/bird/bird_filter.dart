@@ -36,6 +36,12 @@ abstract class BirdFilter with _$BirdFilter {
     @Default([SaleStatus.notForSale, SaleStatus.listed, SaleStatus.reserved])
     List<SaleStatus> saleStatus,
     @Default(false) bool showDeceased,
+
+    /// Narrow to birds whose species carries the corresponding flag. Both
+    /// live on the species, not the bird, so they resolve through
+    /// `speciesResolved`.
+    @Default(false) bool endangeredOnly,
+    @Default(false) bool reportableOnly,
     @Default(BirdSort.updated) BirdSort? sort,
     @Default(false) bool sortAscending,
   }) = _BirdFilter;

@@ -410,6 +410,9 @@
         "endangered": "Bedreigde soort",
         "endangered_hint": "Markeert soorten die beschermd zijn of als bedreigd gelden.",
         "endangered_not": "Geen bedreigde soort",
+        "reportable": "Meldingsplichtig",
+        "reportable_hint": "Het houden van deze soort moet bij de autoriteiten worden gemeld.",
+        "reportable_not": "Niet meldingsplichtig",
         "suggestions": "Suggesties",
         "incubation_found": "Broedduur overgenomen",
         "incubation_missing": "Geen broedduur gevonden – voer deze zelf in.",
@@ -428,7 +431,6 @@
         },
         "already_added": "Al toegevoegd",
         "duplicate_warning": "Er bestaat al een soort met deze naam.",
-        "endangered_only": "Alleen bedreigde soorten",
         "image_remove": "Afbeelding verwijderen"
     },
     "contacts": {
@@ -631,7 +633,9 @@
             "show_results(count)": "{{count}} vogels tonen",
             "sort_title": "Sorteren",
             "more_title": "Meer",
-            "show_deceased": "Overleden tonen"
+            "show_deceased": "Overleden tonen",
+            "endangered_only": "Alleen bedreigde soorten",
+            "reportable_only": "Alleen meldingsplichtige soorten"
         }
     },
     "pedigree": {

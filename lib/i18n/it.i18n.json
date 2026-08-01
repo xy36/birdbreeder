@@ -410,6 +410,9 @@
         "endangered": "Specie minacciata",
         "endangered_hint": "Contrassegna le specie protette o considerate minacciate.",
         "endangered_not": "Specie non minacciata",
+        "reportable": "Soggetta a denuncia",
+        "reportable_hint": "La detenzione di questa specie va denunciata alle autorità.",
+        "reportable_not": "Nessun obbligo di denuncia",
         "suggestions": "Suggerimenti",
         "incubation_found": "Durata di incubazione applicata",
         "incubation_missing": "Nessuna durata di incubazione trovata: inseriscila manualmente.",
@@ -428,7 +431,6 @@
         },
         "already_added": "Già presente",
         "duplicate_warning": "Esiste già una specie con questo nome.",
-        "endangered_only": "Solo specie minacciate",
         "image_remove": "Rimuovi immagine"
     },
     "contacts": {
@@ -631,7 +633,9 @@
             "show_results(count)": "Mostra {{count}} uccelli",
             "sort_title": "Ordina",
             "more_title": "Altro",
-            "show_deceased": "Mostra deceduti"
+            "show_deceased": "Mostra deceduti",
+            "endangered_only": "Solo specie minacciate",
+            "reportable_only": "Solo specie da denunciare"
         }
     },
     "pedigree": {

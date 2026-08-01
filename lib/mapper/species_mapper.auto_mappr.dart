@@ -300,6 +300,7 @@ class $SpeciesMapper implements _i1.AutoMapprInterface {
       incubationDays: model.incubationDays,
       fledgeDays: model.fledgeDays,
       endangered: model.endangered,
+      reportable: model.reportable,
       notes: model.notes,
     );
   }
@@ -319,6 +320,7 @@ class $SpeciesMapper implements _i1.AutoMapprInterface {
       incubationDays: model.incubationDays,
       fledgeDays: model.fledgeDays,
       endangered: model.endangered,
+      reportable: model.reportable,
       notes: model.notes,
     );
   }

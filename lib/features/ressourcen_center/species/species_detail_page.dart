@@ -68,7 +68,25 @@ class SpeciesDetailPage extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  _EndangeredStatus(endangered: current.endangered),
+                  Row(
+                    spacing: 8,
+                    children: [
+                      Expanded(
+                        child: _FlagStatus(
+                          active: current.endangered,
+                          activeLabel: speciesTr.endangered,
+                          inactiveLabel: speciesTr.endangered_not,
+                        ),
+                      ),
+                      Expanded(
+                        child: _FlagStatus(
+                          active: current.reportable,
+                          activeLabel: speciesTr.reportable,
+                          inactiveLabel: speciesTr.reportable_not,
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -185,44 +203,51 @@ class SpeciesDetailPage extends StatelessWidget {
   }
 }
 
-/// Conservation status of the species, always visible so "not endangered"
-/// reads as a stated fact rather than a missing badge.
-class _EndangeredStatus extends StatelessWidget {
-  const _EndangeredStatus({required this.endangered});
+/// One legal flag of the species, always visible so the negative case reads
+/// as a stated fact rather than a missing badge.
+class _FlagStatus extends StatelessWidget {
+  const _FlagStatus({
+    required this.active,
+    required this.activeLabel,
+    required this.inactiveLabel,
+  });
 
-  final bool endangered;
+  final bool active;
+  final String activeLabel;
+  final String inactiveLabel;
 
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final speciesTr = context.tr.species;
     final warn = context.appColors.statusWarning;
-    final color = endangered ? warn : cs.onSurfaceVariant;
+    final color = active ? warn : cs.onSurfaceVariant;
 
     return Container(
-      width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: endangered ? warn.withValues(alpha: 0.12) : cs.surface,
+        color: active ? warn.withValues(alpha: 0.12) : cs.surface,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: endangered ? warn.withValues(alpha: 0.5) : cs.outlineVariant,
+          color: active ? warn.withValues(alpha: 0.5) : cs.outlineVariant,
         ),
       ),
       child: Row(
         children: [
           Icon(
-            endangered ? AppIcons.warning : AppIcons.check,
+            active ? AppIcons.warning : AppIcons.check,
             size: 16,
             color: color,
           ),
           const SizedBox(width: 8),
-          Text(
-            endangered ? speciesTr.endangered : speciesTr.endangered_not,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w700,
-              color: color,
+          Expanded(
+            child: Text(
+              active ? activeLabel : inactiveLabel,
+              maxLines: 2,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w700,
+                color: color,
+              ),
             ),
           ),
         ],

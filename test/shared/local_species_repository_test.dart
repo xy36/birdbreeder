@@ -28,27 +28,43 @@ void main() {
           LocalSpeciesMapper().convert<local_db.SpeciesTableData, Species>(dto),
       toDto: (m) =>
           LocalSpeciesMapper().convert<Species, local_db.SpeciesTableData>(m),
-      boolColumns: {'endangered'},
+      boolColumns: {'endangered', 'reportable'},
     );
   });
 
   tearDown(() => db.close());
 
-  test('endangered survives the create/read round trip', () async {
+  test('the bool flags survive the create/read round trip', () async {
     final created = await repository.create(
-      Species.create(name: 'Pflaumenkopfsittich', endangered: true),
+      Species.create(
+        name: 'Pflaumenkopfsittich',
+        endangered: true,
+        reportable: true,
+      ),
     );
-    final endangered = created.asValue!.value;
-    expect(endangered.endangered, isTrue);
+    expect(created.asValue!.value.endangered, isTrue);
+    expect(created.asValue!.value.reportable, isTrue);
 
     final all = await repository.getAll();
     expect(all.asValue!.value.single.endangered, isTrue);
+    expect(all.asValue!.value.single.reportable, isTrue);
   });
 
-  test('endangered defaults to false and reads back', () async {
+  test('the bool flags default to false and read back', () async {
     await repository.create(Species.create(name: 'Wellensittich'));
 
-    final all = await repository.getAll();
-    expect(all.asValue!.value.single.endangered, isFalse);
+    final species = (await repository.getAll()).asValue!.value.single;
+    expect(species.endangered, isFalse);
+    expect(species.reportable, isFalse);
+  });
+
+  test('the flags are independent of each other', () async {
+    await repository.create(
+      Species.create(name: 'Kanarienvogel', reportable: true),
+    );
+
+    final species = (await repository.getAll()).asValue!.value.single;
+    expect(species.reportable, isTrue);
+    expect(species.endangered, isFalse);
   });
 }

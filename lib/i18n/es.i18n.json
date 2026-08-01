@@ -410,6 +410,9 @@
         "endangered": "Especie amenazada",
         "endangered_hint": "Marca especies protegidas o consideradas amenazadas.",
         "endangered_not": "Especie no amenazada",
+        "reportable": "Sujeta a declaración",
+        "reportable_hint": "La tenencia de esta especie debe declararse a las autoridades.",
+        "reportable_not": "Sin obligación de declarar",
         "suggestions": "Sugerencias",
         "incubation_found": "Periodo de incubación aplicado",
         "incubation_missing": "No se encontró el periodo de incubación: introdúcelo tú mismo.",
@@ -428,7 +431,6 @@
         },
         "already_added": "Ya añadida",
         "duplicate_warning": "Ya existe una especie con este nombre.",
-        "endangered_only": "Solo especies amenazadas",
         "image_remove": "Quitar imagen"
     },
     "contacts": {
@@ -631,7 +633,9 @@
             "show_results(count)": "Mostrar {{count}} pájaros",
             "sort_title": "Ordenar",
             "more_title": "Más",
-            "show_deceased": "Mostrar fallecidos"
+            "show_deceased": "Mostrar fallecidos",
+            "endangered_only": "Solo especies amenazadas",
+            "reportable_only": "Solo especies declarables"
         }
     },
     "pedigree": {

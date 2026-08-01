@@ -1,11 +1,16 @@
+import 'package:birdbreeder/core/extensions/birds_extension.dart';
 import 'package:birdbreeder/models/bird/bird_filter.dart';
 import 'package:birdbreeder/models/bird/entity/bird.dart';
+import 'package:birdbreeder/models/ressources/entity/species.dart';
 import 'package:birdbreeder/shared/utils/natural_compare.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BirdsFilterCubit extends Cubit<BirdFilter> {
-  BirdsFilterCubit({String? currentUserContactId})
-      : _defaultFilter = currentUserContactId != null
+  BirdsFilterCubit({
+    String? currentUserContactId,
+    Species? Function(Bird bird)? resolveSpecies,
+  })  : _resolveSpecies = resolveSpecies ?? ((bird) => bird.speciesResolved),
+        _defaultFilter = currentUserContactId != null
             ? BirdFilter(ownerIds: [currentUserContactId])
             : const BirdFilter(),
         super(
@@ -13,6 +18,10 @@ class BirdsFilterCubit extends Cubit<BirdFilter> {
               ? BirdFilter(ownerIds: [currentUserContactId])
               : const BirdFilter(),
         );
+
+  /// How a bird finds its species. Defaults to the app-wide resolver; tests
+  /// pass their own so the filter can run without dependency injection.
+  final Species? Function(Bird bird) _resolveSpecies;
 
   BirdFilter _defaultFilter;
 
@@ -74,6 +83,14 @@ class BirdsFilterCubit extends Cubit<BirdFilter> {
       if (saleSet != null && !saleSet.contains(b.saleStatus)) return false;
 
       if (!f.showDeceased && b.diedAt != null) return false;
+
+      // Species flags. A bird without a species matches neither, which is
+      // the honest answer: nothing states that it is protected.
+      if (f.endangeredOnly || f.reportableOnly) {
+        final species = _resolveSpecies(b);
+        if (f.endangeredOnly && !(species?.endangered ?? false)) return false;
+        if (f.reportableOnly && !(species?.reportable ?? false)) return false;
+      }
 
       return true;
     }).toList();

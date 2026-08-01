@@ -410,6 +410,9 @@
         "endangered": "Espèce menacée",
         "endangered_hint": "Signale les espèces protégées ou considérées comme menacées.",
         "endangered_not": "Espèce non menacée",
+        "reportable": "Soumise à déclaration",
+        "reportable_hint": "La détention de cette espèce doit être déclarée aux autorités.",
+        "reportable_not": "Sans obligation de déclaration",
         "suggestions": "Suggestions",
         "incubation_found": "Durée d'incubation reprise",
         "incubation_missing": "Aucune durée d'incubation trouvée – veuillez la saisir vous-même.",
@@ -428,7 +431,6 @@
         },
         "already_added": "Déjà ajoutée",
         "duplicate_warning": "Une espèce portant ce nom existe déjà.",
-        "endangered_only": "Espèces menacées uniquement",
         "image_remove": "Supprimer l'image"
     },
     "contacts": {
@@ -631,7 +633,9 @@
             "show_results(count)": "Afficher {{count}} oiseaux",
             "sort_title": "Trier",
             "more_title": "Plus",
-            "show_deceased": "Afficher les décédés"
+            "show_deceased": "Afficher les décédés",
+            "endangered_only": "Espèces menacées uniquement",
+            "reportable_only": "Espèces à déclarer uniquement"
         }
     },
     "pedigree": {

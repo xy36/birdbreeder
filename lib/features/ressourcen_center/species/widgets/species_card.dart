@@ -4,10 +4,14 @@ import 'package:birdbreeder/models/ressources/entity/species.dart';
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/theme/app_colors.dart';
 
-/// Compact warning chip shown only for endangered species — an unmarked card
-/// simply is not endangered, the explicit status lives on the detail page.
-class _EndangeredChip extends StatelessWidget {
-  const _EndangeredChip();
+/// Compact warning chip for a legal flag. Only set flags get one — an
+/// unmarked card simply carries neither, the explicit status lives on the
+/// detail page.
+class _FlagChip extends StatelessWidget {
+  const _FlagChip({required this.label, required this.icon});
+
+  final String label;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +26,10 @@ class _EndangeredChip extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(AppIcons.warning, size: 11, color: warn),
+          Icon(icon, size: 11, color: warn),
           const SizedBox(width: 4),
           Text(
-            context.tr.species.endangered,
+            label,
             style: TextStyle(
               fontSize: 10,
               fontWeight: FontWeight.w700,
@@ -104,10 +108,25 @@ class SpeciesCard extends StatelessWidget {
                               ),
                             ),
                           ),
-                        if (species.endangered)
-                          const Padding(
-                            padding: EdgeInsets.only(top: 4),
-                            child: _EndangeredChip(),
+                        if (species.endangered || species.reportable)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 4),
+                            child: Wrap(
+                              spacing: 4,
+                              runSpacing: 4,
+                              children: [
+                                if (species.endangered)
+                                  _FlagChip(
+                                    label: context.tr.species.endangered,
+                                    icon: AppIcons.warning,
+                                  ),
+                                if (species.reportable)
+                                  _FlagChip(
+                                    label: context.tr.species.reportable,
+                                    icon: AppIcons.description,
+                                  ),
+                              ],
+                            ),
                           ),
                       ],
                     ),

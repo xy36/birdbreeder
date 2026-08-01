@@ -16,6 +16,7 @@ abstract class SpeciesDto with _$SpeciesDto {
     /// Defaults to false so backups written before the field existed
     /// deserialize cleanly.
     @Default(false) bool endangered,
+    @Default(false) bool reportable,
     String? notes,
     String? user,
   }) = _SpeciesDto;

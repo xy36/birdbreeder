@@ -410,6 +410,9 @@
         "endangered": "Endangered species",
         "endangered_hint": "Marks species that are protected or considered endangered.",
         "endangered_not": "Not endangered",
+        "reportable": "Subject to reporting",
+        "reportable_hint": "Keeping this species must be reported to the authorities.",
+        "reportable_not": "No reporting required",
         "suggestions": "Suggestions",
         "incubation_found": "Incubation period applied",
         "incubation_missing": "No incubation period found – please enter it yourself.",
@@ -428,7 +431,6 @@
         },
         "already_added": "Already added",
         "duplicate_warning": "A species with this name already exists.",
-        "endangered_only": "Endangered species only",
         "image_remove": "Remove image"
     },
     "contacts": {
@@ -631,7 +633,9 @@
             "show_results(count)": "Show {{count}} birds",
             "sort_title": "Sort",
             "more_title": "More",
-            "show_deceased": "Show deceased"
+            "show_deceased": "Show deceased",
+            "endangered_only": "Endangered species only",
+            "reportable_only": "Reportable species only"
         }
     },
     "pedigree": {

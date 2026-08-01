@@ -217,6 +217,7 @@ class SpeciesTable extends Table {
   IntColumn get incubationDays => integer().nullable()();
   IntColumn get fledgeDays => integer().nullable()();
   BoolColumn get endangered => boolean().withDefault(const Constant(false))();
+  BoolColumn get reportable => boolean().withDefault(const Constant(false))();
   TextColumn get notes => text().nullable()();
   TextColumn get user => text().nullable()();
   DateTimeColumn get created => dateTime().nullable()();
@@ -286,7 +287,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.forTesting(super.e);
 
   @override
-  int get schemaVersion => 6;
+  int get schemaVersion => 7;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -306,6 +307,9 @@ class AppDatabase extends _$AppDatabase {
           },
           from5To6: (m, schema) async {
             await m.addColumn(schema.species, schema.species.endangered);
+          },
+          from6To7: (m, schema) async {
+            await m.addColumn(schema.species, schema.species.reportable);
           },
         ),
       );

@@ -18,10 +18,6 @@ mixin _$SpeciesFilterState {
   SpeciesSortField get sortField;
   bool get sortAsc;
 
-  /// Narrows the list to protected species — the subset a breeder has
-  /// reporting duties for.
-  bool get endangeredOnly;
-
   /// Create a copy of SpeciesFilterState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -38,18 +34,15 @@ mixin _$SpeciesFilterState {
             (identical(other.query, query) || other.query == query) &&
             (identical(other.sortField, sortField) ||
                 other.sortField == sortField) &&
-            (identical(other.sortAsc, sortAsc) || other.sortAsc == sortAsc) &&
-            (identical(other.endangeredOnly, endangeredOnly) ||
-                other.endangeredOnly == endangeredOnly));
+            (identical(other.sortAsc, sortAsc) || other.sortAsc == sortAsc));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, query, sortField, sortAsc, endangeredOnly);
+  int get hashCode => Object.hash(runtimeType, query, sortField, sortAsc);
 
   @override
   String toString() {
-    return 'SpeciesFilterState(query: $query, sortField: $sortField, sortAsc: $sortAsc, endangeredOnly: $endangeredOnly)';
+    return 'SpeciesFilterState(query: $query, sortField: $sortField, sortAsc: $sortAsc)';
   }
 }
 
@@ -59,11 +52,7 @@ abstract mixin class $SpeciesFilterStateCopyWith<$Res> {
           SpeciesFilterState value, $Res Function(SpeciesFilterState) _then) =
       _$SpeciesFilterStateCopyWithImpl;
   @useResult
-  $Res call(
-      {String query,
-      SpeciesSortField sortField,
-      bool sortAsc,
-      bool endangeredOnly});
+  $Res call({String query, SpeciesSortField sortField, bool sortAsc});
 }
 
 /// @nodoc
@@ -82,7 +71,6 @@ class _$SpeciesFilterStateCopyWithImpl<$Res>
     Object? query = null,
     Object? sortField = null,
     Object? sortAsc = null,
-    Object? endangeredOnly = null,
   }) {
     return _then(_self.copyWith(
       query: null == query
@@ -96,10 +84,6 @@ class _$SpeciesFilterStateCopyWithImpl<$Res>
       sortAsc: null == sortAsc
           ? _self.sortAsc
           : sortAsc // ignore: cast_nullable_to_non_nullable
-              as bool,
-      endangeredOnly: null == endangeredOnly
-          ? _self.endangeredOnly
-          : endangeredOnly // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -198,16 +182,14 @@ extension SpeciesFilterStatePatterns on SpeciesFilterState {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String query, SpeciesSortField sortField, bool sortAsc,
-            bool endangeredOnly)?
+    TResult Function(String query, SpeciesSortField sortField, bool sortAsc)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _SpeciesFilterState() when $default != null:
-        return $default(
-            _that.query, _that.sortField, _that.sortAsc, _that.endangeredOnly);
+        return $default(_that.query, _that.sortField, _that.sortAsc);
       case _:
         return orElse();
     }
@@ -228,15 +210,13 @@ extension SpeciesFilterStatePatterns on SpeciesFilterState {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String query, SpeciesSortField sortField, bool sortAsc,
-            bool endangeredOnly)
+    TResult Function(String query, SpeciesSortField sortField, bool sortAsc)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _SpeciesFilterState():
-        return $default(
-            _that.query, _that.sortField, _that.sortAsc, _that.endangeredOnly);
+        return $default(_that.query, _that.sortField, _that.sortAsc);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -256,15 +236,13 @@ extension SpeciesFilterStatePatterns on SpeciesFilterState {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String query, SpeciesSortField sortField, bool sortAsc,
-            bool endangeredOnly)?
+    TResult? Function(String query, SpeciesSortField sortField, bool sortAsc)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _SpeciesFilterState() when $default != null:
-        return $default(
-            _that.query, _that.sortField, _that.sortAsc, _that.endangeredOnly);
+        return $default(_that.query, _that.sortField, _that.sortAsc);
       case _:
         return null;
     }
@@ -277,8 +255,7 @@ class _SpeciesFilterState implements SpeciesFilterState {
   const _SpeciesFilterState(
       {this.query = '',
       this.sortField = SpeciesSortField.name,
-      this.sortAsc = true,
-      this.endangeredOnly = false});
+      this.sortAsc = true});
 
   @override
   @JsonKey()
@@ -289,12 +266,6 @@ class _SpeciesFilterState implements SpeciesFilterState {
   @override
   @JsonKey()
   final bool sortAsc;
-
-  /// Narrows the list to protected species — the subset a breeder has
-  /// reporting duties for.
-  @override
-  @JsonKey()
-  final bool endangeredOnly;
 
   /// Create a copy of SpeciesFilterState
   /// with the given fields replaced by the non-null parameter values.
@@ -312,18 +283,15 @@ class _SpeciesFilterState implements SpeciesFilterState {
             (identical(other.query, query) || other.query == query) &&
             (identical(other.sortField, sortField) ||
                 other.sortField == sortField) &&
-            (identical(other.sortAsc, sortAsc) || other.sortAsc == sortAsc) &&
-            (identical(other.endangeredOnly, endangeredOnly) ||
-                other.endangeredOnly == endangeredOnly));
+            (identical(other.sortAsc, sortAsc) || other.sortAsc == sortAsc));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, query, sortField, sortAsc, endangeredOnly);
+  int get hashCode => Object.hash(runtimeType, query, sortField, sortAsc);
 
   @override
   String toString() {
-    return 'SpeciesFilterState(query: $query, sortField: $sortField, sortAsc: $sortAsc, endangeredOnly: $endangeredOnly)';
+    return 'SpeciesFilterState(query: $query, sortField: $sortField, sortAsc: $sortAsc)';
   }
 }
 
@@ -335,11 +303,7 @@ abstract mixin class _$SpeciesFilterStateCopyWith<$Res>
       __$SpeciesFilterStateCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {String query,
-      SpeciesSortField sortField,
-      bool sortAsc,
-      bool endangeredOnly});
+  $Res call({String query, SpeciesSortField sortField, bool sortAsc});
 }
 
 /// @nodoc
@@ -358,7 +322,6 @@ class __$SpeciesFilterStateCopyWithImpl<$Res>
     Object? query = null,
     Object? sortField = null,
     Object? sortAsc = null,
-    Object? endangeredOnly = null,
   }) {
     return _then(_SpeciesFilterState(
       query: null == query
@@ -372,10 +335,6 @@ class __$SpeciesFilterStateCopyWithImpl<$Res>
       sortAsc: null == sortAsc
           ? _self.sortAsc
           : sortAsc // ignore: cast_nullable_to_non_nullable
-              as bool,
-      endangeredOnly: null == endangeredOnly
-          ? _self.endangeredOnly
-          : endangeredOnly // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }

@@ -50,8 +50,13 @@ class BirdFilterBar extends StatelessWidget {
         dimension: BirdFilterDimension.more,
         label: context.tr.birds.filter.more_title,
         count: (_sameSet(f.saleStatus, def.saleStatus) ? 0 : 1) +
-            (f.showDeceased ? 1 : 0),
-        active: !_sameSet(f.saleStatus, def.saleStatus) || f.showDeceased,
+            (f.showDeceased ? 1 : 0) +
+            (f.endangeredOnly ? 1 : 0) +
+            (f.reportableOnly ? 1 : 0),
+        active: !_sameSet(f.saleStatus, def.saleStatus) ||
+            f.showDeceased ||
+            f.endangeredOnly ||
+            f.reportableOnly,
       ),
     ];
 

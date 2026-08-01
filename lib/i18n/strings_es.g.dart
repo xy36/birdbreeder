@@ -434,6 +434,12 @@ class _TranslationsSpeciesEs extends TranslationsSpeciesDe {
   @override
   String get endangered_not => 'Especie no amenazada';
   @override
+  String get reportable => 'Sujeta a declaración';
+  @override
+  String get reportable_hint => 'La tenencia de esta especie debe declararse a las autoridades.';
+  @override
+  String get reportable_not => 'Sin obligación de declarar';
+  @override
   String get suggestions => 'Sugerencias';
   @override
   String get incubation_found => 'Periodo de incubación aplicado';
@@ -459,8 +465,6 @@ class _TranslationsSpeciesEs extends TranslationsSpeciesDe {
   String get already_added => 'Ya añadida';
   @override
   String get duplicate_warning => 'Ya existe una especie con este nombre.';
-  @override
-  String get endangered_only => 'Solo especies amenazadas';
   @override
   String get image_remove => 'Quitar imagen';
 }
@@ -2420,6 +2424,10 @@ class _TranslationsBirdsFilterEs extends TranslationsBirdsFilterDe {
   String get more_title => 'Más';
   @override
   String get show_deceased => 'Mostrar fallecidos';
+  @override
+  String get endangered_only => 'Solo especies amenazadas';
+  @override
+  String get reportable_only => 'Solo especies declarables';
 }
 
 // Path: pedigree.stats

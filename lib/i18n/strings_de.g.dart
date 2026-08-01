@@ -454,6 +454,15 @@ class TranslationsSpeciesDe {
   /// de: 'Keine gefährdete Art'
   String get endangered_not => 'Keine gefährdete Art';
 
+  /// de: 'Meldepflichtig'
+  String get reportable => 'Meldepflichtig';
+
+  /// de: 'Das Halten dieser Art muss bei der Behörde gemeldet werden.'
+  String get reportable_hint => 'Das Halten dieser Art muss bei der Behörde gemeldet werden.';
+
+  /// de: 'Nicht meldepflichtig'
+  String get reportable_not => 'Nicht meldepflichtig';
+
   /// de: 'Vorschläge'
   String get suggestions => 'Vorschläge';
 
@@ -489,9 +498,6 @@ class TranslationsSpeciesDe {
 
   /// de: 'Eine Art mit diesem Namen existiert bereits.'
   String get duplicate_warning => 'Eine Art mit diesem Namen existiert bereits.';
-
-  /// de: 'Nur gefährdete Arten'
-  String get endangered_only => 'Nur gefährdete Arten';
 
   /// de: 'Bild entfernen'
   String get image_remove => 'Bild entfernen';
@@ -2707,6 +2713,12 @@ class TranslationsBirdsFilterDe {
 
   /// de: 'Verstorbene anzeigen'
   String get show_deceased => 'Verstorbene anzeigen';
+
+  /// de: 'Nur gefährdete Arten'
+  String get endangered_only => 'Nur gefährdete Arten';
+
+  /// de: 'Nur meldepflichtige Arten'
+  String get reportable_only => 'Nur meldepflichtige Arten';
 }
 
 // Path: pedigree.stats

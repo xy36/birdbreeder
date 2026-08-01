@@ -7,6 +7,7 @@ import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.
 import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/bottom_sheet/bottom_sheet_footer.dart';
 import 'package:birdbreeder/shared/widgets/bottom_sheet/bottom_sheet_header.dart';
+import 'package:birdbreeder/theme/app_colors.dart';
 
 /// A single filter dimension surfaced from the inline filter bar.
 enum BirdFilterDimension { species, sex, color, owner, more }
@@ -69,6 +70,8 @@ class _BirdFilterDimensionSheetState extends State<BirdFilterDimensionSheet> {
         BirdFilterDimension.more => f.copyWith(
             saleStatus: widget.defaultFilter.saleStatus,
             showDeceased: widget.defaultFilter.showDeceased,
+            endangeredOnly: widget.defaultFilter.endangeredOnly,
+            reportableOnly: widget.defaultFilter.reportableOnly,
           ),
       };
     });
@@ -208,6 +211,26 @@ class _BirdFilterDimensionSheetState extends State<BirdFilterDimensionSheet> {
             secondary:
                 Icon(AppIcons.lifeStageDeceased, size: 20, color: cs.error),
             onChanged: (v) => f = f.copyWith(showDeceased: v),
+          ),
+          _FilterRow(
+            label: context.tr.birds.filter.endangered_only,
+            selected: f.endangeredOnly,
+            secondary: Icon(
+              AppIcons.warning,
+              size: 20,
+              color: context.appColors.statusWarning,
+            ),
+            onChanged: (v) => f = f.copyWith(endangeredOnly: v),
+          ),
+          _FilterRow(
+            label: context.tr.birds.filter.reportable_only,
+            selected: f.reportableOnly,
+            secondary: Icon(
+              AppIcons.description,
+              size: 20,
+              color: context.appColors.statusWarning,
+            ),
+            onChanged: (v) => f = f.copyWith(reportableOnly: v),
           ),
         ];
     }

@@ -14,6 +14,12 @@ abstract class Species with _$Species {
 
     /// Whether the species is protected or considered endangered.
     @Default(false) bool endangered,
+
+    /// Whether keeping this species has to be reported to the authorities.
+    ///
+    /// Independent of [endangered]: the two often coincide but are decided
+    /// by different rules, so the breeder sets each one.
+    @Default(false) bool reportable,
     String? notes,
     DateTime? created,
     DateTime? updated,
@@ -26,6 +32,7 @@ abstract class Species with _$Species {
     int? incubationDays,
     int? fledgeDays,
     bool endangered = false,
+    bool reportable = false,
     String? notes,
   }) =>
       Species(
@@ -36,6 +43,7 @@ abstract class Species with _$Species {
         incubationDays: incubationDays,
         fledgeDays: fledgeDays,
         endangered: endangered,
+        reportable: reportable,
         notes: notes,
       );
 }

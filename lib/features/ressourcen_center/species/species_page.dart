@@ -8,10 +8,8 @@ import 'package:birdbreeder/features/ressourcen_center/species/species_details_s
 import 'package:birdbreeder/features/ressourcen_center/species/widgets/species_card.dart';
 import 'package:birdbreeder/features/ressourcen_center/widgets/resource_overview_ui.dart';
 import 'package:birdbreeder/shared/cubits/bird_breeder_cubit/bird_breeder_cubit.dart';
-import 'package:birdbreeder/shared/icons.dart';
 import 'package:birdbreeder/shared/widgets/sort_chip.dart';
 import 'package:birdbreeder/shared/widgets/utils.dart';
-import 'package:birdbreeder/theme/app_colors.dart';
 
 @RoutePage(name: 'SpeciesTabRoute')
 class SpeciesPage extends StatelessWidget {
@@ -43,7 +41,6 @@ class _SpeciesTabView extends StatelessWidget {
     final totalBirds = usageBySpecies.values.fold<int>(0, (a, b) => a + b);
     final filtered =
         filterCubit.filterSpecies(species, stockBySpecies: usageBySpecies);
-    final endangeredCount = species.where((s) => s.endangered).length;
 
     final speciesTr = context.tr.species;
     return Scaffold(
@@ -67,30 +64,6 @@ class _SpeciesTabView extends StatelessWidget {
           ),
         ),
         bodyChildren: [
-          // Offered only once a protected species exists — otherwise the
-          // filter is a control that can never change anything.
-          if (endangeredCount > 0)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: FilterChip(
-                  selected: filterState.endangeredOnly,
-                  avatar: Icon(
-                    AppIcons.warning,
-                    size: 16,
-                    color: filterState.endangeredOnly
-                        ? null
-                        : context.appColors.statusWarning,
-                  ),
-                  label: Text(
-                    '${speciesTr.endangered_only} ($endangeredCount)',
-                  ),
-                  onSelected: (value) =>
-                      filterCubit.setEndangeredOnly(value: value),
-                ),
-              ),
-            ),
           for (final sp in filtered)
             Padding(
               padding: const EdgeInsets.only(bottom: 8),

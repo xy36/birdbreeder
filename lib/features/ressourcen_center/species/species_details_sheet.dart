@@ -233,6 +233,15 @@ class _SpeciesDetailsSheetState extends State<SpeciesDetailsSheet> {
                       () => _species = _species.copyWith(endangered: v),
                     ),
                   ),
+                  SwitchListTile(
+                    contentPadding: EdgeInsets.zero,
+                    value: _species.reportable,
+                    title: Text(speciesTr.reportable),
+                    subtitle: Text(speciesTr.reportable_hint),
+                    onChanged: (v) => setState(
+                      () => _species = _species.copyWith(reportable: v),
+                    ),
+                  ),
                   EditSectionDivider(
                     icon: AppIcons.scheduleOutlined,
                     label: speciesTr.section.lifecycle,

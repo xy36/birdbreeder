@@ -61,20 +61,6 @@ void main() {
     );
   });
 
-  test('endangeredOnly narrows the list to protected species', () {
-    cubit.setEndangeredOnly(value: true);
-
-    expect(namesOf(cubit.filterSpecies(_all)), ['Graupapagei']);
-  });
-
-  test('endangeredOnly combines with the query', () {
-    cubit
-      ..setEndangeredOnly(value: true)
-      ..setQuery('kanarie');
-
-    expect(cubit.filterSpecies(_all), isEmpty);
-  });
-
   test('sorts by stock in both directions', () {
     cubit.setSort(SpeciesSortField.stock, true);
     expect(
@@ -121,14 +107,14 @@ void main() {
     expect(namesOf(_all).first, 'Wellensittich');
   });
 
-  test('reset clears query and endangered filter', () {
+  test('reset clears the query and restores the default sort', () {
     cubit
       ..setQuery('graupapagei')
-      ..setEndangeredOnly(value: true)
+      ..setSort(SpeciesSortField.stock, false)
       ..reset();
 
     expect(cubit.state.query, isEmpty);
-    expect(cubit.state.endangeredOnly, isFalse);
+    expect(cubit.state.sortField, SpeciesSortField.name);
     expect(cubit.filterSpecies(_all), hasLength(3));
   });
 }

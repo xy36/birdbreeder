@@ -11,12 +11,9 @@ class SpeciesFilterCubit extends Cubit<SpeciesFilterState> {
   void setSort(SpeciesSortField field, bool ascending) =>
       emit(state.copyWith(sortField: field, sortAsc: ascending));
 
-  void setEndangeredOnly({required bool value}) =>
-      emit(state.copyWith(endangeredOnly: value));
-
   void reset() => emit(const SpeciesFilterState());
 
-  /// Applies query, endangered filter and sorting.
+  /// Applies the query and sorting.
   ///
   /// [stockBySpecies] holds the bird count per species id; it is only needed
   /// for [SpeciesSortField.stock] and defaults to zero for anything missing.
@@ -26,7 +23,6 @@ class SpeciesFilterCubit extends Cubit<SpeciesFilterState> {
   }) {
     final q = state.query.trim().toLowerCase();
     final filtered = species.where((s) {
-      if (state.endangeredOnly && !s.endangered) return false;
       if (q.isEmpty) return true;
       return (s.name ?? '').toLowerCase().contains(q) ||
           (s.latName ?? '').toLowerCase().contains(q);
