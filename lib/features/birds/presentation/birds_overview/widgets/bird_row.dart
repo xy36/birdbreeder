@@ -12,10 +12,11 @@ import 'package:birdbreeder/shared/widgets/image_lightbox.dart';
 
 /// Ultra-compact, single-line row for a bird inside a cage group.
 ///
-/// Layout mirrors the "Grouped by Cage" overview: a tinted sex glyph, the ring
-/// number in a monospace font with an optional life-stage marker, a subtitle
-/// pairing the colour swatch with colour and species, an optional sale price
-/// and the bird's age. Deceased birds are dimmed.
+/// Layout mirrors the "Grouped by Cage" overview: the bird's photo (or a
+/// stand-in), the sex glyph and the ring number in a monospace font with an
+/// optional life-stage marker, a subtitle pairing the colour swatch with
+/// colour and species, an optional sale price and the bird's age. Deceased
+/// birds are dimmed.
 class BirdRow extends StatelessWidget {
   const BirdRow({
     required this.bird,
@@ -108,6 +109,8 @@ class BirdRow extends StatelessWidget {
               ),
               const SizedBox(width: 4),
             ],
+            _SexGlyph(sex: bird.sex),
+            const SizedBox(width: 5),
             Flexible(
               child: Text(
                 ring,
@@ -160,8 +163,17 @@ class BirdRow extends StatelessWidget {
   }
 }
 
+/// Side length of the leading slot, shared by the photo and its stand-in so
+/// rows line up whether or not the bird has a picture.
+const double _leadingSize = 32;
+
+const double _leadingRadius = 6;
+
 /// Leading element of a bird row: the first photo if the bird has one,
-/// otherwise the tinted sex glyph.
+/// otherwise a neutral stand-in.
+///
+/// Carries no sex information — that lives next to the ring number, in one
+/// place, whether or not the bird has a picture.
 class _Leading extends StatelessWidget {
   const _Leading({required this.bird});
 
@@ -170,7 +182,7 @@ class _Leading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final images = bird.imagesResolved;
-    if (images.isEmpty) return _SexGlyph(sex: bird.sex);
+    if (images.isEmpty) return const _PhotoPlaceholder();
     return GestureDetector(
       onTap: () => unawaited(
         ImageLightbox.show(
@@ -180,10 +192,10 @@ class _Leading extends StatelessWidget {
         ),
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(6),
+        borderRadius: BorderRadius.circular(_leadingRadius),
         child: SizedBox(
-          width: 28,
-          height: 28,
+          width: _leadingSize,
+          height: _leadingSize,
           child: HashImage(hash: images.first.hash),
         ),
       ),
@@ -191,6 +203,34 @@ class _Leading extends StatelessWidget {
   }
 }
 
+/// Stand-in for the photo slot when a bird has no images.
+///
+/// Matches the photo's footprint exactly — same size, same corner radius — so
+/// rows line up whether or not there is a picture.
+class _PhotoPlaceholder extends StatelessWidget {
+  const _PhotoPlaceholder();
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    return Container(
+      width: _leadingSize,
+      height: _leadingSize,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: cs.surfaceContainerHighest,
+        borderRadius: BorderRadius.circular(_leadingRadius),
+      ),
+      child: Icon(AppIcons.birdAvatar, size: 17, color: cs.onSurfaceVariant),
+    );
+  }
+}
+
+/// The sex as a typographic glyph, sized to sit on the ring number's baseline.
+///
+/// A glyph rather than a Material icon: it is the narrowest option in a row
+/// whose ring number already truncates, and it shares the text baseline
+/// instead of floating beside it.
 class _SexGlyph extends StatelessWidget {
   const _SexGlyph({required this.sex});
 
@@ -198,21 +238,15 @@ class _SexGlyph extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = sex.colorOf(context);
-    return Container(
-      width: 22,
-      height: 22,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: color.withAlpha(38),
-        shape: BoxShape.circle,
-      ),
+    return Semantics(
+      label: sex.getDisplayName(context),
       child: Text(
         sex.symbol,
         style: TextStyle(
-          fontSize: 13,
+          fontSize: 12,
           fontWeight: FontWeight.w700,
-          color: color,
+          height: 1,
+          color: sex.colorOf(context),
         ),
       ),
     );
