@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.17.0](https://github.com/xy36/birdbreeder/compare/v1.16.0...v1.17.0) (2026-08-31)
+
+
+### Features
+
+* **birds:** show the sex next to the ring number ([8c484b0](https://github.com/xy36/birdbreeder/commit/8c484b00326a3c71c7cf23564ad3cae7ae434832))
+* **birds:** show the sex next to the ring number ([532520a](https://github.com/xy36/birdbreeder/commit/532520a7ce6032c002316cb7a31d8a14d697d163))
+
+
+### Bug Fixes
+
+* **backup:** stop the reminder from firing on fresh installs ([e4e1573](https://github.com/xy36/birdbreeder/commit/e4e1573ce3fe3b514ae4d7dc12283a9046b7961f))
+* **backup:** stop the reminder from firing on fresh installs ([1491e8b](https://github.com/xy36/birdbreeder/commit/1491e8be41fda565e15f07c562ff0aec078f3e2f))
+
 ## [1.16.0](https://github.com/xy36/birdbreeder/compare/v1.15.0...v1.16.0) (2026-08-01)
 
 
