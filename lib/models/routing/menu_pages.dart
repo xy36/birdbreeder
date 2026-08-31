@@ -85,7 +85,7 @@ enum MenuPage {
       MenuPage.contacts => const ContactsRoute(),
       MenuPage.breedings => const BreedingPairsRoute(),
       MenuPage.finances => const FinancesRoute(),
-      MenuPage.account => const AccountRoute(),
+      MenuPage.account => AccountRoute(),
       MenuPage.species => const SpeciesTabRoute(),
       MenuPage.cages => const CagesTabRoute(),
       MenuPage.colors => const ColorsTabRoute(),

@@ -244,7 +244,9 @@
             "body": "Save it now in a safe place (iCloud, Drive, mail) so your data is not lost if you lose your device.",
             "snooze": "Remind me later",
             "already_saved": "Already saved",
-            "share_now": "Share now"
+            "share_now": "Share now",
+            "cloud_hint": "Alternatively you can turn on automatic cloud backup – every snapshot is then uploaded to your cloud without you doing anything.",
+            "setup_cloud": "Set up cloud"
         },
         "events": {
             "created": "Backup created",

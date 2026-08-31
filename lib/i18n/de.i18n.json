@@ -244,7 +244,9 @@
             "body": "Sichere es jetzt an einem sicheren Ort (iCloud, Drive, Mail), damit deine Daten bei Geräteverlust nicht verloren gehen.",
             "snooze": "Später erinnern",
             "already_saved": "Schon gesichert",
-            "share_now": "Jetzt teilen"
+            "share_now": "Jetzt teilen",
+            "cloud_hint": "Alternativ kannst du das automatische Cloud-Backup aktivieren – dann wird jede Sicherung ohne dein Zutun in deine Cloud geladen.",
+            "setup_cloud": "Cloud einrichten"
         },
         "events": {
             "created": "Backup erstellt",

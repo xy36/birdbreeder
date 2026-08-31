@@ -244,7 +244,9 @@
             "body": "Guárdala ahora en un lugar seguro (iCloud, Drive, correo) para que tus datos no se pierdan si extravías el dispositivo.",
             "snooze": "Recordar más tarde",
             "already_saved": "Ya guardada",
-            "share_now": "Compartir ahora"
+            "share_now": "Compartir ahora",
+            "cloud_hint": "También puedes activar la copia de seguridad automática en la nube: así cada copia se sube a tu nube sin que tengas que hacer nada.",
+            "setup_cloud": "Configurar la nube"
         },
         "events": {
             "created": "Copia de seguridad creada",

@@ -2053,6 +2053,13 @@ class TranslationsBackupReminderDe {
 
   /// de: 'Jetzt teilen'
   String get share_now => 'Jetzt teilen';
+
+  /// de: 'Alternativ kannst du das automatische Cloud-Backup aktivieren – dann wird jede Sicherung ohne dein Zutun in deine Cloud geladen.'
+  String get cloud_hint =>
+      'Alternativ kannst du das automatische Cloud-Backup aktivieren – dann wird jede Sicherung ohne dein Zutun in deine Cloud geladen.';
+
+  /// de: 'Cloud einrichten'
+  String get setup_cloud => 'Cloud einrichten';
 }
 
 // Path: backup.events

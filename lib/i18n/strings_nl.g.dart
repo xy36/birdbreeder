@@ -1822,6 +1822,10 @@ class _TranslationsBackupReminderNl extends TranslationsBackupReminderDe {
   String get already_saved => 'Al opgeslagen';
   @override
   String get share_now => 'Nu delen';
+  @override
+  String get cloud_hint => 'Je kunt ook de automatische cloudback-up inschakelen – elke back-up wordt dan zonder omkijken naar je cloud geüpload.';
+  @override
+  String get setup_cloud => 'Cloud instellen';
 }
 
 // Path: backup.events

@@ -2,6 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
 import 'package:birdbreeder/core/routing/empty_router_page.dart';
 import 'package:birdbreeder/features/account/account_page.dart';
+// Referenced by the generated AccountRoute args; the generator does not
+// add imports for types it only sees through a page's constructor.
+import 'package:birdbreeder/features/account/account_section.dart';
 import 'package:birdbreeder/features/backup/backup_list_page.dart';
 import 'package:birdbreeder/features/birds/presentation/add_or_edit/bird_page.dart';
 import 'package:birdbreeder/features/birds/presentation/birds_overview/birds_overview_page.dart';

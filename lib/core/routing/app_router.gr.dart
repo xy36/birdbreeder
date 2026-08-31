@@ -12,18 +12,51 @@ part of 'app_router.dart';
 
 /// generated route for
 /// [AccountPage]
-class AccountRoute extends PageRouteInfo<void> {
-  const AccountRoute({List<PageRouteInfo>? children})
-      : super(AccountRoute.name, initialChildren: children);
+class AccountRoute extends PageRouteInfo<AccountRouteArgs> {
+  AccountRoute({
+    Key? key,
+    AccountSection? scrollTo,
+    List<PageRouteInfo>? children,
+  }) : super(
+          AccountRoute.name,
+          args: AccountRouteArgs(key: key, scrollTo: scrollTo),
+          initialChildren: children,
+        );
 
   static const String name = 'AccountRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const AccountPage();
+      final args = data.argsAs<AccountRouteArgs>(
+        orElse: () => const AccountRouteArgs(),
+      );
+      return AccountPage(key: args.key, scrollTo: args.scrollTo);
     },
   );
+}
+
+class AccountRouteArgs {
+  const AccountRouteArgs({this.key, this.scrollTo});
+
+  final Key? key;
+
+  final AccountSection? scrollTo;
+
+  @override
+  String toString() {
+    return 'AccountRouteArgs{key: $key, scrollTo: $scrollTo}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! AccountRouteArgs) return false;
+    return key == other.key && scrollTo == other.scrollTo;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ scrollTo.hashCode;
 }
 
 /// generated route for

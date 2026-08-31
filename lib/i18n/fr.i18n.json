@@ -244,7 +244,9 @@
             "body": "Enregistrez-la dès maintenant en lieu sûr (iCloud, Drive, e-mail) afin de ne pas perdre vos données en cas de perte de l'appareil.",
             "snooze": "Me rappeler plus tard",
             "already_saved": "Déjà enregistrée",
-            "share_now": "Partager maintenant"
+            "share_now": "Partager maintenant",
+            "cloud_hint": "Tu peux aussi activer la sauvegarde automatique dans le cloud : chaque sauvegarde est alors envoyée dans ton cloud sans rien faire.",
+            "setup_cloud": "Configurer le cloud"
         },
         "events": {
             "created": "Sauvegarde créée",

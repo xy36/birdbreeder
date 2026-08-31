@@ -1,5 +1,11 @@
+import 'dart:async';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/common_imports.dart';
+import 'package:birdbreeder/core/routing/app_router.dart';
+import 'package:birdbreeder/features/account/account_section.dart';
 import 'package:birdbreeder/services/backup/backup_service.dart';
+import 'package:birdbreeder/services/backup/cloud/cloud_backup_manager.dart';
 import 'package:birdbreeder/services/injection.dart';
 
 Future<void> showBackupReminderDialog(BuildContext context) async {
@@ -14,7 +20,9 @@ Future<void> showBackupReminderDialog(BuildContext context) async {
     context: context,
     builder: (ctx) => AlertDialog(
       title: Text(tr.reminder.title),
-      content: Text('$ageText\n\n${tr.reminder.body}'),
+      content: Text(
+        '$ageText\n\n${tr.reminder.body}\n\n${tr.reminder.cloud_hint}',
+      ),
       actions: [
         TextButton(
           onPressed: () async {
@@ -32,6 +40,20 @@ Future<void> showBackupReminderDialog(BuildContext context) async {
           },
           child: Text(tr.reminder.already_saved),
         ),
+        // Hidden where cloud backup does not exist: the account screen renders
+        // no cloud card there, so the link would land on nothing.
+        if (CloudBackupManager.isSupported)
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+              unawaited(
+                ctx.router.push(
+                  AccountRoute(scrollTo: AccountSection.cloudBackup),
+                ),
+              );
+            },
+            child: Text(tr.reminder.setup_cloud),
+          ),
         FilledButton(
           onPressed: () async {
             Navigator.of(ctx).pop();

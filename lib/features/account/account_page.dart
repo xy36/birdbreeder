@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birdbreeder/features/account/account_screen.dart';
+import 'package:birdbreeder/features/account/account_section.dart';
 import 'package:birdbreeder/features/backup/cubit/backup_cubit.dart';
 import 'package:birdbreeder/features/backup/cubit/backup_list_cubit.dart';
 import 'package:birdbreeder/features/backup/cubit/backup_listener.dart';
@@ -10,7 +11,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class AccountPage extends StatelessWidget {
-  const AccountPage({super.key});
+  const AccountPage({super.key, this.scrollTo});
+
+  /// Section of the account screen to reveal on open. Passed through as a route
+  /// argument so other features can link straight to a setting.
+  final AccountSection? scrollTo;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +27,7 @@ class AccountPage extends StatelessWidget {
       ],
       child: BackupListener(
         child: CloudBackupListener(
-          child: const AccountScreen(),
+          child: AccountScreen(scrollTo: scrollTo),
         ),
       ),
     );
