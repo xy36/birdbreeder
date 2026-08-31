@@ -244,7 +244,9 @@
             "body": "Sla hem nu op een veilige plek op (iCloud, Drive, mail), zodat je gegevens niet verloren gaan als je je apparaat kwijtraakt.",
             "snooze": "Later herinneren",
             "already_saved": "Al opgeslagen",
-            "share_now": "Nu delen"
+            "share_now": "Nu delen",
+            "cloud_hint": "Je kunt ook de automatische cloudback-up inschakelen – elke back-up wordt dan zonder omkijken naar je cloud geüpload.",
+            "setup_cloud": "Cloud instellen"
         },
         "events": {
             "created": "Back-up gemaakt",

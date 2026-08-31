@@ -244,7 +244,9 @@
             "body": "Salvalo ora in un luogo sicuro (iCloud, Drive, e-mail) affinché i tuoi dati non vadano persi in caso di smarrimento del dispositivo.",
             "snooze": "Ricordamelo più tardi",
             "already_saved": "Già salvato",
-            "share_now": "Condividi ora"
+            "share_now": "Condividi ora",
+            "cloud_hint": "In alternativa puoi attivare il backup automatico nel cloud: ogni salvataggio viene caricato nel tuo cloud senza doverci pensare.",
+            "setup_cloud": "Configura il cloud"
         },
         "events": {
             "created": "Backup creato",

@@ -64,8 +64,17 @@ class BackupService {
   static const _prefsLastExternalKey = 'backup_last_external_at';
   static const _prefsSnoozeUntilKey = 'backup_reminder_snooze_until';
   static const _prefsAutoIntervalKey = 'backup_auto_interval';
+  static const _prefsInstalledAtKey = 'backup_installed_at';
   static const Duration reminderThreshold = Duration(days: 7);
   static const Duration snoozeDuration = Duration(days: 3);
+
+  /// How long a fresh installation is left alone before the external-backup
+  /// reminder may appear.
+  ///
+  /// Deliberately a separate constant from [reminderThreshold] even though the
+  /// values match: "how old is this installation" and "how stale is the last
+  /// backup" are different questions that will want different tuning.
+  static const Duration graceAfterInstall = Duration(days: 7);
 
   static Future<Directory> _backupDir() async {
     final docs = await getApplicationDocumentsDirectory();
@@ -316,6 +325,42 @@ class BackupService {
     return DateTime.now().toUtc().difference(last).inDays;
   }
 
+  /// When this installation first ran, persisted on first call.
+  ///
+  /// Existing installations updating into this feature have no stored value.
+  /// Rather than treating them as brand new — which would mute the reminder for
+  /// everyone for a full [graceAfterInstall] window, including the people it
+  /// exists for — the value is backdated to the oldest snapshot on disk. An
+  /// installation with backup history is demonstrably not new. Only a genuinely
+  /// fresh install, which has no snapshots, falls back to "now".
+  static Future<DateTime> installedAt() async {
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getString(_prefsInstalledAtKey);
+    final stored = raw == null ? null : DateTime.tryParse(raw);
+    if (stored != null) return stored;
+
+    final snapshots = await listSnapshots();
+    final resolved = snapshots.isEmpty
+        ? DateTime.now().toUtc()
+        : snapshots.last.lastModifiedSync().toUtc();
+
+    await prefs.setString(_prefsInstalledAtKey, resolved.toIso8601String());
+    return resolved;
+  }
+
+  /// Whether the database holds at least one bird.
+  ///
+  /// Returns false when the database isn't registered yet, which keeps the
+  /// reminder quiet during early startup rather than guessing.
+  static Future<bool> hasBirds() async {
+    if (!s1.isRegistered<AppDatabase>()) return false;
+    final db = s1.get<AppDatabase>();
+    final rows = await db
+        .customSelect('SELECT EXISTS(SELECT 1 FROM birds) AS present')
+        .get();
+    return rows.isNotEmpty && rows.first.read<int>('present') == 1;
+  }
+
   static Future<bool> shouldShowReminder() async {
     final prefs = await SharedPreferences.getInstance();
 
@@ -326,6 +371,16 @@ class BackupService {
         return false;
       }
     }
+
+    // Nothing worth backing up yet. Without this the first launch after a
+    // fresh install already qualifies: startup writes an auto-snapshot, so the
+    // snapshot check below passes while the database is still empty.
+    if (!await hasBirds()) return false;
+
+    // A fresh installation has never had the chance to back anything up;
+    // nagging on day one reads as a broken app rather than as advice.
+    final age = DateTime.now().toUtc().difference(await installedAt());
+    if (age < graceAfterInstall) return false;
 
     final snapshots = await listSnapshots();
     if (snapshots.isEmpty) return false;
@@ -390,6 +445,7 @@ class BackupService {
     if (_isSqliteBytes(bytes)) {
       // Legacy raw .sqlite/.db backup.
       await dst.writeAsBytes(bytes, flush: true);
+      await markSharedExternally();
       return;
     }
 
@@ -419,6 +475,7 @@ class BackupService {
     await dst.writeAsBytes(dbBytes, flush: true);
 
     await _restoreImagesIfAny(archive, manifest);
+    await markSharedExternally();
   }
 
   /// Reads the manifest of a bundle file, or null if it isn't a zip bundle

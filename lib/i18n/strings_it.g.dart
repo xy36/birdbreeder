@@ -1822,6 +1822,11 @@ class _TranslationsBackupReminderIt extends TranslationsBackupReminderDe {
   String get already_saved => 'Già salvato';
   @override
   String get share_now => 'Condividi ora';
+  @override
+  String get cloud_hint =>
+      'In alternativa puoi attivare il backup automatico nel cloud: ogni salvataggio viene caricato nel tuo cloud senza doverci pensare.';
+  @override
+  String get setup_cloud => 'Configura il cloud';
 }
 
 // Path: backup.events
